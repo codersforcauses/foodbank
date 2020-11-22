@@ -1,6 +1,6 @@
 import React from 'react'
-import Home from 'Home'
-import ErrorPage from 'Error'
+import Home from 'Pages/Home'
+import ErrorPage from 'Pages/Error'
 
 interface RouterElement {
   exact?: boolean
