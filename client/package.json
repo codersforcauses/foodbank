@@ -9,6 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@headlessui/react": "^0.2.0",
     "autoprefixer": "^10.0.2",
     "postcss": "^8.1.8",
     "react": "^17.0.1",
