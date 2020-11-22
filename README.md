@@ -36,10 +36,10 @@ Since we're using yarn workspaces, the packages should not be installed in the r
 
 ### `yarn workspace <workspace-name> <operation> <package-name> [flag]`
 
-`workspace-name` - this should be either `client` or `server`, depending on which workspace to install it\
-`operation` - this will be with `add` to install a dependency or `remove` to uninstall\
-`package-name` - the name of the package-name(s)(space separated) to install (example: `bootstrap`, `react react-dom`, etc.)\
-`flag` - optional argument of yarn flags like `-D/--dev` to install as devDependency or `-O/--optional` to install as optional dependency
+- `workspace-name` - this should be either `client` or `server`, depending on which workspace to install it
+- `operation` - this will be with `add` to install a dependency or `remove` to uninstall
+- `package-name` - the name of the package-name(s)(space separated) to install (example: `bootstrap`, `react react-dom`, etc.)
+- `flag` - optional argument of yarn flags like `-D/--dev` to install as devDependency or `-O/--optional` to install as optional dependency
 
 ## Learn More
 
