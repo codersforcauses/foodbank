@@ -8,6 +8,10 @@
     "plugin:jest/recommended",
     "standard"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -27,6 +31,7 @@
   ],
   "rules": {
     "no-use-before-define":"off",
+    "react/prop-types": "warn",
     "@typescript-eslint/no-use-before-define": "warn"
   }
 }

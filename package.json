@@ -5,10 +5,15 @@
   "description": "A web application aiming to educate young children about healthy eating habits and food groups",
   "repository": "git@github.com:codersforcauses/foodbank.git",
   "license": "MIT",
-  "workspaces": ["client", "server"],
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "client": "yarn workspace client start",
     "server": "yarn workspace server start",
+    "storybook": "yarn workspace client storybook",
+    "build-storybook": "yarn workspace client build-storybook",
     "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
   },
   "dependencies": {
