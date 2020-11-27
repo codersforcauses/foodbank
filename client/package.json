@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@headlessui/react": "0.2.0",
-    "autoprefixer": "10.0.2",
+    "autoprefixer": "10.0.3",
     "axios": "0.21.0",
     "babel-loader": "8.1.0",
     "formik": "2.2.5",
