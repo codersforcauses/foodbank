@@ -130,3 +130,6 @@ yarn-error.log*
 
 .vscode
 storybook-static
+wiki
+
+branding.pdf
