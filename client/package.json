@@ -39,7 +39,7 @@
     "@storybook/theming": "6.1.9",
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
-    "@testing-library/user-event": "12.2.2",
+    "@testing-library/user-event": "12.5.0",
     "@types/jest": "26.0.16",
     "@types/node": "12.19.8",
     "@types/react": "17.0.0",
