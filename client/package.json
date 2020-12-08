@@ -13,13 +13,13 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "@craco/craco": "^5.9.0",
+    "@craco/craco": "5.9.0",
     "@headlessui/react": "0.2.0",
-    "autoprefixer": "^9",
+    "autoprefixer": "9.8.6",
     "axios": "0.21.0",
     "babel-loader": "8.1.0",
     "formik": "2.2.5",
-    "postcss": "^7",
+    "postcss": "7.0.35",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-helmet": "6.1.0",
@@ -56,7 +56,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.21.5",
     "react-snap": "1.23.0",
-    "storybook-preset-craco": "^0.0.3",
+    "storybook-preset-craco": "0.0.3",
     "stylelint": "13.8.0",
     "stylelint-config-standard": "20.0.0",
     "typescript": "4.0.5"
