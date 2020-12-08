@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "postbuild": "react-snap",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
@@ -13,19 +13,20 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@craco/craco": "^5.9.0",
     "@headlessui/react": "0.2.0",
-    "autoprefixer": "10.0.4",
+    "autoprefixer": "^9",
     "axios": "0.21.0",
     "babel-loader": "8.1.0",
     "formik": "2.2.5",
-    "postcss": "8.1.14",
+    "postcss": "^7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-helmet": "6.1.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.1",
     "swr": "0.3.9",
-    "tailwindcss": "2.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "web-vitals": "1.0.1"
   },
   "devDependencies": {
