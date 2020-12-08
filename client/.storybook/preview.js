@@ -16,7 +16,7 @@ export const parameters = {
     default: 'Light Grey',
     values: [
       {
-        name: 'Purple',
+        name: 'Primary',
         value: '#671e75'
       },
       {
