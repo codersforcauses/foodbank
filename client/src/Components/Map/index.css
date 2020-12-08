@@ -1,0 +1,16 @@
+.map-selected {
+    fill: #E3DA37;
+    opacity: 0.50;
+}
+  
+.map-unselected {
+    fill: #FFF;
+    opacity: 0.01;
+    
+}
+
+.map-selected:hover, .map-unselected:hover {
+    cursor: pointer;
+    opacity: 0.30;
+    
+}
