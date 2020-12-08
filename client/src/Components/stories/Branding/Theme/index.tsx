@@ -3,7 +3,7 @@ import React from 'react'
 const theme = [{
   name: 'Primary',
   colours: [{
-    name: 'Purple',
+    name: 'Primary',
     hex: '#671e75',
     className: 'bg-primary'
   }],
