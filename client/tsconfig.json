@@ -23,6 +23,6 @@
     "baseUrl": "src"
   },
   "include": [
-    "src"
+    "src", "postcss.config.js"
   ]
 }
