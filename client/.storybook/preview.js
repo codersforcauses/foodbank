@@ -7,6 +7,11 @@ export const parameters = {
   docs: {
     theme
   },
+  options: {
+    storySort: {
+      order: ['Branding', 'Component', 'Page']
+    }
+  },
   backgrounds: {
     default: 'Light Grey',
     values: [
