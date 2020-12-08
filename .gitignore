@@ -133,5 +133,6 @@ storybook-static
 wiki
 
 branding.pdf
+client/src/index.css
 
 .yarn
