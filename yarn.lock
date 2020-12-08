@@ -2490,7 +2490,7 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/preset-create-react-app@3.1.5":
+"@storybook/preset-create-react-app@^3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-3.1.5.tgz#af46c9d64c384980d458fe99c10dcbaa623f93fd"
   integrity sha512-tzYcCRD5j22/HoDZ1tvsKaVnzyd4qqTE9sn3cx56Reb0XHcm4XkvG87jx0NvBGPCZrsThyBAtB3+XNxoFbI+9Q==
@@ -15066,6 +15066,13 @@ store2@^2.7.1:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.12.0.tgz#e1f1b7e1a59b6083b2596a8d067f6ee88fd4d3cf"
   integrity sha512-7t+/wpKLanLzSnQPX8WAcuLCCeuSHoWdQuh9SB3xD0kNOM38DNf+0Oa+wmvxmYueRzkmh6IcdKFtvTa+ecgPDw==
+
+storybook-preset-craco@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/storybook-preset-craco/-/storybook-preset-craco-0.0.3.tgz#60c03fe58c9a4c7692397b753f5a47e62b8f2a88"
+  integrity sha512-nnLsTpKKYyyzSAWQYvaoTp0W309jZli8kBucttrU+hxQqVvSdYNXlNS+KXLrCKhIJhl86jWqGJLznMXczLHE7A==
+  dependencies:
+    "@storybook/preset-create-react-app" "^3.1.5"
 
 stream-browserify@^2.0.1:
   version "2.0.2"

@@ -35,7 +35,6 @@
     "@storybook/addon-essentials": "6.1.9",
     "@storybook/addon-links": "6.1.10",
     "@storybook/node-logger": "6.1.10",
-    "@storybook/preset-create-react-app": "3.1.5",
     "@storybook/react": "6.1.10",
     "@storybook/theming": "6.1.9",
     "@testing-library/jest-dom": "5.11.6",
@@ -57,6 +56,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.21.5",
     "react-snap": "1.23.0",
+    "storybook-preset-craco": "^0.0.3",
     "stylelint": "13.8.0",
     "stylelint-config-standard": "20.0.0",
     "typescript": "4.0.5"
