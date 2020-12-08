@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports = {
   purge: [
     './public/index.html',
@@ -14,11 +15,10 @@ module.exports = {
       orange: '#df7400',
       teal: '#47d5cd',
       'dark-grey': '#2c2e35',
+      grey: '#83847a',
       'light-grey': '#cecfcb',
       white: '#ffffff',
       black: '#000000'
-      // greenish-dark-grey: #83847A
-      // greenish-light-grey: #C6C6BC
     },
     extend: {}
   },
