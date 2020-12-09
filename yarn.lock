@@ -2481,7 +2481,7 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/preset-create-react-app@^3.1.5":
+"@storybook/preset-create-react-app@3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-3.1.5.tgz#af46c9d64c384980d458fe99c10dcbaa623f93fd"
   integrity sha512-tzYcCRD5j22/HoDZ1tvsKaVnzyd4qqTE9sn3cx56Reb0XHcm4XkvG87jx0NvBGPCZrsThyBAtB3+XNxoFbI+9Q==
@@ -6202,7 +6202,7 @@ cssnano-util-same-parent@^4.0.0:
   resolved "https://registry.yarnpkg.com/cssnano-util-same-parent/-/cssnano-util-same-parent-4.0.1.tgz#574082fb2859d2db433855835d9a8456ea18bbf3"
   integrity sha512-WcKx5OY+KoSIAxBW6UBBRay1U6vkYheCdjyVNDm85zt5K9mHoGOfsOsqIszfAqrQQFIIKgjh2+FDgIj/zsl21Q==
 
-cssnano@^4.1.10:
+cssnano@4.1.10, cssnano@^4.1.10:
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-4.1.10.tgz#0ac41f0b13d13d465487e111b778d42da631b8b2"
   integrity sha512-5wny+F6H4/8RgNlaqab4ktc3e0/blKutmq8yNlBFXA//nSFFAqAngjNVRzUvCgYROULmZZUoosL/KSoZo5aUaQ==
@@ -12270,7 +12270,7 @@ postcss-calc@^7.0.1:
     postcss-selector-parser "^6.0.2"
     postcss-value-parser "^4.0.2"
 
-postcss-cli@^8.3.0:
+postcss-cli@8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/postcss-cli/-/postcss-cli-8.3.0.tgz#fa06c96cbd0620768c788cae74ba462622a9013c"
   integrity sha512-GqWohD9VmH+LCe+xsv6VCdcgNylNBmsrbxJlyXUGteGGdcmazj2YxSiJMUmQpg8pE6LRox9idtsTB7JZq5a+rw==
