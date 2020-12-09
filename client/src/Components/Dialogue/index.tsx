@@ -1,4 +1,3 @@
-import { Button } from "Components/Button";
 import { Typewriter } from "Components/Typewriter";
 import React, { useState } from "react";
 import "./index.css";
@@ -52,7 +51,6 @@ export const Dialogue = ({ messages, speaker, avatar }: Props) => {
             delay: 100,
             currentMessage: typingState.currentMessage
         });
-        console.log("call");
     }
 
     const Message = ({ message }: { message: string }) => {
@@ -69,13 +67,13 @@ export const Dialogue = ({ messages, speaker, avatar }: Props) => {
             <div className="dialogue">
                 <div className="speaker">
                     {speaker}
-                    <img src={avatar} />
+                    <img src={avatar} alt={speaker}/>
                 </div>
                 <div className="dialogueMessage">
                     <Message message={messages[typingState.currentMessage]} />
                 </div>
-                <div className="dialogueNext">
-                    <Button onClick={handleClick} label="next" size="large" />
+                <div className="dialogueNext" onClick={handleClick}>
+                    Next
                 </div>
             </div>
         </div>
