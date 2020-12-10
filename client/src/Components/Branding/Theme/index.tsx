@@ -23,6 +23,13 @@ const theme = [{
     className: 'bg-blue'
   }],
 }, {
+  name: 'Validation',
+  colours: [{
+    name: 'Red',
+    hex: '#e8352e',
+    className: 'bg-red'
+  }],
+}, {
   name: 'Neutral',
   colours: [{
     name: 'Black',
