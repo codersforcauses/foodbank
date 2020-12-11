@@ -31,7 +31,6 @@ export const Map = ({ selected, onSelect, height }: Props) => {
         }
     }
 
-    console.log(`height ${height}`)
     return (
         <div className="svgrow">
             <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 490.56" height={height} overflow="scroll">

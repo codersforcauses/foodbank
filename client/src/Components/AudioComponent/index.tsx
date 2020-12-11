@@ -30,8 +30,6 @@ interface Props {
 const AudioComponent = ({ soundFile, loop }: Props) => {
 
     const [playing, toggle] = useAudio(soundFile, loop);
-
-    console.log("playing music");
     return (
         <button className="bg-orange" style={
             {

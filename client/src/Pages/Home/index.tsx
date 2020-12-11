@@ -17,22 +17,22 @@ const Home: React.FC = () => {
     const elementRef = useRef(null as null | HTMLDivElement);
 
     useEffect(() => {
-        console.log(elementRef?.current?.clientHeight);
         if (elementRef?.current?.clientHeight) {
             setHeight(elementRef?.current?.clientHeight);
-            console.log(height);
         }
     }, []); //empty dependency array so it only runs once at render
 
 
     const [selected, onSelect] = useState<Location | null>(null);
-    return(
-    <>
-        <div ref={elementRef} className="bg-gray-500 flex flex-col items-center justify-center h-screen">
-            <Map selected={selected} onSelect={onSelect} height={height} />
-        </div>
-        <Dialogue messages={messages} speaker={"bananaman"} avatar={bananamanAvatar} />
-    </>
+    return (
+        <>
+            <div className="flex-auto">
+                    <div ref={elementRef} className="h-full 2xl:h-4/5 xl:h-4/5 flex justify-center">
+                        <Map selected={selected} onSelect={onSelect} height={height} />
+                    </div>
+            </div>
+            <Dialogue messages={messages} speaker={"bananaman"} avatar={bananamanAvatar} />
+        </>
     )
 }
 
