@@ -13,8 +13,8 @@ const FieldInput: React.FC<InputProps> = ({
   ...props
 }) => {
   const { error, touched, ...context } = useContext(FieldControlContext);
-  const errorClass = 'px-4 py-3 rounded-2xl font-light bg-light-grey bg-opacity-60 focus:ring-1 ring-primary outline-none placeholder-dark-grey border border-red'
-  const inputClass = 'px-4 py-3 rounded-2xl font-light bg-light-grey bg-opacity-60 focus:ring-1 ring-primary outline-none placeholder-dark-grey border border-light-grey'
+  const errorClass = 'input border-red'
+  const inputClass = 'input border-light-grey'
   return (
     <input
       aria-describedby={`${context.name}-label`}
