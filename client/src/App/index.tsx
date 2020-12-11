@@ -1,15 +1,15 @@
-import Audio from 'Components/Audio'
+import AudioComponent from 'Components/AudioComponent'
 
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import routes from 'router'
 
-const songLocation= 'https://www.w3schools.com/tags/horse.mp3';
+const songLocation= 'https://freesound.org/data/previews/475/475736_4397472-lq.mp3';
 const App = () => {
   return (
     <div className='App'>
       <header>foodbank</header>
-      <Audio soundFile={songLocation} loop={true} />
+      <AudioComponent soundFile={songLocation} loop={true}  />
       <Switch>
         {routes.map(({ name, ...route }) => (
           <Route key={name} {...route} />
