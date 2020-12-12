@@ -24,12 +24,13 @@ const Home: React.FC = () => {
 
 
     const [selected, onSelect] = useState<Location | null>(null);
+
     return (
         <>
             <div className="flex-auto">
-                    <div ref={elementRef} className="h-full 2xl:h-4/5 xl:h-4/5 flex justify-center">
-                        <Map selected={selected} onSelect={onSelect} height={height} />
-                    </div>
+                <div ref={elementRef} className="h-full 2xl:h-4/5 xl:h-4/5 flex justify-center">
+                    {height === 0 ? null : <Map selected={selected} onSelect={onSelect} height={height} />}
+                </div>
             </div>
             <Dialogue messages={messages} speaker={"bananaman"} avatar={bananamanAvatar} />
         </>
