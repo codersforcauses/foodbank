@@ -1,6 +1,4 @@
 /* eslint-disable no-undef */
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
   purge: [
     './public/index.html',
@@ -24,8 +22,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Bliss', ...defaultTheme.fontFamily.sans],
-        serif: ['Abraham', ...defaultTheme.fontFamily.serif]
+        sans: ['Bliss'],
+        serif: ['Abraham']
       }
     }
   },
