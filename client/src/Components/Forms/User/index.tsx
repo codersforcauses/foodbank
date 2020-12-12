@@ -1,14 +1,44 @@
 import React from 'react'
+import { Form, Formik } from 'formik'
+import Input from 'Components/Input/TextField'
+import {Button} from 'Components/Button'
 
-export interface UserProps {
-  title?: string
+interface UserForm {
+    username: string;
+    year: number;
 }
 
-export const User: React.FC<UserProps> = ({ title }) => {
+export interface UserProps {
+  /**
+   * Title of the form
+   */
+  title: string,
+    /**
+   * Subimt Handler
+   */
+  onSubmit: (values: UserForm) => void
+}
+
+
+export const User: React.FC<UserProps> = ({ title, onSubmit }) => {
   return (
-    <div>
-      <h1>{title}</h1>
-    </div>
+    <>
+      <Formik
+        initialValues={{ username: '', year: 2010 }}
+        initialErrors={{ username: 'Username Required', year: 'Year Required' }}
+        onSubmit={onSubmit}
+      >
+        <Form>
+            
+          <div className='bg-white p-3 w-96 rounded-xl flex flex-col space-y-6'>
+            <h2>{title}</h2>
+            <Input label='Username' name='username' />
+            <Input label='Year of Birth' name='year' />
+            <Button label="Submit" type="submit"/>
+          </div>
+        </Form>
+      </Formik>
+    </>
   )
 }
 

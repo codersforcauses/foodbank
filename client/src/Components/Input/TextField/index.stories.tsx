@@ -13,6 +13,7 @@ const Template: Story<InputProps> = args =>
   <Formik
     initialValues={{ name: args.name }}
     initialErrors={{ name: 'Username Required' }}
+    // eslint-disable-next-line
     onSubmit={() => { }}
   >
     {props =>
