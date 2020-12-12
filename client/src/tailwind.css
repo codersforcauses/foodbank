@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Abraham';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./fonts/Abraham.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'Bliss';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./fonts/Bliss-Regular.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'Bliss';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./fonts/Bliss-Light.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'Bliss';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/Bliss-Medium.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'Bliss';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/Bliss-Bold.otf') format('opentype');
+  }
+}

@@ -5,8 +5,9 @@ import Theme from '.'
 
 export default {
   title: 'Branding/Theme',
+  component: Theme
 } as Meta
 
-const Template: Story = args => <Theme {...args} />
+const Template: Story = () => <Theme />
 
 export const Swatches = Template.bind({})
