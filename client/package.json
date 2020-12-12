@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn build:css && react-scripts start",
-    "build": "NODE_ENV=production yarn build:css && react-scripts build",
     "test": "react-scripts test",
     "build:css": "postcss src/tailwind.css -o src/index.css",
+    "prebuild": "NODE_ENV=production yarn build:css",
+    "build": "react-scripts build",
     "postbuild": "react-snap",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
