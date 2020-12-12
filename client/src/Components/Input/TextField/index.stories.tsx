@@ -12,13 +12,15 @@ export default {
 const Template: Story<InputProps> = args =>
   <Formik
     initialValues={{ name: args.name }}
-    initialErrors={{ name: 'Username Required' }}
-    onSubmit={() => { }}
+    onSubmit={(_, actions) => {
+      actions.setFieldError(args.name, `${args.label} has error`)
+    }}
   >
     {props =>
-      <div className='bg-white p-3 w-96 rounded-xl'>
-        < Input {...props} {...args} />
-      </div>
+      <form onSubmit={props.handleSubmit} className='bg-white p-3 w-96 rounded-xl'>
+        <Input {...args} />
+        <button type="submit" className='mt-2 bg-primary text-white rounded-full px-3 py-1'>submit</button>
+      </form>
     }
 
   </Formik >
