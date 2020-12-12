@@ -1,0 +1,19 @@
+.navbar-toggle-button {
+  display: none;
+}
+.navbar-container {
+  display: block;
+}
+
+/* small screen */
+@media screen and (max-width: 650px) {
+  .navbar-toggle-button {
+    display: block;
+  }
+  .navbar-container {
+    display: none;
+  }
+  .navbar-container.open {
+    display: block;
+  }
+}
