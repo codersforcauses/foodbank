@@ -20,8 +20,8 @@ const FieldInput: React.FC<InputProps> = ({
       aria-describedby={`${context.name}-label`}
       id={context.name}
       type={type}
-      {...context}
       {...props}
+      {...context}
       className={[error && touched ? errorClass : inputClass, className].join(' ')}
     />
   );
