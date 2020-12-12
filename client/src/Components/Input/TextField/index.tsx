@@ -52,9 +52,12 @@ export const Input: React.FC<InputProps> = ({
     >
       <div className="flex flex-col">
         <FieldLabel>{label}</FieldLabel>
-        <FieldInput type={type} {...field} {...props} />
-        {touched && error && <FieldMessage>{error}</FieldMessage>}
-        {description && <FieldMessage>{description}</FieldMessage>}
+        <FieldInput type={type} {...props} {...field} />
+        {
+          touched && error
+            ? <FieldMessage>{error}</FieldMessage>
+            : description && <FieldMessage description>{description}</FieldMessage>
+        }
       </div>
     </FieldControl>
 
