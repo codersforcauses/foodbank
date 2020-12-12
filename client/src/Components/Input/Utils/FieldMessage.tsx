@@ -3,6 +3,7 @@ import { FieldControlContext } from './FieldControl';
 
 interface FieldMessageProps {
   className?: string
+  description?: boolean
 }
 
 const FieldMessage: React.FC<FieldMessageProps> = ({
@@ -12,10 +13,10 @@ const FieldMessage: React.FC<FieldMessageProps> = ({
 }) => {
   const { error, touched } = useContext(FieldControlContext);
   const errorClass = 'text-sm mt-1 text-red'
-  const messageClass = 'text-sm mt-1 text-dark-grey '
+  const messageClass = 'text-sm mt-1 text-dark-grey'
 
   return (
-    <span {...props} className={[error && touched ? errorClass : messageClass, className].join(' ')}>
+    <span {...props} className={[error && touched && !props.description ? errorClass : messageClass, className].join(' ')}>
       {children}
     </span>
   );
