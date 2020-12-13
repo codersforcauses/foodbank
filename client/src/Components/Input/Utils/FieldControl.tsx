@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 interface FieldControlProps {
   disabled: boolean
@@ -14,7 +14,7 @@ const FieldControlContext = React.createContext<FieldControlProps>({
   name: '',
   required: false,
   touched: false
-});
+})
 
 const FieldControl: React.FC<FieldControlProps> = ({
   children,
@@ -30,7 +30,7 @@ const FieldControl: React.FC<FieldControlProps> = ({
     >
       {children}
     </FieldControlContext.Provider>
-  );
-};
+  )
+}
 
-export { FieldControlContext, FieldControl };
+export { FieldControlContext, FieldControl }

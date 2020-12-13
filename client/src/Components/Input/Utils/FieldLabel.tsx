@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { FieldControlContext } from './FieldControl';
+import React, { useContext } from 'react'
+import { FieldControlContext } from './FieldControl'
 
 const FieldLabel: React.FC = props => {
-  const { name, required } = useContext(FieldControlContext);
+  const { name, required } = useContext(FieldControlContext)
   return (
     <label
       htmlFor={name}
@@ -12,7 +12,7 @@ const FieldLabel: React.FC = props => {
       {props.children}
       {required && <span className='text-orange'>*</span>}
     </label>
-  );
-};
+  )
+}
 
-export default FieldLabel;
+export default FieldLabel

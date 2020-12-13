@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 import { FieldInputProps } from 'formik'
-import { FieldControlContext } from './FieldControl';
+import { FieldControlContext } from './FieldControl'
 
 interface InputProps extends FieldInputProps<string> {
   type?: 'text' | 'email' | 'number' | 'tel' | 'password'
@@ -12,7 +12,7 @@ const FieldInput: React.FC<InputProps> = ({
   className = '',
   ...props
 }) => {
-  const { error, touched, ...context } = useContext(FieldControlContext);
+  const { error, touched, ...context } = useContext(FieldControlContext)
   const errorClass = 'input border-red'
   const inputClass = 'input border-light-grey'
   return (
@@ -24,7 +24,7 @@ const FieldInput: React.FC<InputProps> = ({
       {...context}
       className={[error && touched ? errorClass : inputClass, className].join(' ')}
     />
-  );
-};
+  )
+}
 
 export default FieldInput

@@ -41,7 +41,7 @@ export const Input: React.FC<InputProps> = ({
   description,
   ...props
 }) => {
-  const [{ name, ...field }, { error, touched }] = useField(props.name);
+  const [{ name, ...field }, { error, touched }] = useField(props.name)
   return (
     <FieldControl
       name={name}

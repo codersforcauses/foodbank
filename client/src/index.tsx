@@ -5,7 +5,7 @@ import reportWebVitals from 'Utils/reportWebVitals'
 import App from 'App'
 import './index.css'
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root")
 
 const Application = () => (
   <React.StrictMode>
@@ -16,9 +16,9 @@ const Application = () => (
 )
 
 if (rootElement?.hasChildNodes()) {
-  hydrate(<Application />, rootElement);
+  hydrate(<Application />, rootElement)
 } else {
-  render(<Application />, rootElement);
+  render(<Application />, rootElement)
 }
 
 // If you want to start measuring performance in your app, pass a function
