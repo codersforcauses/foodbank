@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import { Location } from "../../lib/types"
 
-// Image import since require is not allowed anymore, reverting to the plague imports
+// Image import - since require is not allowed anymore, reverting to the plague imports
 import BackgroundImage from './assets/tuckermap.jpeg';
 import AquaOcean from './assets/locations/AquaOcean.png';
 import BananaBunches from './assets/locations/BananaBunches.png';
@@ -65,7 +65,8 @@ export const Map: React.FC<Props> = ({ selected, onSelect, height }: Props) => {
                 {getSVGLocationGroup("bushLand", 940, 757, "translate(0 158) scale(0.139 0.14)", BushLand)}
                 {getSVGLocationGroup("vegieZone", 1502, 731, "translate(2 253) scale(0.138 0.138)", VegieZone)}
 
-                <g id="zombieWasteland" className={getClassname('zombieWasteland')} onClick={() => onMapClick('zombieWasteland')}><rect x="92" y="405" width="151" height="69" /></g>
+                {/* Leaving unselectable for now */}
+                <g id="zombieWasteland" className={"map-unselected"} onClick={() => console.log("I am zombie")} ><rect x="92" y="405" width="151" height="69" opacity="0.2"/></g>
 
                 {getSVGLocationGroup("wickedWaterway", 1216, 842, "translate(358 227) scale(0.141 0.141)", WickedWaterway)}
                 {getSVGLocationGroup("supplyStore", 960, 536, "translate(524 178) scale(0.139 0.14)", SupplyStore)}
