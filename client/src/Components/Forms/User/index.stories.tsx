@@ -14,12 +14,16 @@ const Template: Story<UserProps> = args => {
 
 export const LoginForm = Template.bind({})
 LoginForm.args = {
-    title: 'Login',
-    onSubmit: (values) => {console.log(values)}
+  title: 'Login',
+  onSubmit: values => {
+    console.log(values)
+  }
 }
 
 export const SignUpForm = Template.bind({})
 SignUpForm.args = {
-    title: 'Sign Up',
-    onSubmit: (values) => {console.log(values)}
+  title: 'Sign Up',
+  onSubmit: values => {
+    console.log(values)
+  }
 }
