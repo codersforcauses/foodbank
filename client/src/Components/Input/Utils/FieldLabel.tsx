@@ -7,7 +7,7 @@ const FieldLabel: React.FC = props => {
     <label
       htmlFor={name}
       id={`${name}-label`}
-      className='mb-1 font-bold'
+      className='font-bold'
     >
       {props.children}
       {required && <span className='text-orange'>*</span>}

@@ -12,8 +12,8 @@ const FieldMessage: React.FC<FieldMessageProps> = ({
   ...props
 }) => {
   const { error, touched } = useContext(FieldControlContext);
-  const errorClass = 'text-sm mt-1 text-red'
-  const messageClass = 'text-sm mt-1 text-dark-grey'
+  const errorClass = 'text-sm text-red'
+  const messageClass = 'text-sm text-dark-grey'
 
   return (
     <span {...props} className={[error && touched && !props.description ? errorClass : messageClass, className].join(' ')}>

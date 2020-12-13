@@ -50,7 +50,7 @@ export const Input: React.FC<InputProps> = ({
       required={required}
       disabled={disabled}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-1">
         <FieldLabel>{label}</FieldLabel>
         <FieldInput type={type} {...props} {...field} />
         {
