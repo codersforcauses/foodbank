@@ -1,0 +1,18 @@
+Careful of the background file, that shouldn't be copied over!!
+
+
+{getSVGLocationGroup("bg", 7151, 3508, "scale(0.14)", IMAGELINK)}
+{getSVGLocationGroup("fruityOrchard", 1026, 743, "translate(131 120) scale(0.139 0.148)", IMAGELINK)}
+{getSVGLocationGroup("bushLand", 940, 757, "translate(0 158) scale(0.139 0.14)", IMAGELINK)}
+{getSVGLocationGroup("vegieZone", 1502, 731, "translate(2 253) scale(0.138 0.138)", IMAGELINK)}
+{getSVGLocationGroup("zombieWasteland", 151, 69, "translate(358 227) scale(0.141 0.141)", IMAGELINK)}
+{getSVGLocationGroup("supplyStore", 960, 536, "translate(524 178) scale(0.139 0.14)", IMAGELINK)}
+{getSVGLocationGroup("grazingLands", 789, 409, "translate(184 273) scale(0.139 0.142)", IMAGELINK)}
+{getSVGLocationGroup("grainField", 1333, 597, "translate(465 282) scale(0.144 0.139)", IMAGELINK)}
+{getSVGLocationGroup("bananaBunches", 675, 551, "translate(108 64) scale(0.138 0.136)", IMAGELINK)}
+{getSVGLocationGroup("healthyTown", 880, 639, "translate(253 54) scale(0.144 0.139)", IMAGELINK)}
+{getSVGLocationGroup("dairyPark", 1636, 1225, "translate(360 54) scale(0.139 0.141)", IMAGELINK)}
+{getSVGLocationGroup("cluckyCoop", 344, 358, "translate(498 141) scale(0.12)", IMAGELINK)}
+{getSVGLocationGroup("coolCloud", 2167, 611, "translate(476) scale(0.141 0.139)", IMAGELINK)}
+{getSVGLocationGroup("yoghurtMountains", 1094, 635, "translate(545 80) scale(0.14 0.14)", IMAGELINK)}
+{getSVGLocationGroup("aquaOcean", 1737, 664, "translate(259 397) scale(0.139 0.141)", IMAGELINK)}

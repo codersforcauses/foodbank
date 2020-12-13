@@ -1,0 +1,15 @@
+export const BackgroundImage = require('./tuckermap.jpeg').default;
+export const AquaOcean = require('./locations/AquaOcean.png').default;
+export const BananaBunches = require('./locations/BananaBunches.png').default;
+export const BushLand = require('./locations/BushLand.png').default;
+export const CluckyCoup = require('./locations/CluckyCoup.png').default;
+export const CoolClouds = require('./locations/CoolClouds.png').default;
+export const DairyPark = require('./locations/DairyPark.png').default;
+export const FruityOrchard = require('./locations/FruityOrchard.png').default;
+export const GrainField = require('./locations/GrainField.png').default;
+export const GrazingLands = require('./locations/GrazingLands.png').default;
+export const HealthyTown = require('./locations/HealthyTown.png').default;
+export const SupplyStore = require('./locations/SupplyStore.png').default;
+export const VegieZone = require('./locations/VegieZone.png').default;
+export const WickedWaterway = require('./locations/WickedWaterway.png').default;
+export const YoghurtMountains = require('./locations/YoghurtMountains.png').default;

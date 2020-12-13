@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 490.68">
+<g id="bg"><image width="7151" height="3508" transform="scale(0.14)" xlink:href="../tuckermap.jpeg"/></g>
+<g id="fruityOrchard"><image width="1026" height="743" transform="translate(131 120) scale(0.139 0.148)" xlink:href="../Map%20Locations/Fruity%20Orchard.png"/></g>
+<g id="bushLand"><image width="940" height="757" transform="translate(0 158) scale(0.139 0.14)" xlink:href="../Map%20Locations/Bush%20Lands.png"/></g><g id="vegieZone">
+<image width="1502" height="731" transform="translate(2 253) scale(0.138 0.138)" xlink:href="../Map%20Locations/Vegie%20Zone.png"/></g>
+<g id="zombieWasteland"><rect x="92" y="405" width="151" height="69" fill="none"/></g>
+<g id="wickedWaterway"><image width="1216" height="842" transform="translate(358 227) scale(0.141 0.141)" xlink:href="../Map%20Locations/Wicked%20Waterway.png"/></g>
+<g id="supplyStore"><image width="960" height="536" transform="translate(524 178) scale(0.139 0.14)" xlink:href="../Map%20Locations/Supply%20Store.png"/></g>
+<g id="grazingLands"><image width="789" height="409" transform="translate(184 273) scale(0.139 0.142)" xlink:href="../Map%20Locations/Grazing%20Lands.png"/></g>
+<g id="grainField"><image width="1333" height="597" transform="translate(465 282) scale(0.144 0.139)" xlink:href="../Map%20Locations/Grain%20Field.png"/></g>
+<g id="bananaBunches"><image width="675" height="551" transform="translate(108 64) scale(0.138 0.136)" xlink:href="../Map%20Locations/Banana%20Bunches.png"/></g>
+<g id="healthyTown"><image width="880" height="639" transform="translate(253 54) scale(0.144 0.139)" xlink:href="../Map%20Locations/Healthy%20Town.png"/></g>
+<g id="dairyPark"><image width="1636" height="1225" transform="translate(360 54) scale(0.139 0.141)" xlink:href="../Map%20Locations/Dairy%20Park.png"/></g>
+<g id="cluckyCoop"><image width="344" height="358" transform="translate(498 141) scale(0.12)" xlink:href="../Map%20Locations/Clucky%20Coup.png"/></g>
+<g id="coolCloud"><image width="2167" height="611" transform="translate(476) scale(0.141 0.139)" xlink:href="../Map%20Locations/Cool%20Clouds.png"/></g>
+<g id="yoghurtMountains"><image width="1094" height="635" transform="translate(545 80) scale(0.14 0.14)" xlink:href="../Map%20Locations/Yoghurt%20Mountains.png"/></g>
+<g id="aquaOcean"><image width="1737" height="664" transform="translate(259 397) scale(0.139 0.141)" xlink:href="../Map%20Locations/AquaOcean.png"/></g>
+</svg>

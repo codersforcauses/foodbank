@@ -1,18 +1,20 @@
 .map-selected {
     fill: #E3DA37;
-    opacity: 0.50;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+    transform: scale(1.1, 1.1);
+    outline: 6px solid white;
 }
   
 .map-unselected {
-    fill: #FFF;
-    opacity: 0.01;
-    
+    transition: 0.2s all; 
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
 }
 
 .map-selected:hover, .map-unselected:hover {
     cursor: pointer;
-    opacity: 0.30;
-    
+    transform: scale(1.1, 1.1);
 }
 
 .svgrow {
