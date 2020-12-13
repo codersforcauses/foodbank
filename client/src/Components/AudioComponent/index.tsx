@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const useAudio = (url: string, loop: boolean): [boolean, () => void] => {
+const useAudio: (url: string, loop: boolean)=> [boolean, ()=>void] = (url: string, loop: boolean): [boolean, () => void] => {
     const [audio] = useState(new Audio(url));
     const [playing, setPlaying] = useState(false);
     audio.loop = loop;
@@ -24,10 +24,10 @@ const useAudio = (url: string, loop: boolean): [boolean, () => void] => {
 
 
 interface Props {
-    soundFile: any;
+    soundFile: string;
     loop: boolean;
 }
-const AudioComponent = ({ soundFile, loop }: Props) => {
+const AudioComponent : React.FC<Props> = ({ soundFile, loop }: Props) => {
 
     const [playing, toggle] = useAudio(soundFile, loop);
     return (

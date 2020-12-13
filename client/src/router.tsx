@@ -1,4 +1,4 @@
-import React from 'react'
+import { FunctionComponent } from 'react'
 import Home from 'Pages/Home'
 import ErrorPage from 'Pages/Error'
 import CharacterPage from 'Pages/Character'
@@ -7,7 +7,7 @@ interface RouterElement {
   exact?: boolean
   name: string
   path: string
-  component: React.FunctionComponent
+  component: FunctionComponent
   routes?: Array<RouterElement>
 }
 

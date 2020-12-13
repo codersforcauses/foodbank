@@ -6,11 +6,11 @@ import "./index.css";
 
 interface Props {
     messages: string[];
-    speaker: string
-    avatar: any; //file location??
+    speaker: string;
+    avatar: string; //file location??
 }
 
-export const Dialogue = ({ messages, speaker, avatar }: Props) => {
+export const Dialogue : React.FC<Props> = ({ messages, speaker, avatar }: Props) => {
 
     const [displayDialogue, setDisplayDialogue] = useState("block");
     // const [currentMessage, setCurrentMessage] = useState(0);

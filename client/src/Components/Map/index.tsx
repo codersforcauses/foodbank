@@ -1,22 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "./index.css";
 import { Location } from "../../lib/types"
 
-import {
-    BackgroundImage, AquaOcean, BananaBunches, BushLand, CluckyCoup, CoolClouds, DairyPark, FruityOrchard,
-    GrainField, GrazingLands, HealthyTown, SupplyStore, VegieZone,
-    WickedWaterway, YoghurtMountains
-} from "./assets";
+// Image import since require is not allowed anymore, reverting to the plague imports
+import BackgroundImage from './assets/tuckermap.jpeg';
+import AquaOcean from './assets/locations/AquaOcean.png';
+import BananaBunches from './assets/locations/BananaBunches.png';
+import BushLand from './assets/locations/BushLand.png';
+import CluckyCoup from './assets/locations/CluckyCoup.png';
+import CoolClouds from './assets/locations/CoolClouds.png';
+import DairyPark from './assets/locations/DairyPark.png';
+import FruityOrchard from './assets/locations/FruityOrchard.png';
+import GrainField from './assets/locations/GrainField.png';
+import GrazingLands from './assets/locations/GrazingLands.png';
+import HealthyTown from './assets/locations/HealthyTown.png';
+import SupplyStore from './assets/locations/SupplyStore.png';
+import VegieZone from './assets/locations/VegieZone.png';
+import WickedWaterway from './assets/locations/WickedWaterway.png';
+import YoghurtMountains from './assets/locations/YoghurtMountains.png';
 
-// FIX THIS JEREMIAH
-/*eslint no-unused-vars:*/
 interface Props {
     selected: Location | null;
     onSelect: (c: Location | null) => void;
     height: number
 }
 
-export const Map = ({ selected, onSelect, height }: Props) => {
+export const Map: React.FC<Props> = ({ selected, onSelect, height }: Props) => {
     // const height ="100%";
 
     const getClassname = (area: Location) => {
@@ -36,7 +45,7 @@ export const Map = ({ selected, onSelect, height }: Props) => {
         }
     }
 
-    const getSVGLocationGroup = (name: Location, width: number, height: number, transform: string, image: any) => {
+    const getSVGLocationGroup = (name: Location, width: number, height: number, transform: string, image: string) => {
         return (
             <g id={name} onClick={() => onMapClick(name)}>
                 <g transform={transform}>
@@ -57,7 +66,7 @@ export const Map = ({ selected, onSelect, height }: Props) => {
                 {getSVGLocationGroup("vegieZone", 1502, 731, "translate(2 253) scale(0.138 0.138)", VegieZone)}
 
                 <g id="zombieWasteland" className={getClassname('zombieWasteland')} onClick={() => onMapClick('zombieWasteland')}><rect x="92" y="405" width="151" height="69" /></g>
-                
+
                 {getSVGLocationGroup("wickedWaterway", 1216, 842, "translate(358 227) scale(0.141 0.141)", WickedWaterway)}
                 {getSVGLocationGroup("supplyStore", 960, 536, "translate(524 178) scale(0.139 0.14)", SupplyStore)}
                 {getSVGLocationGroup("grazingLands", 789, 409, "translate(184 273) scale(0.139 0.142)", GrazingLands)}

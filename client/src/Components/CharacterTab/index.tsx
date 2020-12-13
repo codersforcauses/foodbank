@@ -5,7 +5,7 @@ interface Props {
     character: Character;
 }
 
-export const CharacterTab = ({ character }: Props) => {
+export const CharacterTab : React.FC<Props> = ({ character }: Props) => {
 
     // const superheroMode = false;
     const [superheroMode, setSuperheroMode] = useState(false);

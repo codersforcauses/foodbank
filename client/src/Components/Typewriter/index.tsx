@@ -2,25 +2,25 @@
 
 import React, { useEffect, useState } from 'react'
 
-export interface TypewriterProps {
+interface Props {
     string: string
     delay?: number
-    stopBlinkinOnComplete?: any
+    stopBlinkinOnComplete?: boolean
     className?: string
     onComplete?: () => void
     cursor?: string
     cursorClassName?: string
 }
 
-export function Typewriter({
+export const Typewriter: React.FC<Props> = ({
     string,
     delay = 100,
     stopBlinkinOnComplete = false,
     className,
-    onComplete = () => { },
+    onComplete = () => { return },
     cursor = '|',
     cursorClassName = undefined
-}: TypewriterProps) {
+}: Props) => {
     const [text, setText] = useState('')
     const [pointer, setPointer] = useState(-1)
     const [isBlinking, setBlinking] = useState(true)
@@ -39,7 +39,7 @@ export function Typewriter({
             if (isMounted) onComplete()
         }
 
-        return () => {isMounted = false;}
+        return () => { isMounted = false; }
     }, [pointer])
 
     return (
