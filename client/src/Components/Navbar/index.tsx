@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './navbar.css';
 
 export const NavbarContent = () => {
   return <nav>navbar here</nav>
@@ -10,8 +9,8 @@ export const Navbar: React.FC = () => {
 
   return (
     <header>
-      <button className="md:hidden block" onClick={() => setOpen(!open)}>Open Nav</button>
-      <div className={`md:block ${!open ? 'hidden' : ''}`}>
+      <button className="sm:hidden" onClick={() => setOpen(!open)}>Open Nav</button>
+      <div className={`sm:block ${!open ? 'hidden' : ''}`}>
         <NavbarContent />
       </div>
     </header>
