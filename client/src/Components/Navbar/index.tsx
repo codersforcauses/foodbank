@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import './navbar.css';
 
 export const NavbarContent = () => {
-  return <div>navbar here</div>
+  return <nav>navbar here</nav>
 };
 
 export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
-      <button className="navbar-toggle-button" onClick={() => setOpen(!open)}>Open Nav</button>
-      <div className={`navbar-container ${open ? 'open' : ''}`}>
+    <header>
+      <button className="md:hidden block" onClick={() => setOpen(!open)}>Open Nav</button>
+      <div className={`md:block ${!open ? 'hidden' : ''}`}>
         <NavbarContent />
       </div>
-    </div>
+    </header>
   );
 };
