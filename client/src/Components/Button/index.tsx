@@ -1,20 +1,10 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
-import './index.css'
 
 export interface ButtonProps {
   /**
-   * Is this the principal call to action on the page?
+   * What colour style do you want for the button?
    */
-  primary?: boolean
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large'
+  colour: 'primary' | 'orange' | 'blue' | 'teal'
   /**
    * Button contents
    */
@@ -25,26 +15,24 @@ export interface ButtonProps {
   onClick?: () => void
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const Button: React.FC<ButtonProps> = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
+  colour = 'primary',
   label,
   ...props
 }) => {
-  const mode = primary
-    ? 'storybook-button--primary'
-    : 'storybook-button--secondary'
   return (
     <button
       type='button'
-      className={['storybook-button', `storybook-button--${size}`, mode].join(
-        ' '
-      )}
-      style={{ backgroundColor }}
+      className={[
+        'font-serif',
+        'text-white',
+        `shadow-${colour}`,
+        `bg-${colour}`,
+        'text-lg',
+        'h-12',
+        'px-11',
+        'rounded-full'
+      ].join(' ')}
       {...props}
     >
       {label}

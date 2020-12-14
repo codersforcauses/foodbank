@@ -26,6 +26,12 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss', ...defaultTheme.fontFamily.sans],
         serif: ['Abraham', ...defaultTheme.fontFamily.serif]
+      },
+      boxShadow: {
+        primary: 'inset -1px -4px 0px 1px #51185f',
+        blue: 'inset -1px -4px 0px 1px #51185f',
+        orange: 'inset -1px -4px 0px 1px #51185f',
+        teal: 'inset -1px -4px 0px 1px #51185f'
       }
     }
   },
