@@ -28,10 +28,10 @@ module.exports = {
         serif: ['Abraham', ...defaultTheme.fontFamily.serif]
       },
       boxShadow: {
-        primary: 'inset -1px -4px 0px 1px #51185f',
-        blue: 'inset -1px -4px 0px 1px #51185f',
-        orange: 'inset -1px -4px 0px 1px #51185f',
-        teal: 'inset -1px -4px 0px 1px #51185f'
+        primary: 'inset -1px -4px 0px 1px #4c1656',
+        blue: 'inset -1px -4px 0px 1px #008ca9',
+        orange: 'inset -1px -4px 0px 1px #b86000',
+        teal: 'inset -1px -4px 0px 1px #2dc7bf'
       }
     }
   },

@@ -2,11 +2,11 @@ import React from 'react'
 
 export interface ButtonProps {
   /**
-   * What colour style do you want for the button?
+   * Button colour styling
    */
   colour: 'primary' | 'orange' | 'blue' | 'teal'
   /**
-   * Button contents
+   * Button text contents
    */
   label: string
   /**
@@ -30,8 +30,9 @@ export const Button: React.FC<ButtonProps> = ({
         `bg-${colour}`,
         'text-lg',
         'h-12',
-        'px-11',
-        'rounded-full'
+        'px-24',
+        'rounded-full',
+        'uppercase'
       ].join(' ')}
       {...props}
     >
