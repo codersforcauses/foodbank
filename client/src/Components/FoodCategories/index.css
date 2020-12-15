@@ -1,0 +1,30 @@
+.container {
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.grains {
+    position: relative;
+    /* margin-top: 200px;
+    margin-left: 200px; */
+    /* height: 400px;
+    width: 400px;
+    left: -200px;
+    top: -200px;
+    border-radius: 135deg;
+    background-color: orange;
+    border-top-left-radius: 100%;
+    /* border-top-right-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%; */ 
+    /* width: 0; 
+    height: 0; 
+    border:200px solid transparent;
+    border-right: 200px solid orange; 
+    border-radius: 50%;
+    transform: rotate(225deg) */
+
+
+}

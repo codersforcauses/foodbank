@@ -19,8 +19,4 @@ Primary.args = {
     word: "Test"
 }
 
-export const Secondary = Template.bind({})
-Secondary.args = {
-  word: "Dhruv"
-}
 
