@@ -12,30 +12,30 @@ export const FoodCategories = (props: FoodCategoriesProps) => {
         <React.Fragment>
             <div>
                 <div className="grains">
-                <svg height="400" width="400" viewBox="0 0 400 400">
-                <circle r="200" cx="200" cy="200" fill="transparent"/>
-                    <circle className="grains" r="100" cx="200" cy="200" fill="transparent"
+                <svg height="400" width="400" viewBox="0 0 500 500">
+                <circle r="250" cx="250" cy="250" fill="transparent"/>
+                    <circle className="grains" r="100" cx="250" cy="250" fill="transparent"
                         stroke="#DD8127" strokeWidth="200" strokeDasharray="calc(30 * 628/100) 628"
-                        transform="rotate(162, 200, 200)"
+                        transform="rotate(162, 250, 250) translate(5, 5)"
                     />
 
-                <circle className="vegetables" r="100" cx="200" cy="200" fill="transparent"
+                <circle className="vegetables" r="100" cx="250" cy="250" fill="transparent"
                     stroke="#55B586" strokeWidth="200" strokeDasharray="calc(30 * 628/100) 628"
-                    transform="rotate(270, 200, 200)"
+                    transform="rotate(270, 250, 250) translate(5, 5)"
                 />
 
-                <circle className="fruit" r="100" cx="200" cy="200" fill="transparent"
+                <circle className="fruit" r="100" cx="250" cy="250" fill="transparent"
                         stroke="#66B944" strokeWidth="200" strokeDasharray="calc(12 * 628/100) 628"
-                        transform="rotate(378, 200, 200)"
+                        transform="rotate(378, 250, 250) translate(5, 5)"
                     />
-                <circle className="dairy" r="100" cx="200" cy="200" fill="transparent"
+                <circle className="dairy" r="100" cx="250" cy="250" fill="transparent"
                         stroke="#A684BC" strokeWidth="200" strokeDasharray="calc(12 * 628/100) 628"
-                        transform="rotate(421.2, 200, 200)"
+                        transform="rotate(421.2, 250, 250) translate(5, 5)"
                     />
 
-                <circle className="meat" r="100" cx="200" cy="200" fill="transparent"
+                <circle className="meat" r="100" cx="250" cy="250" fill="transparent"
                     stroke="#69A3D8" strokeWidth="200" strokeDasharray="calc(16 * 628/100) 628"
-                    transform="rotate(464.4, 200, 200)"
+                    transform="rotate(464.4, 250, 250) translate(5, 5)"
                 />
 
 
