@@ -1,56 +1,13 @@
-.townbox {
-  border-width: 1px;
-  overflow: hidden;
-}
-
 .captionbox {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.boxcaption {
-  /* border-width: 1px;
-  font-family: 'Bliss-Regular';
-  margin: 0;
-  padding: 10px; */
-  background-image: url('grid.jpg');
-  background-size: 300px 200px;
-  word-wrap: break-word;
-}
-
-.boxcaption::before {
-  content: '';
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 0.25;
+  background-image: radial-gradient(
+    circle,
+    rgba(223, 116, 0, 0.4) 20%,
+    rgba(223, 116, 0, 0.3) 0%
+  );
+  background-size: 20px 10px;
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
 }
 
 h2 {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  border-width: 1px;
-  position: absolute;
-  /* orange or purple */
-  z-index: 1;
-}
-
-polygon {
-  fill: #df7400;
-  opacity: 0.3;
-  z-index: 1;
-}
-
-/* svg {
-  background-image: url('grid.jpg');
-  background-size: 300px 200px;
-} */
-
-p {
-  width: 80%;
-  z-index: 3;
 }

@@ -8,7 +8,6 @@ export default {
   title: 'Example/Textbox',
   component: Townbox,
   argTypes: {
-    backgroundColor: { control: 'color' }
   }
 } as Meta
 
