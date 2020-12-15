@@ -44,13 +44,12 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
       <div>
         {user ? (
-          <Button size='small' onClick={onLogout} label='Log out' />
+          <Button colour='primary' onClick={onLogout} label='Log out' />
         ) : (
           <>
-            <Button size='small' onClick={onLogin} label='Log in' />
+            <Button colour='primary' onClick={onLogin} label='Log in' />
             <Button
-              primary
-              size='small'
+              colour='primary'
               onClick={onCreateAccount}
               label='Sign up'
             />
