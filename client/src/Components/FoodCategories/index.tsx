@@ -2,9 +2,16 @@ import React from 'react';
 
 import "./index.css";
 
+import Grains from "./Categories/grains";
+import Vegetables from "./Categories/vegetables";
+import Fruits from "./Categories/fruits";
+import Dairy from "./Categories/dairy";
+import Meat from "./Categories/meat";
+
 export interface FoodCategoriesProps {
     word: string;
 }
+
 
 export const FoodCategories = (props: FoodCategoriesProps) => {
     const rotate = 180;
@@ -37,6 +44,7 @@ export const FoodCategories = (props: FoodCategoriesProps) => {
                     stroke="#69A3D8" strokeWidth="200" strokeDasharray="calc(16 * 628/100) 628"
                     transform="rotate(464.4, 250, 250) translate(5, 5)"
                 />
+
 
 
                 </svg>
