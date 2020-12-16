@@ -2,7 +2,7 @@
 // svg tree generated from dev/svgParse.py (super hacky atm)
 
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { Location } from "../../lib/types"
 
@@ -32,6 +32,53 @@ interface Props {
 export const Map: React.FC<Props> = ({ selected, onSelect, height }: Props) => {
     // const height ="100%";
 
+    const [audio, setAudio] = useState({
+        sound: new Audio(),
+        playing: false,
+        change: false
+    });
+
+    const playSound = (url: string) => {
+        setAudio({
+            sound: new Audio(url),
+            playing: true,
+            change:true
+        })
+    }
+
+    useEffect(() => {
+        audio.playing ? audio.sound.play() : audio.sound.pause();
+
+        if(audio.change){
+            setAudio({
+                sound: audio.sound,
+                playing: audio.playing,
+                change:false
+            })
+        }
+
+    },
+        [audio.playing, audio.change]
+    );
+
+    useEffect(() => {
+        audio.sound.addEventListener('ended', () => {
+            setAudio({
+                sound: audio.sound,
+                playing: false,
+                change:true
+            });
+        }
+        );
+        return () => {
+            audio.sound.removeEventListener('ended', () => setAudio({
+                sound: audio.sound,
+                playing: false,
+                change:true
+            }));
+        };
+    }, [audio.playing]);
+
     const getClassname = (area: Location) => {
         if (area === selected) {
             return 'map-selected';
@@ -47,6 +94,14 @@ export const Map: React.FC<Props> = ({ selected, onSelect, height }: Props) => {
         } else {
             onSelect(area);
         }
+
+        if (area == "grainField" || area == "bananaBunches" || area == "aquaOcean" || area == "zombieWasteland") {
+            playSound("https://freesound.org/data/previews/547/547685_12172648-lq.mp3")
+        }
+        else if (area == "coolCloud" || area == "supplyStore" || area == "grazingLands" || area == "dairyPark") {
+            playSound("https://freesound.org/data/previews/547/547491_12277875-lq.mp3")
+        }
+        else playSound("https://freesound.org/data/previews/547/547443_6397342-lq.mp3")
     }
 
     const getSVGLocationGroup = (name: Location, width: number, height: number, transform: string, image: string) => {
