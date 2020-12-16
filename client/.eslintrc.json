@@ -5,10 +5,12 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:jest/recommended",
+    "plugin:/json/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
@@ -29,14 +31,13 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "jest",
-    "@typescript-eslint"
-  ],
   "rules": {
     "no-use-before-define":"off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-use-before-define": "warn"
+    "@typescript-eslint/no-use-before-define": "warn",
+    "prettier/prettier": ["error",
+      {},
+      { "usePrettierrc": true }
+    ]
   }
 }
