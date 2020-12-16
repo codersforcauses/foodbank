@@ -5,7 +5,7 @@ import reportWebVitals from 'Utils/reportWebVitals'
 import App from 'App'
 import './index.css'
 
-const rootElement = document.getElementById("root")
+const rootElement = document.getElementById('root')
 
 const Application = () => (
   <React.StrictMode>
