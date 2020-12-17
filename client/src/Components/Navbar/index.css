@@ -28,10 +28,9 @@
     position: fixed;
     bottom: 65px;
     right: 10px;
+    opacity: 0;
     background-color: #671e75;
     border-radius: 5%;
-    opacity: 0; /* would make opacity 0 if animation worked*/
-    transition: 0.5s;
     color: #ffffff;
     border: 2px solid #00acd0;
     font-family: Abraham;
@@ -54,7 +53,14 @@
   }
 }
 
-.navbarOpen {
-  opacity: 1;
-  transition-duration: 10;
+@media (max-width: 640px) {
+  .navbarOpen {
+    opacity: 1;
+    transition-duration: 0.5s;
+  }
+
+  .navbarClose {
+    opacity: 0;
+    transition-duration: 0.5s;
+  }
 }

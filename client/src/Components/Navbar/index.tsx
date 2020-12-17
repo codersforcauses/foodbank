@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './index.css'
 
 export const NavbarContent = () => {
@@ -17,23 +17,17 @@ export const NavbarContent = () => {
 export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    const navbar: HTMLElement | null = document.getElementById('navbar')
-    if (navbar !== null) {
-      navbar.addEventListener('transitionstart', () => {
-        if (!open) navbar.style.display = 'inline'
-      })
-      navbar.addEventListener('transitionend', () => {
-        if (open) navbar.style.display = 'inline'
-      })
-    } else {
-      console.log('no navbar')
-    }
-  }, [document.getElementById('navbar')])
-
   const handleClick = () => {
     setOpen(!open)
-    document.getElementById('navbar')?.classList.toggle('navbarOpen')
+    const navbar = document.getElementById('navbar')
+    if (open) {
+      navbar?.classList.remove('navbarOpen')
+      navbar?.classList.add('navbarClose')
+    }
+    if (!open) {
+      navbar?.classList.add('navbarOpen')
+      navbar?.classList.remove('navbarClose')
+    }
   }
 
   return (
