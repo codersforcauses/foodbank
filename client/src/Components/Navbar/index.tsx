@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import './index.css'
 
 export const NavbarContent = () => {
-  return <nav className={`Navbar ${!open ? 'Stuck' : 'Button'}`}>
-      <ul id="list">
+  return (
+    <nav>
+      <ul>
         <li>Home</li>
         <li>About Us</li>
         <li>Contact Us</li>
         <li>Resources</li>
       </ul>
     </nav>
-};
+  )
+}
 
 export const Navbar: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
-      <header>
-        <span id="buttonSpan">
-          <button id="button" className="sm:hidden" onClick={() => setOpen(!open)}>+</button>
-          <div className={`sm:block ${!open ? 'hidden' : ''}`}>
-            < NavbarContent />
-          </div>
-       </span>
-     </header>
-  );
-};
+    <header>
+      <span id='buttonSpan'>
+        <div className={`NavbarContent sm:block ${!open ? 'hidden' : ''}`}>
+          <NavbarContent />
+        </div>
+        <button
+          className='sm:hidden FloatingButton'
+          onClick={() => setOpen(!open)}
+          style={{}}
+        >
+          +
+        </button>
+      </span>
+    </header>
+  )
+}
