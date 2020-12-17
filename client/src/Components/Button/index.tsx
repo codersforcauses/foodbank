@@ -20,17 +20,25 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   ...props
 }) => {
+  const textColour = (colour: string): string => {
+    if (colour == 'primary') {
+      return 'white'
+    } else {
+      return 'black'
+    }
+  }
+  console.log(`shadow-${colour}`)
   return (
     <button
       type='button'
       className={[
         'font-serif',
-        'text-white',
+        `text-${textColour(colour)}`,
         `shadow-${colour}`,
         `bg-${colour}`,
         'text-lg',
         'h-12',
-        'px-24',
+        'px-8',
         'rounded-full',
         'uppercase'
       ].join(' ')}
