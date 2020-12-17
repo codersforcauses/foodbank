@@ -13,12 +13,13 @@
   text-align: center;
   color: #ffffff;
   font-family: Abraham;
+  transition: 0.3s ease-in-out;
 }
 
-/* .FloatingButton:active {
+.FloatingButton:active {
   transform: rotate(135deg);
   transition: 0.3s ease-in-out;
-} */
+}
 
 @media (max-width: 640px) {
   .NavbarContent {
@@ -45,6 +46,11 @@
 
   li {
     padding-bottom: 10px;
+    transition: 0.2s ease-in-out;
+  }
+  li:hover {
+    transform: translateX(7px);
+    transition: 0.2s ease-in-out;
   }
 }
 
