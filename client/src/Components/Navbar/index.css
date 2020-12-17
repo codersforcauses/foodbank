@@ -30,8 +30,8 @@
     right: 10px;
     background-color: #671e75;
     border-radius: 5%;
-    opacity: 0; /* would make opacity 0 if animation worked*/
-    transition: 0.5s;
+    opacity: 0;
+    transition: 0.35s;
     color: #ffffff;
     border: 2px solid #00acd0;
     font-family: Abraham;
@@ -56,5 +56,9 @@
 
 .navbarOpen {
   opacity: 1;
-  transition-duration: 10;
+  transition-duration: 0.35s;
+}
+
+@media (min-width: 640px) {
+  /*this is where navbar styling goes*/
 }
