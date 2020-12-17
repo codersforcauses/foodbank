@@ -20,7 +20,6 @@
   transition: 0.3s ease-in-out;
 } */
 
-
 @media (max-width: 640px) {
   .NavbarContent {
     border-style: solid;
@@ -30,16 +29,11 @@
     right: 10px;
     background-color: #671e75;
     border-radius: 5%;
-    opacity: 1; /* would make opacity 0 if animation worked*/
+    opacity: 0; /* would make opacity 0 if animation worked*/
     transition: 0.5s;
     color: #ffffff;
     border: 2px solid #00acd0;
     font-family: Abraham;
-  }
-
-  .NavbarContent:active {
-    opacity: 1;
-    transition: 0.5s;
   }
 
   #list {
@@ -54,6 +48,7 @@
   }
 }
 
-@media (min-width: 640px) {
-  /* Put widescreen styling here */
+.navbarOpen {
+  opacity: 1;
+  transition-duration: 10;
 }
