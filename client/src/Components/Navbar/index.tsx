@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './index.css'
 
+//still need to add button code so that it spins onClick not
+//just on hold
+
 export const NavbarContent = () => {
   return (
     <nav>
@@ -33,9 +36,11 @@ export const Navbar: React.FC = () => {
   return (
     <header>
       <span id='buttonSpan'>
+        {/* Navbar content */}
         <div className='NavbarContent sm:block' id='navbar'>
           <NavbarContent />
         </div>
+        {/* Floating action button */}
         <button className='sm:hidden FloatingButton' onClick={handleClick}>
           <span>&#43;</span>
         </button>
