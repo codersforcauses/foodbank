@@ -13,13 +13,13 @@
   text-align: center;
   color: #ffffff;
   font-family: Abraham;
+  transition: 0.3s ease-in-out;
 }
 
 .FloatingButton:active {
   transform: rotate(135deg);
   transition: 0.3s ease-in-out;
 }
-
 
 @media (max-width: 640px) {
   .NavbarContent {
