@@ -25,14 +25,17 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   ...props
 }) => {
+  const textClass = `text-${textColour}`
+  const shadowClass = `shadow-${backgroundColour}`
+  const backgroundClass = `bg-${backgroundColour}`
   return (
     <button
       type='button'
       className={[
         'font-serif',
-        `text-${textColour}`,
-        `shadow-${backgroundColour}`,
-        `bg-${backgroundColour}`,
+        textClass,
+        shadowClass,
+        backgroundClass,
         'text-lg',
         'h-12',
         'px-8',
