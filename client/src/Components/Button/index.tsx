@@ -8,7 +8,15 @@ export interface ButtonProps {
   /**
    * Button text colour styling
    */
-  textColour: 'white' | 'black' | 'primary'
+  textColour:
+    | 'white'
+    | 'black'
+    | 'primary'
+    | 'light-grey'
+    | 'grey'
+    | 'teal'
+    | 'blue'
+    | 'orange'
   /**
    * Button text contents
    */
@@ -25,17 +33,14 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   ...props
 }) => {
-  const textClass = `text-${textColour}`
-  const shadowClass = `shadow-${backgroundColour}`
-  const backgroundClass = `bg-${backgroundColour}`
   return (
     <button
       type='button'
       className={[
         'font-serif',
-        textClass,
-        shadowClass,
-        backgroundClass,
+        `text-${textColour}`,
+        `shadow-${backgroundColour}`,
+        `bg-${backgroundColour}`,
         'text-lg',
         'h-12',
         'px-8',
