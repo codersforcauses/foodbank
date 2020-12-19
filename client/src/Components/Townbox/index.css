@@ -1,8 +1,8 @@
 .captionbox {
   background-image: radial-gradient(
     circle,
-    rgba(223, 116, 0, 0.5) 20%,
-    rgba(223, 116, 0, 0.4) 0%
+    rgba(218, 152, 82, 0.5) 20%,
+    rgba(227, 190, 151, 0.7) 0%
   );
   background-size: 20px 10px;
   clip-path: polygon(6% 2%, 99% 2%, 94% 98%, 1% 98%);

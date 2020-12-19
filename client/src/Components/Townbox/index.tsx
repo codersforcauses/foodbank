@@ -5,9 +5,9 @@ import {Button} from '../Button'
 
 export interface TownboxProps {
   /**
-   * Header colour: enter either bg-orange or bg-primary
+   * Header colour: enter either orange/primary
    */
-  headerColor?: string
+  headerColor?: 'primary' | 'orange'
 
   /**
    * Heading contents
@@ -24,33 +24,38 @@ export interface TownboxProps {
    */
   showButton?: boolean
 
+  /**
+   * specify width in terms of px
+   */
+  widthSize?: number
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Townbox: React.FC<TownboxProps> = ({
-  headerText,
-  captionText,
-  headerColor,
-  showButton
+  headerText = 'headerText',
+  captionText = 'captionText',
+  headerColor = 'orange',
+  showButton = false,
+  widthSize = 550
 }) => {
   return (
-    <div className = "w-96 flex">
+    <div className = "flex" style={{width: widthSize}}>
       
-      <h2 className = {['font-serif','text-white', 'p-2', 'border-black', 'border-4', 'rounded-md', 'ml-10', 'mt-4', 'absolute', 'z-10', headerColor].join(
+      <h2 className = {['font-serif','text-white', 'p-2', 'px-4', 'border-black', 'border-4', 'rounded-md', 'ml-10', 'mt-4', 'absolute', 'z-10', `bg-${headerColor}`].join(
         ' '
       )}> {headerText} </h2>
       
-      <div className = "captionboxborder h-52 w-96 absolute mt-12"></div> 
-
-      <div className = "captionbox place-self-center p-2 mt-12 border-black flex relative flex-col items-center justify-center w-full h-52">
-        <p className = "w-4/5 font-sans border-solid pb-2 mb-0 z-10 text-base relative mt-4 break-words">
+      <div className = "captionboxborder h-64 absolute mt-12" style={{width: widthSize}}></div> 
+        
+      <div className = "captionbox place-self-center p-2 mt-12 border-black flex relative flex-col items-center justify-center w-full h-64">
+        <p className = "font-sans border-solid pb-2 mb-0 z-10 text-2xl relative mt-4 break-words leading-8" style={{width: widthSize - 100}}>
           {captionText}
         </p>
             
         {/* visit button is optional*/}
-        {showButton && <Button label="visited" size="small" backgroundColor='#00acd0' primary={false}/>} 
+        {showButton && <Button label="Visit" size="small" backgroundColor='#00acd0' primary={false}/>} 
       </div>
     </div>
   )
