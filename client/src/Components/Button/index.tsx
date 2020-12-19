@@ -2,9 +2,13 @@ import React from 'react'
 
 export interface ButtonProps {
   /**
-   * Button colour styling
+   * Button background colour styling
    */
-  colour: 'primary' | 'orange' | 'blue' | 'teal'
+  backgroundColour: 'primary' | 'orange' | 'blue' | 'teal'
+  /**
+   * Button text colour styling
+   */
+  textColour: 'white' | 'black' | 'primary'
   /**
    * Button text contents
    */
@@ -16,26 +20,19 @@ export interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  colour = 'primary',
+  backgroundColour = 'primary',
+  textColour = 'white',
   label,
   ...props
 }) => {
-  const textColour = (colour: string): string => {
-    if (colour == 'primary') {
-      return 'white'
-    } else {
-      return 'black'
-    }
-  }
-  console.log(`shadow-${colour}`)
   return (
     <button
       type='button'
       className={[
         'font-serif',
-        `text-${textColour(colour)}`,
-        `shadow-${colour}`,
-        `bg-${colour}`,
+        `text-${textColour}`,
+        `shadow-${backgroundColour}`,
+        `bg-${backgroundColour}`,
         'text-lg',
         'h-12',
         'px-8',
