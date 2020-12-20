@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import Home from 'Pages/Home'
 import ErrorPage from 'Pages/Error'
+import RecipeOverview from 'Pages/Recipe'
 
 interface RouterElement {
   exact?: boolean
@@ -16,6 +17,11 @@ const routes: Array<RouterElement> = [
     path: '/',
     component: Home,
     exact: true
+  },
+  {
+    name: 'Recipe',
+    path: '/recipe/:id',
+    component: RecipeOverview
   },
   // Error must be the last object in the list to catch any unknown routes
   {
