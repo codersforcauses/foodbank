@@ -14,14 +14,15 @@ export const RecipeTab = ({ recipe }: Props) => {
       <p className='text-white'>{recipe.relatedCharacters.join(', ')}</p>
       <h2 className='text-2xl text-teal'>Ingredients</h2>
       <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index} className='text-white'>
+        {recipe.ingredients.map(ingredient => (
+          <li key={ingredient} className='text-white'>
             {ingredient}
           </li>
         ))}
       </ul>
       <h2 className='text-2xl text-teal'>Description</h2>
       <p className='text-white'>{recipe.description}</p>
+      <br />
       <button className='py-2 px-4 bg-teal rounded-full text-white'>
         Back
       </button>

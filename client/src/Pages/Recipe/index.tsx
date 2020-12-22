@@ -9,9 +9,10 @@ interface ParamTypes {
 }
 
 const mockRecipe: Recipe = {
+  id: 'bread-sandwich',
   name: 'Bread Sandwich',
   relatedCharacters: ['Broccoli Girl', 'Banana Man'],
-  ingredients: ['Bread', 'Bread', 'Bread'],
+  ingredients: ['Bread', 'bread', 'breaD'],
   description: 'A simple lunchtime meal that will fill you up',
   image: breadSandwich
 }
@@ -20,9 +21,12 @@ const RecipeOverview: React.FC = () => {
   const { id } = useParams<ParamTypes>()
   console.log(id)
 
+  // retrieve the recipe using id from DB - STILL TO DO
+  const recipe = mockRecipe
+
   return (
-    <div className=''>
-      <RecipeTab recipe={mockRecipe} />
+    <div>
+      <RecipeTab recipe={recipe} />
     </div>
   )
 }
