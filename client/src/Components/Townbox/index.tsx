@@ -43,9 +43,8 @@ export const Townbox: React.FC<TownboxProps> = ({
   return (
     <div className = "flex" style={{width: widthSize}}>
       
-      <h2 className = {['font-serif','text-white', 'p-2', 'px-4', 'border-black', 'border-4', 'rounded-md', 'ml-10', 'mt-4', 'absolute', 'z-10', `bg-${headerColor}`].join(
-        ' '
-      )}> {headerText} </h2>
+      <h2 className = {`font-serif text-white p-2 px-4 border-black border-4 rounded-md ml-10 mt-4 absolute z-10 bg-${headerColor}`}
+      > {headerText} </h2>
       
       <div className = "captionboxborder h-64 absolute mt-12" style={{width: widthSize}}></div> 
         
