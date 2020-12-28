@@ -32,5 +32,7 @@ CarouselComponent.args = {
   height: 600,
   width: 800,
   transition: 'fade',
-  duration: 1000
+  duration: '1000',
+  autoplay: true,
+  autoplayDuration: 2000
 }

@@ -1,9 +1,7 @@
 /* eslint-disable */
-import React, { useState } from 'react'
-import { range } from 'lodash'
+import React, { useEffect } from 'react'
 import { ArrowRight, ArrowLeft } from 'heroicons-react'
 import './index.css'
-import { swap } from 'formik'
 type Image = {
   src: string
   alt: string
@@ -25,12 +23,20 @@ export interface CarouselProps {
   /**
    * Height in pixels
    */
-  transition: 'slide' | 'fade' | ''
+  transition: 'slide' | 'fade'
   /**
    * Duration in ms, follows tailwind css defaults which can be found here:
    * https://v1.tailwindcss.com/docs/transition-duration
    */
   duration?: '75' | '100' | '150' | '200' | '300' | '500' | '700' | '1000'
+  /**
+   * automatically shift between different images
+   */
+  autoplay?: boolean
+  /**
+   * Duration in ms of autoplay
+   */
+  autoplayDuration?: number
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -38,11 +44,12 @@ const Carousel: React.FC<CarouselProps> = ({
   width = 800,
   height = 600,
   transition = '',
-  duration = '1000'
+  duration = '1000',
+  autoplay = true,
+  autoplayDuration = 2000
 }) => {
   let currentIndex = 0
   let lastImgMovedForward: HTMLElement | null = null
-  let lastImgMovedBackward: HTMLElement | null = null
   const imgsLen = images.length
   const swapOpacities = (
     firstElement: HTMLElement | null,
@@ -207,6 +214,14 @@ const Carousel: React.FC<CarouselProps> = ({
       ></div>
     )
   })
+  useEffect(() => {
+    if (autoplay) {
+      const autoplayId = window.setInterval(() => {
+        nextImage()
+      }, autoplayDuration)
+      return () => clearInterval(autoplayId)
+    }
+  }, [autoplay])
   return (
     <div
       className='relative shadow-lg rounded-lg'
