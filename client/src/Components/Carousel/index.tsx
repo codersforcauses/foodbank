@@ -95,6 +95,7 @@ const Carousel: React.FC<CarouselProps> = ({
     element?.classList.add('translate-x-0')
   }
   const slideNextImage = (currentImgIndex: Number, nextImgIndex: Number) => {
+    if (currentImgIndex === nextImgIndex) return
     const currentImage: HTMLElement | null = document.getElementById(
       `images-${currentImgIndex}`
     )
@@ -160,6 +161,7 @@ const Carousel: React.FC<CarouselProps> = ({
   }
   const prevImage = (): void => {
     const prevIndex = currentIndex === 0 ? imgsLen - 1 : currentIndex - 1
+    if (currentIndex === prevIndex) return
     switch (transition) {
       case 'fade': {
         fadePrevImage(prevIndex)
