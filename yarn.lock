@@ -8398,6 +8398,11 @@ helmet@*, helmet@4.2.0:
   resolved "https://registry.yarnpkg.com/helmet/-/helmet-4.2.0.tgz#e81f5613cc1c90402af581794dc9878ad078b237"
   integrity sha512-aoiSxXMd0ks1ojYpSCFoCRzgv4rY/uB9jKStaw8PkXwsdLYa/Gq+Nc5l0soH0cwBIsLAlujPnx4HLQs+LaXCrQ==
 
+heroicons-react@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/heroicons-react/-/heroicons-react-1.3.0.tgz#19e710b4fcf914258714b68e06fcdcbea8e973fe"
+  integrity sha512-gz1XE6/BsuVfyBM/RiDMgapPmrf2ZrDcF8GxJ26PJTPQnEbDFs9TPzpJ5IDPQLpUor/qshPbVDv20yWIwhMwyA==
+
 hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"

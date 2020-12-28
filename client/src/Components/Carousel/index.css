@@ -1,0 +1,14 @@
+.icon {
+  background-color: #2d3748;
+}
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: space-between;
+  width: 100%;
+  height: 100%;
+}
