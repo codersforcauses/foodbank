@@ -50,6 +50,7 @@ const Carousel: React.FC<CarouselProps> = ({
 }) => {
   let currentIndex = 0
   let lastImgMovedForward: HTMLElement | null = null
+  let lastImgMovedBackward: HTMLElement | null = null
   const imgsLen = images.length
   const swapOpacities = (
     firstElement: HTMLElement | null,
@@ -147,6 +148,15 @@ const Carousel: React.FC<CarouselProps> = ({
       moveImageToCenter(prevImage)
       moveImageToRight(currentImage, false)
     }, parseInt(duration))
+    lastImgMovedBackward?.classList.add('invisible')
+    lastImgMovedBackward = currentImage
+    // In case the user doesn't click again make sure the last moved image is moved back to the start
+    setTimeout(() => {
+      if (lastImgMovedBackward) {
+        lastImgMovedBackward?.classList.add('invisible')
+        lastImgMovedBackward = null
+      }
+    }, 2 * parseInt(duration))
   }
 
   const nextImage = (): void => {
