@@ -1,7 +1,9 @@
 /* eslint-disable */
 import React, { useState } from 'react'
+import { range } from 'lodash'
 import { ArrowRight, ArrowLeft } from 'heroicons-react'
 import './index.css'
+import { swap } from 'formik'
 type Image = {
   src: string
   alt: string
@@ -25,9 +27,10 @@ export interface CarouselProps {
    */
   transition: 'slide' | 'fade' | ''
   /**
-   * Duration in ms
+   * Duration in ms, follows tailwind css defaults which can be found here:
+   * https://v1.tailwindcss.com/docs/transition-duration
    */
-  duration?: number
+  duration?: '75' | '100' | '150' | '200' | '300' | '500' | '700' | '1000'
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -35,28 +38,154 @@ const Carousel: React.FC<CarouselProps> = ({
   width = 800,
   height = 600,
   transition = '',
-  duration = 1000
+  duration = '1000'
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  let currentIndex = 0
+  let lastImgMovedForward: HTMLElement | null = null
+  let lastImgMovedBackward: HTMLElement | null = null
   const imgsLen = images.length
+  const swapOpacities = (
+    firstElement: HTMLElement | null,
+    secondElement: HTMLElement | null
+  ): void => {
+    firstElement?.classList.remove('opacity-100')
+    firstElement?.classList.add('opacity-0')
+    secondElement?.classList.remove('opacity-0')
+    secondElement?.classList.add('opacity-100')
+  }
+  const fadeNextImage = (currentImgIndex: Number, nextImgIndex: Number) => {
+    const currentImage: HTMLElement | null = document.getElementById(
+      `images-${currentImgIndex}`
+    )
+    const nextImage: HTMLElement | null = document.getElementById(
+      `images-${nextImgIndex}`
+    )
+    swapOpacities(currentImage, nextImage)
+  }
+  const moveImageToRight = (
+    element: HTMLElement | null,
+    invisible: boolean = true
+  ) => {
+    if (invisible) {
+      element?.classList.add('invisible')
+    } else {
+      element?.classList.remove('invisible')
+    }
+    element?.classList.remove('-translate-x-full')
+    element?.classList.remove('translate-x-0')
+    element?.classList.add('translate-x-full')
+  }
+  const moveImageToLeft = (
+    element: HTMLElement | null,
+    invisible: boolean = true
+  ) => {
+    if (invisible) {
+      element?.classList.add('invisible')
+    } else {
+      element?.classList.remove('invisible')
+    }
+    element?.classList.remove('translate-x-full')
+    element?.classList.remove('translate-x-0')
+    element?.classList.add('-translate-x-full')
+  }
+  const moveImageToCenter = (element: HTMLElement | null) => {
+    element?.classList.remove('invisible')
+    element?.classList.remove('translate-x-full')
+    element?.classList.remove('-translate-x-full')
+    element?.classList.add('translate-x-0')
+  }
+  const slideNextImage = (currentImgIndex: Number, nextImgIndex: Number) => {
+    const currentImage: HTMLElement | null = document.getElementById(
+      `images-${currentImgIndex}`
+    )
+    const nextImage: HTMLElement | null = document.getElementById(
+      `images-${nextImgIndex}`
+    )
+    moveImageToRight(nextImage, true)
+    moveImageToCenter(nextImage)
+    moveImageToLeft(currentImage, false)
+
+    // Move the last moved image to its starting point for a future transition back in
+    moveImageToRight(lastImgMovedForward)
+    lastImgMovedForward = currentImage
+    // In case the user doesn't click again make sure the last moved image is moved back to the start
+    setTimeout(() => {
+      if (lastImgMovedForward) {
+        moveImageToRight(lastImgMovedForward)
+        lastImgMovedForward = null
+      }
+    }, parseInt(duration))
+  }
+  const fadePrevImage = (prevIndex: Number) => {
+    const currentImage: HTMLElement | null = document.getElementById(
+      `images-${currentIndex}`
+    )
+    const prevImage: HTMLElement | null = document.getElementById(
+      `images-${prevIndex}`
+    )
+    swapOpacities(currentImage, prevImage)
+  }
+
+  const slidePrevImage = (prevIndex: Number) => {
+    const currentImage: HTMLElement | null = document.getElementById(
+      `images-${currentIndex}`
+    )
+    const prevImage: HTMLElement | null = document.getElementById(
+      `images-${prevIndex}`
+    )
+    moveImageToLeft(prevImage, true)
+
+    setTimeout(() => {
+      moveImageToCenter(prevImage)
+      moveImageToRight(currentImage, false)
+    }, parseInt(duration))
+  }
 
   const nextImage = (): void => {
-    setCurrentIndex((currentIndex + 1) % imgsLen)
-  }
-
-  const prevImage = (): void => {
-    setCurrentIndex(currentIndex === 0 ? imgsLen - 1 : currentIndex - 1)
-  }
-  const getDefaultItemClasses = (itemIndex: Number): string => {
-    const opacity = itemIndex === currentIndex ? 'opacity-100' : 'opacity-0'
-    const position =
-      itemIndex === currentIndex ? 'translate-x-0' : 'translate-x-full'
+    const nextIndex = (currentIndex + 1) % imgsLen
     switch (transition) {
       case 'fade': {
-        return `transition-opacity ease-out duration-${duration} ${opacity}`
+        fadeNextImage(currentIndex, nextIndex)
+        break
       }
       case 'slide': {
-        return `transition-transform ease-out duration-${duration} transform  ${opacity} ${position}`
+        slideNextImage(currentIndex, nextIndex)
+        break
+      }
+      default: {
+        break
+      }
+    }
+    currentIndex = (currentIndex + 1) % imgsLen
+  }
+  const prevImage = (): void => {
+    const prevIndex = currentIndex === 0 ? imgsLen - 1 : currentIndex - 1
+    switch (transition) {
+      case 'fade': {
+        fadePrevImage(prevIndex)
+        break
+      }
+      case 'slide': {
+        slidePrevImage(prevIndex)
+        break
+      }
+      default: {
+        break
+      }
+    }
+    currentIndex = currentIndex === 0 ? imgsLen - 1 : currentIndex - 1
+  }
+  const getDefaultItemClasses = (itemIndex: Number): string => {
+    const isCurrentItem = itemIndex === currentIndex
+    const opacity = isCurrentItem ? 'opacity-100' : 'opacity-0'
+    const position = isCurrentItem ? 'translate-x-0' : 'translate-x-full'
+    const visibility = isCurrentItem ? '' : 'invisible'
+    switch (transition) {
+      case 'fade': {
+        return `transition ease-out opacity duration-${duration} ${opacity}`
+      }
+      case 'slide': {
+        return `transition ease-in-out duration-${duration} transform ${visibility} ${position}`
       }
       default: {
         return `${opacity}`
@@ -65,17 +194,15 @@ const Carousel: React.FC<CarouselProps> = ({
   }
   const imagesArr = images.map((image, i) => {
     return (
-      <>
-        <div
-          className={`carousel-item ${getDefaultItemClasses(
-            i
-          )} bg-cover rounded-lg`}
-          id={`images-${i}`}
-          style={{
-            backgroundImage: `url(${image.src})`
-          }}
-        ></div>
-      </>
+      <div
+        className={`carousel-item ${getDefaultItemClasses(
+          i
+        )} bg-cover rounded-lg`}
+        id={`images-${i}`}
+        style={{
+          backgroundImage: `url(${image.src})`
+        }}
+      ></div>
     )
   })
   return (
@@ -86,10 +213,10 @@ const Carousel: React.FC<CarouselProps> = ({
       <div className='z-10 relative h-full'>
         <div className='flex items-center h-full justify-center justify-between'>
           <div className='icon flex items-center justify-center rounded-lg text-white m-2 w-12 h-12'>
-            <ArrowLeft onClick={() => nextImage()} />
+            <ArrowLeft onClick={() => prevImage()} />
           </div>
           <div className='icon flex items-center justify-center rounded-lg text-white m-2 w-12 h-12'>
-            <ArrowRight onClick={() => prevImage()} />
+            <ArrowRight onClick={() => nextImage()} />
           </div>
         </div>
       </div>
