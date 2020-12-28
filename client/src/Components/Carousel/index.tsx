@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect } from 'react'
 import { ArrowRight, ArrowLeft } from 'heroicons-react'
 import './index.css'
@@ -61,7 +60,7 @@ const Carousel: React.FC<CarouselProps> = ({
     secondElement?.classList.remove('opacity-0')
     secondElement?.classList.add('opacity-100')
   }
-  const fadeNextImage = (currentImgIndex: Number, nextImgIndex: Number) => {
+  const fadeNextImage = (currentImgIndex: number, nextImgIndex: number) => {
     const currentImage: HTMLElement | null = document.getElementById(
       `images-${currentImgIndex}`
     )
@@ -70,10 +69,7 @@ const Carousel: React.FC<CarouselProps> = ({
     )
     swapOpacities(currentImage, nextImage)
   }
-  const moveImageToRight = (
-    element: HTMLElement | null,
-    invisible: boolean = true
-  ) => {
+  const moveImageToRight = (element: HTMLElement | null, invisible = true) => {
     if (invisible) {
       element?.classList.add('invisible')
     } else {
@@ -83,10 +79,7 @@ const Carousel: React.FC<CarouselProps> = ({
     element?.classList.remove('translate-x-0')
     element?.classList.add('translate-x-full')
   }
-  const moveImageToLeft = (
-    element: HTMLElement | null,
-    invisible: boolean = true
-  ) => {
+  const moveImageToLeft = (element: HTMLElement | null, invisible = true) => {
     if (invisible) {
       element?.classList.add('invisible')
     } else {
@@ -102,7 +95,7 @@ const Carousel: React.FC<CarouselProps> = ({
     element?.classList.remove('-translate-x-full')
     element?.classList.add('translate-x-0')
   }
-  const slideNextImage = (currentImgIndex: Number, nextImgIndex: Number) => {
+  const slideNextImage = (currentImgIndex: number, nextImgIndex: number) => {
     if (currentImgIndex === nextImgIndex) return
     const currentImage: HTMLElement | null = document.getElementById(
       `images-${currentImgIndex}`
@@ -125,7 +118,7 @@ const Carousel: React.FC<CarouselProps> = ({
       }
     }, parseInt(duration))
   }
-  const fadePrevImage = (prevIndex: Number) => {
+  const fadePrevImage = (prevIndex: number) => {
     const currentImage: HTMLElement | null = document.getElementById(
       `images-${currentIndex}`
     )
@@ -135,7 +128,7 @@ const Carousel: React.FC<CarouselProps> = ({
     swapOpacities(currentImage, prevImage)
   }
 
-  const slidePrevImage = (prevIndex: Number) => {
+  const slidePrevImage = (prevIndex: number) => {
     const currentImage: HTMLElement | null = document.getElementById(
       `images-${currentIndex}`
     )
@@ -194,7 +187,7 @@ const Carousel: React.FC<CarouselProps> = ({
     }
     currentIndex = currentIndex === 0 ? imgsLen - 1 : currentIndex - 1
   }
-  const getDefaultItemClasses = (itemIndex: Number): string => {
+  const getDefaultItemClasses = (itemIndex: number): string => {
     const isCurrentItem = itemIndex === currentIndex
     const opacity = isCurrentItem ? 'opacity-100' : 'opacity-0'
     const position = isCurrentItem ? 'translate-x-0' : 'translate-x-full'
@@ -214,9 +207,11 @@ const Carousel: React.FC<CarouselProps> = ({
   const imagesArr = images.map((image, i) => {
     return (
       <div
+        key={image.src}
         className={`carousel-item ${getDefaultItemClasses(
           i
         )} bg-cover rounded-lg`}
+        aria-label={image.alt}
         id={`images-${i}`}
         style={{
           backgroundImage: `url(${image.src})`
