@@ -54,7 +54,7 @@ export const Townbox: React.FC<TownboxProps> = ({
         </p>
             
         {/* visit button is optional*/}
-        {showButton && <Button label="Visit" size="small" backgroundColor='#00acd0' primary={false}/>} 
+        {showButton && <Button label="Visit" size="small" backgroundColor={headerColor==='orange' ? headerColor : '#671e75'} primary={false}/>} 
       </div>
     </div>
   )
