@@ -2,11 +2,17 @@ import React from 'react';
 
 import "./index.css";
 
-import Grains from "./Categories/grains";
-import Vegetables from "./Categories/vegetables";
-import Fruits from "./Categories/fruits";
-import Dairy from "./Categories/dairy";
-import Meat from "./Categories/meat";
+// import Grains from "./Categories/grains";
+// import Vegetables from "./Categories/vegetables";
+// import Fruits from "./Categories/fruits";
+// import Dairy from "./Categories/dairy";
+// import Meat from "./Categories/meat";
+
+import grains from "./Images/grains.png"
+import vegetables from "./Images/vegetables.png";
+import fruit from "./Images/fruit.png";
+import dairy from "./Images/dairy.png"
+import meat from "./Images/meat.png";
 
 export interface FoodCategoriesProps {
     word: string;
@@ -17,39 +23,36 @@ export const FoodCategories = (props: FoodCategoriesProps) => {
     const rotate = 180;
     return (
         <React.Fragment>
-            <div>
-                <div className="grains">
-                <svg height="400" width="400" viewBox="0 0 500 500">
-                <circle r="250" cx="250" cy="250" fill="transparent"/>
-                    <circle className="grains" r="100" cx="250" cy="250" fill="transparent"
-                        stroke="#DD8127" strokeWidth="200" strokeDasharray="calc(30 * 628/100) 628"
-                        transform="rotate(162, 250, 250) translate(5, 5)"
-                    />
+            <div className="food-categories-container">
+                {/* <svg height="400" width="400" viewBox="0 0 500 500"> 
 
-                <circle className="vegetables" r="100" cx="250" cy="250" fill="transparent"
-                    stroke="#55B586" strokeWidth="200" strokeDasharray="calc(30 * 628/100) 628"
-                    transform="rotate(270, 250, 250) translate(5, 5)"
-                />
+                    <Grains/>
+                    <Vegetables/>
+                </svg> */}
+                    {/* <Fruits/> */}
+                    {/* <Dairy/> */}
+                    {/* <Meat/> */}
 
-                <circle className="fruit" r="100" cx="250" cy="250" fill="transparent"
-                        stroke="#66B944" strokeWidth="200" strokeDasharray="calc(12 * 628/100) 628"
-                        transform="rotate(378, 250, 250) translate(5, 5)"
-                    />
-                <circle className="dairy" r="100" cx="250" cy="250" fill="transparent"
-                        stroke="#A684BC" strokeWidth="200" strokeDasharray="calc(12 * 628/100) 628"
-                        transform="rotate(421.2, 250, 250) translate(5, 5)"
-                    />
-
-                <circle className="meat" r="100" cx="250" cy="250" fill="transparent"
-                    stroke="#69A3D8" strokeWidth="200" strokeDasharray="calc(16 * 628/100) 628"
-                    transform="rotate(464.4, 250, 250) translate(5, 5)"
-                />
+            {/* <svg width="325" height="325" viewBox=" 0 0  400 400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 80 80
+                    A 45 45, 0, 0, 0, 125 125
+                    L 125 80 Z" fill="green"/> */}
+                    
+        {/* <path className="path" d="M275,175 v-150 a150,150 0 0,0 -150,150 z"
+        fill="yellow" stroke="blue" strokeWidth="5" 
+        transform="rotate(378, 250, 250)" /> */}
+           {/* </svg> */}
 
 
+        <img className="grains" src={grains}/>
+        <img className="vegetables" src={vegetables}/>
+        <img className="fruit" src={fruit}/>
+        <img className="dairy" src={dairy}/>
+        <img className="meat" src={meat}/>
 
-                </svg>
 
-                </div>
+
+
 
             </div>
         </React.Fragment>

@@ -5,26 +5,56 @@
     border: 1px solid black;
 }
 
+.test:hover {
+    z-index: 999999999;
+    filter: brightness(0.5);
+    cursor: pointer;
+    color: black;
+    opacity: 0.5;
+    stroke: "#000000";
+    background-color: white;
+    background-image: "red";
+
+}
+
+img:hover {
+    filter: brightness(0.5);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
 .grains {
-    position: relative;
-    /* margin-top: 200px;
-    margin-left: 200px; */
-    /* height: 400px;
-    width: 400px;
-    left: -200px;
-    top: -200px;
-    border-radius: 135deg;
-    background-color: orange;
-    border-top-left-radius: 100%;
-    /* border-top-right-radius: 0%;
-    border-bottom-left-radius: 0%;
-    border-bottom-right-radius: 0%; */ 
-    /* width: 0; 
-    height: 0; 
-    border:200px solid transparent;
-    border-right: 200px solid orange; 
-    border-radius: 50%;
-    transform: rotate(225deg) */
+    position: absolute;
+    height: 160px;
+    top: 0;
+    left: 0;
+}
 
+.vegetables {
+    position: absolute;
+    height: 150px;
+    top: 0;
+    left: 121px;
 
+}
+
+.meat {
+    position: absolute;
+    height: 120px;
+    top: 119px;
+    left: 5px;
+}
+
+.dairy {
+    position: absolute;
+    height: 125px;
+    top: 117px;
+    left: 92px;
+}
+
+.fruit {
+    position: absolute;
+    height: 101px;
+    top: 118px;
+    left: 124px;
 }
