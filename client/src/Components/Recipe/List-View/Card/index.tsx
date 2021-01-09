@@ -22,12 +22,23 @@ export interface CardProps {
   /**
    * Color of Card
    */
-  color: 'Purple' | 'Orange' | 'Teal' | 'Blue'
+  color: 'Primary' | 'Orange' | 'Teal' | 'Blue'
   /**
    * Optional click handler
    */
   onClick?: () => void
 }
+
+
+const getClassesFromColor = (color: string, unlocked: boolean) => {
+  if (unlocked) {
+    const fontColor = color === 'Primary' ? 'white': 'black';
+    return `unlocked bg-${color.toLowerCase()} text-${fontColor }`
+  }
+  else {
+    return `locked bg-grey opacity-50 text-black`
+  }
+} 
 
 export const Card: React.FC<CardProps> = ({
   unlocked = true,
@@ -37,11 +48,8 @@ export const Card: React.FC<CardProps> = ({
   color,
   ...props
 }) => {
-  const mode = unlocked
-    ? 'unlocked'
-    : 'locked'
   return (
-    <div className={[color, mode].join(' ')} {...props}>
+    <div className={['card', getClassesFromColor(color, unlocked)].join(' ')} {...props}>
         <img src={image} alt={text} className='card-image'></img>
         <h1>{label}</h1>
     </div>

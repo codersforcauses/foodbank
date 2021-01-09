@@ -21,5 +21,5 @@ Unlocked.args = {
   label: 'Recipe Name',
   image: pasta,
   text: 'Image Alt Text',
-  color: 'Purple'
+  color: 'Primary'
 }
