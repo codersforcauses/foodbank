@@ -1,6 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   @font-face {
@@ -34,3 +32,13 @@
     src: url('./fonts/Bliss-Bold.otf') format('opentype');
   }
 }
+
+@tailwind components;
+
+@layer components {
+  .input {
+    @apply px-4 py-3 rounded-2xl font-light bg-light-grey bg-opacity-60 focus:ring-1 ring-primary outline-none placeholder-dark-grey border;
+  }
+}
+
+@tailwind utilities;

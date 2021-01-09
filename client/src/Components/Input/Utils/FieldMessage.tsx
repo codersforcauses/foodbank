@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { FieldControlContext } from './FieldControl';
+import React, { useContext } from 'react'
+import { FieldControlContext } from './FieldControl'
 
 interface FieldMessageProps {
   className?: string
+  description?: boolean
 }
 
 const FieldMessage: React.FC<FieldMessageProps> = ({
@@ -10,15 +11,18 @@ const FieldMessage: React.FC<FieldMessageProps> = ({
   className = '',
   ...props
 }) => {
-  const { error, touched } = useContext(FieldControlContext);
-  const errorClass = 'text-sm mt-1 text-red'
-  const messageClass = 'text-sm mt-1 text-dark-grey '
+  const { error, touched } = useContext(FieldControlContext)
+  const errorClass = 'text-sm text-red'
+  const messageClass = 'text-sm text-dark-grey'
 
   return (
-    <span {...props} className={[error && touched ? errorClass : messageClass, className].join(' ')}>
+    <span
+      {...props}
+      className={[error && touched && !props.description ? errorClass : messageClass, className].join(' ')}
+    >
       {children}
     </span>
-  );
-};
+  )
+}
 
 export default FieldMessage

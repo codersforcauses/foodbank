@@ -41,7 +41,7 @@ export const Input: React.FC<InputProps> = ({
   description,
   ...props
 }) => {
-  const [{ name, ...field }, { error, touched }] = useField(props.name);
+  const [{ name, ...field }, { error, touched }] = useField(props.name)
   return (
     <FieldControl
       name={name}
@@ -50,11 +50,14 @@ export const Input: React.FC<InputProps> = ({
       required={required}
       disabled={disabled}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-1">
         <FieldLabel>{label}</FieldLabel>
-        <FieldInput type={type} {...field} {...props} />
-        {touched && error && <FieldMessage>{error}</FieldMessage>}
-        {description && <FieldMessage>{description}</FieldMessage>}
+        <FieldInput type={type} {...props} {...field} />
+        {
+          touched && error
+            ? <FieldMessage>{error}</FieldMessage>
+            : description && <FieldMessage description>{description}</FieldMessage>
+        }
       </div>
     </FieldControl>
 
