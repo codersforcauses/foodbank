@@ -43,7 +43,7 @@ export const Typewriter: React.FC<Props> = ({
     return () => {
       isMounted = false
     }
-  }, [pointer])
+  }, [delay, onComplete, pointer, stopBlinkinOnComplete, string, text])
 
   return (
     <span className={className}>
