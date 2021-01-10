@@ -1,24 +1,24 @@
 .map-selected {
-    fill: #E3DA37;
-    transform-origin: 50% 50%;
-    transform-box: fill-box;
-    transform: scale(1.1, 1.1);
-    outline: 6px solid white;
-}
-  
-.map-unselected {
-    transition: 0.2s all; 
-    transform-origin: 50% 50%;
-    transform-box: fill-box;
+  fill: #e3da37;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  transform: scale(1.1, 1.1);
+  outline: 6px solid white;
 }
 
-.map-selected:hover, .map-unselected:hover {
-    cursor: pointer;
-    transform: scale(1.1, 1.1);
+.map-unselected {
+  transition: 0.2s all;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+
+.map-selected:hover,
+.map-unselected:hover {
+  cursor: pointer;
+  transform: scale(1.1, 1.1);
 }
 
 .svgrow {
-    max-width: 100vw;
-    overflow-x: auto;
+  max-width: 100vw;
+  overflow-x: auto;
 }
-
