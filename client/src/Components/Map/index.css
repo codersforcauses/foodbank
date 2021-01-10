@@ -1,9 +1,7 @@
 .map-selected {
-  fill: #e3da37;
   transform-origin: 50% 50%;
   transform-box: fill-box;
   transform: scale(1.1, 1.1);
-  outline: 6px solid white;
 }
 
 .map-unselected {

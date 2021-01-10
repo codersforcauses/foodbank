@@ -106,13 +106,6 @@ export const Map: React.FC<Props> = ({ selected, onSelect, height }: Props) => {
           CoolCloud
         )}
         {getSVGLocationGroup(
-          'bushLand',
-          940,
-          757,
-          'translate(0 159) scale(0.139 0.14)',
-          BushLand
-        )}
-        {getSVGLocationGroup(
           'vegieZone',
           1502,
           731,
