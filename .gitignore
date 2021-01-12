@@ -136,3 +136,7 @@ branding.pdf
 client/src/index.css
 
 .yarn
+
+dev/output.tsx
+
+dev/test.svg
