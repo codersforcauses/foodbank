@@ -1,15 +1,11 @@
-import AudioComponent from 'Components/AudioComponent'
-
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import routes from 'router'
 
-const songLocation= 'https://freesound.org/data/previews/475/475736_4397472-lq.mp3';
 const App: React.FC = () => {
   return (
-    <div className='App flex flex-col h-screen'>
-      <header >foodbank</header>
-      <AudioComponent soundFile={songLocation} loop={true}  />
+    <div className='App'>
+      <header>foodbank</header>
       <Switch>
         {routes.map(({ name, ...route }) => (
           <Route key={name} {...route} />

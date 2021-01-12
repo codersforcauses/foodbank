@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useAudio: (url: string, loop: boolean) => [boolean, () => void] = (
   url: string,
@@ -22,27 +22,4 @@ const useAudio: (url: string, loop: boolean) => [boolean, () => void] = (
   return [playing, toggle]
 }
 
-interface Props {
-  soundFile: string
-  loop: boolean
-}
-const AudioComponent: React.FC<Props> = ({ soundFile, loop }: Props) => {
-  const [playing, toggle] = useAudio(soundFile, loop)
-  return (
-    <button
-      className='bg-orange'
-      style={{
-        padding: 10,
-        top: 0,
-        right: 0,
-        position: 'fixed',
-        zIndex: 3000
-      }}
-      onClick={toggle}
-    >
-      {playing ? 'Pause' : 'Play'} Music
-    </button>
-  )
-}
-
-export default AudioComponent
+export default useAudio

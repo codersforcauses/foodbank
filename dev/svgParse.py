@@ -113,7 +113,7 @@ def parseSVGAndCreateFile(input="test.svg", output="output.tsx"):
         if(a[0] == "bg"):
             writeString += f'<g id="{a[0]}"><image width="{a[1]}" height="{a[2]}" transform="{a[3]}" xlinkHref={{{a[4]}}}/></g>\n'
         else:
-            writeString += f'{{getSVGLocationGroup("{a[0]}", {a[1]}, {a[2]}, "{a[3]}", {a[4]})}}\n'
+            writeString += f'<SVGLocationGroup name={{"{a[0]}"}} width={{{a[1]}}}  height={{{a[2]}}} transform="{a[3]}" image={{{a[4]}}} className={{ getClassname("{a[0]}") }}  onClick={{onMapClick}}  />\n'
 
     
     writeString+="""

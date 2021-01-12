@@ -12,7 +12,7 @@ interface Props {
   cursorClassName?: string
 }
 
-export const Typewriter: React.FC<Props> = ({
+const Typewriter: React.FC<Props> = ({
   string,
   delay = 100,
   stopBlinkinOnComplete = false,
@@ -54,3 +54,5 @@ export const Typewriter: React.FC<Props> = ({
     </span>
   )
 }
+
+export default Typewriter

@@ -1,4 +1,4 @@
-import { Typewriter } from 'Components/Typewriter'
+import Typewriter from 'Components/Typewriter'
 import React, { useState } from 'react'
 import './index.css'
 
@@ -8,11 +8,7 @@ interface Props {
   avatar: string //file location??
 }
 
-export const Dialogue: React.FC<Props> = ({
-  messages,
-  speaker,
-  avatar
-}: Props) => {
+const Dialogue: React.FC<Props> = ({ messages, speaker, avatar }: Props) => {
   const [displayDialogue, setDisplayDialogue] = useState('block')
 
   const [typingState, setTypingState] = useState({
@@ -88,3 +84,5 @@ export const Dialogue: React.FC<Props> = ({
     </div>
   )
 }
+
+export default Dialogue
