@@ -137,6 +137,6 @@ client/src/index.css
 
 .yarn
 
+# Files used for dev purposes
 dev/output.tsx
-
 dev/test.svg
