@@ -1,36 +1,18 @@
 import React from 'react'
-import { Navlink } from '../Navlink/index'
+import { NavlinkProps } from './Navlink'
+import { Navlink } from './Navlink'
 
 export interface NavbarProps {
-  /**
-   * Background colour to use
-   */
-  backgroundColor: 'primary' | 'dark-grey' | 'light-grey'
+  links: NavlinkProps[]
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  backgroundColor = 'primary'
-}) => {
+export const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
-    <nav
-      className={[
-        `flex`,
-        `flex-col`,
-        `lg:flex-row`,
-        `fixed`,
-        `bg-${backgroundColor}`,
-        `w-full`,
-        `h-screen`,
-        `lg:h-auto`,
-        `justify-center `,
-        `text-2xl`,
-        `lg:text-base`
-      ].join(' ')}
-    >
-      <ul className={['flex', 'flex-col', 'lg:flex-row'].join(' ')}>
-        <Navlink page='About' route='About/Route' textColor='white' />
-        <Navlink page='Recipes' route='Recipes/Route' textColor='white' />
-        <Navlink page='Item' route='Login/Route' textColor='white' />
+    <nav className='bg-primary'>
+      <ul className='flex flex-col lg:flex-row justify-center'>
+        {links.map((x: NavlinkProps, i: number) => (
+          <Navlink key={i} page={x.page} route={x.route} />
+        ))}
       </ul>
     </nav>
   )
