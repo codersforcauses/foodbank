@@ -7,13 +7,17 @@ import { Townbox, TownboxProps } from '.'
 export default {
   title: 'Example/Textbox',
   component: Townbox,
-  argTypes: {
-  }
+  argTypes: {}
 } as Meta
 
-const Template: Story<TownboxProps> = args => <Townbox {...args} />
+const Template: Story<TownboxProps> = args => {
+  return (
+    <div className='bg-primary'>
+
+      <Townbox {...args} />{' '}
+    </div>
+  )
+}
 
 export const Primary = Template.bind({})
-Primary.args = {
-  
-}
+Primary.args = {}
