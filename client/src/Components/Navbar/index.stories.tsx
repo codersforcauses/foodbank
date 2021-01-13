@@ -6,13 +6,6 @@ export default {
   title: 'Components/NavBar',
   component: Navbar,
   argTypes: {
-    backgroundColor: {
-      control: {
-        type: 'radio',
-        options: ['primary', 'light-grey', 'dark-grey']
-      }
-    },
-
     links: {
       control: {
         type: 'array'
