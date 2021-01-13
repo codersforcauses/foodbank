@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "yarn build:css && react-scripts start",
+    "build": "NODE_ENV=production yarn build:css && react-scripts build",
     "test": "react-scripts test",
+    "build:css": "postcss src/tailwind.css -o src/index.css",
     "postbuild": "react-snap",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "yarn build:css && start-storybook -p 6006 -s public",
+    "build-storybook": "NODE_ENV=production yarn build:css && build-storybook -s public"
   },
   "dependencies": {
     "@headlessui/react": "0.2.0",
