@@ -25,7 +25,7 @@
     "react-scripts": "4.0.1",
     "swr": "0.3.9",
     "web-vitals": "1.0.1",
-    "yup": "0.32.6"
+    "yup": "0.32.8"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "6.1.14",
