@@ -5,7 +5,7 @@ interface Props {
   recipe: Recipe
 }
 
-export const RecipeTab = ({ recipe }: Props) => {
+const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
   return (
     <div className='m-10 p-10 bg-purple rounded-xl'>
       <img className='float-right w-96' src={recipe.image} alt={recipe.name} />
@@ -29,3 +29,5 @@ export const RecipeTab = ({ recipe }: Props) => {
     </div>
   )
 }
+
+export default RecipeTab
