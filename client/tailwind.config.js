@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 module.exports = {
+  // purging does not work for some reason without this
   purge: [
     './public/index.html',
-    './src/**/*.js',
-    './src/**/*.jsx',
-    './src/**/*.tsx'
+    './src/**/*.tsx',
+    './src/**/**/*.tsx',
+    './src/**/**/**/*.tsx',
+    './src/**/**/**/**/*.tsx'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

@@ -12,28 +12,24 @@ const Template: Story<ButtonProps> = args => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  backgroundColour: 'primary',
-  textColour: 'white',
+  bgColor: 'bg-primary',
   label: 'Button'
 }
 
 export const Orange = Template.bind({})
 Orange.args = {
-  backgroundColour: 'orange',
-  textColour: 'black',
+  bgColor: 'bg-orange',
   label: 'Button'
 }
 
 export const Blue = Template.bind({})
 Blue.args = {
-  backgroundColour: 'blue',
-  textColour: 'black',
+  bgColor: 'bg-blue',
   label: 'Button'
 }
 
 export const Teal = Template.bind({})
 Teal.args = {
-  backgroundColour: 'teal',
-  textColour: 'black',
+  bgColor: 'bg-teal',
   label: 'Button'
 }

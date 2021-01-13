@@ -4,19 +4,7 @@ export interface ButtonProps {
   /**
    * Button background colour styling
    */
-  backgroundColour: 'primary' | 'orange' | 'blue' | 'teal'
-  /**
-   * Button text colour styling
-   */
-  textColour:
-    | 'white'
-    | 'black'
-    | 'primary'
-    | 'light-grey'
-    | 'grey'
-    | 'teal'
-    | 'blue'
-    | 'orange'
+  bgColor: 'bg-primary' | 'bg-orange' | 'bg-blue' | 'bg-teal'
   /**
    * Button text contents
    */
@@ -28,24 +16,18 @@ export interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  backgroundColour = 'primary',
-  textColour = 'white',
+  bgColor,
   label,
   ...props
-}) => {
+}: ButtonProps) => {
+  const textColor = bgColor !== 'bg-primary' ? 'text-black' : 'text-white'
   return (
     <button
       type='button'
       className={[
-        'font-serif',
-        `text-${textColour}`,
-        `shadow-${backgroundColour}`,
-        `bg-${backgroundColour}`,
-        'text-lg',
-        'h-12',
-        'px-8',
-        'rounded-full',
-        'uppercase'
+        textColor,
+        bgColor,
+        'text-lg px-8 py-3 rounded-full uppercase font-serif'
       ].join(' ')}
       {...props}
     >
