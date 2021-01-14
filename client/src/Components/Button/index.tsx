@@ -6,9 +6,9 @@ export interface ButtonProps {
    */
   bgColor: 'bg-primary' | 'bg-orange' | 'bg-blue' | 'bg-teal'
   /**
-   * Button text contents
+   * Children prop
    */
-  label: string
+  children: string
   /**
    * Optional click handler
    */
@@ -17,7 +17,7 @@ export interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({
   bgColor,
-  label,
+  children,
   ...props
 }: ButtonProps) => {
   const textColor = bgColor !== 'bg-primary' ? 'text-black' : 'text-white'
@@ -42,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
       ].join(' ')}
       {...props}
     >
-      {label}
+      {children}
     </button>
   )
 }
