@@ -19,7 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
   bgColor,
   children,
   ...props
-}: ButtonProps) => {
+}) => {
   const textColor = bgColor !== 'bg-primary' ? 'text-black' : 'text-white'
   let shadowColor = ''
   if (bgColor == 'bg-primary') {
