@@ -1,0 +1,26 @@
+.modal-background {
+  width: 100vw;
+  height: 100vw;
+  background: black;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 1000;
+}
+
+.modal-background.closed {
+  display: none;
+}
+
+.modal-background > .modal-container {
+}
+
+.modal {
+  max-width: 600px;
+  width: 95vw;
+  min-height: 400px;
+  outline: 1px solid red;
+  background: grey;
+  position: flex;
+  top: 50%;
+  left: 50%;
+}
