@@ -1,0 +1,22 @@
+.map-selected {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  transform: scale(1.1, 1.1);
+}
+
+.map-unselected {
+  transition: 0.2s all;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+
+.map-selected:hover,
+.map-unselected:hover {
+  cursor: pointer;
+  transform: scale(1.1, 1.1);
+}
+
+.svgrow {
+  max-width: 100vw;
+  overflow-x: auto;
+}

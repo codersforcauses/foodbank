@@ -31,6 +31,10 @@
     font-weight: 700;
     src: url('./fonts/Bliss-Bold.otf') format('opentype');
   }
+
+  .App {
+    @apply h-screen flex flex-col;
+  }
 }
 
 @tailwind components;
