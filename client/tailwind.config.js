@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 module.exports = {
+  // purging does not work for some reason without this
   purge: [
     './public/index.html',
-    './src/**/*.js',
-    './src/**/*.jsx',
-    './src/**/*.tsx'
+    './src/**/*.tsx',
+    './src/**/**/*.tsx',
+    './src/**/**/**/*.tsx',
+    './src/**/**/**/**/*.tsx'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -25,6 +27,12 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
+      },
+      boxShadow: {
+        primary: 'inset -1px -4px 0px 1px #4c1656',
+        blue: 'inset -1px -4px 0px 1px #008ca9',
+        orange: 'inset -1px -4px 0px 1px #b86000',
+        teal: 'inset -1px -4px 0px 1px #2dc7bf'
       }
     }
   },
