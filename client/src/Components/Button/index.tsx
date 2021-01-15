@@ -15,11 +15,7 @@ export interface ButtonProps {
   onClick?: () => void
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  bgColor,
-  children,
-  ...props
-}) => {
+const Button: React.FC<ButtonProps> = ({ bgColor, children, ...props }) => {
   const textColor = bgColor !== 'bg-primary' ? 'text-black' : 'text-white'
   let shadowColor = ''
   if (bgColor == 'bg-primary') {
