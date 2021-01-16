@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import { Button } from 'Components/Button'
-import * as Yup from 'yup';
+import * as Yup from 'yup'
 
 interface UserForm {
   username: string
@@ -20,27 +20,24 @@ export interface UserProps {
   onSubmit: (values: UserForm) => void
 }
 
-const currentYear = new Date().getFullYear();
+const currentYear = new Date().getFullYear()
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
-    .min(4, 'Username must be at least 4 characters')
-    .max(15, 'Username must be less than 15 characters')
+    .min(1, 'Username must be at least 1 character')
     .required('Required'),
-    // add validation to check if username is in db
-    year: Yup.number()
-    .max(currentYear, 'Enter a valid year')
-    .min(currentYear-110, 'Ok Boomer')
-    .typeError("Year must be a number")
-    .required('Required'),
-});
+  // add validation to check if username is in db
+  year: Yup.number()
+    .max(currentYear - 5, `Please enter a year before ${currentYear - 5}`)
+    .typeError('Year must be a number')
+    .required('Required')
+})
 
 export const User: React.FC<UserProps> = ({ title, onSubmit }) => {
   return (
     <>
       <Formik
-        initialValues={{ username: '', year: 2010 }}
-        initialErrors={{ username: 'Username Required', year: 'Year Required' }}
+        initialValues={{ username: '', year: 2000 }}
         onSubmit={onSubmit}
         validationSchema={SignupSchema}
       >
