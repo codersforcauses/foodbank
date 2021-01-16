@@ -1,13 +1,10 @@
 import React from 'react'
-import { Button } from 'Components/Button'
+import { UserForm } from 'Components/Forms/User'
 
 const Login: React.FC = () => {
   return (
     <div>
-      <div>Are you new?</div>
-      <Button label='Sign Up' />
-      <div>Returning?</div>
-      <Button label='Login' />
+      <UserForm title='Login' onSubmit={values => console.log(values)} />
     </div>
   )
 }
