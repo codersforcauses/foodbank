@@ -42,7 +42,7 @@ export const User: React.FC<UserProps> = ({ title, onSubmit }) => {
         validationSchema={SignupSchema}
       >
         <Form>
-          <div className='bg-white p-3 w-96 rounded-xl flex flex-col space-y-6'>
+          <div className='bg-white p-3 sm:w-96 rounded-xl flex flex-col space-y-6'>
             <h2>{title}</h2>
             <Input label='Username' name='username' />
             <Input label='Year of Birth' name='year' />
