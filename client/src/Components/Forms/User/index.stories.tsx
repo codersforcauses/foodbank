@@ -1,15 +1,15 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react'
 
-import User, { UserProps } from '.'
+import UserForm, { UserProps } from '.'
 
 export default {
   title: 'Components/Forms',
-  component: User
+  component: UserForm
 } as Meta
 
 const Template: Story<UserProps> = args => {
-  return <User {...args} />
+  return <UserForm {...args} />
 }
 
 export const LoginForm = Template.bind({})

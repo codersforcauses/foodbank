@@ -1,10 +1,10 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
-import { Button } from 'Components/Button'
+import Button from 'Components/Button'
 import * as Yup from 'yup'
 
-interface UserForm {
+interface UserFormValues {
   username: string
   year: number
 }
@@ -17,7 +17,7 @@ export interface UserProps {
   /**
    * Subimt Handler
    */
-  onSubmit: (values: UserForm) => void
+  onSubmit: (values: UserFormValues) => void
 }
 
 const currentYear = new Date().getFullYear()
@@ -33,7 +33,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required')
 })
 
-export const User: React.FC<UserProps> = ({ title, onSubmit }) => {
+export const UserForm: React.FC<UserProps> = ({ title, onSubmit }) => {
   return (
     <>
       <Formik
@@ -46,7 +46,7 @@ export const User: React.FC<UserProps> = ({ title, onSubmit }) => {
             <h2>{title}</h2>
             <Input label='Username' name='username' />
             <Input label='Year of Birth' name='year' />
-            <Button label='Submit' type='submit' />
+            <Button type='submit'>Submit</Button>
           </div>
         </Form>
       </Formik>
@@ -54,4 +54,4 @@ export const User: React.FC<UserProps> = ({ title, onSubmit }) => {
   )
 }
 
-export default User
+export default UserForm
