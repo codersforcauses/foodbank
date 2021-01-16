@@ -1,26 +1,21 @@
-.captionbox {
+.captionBox {
   background-image: radial-gradient(#df740044 69%, #e6d7c7b3 69%);
   background-size: 20px 20px;
-  background-color: #eeeeee;
-  clip-path: polygon(6% 2%, 99% 2%, 94% 98%, 1% 98%);
+  background-color: #eeeeeedd;
+  width: 500;
+  border-width: 2px;
+  border-color: black;
+}
+
+.captionText {
+  transform: skew(3deg); /* UNSKEW */
 }
 
 h2 {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.captionboxborder {
-  background-color: black;
-  clip-path: polygon(
-    5% 0,
-    0% 100%,
-    1% 100%,
-    6% 2%,
-    99% 2%,
-    94% 98%,
-    1% 98%,
-    1% 100%,
-    95% 100%,
-    100% 0%
-  );
+.captionParent {
+  transition: background 0.3s;
+  transform: skew(-3deg); /* SKEW */
 }
