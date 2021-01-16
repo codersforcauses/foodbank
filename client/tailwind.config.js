@@ -24,6 +24,12 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
+      },
+      width: {
+        'tb1': '300px',
+        'tb2': '500px',
+        'tb3': '550px',
+        'tb4': '600px'
       }
     }
   },

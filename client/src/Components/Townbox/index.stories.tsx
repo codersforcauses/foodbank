@@ -4,16 +4,14 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 
 import { Townbox, TownboxProps } from '.'
 
-export default {
-  title: 'Example/Textbox',
-  component: Townbox,
-  argTypes: {}
-} as Meta
+const meta: Meta = {
+  title: 'Example/Townbox',
+  component: Townbox
+}
 
 const Template: Story<TownboxProps> = args => {
   return (
     <div className='bg-primary'>
-
       <Townbox {...args} />{' '}
     </div>
   )
@@ -21,3 +19,5 @@ const Template: Story<TownboxProps> = args => {
 
 export const Primary = Template.bind({})
 Primary.args = {}
+
+export default meta
