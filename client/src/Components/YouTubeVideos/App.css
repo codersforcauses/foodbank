@@ -1,0 +1,109 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  html, body, #root, #root>div {
+    height: 100%;
+    margin: 0;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  body {
+    background-color: #671e75;
+  }
+  
+  h1 {
+    font-family: Abraham;
+    font-weight: inherit;
+    font-size: 60px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  
+  h2 {
+    font-family: Abraham;
+    font-weight: inherit;
+    font-size: 46px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+  }
+  
+  .col1-3 {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+  }
+  
+  .col2-3 {
+    float: left;
+    width: 66.33%;
+    padding: 10px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .portionVideo {
+    height: 60vh;
+    width: 60vw;
+  }
+  
+  .safetyVideo {
+    height: 50vh;
+    width: 60vw;  
+  }
+  
+  .cutVideo {
+    height: 45vh;
+    width: 60vw;
+  }
+  
+  @font-face {
+    font-family: Abraham;
+    src: url("Abraham-Regular.otf") format("opentype");
+  }
