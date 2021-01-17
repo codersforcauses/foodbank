@@ -1,53 +1,46 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
-import './index.css'
 
 export interface ButtonProps {
   /**
-   * Is this the principal call to action on the page?
+   * Button background colour styling
    */
-  primary?: boolean
+  bgColor: 'bg-primary' | 'bg-orange' | 'bg-blue' | 'bg-teal'
   /**
-   * What background color to use
+   * Children prop
    */
-  backgroundColor?: string
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large'
-  /**
-   * Button contents
-   */
-  label: string
+  children: string
   /**
    * Optional click handler
    */
   onClick?: () => void
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const Button: React.FC<ButtonProps> = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
-  label,
-  ...props
-}) => {
-  const mode = primary
-    ? 'storybook-button--primary'
-    : 'storybook-button--secondary'
+const Button: React.FC<ButtonProps> = ({ bgColor, children, ...props }) => {
+  const textColor = bgColor !== 'bg-primary' ? 'text-black' : 'text-white'
+  let shadowColor = ''
+  if (bgColor == 'bg-primary') {
+    shadowColor = 'shadow-primary'
+  } else if (bgColor == 'bg-orange') {
+    shadowColor = 'shadow-orange'
+  } else if (bgColor == 'bg-blue') {
+    shadowColor = 'shadow-blue'
+  } else if (bgColor == 'bg-teal') {
+    shadowColor = 'shadow-teal'
+  }
   return (
     <button
       type='button'
-      className={['storybook-button', `storybook-button--${size}`, mode].join(
-        ' '
-      )}
-      style={{ backgroundColor }}
+      className={[
+        textColor,
+        bgColor,
+        shadowColor,
+        'text-lg px-8 py-3 rounded-full uppercase font-serif'
+      ].join(' ')}
       {...props}
     >
-      {label}
+      {children}
     </button>
   )
 }
+
+export default Button
