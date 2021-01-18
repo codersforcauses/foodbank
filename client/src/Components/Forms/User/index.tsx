@@ -18,6 +18,7 @@ export interface UserProps {
    * Subimt Handler
    */
   onSubmit: (values: UserFormValues) => void
+  className?: string
 }
 
 const currentYear = new Date().getFullYear()
@@ -33,9 +34,9 @@ const SignupSchema = Yup.object().shape({
     .required('Required')
 })
 
-export const UserForm: React.FC<UserProps> = ({ title, onSubmit }) => {
+export const UserForm: React.FC<UserProps> = ({ title, onSubmit, className }) => {
   return (
-    <>
+    <div className={className}>
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={onSubmit}
@@ -50,7 +51,7 @@ export const UserForm: React.FC<UserProps> = ({ title, onSubmit }) => {
           </div>
         </Form>
       </Formik>
-    </>
+    </div>
   )
 }
 
