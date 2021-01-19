@@ -5,7 +5,7 @@ interface Props {
   soundFile: string
   loop: boolean
 }
-const AudioButton: React.FC<Props> = ({ soundFile, loop }: Props) => {
+const AudioButton: React.FC<Props> = ({ soundFile, loop }) => {
   const [playing, toggle] = useAudio(soundFile, loop)
   return (
     <button

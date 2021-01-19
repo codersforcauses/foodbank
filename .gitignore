@@ -139,4 +139,7 @@ client/src/index.css
 
 # Files used for dev purposes
 dev/output.tsx
+dev/output.json
 dev/test.svg
+dev/test.svg
+assetMap.ts
