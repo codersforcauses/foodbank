@@ -142,4 +142,4 @@ dev/output.tsx
 dev/output.json
 dev/test.svg
 dev/test.svg
-assetMap.ts
+dev/assetMap.ts
