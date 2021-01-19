@@ -25,6 +25,7 @@ const currentYear = new Date().getFullYear()
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
+    .trim()
     .min(1, 'Username must be at least 1 character')
     .required('Required'),
   // add validation to check if username is in db
@@ -34,7 +35,11 @@ const SignupSchema = Yup.object().shape({
     .required('Required')
 })
 
-export const UserForm: React.FC<UserProps> = ({ title, onSubmit, className }) => {
+export const UserForm: React.FC<UserProps> = ({
+  title,
+  onSubmit,
+  className
+}) => {
   return (
     <div className={className}>
       <Formik
