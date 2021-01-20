@@ -23,6 +23,17 @@ import TheScrambler from './Meat/TheScrambler.jpg'
 import FreshFish from './Meat/FreshFish.jpg'
 import TheSeaRaider from './Meat/TheSeaRaider.jpg'
 
+import AcesApple from './Fruit/AcesApple.jpg'
+import AtomicApple from './Fruit/AtomicApple.jpg'
+import FarmerOrange from './Fruit/FarmerOrange.jpg'
+import VitaminCLion from './Fruit/VitaminCLion.jpg'
+import SportyBanana from './Fruit/SportyBanana.jpg'
+import SuperFruity from './Fruit/SuperFruity.jpg'
+import MelodyMelon from './Fruit/MelodyMelon.jpg'
+import TheMelonator from './Fruit/TheMelonator.jpg'
+import FruityPainter from './Fruit/FruityPainter.jpg'
+import FruitMob from './Fruit/FruitMob.jpg'
+
 interface Character {
   before: string
   after: string
@@ -96,6 +107,35 @@ const imgTransforms: Array<Character> = [
     before: FreshFish,
     after: TheSeaRaider,
     text: 'I am Fresh Fish'
+  },
+  {
+    before: AcesApple,
+    after: AtomicApple,
+    text: 'I am an Apple!'
+  },
+
+  {
+    before: FarmerOrange,
+    after: VitaminCLion,
+    text: 'I am an Orange!'
+  },
+
+  {
+    before: SportyBanana,
+    after: SuperFruity,
+    text: 'I am a Banana!'
+  },
+
+  {
+    before: MelodyMelon,
+    after: TheMelonator,
+    text: 'I am Watermelon!'
+  },
+
+  {
+    before: FruityPainter,
+    after: FruitMob,
+    text: 'I am a fruit can!'
   }
 ]
 
