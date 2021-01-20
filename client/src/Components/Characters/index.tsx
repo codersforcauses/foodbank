@@ -3,6 +3,8 @@ import BlueBoy from './Dairy/BlueBoy.jpg'
 import YoBoy from './Dairy/YoBoy.jpg'
 import MightyMilk from './Dairy/MightyMilk.jpg'
 import MilkMaid from './Dairy/MilkMaid.jpg'
+import YumYoghurt from './Dairy/YumYoghurt.jpg'
+import YoGirl from './Dairy/YoGirl.jpg'
 
 interface Character {
   before: string
@@ -23,6 +25,12 @@ const imgTransforms: Array<Character> = [
     before: MilkMaid,
     after: MightyMilk,
     text: 'I am Milk!'
+  },
+
+  {
+    before: YumYoghurt,
+    after: YoGirl,
+    text: 'I am Yoghurt Girl!'
   }
 ]
 
