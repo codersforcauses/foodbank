@@ -34,6 +34,19 @@ import TheMelonator from './Fruit/TheMelonator.jpg'
 import FruityPainter from './Fruit/FruityPainter.jpg'
 import FruitMob from './Fruit/FruitMob.jpg'
 
+import MixedGrain from './Grains/MixedGrain.jpg'
+import Toasty from './Grains/Toasty.jpg'
+import HealthyCereal from './Grains/HealthyCereal.jpg'
+import SilverSpoon from './Grains/SilverSpoon.jpg'
+import PastaBowl from './Grains/PastaBowl.jpg'
+import NoodleNinja from './Grains/NoodleNinja.jpg'
+import OutbackDamper from './Grains/OutbackDamper.jpg'
+import DeadlyDamper from './Grains/DeadlyDamper.jpg'
+import PastaChef from './Grains/PastaChef.jpg'
+import PastaBlast from './Grains/PastaBlast.jpg'
+import PostiePorridge from './Grains/PostiePorridge.jpg'
+import PowerfulPorridge from './Grains/PowerfulPorridge.jpg'
+
 interface Character {
   before: string
   after: string
@@ -136,6 +149,42 @@ const imgTransforms: Array<Character> = [
     before: FruityPainter,
     after: FruitMob,
     text: 'I am a fruit can!'
+  },
+
+  {
+    before: MixedGrain,
+    after: Toasty,
+    text: 'I am a Toast!'
+  },
+
+  {
+    before: HealthyCereal,
+    after: SilverSpoon,
+    text: 'I am Cereal!'
+  },
+
+  {
+    before: PastaBowl,
+    after: NoodleNinja,
+    text: 'I am Noodle!'
+  },
+
+  {
+    before: OutbackDamper,
+    after: DeadlyDamper,
+    text: 'I am Damper!'
+  },
+
+  {
+    before: PastaChef,
+    after: PastaBlast,
+    text: 'I am Pasta!'
+  },
+
+  {
+    before: PostiePorridge,
+    after: PowerfulPorridge,
+    text: 'I am Porridge!'
   }
 ]
 
