@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import BlueBoy from './Dairy/BlueBoy.jpg'
 import YoBoy from './Dairy/YoBoy.jpg'
+import MightyMilk from './Dairy/MightyMilk.jpg'
+import MilkMaid from './Dairy/MilkMaid.jpg'
 
 interface Character {
   before: string
@@ -11,8 +13,16 @@ interface Character {
 const imgTransforms: Array<Character> = [
   {
     before: BlueBoy,
+
     after: YoBoy,
+
     text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.'
+  },
+
+  {
+    before: MilkMaid,
+    after: MightyMilk,
+    text: 'I am Milk!'
   }
 ]
 
