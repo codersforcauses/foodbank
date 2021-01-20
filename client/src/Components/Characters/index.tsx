@@ -37,7 +37,7 @@ const CharacterImg = ({ character }: { character: Character }) => {
       <img
         src={image}
         alt=''
-        width={500}
+        width={250}
         onClick={changeImage}
         onKeyPress={changeImage}
         role='presentation'
