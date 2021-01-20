@@ -5,6 +5,8 @@ import MightyMilk from './Dairy/MightyMilk.jpg'
 import MilkMaid from './Dairy/MilkMaid.jpg'
 import YumYoghurt from './Dairy/YumYoghurt.jpg'
 import YoGirl from './Dairy/YoGirl.jpg'
+import CheesyCheese from './Dairy/CheesyCheese.jpg'
+import SpeedyCheese from './Dairy/SpeedyCheese.jpg'
 
 interface Character {
   before: string
@@ -31,6 +33,12 @@ const imgTransforms: Array<Character> = [
     before: YumYoghurt,
     after: YoGirl,
     text: 'I am Yoghurt Girl!'
+  },
+
+  {
+    before: CheesyCheese,
+    after: SpeedyCheese,
+    text: 'I am Cheese!'
   }
 ]
 
