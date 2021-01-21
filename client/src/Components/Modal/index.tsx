@@ -3,34 +3,46 @@
 
 import React from 'react'
 import './modal.css'
+import ReactDOM from 'react-dom'
 
 interface ModalContainerProps {
   isOpen: boolean
+  header: string
+  children: string
   onClose: () => void
 }
 /* 
-onClick on modalContainer should call onClose (called by a button)
 Use css to center, absolute, margin-order
 z-index, 1000
 */
 export const ModalContainer: React.FC<ModalContainerProps> = ({
   isOpen,
+  header,
+  children,
   onClose
 }) => {
-  return (
-    <div
-      className={`modal-background ${isOpen ? '' : 'closed'}`}
-      onClick={onClose}
-      onKeyUp={event => (event.key === 'escape' ? onClose() : null)}
-      role='dialog'
-    >
-      <div className='modal-container'>
-        <div
-          className='modal'
-          onClick={event => event.stopPropagation()}
-          role='dialog'
-        ></div>
-      </div>
-    </div>
-  )
+  if (isOpen) {
+    const portalDiv = document.getElementById('portal')
+    return portalDiv
+      ? ReactDOM.createPortal(
+          <div
+            className={`modal-background ${isOpen ? '' : 'closed'}`}
+            onClick={onClose}
+            onKeyUp={event => (event.key === 'Escape' ? onClose() : null)}
+            role='dialog'
+          >
+            <div
+              className='modal'
+              onClick={event => event.stopPropagation()}
+              role='dialog'
+            >
+              <button onClick={onClose}>X</button>
+              <h1>{header}</h1>
+              {children}
+            </div>
+          </div>,
+          portalDiv
+        )
+      : null
+  } else return null
 }

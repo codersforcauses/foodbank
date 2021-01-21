@@ -7,7 +7,13 @@ const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(true)
   return (
     <div className='App'>
-      <ModalContainer isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <ModalContainer
+        header='Header'
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+      >
+        Text
+      </ModalContainer>
       <header>foodbank</header>
       <Switch>
         {routes.map(({ name, ...route }) => (
