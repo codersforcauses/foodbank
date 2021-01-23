@@ -80,6 +80,15 @@ import QueenPea from './Vegetables/QueenPea.jpg'
 import TinnedTradie from './Vegetables/TinnedTradie.jpg'
 import VegieSquad from './Vegetables/VegieSquad.jpg'
 
+import ZombieChocc from './ZombieFoods/ZombieChoc.jpg'
+import Decay from './ZombieFoods/Decay.jpg'
+import ZombieChips from './ZombieFoods/ZombieChips.jpg'
+import Illness from './ZombieFoods/Illness.jpg'
+import ZombieDonut from './ZombieFoods/ZombieDonut.jpg'
+import Obesity from './ZombieFoods/Obesity.jpg'
+import ZombieEnergy from './ZombieFoods/ZombieEnergy.jpg'
+import ZombieFizz from './ZombieFoods/ZombieFizz.jpg'
+
 interface Character {
   before: string
   after: string
@@ -309,6 +318,26 @@ const imgTransforms: Array<Character> = [
     before: TinnedTradie,
     after: VegieSquad,
     text: 'I am tinned vegetables!'
+  },
+  {
+    before: ZombieChocc,
+    after: Decay,
+    text: 'I am chocolate!'
+  },
+  {
+    before: ZombieChips,
+    after: Illness,
+    text: 'I am Chips!'
+  },
+  {
+    before: ZombieDonut,
+    after: Obesity,
+    text: 'I am a Donut!'
+  },
+  {
+    before: ZombieEnergy,
+    after: ZombieFizz,
+    text: 'I am Energy Drink!'
   }
 ]
 
