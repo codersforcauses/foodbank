@@ -89,6 +89,12 @@ import Obesity from './ZombieFoods/Obesity.jpg'
 import ZombieEnergy from './ZombieFoods/ZombieEnergy.jpg'
 import ZombieFizz from './ZombieFoods/ZombieFizz.jpg'
 
+import WonderWater from './Other/WonderWater.jpg'
+import CoolGlass from './Other/CoolGlass.jpg'
+import BushTuckerTrackers from './Other/BushTuckerTrackers.jpg'
+import BushTuckerTeam from './Other/BushTuckerTeam.jpg'
+import { Button } from 'Components/Button'
+
 interface Character {
   before: string
   after: string
@@ -97,12 +103,17 @@ interface Character {
 
 const imgTransforms: Array<Character> = [
   {
+    
     before: BlueBoy,
 
     after: YoBoy,
 
     text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.'
-  },
+  
+   <div>{}
+    <button>Button</button>
+   }</div>}
+  ,
 
   {
     before: MilkMaid,
@@ -338,6 +349,16 @@ const imgTransforms: Array<Character> = [
     before: ZombieEnergy,
     after: ZombieFizz,
     text: 'I am Energy Drink!'
+  },
+  {
+    before: CoolGlass,
+    after: WonderWater,
+    text: 'I am Water!'
+  },
+  {
+    before: BushTuckerTrackers,
+    after: BushTuckerTeam,
+    text: 'We are a team!'
   }
 ]
 
