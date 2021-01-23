@@ -47,6 +47,39 @@ import PastaBlast from './Grains/PastaBlast.jpg'
 import PostiePorridge from './Grains/PostiePorridge.jpg'
 import PowerfulPorridge from './Grains/PowerfulPorridge.jpg'
 
+import ArtyCarrot from './Vegetables/ArtyCarrot.jpg'
+import TheDicer from './Vegetables/TheDicer.jpg'
+import SaucyLady from './Vegetables/SaucyLady.jpg'
+import AthleticTomato from './Vegetables/AthleticTomato.jpg'
+import TinnedBeans from './Vegetables/TinnedBeans.jpg'
+import BeanMachine from './Vegetables/BeanMachine.jpg'
+import CrunchingCapsicum from './Vegetables/CrunchingCapsicum.jpg'
+import CaptainCapsicum from './Vegetables/CaptainCapsicum.jpg'
+import CoachCarrot from './Vegetables/CoachCarrot.jpg'
+import PurplePrincess from './Vegetables/PurplePrincess.jpg'
+import CoolCucumber from './Vegetables/CoolCucumber.jpg'
+import MrCucumber from './Vegetables/MrCucumber.jpg'
+import DJCorn from './Vegetables/DJCorn.jpg'
+import KingCorn from './Vegetables/KingCorn.jpg'
+import FootyGirl from './Vegetables/FootyGirl.jpg'
+import SuperSweetPotato from './Vegetables/SuperSweetPotato.jpg'
+import FreshHerbs from './Vegetables/FreshHerbs.jpg'
+import Herbalicious from './Vegetables/Herbalicious.jpg'
+import FrozenVegies from './Vegetables/FrozenVegies.jpg'
+import SnapFrozen from './Vegetables/SnapFrozen.jpg'
+import GarlicDancer from './Vegetables/GarlicDancer.jpg'
+import GarlicShield from './Vegetables/GarlicShield.jpg'
+import JackarooOnion from './Vegetables/JackarooOnion.jpg'
+import OnionRinger from './Vegetables/OnionRinger.jpg'
+import WorkingSpud from './Vegetables/WorkingSpud.jpg'
+import MasherMan from './Vegetables/MasherMan.jpg'
+import MrsBrocc from './Vegetables/MrsBrocc.jpg'
+import MeanGreen from './Vegetables/MeanGreen.jpg'
+import PeaPod from './Vegetables/PeaPod.jpg'
+import QueenPea from './Vegetables/QueenPea.jpg'
+import TinnedTradie from './Vegetables/TinnedTradie.jpg'
+import VegieSquad from './Vegetables/VegieSquad.jpg'
+
 interface Character {
   before: string
   after: string
@@ -185,6 +218,97 @@ const imgTransforms: Array<Character> = [
     before: PostiePorridge,
     after: PowerfulPorridge,
     text: 'I am Porridge!'
+  },
+
+  {
+    before: ArtyCarrot,
+    after: TheDicer,
+    text: 'I am a Carrot!'
+  },
+
+  {
+    before: AthleticTomato,
+    after: SaucyLady,
+    text: 'I am a Tomato!'
+  },
+
+  {
+    before: TinnedBeans,
+    after: BeanMachine,
+    text: 'I am Beans!'
+  },
+
+  {
+    before: CrunchingCapsicum,
+    after: CaptainCapsicum,
+    text: 'I am a Capsicum!'
+  },
+
+  {
+    before: CoachCarrot,
+    after: PurplePrincess,
+    text: 'I am a purple Carrot'
+  },
+
+  {
+    before: MrCucumber,
+    after: CoolCucumber,
+    text: 'I am a Cucumber'
+  },
+
+  {
+    before: DJCorn,
+    after: KingCorn,
+    text: 'I am Corn!'
+  },
+
+  {
+    before: FootyGirl,
+    after: SuperSweetPotato,
+    text: 'I am a Sweet Potato!'
+  },
+
+  {
+    before: FreshHerbs,
+    after: Herbalicious,
+    text: 'I am Herbs!'
+  },
+
+  {
+    before: FrozenVegies,
+    after: SnapFrozen,
+    text: 'I am Frozen Vegetables!'
+  },
+
+  {
+    before: GarlicDancer,
+    after: GarlicShield,
+    text: 'I am a Garlic!'
+  },
+  {
+    before: JackarooOnion,
+    after: OnionRinger,
+    text: 'I am an Onion!'
+  },
+  {
+    before: WorkingSpud,
+    after: MasherMan,
+    text: 'I am a Potato!'
+  },
+  {
+    before: MrsBrocc,
+    after: MeanGreen,
+    text: 'I am a Broccoli!'
+  },
+  {
+    before: PeaPod,
+    after: QueenPea,
+    text: 'I am Pea!'
+  },
+  {
+    before: TinnedTradie,
+    after: VegieSquad,
+    text: 'I am tinned vegetables!'
   }
 ]
 
