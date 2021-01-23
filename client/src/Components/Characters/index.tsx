@@ -93,27 +93,28 @@ import WonderWater from './Other/WonderWater.jpg'
 import CoolGlass from './Other/CoolGlass.jpg'
 import BushTuckerTrackers from './Other/BushTuckerTrackers.jpg'
 import BushTuckerTeam from './Other/BushTuckerTeam.jpg'
-import { Button } from 'Components/Button'
+// import { Button } from 'Components/Button'
 
 interface Character {
   before: string
   after: string
   text: string
+  button?: any
 }
 
+// function handleClick = () => {
+//     setImage(character.before)
+// }
 const imgTransforms: Array<Character> = [
   {
-    
     before: BlueBoy,
 
     after: YoBoy,
 
     text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.'
-  
-   <div>{}
-    <button>Button</button>
-   }</div>}
-  ,
+
+    // button: <div>{<button onClick={changeImageBack}>Button</button>}</div>
+  },
 
   {
     before: MilkMaid,
@@ -368,8 +369,15 @@ const CharacterImg = ({ character }: { character: Character }) => {
     setImage(character.after)
   }
 
+  const changeImageBack = () => {
+    setImage(character.before)
+  }
+
   return (
     <span>
+      <div>
+        <button onClick={changeImageBack}>Click</button>
+      </div>
       <img
         src={image}
         alt=''
