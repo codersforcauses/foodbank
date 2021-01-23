@@ -1,11 +1,14 @@
 import React from 'react'
-import { UserForm } from 'Components/Forms/User'
-import "./index.css"
+import SignupForm from 'Components/Forms/Login'
+import './index.css'
+import {Link} from "react-router-dom";
 
 const SignUp: React.FC = () => {
   return (
     <div className='user-form-page flex justify-center'>
-      <UserForm className='user-form' title='Sign Up' onSubmit={values => console.log(values)} />
+      <SignupForm
+        onSubmit={values => console.log(values)}
+      />
     </div>
   )
 }
