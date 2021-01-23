@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import Button from 'Components/Button'
-import { Link } from 'react-router-dom'
+import { BrowserRouter, Link } from 'react-router-dom'
 
 import * as Yup from 'yup'
 
@@ -18,21 +18,16 @@ export interface LoginFormProps {
 const currentYear = new Date().getFullYear()
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string()
-    .trim()
-    .min(1, 'Username must be at least 1 character')
-    .required('Required'),
+  username: Yup.string().trim().required('Required'),
   year: Yup.number()
     .max(currentYear - 5, `Please enter a year before ${currentYear - 5}`)
     .typeError('Year must be a number')
     .required('Required')
 })
 
-export const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
-}) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   return (
-    <div className="user-form">
+    <div className='user-form'>
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={onSubmit}
@@ -44,15 +39,17 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             <Input label='Username' name='username' />
             <Input label='Year of Birth' name='year' />
             <Button type='submit'>Submit</Button>
-            <div className='pageStatus flex justify-center'>
-              <Link to='/login' className='ml-2'>
-                Don&apos;t have an account?
-              </Link>
+            <div className='flex justify-center'>
+              <BrowserRouter>
+                <Link to='/signup' className='ml-2'>
+                  Don&apos;t have an account?
+                </Link>
+              </BrowserRouter>
             </div>
           </div>
         </Form>
       </Formik>
-      </div>
+    </div>
   )
 }
 
