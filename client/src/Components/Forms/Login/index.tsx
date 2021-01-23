@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import Button from 'Components/Button'
-import { BrowserRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import * as Yup from 'yup'
 
@@ -27,7 +27,7 @@ const LoginSchema = Yup.object().shape({
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   return (
-    <div className='user-form'>
+    <div className='my-8'>
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={onSubmit}
@@ -40,11 +40,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
             <Input label='Year of Birth' name='year' />
             <Button type='submit'>Submit</Button>
             <div className='flex justify-center'>
-              <BrowserRouter>
-                <Link to='/signup' className='ml-2'>
-                  Don&apos;t have an account?
-                </Link>
-              </BrowserRouter>
+              <Link to='/signup' className='ml-2'>
+                Don&apos;t have an account?
+              </Link>
             </div>
           </div>
         </Form>
