@@ -4,15 +4,18 @@ import { Switch, Route } from 'react-router-dom'
 import routes from 'router'
 
 const App: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(true)
   return (
     <div className='App'>
       <ModalContainer
-        header='Header'
+        header='Headerddddd'
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
       >
-        Text
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil,
+        eligendi fugit. Minima quam, minus iusto numquam asperiores nihil,
+        aliquid tenetur odio eos, saepe optio labore perferendis debitis hic?
+        Totam, autem!
       </ModalContainer>
       <header>foodbank</header>
       <Switch>
@@ -20,7 +23,7 @@ const App: React.FC = () => {
           <Route key={name} {...route} />
         ))}
       </Switch>
-      <button onClick={() => setModalOpen(true)}>Test</button>
+      <button onClick={() => setModalOpen(true)}>Modal</button>
     </div>
   )
 }

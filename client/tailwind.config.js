@@ -25,6 +25,9 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
+      },
+      minWidth: {
+        '320': '320px'
       }
     }
   },

@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events*/
 
 import React, { useEffect, useCallback } from 'react'
-import './modal.css'
 import ReactDOM from 'react-dom'
 
 interface ModalContainerProps {
@@ -22,8 +21,8 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
   onClose
 }) => {
   const escFunction = useCallback(
-    event => {
-      if (event.keyCode === 27) {
+    e => {
+      if (e.keyCode === 27) {
         onClose()
       }
     },
@@ -39,15 +38,33 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
     const portalDiv = document.getElementById('portal')
     return portalDiv
       ? ReactDOM.createPortal(
-          <div className={`modal-background`} onClick={onClose} role='dialog'>
+          <div
+            className='flex flex-wrap justify-center content-center bg-black bg-opacity-50 z-50 absolute inset-0'
+            onClick={onClose}
+            role='dialog'
+          >
             <div
-              className='modal'
+              className='max-w-md min-w-320 bg-primary p-5 rounded-xl flex flex-col shadow-2xl'
               onClick={event => event.stopPropagation()}
               role='dialog'
             >
-              <button onClick={onClose}>X</button>
-              <h1>{header}</h1>
-              {children}
+              <div id='modal-header' className='grid grid-cols-3 pb-5'>
+                <h2 className='text-3xl col-start-2 font-serif uppercase justify-self-center text-white'>
+                  {header}
+                </h2>
+                <button
+                  className='justify-self-end font-serif text-red text-xl shadow-2xl'
+                  onClick={onClose}
+                >
+                  X
+                </button>
+              </div>
+              <div
+                id='modal-body'
+                className='font-sans bg-white rounded-3xl p-4'
+              >
+                {children}
+              </div>
             </div>
           </div>,
           portalDiv
