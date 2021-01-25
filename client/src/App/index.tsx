@@ -1,10 +1,10 @@
-import { ModalContainer } from 'Components/Modal'
+import ModalContainer from 'Components/Modal'
 import React, { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import routes from 'router'
 
 const App: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
   return (
     <div className='App'>
       <ModalContainer

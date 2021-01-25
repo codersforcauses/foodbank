@@ -14,7 +14,7 @@ interface ModalContainerProps {
 Use css to center, absolute, margin-order
 z-index, 1000
 */
-export const ModalContainer: React.FC<ModalContainerProps> = ({
+const ModalContainer: React.FC<ModalContainerProps> = ({
   isOpen,
   header,
   children,
@@ -72,3 +72,5 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
       : null
   } else return null
 }
+
+export default ModalContainer
