@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import routes from 'router'
 
 const App: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
   return (
     <div className='App'>
       <ModalContainer
@@ -20,6 +20,7 @@ const App: React.FC = () => {
           <Route key={name} {...route} />
         ))}
       </Switch>
+      <button onClick={() => setModalOpen(true)}>Test</button>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions*/
 /* eslint-disable jsx-a11y/click-events-have-key-events*/
 
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
 import './modal.css'
 import ReactDOM from 'react-dom'
 
@@ -21,16 +21,25 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
   children,
   onClose
 }) => {
+  const escFunction = useCallback(
+    event => {
+      if (event.keyCode === 27) {
+        onClose()
+      }
+    },
+    [onClose]
+  )
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction)
+    return () => {
+      document.removeEventListener('keydown', escFunction)
+    }
+  }, [escFunction])
   if (isOpen) {
     const portalDiv = document.getElementById('portal')
     return portalDiv
       ? ReactDOM.createPortal(
-          <div
-            className={`modal-background ${isOpen ? '' : 'closed'}`}
-            onClick={onClose}
-            onKeyUp={event => (event.key === 'Escape' ? onClose() : null)}
-            role='dialog'
-          >
+          <div className={`modal-background`} onClick={onClose} role='dialog'>
             <div
               className='modal'
               onClick={event => event.stopPropagation()}
