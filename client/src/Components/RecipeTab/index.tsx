@@ -13,21 +13,25 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
   const buttontextcolor = 'text-' + recipe.buttontextcolor
 
   return (
-    <div className={'grid gap-4 grid-cols-1 sm:grid-cols-2 m-10 p-10 rounded-xl ' + bgcolor}>
+    <div className={'relative grid gap-4 grid-cols-1 sm:grid-cols-2 m-10 p-10 rounded-xl ' + bgcolor}>
       <div>
-        <h1 className={'text-4xl font-semibold font-serif ' + headcolor}>
+        <h1 className={'text-4xl underline font-semibold font-serif ' + headcolor}>
           {recipe.name}
         </h1>
-        <h3 className={'text-2xl font-serif ' + headcolor}>Category</h3>
+        <h3 className={'text-xl font-serif ' + headcolor}>Category</h3>
         <p className={textcolor}>{recipe.category}</p>
-        <h3 className={'text-2xl font-serif ' + headcolor}>Tags</h3>
-        <p className={textcolor}>{recipe.tags.join(', ')}</p>
+        <h3 className={'text-xl font-serif ' + headcolor}>Tags</h3>
+        <div className='flex flex-row flex-wrap'>
+          {recipe.tags.map(tag => (
+            <div key={tag} className='mr-3 my-0.5 px-4 rounded-3xl bg-light-grey text-sm'>{tag}</div>
+          ))}   
+        </div>
         <button className={'w-24 mt-8 py-2 px-4 rounded-full ' + buttoncolor + ' ' + buttontextcolor}>To Recipe</button>
       </div>
       <img className='w-80' src={recipe.image} alt={recipe.name} />
-      <div className=''>
+      <div>
         <h2 className={'text-2xl font-serif ' + headcolor}>Ingredients</h2>
-        <ul className=''>
+        <ul>
           {recipe.ingredients.map(ingredient => (
             <li key={ingredient} className={textcolor}>
               {ingredient}
@@ -35,9 +39,9 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
           ))}
         </ul>
       </div>
-      <div className=''>
+      <div>
         <h2 className={'text-2xl font-serif ' + headcolor}>Equipment</h2>
-        <ul className=''>
+        <ul>
           {recipe.equipment.map(equipment => (
             <li key={equipment} className={textcolor}>
               {equipment}
@@ -45,11 +49,7 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
           ))}
         </ul>
       </div>
-      <div className='space-x-4'>
-        <button className={'w-24 mt-8 py-2 px-4 rounded-full ' + buttoncolor + ' ' + buttontextcolor}>
-          Back
-        </button>
-      </div>
+      <button className='absolute -top-2 -right-2 p-1.5 w-9 bg-grey rounded-full'>X</button>
     </div>
   )
 }

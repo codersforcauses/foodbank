@@ -17,7 +17,7 @@ const RecipeOverview: React.FC = () => {
     id: id,
     name: 'Super Sonic Dip',
     category: 'Snacks',
-    tags: ['Dip', 'Vegetables', 'Snacks'],
+    tags: ['Dip', 'Vegetables', 'Snacks', 'Blah', 'De', 'blah', 'even', 'more', 'tags', 'nice'],
     equipment: [
       'Chopping board',
       'Knife',
@@ -42,7 +42,7 @@ const RecipeOverview: React.FC = () => {
       '1 punnet cherry tomatoes'
     ],
     image: Dip,
-    bgcolor: 'purple',
+    bgcolor: 'primary',
     headcolor: 'teal',
     textcolor: 'white',
     buttontextcolor: 'black'
@@ -74,7 +74,7 @@ const RecipeOverview: React.FC = () => {
     ],
     image: BananaBites,
     bgcolor: 'teal',
-    headcolor: 'purple',
+    headcolor: 'primary',
     textcolor: 'black',
     buttontextcolor: 'white'
   }
@@ -107,7 +107,7 @@ const RecipeOverview: React.FC = () => {
     ],
     image: BananaBites,
     bgcolor: 'orange',
-    headcolor: 'purple',
+    headcolor: 'primary',
     textcolor: 'black',
     buttontextcolor: 'white'
   }
