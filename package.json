@@ -17,7 +17,6 @@
     "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
   },
   "dependencies": {
-    "concurrently": "5.3.0",
-    "firebase": "^8.2.4"
+    "concurrently": "5.3.0"
   }
 }
