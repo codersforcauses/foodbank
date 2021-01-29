@@ -42,7 +42,7 @@ export interface DropDownProps {
 export const DropDown: React.FC<DropDownProps> = ({
   options,
   disabled = false,
-  // required = false,
+  required = false,
   label,
   placeholder = 'select an option'
   // ...props
@@ -50,7 +50,10 @@ export const DropDown: React.FC<DropDownProps> = ({
   const [selectedOption, setSelectedOption] = useState(
     placeholder ?? options[0]
   )
-  // const [{ name }, { error, touched }] = useField(props.name)
+
+  //borderColor red if there is an error
+  const borderColor =
+    selectedOption === 'select an option' ? 'border-red' : 'border-gray'
 
   return (
     <div className='flex w-full items-center justify-center'>
@@ -65,14 +68,14 @@ export const DropDown: React.FC<DropDownProps> = ({
             <>
               <Listbox.Label className='block text-sm leading-5 font-medium text-gray-700'>
                 {label}
+                {required && <span className='text-orange'>*</span>}
               </Listbox.Label>
-              {/* error handle */}
-
-              {/* <span>{touched && error ? 'true' : 'false'}</span> */}
 
               <div className='relative'>
                 <span className='inline-block w-full rounded-md shadow-sm'>
-                  <Listbox.Button className='cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5'>
+                  <Listbox.Button
+                    className={`cursor-default relative w-full rounded-md border bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5 ${borderColor}`}
+                  >
                     <span className='block truncate'>{selectedOption}</span>
                     <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
                       <svg
