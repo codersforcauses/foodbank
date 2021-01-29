@@ -6,13 +6,9 @@ import { Link } from 'react-router-dom'
 
 import * as Yup from 'yup'
 
-interface SignupFormValues {
+export interface SignupFormValues {
   username: string
   year: number
-}
-
-export interface SignupFormProps {
-  onSubmit: (values: SignupFormValues) => void
 }
 
 const currentYear = new Date().getFullYear()
@@ -25,12 +21,16 @@ const SignupSchema = Yup.object().shape({
     .required('Required')
 })
 
-export const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
+export const SignupForm: React.FC = () => {
+  const handleSubmit = (values: SignupFormValues) => {
+    console.log(values)
+  }
+
   return (
     <div className='my-8'>
       <Formik
         initialValues={{ username: '', year: 2000 }}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         validationSchema={SignupSchema}
       >
         <Form>

@@ -11,10 +11,6 @@ interface LoginFormValues {
   year: number
 }
 
-export interface LoginFormProps {
-  onSubmit: (values: LoginFormValues) => void
-}
-
 const currentYear = new Date().getFullYear()
 
 const LoginSchema = Yup.object().shape({
@@ -25,12 +21,16 @@ const LoginSchema = Yup.object().shape({
     .required('Required')
 })
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
+export const LoginForm: React.FC = () => {
+  const handleSubmit = (values: LoginFormValues) => {
+    console.log(values)
+  }
+
   return (
     <div className='my-8'>
       <Formik
         initialValues={{ username: '', year: 2000 }}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         validationSchema={LoginSchema}
       >
         <Form>
