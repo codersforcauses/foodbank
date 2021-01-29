@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom'
 export interface ModalContainerProps {
   isOpen: boolean
   header: string
-  children: any
+  children: string
   onClose: () => void
 }
 /* 
