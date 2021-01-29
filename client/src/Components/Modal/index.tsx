@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions*/
 /* eslint-disable jsx-a11y/click-events-have-key-events*/
 
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-interface ModalContainerProps {
+export interface ModalContainerProps {
   isOpen: boolean
   header: string
-  children: string
+  children: any
   onClose: () => void
 }
 /* 

@@ -1,7 +1,12 @@
 import ModalContainer from 'Components/Modal'
 import React, { useState } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import routes from 'router'
+
+/*
+- Figure out storybook implementation
+- Resolve deployment issues
+*/
 
 const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
