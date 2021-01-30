@@ -6,15 +6,15 @@ import Dip from 'lib/mock/dip.jpg'
 import BananaBites from 'lib/mock/banana-bites.jpg'
 
 interface ParamTypes {
-  id: string
+  slug: string
 }
 
 const RecipeOverview: React.FC = () => {
-  const { id } = useParams<ParamTypes>()
+  const { slug } = useParams<ParamTypes>()
 
   // retrieve the recipe using id from DB - STILL TO DO
   const superSonicDip: Recipe = {
-    id: id,
+    slug: slug,
     name: 'Super Sonic Dip',
     category: 'Snacks',
     tags: ['Dip', 'Vegetables', 'Snacks', 'Blah', 'De', 'blah', 'even', 'more', 'tags', 'nice'],
@@ -42,14 +42,14 @@ const RecipeOverview: React.FC = () => {
       '1 punnet cherry tomatoes'
     ],
     image: Dip,
-    bgcolor: 'primary',
-    headcolor: 'teal',
-    textcolor: 'white',
-    buttontextcolor: 'black'
+    bgColor: 'primary',
+    headColor: 'teal',
+    textColor: 'white',
+    buttonTextColor: 'black'
   }
 
   const sportyBananaBites: Recipe = {
-    id: id,
+    slug: 'sporty-banana-bites',
     name: 'Sport Banana Bites',
     category: 'Snacks',
     tags: ['Snack', 'Dessert', 'Banana'],
@@ -73,14 +73,14 @@ const RecipeOverview: React.FC = () => {
       '1/4 cup desiccated coconut'
     ],
     image: BananaBites,
-    bgcolor: 'teal',
-    headcolor: 'primary',
-    textcolor: 'black',
-    buttontextcolor: 'white'
+    bgColor: 'teal',
+    headColor: 'primary',
+    textColor: 'black',
+    buttonTextColor: 'white'
   }
 
   const kPowFritters: Recipe = {
-    id: id,
+    slug: 'k-pow-fritters',
     name: 'K-pow Fritters',
     category: 'Snacks/Main',
     tags: ['Corn', 'Vegetables', 'Fritters', 'Lunch'],
@@ -106,10 +106,10 @@ const RecipeOverview: React.FC = () => {
       '1/4 cup desiccated coconut'
     ],
     image: BananaBites,
-    bgcolor: 'orange',
-    headcolor: 'primary',
-    textcolor: 'black',
-    buttontextcolor: 'white'
+    bgColor: 'orange',
+    headColor: 'primary',
+    textColor: 'black',
+    buttonTextColor: 'white'
   }
 
   superSonicDip
@@ -117,9 +117,7 @@ const RecipeOverview: React.FC = () => {
   kPowFritters
 
   return (
-    <div>
-      <RecipeTab recipe={superSonicDip} />
-    </div>
+    <RecipeTab recipe={superSonicDip} />
   )
 }
 
