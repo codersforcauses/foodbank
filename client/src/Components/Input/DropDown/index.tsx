@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useField } from 'formik'
 import { Listbox, Transition } from '@headlessui/react'
-import { FieldControl } from '../Utils'
+import { FieldControl, FieldLabel, FieldMessage } from '../Utils'
 export interface DropDownProps {
   /**
    * Options that appear in dropdown menu
@@ -18,10 +18,10 @@ export interface DropDownProps {
    */
   disabled?: boolean
 
-  // /**
-  //  * Add description or helper text to input
-  //  */
-  // description?: string
+  /**
+   * Add description or helper text to input
+   */
+  description?: string
 
   /**
    * Placeholder text for input
@@ -45,17 +45,17 @@ export const DropDown: React.FC<DropDownProps> = ({
   required = false,
   label,
   placeholder = 'select an option',
+  description,
   ...props
 }) => {
-  const [selectedOption, setSelectedOption] = useState(
-    placeholder ?? options[0]
-  )
-
   //useField hook from formik acquires if there is error and if touched
-  const [{ name }, { error, touched }] = useField(props.name)
+  const [{ name, value }, { error, touched }, { setValue }] = useField(
+    props.name
+  )
+  const val = value ?? placeholder
 
   //borderColor red if there is an error
-  const borderColor = error && touched ? 'border-red' : 'border-gray'
+  const borderColor = error && touched ? 'border-red' : 'border-dark-grey'
 
   return (
     <FieldControl
@@ -67,25 +67,18 @@ export const DropDown: React.FC<DropDownProps> = ({
     >
       <div className='flex w-full items-center justify-center'>
         <div className='w-full max-w-xs mx-auto'>
-          <Listbox
-            value={selectedOption}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            onChange={setSelectedOption}
-          >
+          <Listbox value={val} onChange={setValue}>
             {({ open }) => (
               <>
-                <Listbox.Label className='block text-sm leading-5 font-medium text-gray-700'>
-                  {label}
-                  {required && <span className='text-orange'>*</span>}
-                </Listbox.Label>
-
+                <Listbox.Label as={FieldLabel}>{label}</Listbox.Label>
                 <div className='relative'>
                   <span className='inline-block w-full rounded-md shadow-sm'>
                     <Listbox.Button
-                      className={`cursor-default relative w-full rounded-md border bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5 ${borderColor}`}
+                      className={`cursor-default relative w-full rounded-md border bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition ease-in-out duration-150 sm:text-sm sm:leading-5 ${borderColor}`}
                     >
-                      <span className='block truncate'>{selectedOption}</span>
+                      <span className='block truncate'>{val}</span>
+
+                      {/* DOUBLE ARROW SYMBOL ON BUTTON */}
                       <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
                         <svg
                           className='h-5 w-5 text-gray-400'
@@ -139,9 +132,10 @@ export const DropDown: React.FC<DropDownProps> = ({
                               {selected && (
                                 <span
                                   className={`${
-                                    active ? 'text-white' : 'text-blue-600'
+                                    active ? 'text-white' : 'text-primary'
                                   } absolute inset-y-0 left-0 flex items-center pl-1.5`}
                                 >
+                                  {/* TICK SYMBOL ON EACH OPTION */}
                                   <svg
                                     className='h-5 w-5'
                                     xmlns='http://www.w3.org/2000/svg'
@@ -166,6 +160,14 @@ export const DropDown: React.FC<DropDownProps> = ({
               </>
             )}
           </Listbox>
+          {/* Show error message or decription*/}
+          {touched && error ? (
+            <FieldMessage>{error}</FieldMessage>
+          ) : (
+            description && (
+              <FieldMessage description>{description}</FieldMessage>
+            )
+          )}
         </div>
       </div>
     </FieldControl>

@@ -13,6 +13,7 @@ const Template: Story<DropDownProps> = args => {
     <Formik
       initialValues={{ name: args.name }}
       onSubmit={(_, actions) => {
+        console.log(_)
         actions.setFieldError(args.name, `${args.label} has error`)
       }}
     >
@@ -39,7 +40,7 @@ Primary.args = {
   label: 'Select an option:',
   name: 'selectOption',
   options: ['1', '2', '3'],
-  // description: 'Enter your username',
+  description: 'enter description here',
   disabled: false,
   required: false
 }
