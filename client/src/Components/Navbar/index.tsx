@@ -1,18 +1,18 @@
-import React from 'react'
-import { NavlinkProps, Navlink } from './Navlink'
+import React, { useState } from 'react';
 
-export interface NavbarProps {
-  links: NavlinkProps[]
-}
+export const NavbarContent = () => {
+  return <nav>navbar here</nav>
+};
 
-export const Navbar: React.FC<NavbarProps> = ({ links }) => {
+export const Navbar: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <nav className='bg-primary'>
-      <ul className='flex flex-col lg:flex-row justify-center'>
-        {links.map(nav => (
-          <Navlink key={nav.page} {...nav} />
-        ))}
-      </ul>
-    </nav>
-  )
-}
+    <header>
+      <button className="sm:hidden" onClick={() => setOpen(!open)}>Open Nav</button>
+      <div className={`sm:block ${!open ? 'hidden' : ''}`}>
+        <NavbarContent />
+      </div>
+    </header>
+  );
+};
