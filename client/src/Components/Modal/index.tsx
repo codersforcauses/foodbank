@@ -11,10 +11,7 @@ export interface ModalContainerProps {
   children: string
   onClose: () => void
 }
-/* 
-Use css to center, absolute, margin-order
-z-index, 1000
-*/
+
 const ModalContainer: React.FC<ModalContainerProps> = ({
   isOpen,
   header,
