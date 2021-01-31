@@ -36,14 +36,16 @@ export const SignupForm: React.FC = () => {
         `${values.username}@FBSF.com`,
         `${values.year.toString()}FBSF`
       )
-    } catch {
-      setError('Error while creating account')
+    } catch (error) {
+      console.log(error)
+      if (error.code === 'auth/email-already-in-use') {
+        setError('Username is already in use')
+      } else setError('Error while creating account')
     }
   }
 
   return (
     <div className='my-8'>
-      {error}
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={handleSubmit}
@@ -55,6 +57,9 @@ export const SignupForm: React.FC = () => {
             <Input label='Username' name='username' />
             <Input label='Year of Birth' name='year' />
             <Button type='submit'>Submit</Button>
+            {error && (
+              <span className='text-center text-sm text-red mt-1'>{error}</span>
+            )}
             <div className='flex justify-center'>
               <Link to='/login' className='ml-2'>
                 Already have an account?

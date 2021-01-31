@@ -39,8 +39,15 @@ export const LoginForm: React.FC = () => {
         `${values.year.toString()}FBSF`
       )
       history.push('/')
-    } catch {
-      setError('Error while logging in')
+    } catch (error) {
+      console.log(error)
+      if (error.code === 'auth/user-not-found') {
+        setError('Username cannot be found')
+      } else if (error.code === 'auth/wrong-password') {
+        setError('Password is incorrect')
+      } else if (error.code === 'auth/too-many-requests') {
+        setError('Too many login attempts, try again later')
+      } else setError('Error while logging in')
     }
   }
 
@@ -56,7 +63,6 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className='my-8'>
-      {error}
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={handleSubmit}
@@ -68,6 +74,9 @@ export const LoginForm: React.FC = () => {
             <Input label='Username' name='username' />
             <Input label='Year of Birth' name='year' />
             <Button type='submit'>Submit</Button>
+            {error && (
+              <span className='text-center text-sm text-red mt-1'>{error}</span>
+            )}
             <div className='flex justify-center'>
               <Link to='/signup' className='ml-2'>
                 Don&apos;t have an account?
