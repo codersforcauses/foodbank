@@ -52,7 +52,7 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
                     {header}
                   </h2>
                   <button
-                    className='justify-self-end font-serif text-red text-xl shadow-2xl'
+                    className='justify-self-end font-serif text-red text-xl shadow-2xl transform hover:scale-125 transition ease-in-out duration-500'
                     onClick={onClose}
                   >
                     X
