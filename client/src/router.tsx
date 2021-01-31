@@ -5,6 +5,7 @@ import Login from 'Pages/Login'
 import SignUp from 'Pages/SignUp'
 
 interface RouterElement {
+  isPrivate?: true
   exact?: boolean
   name: string
   path: string
@@ -17,7 +18,8 @@ const routes: Array<RouterElement> = [
     name: 'Home',
     path: '/',
     component: Home,
-    exact: true
+    exact: true,
+    isPrivate: true
   },
   {
     name: 'Login',
