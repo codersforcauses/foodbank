@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import Button from 'Components/Button'
-import { Form, Formik } from 'formik'
 import { Link } from 'react-router-dom'
 
 import * as Yup from 'yup'
+import { AuthContext, IAuthContext } from 'Contexts/AuthContext'
 
 export interface SignupFormValues {
   username: string
@@ -22,12 +23,27 @@ const SignupSchema = Yup.object().shape({
 })
 
 export const SignupForm: React.FC = () => {
-  const handleSubmit = (values: SignupFormValues) => {
-    console.log(values)
+  const [error, setError] = useState('')
+
+  const authContext: IAuthContext = useContext(AuthContext)
+  const { signup } = authContext
+
+  const handleSubmit = async (values: SignupFormValues) => {
+    setError('')
+    try {
+      await signup(
+        // Firebase requires a 'email' username and passwords to be at least 6 characters
+        `${values.username}@FBSF.com`,
+        `${values.year.toString()}FBSF`
+      )
+    } catch {
+      setError('Error while creating account')
+    }
   }
 
   return (
     <div className='my-8'>
+      {error}
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={handleSubmit}

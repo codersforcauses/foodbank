@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import Button from 'Components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import * as Yup from 'yup'
+import { AuthContext, IAuthContext } from 'Contexts/AuthContext'
 
 interface LoginFormValues {
   username: string
@@ -22,12 +23,40 @@ const LoginSchema = Yup.object().shape({
 })
 
 export const LoginForm: React.FC = () => {
-  const handleSubmit = (values: LoginFormValues) => {
-    console.log(values)
+  const [error, setError] = useState('')
+
+  const authContext: IAuthContext = useContext(AuthContext)
+  const { login } = authContext
+
+  const history = useHistory()
+
+  const handleSubmit = async (values: LoginFormValues) => {
+    setError('')
+    try {
+      await login(
+        // Firebase requires a 'email' username and passwords to be at least 6 characters
+        `${values.username}@FBSF.com`,
+        `${values.year.toString()}FBSF`
+      )
+      history.push('/')
+    } catch {
+      setError('Error while logging in')
+    }
   }
+
+  // const handleLogout = async () => {
+  //   setError('')
+  //   try {
+  //     await logout()
+  //     history.push('/login')
+  //   } catch {
+  //     setError('Error while logging out')
+  //   }
+  // }
 
   return (
     <div className='my-8'>
+      {error}
       <Formik
         initialValues={{ username: '', year: 2000 }}
         onSubmit={handleSubmit}
