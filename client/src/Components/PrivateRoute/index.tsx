@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, RouteComponentProps } from 'react-router-dom'
 
 import { AuthContext } from 'Contexts/AuthContext'
 
 interface PrivateRouteProps {
-  component: React.FC<any>
+  component: React.FC<RouteComponentProps>
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({
