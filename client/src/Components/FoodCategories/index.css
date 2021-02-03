@@ -1,7 +1,7 @@
 .food-categories-container {
     position: absolute;
-    height: 240px;
-    width: 240px;
+    height: 100%;
+    width: 100%;
     left: 0;
     top: 0;
 }
@@ -15,6 +15,7 @@ img:hover {
 .grains {
     position: absolute;
     height: 66.67%;
+    width: 51%;
     top: 0;
     left: 0;
 }
@@ -22,6 +23,7 @@ img:hover {
 .vegetables {
     position: absolute;
     height: 62.5%;
+    width: 50%;
     top: 0;
     left: 50.4%;
 
@@ -30,6 +32,7 @@ img:hover {
 .meat {
     position: absolute;
     height: 50%;
+    width: 48.1%;
     top: 49.6%;
     left: 2.2%;
 }
@@ -37,6 +40,7 @@ img:hover {
 .dairy {
     position: absolute;
     height: 52.1%;
+    width: 40.1%;
     top: 48.8%;
     left: 38.3%;
 }
@@ -44,11 +48,10 @@ img:hover {
 .fruit {
     position: absolute;
     height: 42.1%;
+    width: 47.56%;
     top: 49.2%;
     left: 51.67%;
 }
-
-
 
 .locked {
     filter: grayscale(100%) blur(2px) !important;
