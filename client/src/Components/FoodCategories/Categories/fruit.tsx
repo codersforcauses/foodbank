@@ -11,7 +11,7 @@ const Fruit = (props: FruitProps) => {
 
     return (                
         <div>
-            <img className={"fruit" + (props.isLocked ? " locked" : "")} src={fruit}/>
+            <img className={"fruit" + (props.isLocked ? " locked" : "")} src={fruit} alt="fruit"/>
         </div>
 )
 

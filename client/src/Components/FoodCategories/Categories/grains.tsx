@@ -10,7 +10,7 @@ interface GrainsProps {
 const Grains = (props: GrainsProps) => {
     return (
         <div>
-            <img className={"grains" + (props.isLocked ? " locked" : "")} src={grains}/>
+            <img className={"grains" + (props.isLocked ? " locked" : "")} src={grains} alt="grains"/>
         </div>
     )
 

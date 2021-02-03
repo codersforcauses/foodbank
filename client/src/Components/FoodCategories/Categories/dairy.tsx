@@ -10,7 +10,7 @@ interface DairyProps {
 const Dairy = (props: DairyProps) => {
     return (
         <div>
-            <img className={"dairy" + (props.isLocked ? " locked" : "")} src={dairy}/>
+            <img className={"dairy" + (props.isLocked ? " locked" : "")} src={dairy} alt="dairy"/>
         </div>
     )
 

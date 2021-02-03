@@ -7,9 +7,6 @@ import { FoodCategories, FoodCategoriesProps } from '.'
 export default {
   title: 'FoodCategories',
   component: FoodCategories,
-  argTypes: {
-    backgroundColor: { control: 'color' }
-  }
 } as Meta
 
 const Template: Story<FoodCategoriesProps> = args => <FoodCategories {...args} />

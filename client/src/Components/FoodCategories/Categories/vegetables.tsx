@@ -10,7 +10,7 @@ interface VegetablesProps {
 const Vegetables = (props: VegetablesProps) => {
     return (
         <div>
-            <img className={"vegetables" + (props.isLocked ? " locked" : "")} src={vegetables}/>
+            <img className={"vegetables" + (props.isLocked ? " locked" : "")} src={vegetables} alt="vegetables"/>
         </div>
 
     )

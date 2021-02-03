@@ -22,32 +22,14 @@ export interface FoodCategoriesProps {
     isMeatLocked: boolean;
 }
 
-
 export const FoodCategories = (props: FoodCategoriesProps) => {
-    const rotate = 180;
     return (
-        <React.Fragment>
             <div className="food-categories-container">
-                {/* <svg height="400" width="400" viewBox="0 0 500 500"> 
-
-                    <Grains/>
-                    <Vegetables/>
-                </svg> */}
-                    {/* <Fruits/> */}
-                    {/* <Dairy/> */}
-                    {/* <Meat/> */}
-
                     <Grains isLocked={props.isGrainsLocked}/>
                     <Vegetables isLocked={props.isVegetablesLocked}/>
                     <Fruit isLocked={props.isFruitLocked}/>
                     <Dairy isLocked={props.isDairyLocked}/>
                     <Meat isLocked={props.isMeatLocked}/>
-
-
-
-
-
             </div>
-        </React.Fragment>
     )
 }

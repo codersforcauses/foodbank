@@ -10,7 +10,7 @@ interface MeatProps {
 const Meat = (props: MeatProps) => {
     return (
         <div>
-            <img className={"meat" + (props.isLocked ? " locked" : "")} src={meat}/>
+            <img className={"meat" + (props.isLocked ? " locked" : "")} src={meat} alt="meat"/>
         </div>
     )
 
