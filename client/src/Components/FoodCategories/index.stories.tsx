@@ -14,9 +14,31 @@ export default {
 
 const Template: Story<FoodCategoriesProps> = args => <FoodCategories {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-    word: "Test"
+export const AllLocked = Template.bind({})
+AllLocked.args = {
+  isGrainsLocked: true,
+  isVegetablesLocked: true,
+  isFruitLocked: true,
+  isDairyLocked: true,
+  isMeatLocked: true,
+}
+
+export const SomeLocked = Template.bind({})
+SomeLocked.args = {
+  isGrainsLocked: true,
+  isVegetablesLocked: false,
+  isFruitLocked: false,
+  isDairyLocked: true,
+  isMeatLocked: false,
+}
+
+export const AllUnlocked = Template.bind({})
+AllUnlocked.args = {
+  isGrainsLocked: false,
+  isVegetablesLocked: false,
+  isFruitLocked: false,
+  isDairyLocked: false,
+  isMeatLocked: false,
 }
 
 

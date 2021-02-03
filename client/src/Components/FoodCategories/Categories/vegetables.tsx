@@ -1,7 +1,19 @@
 import React from 'react';
 
-const Vegetables = () => {
+import "../index.css";
+import vegetables from "../Images/vegetables.png";
 
+interface VegetablesProps {
+    isLocked: boolean,
+}
+
+const Vegetables = (props: VegetablesProps) => {
+    return (
+        <div>
+            <img className={"vegetables" + (props.isLocked ? " locked" : "")} src={vegetables}/>
+        </div>
+
+    )
 }
 
 export default Vegetables;

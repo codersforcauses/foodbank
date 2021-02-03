@@ -19,7 +19,7 @@
 
 img:hover {
     filter: brightness(0.5);
-    transform: scale(1.03);
+    /* transform: scale(1.03); */
     cursor: pointer;
 }
 
@@ -57,4 +57,19 @@ img:hover {
     height: 101px;
     top: 118px;
     left: 124px;
+}
+
+
+.food-categories-container {
+    height: 50%;
+}
+
+.locked {
+    filter: grayscale(100%) blur(2px) !important;
+}
+
+.locked:hover {
+    transform: scale(1) !important;
+    filter: grayscale(100%) brightness(0.5) blur(2px) !important;
+
 }

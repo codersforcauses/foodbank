@@ -1,6 +1,18 @@
 import React from 'react';
 
-const Grains = () => {
+import "../index.css";
+import grains from "../Images/grains.png"
+
+interface GrainsProps {
+    isLocked: boolean,
+}
+
+const Grains = (props: GrainsProps) => {
+    return (
+        <div>
+            <img className={"grains" + (props.isLocked ? " locked" : "")} src={grains}/>
+        </div>
+    )
 
 }
 
