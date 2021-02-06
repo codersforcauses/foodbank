@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import RecipeTab from 'Components/RecipeTab'
-import { superSonicDip } from 'lib/Recipes'
+import { kPowFritters, sportyBananaBites, superSonicDip } from 'lib/Recipes'
 
 interface ParamTypes {
   slug: string
@@ -10,7 +10,11 @@ interface ParamTypes {
 const RecipeOverview: React.FC = () => {
   const { slug } = useParams<ParamTypes>()
 
-  if (superSonicDip.slug === slug) {
+  if (slug === kPowFritters.slug) {
+    return <RecipeTab recipe={kPowFritters} />
+  } else if (slug === sportyBananaBites.slug) {
+    return <RecipeTab recipe={sportyBananaBites} />
+  } else if (slug === superSonicDip.slug) {
     return <RecipeTab recipe={superSonicDip} />
   } else {
     return <div>Recipe cannot be found!</div>

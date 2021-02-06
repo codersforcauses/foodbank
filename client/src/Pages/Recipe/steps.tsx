@@ -1,39 +1,33 @@
-import React, { useRef } from 'react'
-
+import React from 'react'
+import { useParams } from 'react-router'
 import RecipeStepsTab from 'Components/RecipeStepTab'
+import { kPowFritters, sportyBananaBites, superSonicDip } from 'lib/Recipes'
 
-import Step1 from 'lib/Recipes/Super Sonic Dip/Super sonic dip step 1.jpg'
-import Step2 from 'lib/Recipes/Super Sonic Dip/Super sonic dip step 2.jpg'
-import Step3 from 'lib/Recipes/Super Sonic Dip/Super sonic dip step 3.jpg'
+interface ParamTypes {
+  slug: string
+}
 
 const RecipeSteps: React.FC = () => {
-  const prevStep = useRef<HTMLDivElement>(null)
-  const currStep = useRef<HTMLDivElement>(null)
-  const nextStep = useRef<HTMLDivElement>(null)
+  const { slug } = useParams<ParamTypes>()
 
   return (
     <div className='p-10 bg-primary'>
       <h1 className='text-4xl underline font-semibold font-serif text-teal'>
         Recipe Steps
       </h1>
-      <RecipeStepsTab
-        ref={prevStep}
-        stepNo={1}
-        description='Cook like a boss'
-        image={Step1}
-      />
-      <RecipeStepsTab
-        ref={currStep}
-        stepNo={2}
-        description='Cook like a BOSS'
-        image={Step2}
-      />
-      <RecipeStepsTab
-        ref={nextStep}
-        stepNo={3}
-        description='Cook like a BBBOOOSSS'
-        image={Step3}
-      />
+      {slug === kPowFritters.slug
+        ? kPowFritters.steps.map(step => (
+            <RecipeStepsTab key={step.number} step={step} />
+          ))
+        : slug === sportyBananaBites.slug
+        ? sportyBananaBites.steps.map(step => (
+            <RecipeStepsTab key={step.number} step={step} />
+          ))
+        : slug === superSonicDip.slug
+        ? superSonicDip.steps.map(step => (
+            <RecipeStepsTab key={step.number} step={step} />
+          ))
+        : 'Recipe cannot be found!'}
     </div>
   )
 }
