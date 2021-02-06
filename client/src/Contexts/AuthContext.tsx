@@ -8,9 +8,7 @@ export interface IAuthContext {
   logout: () => Promise<void>
 }
 
-export const AuthContext: React.Context<IAuthContext> = React.createContext(
-  {} as IAuthContext
-)
+export const AuthContext = React.createContext<Partial<IAuthContext>>({})
 
 export const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
@@ -31,6 +29,7 @@ export const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
     currentUser: currentUser,
     logout: logout
   }
+
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}
