@@ -4,7 +4,7 @@ export interface ButtonProps {
   /**
    * Button background colour styling
    */
-  bgColor: 'bg-primary' | 'bg-orange' | 'bg-blue' | 'bg-teal'
+  bgColor?: 'bg-primary' | 'bg-orange' | 'bg-blue' | 'bg-teal'
   /**
    * Children prop
    */
@@ -13,9 +13,17 @@ export interface ButtonProps {
    * Optional click handler
    */
   onClick?: () => void
+  /**
+   * Button Type
+   */
+  type?: 'button' | 'submit' | 'reset'
 }
 
-const Button: React.FC<ButtonProps> = ({ bgColor, children, ...props }) => {
+const Button: React.FC<ButtonProps> = ({
+  bgColor = 'bg-primary',
+  children,
+  ...props
+}) => {
   const textColor = bgColor !== 'bg-primary' ? 'text-black' : 'text-white'
   let shadowColor = ''
   if (bgColor == 'bg-primary') {
