@@ -11,7 +11,7 @@ const meta: Meta = {
 
 const Template: Story<DialogueProps> = args => {
   return (
-    <div className='bg-primary'>
+    <div>
       <Dialogue {...args} />{' '}
     </div>
   )
