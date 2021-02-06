@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Recipe } from 'lib/types'
 
 interface Props {
@@ -37,16 +38,18 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
             </div>
           ))}
         </div>
-        <button
-          className={
-            'w-24 mt-8 py-2 px-4 rounded-full ' +
-            buttonColor +
-            ' ' +
-            buttonTextColor
-          }
-        >
-          To Recipe
-        </button>
+        <Link to={'/recipe/' + recipe.slug + '/steps'}>
+          <button
+            className={
+              'w-24 mt-8 py-2 px-4 rounded-full ' +
+              buttonColor +
+              ' ' +
+              buttonTextColor
+            }
+          >
+            To Recipe
+          </button>
+        </Link>
       </div>
       <img className='w-80 rounded' src={recipe.finalShot} alt={recipe.name} />
       <div>

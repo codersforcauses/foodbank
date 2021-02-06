@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import RecipeStepsTab from 'Components/RecipeStepTab'
+import { Link } from 'react-router-dom'
+import RecipeStep from 'Components/RecipeStep'
 import { kPowFritters, sportyBananaBites, superSonicDip } from 'lib/Recipes'
 
 interface ParamTypes {
@@ -17,17 +18,22 @@ const RecipeSteps: React.FC = () => {
       </h1>
       {slug === kPowFritters.slug
         ? kPowFritters.steps.map(step => (
-            <RecipeStepsTab key={step.number} step={step} />
+            <RecipeStep key={step.number} step={step} />
           ))
         : slug === sportyBananaBites.slug
         ? sportyBananaBites.steps.map(step => (
-            <RecipeStepsTab key={step.number} step={step} />
+            <RecipeStep key={step.number} step={step} />
           ))
         : slug === superSonicDip.slug
         ? superSonicDip.steps.map(step => (
-            <RecipeStepsTab key={step.number} step={step} />
+            <RecipeStep key={step.number} step={step} />
           ))
         : 'Recipe cannot be found!'}
+      <Link to={'/recipe/' + slug + '/overview'}>
+        <button className='w-24 mt-8 py-2 px-4 rounded-full bg-teal text-black'>
+          Back
+        </button>
+      </Link>
     </div>
   )
 }
