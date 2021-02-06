@@ -7,6 +7,7 @@ import step2Img from './K-pow fritters step 2.jpg'
 import step3Img from './K-pow fritters step 3.jpg'
 import step4Img from './K-pow fritters step 4.jpg'
 import step5Img from './K-pow fritters step 5.jpg'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
@@ -72,10 +73,7 @@ const kPowFritters: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  bgColor: 'orange',
-  headColor: 'primary',
-  textColor: 'black',
-  buttonTextColor: 'white'
+  colorScheme: orangeScheme
 }
 
 export default kPowFritters

@@ -5,6 +5,7 @@ import equipmentImg from './Super sonic dip equipment.jpg'
 import step1Img from './Super sonic dip step 1.jpg'
 import step2Img from './Super sonic dip step 2.jpg'
 import step3Img from './Super sonic dip step 3.jpg'
+import { primaryScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
@@ -69,10 +70,7 @@ const superSonicDip: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  bgColor: 'primary',
-  headColor: 'teal',
-  textColor: 'white',
-  buttonTextColor: 'black'
+  colorScheme: primaryScheme
 }
 
 export default superSonicDip

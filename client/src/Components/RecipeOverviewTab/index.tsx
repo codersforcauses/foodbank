@@ -6,28 +6,26 @@ interface Props {
   recipe: Recipe
 }
 
-const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
-  const bgColor = 'bg-' + recipe.bgColor
-  const headColor = 'text-' + recipe.headColor
-  const textColor = 'text-' + recipe.textColor
-  const buttonColor = 'bg-' + recipe.headColor
-  const buttonTextColor = 'text-' + recipe.buttonTextColor
+const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
+  const colorScheme = recipe.colorScheme
 
   return (
     <div
       className={
-        'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + bgColor
+        'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + colorScheme.bg
       }
     >
       <div>
         <h1
-          className={'text-4xl underline font-semibold font-serif ' + headColor}
+          className={
+            'text-4xl underline font-semibold font-serif ' + colorScheme.header
+          }
         >
           {recipe.name}
         </h1>
-        <h2 className={'text-xl font-serif ' + headColor}>Category</h2>
-        <p className={textColor}>{recipe.category}</p>
-        <h2 className={'text-xl font-serif ' + headColor}>Tags</h2>
+        <h2 className={'text-xl font-serif ' + colorScheme.header}>Category</h2>
+        <p className={colorScheme.text}>{recipe.category}</p>
+        <h2 className={'text-xl font-serif ' + colorScheme.header}>Tags</h2>
         <div className='flex flex-row flex-wrap'>
           {recipe.tags.map(tag => (
             <div
@@ -42,9 +40,9 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
           <button
             className={
               'w-24 mt-8 py-2 px-4 rounded-full ' +
-              buttonColor +
+              colorScheme.buttonBg +
               ' ' +
-              buttonTextColor
+              colorScheme.buttonText
             }
           >
             To Recipe
@@ -53,20 +51,24 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
       </div>
       <img className='w-80 rounded' src={recipe.finalShot} alt={recipe.name} />
       <div>
-        <h2 className={'text-2xl font-serif ' + headColor}>Ingredients</h2>
+        <h2 className={'text-2xl font-serif ' + colorScheme.header}>
+          Ingredients
+        </h2>
         <ul>
           {recipe.ingredients.map(ingredient => (
-            <li key={ingredient} className={textColor}>
+            <li key={ingredient} className={colorScheme.text}>
               {ingredient}
             </li>
           ))}
         </ul>
       </div>
       <div>
-        <h2 className={'text-2xl font-serif ' + headColor}>Equipment</h2>
+        <h2 className={'text-2xl font-serif ' + colorScheme.header}>
+          Equipment
+        </h2>
         <ul>
           {recipe.equipment.map(equipment => (
-            <li key={equipment} className={textColor}>
+            <li key={equipment} className={colorScheme.text}>
               {equipment}
             </li>
           ))}
@@ -76,4 +78,4 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
   )
 }
 
-export default RecipeTab
+export default RecipeOverview

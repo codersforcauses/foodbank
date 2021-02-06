@@ -1,3 +1,11 @@
+interface ColorScheme {
+  bg: string
+  header: string
+  text: string
+  buttonText: string
+  buttonBg: string
+}
+
 interface Recipe {
   slug: string
   name: string
@@ -9,10 +17,7 @@ interface Recipe {
   finalShot: string
   ingredientsImg: string
   equipmentImg: string
-  bgColor: string
-  headColor: string
-  textColor: string
-  buttonTextColor: string
+  colorScheme: ColorScheme
 }
 
 interface RecipeStep {
@@ -20,5 +25,4 @@ interface RecipeStep {
   image: string
   description: string
 }
-
-export type { Recipe, RecipeStep }
+export type { ColorScheme, Recipe, RecipeStep }

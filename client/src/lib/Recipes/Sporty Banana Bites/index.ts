@@ -5,6 +5,7 @@ import equipmentImg from './Sporty banana bites equipment.jpg'
 import step1Img from './Sporty banana bites step 1.jpg'
 import step2Img from './Sporty banana bites step 2.jpg'
 import step3Img from './Sporty banana bites step 3.jpg'
+import { tealScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
@@ -55,10 +56,7 @@ const sportyBananaBites: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  bgColor: 'teal',
-  headColor: 'primary',
-  textColor: 'black',
-  buttonTextColor: 'white'
+  colorScheme: tealScheme
 }
 
 export default sportyBananaBites
