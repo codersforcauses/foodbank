@@ -13,16 +13,11 @@ const RecipeSteps: React.FC = () => {
     const nextStep = useRef<HTMLDivElement>(null)
 
     return(
-        <div className='inline-grid grid-cols-3 bg-primary'>
-            <div className=''>
-                <RecipeStepsTab ref={prevStep} stepNo={1} description='Cook like a boss' image={Step1}/>
-            </div>
-            <div className=''>
-                <RecipeStepsTab ref={currStep} stepNo={2} description='Cook like a BOSS' image={Step2}/>
-            </div>
-            <div className=''>
-                <RecipeStepsTab ref={nextStep} stepNo={3} description='Cook like a BBBOOOSSS' image={Step3}/>
-            </div>
+        <div className='p-10 bg-primary'>
+            <h1 className='text-4xl underline font-semibold font-serif text-teal'>Recipe Steps</h1>
+            <RecipeStepsTab ref={prevStep} stepNo={1} description='Cook like a boss' image={Step1}/>
+            <RecipeStepsTab ref={currStep} stepNo={2} description='Cook like a BOSS' image={Step2}/>
+            <RecipeStepsTab ref={nextStep} stepNo={3} description='Cook like a BBBOOOSSS' image={Step3}/>
         </div>
     )
 }
