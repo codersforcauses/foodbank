@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import Button from 'Components/Button'
 import { Link, useHistory } from 'react-router-dom'
 
 import * as Yup from 'yup'
-import { AuthContext, IAuthContext } from 'Contexts/AuthContext'
+import { auth } from '../../../firebase'
 
 interface LoginFormValues {
   username: string
@@ -25,8 +25,8 @@ const LoginSchema = Yup.object().shape({
 export const LoginForm: React.FC = () => {
   const [error, setError] = useState('')
 
-  const authContext: IAuthContext = useContext(AuthContext)
-  const { login } = authContext
+  const login = (email: string, password: string) =>
+    auth.signInWithEmailAndPassword(email, password)
 
   const history = useHistory()
 
