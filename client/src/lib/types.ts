@@ -5,7 +5,9 @@ export interface Recipe {
   tags: Array<string>
   equipment: Array<string>
   ingredients: Array<string>
-  image: string
+  finalShot: string
+  ingredientsImg: string
+  equipmentImg: string
   bgColor: string
   headColor: string
   textColor: string

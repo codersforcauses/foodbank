@@ -13,9 +13,15 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
   const buttonTextColor = 'text-' + recipe.buttonTextColor
 
   return (
-    <div className={'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + bgColor}>
+    <div
+      className={
+        'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + bgColor
+      }
+    >
       <div>
-        <h1 className={'text-4xl underline font-semibold font-serif ' + headColor}>
+        <h1
+          className={'text-4xl underline font-semibold font-serif ' + headColor}
+        >
           {recipe.name}
         </h1>
         <h2 className={'text-xl font-serif ' + headColor}>Category</h2>
@@ -23,12 +29,26 @@ const RecipeTab: React.FC<Props> = ({ recipe }: Props) => {
         <h2 className={'text-xl font-serif ' + headColor}>Tags</h2>
         <div className='flex flex-row flex-wrap'>
           {recipe.tags.map(tag => (
-            <div key={tag} className='mr-3 my-0.5 px-4 rounded-3xl bg-light-grey text-sm'>{tag}</div>
-          ))}   
+            <div
+              key={tag}
+              className='mr-3 my-0.5 px-4 rounded-3xl bg-light-grey text-sm'
+            >
+              {tag}
+            </div>
+          ))}
         </div>
-        <button className={'w-24 mt-8 py-2 px-4 rounded-full ' + buttonColor + ' ' + buttonTextColor}>To Recipe</button>
+        <button
+          className={
+            'w-24 mt-8 py-2 px-4 rounded-full ' +
+            buttonColor +
+            ' ' +
+            buttonTextColor
+          }
+        >
+          To Recipe
+        </button>
       </div>
-      <img className='w-80 rounded' src={recipe.image} alt={recipe.name} />
+      <img className='w-80 rounded' src={recipe.finalShot} alt={recipe.name} />
       <div>
         <h2 className={'text-2xl font-serif ' + headColor}>Ingredients</h2>
         <ul>

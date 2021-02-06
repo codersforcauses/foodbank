@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import RecipeTab from 'Components/RecipeTab'
-import { superSonicDip } from 'lib/recipes'
+import { superSonicDip } from 'lib/Recipes'
 
 interface ParamTypes {
   slug: string
