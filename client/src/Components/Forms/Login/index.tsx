@@ -31,13 +31,13 @@ export const LoginForm: React.FC = () => {
   const history = useHistory()
 
   const handleSubmit = async (values: LoginFormValues) => {
-    setError('')
     try {
       await login(
         // Firebase requires a 'email' username and passwords to be at least 6 characters
         `${values.username}@FBSF.com`,
         `${values.year.toString()}FBSF`
       )
+      setError('')
       history.push('/')
     } catch (error) {
       console.log(error)
@@ -50,16 +50,6 @@ export const LoginForm: React.FC = () => {
       } else setError('Error while logging in')
     }
   }
-
-  // const handleLogout = async () => {
-  //   setError('')
-  //   try {
-  //     await logout()
-  //     history.push('/login')
-  //   } catch {
-  //     setError('Error while logging out')
-  //   }
-  // }
 
   return (
     <div className='my-8'>

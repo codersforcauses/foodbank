@@ -22,7 +22,7 @@ export const AuthContext: React.Context<IAuthContext> = React.createContext(
 
 export const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState(true)
 
   const signup = (email: string, password: string) => {
     return auth.createUserWithEmailAndPassword(email, password)

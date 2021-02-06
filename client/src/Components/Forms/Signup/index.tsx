@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Form, Formik } from 'formik'
 import Input from 'Components/Input/TextField'
 import Button from 'Components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import * as Yup from 'yup'
 import { AuthContext, IAuthContext } from 'Contexts/AuthContext'
@@ -28,14 +28,17 @@ export const SignupForm: React.FC = () => {
   const authContext: IAuthContext = useContext(AuthContext)
   const { signup } = authContext
 
+  const history = useHistory()
+
   const handleSubmit = async (values: SignupFormValues) => {
-    setError('')
     try {
       await signup(
         // Firebase requires a 'email' username and passwords to be at least 6 characters
         `${values.username}@FBSF.com`,
         `${values.year.toString()}FBSF`
       )
+      setError('')
+      history.push('/')
     } catch (error) {
       console.log(error)
       if (error.code === 'auth/email-already-in-use') {

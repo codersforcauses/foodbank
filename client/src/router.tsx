@@ -18,8 +18,7 @@ const routes: Array<RouterElement> = [
     name: 'Home',
     path: '/',
     component: Home,
-    exact: true,
-    isPrivate: true
+    exact: true
   },
   {
     name: 'Login',
