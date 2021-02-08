@@ -1,19 +1,22 @@
-import React from 'react';
+import React from 'react'
 
-import "../index.css";
-import dairy from "../Images/dairy.png"
+import '../index.css'
+import dairy from '../Images/dairy.png'
 
 interface DairyProps {
-    isLocked: boolean,
+  isLocked: boolean
 }
 
 const Dairy = (props: DairyProps) => {
-    return (
-        <div>
-            <img className={"dairy" + (props.isLocked ? " locked" : "")} src={dairy} alt="dairy"/>
-        </div>
-    )
-
+  return (
+    <div>
+      <img
+        className={'dairy' + (props.isLocked ? ' locked' : '')}
+        src={dairy}
+        alt='dairy'
+      />
+    </div>
+  )
 }
 
-export default Dairy;
+export default Dairy

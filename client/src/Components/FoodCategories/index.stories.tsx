@@ -6,10 +6,12 @@ import { FoodCategories, FoodCategoriesProps } from '.'
 
 export default {
   title: 'FoodCategories',
-  component: FoodCategories,
+  component: FoodCategories
 } as Meta
 
-const Template: Story<FoodCategoriesProps> = args => <FoodCategories {...args} />
+const Template: Story<FoodCategoriesProps> = args => (
+  <FoodCategories {...args} />
+)
 
 export const AllLocked = Template.bind({})
 AllLocked.args = {
@@ -17,7 +19,7 @@ AllLocked.args = {
   isVegetablesLocked: true,
   isFruitLocked: true,
   isDairyLocked: true,
-  isMeatLocked: true,
+  isMeatLocked: true
 }
 
 export const SomeLocked = Template.bind({})
@@ -26,7 +28,7 @@ SomeLocked.args = {
   isVegetablesLocked: false,
   isFruitLocked: false,
   isDairyLocked: true,
-  isMeatLocked: false,
+  isMeatLocked: false
 }
 
 export const AllUnlocked = Template.bind({})
@@ -35,7 +37,5 @@ AllUnlocked.args = {
   isVegetablesLocked: false,
   isFruitLocked: false,
   isDairyLocked: false,
-  isMeatLocked: false,
+  isMeatLocked: false
 }
-
-
