@@ -10,36 +10,31 @@ In the project directory, you can run:
 
 ### `yarn dev`
 
-Runs the app's frontend and backend in the development mode.\
+Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn client`
+### `yarn storybook`
 
-Runs the app's frontend only in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs storybook in the development mode.\
+Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
 
-### `yarn server`
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Runs the app's backend only in development mode.
+### `yarn lint`
 
-<!-- ### `yarn test`
+Runs eslint and prettier and fixes your code style.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information. -->
+### `yarn build`
 
-## Package management
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Since we're using yarn workspaces, the packages should not be installed in the respective folders. Instead, to add/remove packages to either the `client` or `server`, use
-
-### `yarn workspace <workspace-name> <operation> <package-name> [flag]`
-
-- `workspace-name` - this should be either `client` or `server`, depending on which workspace to install it
-- `operation` - this will be with `add` to install a dependency or `remove` to uninstall
-- `package-name` - the name of the package-name(s)(space separated) to install (example: `bootstrap`, `react react-dom`, etc.)
-- `flag` - optional argument of yarn flags like `-D/--dev` to install as devDependency or `-O/--optional` to install as optional dependency
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
 ## Learn More
 

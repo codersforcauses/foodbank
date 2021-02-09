@@ -115,7 +115,7 @@ package-lock.json
 /coverage
 
 # production
-/client/build
+build
 
 # misc
 .DS_Store
@@ -133,6 +133,6 @@ storybook-static
 wiki
 
 branding.pdf
-client/src/index.css
+src/index.css
 
 .yarn

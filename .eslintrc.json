@@ -33,6 +33,7 @@
   "rules": {
     "no-use-before-define":"off",
     "react/prop-types": "off",
+    "no-unused-vars": "warn",
     "@typescript-eslint/no-use-before-define": "warn"
   }
 }
