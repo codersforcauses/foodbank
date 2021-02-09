@@ -15,7 +15,7 @@
     "build-storybook": "NODE_ENV=production yarn build:css && build-storybook -s public"
   },
   "dependencies": {
-    "@headlessui/react": "0.2.0",
+    "@headlessui/react": "0.3.0",
     "axios": "0.21.1",
     "formik": "2.2.6",
     "react": "17.0.1",
