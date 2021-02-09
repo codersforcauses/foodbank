@@ -1,12 +1,5 @@
 import React from 'react'
-
 import './index.css'
-
-import Grains from './Categories/grains'
-import Vegetables from './Categories/vegetables'
-import Fruit from './Categories/fruit'
-import Dairy from './Categories/dairy'
-import Meat from './Categories/meat'
 
 import grains from './Images/grains.png'
 import vegetables from './Images/vegetables.png'
@@ -22,12 +15,15 @@ export interface FoodCategoriesProps {
   isMeatLocked: boolean
 }
 
-export const FoodCategories = (props: FoodCategoriesProps) => {
+export const FoodCategories: React.FC<FoodCategoriesProps> = props => {
   return (
-    <div className='food-categories-container'>
+    <div className='absolute h-full w-full inset-0 '>
       <div>
         <img
-          className={'grains' + (props.isGrainsLocked ? ' locked' : '')}
+          className={
+            'grains absolute cursor-pointer' +
+            (props.isGrainsLocked ? ' locked' : '')
+          }
           src={grains}
           alt='grains'
         />
@@ -35,7 +31,10 @@ export const FoodCategories = (props: FoodCategoriesProps) => {
 
       <div>
         <img
-          className={'vegetables' + (props.isVegetablesLocked ? ' locked' : '')}
+          className={
+            'vegetables absolute cursor-pointer' +
+            (props.isVegetablesLocked ? ' locked' : '')
+          }
           src={vegetables}
           alt='vegetables'
         />
@@ -43,7 +42,10 @@ export const FoodCategories = (props: FoodCategoriesProps) => {
 
       <div>
         <img
-          className={'fruit' + (props.isFruitLocked ? ' locked' : '')}
+          className={
+            'fruit absolute cursor-pointer' +
+            (props.isFruitLocked ? ' locked' : '')
+          }
           src={fruit}
           alt='fruit'
         />
@@ -51,14 +53,20 @@ export const FoodCategories = (props: FoodCategoriesProps) => {
 
       <div>
         <img
-          className={'dairy' + (props.isDairyLocked ? ' locked' : '')}
+          className={
+            'dairy absolute cursor-pointer' +
+            (props.isDairyLocked ? ' locked' : '')
+          }
           src={dairy}
           alt='dairy'
         />
 
         <div>
           <img
-            className={'meat' + (props.isMeatLocked ? ' locked' : '')}
+            className={
+              'meat absolute cursor-pointer' +
+              (props.isMeatLocked ? ' locked' : '')
+            }
             src={meat}
             alt='meat'
           />
