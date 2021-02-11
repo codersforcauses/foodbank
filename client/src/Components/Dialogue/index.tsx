@@ -50,8 +50,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
   const [displayDialogue, setDisplayDialogue] = useState({
     currentMessage: 0,
     typing: true,
-    typed: false,
-    delay: 20
+    typed: false
   })
 
   const handleClickBack = () => {
@@ -59,8 +58,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
       setDisplayDialogue({
         currentMessage: displayDialogue.currentMessage - 1,
         typing: false,
-        typed: true,
-        delay: 20
+        typed: true
       })
     }
   }
@@ -70,8 +68,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
       setDisplayDialogue({
         currentMessage: displayDialogue.currentMessage + 1,
         typing: true,
-        typed: false,
-        delay: 20
+        typed: false
       })
     }
   }
@@ -80,7 +77,6 @@ export const Dialogue: React.FC<DialogueProps> = ({
     setDisplayDialogue({
       typing: false,
       typed: true,
-      delay: 20,
       currentMessage: displayDialogue.currentMessage
     })
   }
@@ -88,11 +84,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
   const Message = ({ message }: { message: string }) => {
     if (!displayDialogue.typed) {
       return (
-        <Typewriter
-          string={message}
-          onComplete={onTypingComplete}
-          delay={displayDialogue.delay}
-        />
+        <Typewriter string={message} onComplete={onTypingComplete} delay={20} />
       )
     }
     return <>{message}</>
@@ -111,20 +103,24 @@ export const Dialogue: React.FC<DialogueProps> = ({
           {characterName}{' '}
         </h2>
         <div className='h-64 absolute mt-12 w-full'></div>
-        <div className='dialoguebox place-self-center p-8 mt-12 border-black relative flex-col w-full h-64 pb-4 pt-4 border-4 rounded-md grid grid-rows-2'>
+        <div className='townboxBackground place-self-center p-8 mt-12 border-black relative flex-col w-full h-64 pb-4 pt-4 border-4 rounded-md grid grid-rows-2'>
           <p className='font-sans p-2 mb-0 z-10 leading-5 relative mt-4 break-words text-2xl md:text-3xl row-start-1'>
             <Message message={dialogueText[displayDialogue.currentMessage]} />
           </p>
           <span className='grid grid-cols-3 row-start-3'>
             <span className='col-start-1'>
-              <Button bgColor={bgColour} onClick={handleClickBack}>
-                back
-              </Button>
+              {displayDialogue.currentMessage > 0 && (
+                <Button bgColor={bgColour} onClick={handleClickBack}>
+                  back
+                </Button>
+              )}
             </span>
             <span className='col-start-4'>
-              <Button bgColor={bgColour} onClick={handleClickNext}>
-                next
-              </Button>
+              {displayDialogue.currentMessage < numMessage - 1 && (
+                <Button bgColor={bgColour} onClick={handleClickNext}>
+                  next
+                </Button>
+              )}
             </span>
           </span>
         </div>
