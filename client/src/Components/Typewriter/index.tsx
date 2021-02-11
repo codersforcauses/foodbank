@@ -32,8 +32,10 @@ const Typewriter: React.FC<Props> = ({
 
     if (pointer < string.length) {
       setTimeout(() => {
-        if (isMounted) setText(text + string.charAt(pointer))
-        if (isMounted) setPointer(pointer + 1)
+        if (isMounted) {
+          setText(text + string.charAt(pointer))
+          setPointer(pointer + 1)
+        }
       }, delay)
     } else {
       if (stopBlinkinOnComplete && isMounted) setBlinking(false)
