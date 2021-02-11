@@ -52,9 +52,9 @@ const Typewriter: React.FC<Props> = ({
   return (
     <span className={className}>
       {text}
-      {isBlinking ? (
+      {isBlinking && (
         <span className={cursorClassName || 'blinkingCursor'}>{cursor}</span>
-      ) : null}
+      )}
     </span>
   )
 }
