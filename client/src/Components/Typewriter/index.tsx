@@ -38,8 +38,10 @@ const Typewriter: React.FC<Props> = ({
         }
       }, delay)
     } else {
-      if (stopBlinkinOnComplete && isMounted) setBlinking(false)
-      if (isMounted) onComplete()
+      if (isMounted) {
+        if(stopBlinkinOnComplete) setBlinking(false)
+        onComplete()
+      }
     }
 
     return () => {
