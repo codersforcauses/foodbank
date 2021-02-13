@@ -1,4 +1,4 @@
-import React from 'Components/FloatingButton/node_modules/react'
+import React from 'react'
 
 import { Button } from 'Components/Button'
 import './header.css'

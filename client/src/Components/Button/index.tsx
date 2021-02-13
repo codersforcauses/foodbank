@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'Components/FloatingButton/node_modules/react'
+import React from 'react'
 import './index.css'
 
 export interface ButtonProps {

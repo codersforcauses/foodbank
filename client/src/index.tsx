@@ -1,4 +1,4 @@
-import React from 'Components/FloatingButton/node_modules/react'
+import React from 'react'
 import { hydrate, render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import reportWebVitals from 'Utils/reportWebVitals'
