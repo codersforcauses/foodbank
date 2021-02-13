@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'Components/FloatingButton/node_modules/react'
 import Home from 'Pages/Home'
 import ErrorPage from 'Pages/Error'
 

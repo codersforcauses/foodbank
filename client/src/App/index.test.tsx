@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'Components/FloatingButton/node_modules/react'
 import { render, screen } from '@testing-library/react'
 import App from '.'
 

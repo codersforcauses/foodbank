@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'Components/FloatingButton/node_modules/react'
 
 const theme = [{
   name: 'Primary',
