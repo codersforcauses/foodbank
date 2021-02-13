@@ -6,12 +6,12 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
-        "jsx": true
+      "jsx": true
     },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react","react-hooks","jsx-a11y","jest","json"],
+  "plugins": ["react", "react-hooks", "jsx-a11y", "jest", "json"],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
@@ -31,8 +31,10 @@
     "SharedArrayBuffer": "readonly"
   },
   "rules": {
-    "no-use-before-define":"off",
+    "no-use-before-define": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-use-before-define": "warn"
+    "@typescript-eslint/no-use-before-define": "warn",
+    "no-unused-vars": "warn",
+    "no-var": "warn"
   }
 }

@@ -3516,6 +3516,13 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+animated-number-react@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/animated-number-react/-/animated-number-react-0.1.1.tgz#3107c1e23ec63b823e78308ccf2bd556eccfada7"
+  integrity sha512-gJPO6vqgsCPUp5a5PpEULE60yHaK2g3KFLTiwbNEeCBl3T2juhqvldHwCRaFjfL8T6SLwl94KmEEFajFk5koTg==
+  dependencies:
+    prop-types "^15.6.1"
+
 ansi-align@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-3.0.0.tgz#b536b371cf687caaef236c18d3e21fe3797467cb"
@@ -10176,6 +10183,11 @@ known-css-properties@^0.20.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.20.0.tgz#0570831661b47dd835293218381166090ff60e96"
   integrity sha512-URvsjaA9ypfreqJ2/ylDr5MUERhJZ+DhguoWRr2xgS5C7aGCalXo+ewL+GixgKBfhT2vuL02nbIgNGqVWgTOYw==
 
+konva@^7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-7.2.2.tgz#e46598850d864b0dca68c82013f1e436b1eef55d"
+  integrity sha512-3vtCLFV8S9ooMEC/ELMoHJLWK3YtVUIx44FZFdM1FUBZi88qF4ctdzeII5hfT9Lx6ulVlhC0a6cRdP0uRWjMmw==
+
 language-subtag-registry@~0.3.2:
   version "0.3.21"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.21.tgz#04ac218bea46f04cb039084602c6da9e788dd45a"
@@ -15347,6 +15359,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2@^10.14.0:
+  version "10.14.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.14.0.tgz#73a7487b12b56dec4c1e47d7d4926e8fe880e727"
+  integrity sha512-EBUh4k9qyRRsttm9X9j7WUhLExetvTJpcbp1VTMJCpuI2UwHLesXMIw9M+UeuqBywv0UjNMR5PKH7Qnv65m8rw==
 
 swr@0.3.9:
   version "0.3.9"
