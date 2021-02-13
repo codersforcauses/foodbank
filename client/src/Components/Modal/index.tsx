@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions*/
-/* eslint-disable jsx-a11y/click-events-have-key-events*/
-
 import FocusTrap from 'focus-trap-react'
 import React, { useCallback, useEffect } from 'react'
 import ReactDOM from 'react-dom'
@@ -37,15 +34,10 @@ const ModalContainer: React.FC<ModalContainerProps> = ({
     return portalDiv
       ? ReactDOM.createPortal(
           <FocusTrap>
-            <div
-              className='flex flex-wrap justify-center content-center bg-black bg-opacity-50 z-50 absolute inset-0'
-              onClick={onClose}
-              role='dialog'
-            >
+            <div className='flex flex-wrap justify-center content-center bg-black bg-opacity-50 z-40 absolute inset-0'>
               <div
-                className='max-w-md min-w-320 bg-primary p-5 rounded-xl flex flex-col shadow-2xl'
-                onClick={event => event.stopPropagation()}
-                role='dialog'
+                className='max-w-md min-w-320 bg-primary p-5 rounded-xl flex flex-col shadow-2xl z-50'
+                role='alertdialog'
               >
                 <div id='modal-header' className='grid grid-cols-3 pb-5'>
                   <h2 className='text-3xl col-start-2 font-serif uppercase justify-self-center text-white'>
