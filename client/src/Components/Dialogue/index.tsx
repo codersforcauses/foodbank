@@ -192,7 +192,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
             </span>
           )}
           {/* show back button */}
-          <span className='grid grid-cols-3 row-start-3'>
+          <span className='grid grid-cols-3 row-start-3 h-14'>
             <span className='col-start-1'>
               {displayDialogue.currentMessage > 0 &&
                 backButton &&
@@ -203,14 +203,12 @@ export const Dialogue: React.FC<DialogueProps> = ({
                 )}
             </span>
             <span className='col-start-4'>
-              {/* transform button to be shown */}
+              {/* next button to be shown */}
               {transform && displayDialogue.currentMessage < numMessage && (
                 <Button bgColor={bgColour} onClick={handleClickNext}>
                   next
                 </Button>
               )}
-
-              {/* transform button not to be shown */}
               {!transform && displayDialogue.currentMessage < numMessage - 1 && (
                 <Button bgColor={bgColour} onClick={handleClickNext}>
                   next
