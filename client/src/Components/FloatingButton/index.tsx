@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './index.css'
 
 //still need to add button code so that it spins onClick not
@@ -18,33 +18,37 @@ export const FloatingButton = () => {
 }
 
 export const Navbar: React.FC = () => {
-  const [open, setOpen] = useState(false)
+    const [windowWidth, setWindowWidth] = useState(0);
+  
+    useEffect(() => {
+      // Handler to call on window resize
+      function handleResize() {
+        // Set window width/height to state
+        setWindowWidth(window.innerWidth);
+      }
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+      
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+      
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures that effect is only run on mount
 
-  const handleClick = () => {
-    setOpen(!open)
-    const navbar = document.getElementById('navbar')
-    if (open) {
-      navbar?.classList.remove('navbarOpen')
-      navbar?.classList.add('navbarClose')
-    }
-    if (!open) {
-      navbar?.classList.add('navbarOpen')
-      navbar?.classList.remove('navbarClose')
-    }
-  }
-
-  return (
-    <header>
-      <span id='buttonSpan'>
-        {/* Navbar content */}
-        <div className='NavbarContent sm:block' id='navbar'>
-          <FloatingButton />
-        </div>
-        {/* Floating action button */}
-        <button className='sm:hidden FloatingButton' onClick={handleClick}>
-          <span>&#43;</span>
-        </button>
-      </span>
-    </header>
-  )
+  return windowWidth > 768
+  ? null
+  : <FloatingButton />
+    // <header>
+    //   <span id='buttonSpan'>
+    //     {/* Navbar content */}
+    //     <div className='NavbarContent sm:block' id='navbar'>
+    //       <FloatingButton />
+    //     </div>
+    //     {/* Floating action button */}
+    //     <button className='sm:hidden FloatingButton'>
+    //       <span>&#43;</span>
+    //     </button>
+    //   </span>
+    // </header>
 }
