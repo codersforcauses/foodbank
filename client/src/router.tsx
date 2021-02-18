@@ -1,15 +1,11 @@
-import { FunctionComponent } from 'react'
+import { RouteProps } from 'react-router-dom'
 import Home from 'Pages/Home'
 import ErrorPage from 'Pages/Error'
 import Login from 'Pages/Login'
 import SignUp from 'Pages/SignUp'
-
-interface RouterElement {
+export interface RouterElement extends RouteProps {
   isPrivate?: true
-  exact?: boolean
   name: string
-  path: string
-  component: FunctionComponent
   routes?: Array<RouterElement>
 }
 

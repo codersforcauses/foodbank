@@ -1,28 +1,22 @@
 import React, { useContext } from 'react'
-import { Redirect, Route, RouteComponentProps } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
 import { AuthContext } from 'Contexts/AuthContext'
+import { RouterElement } from 'router'
 
-interface PrivateRouteProps {
-  component: React.FC<RouteComponentProps>
-}
-
-const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  component: Component,
+const PrivateRoute: React.FC<Omit<RouterElement, 'name'>> = ({
+  component,
   ...props
 }) => {
   const { currentUser } = useContext(AuthContext)
-  return (
+  return currentUser ? (
+    <Route {...props} />
+  ) : (
     <Route
       {...props}
-      render={componentProps =>
-        currentUser ? (
-          <Component {...componentProps} />
-        ) : (
-          <Redirect to='/login' />
-        )
-      }
-    ></Route>
+      component={() => <Redirect to={{ pathname: '/login' }} />}
+      render={undefined}
+    />
   )
 }
 
