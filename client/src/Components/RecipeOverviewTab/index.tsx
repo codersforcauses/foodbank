@@ -72,8 +72,8 @@ const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
             </div>
           ))}
         </div>
-        <div className='grid grid-cols-2 items-center'>
-          <div>
+        <div className='grid grid-cols-2 items-center mt-2'>
+          <div className='my-2'>
             <h2 className={'text-2xl font-serif ' + colorScheme.header}>
               Ingredients
             </h2>
@@ -90,7 +90,7 @@ const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
             src={recipe.equipmentImg}
             alt='equipment'
           />
-          <div>
+          <div className='my-2'>
             <h2 className={'text-2xl font-serif ' + colorScheme.header}>
               Equipment
             </h2>
