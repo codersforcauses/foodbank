@@ -3,63 +3,29 @@ import React from 'react'
 import './index.css'
 import Button from '../Button'
 import bananaMan from './The-Dicer-Colour.gif'
-import transformMan from './Mighty-Milk.gif'
 import { useState } from 'react'
 import Typewriter from 'Components/Typewriter'
 export interface DialogueProps {
-  /**
-   * Header colour: enter either orange/primary
-   */
-  headerColor?: 'primary' | 'orange'
+  headerColor: 'primary' | 'orange'
 
-  /**
-   * The character's name
-   */
-  characterName?: string
+  characterName: string
 
-  /**
-   * character name of transformed form
-   */
   transformName?: string
 
-  /**
-   * List of messages that the characters says
-   */
-  dialogueText?: string[]
+  dialogueText: string[]
 
-  /**
-   * character image - file source (location)
-   */
-  avatar?: string
+  avatarUrl?: string
 
-  /**
-   * transformed avatar
-   */
-  transformAvatar?: string
+  transformAvatarUrl?: string
 
-  /**
-   * transformation animations
-   */
   transformAnimation?: () => void
 
-  /**
-   * show character image on left/right
-   */
-  direction?: 'left' | 'right'
+  avatarSide?: 'left' | 'right'
 
-  /**
-   * show transform button (shows transform button at the end of the dialogue)
-   */
-  transform?: boolean
+  allowTransform: boolean
 
-  /**
-   * include back button for dialogue
-   */
-  backButton?: boolean
+  backButton: boolean
 
-  /**
-   * function for closing the dialogue
-   */
   closeDialogue?: () => void
 }
 
@@ -68,21 +34,15 @@ export interface DialogueProps {
  */
 export const Dialogue: React.FC<DialogueProps> = ({
   characterName = 'Banana Man',
-  transformName = 'Super Banana Man',
-  dialogueText = [
-    'Hello I am banana man',
-    'welcome to my island',
-    'how are you going today?',
-    'bananas are good for potassium and stuff',
-    'Goodbye I was banana man'
-  ],
+  transformName,
+  dialogueText = ['Hello I am banana man', 'welcome to my island'],
   headerColor = 'orange',
-  avatar = bananaMan,
-  transformAvatar = transformMan,
+  avatarUrl = bananaMan,
+  transformAvatarUrl,
   transformAnimation,
-  direction = 'right',
-  transform = 'true',
-  backButton = 'true',
+  avatarSide = 'right',
+  allowTransform = false,
+  backButton = true,
   closeDialogue
 }) => {
   const bgColour: 'bg-primary' | 'bg-orange' =
@@ -90,7 +50,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
 
   const numMessage = dialogueText.length
   const [characterTransformed, setCharacterTransformed] = useState(false)
-  const [displayImage, setDisplayImage] = useState(avatar)
+  const [displayImage, setDisplayImage] = useState(avatarUrl)
   const [displayName, setDisplayName] = useState(characterName)
 
   const [displayDialogue, setDisplayDialogue] = useState({
@@ -112,7 +72,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
   const handleClickNext = () => {
     if (
       displayDialogue.currentMessage < numMessage ||
-      (transform && displayDialogue.currentMessage === numMessage)
+      (allowTransform && displayDialogue.currentMessage === numMessage)
     ) {
       setDisplayDialogue({
         currentMessage: displayDialogue.currentMessage + 1,
@@ -126,8 +86,10 @@ export const Dialogue: React.FC<DialogueProps> = ({
   const transformCharacter = () => {
     transformAnimation
     setCharacterTransformed(true)
-    setDisplayImage(transformAvatar)
-    setDisplayName(transformName)
+    if (transformAvatarUrl != null && transformName != null) {
+      setDisplayImage(transformAvatarUrl)
+      setDisplayName(transformName)
+    }
   }
 
   const onTypingComplete = () => {
@@ -149,12 +111,12 @@ export const Dialogue: React.FC<DialogueProps> = ({
 
   return (
     <div className='w-full grid grid-cols-2 p-4'>
-      {direction === 'right' && (
+      {avatarSide === 'right' && (
         <div className='col-start-1 col-span-2 sm:col-start-2 sm:col-span-1 -mb-20 md:-mb-40 p-4'>
           <img src={displayImage} alt={characterName} />
         </div>
       )}
-      {direction === 'left' && (
+      {avatarSide === 'left' && (
         <div className='col-start-1 col-span-2 sm:col-start-1 sm:col-span-1 -mb-20 md:-mb-40 p-4'>
           <img src={displayImage} alt={characterName} />
         </div>
@@ -175,7 +137,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
           </p>
           {/* show transform button if reached the end of messages */}
           {displayDialogue.currentMessage === numMessage &&
-            transform &&
+            allowTransform &&
             !characterTransformed && (
               <span className='place-self-center'>
                 <Button bgColor={bgColour} onClick={transformCharacter}>
@@ -184,7 +146,7 @@ export const Dialogue: React.FC<DialogueProps> = ({
               </span>
             )}
           {/* show close button if character has been transformed */}
-          {transform && characterTransformed && (
+          {allowTransform && characterTransformed && (
             <span className='place-self-center'>
               <Button bgColor={bgColour} onClick={closeDialogue}>
                 close
@@ -204,22 +166,24 @@ export const Dialogue: React.FC<DialogueProps> = ({
             </span>
             <span className='col-start-4'>
               {/* next button to be shown */}
-              {transform && displayDialogue.currentMessage < numMessage && (
+              {allowTransform && displayDialogue.currentMessage < numMessage && (
                 <Button bgColor={bgColour} onClick={handleClickNext}>
                   next
                 </Button>
               )}
-              {!transform && displayDialogue.currentMessage < numMessage - 1 && (
-                <Button bgColor={bgColour} onClick={handleClickNext}>
-                  next
-                </Button>
-              )}
+              {!allowTransform &&
+                displayDialogue.currentMessage < numMessage - 1 && (
+                  <Button bgColor={bgColour} onClick={handleClickNext}>
+                    next
+                  </Button>
+                )}
               {/* show close button if reached end of dialogue */}
-              {!transform && displayDialogue.currentMessage === numMessage - 1 && (
-                <Button bgColor={bgColour} onClick={closeDialogue}>
-                  close
-                </Button>
-              )}
+              {!allowTransform &&
+                displayDialogue.currentMessage === numMessage - 1 && (
+                  <Button bgColor={bgColour} onClick={closeDialogue}>
+                    close
+                  </Button>
+                )}
             </span>
           </span>
         </div>
