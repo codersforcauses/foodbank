@@ -112,7 +112,7 @@ const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
       </div>
       <div>
         <img
-          className='w-full rounded-3xl'
+          className='fixed w-2/5 rounded-3xl'
           src={recipe.finalShot}
           alt={recipe.name}
         />
