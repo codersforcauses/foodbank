@@ -6,6 +6,42 @@ interface Props {
   recipe: Recipe
 }
 
+interface ButtonsProps {
+  recipe: Recipe
+}
+
+const Buttons: React.FC<ButtonsProps> = ({ recipe }: ButtonsProps) => {
+  const colorScheme = recipe.colorScheme
+  return (
+    <div className='flex flex-row space-x-2 items-center'>
+      <Link to={'/recipe/' + recipe.slug + '/all-steps'}>
+        <button
+          className={
+            'w-48 my-4 py-2 px-4 rounded-full ' +
+            colorScheme.buttonBg +
+            ' ' +
+            colorScheme.buttonText
+          }
+        >
+          View All Steps
+        </button>
+      </Link>
+      <Link to={'/recipe/' + recipe.slug + '/slideshow'}>
+        <button
+          className={
+            'w-48 my-4 py-2 px-4 rounded-full ' +
+            colorScheme.buttonBg +
+            ' ' +
+            colorScheme.buttonText
+          }
+        >
+          Let&apos;s Cook
+        </button>
+      </Link>
+    </div>
+  )
+}
+
 const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
   const colorScheme = recipe.colorScheme
 
@@ -36,57 +72,50 @@ const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
             </div>
           ))}
         </div>
-        <div className='flex flex-row space-x-2'>
-          <Link to={'/recipe/' + recipe.slug + '/all-steps'}>
-            <button
-              className={
-                'w-48 mt-8 py-2 px-4 rounded-full ' +
-                colorScheme.buttonBg +
-                ' ' +
-                colorScheme.buttonText
-              }
-            >
-              View All Steps
-            </button>
-          </Link>
-          <Link to={'/recipe/' + recipe.slug + '/slideshow'}>
-            <button
-              className={
-                'w-48 mt-8 py-2 px-4 rounded-full ' +
-                colorScheme.buttonBg +
-                ' ' +
-                colorScheme.buttonText
-              }
-            >
-              View Slideshow
-            </button>
-          </Link>
+        <div className='grid grid-cols-2 items-center'>
+          <div>
+            <h2 className={'text-2xl font-serif ' + colorScheme.header}>
+              Ingredients
+            </h2>
+            <ul>
+              {recipe.ingredients.map(ingredient => (
+                <li key={ingredient} className={colorScheme.text}>
+                  {ingredient}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <img
+            className='w-80 rounded-3xl'
+            src={recipe.equipmentImg}
+            alt='equipment'
+          />
+          <div>
+            <h2 className={'text-2xl font-serif ' + colorScheme.header}>
+              Equipment
+            </h2>
+            <ul>
+              {recipe.equipment.map(equipment => (
+                <li key={equipment} className={colorScheme.text}>
+                  {equipment}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <img
+            className='w-80 rounded-3xl'
+            src={recipe.ingredientsImg}
+            alt='ingredients'
+          />
         </div>
-      </div>
-      <img className='w-80 rounded' src={recipe.finalShot} alt={recipe.name} />
-      <div>
-        <h2 className={'text-2xl font-serif ' + colorScheme.header}>
-          Ingredients
-        </h2>
-        <ul>
-          {recipe.ingredients.map(ingredient => (
-            <li key={ingredient} className={colorScheme.text}>
-              {ingredient}
-            </li>
-          ))}
-        </ul>
+        <Buttons recipe={recipe} />
       </div>
       <div>
-        <h2 className={'text-2xl font-serif ' + colorScheme.header}>
-          Equipment
-        </h2>
-        <ul>
-          {recipe.equipment.map(equipment => (
-            <li key={equipment} className={colorScheme.text}>
-              {equipment}
-            </li>
-          ))}
-        </ul>
+        <img
+          className='w-full rounded-3xl'
+          src={recipe.finalShot}
+          alt={recipe.name}
+        />
       </div>
     </div>
   )
