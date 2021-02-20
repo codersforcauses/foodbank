@@ -2,6 +2,7 @@
     text-align: center;
     border-radius: 10%;
     position: relative;
+    width: 350px;
 }
 
 
@@ -13,5 +14,4 @@ h1 {
     border-top-left-radius: 10%;
     border-top-right-radius: 10%;
     width: 350px;
-    height: 200px;
 }

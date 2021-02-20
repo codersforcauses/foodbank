@@ -2,7 +2,6 @@ import React from 'react'
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0'
 
-import pasta from 'Assets/img/pasta.jpg'
 import { Card, CardProps } from './index'
 
 export default {
@@ -19,7 +18,7 @@ export const Unlocked = Template.bind({})
 Unlocked.args = {
   unlocked: true,
   label: 'Recipe Name',
-  image: pasta,
+  image: "cheeky-chicken-bites.jpg",
   text: 'Image Alt Text',
   color: 'Primary'
 }
