@@ -12,6 +12,7 @@ interface LoginFormValues {
 }
 
 export interface LoginFormProps {
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (values: LoginFormValues) => void
 }
 

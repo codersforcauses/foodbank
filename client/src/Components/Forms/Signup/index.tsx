@@ -12,6 +12,7 @@ interface SignupFormValues {
 }
 
 export interface SignupFormProps {
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (values: SignupFormValues) => void
 }
 
