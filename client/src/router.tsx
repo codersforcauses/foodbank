@@ -46,3 +46,4 @@ const routes: Array<RouterElement> = [
 ]
 
 export default routes
+
