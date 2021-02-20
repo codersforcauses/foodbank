@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 module.exports = {
+  // purging does not work for some reason without this
   purge: [
     './public/index.html',
-    './src/**/*.js',
-    './src/**/*.jsx',
-    './src/**/*.tsx'
+    './src/**/*.tsx',
+    './src/**/**/*.tsx',
+    './src/**/**/**/*.tsx',
+    './src/**/**/**/**/*.tsx'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -28,6 +30,18 @@ module.exports = {
       },
       minWidth: {
         '320': '320px'
+      },
+      width: {
+        'tb1': '300px',
+        'tb2': '500px',
+        'tb3': '550px',
+        'tb4': '600px'
+      },
+      boxShadow: {
+        primary: 'inset -1px -4px 0px 1px #4c1656',
+        blue: 'inset -1px -4px 0px 1px #008ca9',
+        orange: 'inset -1px -4px 0px 1px #b86000',
+        teal: 'inset -1px -4px 0px 1px #2dc7bf'
       }
     }
   },
