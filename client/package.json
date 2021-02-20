@@ -6,7 +6,7 @@
     "start": "yarn build:css && react-scripts start",
     "test": "react-scripts test",
     "build:css": "postcss src/tailwind.css -o src/index.css",
-    "prebuild": "NODE_ENV=production yarn build:css",
+    "prebuild": "yarn build:css",
     "build": "react-scripts build",
     "postbuild": "react-snap",
     "eject": "react-scripts eject",

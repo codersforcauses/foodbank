@@ -6,7 +6,11 @@ module.exports = {
     './src/**/*.tsx',
     './src/**/**/*.tsx',
     './src/**/**/**/*.tsx',
-    './src/**/**/**/**/*.tsx'
+    './src/**/**/**/**/*.tsx',
+    './src/**/*.ts',
+    './src/**/**/*.ts',
+    './src/**/**/**/*.ts',
+    './src/**/**/**/**/*.ts'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

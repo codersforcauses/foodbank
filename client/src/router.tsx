@@ -2,7 +2,8 @@ import { FunctionComponent } from 'react'
 import Home from 'Pages/Home'
 import ErrorPage from 'Pages/Error'
 import RecipeOverview from 'Pages/Recipe/overview'
-import RecipeSteps from 'Pages/Recipe/steps'
+import RecipeAllSteps from 'Pages/Recipe/allsteps'
+import RecipeSlideshow from 'Pages/Recipe/slideshow'
 import Login from 'Pages/Login'
 import SignUp from 'Pages/SignUp'
 
@@ -27,9 +28,14 @@ const routes: Array<RouterElement> = [
     component: RecipeOverview
   },
   {
-    name: 'RecipeSteps',
-    path: '/recipe/:slug/steps',
-    component: RecipeSteps
+    name: 'RecipeAllSteps',
+    path: '/recipe/:slug/all-steps',
+    component: RecipeAllSteps
+  },
+  {
+    name: 'RecipeSlideshow',
+    path: '/recipe/:slug/slideshow',
+    component: RecipeSlideshow
   },
   {
     name: 'Login',
