@@ -1,0 +1,116 @@
+{
+  "groupArray": [
+    {
+      "id": "bg",
+      "width": "1718",
+      "height": "842",
+      "transform": "translate(0 1) scale(0.582 0.583)",
+      "xlinkHref": "Bg"
+    },
+    {
+      "id": "coolCloud",
+      "width": "1627",
+      "height": "300",
+      "transform": "translate(7) scale(0.589 0.603)",
+      "xlinkHref": "CoolCloud"
+    },
+    {
+      "id": "fruityOrchard",
+      "width": "1026",
+      "height": "743",
+      "transform": "translate(131 121) scale(0.139 0.148)",
+      "xlinkHref": "FruityOrchard"
+    },
+    {
+      "id": "bushLand",
+      "width": "940",
+      "height": "757",
+      "transform": "translate(0 159) scale(0.139 0.14)",
+      "xlinkHref": "BushLand"
+    },
+    {
+      "id": "vegieZone",
+      "width": "1502",
+      "height": "731",
+      "transform": "translate(2 254) scale(0.138 0.138)",
+      "xlinkHref": "VegieZone"
+    },
+    {
+      "id": "zombieWasteland",
+      "width": "456",
+      "height": "186",
+      "transform": "translate(0 384) scale(0.581 0.581)",
+      "xlinkHref": "ZombieWasteland"
+    },
+    {
+      "id": "wickedWaterway",
+      "width": "1216",
+      "height": "842",
+      "transform": "translate(358 228) scale(0.141 0.141)",
+      "xlinkHref": "WickedWaterway"
+    },
+    {
+      "id": "supplyStore",
+      "width": "960",
+      "height": "536",
+      "transform": "translate(524 179) scale(0.139 0.14)",
+      "xlinkHref": "SupplyStore"
+    },
+    {
+      "id": "grazingLands",
+      "width": "789",
+      "height": "409",
+      "transform": "translate(184 274) scale(0.139 0.142)",
+      "xlinkHref": "GrazingLands"
+    },
+    {
+      "id": "grainField",
+      "width": "1333",
+      "height": "597",
+      "transform": "translate(465 283) scale(0.144 0.139)",
+      "xlinkHref": "GrainField"
+    },
+    {
+      "id": "bananaBunches",
+      "width": "675",
+      "height": "551",
+      "transform": "translate(108 65) scale(0.138 0.136)",
+      "xlinkHref": "BananaBunches"
+    },
+    {
+      "id": "healthyTown",
+      "width": "880",
+      "height": "639",
+      "transform": "translate(253 55) scale(0.144 0.139)",
+      "xlinkHref": "HealthyTown"
+    },
+    {
+      "id": "dairyPark",
+      "width": "1636",
+      "height": "1225",
+      "transform": "translate(360 55) scale(0.139 0.141)",
+      "xlinkHref": "DairyPark"
+    },
+    {
+      "id": "cluckyCoop",
+      "width": "344",
+      "height": "358",
+      "transform": "translate(498 142) scale(0.12)",
+      "xlinkHref": "CluckyCoop"
+    },
+    {
+      "id": "yoghurtMountains",
+      "width": "1094",
+      "height": "635",
+      "transform": "translate(545 81) scale(0.14 0.14)",
+      "xlinkHref": "YoghurtMountains"
+    },
+    {
+      "id": "aquaOcean",
+      "width": "1737",
+      "height": "664",
+      "transform": "translate(259 398) scale(0.139 0.141)",
+      "xlinkHref": "AquaOcean"
+    }
+  ]
+}
