@@ -1,7 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import RecipeOverviewTab from 'Components/RecipeOverviewTab'
+import { Recipe } from 'lib/types'
 import { kPowFritters, sportyBananaBites, superSonicDip } from 'lib/Recipes'
+
+import Buttons from 'Components/Recipe/Buttons'
+import EquipmentList from 'Components/Recipe/EquipmentList'
+import IngredientsList from 'Components/Recipe/IngredientsList'
+import CategoryInfo from 'Components/Recipe/CategoryInfo'
 
 interface ParamTypes {
   slug: string
@@ -9,16 +14,41 @@ interface ParamTypes {
 
 const RecipeOverview: React.FC = () => {
   const { slug } = useParams<ParamTypes>()
-
-  if (slug === kPowFritters.slug) {
-    return <RecipeOverviewTab recipe={kPowFritters} />
-  } else if (slug === sportyBananaBites.slug) {
-    return <RecipeOverviewTab recipe={sportyBananaBites} />
-  } else if (slug === superSonicDip.slug) {
-    return <RecipeOverviewTab recipe={superSonicDip} />
-  } else {
-    return <div>Recipe cannot be found!</div>
-  }
+  const recipe: Recipe =
+    slug === kPowFritters.slug
+      ? kPowFritters
+      : slug === sportyBananaBites.slug
+      ? sportyBananaBites
+      : superSonicDip
+  const colorScheme = recipe.colorScheme
+  return (
+    <div
+      className={
+        'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + colorScheme.bg
+      }
+    >
+      <div>
+        <h1
+          className={
+            'text-4xl underline font-semibold font-serif ' + colorScheme.header
+          }
+        >
+          {recipe.name}
+        </h1>
+        <CategoryInfo recipe={recipe} />
+        <IngredientsList recipe={recipe} />
+        <EquipmentList recipe={recipe} />
+        <Buttons recipe={recipe} />
+      </div>
+      <div>
+        <img
+          className='fixed w-2/5 rounded-3xl'
+          src={recipe.finalShot}
+          alt={recipe.name}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default RecipeOverview
