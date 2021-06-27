@@ -5,6 +5,9 @@ interface Props {
   recipe: Recipe
 }
 
+/**
+ * Displays a list of required equipment along with an image.
+ */
 const EquipmentList: React.FC<Props> = ({ recipe }) => {
   const colorScheme = recipe.colorScheme
   return (

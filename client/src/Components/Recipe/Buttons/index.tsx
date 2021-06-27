@@ -6,6 +6,7 @@ interface Props {
   recipe: Recipe
 }
 
+/** The buttons to navigate to the slideshow or one-page display recipe steps. */
 const Buttons: React.FC<Props> = ({ recipe }) => {
   const colorScheme = recipe.colorScheme
   return (

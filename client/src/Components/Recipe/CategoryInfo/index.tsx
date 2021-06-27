@@ -5,6 +5,7 @@ interface Props {
   recipe: Recipe
 }
 
+/** Displays the category and tags for a recipe. */
 const CategoryInfo: React.FC<Props> = ({ recipe }) => {
   const colorScheme = recipe.colorScheme
   return (
