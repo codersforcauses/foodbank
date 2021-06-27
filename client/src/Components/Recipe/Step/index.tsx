@@ -1,17 +1,13 @@
 import React from 'react'
 import { ColorScheme, RecipeStep } from 'lib/types'
 
-interface TabProps {
+interface Props {
   step: RecipeStep
   colorScheme: ColorScheme
   key: number
 }
 
-const RecipeStepTab: React.FC<TabProps> = ({
-  step,
-  colorScheme,
-  key
-}: TabProps) => (
+const Step: React.FC<Props> = ({ step, colorScheme, key }) => (
   <div className='flex flex-row items-center my-5 w-screen space-x-8' key={key}>
     <h1 className={'w-12 text-4xl font-serif ' + colorScheme.header}>
       {step.number}
@@ -21,4 +17,4 @@ const RecipeStepTab: React.FC<TabProps> = ({
   </div>
 )
 
-export default RecipeStepTab
+export default Step
