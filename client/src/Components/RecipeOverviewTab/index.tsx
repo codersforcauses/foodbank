@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Recipe } from 'lib/types'
 
+import EquipmentList from 'Components/Recipe/EquipmentList'
 import IngredientsList from 'Components/Recipe/IngredientsList'
 
 interface Props {
@@ -75,25 +76,7 @@ const RecipeOverview: React.FC<Props> = ({ recipe }: Props) => {
           ))}
         </div>
         <IngredientsList recipe={recipe} />
-        <div className='grid grid-cols-2 items-center mt-2'>
-          <div className='my-2'>
-            <h2 className={'text-2xl font-serif ' + colorScheme.header}>
-              Equipment
-            </h2>
-            <ul>
-              {recipe.equipment.map(equipment => (
-                <li key={equipment} className={colorScheme.text}>
-                  {equipment}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <img
-            className='w-80 rounded-3xl'
-            src={recipe.ingredientsImg}
-            alt='ingredients'
-          />
-        </div>
+        <EquipmentList recipe={recipe} />
         <Buttons recipe={recipe} />
       </div>
       <div>
