@@ -9,18 +9,29 @@ import IngredientsList from 'Components/Recipe/IngredientsList'
 import CategoryInfo from 'Components/Recipe/CategoryInfo'
 
 interface ParamTypes {
+  /** Slug which identifies recipe, used in the URL. */
   slug: string
 }
 
+/**
+ * A page displaying an overview of a particular recipe as specified in the URL.
+ * It includes information such as the recipe's category, tags, ingredients and
+ * equipment. From here, a user can navigate to pages displaying the recipe's
+ * steps in a slideshow or one page format.
+ */
 const RecipeOverview: React.FC = () => {
   const { slug } = useParams<ParamTypes>()
+
+  // Identify the recipe from the slug in the URL.
   const recipe: Recipe =
     slug === kPowFritters.slug
       ? kPowFritters
       : slug === sportyBananaBites.slug
       ? sportyBananaBites
       : superSonicDip
+
   const colorScheme = recipe.colorScheme
+
   return (
     <div
       className={
