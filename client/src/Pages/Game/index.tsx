@@ -85,11 +85,17 @@ const Game: React.FC = () => {
 
     setTimeout(() => {
       Konva.Image.fromURL(randomChar.image, function (image: any) {
+
+        // Scaling image based on original size. Currently uses a hacky way to do it but made the images more consistent in size
+        var imageHeight = image.attrs.image.height
+        var desiredHeight = 169
+        var scale = desiredHeight/imageHeight
+        
         image.setAttrs({
           x: stage.width() / 1.4,
           y: stage.height() / 2,
-          scaleX: 0.05,
-          scaleY: 0.05,
+          scaleX: scale,
+          scaleY: scale,
           draggable: true,
           name: randomChar.name,
           foodGroup: randomChar.type
@@ -105,6 +111,7 @@ const Game: React.FC = () => {
         // add the shape to the layer
         layer.add(image)
         layer.draw()
+
       })
     }, 0)
   }
