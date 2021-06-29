@@ -17,6 +17,7 @@
     "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
   },
   "dependencies": {
+    "caniuse-lite": "^1.0.30001240",
     "concurrently": "5.3.0"
   }
 }
