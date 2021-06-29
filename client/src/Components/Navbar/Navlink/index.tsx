@@ -9,8 +9,8 @@ import { RouterElement } from '../../../router'
 
 export const Navlink: React.FC<RouterElement> = ({ name, path }) => {
   return (
-    <li className={name.toLowerCase()}>
-      <Link to={path}>{name}</Link>
-    </li>
+    <Link className="w-nav-link nav-link" to={path}>
+      {name}
+    </Link>
   )
 }
