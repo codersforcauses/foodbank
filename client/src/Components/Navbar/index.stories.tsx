@@ -24,13 +24,13 @@ const Template: Story<NavbarProps> = args => {
   )
 }
 
-const example: React.FC = () => <div>Example</div>
+const exampleComponent: React.FC = () => <div>Example</div>
 
 export const Example = Template.bind({})
 Example.args = {
   links: [
-    { name: 'about', path: '#', component: example },
-    { name: 'Jokes', path: '#', component: example },
-    { name: 'Haha', path: '#', component: example }
+    { name: 'about', path: '#', component: exampleComponent },
+    { name: 'Jokes', path: '#', component: exampleComponent },
+    { name: 'Haha', path: '#', component: exampleComponent }
   ]
 }
