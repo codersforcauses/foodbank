@@ -26,18 +26,18 @@ const Routing: React.FC = () => {
 
 export const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
-    <Router>
-      <header className='bg-primary'>
-        foodbank
-        <nav className='navbar'>
-          <ul className=''>
+    <div className='w-container'>
+      <Router>
+        <header className='bg-primary'>
+          foodbank
+          <nav className='w-nav-menu nav_menu' role='navigation'>
             {links.map(nav => (
               <Navlink key={nav.name} {...nav} />
             ))}
-          </ul>
-        </nav>
-      </header>
-      <Routing />
-    </Router>
+          </nav>
+        </header>
+        <Routing />
+      </Router>
+    </div>
   )
 }
