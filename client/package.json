@@ -60,7 +60,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "postcss": "7.0.35",
+    "postcss": "7.0.36",
     "postcss-cli": "8.3.0",
     "react-snap": "1.23.0",
     "stylelint": "13.9.0",
