@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import { Navbar, NavbarProps } from '.'
@@ -24,11 +23,14 @@ const Template: Story<NavbarProps> = args => {
     </>
   )
 }
+
+const example: React.FC = () => <div>Example</div>
+
 export const Example = Template.bind({})
 Example.args = {
   links: [
-    { page: 'about', route: '#' },
-    { page: 'Jokes', route: '#' },
-    { page: 'Haha', route: '#' }
+    { name: 'about', path: '#', component: example },
+    { name: 'Jokes', path: '#', component: example },
+    { name: 'Haha', path: '#', component: example }
   ]
 }
