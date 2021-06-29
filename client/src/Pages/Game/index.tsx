@@ -15,7 +15,8 @@ const height = window.innerHeight
 const stage = new Konva.Stage({
   container: 'dank',
   width: width,
-  height: height
+  height: height,
+  visible: true
 })
 
 const layer = new Konva.Layer()
@@ -98,7 +99,9 @@ const Game: React.FC = () => {
           scaleY: scale,
           draggable: true,
           name: randomChar.name,
-          foodGroup: randomChar.type
+          foodGroup: randomChar.type,
+          stroke: 'black',
+          strokeWidth: 10
         })
 
         image.on('mouseover', function () {
@@ -288,14 +291,14 @@ const Game: React.FC = () => {
   return (
     <main>
       <header className='flex justify-around'>
-        <h2 className='text-5xl font-thin'>
+        <h2 className='text-5xl font-thin font-serif'>
           Score:{' '}
           <AnimatedNumber
             value={TOTAL_FOOD - remainingCharacters.length - 1}
             formatValue={(value: number) => value.toFixed(1)}
           />
         </h2>
-        <h2 className='text-5xl font-thin'>
+        <h2 className='text-5xl font-thin font-serif'>
           Remaining Food: {remainingCharacters.length}
         </h2>
       </header>
