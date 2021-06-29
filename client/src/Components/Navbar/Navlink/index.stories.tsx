@@ -9,10 +9,12 @@ export default {
 } as Meta
 
 const Template: Story<RouterElement> = args => <Navlink {...args} />
+
+const exampleComponent: React.FC = () => <div>Example</div>
 export const Example = Template.bind({})
 Example.args = {
   name: 'Example',
   path: 'Example/route',
-  component: undefined,
+  component: exampleComponent,
   exact: true
 }
