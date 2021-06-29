@@ -4,7 +4,7 @@ import ErrorPage from 'Pages/Error'
 import Login from 'Pages/Login'
 import SignUp from 'Pages/SignUp'
 
-interface RouterElement {
+export interface RouterElement {
   exact?: boolean
   name: string
   path: string
