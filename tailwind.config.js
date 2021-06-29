@@ -1,13 +1,5 @@
-/* eslint-disable no-undef */
 module.exports = {
-  // purging does not work for some reason without this
-  purge: [
-    './public/index.html',
-    './src/**/*.tsx',
-    './src/**/**/*.tsx',
-    './src/**/**/**/*.tsx',
-    './src/**/**/**/**/*.tsx'
-  ],
+  purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
@@ -17,9 +9,11 @@ module.exports = {
       orange: '#df7400',
       teal: '#47d5cd',
       red: '#e8352e',
-      'dark-grey': '#2c2e35',
-      grey: '#83847a',
-      'light-grey': '#cecfcb',
+      grey: {
+        light: '#cecfcb',
+        DEFAULT: '#83847a',
+        dark: '#2c2e35',
+      },
       white: '#ffffff',
       black: '#000000'
     },
@@ -28,22 +22,10 @@ module.exports = {
         sans: ['Bliss'],
         serif: ['Abraham']
       },
-      width: {
-        'tb1': '300px',
-        'tb2': '500px',
-        'tb3': '550px',
-        'tb4': '600px'
-      },
-      boxShadow: {
-        primary: 'inset -1px -4px 0px 1px #4c1656',
-        blue: 'inset -1px -4px 0px 1px #008ca9',
-        orange: 'inset -1px -4px 0px 1px #b86000',
-        teal: 'inset -1px -4px 0px 1px #2dc7bf'
-      }
-    }
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 }
