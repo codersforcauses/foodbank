@@ -87,9 +87,9 @@ const Game: React.FC = () => {
       Konva.Image.fromURL(randomChar.image, function (image: any) {
 
         // Scaling image based on original size. Currently uses a hacky way to do it but made the images more consistent in size
-        var imageHeight = image.attrs.image.height
-        var desiredHeight = 169
-        var scale = desiredHeight/imageHeight
+        const imageHeight = image.attrs.image.height
+        const desiredHeight = 169
+        const scale = desiredHeight/imageHeight
         
         image.setAttrs({
           x: stage.width() / 1.4,
