@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button } from 'Components/Button'
+import Button from 'Components/Button'
 import './header.css'
 
 export interface HeaderProps {
@@ -44,18 +44,19 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
       <div>
         {user ? (
-          <Button size='small' onClick={onLogout} label='Log out' />
+          <Button bgColor='bg-primary' onClick={onLogout}>
+            Log Out
+          </Button>
         ) : (
-            <>
-              <Button size='small' onClick={onLogin} label='Log in' />
-              <Button
-                primary
-                size='small'
-                onClick={onCreateAccount}
-                label='Sign up'
-              />
-            </>
-          )}
+          <>
+            <Button bgColor='bg-primary' onClick={onLogin}>
+              Log In
+            </Button>
+            <Button bgColor='bg-primary' onClick={onCreateAccount}>
+              Sign Up
+            </Button>
+          </>
+        )}
       </div>
     </div>
   </header>

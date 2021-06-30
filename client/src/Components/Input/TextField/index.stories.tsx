@@ -6,24 +6,32 @@ import Input, { InputProps } from '.'
 
 export default {
   title: 'Components/Input',
-  component: Input,
+  component: Input
 } as Meta
 
-const Template: Story<InputProps> = args =>
+const Template: Story<InputProps> = args => (
   <Formik
     initialValues={{ name: args.name }}
     onSubmit={(_, actions) => {
       actions.setFieldError(args.name, `${args.label} has error`)
     }}
   >
-    {props =>
-      <form onSubmit={props.handleSubmit} className='bg-white p-3 w-96 rounded-xl'>
+    {props => (
+      <form
+        onSubmit={props.handleSubmit}
+        className='bg-white p-3 w-96 rounded-xl'
+      >
         <Input {...args} />
-        <button type="submit" className='mt-2 bg-primary text-white rounded-full px-3 py-1'>submit</button>
+        <button
+          type='submit'
+          className='mt-2 bg-primary text-white rounded-full px-3 py-1'
+        >
+          submit
+        </button>
       </form>
-    }
-
-  </Formik >
+    )}
+  </Formik>
+)
 
 export const TextField = Template.bind({})
 TextField.args = {
@@ -32,5 +40,5 @@ TextField.args = {
   type: 'text',
   description: 'Enter your username',
   disabled: false,
-  required: false,
+  required: false
 }
