@@ -20,6 +20,9 @@ const SVGLocationGroup: React.FC<Props> = ({
   image,
   onClick
 }) => {
+  const translationEndIndex = transform.indexOf(')');
+  const translation = transform.slice(0, translationEndIndex + 1);
+
   if (name === Location.bg) {
     return (
       <g id='bg'>
@@ -42,6 +45,8 @@ const SVGLocationGroup: React.FC<Props> = ({
           xlinkHref={assetMap[image as keyof AssetMapProps]}
         />
       </g>
+
+      <text transform={translation}> test </text>
     </g>
   )
 }
