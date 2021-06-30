@@ -3,29 +3,11 @@ import React from 'react'
 import './index.css'
 
 export interface CardProps {
-  /**
-   * Has this recipe been unlocked?
-   */
   unlocked?: boolean
-  /**
-   * Recipe title
-   */
   label: string
-  /**
-   * Image to show
-   */
   image: string
-  /**
-   * Alt text for image
-   */
   text: string 
-  /**
-   * Color of Card
-   */
   color: 'Primary' | 'Orange' | 'Teal' | 'Blue'
-  /**
-   * Optional click handler
-   */
   onClick?: () => void
 }
 
