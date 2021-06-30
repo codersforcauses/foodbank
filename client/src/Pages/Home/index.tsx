@@ -1,5 +1,9 @@
 import React from 'react'
 
-const Home: React.FC = () => <div>home</div>
+import TemporaryHome from 'Components/TemporaryHome'
+
+const Home: React.FC = () => {
+  return <TemporaryHome />
+}
 
 export default Home
