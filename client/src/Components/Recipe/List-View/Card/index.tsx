@@ -4,9 +4,9 @@ import './index.css'
 
 export interface CardProps {
   unlocked?: boolean
-  label: string
+  recipeTitle: string
   image: string
-  text: string 
+  imageAltText: string 
   color: 'Primary' | 'Orange' | 'Teal' | 'Blue'
   onClick?: () => void
 }
@@ -19,16 +19,16 @@ const getClassesFromColor = (color: string, unlocked: boolean) => {
 
 export const Card: React.FC<CardProps> = ({
   unlocked = true,
-  label,
+  recipeTitle,
   image,
-  text,
+  imageAltText,
   color,
   ...props
 }) => {
   return (
     <div className={['card', getClassesFromColor(color, unlocked)].join(' ')} {...props}>
-        <img src={image} alt={text} className='card-image'></img>
-        <h1>{label}</h1>
+        <img src={image} alt={imageAltText} className='card-image'></img>
+        <h1>{recipeTitle}</h1>
     </div>
   )
 }
