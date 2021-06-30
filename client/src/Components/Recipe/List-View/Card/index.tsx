@@ -12,15 +12,10 @@ export interface CardProps {
 }
 
 
-const getClassesFromColor = (color: string, unlocked: boolean) => {
-  if (unlocked) {
-    const fontColor = color === 'Primary' ? 'white': 'black';
-    return `unlocked bg-${color.toLowerCase()} text-${fontColor } shadow-xl hover:shadow-2xl`
-  }
-  else {
-    return `locked bg-grey opacity-50 text-black shadow-xl hover:shadow-2xl`
-  }
-} 
+const getClassesFromColor = (color: string, unlocked: boolean) => { 
+  if (!unlocked) return `locked bg-grey opacity-50 text-black shadow-xl hover:shadow-2xl`; 
+  const fontColor = color === 'Primary' ? 'white': 'black'; 
+  return `unlocked bg-${color.toLowerCase()} text-${fontColor} shadow-xl hover:shadow-2xl` };
 
 export const Card: React.FC<CardProps> = ({
   unlocked = true,
