@@ -3,6 +3,9 @@
   background-size: 20px 20px;
   background-color: #eeeeee;
   clip-path: polygon(6% 2%, 99% 2%, 94% 98%, 1% 98%);
+
+  /*max-width: 300px;*/
+  /*max-height: 100px;*/
 }
 
 h2 {
