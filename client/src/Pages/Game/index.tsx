@@ -7,6 +7,7 @@ import Konva from 'konva'
 import * as React from 'react'
 import { allFoods, backgrounds, getAndRemoveItem, FoodImage } from './helper'
 import useGameAlert from './useGameAlert'
+import './game.css'
 
 const TOTAL_FOOD = allFoods.length
 const width = window.innerWidth
