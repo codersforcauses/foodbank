@@ -46,7 +46,10 @@ const SVGLocationGroup: React.FC<Props> = ({
         />
       </g>
 
-      <text transform={translation}> test </text>
+      <g transform={translation} className='descriptionText'>
+        <rect width='50' height='50'></rect>
+        <text transform='translate(10 30)'>test</text>
+      </g>
     </g>
   )
 }
