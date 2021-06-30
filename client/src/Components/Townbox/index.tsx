@@ -57,3 +57,5 @@ export const Townbox: React.FC<TownboxProps> = ({
     </div>
   )
 }
+
+export default Townbox;
