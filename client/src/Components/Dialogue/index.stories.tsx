@@ -2,17 +2,17 @@ import React from 'react'
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0'
 
-import { Townbox, TownboxProps } from '.'
+import { Dialogue, DialogueProps } from '.'
 
 const meta: Meta = {
-  title: 'Components/Townbox',
-  component: Townbox
+  title: 'Components/Dialogue',
+  component: Dialogue
 }
 
-const Template: Story<TownboxProps> = args => {
+const Template: Story<DialogueProps> = args => {
   return (
-    <div className='bg-primary'>
-      <Townbox {...args} />{' '}
+    <div>
+      <Dialogue {...args} />{' '}
     </div>
   )
 }
