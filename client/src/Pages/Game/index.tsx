@@ -32,7 +32,7 @@ const drawBoard = () => {
       const group = new Konva.Group({
         x,
         y,
-        clipFunc: function (ctx) {
+        clipFunc(ctx: any) {
           ctx.beginPath()
           ctx.moveTo(px, py)
           ctx.arc(px, py, len, start, Math.PI - end, false)
