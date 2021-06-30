@@ -20,15 +20,3 @@
   max-width: 100vw;
   overflow-x: auto;
 }
-
-.descriptionText > rect {
-  fill: rgb(255,255,255);
-  fill-opacity: 20%;
-
-  stroke-width: 3px;
-  stroke: rgb(0,0,0);
-}
-
-.descriptionText > text {
-  font-size: 16pt;
-}
