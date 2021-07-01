@@ -63,11 +63,11 @@ const Map: React.FC = () => {
                 name={Location[group.id as keyof typeof Location]}
                 width={group.width}
                 height={group.height}
-                header = {header}
+                header={header}
                 caption={caption}
-                showButton = {showButton}
-                maxHeight = {maxHeight}
-                maxWidth = {maxWidth}
+                showButton={showButton}
+                maxHeight={maxHeight}
+                maxWidth={maxWidth}
                 transform={group.transform}
                 className={
                   Location[group.id as keyof typeof Location] === selected
