@@ -46,7 +46,6 @@ const SVGLocationGroup: React.FC<Props> = ({
           xlinkHref={assetMap[image as keyof AssetMapProps]}
         />
       </g>
-      <text>test</text>
       {
       className.includes('map-selected') &&  
         <foreignObject transform={translation} width='2000' height='2000'>
