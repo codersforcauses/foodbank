@@ -10,7 +10,8 @@ interface Props {
   height: string
   transform: string
   className: string
-  header?:string
+  header?: string
+  caption?: string
   showButton?: boolean 
   maxHeight?: string
   maxWidth?: string
@@ -25,6 +26,7 @@ const SVGLocationGroup: React.FC<Props> = ({
   transform,
   className,
   header,
+  caption,
   showButton,
   maxHeight,
   maxWidth,
@@ -64,6 +66,7 @@ const SVGLocationGroup: React.FC<Props> = ({
             maxHeight={maxHeight}
             headerColor="orange" 
             headerText={header}
+            captionText={caption}
             showButton = {showButton}
             />
         </foreignObject>

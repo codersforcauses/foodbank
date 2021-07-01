@@ -11,8 +11,10 @@ const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(0)
   const elementRef = useRef(null as null | HTMLDivElement)
+
   const [selected, onSelect] = useState<Location | null>(null)
   const [header, setHeader] = useState<string>("")
+  const [caption, setCaption] = useState<string>("")
   const [showButton, setButton] = useState<boolean>(false)
   const [maxWidth, setMaxWidth] = useState<string>("200")
   const [maxHeight, setMaxHeight] = useState<string>("100")
@@ -22,12 +24,14 @@ const Map: React.FC = () => {
       setHeight(elementRef?.current?.clientHeight)
     }
   }, []) //empty dependency array so it only runs once at render
+
   useEffect(() => {
     if(selected != null){
       const description = descData.descriptionArray.filter(data =>{
         return Location[data.id as keyof typeof Location] == selected
       });
       setHeader(description[0].headerText);
+      setCaption(description[0].captionText);
       setButton(description[0].showButton);
       setMaxWidth(description[0].maxWidth);
       setMaxHeight(description[0].maxHeight);
@@ -60,6 +64,7 @@ const Map: React.FC = () => {
                 width={group.width}
                 height={group.height}
                 header = {header}
+                caption={caption}
                 showButton = {showButton}
                 maxHeight = {maxHeight}
                 maxWidth = {maxWidth}
