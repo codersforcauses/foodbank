@@ -6,7 +6,7 @@ import './index.css'
 import { Location } from '../../lib/types'
 import svgData from './svgImageData.json'
 import SVGLocationGroup from './SVGLocationGroup'
-import descData from './assets/descripton.json'
+import descData from './assets/description.json'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(0)
