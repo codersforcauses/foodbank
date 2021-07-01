@@ -4,7 +4,7 @@
         "id": "coolCloud",
         "headerColor": "primary",
         "headerText": "cool Cloud",
-        "captionText": "test",
+        "captionText": "Floating up high in the sky, a soft cool cloud stores fresh water which is ready to drink or water all the Superhero Foods growing below",
         "showButton": true,
         "maxWidth":"10",
         "maxHeight":"100"
@@ -13,7 +13,7 @@
         "id": "fruityOrchard",
         "headerColor": "primary",
         "headerText": "Fruity Orchard",
-        "captionText": "",
+        "captionText": "Rows of fruit trees grow delicious fruits. Awesome apples and delicious oranges soak up the sunshine to grow sweet and juicy.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -21,8 +21,8 @@
       {
         "id": "bushLand",
         "headerColor": "primary",
-        "headerText": "Bushland",
-        "captionText": "",
+        "headerText": "Bushlands",
+        "captionText": "Kept in its natural state, this area in Foodtopia is where you will find lots of different plants and animals, including bush tucker foods, Hunt for different types of bush tucker as the seasons change throughout the year and cook up a tasty meal on an open camp fire.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -31,7 +31,7 @@
         "id": "vegieZone",
         "headerColor": "primary",
         "headerText": "Vegie Zone",
-        "captionText": "",
+        "captionText": "Rising from the rich fertile soil of the Vegie Zone many plants are growing delicious Superhero Foods. They growo n the twisting vines, the sprouting plants, the bursting bulbs and some are grown underground as a hidden roots.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -40,7 +40,7 @@
         "id": "zombieWasteland",
         "headerColor": "primary",
         "headerText": "Zombie Wasteland",
-        "captionText": "",
+        "captionText": "This is where the Zombie Foods love to hide. The land is wild and barren. Pools of oozing fat and piles of salt and sugar can be seen throughout this land. Underground the Zombie Foods hang out with the Body Monsters planning all the ways to make us sick.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -49,7 +49,7 @@
         "id": "wickedWaterway",
         "headerColor": "primary",
         "headerText": "Wicked Waterway",
-        "captionText": "",
+        "captionText": "Twisting through the Foodtopia the Wicked Waterway is home to fresh fish and aquatic animals like crayfish and mussels. The waterway also is used to water all the Superhero Foods growing nearby.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -58,7 +58,7 @@
         "id": "supplyStore",
         "headerColor": "primary",
         "headerText": "Supply Store",
-        "captionText": "",
+        "captionText": "Lined up in neat rows are all the tinned foods. The Supply Store contains all the food which doesn't need to be refrigerated. The tinned foods like to lie in the Supply Store so they can march into line and rest until they are needed.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -67,7 +67,7 @@
         "id": "grazingLands",
         "headerColor": "primary",
         "headerText": "Grazing Lands",
-        "captionText": "",
+        "captionText": "Stretching out across Foodtopia the Grazing Land is bursting with fresh grass which provides all the food for the herds of cows and sheep. You may see Cool Kangaroo enjoying some green grass when the sun starts to set.",
         "showButton": true,
         "maxWidth":"100",
         "maxHeight":"100"
@@ -76,7 +76,7 @@
         "id": "grainField",
         "headerColor": "primary",
         "headerText": "Grain Field",
-        "captionText": "",
+        "captionText": "Fields of grains such as wheat, oats, rice grow in the grain field. The grains are harvested when ripe so they can be made into flour and yummy foods such as bread, pasta and rice dishes.",
         "showButton": true,
         "maxWidth":"10",
         "maxHeight":"100"
@@ -85,7 +85,7 @@
         "id": "bananaBunches",
         "headerColor": "primary",
         "headerText": "Banana Bunches",
-        "captionText": "",
+        "captionText": "In the topical region of Footopia a plantation of bananas grows. Grown from young sucker plants, green banana bunches are picked when ready when they ripen into yellow fruit.",
         "showButton": true,
         "maxWidth":"",
         "maxHeight":""
@@ -94,7 +94,7 @@
         "id": "healthyTown",
         "headerColor": "primary",
         "headerText": "Healthy Town",
-        "captionText": "",
+        "captionText": "The main town in Foodtopia is where all the Superhero Foods like to meet. The neighbourhood is made up of all the food houses and is a deliciously sweet place to visit.",
         "showButton": true,
         "maxWidth":"",
         "maxHeight":""
@@ -103,7 +103,7 @@
         "id": "dairyPark",
         "headerColor": "primary",
         "headerText": "Dairy Park",
-        "captionText": "",
+        "captionText": "There is so much fun to have at the Dairy Park where the milk flows and is made into tasty cheese and yummy yoghurt. Slide down the giant milk slide and spin into a whirling pool of bubbling milk.",
         "showButton": true,
         "maxWidth":"",
         "maxHeight":""
@@ -112,7 +112,7 @@
         "id": "cluckyCoop",
         "headerColor": "primary",
         "headerText": "Clucky Coop",
-        "captionText": "",
+        "captionText": "The Clucky Coup keeps all the chickens safe and keeps them well away from the busy road. Strutting around hte Clucky Coup the Cheeky Chicken loves to play with his friends when they aren't busy laying lots of lovely eggs.",
         "showButton": true,
         "maxWidth":"",
         "maxHeight":""
@@ -130,7 +130,7 @@
         "id": "aquaOcean",
         "headerColor": "primary",
         "headerText": "Aqua Ocean",
-        "captionText": "",
+        "captionText": "Teeming with lots of fish and seafood, the Aqua Ocean is home to many Superhero Foods. Fishing is fun from the sandy beach or out on a boat, there is always lots of tasty foods to eat.",
         "showButton": true,
         "maxWidth":"",
         "maxHeight":""
