@@ -6,18 +6,33 @@ import './index.css'
 import { Location } from '../../lib/types'
 import svgData from './svgImageData.json'
 import SVGLocationGroup from './SVGLocationGroup'
-
+import descData from './assets/descripton.json'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(0)
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
-
+  const [header, setHeader] = useState<string>("")
+  const [showButton, setButton] = useState<boolean>(false)
+  const [maxWidth, setMaxWidth] = useState<string>("200")
+  const [maxHeight, setMaxHeight] = useState<string>("100")
+  
   useEffect(() => {
     if (elementRef?.current?.clientHeight) {
       setHeight(elementRef?.current?.clientHeight)
     }
   }, []) //empty dependency array so it only runs once at render
+  useEffect(() => {
+    if(selected != null){
+      const description = descData.descriptionArray.filter(data =>{
+        return Location[data.id as keyof typeof Location] == selected
+      });
+      setHeader(description[0].headerText);
+      setButton(description[0].showButton);
+      setMaxWidth(description[0].maxWidth);
+      setMaxHeight(description[0].maxHeight);
+    }  
+  }, [selected])
 
   const onMapClick = (area: Location) => {
     selected === area ? onSelect(null) : onSelect(area)
@@ -44,6 +59,10 @@ const Map: React.FC = () => {
                 name={Location[group.id as keyof typeof Location]}
                 width={group.width}
                 height={group.height}
+                header = {header}
+                showButton = {showButton}
+                maxHeight = {maxHeight}
+                maxWidth = {maxWidth}
                 transform={group.transform}
                 className={
                   Location[group.id as keyof typeof Location] === selected

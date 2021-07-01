@@ -2,12 +2,18 @@ import React from 'react'
 import { Location } from '../../../lib/types'
 import assetMap, { AssetMapProps } from '../assets/AssetMap'
 import Townbox from '../../Townbox'
+
+
 interface Props {
   name: Location
   width: string
   height: string
   transform: string
   className: string
+  header?:string
+  showButton?: boolean 
+  maxHeight?: string
+  maxWidth?: string
   image: string
   onClick: (area: Location) => void
 }
@@ -18,6 +24,10 @@ const SVGLocationGroup: React.FC<Props> = ({
   height,
   transform,
   className,
+  header,
+  showButton,
+  maxHeight,
+  maxWidth,
   image,
   onClick
 }) => {
@@ -49,7 +59,13 @@ const SVGLocationGroup: React.FC<Props> = ({
       {
       className.includes('map-selected') &&  
         <foreignObject transform={translation} width='2000' height='2000'>
-          <Townbox maxWidth='300px' maxHeight='100px'/>
+          <Townbox 
+            maxWidth={maxWidth} 
+            maxHeight={maxHeight}
+            headerColor="orange" 
+            headerText={header}
+            showButton = {showButton}
+            />
         </foreignObject>
       }
     </g>

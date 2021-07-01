@@ -1,0 +1,140 @@
+{
+    "descriptionArray": [
+      {
+        "id": "coolCloud",
+        "headerColor": "primrary",
+        "headerText": "coolCloud",
+        "captinText": "test",
+        "showButton": true,
+        "maxWidth":"10",
+        "maxHeight":"100"
+      },
+      {
+        "id": "fruityOrchard",
+        "headerColor": "primrary",
+        "headerText": "fruityOrchard",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "bushLand",
+        "headerColor": "primrary",
+        "headerText": "bushLand",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "vegieZone",
+        "headerColor": "primrary",
+        "headerText": "vegieZone",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "zombieWasteland",
+        "headerColor": "primrary",
+        "headerText": "zombieWasteland",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "wickedWaterway",
+        "headerColor": "primrary",
+        "headerText": "wickedWaterway",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "supplyStore",
+        "headerColor": "primrary",
+        "headerText": "supplyStore",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "grazingLands",
+        "headerColor": "primrary",
+        "headerText": "grazingLands",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"100",
+        "maxHeight":"100"
+      },
+      {
+        "id": "grainField",
+        "headerColor": "primrary",
+        "headerText": "grainField",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"10",
+        "maxHeight":"100"
+      },
+      {
+        "id": "bananaBunches",
+        "headerColor": "primrary",
+        "headerText": "bananaBunches",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"",
+        "maxHeight":""
+      },
+      {
+        "id": "healthyTown",
+        "headerColor": "primrary",
+        "headerText": "healthyTown",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"",
+        "maxHeight":""
+      },
+      {
+        "id": "dairyPark",
+        "headerColor": "primrary",
+        "headerText": "dairyPark",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"",
+        "maxHeight":""
+      },
+      {
+        "id": "cluckyCoop",
+        "headerColor": "primrary",
+        "headerText": "cluckyCoop",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"",
+        "maxHeight":""
+      },
+      {
+        "id": "yoghurtMountains",
+        "headerColor": "primrary",
+        "headerText": "yoghurtMountains",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"",
+        "maxHeight":""
+      },
+      {
+        "id": "aquaOcean",
+        "headerColor": "primrary",
+        "headerText": "aquaOcean",
+        "captinText": "",
+        "showButton": true,
+        "maxWidth":"",
+        "maxHeight":""
+      }
+    ]
+  }
+  
