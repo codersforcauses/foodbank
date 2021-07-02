@@ -23,43 +23,48 @@ const RecipeOverview: React.FC = () => {
   const { slug } = useParams<ParamTypes>()
 
   // Identify the recipe from the slug in the URL.
-  const recipe: Recipe =
+  const recipe: Recipe | null =
     slug === kPowFritters.slug
       ? kPowFritters
       : slug === sportyBananaBites.slug
       ? sportyBananaBites
-      : superSonicDip
+      : slug === superSonicDip.slug
+      ? superSonicDip
+      : null
 
-  const colorScheme = recipe.colorScheme
-
-  return (
-    <div
-      className={
-        'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + colorScheme.bg
-      }
-    >
-      <div>
-        <h1
-          className={
-            'text-4xl underline font-semibold font-serif ' + colorScheme.header
-          }
-        >
-          {recipe.name}
-        </h1>
-        <CategoryInfo recipe={recipe} />
-        <IngredientsList recipe={recipe} />
-        <EquipmentList recipe={recipe} />
-        <Buttons recipe={recipe} />
+  if (!recipe) {
+    return <div>Recipe cannot be found!</div>
+  } else {
+    const colorScheme = recipe.colorScheme
+    return (
+      <div
+        className={
+          'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + colorScheme.bg
+        }
+      >
+        <div>
+          <h1
+            className={
+              'text-4xl underline font-semibold font-serif ' + colorScheme.header
+            }
+          >
+            {recipe.name}
+          </h1>
+          <CategoryInfo recipe={recipe} />
+          <IngredientsList recipe={recipe} />
+          <EquipmentList recipe={recipe} />
+          <Buttons recipe={recipe} />
+        </div>
+        <div>
+          <img
+            className='fixed w-2/5 rounded-3xl'
+            src={recipe.finalShot}
+            alt={recipe.name}
+          />
+        </div>
       </div>
-      <div>
-        <img
-          className='fixed w-2/5 rounded-3xl'
-          src={recipe.finalShot}
-          alt={recipe.name}
-        />
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default RecipeOverview
