@@ -57,7 +57,7 @@ const RecipeOverview: React.FC = () => {
         </div>
         <div>
           <img
-            className='fixed w-2/5 rounded-3xl'
+            className='relative w-4/5 rounded-3xl'
             src={recipe.finalShot}
             alt={recipe.name}
           />
