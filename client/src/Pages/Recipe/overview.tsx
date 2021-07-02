@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { Recipe } from 'lib/types'
-import { kPowFritters, sportyBananaBites, superSonicDip } from 'lib/Recipes'
+import { recipes } from 'lib/Recipes'
 
 import Buttons from 'Components/Recipe/Buttons'
 import EquipmentList from 'Components/Recipe/EquipmentList'
@@ -22,15 +22,13 @@ interface ParamTypes {
 const RecipeOverview: React.FC = () => {
   const { slug } = useParams<ParamTypes>()
 
-  // Identify the recipe from the slug in the URL.
-  const recipe: Recipe | null =
-    slug === kPowFritters.slug
-      ? kPowFritters
-      : slug === sportyBananaBites.slug
-      ? sportyBananaBites
-      : slug === superSonicDip.slug
-      ? superSonicDip
-      : null
+  let recipe: Recipe | null = null;
+
+  for (const potential_recipe of recipes) {
+    if (slug === potential_recipe.slug) {
+      recipe = potential_recipe;
+    }
+  }
 
   if (!recipe) {
     return <div>Recipe cannot be found!</div>

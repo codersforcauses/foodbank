@@ -2,4 +2,6 @@ import kPowFritters from './K-Pow Fritters'
 import sportyBananaBites from './Sporty Banana Bites'
 import superSonicDip from './Super Sonic Dip'
 
-export { kPowFritters, sportyBananaBites, superSonicDip }
+const recipes = [kPowFritters, sportyBananaBites, superSonicDip];
+
+export { recipes } 
