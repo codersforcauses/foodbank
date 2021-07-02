@@ -1,8 +1,11 @@
 /* eslint-disable react/display-name */
-import { useContext, forwardRef } from 'react'
+import { useContext, forwardRef, PropsWithChildren } from 'react'
 import { FieldControlContext } from './FieldControl'
 
-const FieldLabel = forwardRef<HTMLLabelElement, HTMLLabelElement>((props, ref) => {
+interface LabelProps {
+}
+
+const FieldLabel = forwardRef<HTMLLabelElement, PropsWithChildren<LabelProps>>((props, ref) => {
   const { disabled, name, required } = useContext(FieldControlContext)
   const disabledClass = disabled ? 'opacity-50' : undefined
   return (
@@ -10,7 +13,7 @@ const FieldLabel = forwardRef<HTMLLabelElement, HTMLLabelElement>((props, ref) =
       htmlFor={name}
       id={`${name}-label`}
       ref={ref}
-      className={['font-black', disabledClass, props.className].join(' ').trim()}
+      className={['font-bold', disabledClass].join(' ').trim()}
     >
       {props.children}
       {required && (
