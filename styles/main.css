@@ -31,6 +31,10 @@
     font-weight: 700;
     src: url('/fonts/Bliss-Bold.otf') format('opentype');
   }
+
+  ::selection {
+    @apply text-white bg-blue;
+  }
 }
 
 @tailwind components;
@@ -42,3 +46,16 @@
 }
 
 @tailwind utilities;
+
+.shadow-primary {
+  box-shadow: -1px -4px 0 1px #51185f inset;
+}
+.shadow-teal {
+  box-shadow: -1px -4px 0 1px #58a9a9 inset;
+}
+.shadow-blue {
+  box-shadow: -1px -4px 0 1px #0d85a0 inset;
+}
+.shadow-orange {
+  box-shadow: -1px -4px 0px 1px #a05b14 inset;
+}

@@ -4,31 +4,34 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'orange' | 'blue' | 'teal'
 }
 
-const Button = ({ children, color, ...props }: PropsWithChildren<ButtonProps>) => {
-  let textColor: string, bgColor: string
+const Button = ({ children, color, className, ...props }: PropsWithChildren<ButtonProps>) => {
+  let bgColor: string
 
   switch (color) {
     case 'orange':
-      textColor = 'text-black'
-      bgColor = 'bg-orange'
+      bgColor = 'bg-orange text-black shadow-orange'
       break
     case 'blue':
-      textColor = 'text-black'
-      bgColor = 'bg-blue'
+      bgColor = 'bg-blue text-black shadow-blue'
       break
     case 'teal':
-      textColor = 'text-black'
-      bgColor = 'bg-teal'
+      bgColor = 'bg-teal text-black shadow-teal'
       break
     default:
-      textColor = 'text-white'
-      bgColor = 'bg-primary'
+      bgColor = 'bg-primary text-white shadow-primary'
   }
 
   return (
     <button
       {...props}
-      className={[textColor, bgColor, 'text-lg px-8 py-2 rounded-full uppercase font-serif'].join(' ').trim()}
+      className={[
+        'text-2xl px-8 py-2 rounded-3xl uppercase font-serif transform duration-100 hover:scale-105',
+        bgColor,
+        className
+      ]
+        .join(' ')
+        .trim()
+      }
     >
       {children}
     </button>
