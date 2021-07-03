@@ -12,3 +12,4 @@ export interface DescriptionArray {
     maxHeight:   string;
 }
 
+export type HeaderColor = 'primary' | 'orange';

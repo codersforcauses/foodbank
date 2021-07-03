@@ -47,7 +47,7 @@
       },
       {
         "id": "wickedWaterway",
-        "headerColor": "primary",
+        "headerColor": "orange",
         "headerText": "Wicked Waterway",
         "captionText": "Twisting through the Foodtopia the Wicked Waterway is home to fresh fish and aquatic animals like crayfish and mussels. The waterway also is used to water all the Superhero Foods growing nearby.",
         "showButton": true,

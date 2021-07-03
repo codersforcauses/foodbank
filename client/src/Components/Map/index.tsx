@@ -8,7 +8,7 @@ import svgData from './svgImageData.json'
 import SVGLocationGroup from './SVGLocationGroup'
 import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
-import {DescriptionArray} from "./types"
+import {DescriptionArray, HeaderColor} from './types'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(0)
@@ -16,12 +16,13 @@ const Map: React.FC = () => {
   const elementRef = useRef(null as null | HTMLDivElement)
 
   const [selected, onSelect] = useState<Location | null>(null)
-  const [header, setHeader] = useState<string>("")
-  const [caption, setCaption] = useState<string>("")
-  const [showButton, setButton] = useState<boolean>(false)
-  const [maxWidth, setMaxWidth] = useState<string>("200")
-  const [maxHeight, setMaxHeight] = useState<string>("100")
-  const [desc, setDesc] = useState<DescriptionArray>()
+  const oldHeader = descData.descriptionArray[0].headerColor === 'orange' ? 'orange' : 'primary'
+  const newHeader: HeaderColor = oldHeader as HeaderColor;
+  const tempDesc = {
+    ...descData.descriptionArray[0],
+    headerColor:newHeader
+  }
+  const [desc, setDesc] = useState<DescriptionArray>(tempDesc)
   const [scale, setScale] = useState(1)
   
   useEffect(() => {
@@ -43,18 +44,17 @@ const Map: React.FC = () => {
         return Location[data.id as keyof typeof Location] == selected
       });
       //console.log("test")
+      const oldHeader = description[0].headerColor === 'orange' ? 'orange' : 'primary'
+      const newHeader: HeaderColor = oldHeader as HeaderColor;
       const tempDesc = {
         ...description[0],
-        headerColor:description[0].headerColor === 'orange' ? 'orange' : 'primary'
+        headerColor:newHeader
       }
       setDesc(tempDesc)
-      setHeader(description[0].headerText);
-      setCaption(description[0].captionText);
-      setButton(description[0].showButton);
-      setMaxWidth(description[0].maxWidth);
-      setMaxHeight(description[0].maxHeight);
+      console.log(tempDesc)
+      console.log(desc)
     }  
-  }, [selected])
+  }, [selected, desc])
 
   const onMapClick = (area: Location) => {
     console.log(Location[area]);
@@ -79,10 +79,10 @@ const Map: React.FC = () => {
     console.log(svgData.groupArray)
     selected === area ? onSelect(null) : onSelect(area)
   }
-
+// eslint-disable-next-line
   const handleClick = (event:any) => { //need to change this type
     event.preventDefault()
-    const area = event.target.alt
+    const area = event?.target?.alt
     onMapClick(Location[area as keyof typeof Location])
   }
 
@@ -133,12 +133,8 @@ const Map: React.FC = () => {
                 name={Location[group.id as keyof typeof Location]}
                 width={group.width}
                 height={group.height}
-                header={header}
-                caption={caption}
-                showButton={showButton}
-                maxHeight={maxHeight}
-                maxWidth={maxWidth}
                 transform={group.transform}
+                desc = {desc}
                 className={
                   Location[group.id as keyof typeof Location] === selected
                     ? 'map-selected'
