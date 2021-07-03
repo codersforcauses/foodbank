@@ -4,13 +4,13 @@ import { RECIPES } from './recipes'
 // import "./index.css"
 
 const RecipesGridView: React.FC = () => {
-  const recipeCards = RECIPES.map((recipe) => {
-    const {name, fileName, alt} = recipe
+  const recipeCards = RECIPES.map(recipe => {
+    const { name, fileName, alt } = recipe
     return (
       <Card
-        label={name}
-        image={"img/" + fileName}
-        text={alt}
+        recipeTitle={name}
+        image={'img/' + fileName}
+        imageAltText={alt}
         color='Primary'
         key={name}
       />
@@ -18,9 +18,9 @@ const RecipesGridView: React.FC = () => {
   })
 
   return (
-    <div className="flex justify-center m-4">
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10">
-      {recipeCards}
+    <div className='flex justify-center m-4'>
+      <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10'>
+        {recipeCards}
       </div>
     </div>
   )
