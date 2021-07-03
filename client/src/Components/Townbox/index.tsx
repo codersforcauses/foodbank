@@ -47,7 +47,10 @@ export const Townbox: React.FC<TownboxProps> = ({
       >
         {' '}{headerText}{' '}
       </h2>
-      <div className='captionboxborder h-64 absolute mt-12 w-tb1 md:w-tb2 lg:w-tb3 xl:w-tb4'></div>
+      <div
+        className='captionboxborder h-64 absolute mt-12 w-tb1 md:w-tb2 lg:w-tb3 xl:w-tb4'
+        style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight}}
+      ></div>
       <div
         className='captionbox place-self-center p-8 mt-12 border-black flex relative flex-col items-center justify-center w-full h-64 pb-2 pt-2'
         style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight}}
