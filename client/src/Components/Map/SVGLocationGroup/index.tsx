@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Location } from '../../../lib/types'
 import assetMap, { AssetMapProps } from '../assets/AssetMap'
 import Townbox from '../../Townbox'
@@ -33,8 +33,35 @@ const SVGLocationGroup: React.FC<Props> = ({
   image,
   onClick
 }) => {
-  const translationEndIndex = transform.indexOf(')');
-  const translation = transform.slice(0, translationEndIndex + 1);
+  const initalTranslationEndIndex = transform.indexOf(')')
+  const initialTranslation = transform.slice(0, initalTranslationEndIndex + 1) 
+
+  const [translation, setTranslation] = useState(initialTranslation)
+
+  useEffect(
+    () => {
+      const translationEndIndex = transform.indexOf(')')
+      const newTranslation = transform.slice(0, translationEndIndex + 1)
+      setTranslation(newTranslation)
+    },
+    [transform]
+  );
+
+  const [netTransform, setTransform] = useState(transform)
+
+  useEffect(
+    () => {
+
+      const newNetTransform = 
+      className.includes('map-selected') ?
+        "translate(0 0) scale(1 1)" :
+        transform
+
+      setTransform(newNetTransform)
+      console.log("nt", newNetTransform)
+    },
+    [className, transform]
+  )
 
   if (name === Location.bg) {
     return (
@@ -50,7 +77,7 @@ const SVGLocationGroup: React.FC<Props> = ({
   }
   return (
     <g id={image} onClick={() => onClick(name)}>
-      <g transform={transform}>
+      <g transform={netTransform}>
         <image
           width={width}
           height={height}

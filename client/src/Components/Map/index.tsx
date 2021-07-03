@@ -41,25 +41,24 @@ const Map: React.FC = () => {
 
   const onMapClick = (area: Location) => {
     console.log(Location[area]);
-    let i;
-    for(i=0; i < svgData.groupArray.length; i++) {
+    // let i;
+    // for(i=0; i < svgData.groupArray.length; i++) {
       
-      if ((svgData.groupArray[i].id == Location[area]) || (svgData.groupArray[i].id == "bg")) {
-      //if (svgData.groupArray[i].id == "bg") {
-        console.log(svgData.groupArray[i])
-        svgData.groupArray[i].transform = "translate(0 0) scale(1)"
-      }
-      else{
-        //svgData.groupArray[i].width = '5000'
-        svgData.groupArray[i].width = '0'
-        //console.log(svgData.groupArray[i])
-        //console.log(svgData.groupArray[i].transform)
-      }
-      //console.log(svgData.groupArray[i])
-      //svgData.groupArray[i].width = '100'
-      //console.log(svgData.groupArray[i].xlinkHref)
-    }
-    console.log(svgData.groupArray)
+    //   if ((svgData.groupArray[i].id == Location[area]) || (svgData.groupArray[i].id == "bg")) {
+    //     if(selected !== area) {
+    //       svgData.groupArray[i].transform = "translate(0 0) scale(1)"
+    //     }
+
+    //     else {
+    //       svgData.groupArray[i].transform = "translate(0 0) scale(0.15)"
+    //     }
+    //   }
+
+    //   else{
+    //     svgData.groupArray[i].width = '0'
+    //   }
+    // }
+    // console.log(svgData.groupArray)
     selected === area ? onSelect(null) : onSelect(area)
   }
 
