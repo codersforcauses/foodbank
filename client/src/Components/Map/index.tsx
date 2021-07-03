@@ -8,6 +8,7 @@ import svgData from './svgImageData.json'
 import SVGLocationGroup from './SVGLocationGroup'
 import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
+import {DescriptionArray} from "./types"
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(0)
@@ -20,6 +21,7 @@ const Map: React.FC = () => {
   const [showButton, setButton] = useState<boolean>(false)
   const [maxWidth, setMaxWidth] = useState<string>("200")
   const [maxHeight, setMaxHeight] = useState<string>("100")
+  const [desc, setDesc] = useState<DescriptionArray>()
   const [scale, setScale] = useState(1)
   
   useEffect(() => {
@@ -41,6 +43,11 @@ const Map: React.FC = () => {
         return Location[data.id as keyof typeof Location] == selected
       });
       //console.log("test")
+      const tempDesc = {
+        ...description[0],
+        headerColor:description[0].headerColor === 'orange' ? 'orange' : 'primary'
+      }
+      setDesc(tempDesc)
       setHeader(description[0].headerText);
       setCaption(description[0].captionText);
       setButton(description[0].showButton);
@@ -83,7 +90,7 @@ const Map: React.FC = () => {
   return (
     <div
       ref={elementRef}
-      className='flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5 flex justify-center'
+      className='flex justify-center flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5'
     >
       {height === 0 ? null : (
         <div className='svgrow'>
