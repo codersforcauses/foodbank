@@ -1,10 +1,10 @@
 import { Recipe, RecipeStep } from 'lib/types'
-import finalShot from './Super sonic dip final shot.jpg'
-import ingredientsImg from './Super sonic dip ingredients.jpg'
-import equipmentImg from './Super sonic dip equipment.jpg'
-import step1Img from './Super sonic dip step 1.jpg'
-import step2Img from './Super sonic dip step 2.jpg'
-import step3Img from './Super sonic dip step 3.jpg'
+import finalShot from './Super sonic dip final shot.webp'
+import ingredientsImg from './Super sonic dip ingredients.webp'
+import equipmentImg from './Super sonic dip equipment.webp'
+import step1Img from './Super sonic dip step 1.webp'
+import step2Img from './Super sonic dip step 2.webp'
+import step3Img from './Super sonic dip step 3.webp'
 import { primaryScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
