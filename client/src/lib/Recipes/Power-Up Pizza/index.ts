@@ -7,6 +7,8 @@ import equipmentImg from './Power-up pizza equipment.webp'
 import step1Img from './Power-up pizza step 1.webp'
 import step2Img from './Power-up pizza step 2.webp'
 import step3Img from './Power-up pizza step 3.webp'
+import step4Img from './Power-up pizza step 4.webp'
+import step5Img from './Power-up pizza step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
@@ -25,6 +27,18 @@ const step3: RecipeStep = {
     number: 3,
     image: step3Img, 
     description: 'Spray frypan with oil. Place dough into frypan.'
+}
+
+const step4: RecipeStep = {
+    number: 4, 
+    image: step4Img, 
+    description: 'Toppings: Spread pizza base with tomato paste. Dice or slice all pizza toppings. Spread evenly over pizza base.'
+}
+
+const step5: RecipeStep = {
+    number: 5, 
+    image: step5Img, 
+    description: 'Grate cheese and sprinkle across pizza, place the lid on frypan and cook on medium heat for 20 minutes .'
 }
 
 const powerUpPizza: Recipe = {
@@ -55,14 +69,14 @@ const powerUpPizza: Recipe = {
         '100 g lean ham', 
         '80 g tinned', 
         'pineapple', 
-        'Â½ red capsicum',
+        '½ red capsicum',
         '6 small mushrooms',
         '1 small bunch fresh',
         'basil',
         '100 g reduced fat',
         'cheese'
     ],
-    steps: [step1, step2, step3], 
+    steps: [step1, step2, step3, step4, step5], 
     finalShot: finalShot,
     ingredientsImg: ingredientsImg,
     equipmentImg: equipmentImg,
