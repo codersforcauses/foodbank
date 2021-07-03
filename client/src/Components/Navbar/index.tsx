@@ -8,10 +8,12 @@ export interface NavbarProps {
 }
 
 const Routing: React.FC = () => {
+  const navRoutes: Array<RouterElement> = [...routes]
+  navRoutes.pop()
   return (
     <div className='w-100'>
       <Switch>
-        {routes.map(nav => (
+        {navRoutes.map(nav => (
           <Route
             exact
             path={nav.path}

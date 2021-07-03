@@ -1,11 +1,13 @@
 import React from 'react'
-import routes from 'router'
+import routes, { RouterElement } from 'router'
 import { Navbar } from 'Components/Navbar'
 
 const App: React.FC = () => {
+  const navRoutes: Array<RouterElement> = [...routes]
+  navRoutes.pop()
   return (
     <div className='App'>
-      <Navbar links={routes} />
+      <Navbar links={navRoutes} />
     </div>
   )
 }
