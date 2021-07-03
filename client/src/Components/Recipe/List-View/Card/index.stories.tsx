@@ -17,8 +17,8 @@ const Template: Story<CardProps> = args => <Card {...args} />
 export const Unlocked = Template.bind({})
 Unlocked.args = {
   unlocked: true,
-  label: 'Recipe Name',
-  image: "cheeky-chicken-bites.jpg",
-  text: 'Image Alt Text',
+  recipeTitle: 'Recipe Name',
+  image: 'cheeky-chicken-bites.jpg',
+  imageAltText: 'Image Alt Text',
   color: 'Primary'
 }
