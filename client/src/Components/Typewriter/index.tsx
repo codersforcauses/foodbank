@@ -32,12 +32,16 @@ const Typewriter: React.FC<Props> = ({
 
     if (pointer < string.length) {
       setTimeout(() => {
-        if (isMounted) setText(text + string.charAt(pointer))
-        if (isMounted) setPointer(pointer + 1)
+        if (isMounted) {
+          setText(text + string.charAt(pointer))
+          setPointer(pointer + 1)
+        }
       }, delay)
     } else {
-      if (stopBlinkinOnComplete && isMounted) setBlinking(false)
-      if (isMounted) onComplete()
+      if (isMounted) {
+        if(stopBlinkinOnComplete) setBlinking(false)
+        onComplete()
+      }
     }
 
     return () => {
@@ -48,9 +52,9 @@ const Typewriter: React.FC<Props> = ({
   return (
     <span className={className}>
       {text}
-      {isBlinking ? (
+      {isBlinking && (
         <span className={cursorClassName || 'blinkingCursor'}>{cursor}</span>
-      ) : null}
+      )}
     </span>
   )
 }

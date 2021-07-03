@@ -31,9 +31,8 @@
     font-weight: 700;
     src: url('./fonts/Bliss-Bold.otf') format('opentype');
   }
-
-  .App {
-    @apply h-screen flex flex-col;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
 
@@ -42,6 +41,11 @@
 @layer components {
   .input {
     @apply px-4 py-3 rounded-2xl font-light bg-light-grey bg-opacity-60 focus:ring-1 ring-primary outline-none placeholder-dark-grey border;
+  }
+  .townboxBackground {
+    background-image: radial-gradient(#df740044 69%, #e6d7c7b3 69%);
+    background-size: 20px 20px;
+    background-color: #eeeeee;
   }
 }
 

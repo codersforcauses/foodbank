@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import Home from 'Pages/Home'
 import ErrorPage from 'Pages/Error'
+import RecipesGridView from 'Pages/Recipe-Grid'
 import Login from 'Pages/Login'
 import SignUp from 'Pages/SignUp'
 
@@ -18,6 +19,11 @@ const routes: Array<RouterElement> = [
     path: '/',
     component: Home,
     exact: true
+  },
+  {
+    name: 'Recipes',
+    path: '/recipes',
+    component: RecipesGridView,
   },
   {
     name: 'Login',
@@ -40,3 +46,4 @@ const routes: Array<RouterElement> = [
 ]
 
 export default routes
+

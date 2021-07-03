@@ -5,7 +5,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { Townbox, TownboxProps } from '.'
 
 const meta: Meta = {
-  title: 'Example/Townbox',
+  title: 'Components/Townbox',
   component: Townbox
 }
 
