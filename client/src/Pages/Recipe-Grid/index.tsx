@@ -8,9 +8,9 @@ const RecipesGridView: React.FC = () => {
     const {name, fileName, alt} = recipe
     return (
       <Card
-        label={name}
+        recipeTitle={name}
         image={"img/" + fileName}
-        text={alt}
+        imageAltText={alt}
         color='Primary'
         key={name}
       />
