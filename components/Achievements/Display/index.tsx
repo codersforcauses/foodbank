@@ -6,6 +6,9 @@ interface Props {
   achievements: Array<Achievement>
 }
 
+/**
+ * Renders all unlockable achievements.
+ */
 const Display: React.FC<Props> = ({ achievements }) => {
   return (
     <div className='absolute m-28 grid grid-cols-5 gap-16'>

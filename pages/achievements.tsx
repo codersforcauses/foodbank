@@ -4,9 +4,13 @@ import Display from 'components/Achievements/Display'
 import type { Achievement } from 'lib/types'
 import allAchievements from 'lib/achievements'
 
+/**
+ * This page displays a list of all unlockable achievements.
+ */
 const Achievements: React.FC = () => {
   const [achievements, setAchievements] = useState<Array<Achievement>>([])
 
+  // Loads achievements on intial render.
   useEffect(() => {
     allAchievements[0].unlocked = true
     allAchievements[2].unlocked = true
