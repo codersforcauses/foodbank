@@ -16,6 +16,8 @@ const Map: React.FC = () => {
 
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
+
+  const [townbox, setTownbox] = useState(<></>)
   
   useEffect(() => {
     if (elementRef?.current?.clientHeight) {
@@ -30,10 +32,24 @@ const Map: React.FC = () => {
     }
   }, [width])
 
+  // to get the area description given an area so you can actually use headers/captions
+  // returns null if such area doesn't exist in assets/description.json
+  const getAreaDescription = (area: Location) => {
+    for(const description of descData.descriptionArray) {
+      if (description.id === Location[area]) {
+        return description
+      }
+    }
+
+    return null
+  }
+
   const onMapClick = (area: Location) => {
+    const areaDescription = getAreaDescription(area)
+
     if(selected !== area) {
-      const header = descData.descriptionArray[area].headerText
-      const caption = descData.descriptionArray[area].captionText
+      const header = areaDescription?.headerText
+      const caption = areaDescription?.captionText
       const showButton = true
       const maxWidth = '200px'
       const maxHeight = '200px'
@@ -58,8 +74,6 @@ const Map: React.FC = () => {
     const area = event.target.alt
     onMapClick(Location[area as keyof typeof Location])
   }
-
-  const [townbox, setTownbox] = useState(<></>)
 
   // Data can be made from dev/svgParse.py
   return (
