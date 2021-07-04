@@ -1,5 +1,5 @@
 export type Achievement = {
   title: string
-  image: string
+  image: StaticImageData
   unlocked: boolean
 }
