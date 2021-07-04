@@ -3,11 +3,16 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import AnimatedNumber from 'animated-number-react'
+import DropNotification from 'Components/DropNotification'
+import { clear } from 'console'
 import Konva from 'konva'
 import * as React from 'react'
 import { allFoods, backgrounds, getAndRemoveItem, FoodImage } from './helper'
 import useGameAlert from './useGameAlert'
-import './game.css'
+
+
+const BACKGROUND_PURPLE = '#671E75'
+
 
 const TOTAL_FOOD = allFoods.length
 const width = window.innerWidth
@@ -135,7 +140,9 @@ const Game: React.FC = () => {
     name: string
     foodGroup: string
   }) => {
-    success({ name, foodGroup })
+    //This is where it calls the notification of a successful run
+    //success({ name, foodGroup })
+    correctNotification(name, foodGroup)
     setCurrentCharacter(null)
     getAndUpdateRandomChar()
     categorisedCharNames.push(name)
@@ -158,7 +165,9 @@ const Game: React.FC = () => {
         alert(`${name} is not found in the canvas GG 🔥`)
       }
     } else {
-      error({ name, foodGroup })
+      //This is the display notification for an unsuccessful character placement
+      //error({ name, foodGroup })
+      errorNotification(name,foodGroup)
     }
   }
 
@@ -288,21 +297,43 @@ const Game: React.FC = () => {
   }
 
   React.useEffect(setOnDrop, [currentCharacter?.target?.attrs?.name])
+  
+  const [showNotification, setShowNotification] = React.useState(false);
+  const [notificationMessage1,setNotificationMessage1] = React.useState('');
+  const [notificationMessage2,setNotificationMessage2] = React.useState('');
+
+
+  function correctNotification(name: string,foodGroup:string){
+    setShowNotification(true)
+    setNotificationMessage1('Correct!')
+    setNotificationMessage2(`${name} is a ${foodGroup}`)
+    setTimeout(() => {setShowNotification(false)},7000)
+  }
+
+  function errorNotification(name: string,foodGroup:string){
+    setShowNotification(true)
+    setNotificationMessage1('Uh oh!')
+    setNotificationMessage2(`${name} is not a ${foodGroup}`)
+    setTimeout(() => {setShowNotification(false);},7000)
+  }
 
   return (
     <main>
-      <header className='flex justify-around'>
-        <h2 className='text-5xl font-thin font-serif'>
+      <header className='flex justify-around p-5' style={{background:BACKGROUND_PURPLE}}>
+        <h2 className='text-5xl font-thin font-serif' style={{color: 'whitesmoke'}}>
           Score:{' '}
           <AnimatedNumber
             value={TOTAL_FOOD - remainingCharacters.length - 1}
             formatValue={(value: number) => value.toFixed(1)}
           />
         </h2>
-        <h2 className='text-5xl font-thin font-serif'>
+        <h2 className='text-5xl font-thin font-serif' style={{color: 'whitesmoke'}}>
           Remaining Food: {remainingCharacters.length}
         </h2>
       </header>
+      <body className='flex justify-center p-5'>
+        <DropNotification message1={notificationMessage1} message2={notificationMessage2} visible={showNotification}/>
+      </body>
     </main>
   )
 }
