@@ -4,6 +4,7 @@ import ErrorPage from 'Pages/Error'
 import RecipeOverview from 'Pages/Recipe/overview'
 import RecipeAllSteps from 'Pages/Recipe/allsteps'
 import RecipeSlideshow from 'Pages/Recipe/slideshow'
+import RecipesGridView from 'Pages/Recipe-Grid'
 import Login from 'Pages/Login'
 import SignUp from 'Pages/SignUp'
 
@@ -21,6 +22,11 @@ const routes: Array<RouterElement> = [
     path: '/',
     component: Home,
     exact: true
+  },
+  {
+    name: 'Recipes',
+    path: '/recipes',
+    component: RecipesGridView,
   },
   {
     name: 'RecipeOverview',
