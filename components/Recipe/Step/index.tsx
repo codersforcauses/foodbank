@@ -1,5 +1,6 @@
 import React from 'react'
 import { ColorScheme, RecipeStep } from 'lib/types'
+import Image from 'next/image'
 
 interface Props {
   step: RecipeStep
@@ -12,7 +13,7 @@ const Step: React.FC<Props> = ({ step, colorScheme, key }) => (
     <h1 className={'w-12 text-4xl font-serif ' + colorScheme.header}>
       {step.number}
     </h1>
-    <img className='w-80 rounded-3xl' src={step.image} alt='Step' />
+    <Image className='w-80 rounded-3xl' src={step.image} alt='Step' />
     <p className={'w-1/2 ' + colorScheme.text}>{step.description}</p>
   </div>
 )

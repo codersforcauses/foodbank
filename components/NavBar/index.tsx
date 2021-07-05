@@ -15,7 +15,7 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Recipes',
-    route: '/recipe-grid'
+    route: '/recipes'
   },
   {
     page: 'Progress',

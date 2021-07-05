@@ -70,7 +70,7 @@ export const Card: React.FC<CardProps> = ({
             <Image src={character.imageGif} alt={character.name} className='character absolute top-0 right-0 z-21' />
           </div> : null}
       </div>
-      <Link href={'/recipe/' + slug + '/overview'}>
+      <Link href={'/recipes/' + slug + '/overview'}>
         <a>
           <Image src={image} alt={text} className='card-image' /> 
           <h1>{label}</h1>
