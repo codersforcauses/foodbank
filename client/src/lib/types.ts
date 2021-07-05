@@ -10,6 +10,7 @@ interface Recipe {
   slug: string
   name: string
   category: string
+  character?: Character
   tags: Array<string>
   equipment: Array<string>
   ingredients: Array<string>
@@ -25,4 +26,17 @@ interface RecipeStep {
   image: string
   description: string
 }
-export type { ColorScheme, Recipe, RecipeStep }
+
+interface Character {
+  name: string
+  image: string
+  aliasName: string
+  about: string
+  aliasImage: string
+  imageGif: string
+  superPowers: string
+  foodGroup: string
+  location: string
+
+}
+export type { ColorScheme, Recipe, RecipeStep, Character }

@@ -1,5 +1,5 @@
 import {Recipe, RecipeStep} from 'lib/types'
-import finalShot from './Final shot.webp'
+import finalShot from './Final Shot.webp'
 import ingredientsImg from './Ingredients.webp'
 import equipmentImg from './Equipment.webp'
 import step1Img from './Step 1.webp'

@@ -12,9 +12,10 @@ import legendaryLasagne from './Legendary Lasagne';
 import chickenDrummerRice from './Chicken Drummer Rice';
 import herbaliciousSalad from './Herbalicious Salad';
 import meanGreenSalad from './Mean Green Salad'
+import herbaliciousGarlicDip from './Herbalicious Garlic Dip'
 
 const recipes = [kPowFritters, sportyBananaBites, superSonicDip, cocoLocoBalls, coolCucumberSalad, deadlyDumperScrolls,
-  deadlyDumperScrolls, noodleNinjaSalad, rockinRicePudding, powerUpPizza, oodlesOfNoodles, legendaryLasagne, chickenDrummerRice, 
-  herbaliciousSalad, meanGreenSalad];
+  noodleNinjaSalad, rockinRicePudding, powerUpPizza, oodlesOfNoodles, legendaryLasagne, chickenDrummerRice,
+  herbaliciousSalad, meanGreenSalad, herbaliciousGarlicDip];
 
-export { recipes }
+export {recipes}

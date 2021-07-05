@@ -1,26 +1,32 @@
 import React from 'react'
-import { Card } from 'Components/Recipe/List-View/Card'
-import { RECIPES } from './recipes'
+import {Card} from 'Components/Recipe/List-View/Card'
+import {recipes} from 'lib/Recipes'
+
 // import "./index.css"
 
 const RecipesGridView: React.FC = () => {
-  const recipeCards = RECIPES.map((recipe) => {
-    const {name, fileName, alt} = recipe
+  const recipeCards = recipes.map((recipe) => {
+    const {name, slug, finalShot, character} = recipe
+
     return (
       <Card
         label={name}
-        image={"img/" + fileName}
-        text={alt}
+        image={finalShot}
+        text={name}
         color='Primary'
         key={name}
+        slug={slug}
+        character={character}
       />
     )
   })
 
   return (
-    <div className="flex justify-center m-4">
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10">
-      {recipeCards}
+    <div
+      className="flex justify-center m-3">
+      <div
+        className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-20">
+        {recipeCards}
       </div>
     </div>
   )

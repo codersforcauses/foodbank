@@ -1,4 +1,5 @@
 import { Recipe, RecipeStep } from 'lib/types'
+import { peaPod } from 'lib/Characters/Vegetables/index'
 import finalShot from './K-pow fritters final shot.webp'
 import ingredientsImg from './K-pow fritters ingredients.webp'
 import equipmentImg from './K-pow fritters equipment.webp'
@@ -73,7 +74,8 @@ const kPowFritters: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: peaPod
 }
 
 export default kPowFritters

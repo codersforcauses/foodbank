@@ -1,4 +1,5 @@
 import { Recipe, RecipeStep } from 'lib/types'
+import { athleticTomato } from 'lib/Characters/Vegetables/index'
 import finalShot from './Super sonic dip final shot.webp'
 import ingredientsImg from './Super sonic dip ingredients.webp'
 import equipmentImg from './Super sonic dip equipment.webp'
@@ -70,7 +71,8 @@ const superSonicDip: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: primaryScheme
+  colorScheme: primaryScheme,
+  character: athleticTomato
 }
 
 export default superSonicDip

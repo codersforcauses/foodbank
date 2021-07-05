@@ -1,4 +1,5 @@
 import { Recipe, RecipeStep } from 'lib/types'
+import { sportyBanana } from 'lib/Characters/Fruit/index'
 import finalShot from './Sporty banana bites final shot.webp'
 import ingredientsImg from './Sporty banana bites ingredients.webp'
 import equipmentImg from './Sporty banana bites equipment.webp'
@@ -56,7 +57,8 @@ const sportyBananaBites: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: tealScheme
+  colorScheme: tealScheme,
+  character: sportyBanana
 }
 
 export default sportyBananaBites
