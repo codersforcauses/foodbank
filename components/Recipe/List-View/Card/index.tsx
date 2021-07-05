@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import Link from 'next/link'
-//import styles from './Card.module.css'
+import styles from './Card.module.css'
 import {Character} from '../../../../lib/types'
 import explosion from '../../../../lib/Extra/explosion.png'
 import Image from 'next/image'
@@ -62,17 +62,17 @@ export const Card: React.FC<CardProps> = ({
                                             ...props
                                           }) => {
   return (
-    <div className={['card', getClassesFromColor(color, unlocked)].join(' ')} {...props}>
+    <div className={[styles.card, getClassesFromColor(color, unlocked)].join(' ')} {...props}>
       <div >
         {character ?
           <div>
-            <Image src={explosion} alt='explosion' className='absolute splash top-0 right-0' />
-            <Image src={character.imageGif} alt={character.name} className='character absolute top-0 right-0 z-21' />
+            <Image src={explosion} alt='explosion' className={"absolute " + styles.splash + " top-0 right-0"} />
+            <Image src={character.imageGif} alt={character.name} className={styles.character + " absolute top-0 right-0 z-21"} />
           </div> : null}
       </div>
       <Link href={'/recipes/' + slug + '/overview'}>
         <a>
-          <Image src={image} alt={text} className='card-image' /> 
+          <Image src={image} alt={text} className={styles["card-image"]} /> 
           <h1>{label}</h1>
         </a>
       </Link>
