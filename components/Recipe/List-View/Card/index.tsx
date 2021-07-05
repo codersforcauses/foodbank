@@ -43,8 +43,19 @@ export interface CardProps {
 
 const getClassesFromColor = (color: string, unlocked: boolean) => {
   if (unlocked) {
-    const fontColor = color === 'Primary' ? 'white' : 'black';
-    return `relative unlocked bg-${color.toLowerCase()} text-${fontColor} shadow-xl hover:shadow-2xl`
+    switch (color) {
+      case 'Primary':
+        return `relative unlocked bg-primary text-white shadow-xl hover:shadow-2xl`
+      
+      case 'Teal':
+        return `relative unlocked bg-teal text-black shadow-xl hover:shadow-2xl`
+      
+      case 'Orange':
+        return `relative unlocked bg-orange text-black shadow-xl hover:shadow-2xl`
+      
+      default:
+        return `relative unlocked bg-blue text-black shadow-xl hover:shadow-2xl`
+    }
   } else {
     return `relative locked bg-grey opacity-50 text-black shadow-xl hover:shadow-2xl`
   }
@@ -60,8 +71,9 @@ const Card = ({
   character,
   ...props
 }: CardProps) => {
+  console.log(color);
   return (
-    <div className={[styles.card, getClassesFromColor(color, unlocked)].join(' ')} {...props}>
+    <div className={[styles.card, getClassesFromColor(color, unlocked)].join(' ').trim()} {...props}>
       <div className='absolute top-0 right-0'>
         {character &&
           <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
