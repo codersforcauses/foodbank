@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card} from 'components/Recipe/List-View/Card'
+import Card from 'components/Recipe/List-View/Card'
 import {recipes} from 'lib/Recipes'
 
 // import "./index.css"

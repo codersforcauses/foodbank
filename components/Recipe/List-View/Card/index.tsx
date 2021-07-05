@@ -41,7 +41,6 @@ export interface CardProps {
   character?: Character
 }
 
-
 const getClassesFromColor = (color: string, unlocked: boolean) => {
   if (unlocked) {
     const fontColor = color === 'Primary' ? 'white' : 'black';
@@ -51,24 +50,26 @@ const getClassesFromColor = (color: string, unlocked: boolean) => {
   }
 }
 
-export const Card: React.FC<CardProps> = ({
-                                            unlocked = true,
-                                            label,
-                                            image,
-                                            text,
-                                            color,
-                                            slug,
-                                            character,
-                                            ...props
-                                          }) => {
+const Card = ({
+  unlocked = true,
+  label,
+  image,
+  text,
+  color,
+  slug,
+  character,
+  ...props
+}: CardProps) => {
   return (
     <div className={[styles.card, getClassesFromColor(color, unlocked)].join(' ')} {...props}>
-      <div >
-        {character ?
-          <div>
-            <Image src={explosion} alt='explosion' className={"absolute " + styles.splash + " top-0 right-0"} />
-            <Image src={character.imageGif} alt={character.name} className={styles.character + " absolute top-0 right-0 z-21"} />
-          </div> : null}
+      <div className='absolute top-0 right-0'>
+        {character &&
+          <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
+          <Image layout="fill" src={explosion} alt='explosion' />
+          <div className="h-3/4 w-3/4 relative m-4">
+            <Image layout="fill" src={character.imageGif} alt={character.name} />
+          </div>
+          </div>}
       </div>
       <Link href={'/recipes/' + slug + '/overview'}>
         <a>
@@ -79,3 +80,5 @@ export const Card: React.FC<CardProps> = ({
     </div>
   )
 }
+
+export default Card;
