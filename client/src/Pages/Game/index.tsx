@@ -9,6 +9,7 @@ import Konva from 'konva'
 import * as React from 'react'
 import { allFoods, backgrounds, getAndRemoveItem, FoodImage } from './helper'
 import useGameAlert from './useGameAlert'
+import {nanoid} from 'nanoid';
 
 
 const BACKGROUND_PURPLE = '#671E75'
@@ -142,7 +143,8 @@ const Game: React.FC = () => {
   }) => {
     //This is where it calls the notification of a successful run
     //success({ name, foodGroup })
-    correctNotification(name, foodGroup)
+    showSuccessNotification(name,foodGroup)
+    //correctNotification(name, foodGroup)
     setCurrentCharacter(null)
     getAndUpdateRandomChar()
     categorisedCharNames.push(name)
@@ -167,7 +169,7 @@ const Game: React.FC = () => {
     } else {
       //This is the display notification for an unsuccessful character placement
       //error({ name, foodGroup })
-      errorNotification(name,foodGroup)
+      showErrorNotification(name,foodGroup)
     }
   }
 
@@ -298,24 +300,38 @@ const Game: React.FC = () => {
 
   React.useEffect(setOnDrop, [currentCharacter?.target?.attrs?.name])
   
-  const [showNotification, setShowNotification] = React.useState(false);
-  const [notificationMessage1,setNotificationMessage1] = React.useState('');
-  const [notificationMessage2,setNotificationMessage2] = React.useState('');
-
-
-  function correctNotification(name: string,foodGroup:string){
-    setShowNotification(true)
-    setNotificationMessage1('Correct!')
-    setNotificationMessage2(`${name} is a ${foodGroup}`)
-    setTimeout(() => {setShowNotification(false)},7000)
+  function showSuccessNotification(name:string,foodgroup:string){
+    const successNotification = {
+     message1:'Correct!',
+     message2:`${name} is a ${foodgroup}`,
+     id: 'notification-' + nanoid()
+    }
+    setNotifications([...notifications, successNotification])
   }
 
-  function errorNotification(name: string,foodGroup:string){
-    setShowNotification(true)
-    setNotificationMessage1('Uh oh!')
-    setNotificationMessage2(`${name} is not a ${foodGroup}`)
-    setTimeout(() => {setShowNotification(false);},7000)
+  function showErrorNotification(name:string,foodgroup:string){
+    const errorNotification = {
+     message1:'Uh oh!',
+     message2:`${name} is not a ${foodgroup}`,
+     id: 'notification-' + nanoid()
+    }
+    setNotifications([...notifications, errorNotification])
   }
+
+  const place_holder:any[] = []
+
+  const [notifications, setNotifications] = React.useState(place_holder);
+
+  const notificationList = notifications.map(notification => (
+    <DropNotification
+      id = {notification.id}
+      message1 = {notification.message1}
+      message2 = {notification.message2}
+      key = {notification.id}
+      //delay is the number of seconds before the notification expires (3 seconds)
+      delay = {3000}
+      />
+  ));
 
   return (
     <main>
@@ -332,7 +348,7 @@ const Game: React.FC = () => {
         </h2>
       </header>
       <body className='flex justify-center p-5'>
-        <DropNotification message1={notificationMessage1} message2={notificationMessage2} visible={showNotification}/>
+        {notificationList}
       </body>
     </main>
   )
