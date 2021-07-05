@@ -51,8 +51,8 @@ const Map: React.FC = () => {
       const header = areaDescription?.headerText
       const caption = areaDescription?.captionText
       const showButton = true
-      const maxWidth = '200px'
-      const maxHeight = '200px'
+      const maxWidth = '450px'
+      const maxHeight = '250px'
 
       setTownbox(
         <Townbox 
@@ -68,7 +68,7 @@ const Map: React.FC = () => {
 
     selected === area ? onSelect(null) : onSelect(area)
   }
-
+  // eslint-disable-next-line
   const handleClick = (event: any) => { //need to change this type
     event.preventDefault()
     const area = event.target.alt
@@ -81,7 +81,8 @@ const Map: React.FC = () => {
       ref={elementRef}
       className='flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5 flex justify-center'
     >
-      {townbox}
+      <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
+      
       {height === 0 ? null : (
         <div className='svgrow'>
           <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>

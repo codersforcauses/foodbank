@@ -55,7 +55,7 @@ export const Townbox: React.FC<TownboxProps> = ({
         className='captionbox place-self-center p-8 mt-12 border-black flex relative flex-col items-center justify-center w-full h-64 pb-2 pt-2'
         style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight}}
       >
-        <p className='font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl'>
+        <p className='font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl pt-3'>
           {captionText}
         </p>
         {showButton && (
