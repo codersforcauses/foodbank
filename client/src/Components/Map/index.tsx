@@ -13,12 +13,10 @@ const Map: React.FC = () => {
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
   const elementRef = useRef(null as null | HTMLDivElement)
-
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
-
   const [townbox, setTownbox] = useState(<></>)
-  
+  type HeaderColor = 'primary' | 'orange';
   useEffect(() => {
     if (elementRef?.current?.clientHeight) {
       setHeight(elementRef?.current?.clientHeight)
@@ -51,14 +49,15 @@ const Map: React.FC = () => {
       const header = areaDescription?.headerText
       const caption = areaDescription?.captionText
       const showButton = areaDescription?.showButton
-      const maxWidth = '450px'
-      const maxHeight = '250px'
+      const headerColor:HeaderColor = areaDescription?.headerColor as HeaderColor;
+      const maxWidth = areaDescription?.maxWidth
+      const maxHeight = areaDescription?.maxHeight
 
       setTownbox(
         <Townbox 
           maxWidth={maxWidth} 
           maxHeight={maxHeight}
-          headerColor="orange" 
+          headerColor={headerColor}
           headerText={header}
           captionText={caption}
           showButton = {showButton}
@@ -81,11 +80,27 @@ const Map: React.FC = () => {
       ref={elementRef}
       className='flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5 flex justify-center'
     >
-      <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
+      
       
       {height === 0 ? null : (
         <div className='svgrow'>
-          <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+          <div style={{position:"relative"}}>
+            <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+            {svgData.groupArray.map(location =>{
+              if(selected === Location[location.id as keyof typeof Location]){
+              return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:location.translate}}>
+                {location.id} 
+                <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
+                </div>)
+              }
+              else{
+                return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:location.translate}}>
+                {location.id} 
+                </div>)
+              }
+            })}
+          </div>
+          
           <map name="tuckerislandmap">
           {
             svgData.groupArray.map(location => {
@@ -96,15 +111,15 @@ const Map: React.FC = () => {
                     : 'map-unselected'
 
               return (
-                <area
-                  key={location.id}
-                  alt={location.id}
-                  onClick={handleClick}
-                  href={location.id}
-                  coords={scaledCoords.join()}
-                  className={className}
-                  shape="poly"
-                />
+                    <area
+                      key={location.id}
+                      alt={location.id}
+                      onClick={handleClick}
+                      href={location.id}
+                      coords={scaledCoords.join()}
+                      className={className}
+                      shape="poly"
+                    />
               )
               }
             })
