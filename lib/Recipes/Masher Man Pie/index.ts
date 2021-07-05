@@ -67,8 +67,11 @@ const masherManPie: Recipe = {
     'Spray oil',
     '500g lean beef mince',
     '2 carrots',
-    '420g tin peas and corn'
-
+    '420g tin peas and corn',
+    ' 1 tablespoon salt - reduced beef stock powder',
+    '420g tin baked beans',
+    '4 medium potatoes',
+    '100g reduced fat cheese'
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,
