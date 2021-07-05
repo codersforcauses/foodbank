@@ -1,0 +1,31 @@
+.card {
+    text-align: center;
+    border-radius: 10%;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+h1 {
+    padding: 5px;
+}
+
+.card-image {
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    width: 350px;
+}
+
+.character {
+  margin-right: -5%;
+  margin-top: -10%;
+  width: 25%;
+
+}
+
+.splash {
+  width: 45%;
+  height: 45%;
+  margin-right: -13%;
+  margin-top: -10px;
+}
