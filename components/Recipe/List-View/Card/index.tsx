@@ -77,10 +77,10 @@ const Card = ({
       <div className='absolute top-0 right-0'>
         {character &&
           <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
-          <Image layout="fill" src={explosion} alt='explosion' />
-          <div className="h-3/4 w-3/4 relative m-4">
-            <Image layout="fill" src={character.imageGif} alt={character.name} />
-          </div>
+            <Image layout="fill" src={explosion} alt='explosion' />
+            <div className="h-3/4 w-3/4 relative m-4">
+              <Image layout="fill" src={character.imageGif} alt={character.name} />
+            </div>
           </div>}
       </div>
       <Link href={'/recipes/' + slug + '/overview'}>

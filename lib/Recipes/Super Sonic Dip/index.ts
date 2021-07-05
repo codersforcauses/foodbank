@@ -35,14 +35,7 @@ const superSonicDip: Recipe = {
   tags: [
     'Dip',
     'Vegetables',
-    'Snacks',
-    'Blah',
-    'De',
-    'blah',
-    'even',
-    'more',
-    'tags',
-    'nice'
+    'Snacks'
   ],
   equipment: [
     'Chopping board',
