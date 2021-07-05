@@ -5,6 +5,11 @@ interface Props {
   recipe: Recipe
 }
 
+const tagStyle = {
+  backgroundColor: "rgba(206,207,203,var(--tw-bg-opacity))",
+  "--tw-bg-opacity": 1
+}
+
 /** Displays the category and tags for a recipe. */
 const CategoryInfo: React.FC<Props> = ({ recipe }) => {
   const colorScheme = recipe.colorScheme
@@ -17,7 +22,8 @@ const CategoryInfo: React.FC<Props> = ({ recipe }) => {
         {recipe.tags.map(tag => (
           <div
             key={tag}
-            className='mr-3 my-0.5 px-4 rounded-3xl bg-light-grey text-sm'
+            className='mr-3 my-0.5 px-4 rounded-3xl text-sm'
+            style={tagStyle}
           >
             {tag}
           </div>
