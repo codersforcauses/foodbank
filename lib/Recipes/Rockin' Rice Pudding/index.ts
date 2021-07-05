@@ -1,12 +1,12 @@
 import {Recipe, RecipeStep} from 'lib/types'
-import finalShot from './Rockin\' rice pudding final shot.webp'
-import ingredientsImg from './Rockin\' rice pudding ingredients.webp'
-import equipmentImg from './Rockin\' rice pudding equipment.webp'
-import step1Img from './Rockin\' rice pudding step 1.webp'
-import step2Img from './Rockin\' rice pudding step 2.webp'
-import step3Img from './Rockin\' rice pudding step 3.webp'
-import step4Img from './Rockin\' rice pudding step 4.webp'
-import step5Img from './Rockin\' rice pudding step 5.webp'
+import finalShot from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding final shot.webp"
+import ingredientsImg from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding ingredients.webp"
+import equipmentImg from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding equipment.webp"
+import step1Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 1.webp"
+import step2Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 2.webp"
+import step3Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 3.webp"
+import step4Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 4.webp"
+import step5Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 5.webp"
 import {orangeScheme} from 'lib/colorSchemes'
 
 const step1: RecipeStep = {

@@ -1,11 +1,11 @@
 import { Recipe, RecipeStep } from 'lib/types'
 import { sportyBanana } from 'lib/Characters/Fruit/index'
-import finalShot from './Sporty banana bites final shot.webp'
-import ingredientsImg from './Sporty banana bites ingredients.webp'
-import equipmentImg from './Sporty banana bites equipment.webp'
-import step1Img from './Sporty banana bites step 1.webp'
-import step2Img from './Sporty banana bites step 2.webp'
-import step3Img from './Sporty banana bites step 3.webp'
+import finalShot from 'public/images/recipes/Sporty Banana Bites/Sporty banana bites final shot.webp'
+import ingredientsImg from 'public/images/recipes/Sporty Banana Bites/Sporty banana bites ingredients.webp'
+import equipmentImg from 'public/images/recipes/Sporty Banana Bites/Sporty banana bites equipment.webp'
+import step1Img from 'public/images/recipes/Sporty Banana Bites/Sporty banana bites step 1.webp'
+import step2Img from 'public/images/recipes/Sporty Banana Bites/Sporty banana bites step 2.webp'
+import step3Img from 'public/images/recipes/Sporty Banana Bites/Sporty banana bites step 3.webp'
 import { tealScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {

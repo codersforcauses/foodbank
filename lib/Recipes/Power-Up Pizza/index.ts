@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { Recipe, RecipeStep } from 'lib/types'
-import finalShot from './Power-up pizza final shot.webp'
-import ingredientsImg from './Power-up pizza ingredients.webp'
-import equipmentImg from './Power-up pizza equipment.webp'
-import step1Img from './Power-up pizza step 1.webp'
-import step2Img from './Power-up pizza step 2.webp'
-import step3Img from './Power-up pizza step 3.webp'
-import step4Img from './Power-up pizza step 4.webp'
-import step5Img from './Power-up pizza step 5.webp'
+import finalShot from 'public/images/recipes/Power-Up Pizza/Power-up pizza final shot.webp'
+import ingredientsImg from 'public/images/recipes/Power-Up Pizza/Power-up pizza ingredients.webp'
+import equipmentImg from 'public/images/recipes/Power-Up Pizza/Power-up pizza equipment.webp'
+import step1Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 1.webp'
+import step2Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 2.webp'
+import step3Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 3.webp'
+import step4Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 4.webp'
+import step5Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {

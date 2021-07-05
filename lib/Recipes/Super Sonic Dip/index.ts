@@ -1,11 +1,11 @@
 import { Recipe, RecipeStep } from 'lib/types'
 import { athleticTomato } from 'lib/Characters/Vegetables/index'
-import finalShot from './Super sonic dip final shot.webp'
-import ingredientsImg from './Super sonic dip ingredients.webp'
-import equipmentImg from './Super sonic dip equipment.webp'
-import step1Img from './Super sonic dip step 1.webp'
-import step2Img from './Super sonic dip step 2.webp'
-import step3Img from './Super sonic dip step 3.webp'
+import finalShot from 'public/images/recipes/Super Sonic Dip/Super sonic dip final shot.webp'
+import ingredientsImg from 'public/images/recipes/Super Sonic Dip/Super sonic dip ingredients.webp'
+import equipmentImg from 'public/images/recipes/Super Sonic Dip/Super sonic dip equipment.webp'
+import step1Img from 'public/images/recipes/Super Sonic Dip/Super sonic dip step 1.webp'
+import step2Img from 'public/images/recipes/Super Sonic Dip/Super sonic dip step 2.webp'
+import step3Img from 'public/images/recipes/Super Sonic Dip/Super sonic dip step 3.webp'
 import { primaryScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
