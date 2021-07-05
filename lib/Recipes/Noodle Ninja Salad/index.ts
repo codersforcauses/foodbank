@@ -52,7 +52,7 @@ const noodleNinjaSalad: Recipe = {
   slug: 'noodle-ninja-salad',
   name: 'Noodle Ninja Salad',
   category: 'Salads',
-  tags: ['Noddles'],
+  tags: ['Noodles'],
   equipment: [
     '2 small bowls Strainer',
     'Large bowl',

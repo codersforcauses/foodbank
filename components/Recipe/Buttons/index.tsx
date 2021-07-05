@@ -11,7 +11,7 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
   const colorScheme = recipe.colorScheme
   return (
     <div className='flex flex-row space-x-2 items-center'>
-      <Link href={'/recipe/' + recipe.slug + '/all-steps'} passHref>
+      <Link href={'/recipes/' + recipe.slug + '/all-steps'} passHref>
         <button
           className={
             'w-48 my-4 py-2 px-4 rounded-full ' +
@@ -23,7 +23,7 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
           View All Steps
         </button>
       </Link>
-      <Link href={'/recipe/' + recipe.slug + '/slideshow'} passHref>
+      <Link href={'/recipes/' + recipe.slug + '/slideshow'} passHref>
         <button
           className={
             'w-48 my-4 py-2 px-4 rounded-full ' +
