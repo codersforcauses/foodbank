@@ -22,10 +22,9 @@ const RecipesGridView: React.FC = () => {
   })
 
   return (
-    <div
-      className="flex justify-center m-3">
+    <div className="flex justify-center m-3">
       <div
-        className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-20">
+        className="mt-6 grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-10">
         {recipeCards}
       </div>
     </div>
