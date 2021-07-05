@@ -11,10 +11,20 @@ import oodlesOfNoodles from './Oodles of Noodles';
 import legendaryLasagne from './Legendary Lasagne';
 import chickenDrummerRice from './Chicken Drummer Rice';
 import herbaliciousSalad from './Herbalicious Salad';
-import meanGreenSalad from './Mean Green Salad'
+import meanGreenSalad from './Mean Green Salad';
+import cheekyChickenBites from './Cheeky Chicken Bites';
+import superSweetPotatoBake from './Super Sweet Potato Bake';
+import cheesyPastaBlast from './Cheesy Pasta Blast';
+import masherManPie from './Masher Man Pie';
+import vegieSquadCurry from './Vegie Squad Curry';
+import speedyCheeseMuffins from './Speedy Cheese Muffins';
+import humbleCrumble from './Humble Crumble';
+
+
 
 const recipes = [kPowFritters, sportyBananaBites, superSonicDip, cocoLocoBalls, coolCucumberSalad, deadlyDumperScrolls,
   deadlyDumperScrolls, noodleNinjaSalad, rockinRicePudding, powerUpPizza, oodlesOfNoodles, legendaryLasagne, chickenDrummerRice, 
-  herbaliciousSalad, meanGreenSalad];
+  herbaliciousSalad, meanGreenSalad, cheekyChickenBites, superSweetPotatoBake, cheesyPastaBlast, masherManPie, vegieSquadCurry, 
+  speedyCheeseMuffins, humbleCrumble];
 
 export { recipes }
