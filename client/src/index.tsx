@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import reportWebVitals from 'Utils/reportWebVitals'
 import App from 'App'
 import './index.css'
+import 'animate.css'
 
 const rootElement = document.getElementById('root')
 
