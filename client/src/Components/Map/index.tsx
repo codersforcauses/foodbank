@@ -50,7 +50,7 @@ const Map: React.FC = () => {
     if(selected !== area) {
       const header = areaDescription?.headerText
       const caption = areaDescription?.captionText
-      const showButton = true
+      const showButton = areaDescription?.showButton
       const maxWidth = '450px'
       const maxHeight = '250px'
 
