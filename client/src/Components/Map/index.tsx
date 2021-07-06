@@ -83,23 +83,19 @@ const Map: React.FC = () => {
       
       
       {height === 0 ? null : (
-        <div className='svgrow'>
-          <div style={{position:"relative"}}>
-            <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
-            {svgData.groupArray.map(location =>{
-              if(selected === Location[location.id as keyof typeof Location]){
-              return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:location.translate}}>
-                {location.id} 
-                <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
-                </div>)
-              }
-              else{
+          <div className='svgrow'>
+            <div style={{position:"relative"}}>
+              <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+              {svgData.groupArray.map(location =>{
                 return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:location.translate}}>
-                {location.id} 
-                </div>)
-              }
-            })}
-          </div>
+                  {location.id} 
+                  {selected === Location[location.id as keyof typeof Location] &&
+                    <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
+                  }
+
+                  </div>)
+              })}
+            </div>
           
           <map name="tuckerislandmap">
           {
