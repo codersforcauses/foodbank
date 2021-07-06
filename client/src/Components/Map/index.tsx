@@ -87,8 +87,12 @@ const Map: React.FC = () => {
             <div style={{position:"relative"}}>
               <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
               {svgData.groupArray.map(location =>{
-                return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:location.translate}}>
-                  {location.id} 
+                const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
+                const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
+                const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
+                console.log(translation);
+                return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
+                  {location.name} 
                   {selected === Location[location.id as keyof typeof Location] &&
                     <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
                   }
