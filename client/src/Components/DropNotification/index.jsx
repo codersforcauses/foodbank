@@ -10,15 +10,15 @@ export default function DropNotification(props) {
   React.useEffect(() => {
     setTimeout(() => {
       setVisible(false)
-    },props.delay
-    )
+    },props.delay)
   },[props.delay])
 
-  const styling = "flex flex-col items-center justify-center w-1/4 h-auto p-3 text-white text-center rounded-xl absolute animate__animated "
-  const stylingWithFade = styling + ((visible) ? "animate__fadeIn" : "animate__fadeOut");
+  const styling = "border-4 border-purple shadow-2xl rounded-xl bg-gray-50 w-1/4 h-auto p-3 text-center absolute animate__animated"
+  const stylingWithFade = styling + ((visible) ? " animate__fadeIn" : " animate__fadeOut");
 
   return (
-    <div className={stylingWithFade} style={{background:BACKGROUND_PURPLE}}>
+    // <div className={stylingWithFade} style={{background:BACKGROUND_PURPLE}}>
+    <div className={stylingWithFade}>
         {props.content}
     </div>
   )

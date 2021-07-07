@@ -8,7 +8,8 @@ import Konva from 'konva'
 import * as React from 'react'
 import { allFoods, backgrounds, getAndRemoveItem, FoodImage } from './helper'
 import useGameAlert from './useGameAlert'
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
+import { CheckCircleIcon, BanIcon } from '@heroicons/react/outline'
 
 
 const BACKGROUND_PURPLE = '#671E75'
@@ -82,28 +83,34 @@ const Game: React.FC = () => {
 
   const [notifications, setNotifications] = React.useState<Notification[]>([]);
 
-  function showSuccessNotification(name:string, foodgroup:string){
+  function showSuccessNotification(name: string, foodgroup: string) {
     const successNotification: Notification = {
-     content:(
-        <div>
-          <h2 className='text-3xl'>{'Correct!'}</h2>
-          <p>{`${name} is a ${foodgroup}`}</p>
+      content: (
+        <div className="flex flex-row justify-around items-center text-black ">
+          <div className="flex flex-col">
+            <h2 className='text-3xl'>{'Correct!'}</h2>
+            <p>{`${name} is a ${foodgroup}`}</p>
+          </div>
+          <CheckCircleIcon className="w-12 h-12" style={{ color: '#34D399' }} />
         </div>
-     ),
-     id: 'notification-' + nanoid()
+      ),
+      id: 'notification-' + nanoid()
     }
     setNotifications([...notifications, successNotification])
   }
 
-  function showErrorNotification(name:string, foodgroup:string){
+  function showErrorNotification(name: string, foodgroup: string) {
     const errorNotification: Notification = {
-     content: (
-       <div>
-        <h2 className='text-3xl'>{'Uh oh!'}</h2>
-        <p >{`${name} is not a ${foodgroup}`}</p>
-       </div>
-     ),
-     id: 'notification-' + nanoid()
+      content: (
+        <div className="flex flex-row justify-around items-center text-black ">
+          <div className="flex flex-col">
+            <h2 className='text-3xl'>{'Uh oh!'}</h2>
+            <p >{`${name} is not a ${foodgroup}`}</p>
+          </div>
+          <BanIcon className="w-12 h-12" style={{color:'#EF4444'}}/>
+        </div>
+      ),
+      id: 'notification-' + nanoid()
     }
     setNotifications([...notifications, errorNotification])
   }
@@ -111,12 +118,12 @@ const Game: React.FC = () => {
 
   const notificationList = notifications.map(notification => (
     <DropNotification
-      id = {notification.id}
-      content = {notification.content}
-      key = {notification.id}
+      id={notification.id}
+      content={notification.content}
+      key={notification.id}
       //delay is the number of seconds before the notification expires (3 seconds)
-      delay = {3000}
-      />
+      delay={3000}
+    />
   ));
 
 
@@ -141,7 +148,7 @@ const Game: React.FC = () => {
         // Scaling image based on original size. Currently uses a hacky way to do it but made the images more consistent in size
         const imageHeight = image.attrs.image.height
         const desiredHeight = 169
-        const scale = desiredHeight/imageHeight
+        const scale = desiredHeight / imageHeight
 
         image.setAttrs({
           x: stage.width() / 1.4,
@@ -187,7 +194,7 @@ const Game: React.FC = () => {
   }) => {
     //This is where it calls the notification of a successful run
     //success({ name, foodGroup })
-    showSuccessNotification(name,foodGroup)
+    showSuccessNotification(name, foodGroup)
     //correctNotification(name, foodGroup)
     setCurrentCharacter(null)
     getAndUpdateRandomChar()
@@ -213,7 +220,7 @@ const Game: React.FC = () => {
     } else {
       //This is the display notification for an unsuccessful character placement
       //error({ name, foodGroup })
-      showErrorNotification(name,foodGroup)
+      showErrorNotification(name, foodGroup)
     }
   }
 
@@ -344,17 +351,17 @@ const Game: React.FC = () => {
 
   React.useEffect(setOnDrop, [currentCharacter?.target?.attrs?.name])
 
-    return (
+  return (
     <div>
-      <header className='flex justify-around p-5' style={{background:BACKGROUND_PURPLE}}>
-        <h2 className='text-5xl font-thin font-serif' style={{color: 'whitesmoke'}}>
+      <header className='flex justify-around p-5' style={{ background: BACKGROUND_PURPLE }}>
+        <h2 className='text-5xl font-thin font-serif' style={{ color: 'whitesmoke' }}>
           Score:{' '}
           <AnimatedNumber
             value={TOTAL_FOOD - remainingCharacters.length - 1}
             formatValue={(value: number) => value.toFixed(1)}
           />
         </h2>
-        <h2 className='text-5xl font-thin font-serif' style={{color: 'whitesmoke'}}>
+        <h2 className='text-5xl font-thin font-serif' style={{ color: 'whitesmoke' }}>
           Remaining Food: {remainingCharacters.length}
         </h2>
       </header>
