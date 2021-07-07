@@ -90,40 +90,42 @@ const Map: React.FC = () => {
                 const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                 const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
                 const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
+                const up = ["aquaOcean", "zombieWasteland", "grainField"]
+                const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
                 console.log(translation);
-                return (<div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
-                  {location.name} 
-                  {selected === Location[location.id as keyof typeof Location] &&
-                    <div style={{position:"absolute", width:"auto"}}>{townbox}</div>
-                  }
-
-                  </div>)
+                return (
+                  <div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
+                    {location.name} 
+                    {
+                      selected === Location[location.id as keyof typeof Location] &&
+                      <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}>{townbox}</div>
+                    }
+                  </div>
+                )
               })}
             </div>
-          
-          <map name="tuckerislandmap">
-          {
-            svgData.groupArray.map(location => {
-              if (location.coords) {
-              const scaledCoords = location.coords.map(coord => coord*scale)
-              const className = Location[location.id as keyof typeof Location] === selected
-                    ? 'map-selected'
-                    : 'map-unselected'
-
-              return (
-                    <area
-                      key={location.id}
-                      alt={location.id}
-                      onClick={handleClick}
-                      href={location.id}
-                      coords={scaledCoords.join()}
-                      className={className}
-                      shape="poly"
-                    />
-              )
+            <map name="tuckerislandmap">
+              {
+                svgData.groupArray.map(location => {
+                  if (location.coords){
+                    const scaledCoords = location.coords.map(coord => coord*scale)
+                    const className = Location[location.id as keyof typeof Location] === selected
+                          ? 'map-selected'
+                          : 'map-unselected'
+                    return (
+                          <area 
+                            key={location.id}
+                            alt={location.id}
+                            onClick={handleClick}
+                            href={location.id}
+                            coords={scaledCoords.join()}
+                            className={className}
+                            shape="poly"
+                          />
+                    )
+                  }
+                })
               }
-            })
-          }
             </map>
         </div>
       )}
