@@ -24,6 +24,12 @@ const Map: React.FC = () => {
   }, []) //empty dependency array so it only runs once at render
 
   useEffect(() => {
+    function handleResize() {
+      setScale(window.innerWidth/4961)
+      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+    } window.addEventListener('resize', handleResize)})
+
+  useEffect(() => {
     if (elementRef?.current?.clientWidth) {
       setWidth(elementRef?.current?.clientWidth)
       setScale(width/4961)
