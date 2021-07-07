@@ -21,7 +21,7 @@ const height = window.innerHeight
 const stage = new Konva.Stage({
   container: 'dank',
   width: width,
-  height: height - 200, // SUBTRACTED 200 TO STOP SCROLL BAR APPEARING SINCE IDK HOW TO DETERMINE SIZE AT RUNTIME
+  height: height,
   visible: true
 })
 
