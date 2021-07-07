@@ -24,8 +24,7 @@ export const diary = [
 ]
 
 const meat = [
-  'BeefyBoy.jpg',
-  'LeanMeat.jpg',
+  'BeefyBoy.jpg', 'LeanMeat.jpg',
   'FishCan.jpg',
   'FlyingFish.jpg',
   'CheekyChicken.jpg',

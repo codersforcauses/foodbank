@@ -76,7 +76,7 @@ const Game: React.FC = () => {
     FoodImage[]
   >(allFoods)
 
-  const { error, success, finishGame } = useGameAlert()
+  const { finishGame } = useGameAlert()
 
   const getAndUpdateRandomChar = () => {
     // handle game end
@@ -98,7 +98,7 @@ const Game: React.FC = () => {
         const imageHeight = image.attrs.image.height
         const desiredHeight = 169
         const scale = desiredHeight/imageHeight
-        
+
         image.setAttrs({
           x: stage.width() / 1.4,
           y: stage.height() / 2,
@@ -267,15 +267,15 @@ const Game: React.FC = () => {
       tempLayer.draw()
     })
 
-    stage.on('dragenter', function () {
+    stage.on('dragenter', _ => {
       layer.draw()
     })
 
-    stage.on('dragleave', function () {
+    stage.on('dragleave', _ => {
       layer.draw()
     })
 
-    stage.on('dragover', function () {
+    stage.on('dragover', _ => {
       layer.draw()
     })
   }, [])
@@ -299,9 +299,15 @@ const Game: React.FC = () => {
   }
 
   React.useEffect(setOnDrop, [currentCharacter?.target?.attrs?.name])
-  
+
+  interface Notification {
+    message1: string,
+    message2: string,
+    id: string,
+  }
+
   function showSuccessNotification(name:string,foodgroup:string){
-    const successNotification = {
+    const successNotification: Notification = {
      message1:'Correct!',
      message2:`${name} is a ${foodgroup}`,
      id: 'notification-' + nanoid()
@@ -310,7 +316,7 @@ const Game: React.FC = () => {
   }
 
   function showErrorNotification(name:string,foodgroup:string){
-    const errorNotification = {
+    const errorNotification: Notification = {
      message1:'Uh oh!',
      message2:`${name} is not a ${foodgroup}`,
      id: 'notification-' + nanoid()
@@ -318,9 +324,7 @@ const Game: React.FC = () => {
     setNotifications([...notifications, errorNotification])
   }
 
-  const place_holder:any[] = []
-
-  const [notifications, setNotifications] = React.useState(place_holder);
+  const [notifications, setNotifications] = React.useState<Notification[]>([]);
 
   const notificationList = notifications.map(notification => (
     <DropNotification
