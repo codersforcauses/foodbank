@@ -1,23 +1,23 @@
 import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import NavLink, { NavLinkProps } from './NavLink'
 import Image from 'next/image'
 import logo from '../../public/images/logoFoodbankAus.webp'
+import NavLink, { NavLinkProps } from './NavLink'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
 const links: Array<NavLinkProps> = [
   {
-    page: 'SUPERHERO FOODS',
+    page: 'Super Foods',
     route: '/super_foods' //placeholder
   },
   {
-    page: 'RECIPE',
+    page: 'Recipe',
     route: '/recipe' //placeholder
   },
   {
-    page: 'PROGRESS',
+    page: 'Progress',
     route: '/progress' //placeholder
   }
 ]
@@ -41,26 +41,17 @@ const Navbar = () => {
             />
           </a>
         </Link>
-        <nav className='flex items-center space-x-10' role='navigation'>
+        <nav className='flex items-center space-x-10'>
           {links.map(nav => (
             <NavLink key={nav.page} {...nav} />
           ))}
         </nav>
-        {signIn ? (
-          <button
-            className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
-            onClick={toggleSignIn}
-          >
-            SIGN-OUT
-          </button>
-        ) : (
-          <button
-            className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
-            onClick={toggleSignIn}
-          >
-            SIGN-IN
-          </button>
-        )}
+        <button
+          className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
+          onClick={toggleSignIn}
+        >
+          {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
+        </button>
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
     </header>
