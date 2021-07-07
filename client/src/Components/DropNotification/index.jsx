@@ -14,13 +14,12 @@ export default function DropNotification(props) {
     )
   },[props.delay])
 
-  return (visible)
-    ? ( <div className='flex flex-col items-center justify-center w-1/4 h-auto p-3 text-white text-center rounded-xl absolute animate__animated animate__fadeIn' style={{background:BACKGROUND_PURPLE}}>
-          <h2 className='text-3xl'>{props.message1}</h2>
-          <p>{props.message2}</p>
-        </div> )
-    : ( <div className='flex flex-col items-center justify-center w-1/4 h-auto p-3 text-white text-center rounded-xl absolute animate__animated animate__fadeOut' style={{background:BACKGROUND_PURPLE}}>
-          <h2 className='text-3xl'>{props.message1}</h2>
-          <p>{props.message2}</p>
-        </div>)
+  const styling = "flex flex-col items-center justify-center w-1/4 h-auto p-3 text-white text-center rounded-xl absolute animate__animated "
+  const stylingWithFade = styling + ((visible) ? "animate__fadeIn" : "animate__fadeOut");
+
+  return (
+    <div className={stylingWithFade} style={{background:BACKGROUND_PURPLE}}>
+        {props.content}
+    </div>
+  )
 }

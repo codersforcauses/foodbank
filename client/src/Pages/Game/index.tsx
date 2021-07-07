@@ -76,26 +76,33 @@ const Game: React.FC = () => {
   >(allFoods)
 
   interface Notification {
-    message1: string,
-    message2: string,
+    content: any;
     id: string,
   }
 
   const [notifications, setNotifications] = React.useState<Notification[]>([]);
 
-  function showSuccessNotification(name:string,foodgroup:string){
+  function showSuccessNotification(name:string, foodgroup:string){
     const successNotification: Notification = {
-     message1:'Correct!',
-     message2:`${name} is a ${foodgroup}`,
+     content:(
+        <div>
+          <h2 className='text-3xl'>{'Correct!'}</h2>
+          <p>{`${name} is a ${foodgroup}`}</p>
+        </div>
+     ),
      id: 'notification-' + nanoid()
     }
     setNotifications([...notifications, successNotification])
   }
 
-  function showErrorNotification(name:string,foodgroup:string){
+  function showErrorNotification(name:string, foodgroup:string){
     const errorNotification: Notification = {
-     message1:'Uh oh!',
-     message2:`${name} is not a ${foodgroup}`,
+     content: (
+       <div>
+        <h2 className='text-3xl'>{'Uh oh!'}</h2>
+        <p >{`${name} is not a ${foodgroup}`}</p>
+       </div>
+     ),
      id: 'notification-' + nanoid()
     }
     setNotifications([...notifications, errorNotification])
@@ -105,8 +112,7 @@ const Game: React.FC = () => {
   const notificationList = notifications.map(notification => (
     <DropNotification
       id = {notification.id}
-      message1 = {notification.message1}
-      message2 = {notification.message2}
+      content = {notification.content}
       key = {notification.id}
       //delay is the number of seconds before the notification expires (3 seconds)
       delay = {3000}
