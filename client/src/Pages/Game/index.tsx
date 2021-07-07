@@ -4,7 +4,6 @@
 // @ts-ignore
 import AnimatedNumber from 'animated-number-react'
 import DropNotification from 'Components/DropNotification'
-import { clear } from 'console'
 import Konva from 'konva'
 import * as React from 'react'
 import { allFoods, backgrounds, getAndRemoveItem, FoodImage } from './helper'
@@ -76,10 +75,49 @@ const Game: React.FC = () => {
     FoodImage[]
   >(allFoods)
 
+  interface Notification {
+    message1: string,
+    message2: string,
+    id: string,
+  }
+
+  const [notifications, setNotifications] = React.useState<Notification[]>([]);
+
+  function showSuccessNotification(name:string,foodgroup:string){
+    const successNotification: Notification = {
+     message1:'Correct!',
+     message2:`${name} is a ${foodgroup}`,
+     id: 'notification-' + nanoid()
+    }
+    setNotifications([...notifications, successNotification])
+  }
+
+  function showErrorNotification(name:string,foodgroup:string){
+    const errorNotification: Notification = {
+     message1:'Uh oh!',
+     message2:`${name} is not a ${foodgroup}`,
+     id: 'notification-' + nanoid()
+    }
+    setNotifications([...notifications, errorNotification])
+  }
+
+
+  const notificationList = notifications.map(notification => (
+    <DropNotification
+      id = {notification.id}
+      message1 = {notification.message1}
+      message2 = {notification.message2}
+      key = {notification.id}
+      //delay is the number of seconds before the notification expires (3 seconds)
+      delay = {3000}
+      />
+  ));
+
+
   const { finishGame } = useGameAlert()
 
   const getAndUpdateRandomChar = () => {
-    // handle game end
+    // handle game en id="dank"d
     let availableChars: FoodImage[] = remainingCharacters
     if (!remainingCharacters.length) {
       finishGame()
@@ -267,15 +305,15 @@ const Game: React.FC = () => {
       tempLayer.draw()
     })
 
-    stage.on('dragenter', _ => {
+    stage.on('dragenter', () => {
       layer.draw()
     })
 
-    stage.on('dragleave', _ => {
+    stage.on('dragleave', () => {
       layer.draw()
     })
 
-    stage.on('dragover', _ => {
+    stage.on('dragover', () => {
       layer.draw()
     })
   }, [])
@@ -300,45 +338,8 @@ const Game: React.FC = () => {
 
   React.useEffect(setOnDrop, [currentCharacter?.target?.attrs?.name])
 
-  interface Notification {
-    message1: string,
-    message2: string,
-    id: string,
-  }
-
-  function showSuccessNotification(name:string,foodgroup:string){
-    const successNotification: Notification = {
-     message1:'Correct!',
-     message2:`${name} is a ${foodgroup}`,
-     id: 'notification-' + nanoid()
-    }
-    setNotifications([...notifications, successNotification])
-  }
-
-  function showErrorNotification(name:string,foodgroup:string){
-    const errorNotification: Notification = {
-     message1:'Uh oh!',
-     message2:`${name} is not a ${foodgroup}`,
-     id: 'notification-' + nanoid()
-    }
-    setNotifications([...notifications, errorNotification])
-  }
-
-  const [notifications, setNotifications] = React.useState<Notification[]>([]);
-
-  const notificationList = notifications.map(notification => (
-    <DropNotification
-      id = {notification.id}
-      message1 = {notification.message1}
-      message2 = {notification.message2}
-      key = {notification.id}
-      //delay is the number of seconds before the notification expires (3 seconds)
-      delay = {3000}
-      />
-  ));
-
-  return (
-    <main>
+    return (
+    <div>
       <header className='flex justify-around p-5' style={{background:BACKGROUND_PURPLE}}>
         <h2 className='text-5xl font-thin font-serif' style={{color: 'whitesmoke'}}>
           Score:{' '}
@@ -351,10 +352,10 @@ const Game: React.FC = () => {
           Remaining Food: {remainingCharacters.length}
         </h2>
       </header>
-      <body className='flex justify-center p-5'>
+      <div className='flex justify-center p-5'>
         {notificationList}
-      </body>
-    </main>
+      </div>
+    </div>
   )
 }
 
