@@ -9,26 +9,28 @@ import saucyLadyImagePng from 'public/images/Characters/No background images/Sau
 
 const peaPod: Character = {
   name: 'Pea Pod',
-  image: peaPodImage,
+  image: peaPodImage.src,
   aliasName: 'Queen Pea',
   about: 'Yummy eaten raw. Pick a pod full of peas straight from the garden.',
-  aliasImage: queenPeaImage ,
-  imageGif: queenPeaImagePng,
+  aliasImage: queenPeaImage.src ,
+  imageGif: queenPeaImagePng.src,
   superPowers: 'Protein packed into a small package',
   foodGroup: 'Vegetables – protective foods',
-  location: 'Vegie Zone, Twisting Vine'
+  location: 'Vegie Zone, Twisting Vine',
+  facing: 'right'
 }
 
 const athleticTomato: Character = {
   name: 'Athletic Tomato',
-  image: athleticTomatoImage,
+  image: athleticTomatoImage.src,
   aliasName: 'Saucy Lady',
   about: 'Undercover fruit disguised as a vegetable.',
-  aliasImage: saucyLadyImage ,
-  imageGif: saucyLadyImagePng,
+  aliasImage: saucyLadyImage.src ,
+  imageGif: saucyLadyImagePng.src,
   superPowers: 'Seriously full of antioxidants to fight illness.',
   foodGroup: 'Vegetables – protective foods',
-  location: 'Vegie Zone – Sprouting Plant'
+  location: 'Vegie Zone – Sprouting Plant',
+  facing: 'left'
 }
 
 

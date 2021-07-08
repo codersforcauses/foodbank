@@ -8,10 +8,9 @@ import RecipeOverview from 'components/Recipe/Overview'
 /**
  */
 const RecipePage: React.FC = () => {
-    // const {slug} = useParams<ParamTypes>()
 
     const router = useRouter();
-    const {slug} = router.query;
+    const { slug } = router.query;
 
     let recipe: Recipe | null = null;
 
@@ -26,7 +25,7 @@ const RecipePage: React.FC = () => {
     } else {
         return (
             <>
-                <RecipeOverview recipe={recipe}/>
+                <RecipeOverview recipe={ recipe }/>
             </>
         )
     }

@@ -35,7 +35,7 @@
     margin-top: -50%;
     margin-left: 28%;
     text-shadow: -2px 3px 8px rgba(0, 0, 0, 0.17);
-    z-index: 100;
+    z-index: 10;
 }
 
 
@@ -81,7 +81,7 @@
 .ingredients-text {
     min-width: 100px;
     max-width: 350px;
-    padding-top: 30px;
+    padding-top: 10%;
     padding-bottom: 30px;
     line-height: 1.5;
     letter-spacing: 4px;
@@ -93,11 +93,17 @@
     transform: rotate(-5deg);
 }
 
+.content-block {
+    margin-top: 20px;
+}
+
 /* div for the ingredients image and the frame-image (over the ingredients image) */
 .image-box-1 {
     align-items: flex-start;
-    padding-left: 10px;
-    max-width: 500px;
+    padding-left: 5%;
+    padding-top: 2%;
+    max-width: 700px;
+    margin-left: 15px
 }
 
 

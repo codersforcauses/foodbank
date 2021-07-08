@@ -78,7 +78,7 @@ const Card = ({
         {character &&
           <div className="">
             <img src={explosion.src} alt='explosion' className={styles['splash'] + ' absolute top-0 right-0'}/>
-            <img src={character.imageGif.src} alt={character.name} className={styles.character + ' absolute top-0 right-0'}></img>
+            <img src={character.imageGif} alt={character.name} className={styles.character + ' absolute top-0 right-0'}></img>
           </div>}
       
       <Link href={'/recipes/' + slug}>

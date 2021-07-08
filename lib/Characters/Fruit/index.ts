@@ -8,26 +8,28 @@ import superFruityImageGif from 'public/images/Characters/No background images/S
 
 const acesApple: Character = {
   name: 'Aces Apple',
-  image: acesAppleImage,
+  image: acesAppleImage.src,
   aliasName: 'Atomic Apple',
   about: 'Simple snack in an edible package',
-  aliasImage: atomicAppleImage,
-  imageGif: atomicAppleImage,
+  aliasImage: atomicAppleImage.src,
+  imageGif: atomicAppleImage.src,
   superPowers: 'Contains an army load of antioxidants to fight ilness',
   foodGroup: 'Fruit – Protective foods',
-  location: 'Fruity Orchard'
+  location: 'Fruity Orchard',
+  facing: 'right'
 }
 
 const sportyBanana: Character = {
   name: 'Sporty Banana',
-  image: sportyBananaImage,
+  image: sportyBananaImage.src,
   aliasName: 'Super Fruity',
   about: 'Perfect pick me up – snack on the run',
-  aliasImage: superFruityImage,
-  imageGif: superFruityImageGif,
+  aliasImage: superFruityImage.src,
+  imageGif: superFruityImageGif.src,
   superPowers: 'Packed with potassium to power up the heart',
   foodGroup: 'Fruit – Protective foods',
-  location: 'Banana Bunches'
+  location: 'Banana Bunches',
+  facing: 'left'
 }
 
 

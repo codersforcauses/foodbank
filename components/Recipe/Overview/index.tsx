@@ -23,8 +23,8 @@ interface ParamTypes {
  * steps in a slideshow or one page format.
  */
 const RecipeOverview: React.FC = ({ recipe }) => {
-    console.log(recipe.hint)
-    console.log(styles['recipe-name'])
+    // console.log(recipe.hint)
+    // console.log(styles['recipe-name'])
         return (
             <div className={recipe.colorScheme.bg}>
                 <div className='flex justify-center m-1'>
@@ -38,10 +38,9 @@ const RecipeOverview: React.FC = ({ recipe }) => {
                                 })}
                             </div>
                         </div>
-
                         {recipe.character &&
                             <div className={styles["recipe-hero-image"] + " absolute"}>
-                                <img src={recipe.character.imageGif.src} alt='label'
+                                <img src={recipe.character.imageGif} alt='label'
                                      className={recipe.character.facing === 'left' ? styles["flip-hero-image"] : ''}></img>
                                 {recipe.hint &&
                                     <div className="flex">
@@ -56,10 +55,9 @@ const RecipeOverview: React.FC = ({ recipe }) => {
                             </div>
                         }
                     </div>
-
                 </div>
                 <div className="flex justify-center m-1 w-full">
-                    <div className="flex flex-col recipe-main-content">
+                    <div className={styles["recipe-main-content"] + " flex flex-col"}>
                         <div>
                             <IngredientsList recipe={recipe}/>
                         </div>
