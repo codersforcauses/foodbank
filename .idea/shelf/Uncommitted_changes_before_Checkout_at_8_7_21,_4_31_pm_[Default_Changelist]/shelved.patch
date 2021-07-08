@@ -1,0 +1,38 @@
+Index: components/Recipe/List-View/Card/Card.module.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.card {\r\n    text-align: center;\r\n    border-radius: 10%;\r\n    position: relative;\r\n    width: fit-content;\r\n    height: fit-content;\r\n}\r\n\r\n/*h1 {\r\n    padding: 5px;\r\n}*/\r\n\r\n.card-image {\r\n    border-top-left-radius: 10%;\r\n    border-top-right-radius: 10%;\r\n    width: 350px;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/Recipe/List-View/Card/Card.module.css b/components/Recipe/List-View/Card/Card.module.css
+--- a/components/Recipe/List-View/Card/Card.module.css	(revision 1145be4d832bba64ab2cfbfd92a90d9ef532a954)
++++ b/components/Recipe/List-View/Card/Card.module.css	(date 1625732906785)
+@@ -6,13 +6,23 @@
+     height: fit-content;
+ }
+ 
+-/*h1 {
+-    padding: 5px;
+-}*/
+-
+ .card-image {
+     border-top-left-radius: 10%;
+     border-top-right-radius: 10%;
+     width: 350px;
+ }
+ 
++.character {
++    margin-right: -5%;
++    margin-top: -10%;
++    width: 25%;
++
++}
++
++.splash {
++    width: 45%;
++    height: 45%;
++    margin-right: -13%;
++    margin-top: -10px;
++}
++

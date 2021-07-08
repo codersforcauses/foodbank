@@ -71,17 +71,16 @@ const Card = ({
   character,
   ...props
 }: CardProps) => {
+  
   return (
     <div className={[styles.card, getClassesFromColor(color, unlocked)].join(' ').trim()} {...props}>
-      <div className='absolute top-0 right-0'>
+      
         {character &&
-          <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
-            <img src={explosion.src} alt='explosion' />
-            <div className="h-3/4 w-3/4 relative m-4">
-              <img src={character.imageGif.src} alt={character.name} />
-            </div>
+          <div className="">
+            <img src={explosion.src} alt='explosion' className={styles['splash'] + ' absolute top-0 right-0'}/>
+            <img src={character.imageGif.src} alt={character.name} className={styles.character + ' absolute top-0 right-0'}></img>
           </div>}
-      </div>
+      
       <Link href={'/recipes/' + slug}>
         <a>
           <img src={image.src} alt={text} className={styles["card-image"]} /> 
