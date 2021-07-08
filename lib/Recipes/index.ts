@@ -21,7 +21,7 @@ import speedyCheeseMuffins from './Speedy Cheese Muffins';
 import humbleCrumble from './Humble Crumble';
 import herbaliciousGarlicDip from './Herbalicious Garlic Dip'
 
-const recipes = [kPowFritters, sportyBananaBites, superSonicDip, cocoLocoBalls, coolCucumberSalad, deadlyDumperScrolls,
+const recipes = [kPowFritters, sportyBananaBites, superSonicDip, cocoLocoBalls, coolCucumberSalad,
   deadlyDumperScrolls, noodleNinjaSalad, rockinRicePudding, powerUpPizza, oodlesOfNoodles, legendaryLasagne, chickenDrummerRice,
   herbaliciousSalad, meanGreenSalad, cheekyChickenBites, superSweetPotatoBake, cheesyPastaBlast, masherManPie, vegieSquadCurry,
   speedyCheeseMuffins, humbleCrumble, herbaliciousGarlicDip

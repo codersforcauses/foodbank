@@ -1,11 +1,11 @@
 import { Character } from 'lib/types'
-import queenPeaImage from './69. Superhero Food - Queen Pea.webp'
-import peaPodImage from './70. Everyday Food - Pea Pod.webp'
-import queenPeaImagePng from '../No background images/Queen Pea.png'
+import queenPeaImage from 'public/images/Characters/Vegetables/69. Superhero Food - Queen Pea.webp'
+import peaPodImage from 'public/images/Characters/Vegetables/70. Everyday Food - Pea Pod.webp'
+import queenPeaImagePng from 'public/images/Characters/No background images/Queen Pea.png'
 
-import saucyLadyImage from './35. Superhero Food - Saucy Lady.webp'
-import athleticTomatoImage from './36. Everyday Food - Athletic Tomato.webp'
-import saucyLadyImagePng from '../No background images/Saucy Lady.png'
+import saucyLadyImage from 'public/images/Characters/Vegetables/35. Superhero Food - Saucy Lady.webp'
+import athleticTomatoImage from 'public/images/Characters/Vegetables/36. Everyday Food - Athletic Tomato.webp'
+import saucyLadyImagePng from 'public/images/Characters/No background images/Saucy Lady.png'
 
 const peaPod: Character = {
   name: 'Pea Pod',

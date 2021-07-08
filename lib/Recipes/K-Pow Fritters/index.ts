@@ -75,7 +75,8 @@ const kPowFritters: Recipe = {
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
   colorScheme: orangeScheme,
-  character: peaPod
+  character: peaPod,
+  hint: 'Cold fritters are a tasty lunchbox idea.'
 }
 
 export default kPowFritters

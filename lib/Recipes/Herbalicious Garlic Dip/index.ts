@@ -79,7 +79,7 @@ const herbaliciousGarlicDip: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
 }
 
 export default herbaliciousGarlicDip

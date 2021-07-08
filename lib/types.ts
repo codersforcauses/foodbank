@@ -19,6 +19,7 @@ interface Recipe {
   ingredientsImg: string
   equipmentImg: string
   colorScheme: ColorScheme
+  hint?: string
 }
 
 interface RecipeStep {
@@ -37,6 +38,7 @@ interface Character {
   superPowers: string
   foodGroup: string
   location: string
+  facing?: string
 
 }
 export type { ColorScheme, Recipe, RecipeStep, Character }

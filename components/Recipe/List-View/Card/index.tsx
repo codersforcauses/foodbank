@@ -2,8 +2,8 @@
 import React from 'react'
 import Link from 'next/link'
 import styles from './Card.module.css'
-import {Character} from '../../../../lib/types'
-import explosion from '../../../../lib/Extra/explosion.png'
+import {Character} from '@lib/types'
+import explosion from 'public/images/Extra/explosion.png'
 import Image from 'next/image'
 
 export interface CardProps {
@@ -71,21 +71,20 @@ const Card = ({
   character,
   ...props
 }: CardProps) => {
-  console.log(color);
   return (
     <div className={[styles.card, getClassesFromColor(color, unlocked)].join(' ').trim()} {...props}>
       <div className='absolute top-0 right-0'>
         {character &&
           <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
-            <Image layout="fill" src={explosion} alt='explosion' />
+            <img src={explosion.src} alt='explosion' />
             <div className="h-3/4 w-3/4 relative m-4">
-              <Image layout="fill" src={character.imageGif} alt={character.name} />
+              <img src={character.imageGif.src} alt={character.name} />
             </div>
           </div>}
       </div>
-      <Link href={'/recipes/' + slug + '/overview'}>
+      <Link href={'/recipes/' + slug}>
         <a>
-          <Image src={image} alt={text} className={styles["card-image"]} /> 
+          <img src={image.src} alt={text} className={styles["card-image"]} /> 
           <h1>{label}</h1>
         </a>
       </Link>

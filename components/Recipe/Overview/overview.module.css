@@ -1,0 +1,168 @@
+
+/**********/
+/* Recipe overview page */
+/**********/
+
+/* Main image */
+
+.recipe-main-image {
+    border: 3px solid #434343;
+    margin-top: 20%;
+}
+
+/* Star label for the recipe name */
+.label-main-image {
+    margin-left: -10%;
+    margin-top: 2%;
+    width: 45%;
+    height: 100%;
+    max-height: 400px;
+    max-width: 450px;
+    min-width: 200px;
+}
+
+/* Recipe name text */
+.recipe-name {
+    width: 50%;
+    font-size: 5vw;
+    text-align: center;
+    vertical-align: center;
+    font-weight: bold;
+    transform: rotate(-17deg);
+    line-height: 0.8;
+    letter-spacing: 4px;
+    align-self: center;
+    margin-top: -50%;
+    margin-left: 28%;
+    text-shadow: -2px 3px 8px rgba(0, 0, 0, 0.17);
+    z-index: 100;
+}
+
+
+.recipe-hero-image {
+    width: 25%;
+    max-height: 400px;
+    max-width: 250px;
+    min-width: 50px;
+}
+
+/* Flip hero image if it's facing left */
+.flip-hero-image {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+/* Yellow bubble image for a hint */
+.hint-main-image {
+    width: 100%;
+    min-width: 50px;
+    opacity: 80%;
+}
+
+/* Hint text */
+.hint-text {
+    width: 80%;
+    transform: rotate(10deg);
+    font-max-size: 1rem;
+}
+
+/* Main div for the content  */
+.recipe-main-content {
+    background-color: white;
+    margin-top: 60px;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    border: 3px solid #434343;
+}
+
+/* List of ingredients text */
+.ingredients-text {
+    min-width: 100px;
+    max-width: 350px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    line-height: 1.5;
+    letter-spacing: 4px;
+    font-size: 1.5rem;
+}
+/* Header "Ingredients" */
+.ingredients-header {
+    opacity: 80%;
+    transform: rotate(-5deg);
+}
+
+/* div for the ingredients image and the frame-image (over the ingredients image) */
+.image-box-1 {
+    align-items: flex-start;
+    padding-left: 10px;
+    max-width: 500px;
+}
+
+
+.ingredients-image {
+    margin-left: -100%;
+    width: 100%;
+}
+
+.frame-image {
+    width: 100%;
+    resize: none;
+    z-index:100;
+}
+
+/* Background plate for the "Ingredients" title */
+.header-plate {
+    width: 40%;
+}
+
+
+/* Media limiters. Two options: less that 901px and more */
+@media screen and (min-width: 901px) {
+    .recipe-name {
+        font-size: 50px;
+    }
+    .recipe-hero-image {
+        margin-top: 470px;
+        margin-left: -10%;
+    }
+    .hint-main-image {
+        margin-left: 200px;
+        margin-top: -300px;
+    }
+    .hint-text {
+        margin-top: -110px;
+        margin-left: 34px;
+        font-size: 1rem;
+    }
+    .ingredients-header {
+        font-size: 3.5rem;
+        margin-top: -15%;
+        margin-left: 45px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .recipe-hero-image {
+        margin-top: 60%;
+        margin-left: -3%;
+    }
+    .hint-main-image {
+        margin-left: 80%;
+        margin-top: -130%;
+    }
+    .hint-text {
+        margin-top: -45%;
+        margin-left: 15%;
+        font-size: 2vw;
+    }
+    .ingredients-header {
+        font-size: 7vw;
+        margin-top: -20%;
+        margin-left: 45px;
+    }
+    .header-plate {
+        width: 60%;
+    }
+}
