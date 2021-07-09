@@ -40,11 +40,11 @@ const IngredientsList: React.FC<Props> = ({recipe}) => {
                     </ul>
                 </div>
                 <div className={styles["image-box-1"] + ' flex'}>
-                    <img
-                        className={styles["frame-image"] + ' static'}
-                        src={imgFrameOne.src}
-                        alt='frame-one'
-                    />
+                    {/*<img*/}
+                    {/*    className={styles["frame-image"] + ' static'}*/}
+                    {/*    src={imgFrameOne.src}*/}
+                    {/*    alt='frame-one'*/}
+                    {/*/>*/}
                     <img
                         className={styles["ingredients-image"] + ' rounded-3xl static'}
                         src={recipe.ingredientsImg.src}
