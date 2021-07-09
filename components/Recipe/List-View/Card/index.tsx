@@ -83,7 +83,7 @@ const Card = ({
             </div>
           </div>}
       </div>
-      <Link href={'/recipes/' + slug + '/overview'}>
+      <Link href={'/recipes/' + slug}>
         <a>
           <Image src={image} alt={text} className={styles["card-image"]} /> 
           <h1>{label}</h1>
