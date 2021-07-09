@@ -1,5 +1,43 @@
-import React from 'react'
+import { recipes } from 'lib/Recipes';
+import { Recipe } from 'lib/types';
+import SlideShowButton from 'components/Recipe/Buttons/slideshow'
 
-const RecipeSlideshow: React.FC = () => <div>Slideshow</div>
+import { useRouter } from 'next/router';
+import React, { useState } from 'react'
+import Image from 'next/image'
+
+const RecipeSlideshow: React.FC = () => {
+    const [step, setStep] = useState(0);
+    
+    const router = useRouter();
+    const { slug } = router.query;
+
+    let recipe: Recipe | null = null;
+
+    for (const potential_recipe of recipes) {
+        if (slug === potential_recipe.slug) {
+            recipe = potential_recipe;
+        }
+    }
+
+    if (!recipe) return <div> Error </div>
+
+    const numSteps = recipe.steps.length;
+
+    const changeIndex = (isIncrement: boolean, num: number) => {
+        if (isIncrement) return Math.min(num + 1, numSteps - 1)
+        else return Math.max(num - 1, 0);
+    }
+
+    return (
+        <div className="flex h-screen">
+            <div className="m-auto">
+                <SlideShowButton className="" name='Previous' handleClick={() => { setStep(changeIndex(false, step))}} />
+                <Image src={recipe.steps[step].image} alt="image {step}" />
+                <SlideShowButton className="" name='Next' handleClick={() => { setStep(changeIndex(true, step))}} />
+            </div>
+        </div>
+    )
+}
 
 export default RecipeSlideshow
