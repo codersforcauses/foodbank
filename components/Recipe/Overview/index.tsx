@@ -7,10 +7,10 @@ import styles from 'components/Recipe/Overview/overview.module.css'
 import starLabel from 'public/images/Extra/star_label.png'
 import hintPlate from 'public/images/Extra/hint-plate.png'
 
-// import Buttons from 'components/Recipe/Buttons'
+import Buttons from 'components/Recipe/Buttons'
 import EquipmentList from 'components/Recipe/EquipmentList'
 import IngredientsList from 'components/Recipe/IngredientsList'
-// import CategoryInfo from 'components/Recipe/CategoryInfo'
+import CategoryInfo from 'components/Recipe/CategoryInfo'
 
 interface ParamTypes {
     recipe: Recipe
@@ -59,10 +59,16 @@ const RecipeOverview: React.FC = ({ recipe }) => {
                 <div className="flex justify-center m-1 w-full">
                     <div className={styles["recipe-main-content"] + " flex flex-col"}>
                         <div>
+                            <CategoryInfo recipe={recipe}/>
+                        </div>
+                        <div>
                             <IngredientsList recipe={recipe}/>
                         </div>
                         <div>
                             <EquipmentList recipe={recipe}/>
+                        </div>
+                        <div>
+                            <Buttons recipe={recipe}/>
                         </div>
                     </div>
                 </div>

@@ -28,29 +28,24 @@ const IngredientsList: React.FC<Props> = ({recipe}) => {
                     Ingredients
                 </h1>
             </div>
-            <div className={styles["content-block"] + ' flex flex-row justify-center flex-wrap'}>
-                <div className={styles["ingredients-text"] + ' flex flex-shrink-0 font-semibold font-serif'}>
+            <div className={'grid grid-cols-2 justify-items-center gap-12'}>
+                <div className={styles["ingredients-text"] + ' pl-8 font-semibold font-serif'}>
                     <ul>
-                        {recipe.ingredients.map(ingredient => (
+                        {recipe.ingredients.map(el => (
 
-                            <li key={ingredient}>
-                                - {ingredient}
+                            <li key={el}>
+                                - {el}
                             </li>
                         ))}
                     </ul>
                 </div>
-                <div className={styles["image-box-1"] + ' flex'}>
-                    {/*<img*/}
-                    {/*    className={styles["frame-image"] + ' static'}*/}
-                    {/*    src={imgFrameOne.src}*/}
-                    {/*    alt='frame-one'*/}
-                    {/*/>*/}
-                    <img
-                        className={styles["ingredients-image"] + ' rounded-3xl static'}
-                        src={recipe.ingredientsImg.src}
-                        alt='equipment'
-                    />
-                </div>
+
+                <img
+                    className={'rounded-3xl self-center pr-8'}
+                    src={recipe.ingredientsImg.src}
+                    alt='equipment'
+                />
+
             </div>
         </div>
     )
