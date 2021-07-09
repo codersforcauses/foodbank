@@ -32,9 +32,10 @@ const RecipeSlideshow: React.FC = () => {
     return (
         <div className="flex h-screen">
             <div className="m-auto">
-                <SlideShowButton className="" name='Previous' handleClick={() => { setStep(changeIndex(false, step))}} />
+                <SlideShowButton name='Previous' handleClick={() => { setStep(changeIndex(false, step))}} />
                 <Image src={recipe.steps[step].image} alt="image {step}" />
-                <SlideShowButton className="" name='Next' handleClick={() => { setStep(changeIndex(true, step))}} />
+                <SlideShowButton name='Next' handleClick={() => { setStep(changeIndex(true, step))}} 
+                    lastStep={step != numSteps - 1 ? false: true} />
             </div>
         </div>
     )
