@@ -15,7 +15,7 @@ const CategoryInfo: React.FC<Props> = ({recipe}) => {
     const colorScheme = recipe.colorScheme
     return (
         <div>
-            <div className='flex flex-row flex-wrap justify-start gap-5 mt-5 mb-5'>
+            <div className='flex flex-row flex-wrap justify-end gap-5 mt-5 mb-5'>
                 <h2 className={'text-xl font-serif ' + colorScheme.header}>Category</h2>
                 {recipe.category.map(el => {
                     return <p className={colorScheme.text} key={el}>{el}</p>

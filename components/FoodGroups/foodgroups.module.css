@@ -1,0 +1,38 @@
+/**********/
+/* Five food groups main page */
+/**********/
+
+.dairy {
+    width: 22.5%;
+    margin-top: 31.5%;
+    margin-left: -7.6%;
+}
+
+.zoom-in:hover {
+    -webkit-transform: scale(1.05, 1.05);
+    -webkit-transition: all 0.1s ease-in-out;
+    z-index: 100;
+}
+
+.grains {
+    /*width: 30%;*/
+    margin-left: -30.6%;
+}
+
+.meat {
+    width: 28%;
+    margin-left: -28.7%;
+    margin-top: 30%;
+}
+
+.fruit {
+    width: 29%;
+    margin-top: 29.5%;
+    margin-left: -0.5%;
+
+}
+
+.vegetables {
+    width: 30%;
+    margin-left: -0.3%;
+}
