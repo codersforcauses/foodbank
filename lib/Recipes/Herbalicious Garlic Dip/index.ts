@@ -49,7 +49,7 @@ const step5: RecipeStep = {
 const herbaliciousGarlicDip: Recipe = {
   slug: 'herbalicious-garlic-dip',
   name: 'Herbalicious Garlic Dip',
-  category: 'Snacks',
+  category: ['Snack'],
   tags: ['Dip', 'Garlic', 'Snack', 'Vegetables'],
   equipment: [
     'Chopping board',

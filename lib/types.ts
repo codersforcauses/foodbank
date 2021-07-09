@@ -9,7 +9,7 @@ interface ColorScheme {
 interface Recipe {
   slug: string
   name: string
-  category: string
+  category: string[]
   character?: Character
   tags: Array<string>
   equipment: Array<string>

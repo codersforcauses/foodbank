@@ -31,7 +31,7 @@ const step3: RecipeStep = {
 const superSonicDip: Recipe = {
   slug: 'super-sonic-dip',
   name: 'Super Sonic Dip',
-  category: 'Snacks',
+  category: ['Snack'],
   tags: [
     'Dip',
     'Vegetables',

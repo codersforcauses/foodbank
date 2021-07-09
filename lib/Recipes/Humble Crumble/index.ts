@@ -49,7 +49,7 @@ const step5: RecipeStep = {
 const humbleCrumble: Recipe = {
   slug: 'humble-crumble',
   name: 'Humble Crumble',
-  category: 'Dessert',
+  category: ['Dessert'],
   tags: ['Apple', 'Dessert', 'Peach'], // apple(s), peach(es) for tags change when i know
   equipment: [
     'Large Bowl',

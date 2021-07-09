@@ -42,7 +42,7 @@ const step5: RecipeStep = {
 const herbaliciousSalad: Recipe = {
     slug: 'herbalicious-salad', 
     name: 'Herbalicious Salad',
-    category: 'Salad',
+    category: ['Salad'],
     tags: ['Side', 'Main', 'Salad', 'Pasta', 'Vegetables', 'Herbs'],
     equipment: ['Chopping board', 'Knife', 'Small bowl', 'Large bowl', 'Fine grater', 
     'Coarse grater', 'Measuring cups', 'Measuring spoons', 'Large spoon', 'Strainer'], 

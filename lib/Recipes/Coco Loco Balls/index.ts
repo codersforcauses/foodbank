@@ -32,7 +32,7 @@ const step3: RecipeStep = {
 const cocoLocoBalls: Recipe = {
   slug: 'coco-loco-balls',
   name: 'Coco Loco Balls',
-  category: 'Snacks/Desert',
+  category: ['Snack', 'Dessert'],
   tags: ['Dessert', 'Banana', 'Coconut', 'Balls'],
   equipment: [
     'Large bowl',

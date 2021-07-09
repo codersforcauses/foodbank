@@ -32,7 +32,7 @@ const step3: RecipeStep = {
 const sportyBananaBites: Recipe = {
   slug: 'sporty-banana-bites',
   name: 'Sport Banana Bites',
-  category: 'Snacks',
+  category: ['Snack'],
   tags: ['Snack', 'Dessert', 'Banana'],
   equipment: [
     'Medium bowl',

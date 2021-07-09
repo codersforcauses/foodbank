@@ -43,7 +43,7 @@ const step5: RecipeStep = {
 const meanGreenSalad: Recipe = {
     slug: 'mean-green-salad', 
     name: 'Mean Green Salad',
-    category: 'Salad',
+    category: ['Salad'],
     tags: ['Salad', 'Vegetables'],
     equipment: ['Chopping board', 'Knife', 'Large bowl', 'Small bowl', 'Grater', 'Large spoon', 'Measuring cups', 'Measuring spoons', 'Juicer'], 
     ingredients: ['Salad:', '1 broccoli', '1 red apple', '¼ cabbage', '2 spring onions', '1 carrot', '¼ cup sunflower seeds or pepitas', 

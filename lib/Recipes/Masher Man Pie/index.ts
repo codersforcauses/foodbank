@@ -49,7 +49,7 @@ const step5: RecipeStep = {
 const masherManPie: Recipe = {
   slug: 'masher-man-pie',
   name: 'Masher Man Pie',
-  category: 'Main',
+  category: ['Main'],
   tags: ['Pie', 'Potato', 'Beef', 'Baked Beans'],
   equipment: [
     'Chopping board',

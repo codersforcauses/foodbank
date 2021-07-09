@@ -50,8 +50,8 @@ const step5: RecipeStep = {
 const deadlyDumperScrolls: Recipe = {
   slug: 'deadly-damper-scrolls',
   name: 'Deadly Damper Scrolls',
-  category: 'Snack',
-  tags: ['Sweet', 'snack', 'damper', 'apple'],
+  category: ['Snack'],
+  tags: ['Sweet', 'Snack', 'Damper', 'Apple'],
   equipment: [
     'Oven',
     'Baking tray',

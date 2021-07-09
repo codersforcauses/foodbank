@@ -51,7 +51,7 @@ const step5: RecipeStep = {
 const cheesyPastaBlast: Recipe = {
   slug: 'cheesy-pasta-blast',
   name: 'Cheesy Pasta Blast',
-  category: 'Main',
+  category: ['Main'],
   tags: ['One-pot', 'Pasta', 'Tuna', 'Easy'],
   equipment: [
     'Frypan and lid',

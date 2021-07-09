@@ -52,7 +52,7 @@ const step5: RecipeStep = {
 const superSweetPotatoBake: Recipe = {
   slug: 'super-sweet-potato-bake',
   name: 'Super Sweet Potato Bake',
-  category: 'Main',
+  category: ['Main'],
   tags: ['Potato', 'Bake Potato', 'Corn', 'Sweet Potato'], //bake potato, sweet potato tags space or not
   equipment: [
     'Knife',

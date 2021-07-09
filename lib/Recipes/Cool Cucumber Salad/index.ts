@@ -49,7 +49,7 @@ const step5: RecipeStep = {
 const coolCucumberSalad: Recipe = {
   slug: 'cool-cucumber-salad',
   name: 'Cool Cucumber Salad',
-  category: 'Salad',
+  category: ['Salad'],
   tags: ['Salad', 'Cucumber', 'Greek Salad'],
   equipment: [
     'Knife',

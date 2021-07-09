@@ -50,7 +50,7 @@ const step5: RecipeStep = {
 const vegieSquadCurry: Recipe = {
   slug: 'vegie-squad-curry',
   name: 'Vegie Squad Curry',
-  category: 'Main',
+  category: ['Main'],
   tags: ['Curry', 'Vegetables', 'Vegetarian'],
   equipment: [
     'Knife',

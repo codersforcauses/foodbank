@@ -43,7 +43,7 @@ const step5: RecipeStep = {
 const chickenDrummerRice: Recipe = {
     slug: 'chicken-drummer-rice', 
     name: 'Chicken Drummer Rice',
-    category: 'Main',
+    category: ['Main'],
     tags: ['Chicken', 'Rice', 'Vegetables'],
     equipment: ['2 chopping boards', 'Knife', 'Frypan with lid', 'Stirring spoon', 'Measuring spoons', 'Measuring cups'], 
     ingredients: ['1 brown onion', '2 garlic cloves', '1 red capsicum', '2 chicken breasts', 'Spray oil', '1 tablespoon paprika',

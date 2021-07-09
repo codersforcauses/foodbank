@@ -42,7 +42,7 @@ const step5: RecipeStep = {
 const oodlesOfNoodles: Recipe = {
     slug: 'oodles-of-noodles', 
     name: 'Oodles of Noodles',
-    category: 'Main',
+    category: ['Main'],
     tags: ['Noodles', 'Lunch', 'Dinner', 'Vegetables', 'Chicken'],
     equipment: ['Chopping board', 'Knife', 'Frypan', 'Large spoon', 'Grater', 'Measuring spoons', 'Measuring cups'], 
     ingredients: ['1 brown onion', '2 garlic cloves', 'Spray oil', '500 g chicken mince', '1 zucchini', 

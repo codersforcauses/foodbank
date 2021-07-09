@@ -51,7 +51,7 @@ const step5: RecipeStep = {
 const rockinRicePudding: Recipe = {
   slug: 'rockin-rice-pudding',
   name: 'Rockin’ Rice Pudding',
-  category: 'Desserts',
+  category: ['Dessert'],
   tags: ['Rice', 'Fruit', 'Sweet'],
   equipment: [
     'Frypan and lid',

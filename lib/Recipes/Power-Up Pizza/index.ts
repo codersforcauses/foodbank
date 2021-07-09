@@ -44,7 +44,7 @@ const step5: RecipeStep = {
 const powerUpPizza: Recipe = {
     slug: 'power-up-pizza', 
     name: 'Power-Up Pizza',
-    category: 'Main',
+    category: ['Main'],
     tags: ['Pizza', 'Lunch', 'Dinner', 'Vegetables'],
     equipment: [
         'Large bowl',

@@ -47,7 +47,7 @@ const step5: RecipeStep = {
 const kPowFritters: Recipe = {
   slug: 'k-pow-fritters',
   name: 'K-pow Fritters',
-  category: 'Snacks/Main',
+  category: ['Snack', 'Main'],
   tags: ['Corn', 'Vegetables', 'Fritters', 'Lunch'],
   equipment: [
     'Bowl',

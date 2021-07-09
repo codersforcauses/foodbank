@@ -47,7 +47,7 @@ const step5: RecipeStep = {
 const speedyCheeseMuffins: Recipe = {
   slug: 'speedy-cheese-muffins',
   name: 'Speedy Cheese Muffins',
-  category: 'Snacks',
+  category: ['Snack'],
   tags: ['Snack', 'Muffins', 'Lunchbox', 'Pumpkin'],
   equipment: [
     'Oven',

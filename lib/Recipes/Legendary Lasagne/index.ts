@@ -42,7 +42,7 @@ const step5: RecipeStep = {
 const legendaryLasagne: Recipe = {
     slug: 'legendary-lasagne', 
     name: 'Legendary Lasagne',
-    category: 'Main',
+    category: ['Main'],
     tags: ['Pasta', 'Vegetables', 'Meat'],
     equipment: ['Can opener', 'Strainer', 'Fork/potato masher', '2 bowls', 'Knife',
      'Chopping board', 'Measuring cups', 'Measuring spoons', 'Grater', 'Stirring spoon', 'Frypan with lid'], 

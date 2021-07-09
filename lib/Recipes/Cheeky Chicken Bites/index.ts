@@ -50,7 +50,7 @@ const step5: RecipeStep = {
 const cheekyChickenBites: Recipe = {
   slug: 'cheeky-chicken-bites',
   name: 'Cheeky Chicken Bites',
-  category: 'Snacks',
+  category: ['Snack'],
   tags: ['Chicken', 'Bites', 'Kids', 'Nuggets'],
   equipment: [
     'Chopping board',

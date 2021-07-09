@@ -51,7 +51,7 @@ const step5: RecipeStep = {
 const noodleNinjaSalad: Recipe = {
   slug: 'noodle-ninja-salad',
   name: 'Noodle Ninja Salad',
-  category: 'Salads',
+  category: ['Salad'],
   tags: ['Noodles'],
   equipment: [
     '2 small bowls Strainer',
