@@ -11,21 +11,3 @@
     border-top-right-radius: 10%;
     width: 350px;
 }
-
-.character {
-    margin-right: -5%;
-    margin-top: -10%;
-    width: 25%;
-    z-index: 20;
-
-}
-
-.splash {
-    width: 45%;
-    height: 45%;
-    margin-right: -13%;
-    margin-top: -10px;
-    opacity: 70%;
-}
-
-
