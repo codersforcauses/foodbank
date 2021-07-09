@@ -36,7 +36,7 @@ const RecipeSteps: React.FC = () => {
         {recipe.steps.map(step => (
           <Step key={step.number} step={step} colorScheme={colorScheme} />
         ))}
-        <Link href={'/recipes/' + recipe.slug + '/overview'} passHref>
+        <Link href={'/recipes/' + recipe.slug} passHref>
           <button
             className={
               'w-24 mt-8 py-2 px-4 rounded-full ' +
