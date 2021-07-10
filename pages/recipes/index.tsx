@@ -12,7 +12,7 @@ const RecipesGridView: React.FC = () => {
     const allTags: string | string[] = [] // all tags from all the recipes
     const allCategories: string | string[] = [] // all categories from all the recipes. Some recipes belong to 
                                                 // several categories
-
+    console.log(allTags)
     recipes.map(recipe => {
         // getting all the tags
         recipe.tags.map(tag => {

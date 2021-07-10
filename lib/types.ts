@@ -41,4 +41,12 @@ interface Character {
   facing?: string
 
 }
-export type { ColorScheme, Recipe, RecipeStep, Character }
+
+interface FoodGroup {
+  name: string
+  icon: string
+  image?: string
+  description: string
+  characters?: Character[]
+}
+export type { ColorScheme, Recipe, RecipeStep, Character, FoodGroup }
