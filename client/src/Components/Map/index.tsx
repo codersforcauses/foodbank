@@ -62,8 +62,8 @@ const Map: React.FC = () => {
   return (
     <div
       ref={elementRef}
-      className='flex-auto'
-      style={{position:"relative", width:"800px"}}
+      className='flex-auto w-screen'
+      style={{position: 'relative'}}
     >
       
       {height === 0 ? null : (
