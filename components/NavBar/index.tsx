@@ -3,10 +3,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import NavLink, { NavLinkProps } from './NavLink'
 
-const Auth = dynamic(
-  () => import('../Auth'),
-  { ssr: false }
-)
+const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
 const links: Array<NavLinkProps> = [
   {
@@ -20,7 +17,7 @@ const links: Array<NavLinkProps> = [
   {
     page: 'Progress',
     route: '/'
-  },
+  }
 ]
 
 const Navbar = () => {
@@ -31,7 +28,7 @@ const Navbar = () => {
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 py-3 bg-primary'>
-      <div className="container flex justify-between px-3 mx-auto">
+      <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
           <a className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'>
             Home
