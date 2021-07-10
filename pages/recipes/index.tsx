@@ -63,7 +63,7 @@ const RecipesGridView: React.FC = () => {
                         </p>
                     )
                 })}
-                <p onClick={e => setFilteredCards(recipes)}
+                <p onClick={() => setFilteredCards(recipes)}
                    className="text-lg"
                    style={{cursor: "pointer"}}>
                     All

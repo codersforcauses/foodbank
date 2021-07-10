@@ -30,7 +30,7 @@ const Navbar = () => {
   }, [])
 
   return (
-    <header className='fixed inset-x-0 top-0 z-20 py-3 bg-primary'>
+    <header className='fixed inset-x-0 top-0 z-20 py-3 bg-primary hidden md:block'>
       <div className="container flex justify-between px-3 mx-auto">
         <Link href='/'>
           <a className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'>

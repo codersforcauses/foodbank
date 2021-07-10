@@ -3,38 +3,79 @@
 /**********/
 
 .dairy {
-    width: 22.5%;
+    /*width: 22.5%;*/
+    /*height: 30rem;*/
+    /*width: 23rem;*/
     margin-top: 31.5%;
     margin-left: -7.6%;
 }
 
-.zoom-in:hover {
-    -webkit-transform: scale(1.05, 1.05);
-    -webkit-transition: all 0.1s ease-in-out;
-    z-index: 100;
+
+.custom-img {
+    object-fit: contain;
+    /*max-width: 400px;*/
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
 }
 
-.grains {
+.unset-img {
+    /*display: flex;*/
+    position: absolute;
     width: 30%;
-    margin-left: -30.6%;
+}
+.img-dairy {
+    position: absolute;
+    width: 22.6%;
+    margin-top: 31%;
+    margin-left: -7%;
 }
 
-.meat {
+
+.img-meat {
+    position: absolute;
     width: 28%;
-    margin-left: -28.7%;
-    margin-top: 30%;
-}
-
-.fruit {
-    width: 29%;
+    margin-left: -27.9%;
     margin-top: 29.5%;
-    margin-left: -0.5%;
-
 }
 
-.vegetables {
+.img-fruit {
+    position: absolute;
+    width: 28.5%;
+    margin-top: 29.6%;
+    margin-left: -0.1%;
+}
+
+.img-vegetables {
+    position: absolute;
     width: 30%;
     margin-left: -0.3%;
+}
+
+.img-grains {
+    position: absolute;
+    width: 30%;
+    margin-left: -30%;
+}
+
+.img-meat > div {
+    position: unset !important;
+}
+
+.img-fruit > div {
+    position: unset !important;
+}
+
+.img-vegetables > div {
+    position: unset !important;
+}
+
+.img-dairy > div {
+    position: unset !important;
+}
+
+.img-grains > div {
+    position: unset !important;
 }
 
 
