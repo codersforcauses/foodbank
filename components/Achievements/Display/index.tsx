@@ -17,7 +17,7 @@ const Display: React.FC<Props> = ({ achievements }) => {
           key={title}
           className={
             'grid grid-cols-1 gap-y-6 place-items-center ' +
-            (unlocked ? '' : 'opacity-20')
+            (unlocked ? '' : 'filter grayscale contrast-50 opacity-50')
           }
         >
           <Image src={image} alt='Achievement' width={150} height={150} />
