@@ -2,6 +2,7 @@
 // svg tree generated from dev/svgParse.py (super hacky atm)
 
 import React, { useEffect, useRef, useState } from 'react'
+// import { Menu } from '@headlessui/react'
 import './index.css'
 import { Location } from '../../lib/types'
 import svgData from './svgImageData.json'
@@ -15,7 +16,7 @@ const Map: React.FC = () => {
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
-  const [townbox, setTownbox] = useState(<></>)
+  // const [townbox, setTownbox] = useState(<></>)
   type HeaderColor = 'primary' | 'orange';
   useEffect(() => {
     if (elementRef?.current?.clientHeight) {
@@ -26,7 +27,6 @@ const Map: React.FC = () => {
   useEffect(() => {
     function handleResize() {
       setScale(window.innerWidth/4961)
-      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
     } window.addEventListener('resize', handleResize)})
 
   useEffect(() => {
@@ -49,28 +49,6 @@ const Map: React.FC = () => {
   }
 
   const onMapClick = (area: Location) => {
-    const areaDescription = getAreaDescription(area)
-
-    if(selected !== area) {
-      const header = areaDescription?.headerText
-      const caption = areaDescription?.captionText
-      const showButton = areaDescription?.showButton
-      const headerColor:HeaderColor = areaDescription?.headerColor as HeaderColor;
-      const maxWidth = areaDescription?.maxWidth
-      const maxHeight = areaDescription?.maxHeight
-
-      setTownbox(
-        <Townbox 
-          maxWidth={maxWidth} 
-          maxHeight={maxHeight}
-          headerColor={headerColor}
-          headerText={header}
-          captionText={caption}
-          showButton = {showButton}
-        />
-      )
-    }
-
     selected === area ? onSelect(null) : onSelect(area)
   }
   // eslint-disable-next-line
@@ -84,9 +62,9 @@ const Map: React.FC = () => {
   return (
     <div
       ref={elementRef}
-      className='flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5 flex justify-center'
+      className='flex-auto'
+      style={{position:"relative", width:"800px"}}
     >
-      
       
       {height === 0 ? null : (
           <div className='svgrow'>
@@ -98,13 +76,12 @@ const Map: React.FC = () => {
                 const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
                 const up = ["aquaOcean", "zombieWasteland", "grainField"]
                 const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
-                console.log(translation);
                 return (
                   <div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
                     {location.name} 
                     {
                       selected === Location[location.id as keyof typeof Location] &&
-                      <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}>{townbox}</div>
+                      <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}></div>
                     }
                   </div>
                 )
@@ -119,20 +96,60 @@ const Map: React.FC = () => {
                           ? 'map-selected'
                           : 'map-unselected'
                     return (
-                          <area 
-                            key={location.id}
-                            alt={location.id}
-                            onClick={handleClick}
-                            href={location.id}
-                            coords={scaledCoords.join()}
-                            className={className}
-                            shape="poly"
-                          />
+                        <area 
+                          key={location.id}
+                          alt={location.id}
+                          onClick={handleClick}
+                          href={location.id}
+                          coords={scaledCoords.join()}
+                          className={className}
+                          shape="poly"
+                        />
                     )
                   }
                 })
               }
             </map>
+
+            {
+                svgData.groupArray.map(area => {
+                  if (selected !== null && area.coords){
+                    const selectedArea = getAreaDescription(selected)
+
+                    if(selectedArea !== null && selectedArea.id === area.id) {
+                      const header = selectedArea?.headerText
+                      const caption = selectedArea?.captionText
+                      const showButton = selectedArea?.showButton
+                      
+                      const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
+
+                      const maxWidth = selectedArea?.maxWidth
+                      const maxHeight = selectedArea?.maxHeight
+
+                      const xtrans = parseInt(area.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
+                      const ytrans = parseInt(area.ytrans) * scale * 8; // this is probably worth looking into
+                      const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
+
+
+                      console.log(selectedArea);
+
+                      return (
+                        <div style={{position:"absolute", transform:translation}}>
+                          <Townbox 
+                            maxWidth={maxWidth} 
+                            maxHeight={maxHeight}
+                            headerColor={headerColor}
+                            headerText={header}
+                            captionText={caption}
+                            showButton = {showButton}
+                          />
+                        </div>
+                      )
+                    }
+                  }
+                })
+              }
+
         </div>
       )}
     </div>
