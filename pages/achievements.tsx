@@ -13,6 +13,7 @@ const Achievements: React.FC = () => {
   // Loads achievements on intial render.
   useEffect(() => {
     allAchievements[0].unlocked = true
+    allAchievements[1].unlocked = true
     allAchievements[2].unlocked = true
     setAchievements(allAchievements)
   }, [])

@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import type { Achievement } from 'lib/types'
 
+import explosion from 'public/images/explosion.png'
+
 interface Props {
   achievements: Array<Achievement>
 }
@@ -16,12 +18,19 @@ const Display: React.FC<Props> = ({ achievements }) => {
         <div
           key={title}
           className={
-            'grid grid-cols-1 gap-y-6 place-items-center ' +
+            'grid grid-cols-1 place-items-center ' +
             (unlocked ? '' : 'filter grayscale contrast-50 opacity-50')
           }
         >
-          <Image src={image} alt='Achievement' width={150} height={150} />
-          <div>{title}</div>
+          <div className='relative'>
+            <div className='m-auto w-40 h-40'>
+              <Image src={explosion} alt='Explosion' />
+            </div>
+            <div className='absolute m-auto w-20 h-20 left-12 top-9'>
+              <Image src={image} alt='Achievement' width={70} height={70} />
+            </div>
+          </div>
+          <div className='font-serif'>{title}</div>
         </div>
       ))}
     </div>
