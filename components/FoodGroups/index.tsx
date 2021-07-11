@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import dairy from 'public/images/FoodGroups/dairy-shadow.png'
 import meat from 'public/images/FoodGroups/meat-shadow.png'
 import fruit from 'public/images/FoodGroups/fruit-shadow.png'
@@ -7,10 +7,16 @@ import vegetables from 'public/images/FoodGroups/vegetables-shadow.png'
 
 import styles from 'components/FoodGroups/foodgroups.module.css'
 
-import Image, { ImageProps } from "next/image";
-import { Modal } from '@components/Custom'
+import Image, {ImageProps} from "next/image";
+import {Modal} from '@components/Custom'
 
-import { resize_map, initialCoordinates, initialWidths } from '@components/FoodGroups/dinamicStyles'
+import {
+    resize_map,
+    initialCoordinates,
+    initialWidths,
+    handleMouseOver,
+    handleMouseOut
+} from '@components/FoodGroups/dinamicStyles'
 
 /**
  * A page displaying all food groups in a pie chart
@@ -41,89 +47,26 @@ const FoodGroups: React.FC = () => {
     const [fruitStyles, setFruitStyles] = useState([""])
     const [vegetablesStyles, setVegetablesStyles] = useState([""])
 
+    const allstates = {
+        meatStyles,
+        setMeatStyles,
+        grainsStyles,
+        setGrainsStyles,
+        dairyStyles,
+        setDairyStyles,
+        fruitStyles,
+        setFruitStyles,
+        vegetablesStyles,
+        setVegetablesStyles
+    }
+
     const [coordinates, setCoordinates] = useState(initialCoordinates)
     const [previousWidth, setPreviousWidth] = useState(initialWidths)
 
-    
+
     useEffect(() => {
         resize_map(previousWidth, coordinates, setPreviousWidth, setCoordinates)
-    }, [ window.innerWidth ]);
-
-
-    const handleMouseOver = (e) => {
-
-        const group_id = e.target.parentNode.parentNode.attributes["id"].value
-        let styles
-        let zoom = ["transform", "scale-105", "z-10"]
-        switch (group_id) {
-            case "meat":
-                styles = [...meatStyles, ...zoom]
-                setMeatStyles(styles)
-                setDairyStyles([""])
-                setGrainsStyles([""])
-                break
-            case "grains":
-                styles = [...grainsStyles, ...zoom]
-                setGrainsStyles(styles)
-                setMeatStyles([""])
-                setVegetablesStyles([""])
-                break
-            case "dairy":
-                styles = [...dairyStyles, ...zoom]
-                setDairyStyles(styles)
-                setMeatStyles([""])
-                setFruitStyles([""])
-                break
-            case "fruit":
-                styles = [...fruitStyles, ...zoom]
-                setFruitStyles(styles)
-                setDairyStyles([""])
-                setVegetablesStyles([""])
-                break
-            case "vegetables":
-                styles = [...vegetablesStyles, ...zoom]
-                setVegetablesStyles(styles)
-                setGrainsStyles([""])
-                setFruitStyles([""])
-                break
-        }
-    }
-
-    const handleMouseOut = (e) => {
-        const group_id = e.target.parentNode.parentNode.attributes["id"].value
-        let styles
-        switch (group_id) {
-            case "meat":
-                setGrainsStyles(["z-10"])
-                setDairyStyles(["z-10"])
-                setMeatStyles(["z-0"])
-                break
-            case "grains":
-                setMeatStyles(["z-10"])
-                setVegetablesStyles(["z-10"])
-                setGrainsStyles(["z-0"])
-                setDairyStyles(["z-0"])
-                break
-            case "dairy":
-                setMeatStyles(["z-10"])
-                setFruitStyles(["z-10"])
-                setDairyStyles(["z-0"])
-                break
-            case "fruit":
-                setDairyStyles(["z-10"])
-                setVegetablesStyles(["z-10"])
-                setFruitStyles(["z-0"])
-                break
-            case "vegetables":
-                setGrainsStyles(["z-10"])
-                setFruitStyles(["z-10"])
-                setDairyStyles(["z-0"])
-                setVegetablesStyles(["z-0"])
-
-                break
-        }
-
-    }
+    }, []);
 
     return (
         <div className="flex justify-center">
@@ -136,52 +79,54 @@ const FoodGroups: React.FC = () => {
                 <div id="dairy"
                      className={styles['img-dairy'] + " " + foodGroupStyles.join(' ') + " " + dairyStyles.join(" ")}>
                     <map id="map_id" name="dairy_map">
-                        <area onMouseOver={(e) => handleMouseOver(e)}
-                              onMouseOut={(e) => handleMouseOut(e)}
+                        <area onMouseOver={(e) => handleMouseOver(e, {allstates})}
+                              onMouseOut={(e) => handleMouseOut(e, {allstates})}
+                              onClick={toggleModal}
                               alt="Dairy" shape='poly'
                               coords={coordinates[0].join(', ')}/>
                     </map>
                     <Image src={dairy.src}
                            alt='dairy'
-                        // onClick={toggleModal}
                            layout="fill"
                            className={styles['custom-img']}
                            useMap="#dairy_map"
                            id="dairy-img"
-
                     />
                 </div>
 
 
-                <div id="meat" className={styles['img-meat'] + foodGroupStyles.join(' ') + meatStyles.join(' ')}>
+                <div id="meat"
+                     className={styles['img-meat'] + " " + foodGroupStyles.join(' ') + " " + meatStyles.join(' ')}>
                     <map id="map_id" name="meat_map">
-                        <area onMouseOver={(e) => handleMouseOver(e)}
-                              onMouseOut={(e) => handleMouseOut(e)}
+                        <area onMouseOver={(e) => handleMouseOver(e, {allstates})}
+                              onMouseOut={(e) => handleMouseOut(e, {allstates})}
+                              onClick={toggleModal}
                               alt="Meat" shape='poly'
                               coords={coordinates[1].join(', ')}/>
                     </map>
                     <Image src={meat.src}
                            alt='meat'
-                        // onClick={toggleModal}
+                        // 
                            layout="fill"
                            className={styles['custom-img']}
                            useMap="#meat_map"
                            id="meat-img"
-                           
+
                     />
                 </div>
 
-                <div id="fruit" className={styles['img-fruit'] + foodGroupStyles.join(' ') + fruitStyles.join(' ')}>
+                <div id="fruit"
+                     className={styles['img-fruit'] + " " + foodGroupStyles.join(' ') + " " + fruitStyles.join(' ')}>
                     <map id="map_id" name="fruit_map">
-                        <area onMouseOver={(e) => handleMouseOver(e)}
-                              onMouseOut={(e) => handleMouseOut(e)}
+                        <area onMouseOver={(e) => handleMouseOver(e, {allstates})}
+                              onMouseOut={(e) => handleMouseOut(e, {allstates})}
+                              onClick={toggleModal}
                               alt="Fruit" shape='poly'
                               coords={coordinates[2].join(', ')}/>
                     </map>
 
                     <Image src={fruit.src}
                            alt='fruit'
-                        // onClick={toggleModal}
                            layout="fill"
                            className={styles['custom-img']}
                            useMap="#fruit_map"
@@ -193,8 +138,9 @@ const FoodGroups: React.FC = () => {
                      className={styles['img-vegetables'] + " " + foodGroupStyles.join(' ') + " " + vegetablesStyles.join(" ")}>
 
                     <map id="map_id" name="vegetables_map">
-                        <area onMouseOver={(e) => handleMouseOver(e)}
-                              onMouseOut={(e) => handleMouseOut(e)}
+                        <area onMouseOver={(e) => handleMouseOver(e, {allstates})}
+                              onMouseOut={(e) => handleMouseOut(e, {allstates})}
+                              onClick={toggleModal}
                               alt="Vegetables" shape='poly'
                               coords={coordinates[3].join(', ')}/>
                     </map>
@@ -209,11 +155,11 @@ const FoodGroups: React.FC = () => {
                 </div>
 
                 <div id="grains"
-                     className={styles['img-grains'] + foodGroupStyles.join(' ') + " " + grainsStyles.join(" ")}>
+                     className={styles['img-grains'] + " " + foodGroupStyles.join(' ') + " " + grainsStyles.join(" ")}>
 
                     <map id="map_id" name="grains_map">
-                        <area onMouseOver={(e) => handleMouseOver(e)}
-                              onMouseOut={(e) => handleMouseOut(e)}
+                        <area onMouseOver={(e) => handleMouseOver(e, {allstates})}
+                              onMouseOut={(e) => handleMouseOut(e, {allstates})}
                               alt="Grains" shape='poly'
                               coords={coordinates[4].join(', ')}/>
                     </map>
