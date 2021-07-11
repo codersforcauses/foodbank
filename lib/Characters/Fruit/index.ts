@@ -14,7 +14,7 @@ const acesApple: Character = {
   aliasImage: atomicAppleImage.src,
   imageGif: atomicAppleImage.src,
   superPowers: 'Contains an army load of antioxidants to fight ilness',
-  foodGroup: 'Fruit – Protective foods',
+  foodGroup: ['Fruit', 'Protective foods'],
   location: 'Fruity Orchard',
   facing: 'right'
 }
@@ -27,7 +27,7 @@ const sportyBanana: Character = {
   aliasImage: superFruityImage.src,
   imageGif: superFruityImageGif.src,
   superPowers: 'Packed with potassium to power up the heart',
-  foodGroup: 'Fruit – Protective foods',
+  foodGroup: ['Fruit', 'Protective foods'],
   location: 'Banana Bunches',
   facing: 'left'
 }

@@ -36,7 +36,7 @@ interface Character {
   aliasImage: string
   imageGif: string
   superPowers: string
-  foodGroup: string
+  foodGroup: string[]
   location: string
   facing?: string
 
@@ -47,6 +47,7 @@ interface FoodGroup {
   icon: string
   image?: string
   description: string
+  action: string
   characters?: Character[]
 }
 export type { ColorScheme, Recipe, RecipeStep, Character, FoodGroup }
