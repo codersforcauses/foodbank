@@ -9,32 +9,37 @@ const achievements: Array<Achievement> = [
   {
     title: 'Dairy Demon',
     image: dairy,
-    unlocked: true,
-    progress: 100
+    unlocked: false,
+    progress: 2,
+    total: 4
   },
   {
     title: 'Fruit Fanatic',
     image: fruit,
-    unlocked: false,
-    progress: 80
+    unlocked: true,
+    progress: 6,
+    total: 6
   },
   {
     title: 'Glorious Grains',
     image: grains,
-    unlocked: false,
-    progress: 60
+    unlocked: true,
+    progress: 7,
+    total: 7
   },
   {
     title: 'Mighty Meat',
     image: meat,
     unlocked: false,
-    progress: 40
+    progress: 1,
+    total: 5
   },
   {
     title: 'Victorious Vegetables',
     image: vegetables,
     unlocked: false,
-    progress: 20
+    progress: 4,
+    total: 7
   }
 ]
 

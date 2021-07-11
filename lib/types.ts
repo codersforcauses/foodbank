@@ -3,4 +3,5 @@ export type Achievement = {
   image: StaticImageData
   unlocked: boolean
   progress: number
+  total: number
 }
