@@ -1,16 +1,15 @@
 import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import logo from '../../public/images/logoFoodbankAus.webp'
 import NavLink, { NavLinkProps } from './NavLink'
 
-const Auth = dynamic(
-  () => import('../Auth'),
-  { ssr: false }
-)
+const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
 const links: Array<NavLinkProps> = [
   {
-    page: 'Superhero Foods',
+    page: 'Super Foods',
     route: '/'
   },
   {
@@ -20,7 +19,7 @@ const links: Array<NavLinkProps> = [
   {
     page: 'Progress',
     route: '/'
-  },
+  }
 ]
 
 const Navbar = () => {
@@ -31,10 +30,15 @@ const Navbar = () => {
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 py-3 bg-primary'>
-      <div className="container flex justify-between px-3 mx-auto">
+      <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
-          <a className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'>
-            Home
+          <a className='hover:opacity-75'>
+            <Image
+              className='w-full h-full'
+              src={logo}
+              alt='Foodbank logo'
+              placeholder='blur'
+            />
           </a>
         </Link>
         <nav className='flex items-center space-x-10'>
@@ -46,7 +50,7 @@ const Navbar = () => {
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
         >
-          Sign-in
+          {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
         </button>
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
