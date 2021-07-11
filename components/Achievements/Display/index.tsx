@@ -12,21 +12,31 @@ interface Props {
  * Renders all unlockable achievements.
  */
 const Display: React.FC<Props> = ({ achievements }) => {
+  const progress = 30
   return (
     <div className='absolute m-28 grid grid-cols-5 gap-16'>
       {achievements.map(({ title, image, unlocked }) => (
-        <div
-          key={title}
-          className={
-            'grid grid-cols-1 place-items-center ' +
-            (unlocked ? '' : 'filter grayscale contrast-50 opacity-50')
-          }
-        >
+        <div key={title} className='grid grid-cols-1 place-items-center'>
           <div className='relative'>
-            <div className='m-auto w-40 h-40'>
+            <div
+              className={
+                'm-auto w-40 h-40 filter ' +
+                (unlocked ? '' : 'grayscale contrast-50 opacity-50')
+              }
+            >
               <Image src={explosion} alt='Explosion' />
             </div>
-            <div className='absolute m-auto w-20 h-20 left-12 top-9'>
+            <div className='absolute m-auto w-20 h-20 left-12 top-9 filter grayscale contrast-50 opacity-50'>
+              <Image src={image} alt='Achievement' width={70} height={70} />
+            </div>
+            <div
+              className='absolute m-auto w-20 h-20 left-12 top-9'
+              style={{
+                clipPath: `polygon(0% 100%, 100% 100%, 100% ${
+                  100 - progress
+                }%, 0% ${100 - progress}%)`
+              }}
+            >
               <Image src={image} alt='Achievement' width={70} height={70} />
             </div>
           </div>
