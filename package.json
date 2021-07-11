@@ -2,6 +2,22 @@
   "name": "foodbank",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codersforcauses/foodbank.git"
+  },
+  "author": "Coders for Causes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codersforcauses/foodbank/issues"
+  },
+  "homepage": "https://github.com/codersforcauses/foodbank#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
