@@ -1,6 +1,7 @@
 import './index.module.css'
 import Button, { ButtonProps } from '../Custom/Button'
 
+// component not completed
 interface TownboxProps {
   /**
    * Header colour: enter either orange/primary
@@ -35,7 +36,9 @@ export const Townbox = ({
   return (
     <div className='flex w-tb1 md:w-tb2 lg:w-tb3 xl:w-tb4'>
       <h2
-        className={`font-serif text-white p-2 px-4 border-black border-4 rounded-md ml-10 mt-4 absolute z-10 text-2xl md:text-3xl ${headerColor === 'primary' ? 'bg-primary' : 'bg-orange'}`}
+        className={`font-serif text-white p-2 px-4 border-black border-4 rounded-md ml-10 mt-4 absolute z-10 text-2xl md:text-3xl ${
+          headerColor === 'primary' ? 'bg-primary' : 'bg-orange'
+        }`}
       >
         {' '}
         {headerText}{' '}
@@ -45,13 +48,7 @@ export const Townbox = ({
         <p className='relative z-10 pb-2 mt-4 mb-0 font-sans text-base leading-5 break-words border-solid md:text-xl'>
           {captionText}
         </p>
-        {showButton && (
-          <Button
-            color={headerColor}
-          >
-            Visit
-          </Button>
-        )}
+        {showButton && <Button color={headerColor}>Visit</Button>}
       </div>
     </div>
   )
