@@ -2,14 +2,14 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import logo from '../../public/images/logoFoodbankAus.webp'
 import NavLink, { NavLinkProps } from './NavLink'
+import logo from '../../public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
 const links: Array<NavLinkProps> = [
   {
-    page: 'Super Foods',
+    page: 'Super Hero Foods',
     route: '/'
   },
   {
@@ -32,12 +32,13 @@ const Navbar = () => {
     <header className='fixed inset-x-0 top-0 z-10 py-3 bg-primary'>
       <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
-          <a className='hover:opacity-75'>
+          <a className='relative w-12 h-10 hover:opacity-75'>
             <Image
-              className='w-full h-full'
               src={logo}
               alt='Foodbank logo'
               placeholder='blur'
+              layout='fill'
+              quality={50}
             />
           </a>
         </Link>
@@ -50,7 +51,7 @@ const Navbar = () => {
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
         >
-          {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
+          {signIn ? 'Sign-out' : 'Sign-out'}
         </button>
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
