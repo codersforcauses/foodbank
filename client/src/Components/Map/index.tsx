@@ -8,6 +8,8 @@ import svgData from './svgImageData.json'
 import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import Townbox from '../Townbox'
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(0)
@@ -91,7 +93,11 @@ const Map: React.FC = () => {
       {height === 0 ? null : (
           <div className='svgrow'>
             <div style={{position:"relative"}}>
+            <TransformWrapper>
+              <TransformComponent>
               <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+              </TransformComponent>
+            </TransformWrapper>
               {svgData.groupArray.map(location =>{
                 const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                 const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
