@@ -1,3 +1,7 @@
+import seedrandom from 'seedrandom'
+import shuffle from 'shuffle-array'
+import { v4 as uuid_v4 } from 'uuid'
+
 import BlueBoy from './Dairy/BlueBoy.jpg'
 import MilkMaid from './Dairy/MilkMaid.jpg'
 import YumYoghurt from './Dairy/YumYoghurt.jpg'
@@ -42,11 +46,14 @@ import PeaPod from './Vegetables/PeaPod.jpg'
 import TinnedTradie from './Vegetables/TinnedTradie.jpg'
 
 interface Character {
+  id?: string
   image: StaticImageData
   name: string
   isSelected: boolean
   password?: string
 }
+
+const PASSWORD_LENGTH = 9
 
 const varToString = (varObj: Object) => Object.keys(varObj)[0]
 
@@ -274,4 +281,24 @@ const imgSet: Array<Character> = [
   }
 ]
 
-export default imgSet
+const randomStringGen = (length: number) => {
+  var result = ''
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var charactersLength = characters.length
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
+}
+
+const Characters = (seed: string) => {
+  seedrandom(seed, { global: true })
+  const selectedSet = shuffle(imgSet).slice(PASSWORD_LENGTH)
+  selectedSet.map(img => {
+    img.id = uuid_v4()
+    img.password = randomStringGen(PASSWORD_LENGTH)
+  })
+}
+
+export default Characters
