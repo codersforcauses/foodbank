@@ -23,9 +23,9 @@ const Auth = (props: AuthProps) => {
           label='Name'
           name='username'
         />
-        <TextField
-          label='Birth Year'
-          name='DOB'
+        <TextField 
+          label="Password"
+          name='password'
         />
         <div className='flex justify-center pt-4'>
           <Button className='flex items-center'>
