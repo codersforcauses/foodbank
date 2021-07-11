@@ -1,9 +1,7 @@
 import Map from '@components/Map'
 
 const Home = () => {
-  return (
-    <Map />
-  )
+  return <Map />
 }
 
 export default Home

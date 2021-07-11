@@ -1,6 +1,7 @@
 import './index.module.css'
 import Button, { ButtonProps } from '../Custom/Button'
 
+// component not completed
 interface TownboxProps {
   /**
    * Header colour: enter either orange/primary

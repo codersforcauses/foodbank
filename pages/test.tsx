@@ -11,7 +11,12 @@ const Test = () => {
   ]
   return (
     <div className='flex justify-center align-center'>
-      <Carousel length={images.length} className='h-72 w-96'>
+      <Carousel
+        controls
+        indicators
+        length={images.length}
+        className='h-72 w-96'
+      >
         {images.map(({ src, alt }) => (
           // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
           <div

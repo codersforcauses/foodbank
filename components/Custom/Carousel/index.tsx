@@ -6,21 +6,21 @@ import Dots from './Dots'
 import 'keen-slider/keen-slider.min.css'
 
 export interface CarouselProps extends TOptionsEvents {
-  arrows?: boolean
   autoplay?: boolean
   autoplayDuration?: number
-  dots?: boolean
+  controls?: boolean
+  indicators?: boolean
   length: number
   className?: string
 }
 
 const Carousel = ({
   autoplay,
+  controls,
   children,
   className,
-  dots,
+  indicators,
   length,
-  arrows = true,
   autoplayDuration = 2000,
   ...props
 }: PropsWithChildren<CarouselProps>) => {
@@ -54,8 +54,12 @@ const Carousel = ({
 
   useEffect(() => {
     const listener = ref.current
-    const pause = () => { setPause(true) }
-    const unpause = () => { setPause(false) }
+    const pause = () => {
+      setPause(true)
+    }
+    const unpause = () => {
+      setPause(false)
+    }
 
     ref?.current?.addEventListener('mouseover', pause)
     ref?.current?.addEventListener('mouseout', unpause)
@@ -71,7 +75,7 @@ const Carousel = ({
       {children}
 
       {/* styles for arrow and dots subject to changes later */}
-      {arrows && (
+      {controls && (
         <>
           <Arrow
             direction='left'
@@ -85,7 +89,7 @@ const Carousel = ({
           />
         </>
       )}
-      {dots && (
+      {indicators && (
         <Dots
           className='absolute bottom-0 left-0 right-0 z-10 flex justify-center'
           nImages={length}

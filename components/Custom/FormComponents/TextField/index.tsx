@@ -19,9 +19,11 @@ const TextField = ({
   rules = {},
   ...props
 }: TextFieldProps) => {
-  const { formState, disabled: formDisabled, register } = useContext(
-    FormContext
-  )
+  const {
+    formState,
+    disabled: formDisabled,
+    register
+  } = useContext(FormContext)
   const error: string = formState?.errors?.[props.name]?.message
 
   return (
