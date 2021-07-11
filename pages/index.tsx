@@ -1,9 +1,9 @@
 import Map from '@components/Map'
 
-export default function Home() {
+const Home = () => {
   return (
-    <>
-      <Map />
-    </>
+    <Map />
   )
 }
+
+export default Home
