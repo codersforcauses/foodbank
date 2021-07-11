@@ -1,5 +1,5 @@
 {
-  "extends": ["next", "next/core-web-vitals", "plugin:jsx-a11y/recommended" ,"plugin:prettier/recommended"],
+  "extends": ["next", "next/core-web-vitals", "plugin:jsx-a11y/recommended", "plugin:prettier/recommended"],
   "overrides": [{
     "files": [
       "*.ts",

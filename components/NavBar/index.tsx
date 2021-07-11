@@ -3,13 +3,13 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import NavLink, { NavLinkProps } from './NavLink'
-import logo from '../../public/images/logoFoodbankAus.webp'
+import logo from '../../public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
 const links: Array<NavLinkProps> = [
   {
-    page: 'Super Foods',
+    page: 'Super Hero Foods',
     route: '/'
   },
   {
