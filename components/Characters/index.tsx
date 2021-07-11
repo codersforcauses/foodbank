@@ -1,6 +1,7 @@
 import seedrandom from 'seedrandom'
 import shuffle from 'shuffle-array'
 import { v4 as uuid_v4 } from 'uuid'
+import Image from 'next/image'
 
 import BlueBoy from './Dairy/BlueBoy.jpg'
 import MilkMaid from './Dairy/MilkMaid.jpg'
@@ -51,6 +52,10 @@ interface Character {
   name: string
   isSelected: boolean
   password?: string
+}
+
+interface SeedProps {
+  seed: string
 }
 
 const PASSWORD_LENGTH = 9
@@ -292,13 +297,30 @@ const randomStringGen = (length: number) => {
   return result
 }
 
-const Characters = (seed: string) => {
+const Characters = ({ seed }: SeedProps) => {
   seedrandom(seed, { global: true })
-  const selectedSet = shuffle(imgSet).slice(PASSWORD_LENGTH)
+  const imgSetLength = imgSet.length
+  const selectedSet = shuffle(imgSet).slice(
+    imgSetLength - PASSWORD_LENGTH,
+    imgSetLength
+  )
   selectedSet.map(img => {
     img.id = uuid_v4()
     img.password = randomStringGen(PASSWORD_LENGTH)
   })
+  return (
+    <div className='flex content-center justify-center pt-72'>
+      {selectedSet.map(img => (
+        <div key={img.id} className='h-96 w-96 '>
+          <Image
+            src={img.image}
+            alt={img.name}
+            placeholder='blur'
+          />
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default Characters
