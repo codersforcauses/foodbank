@@ -17,19 +17,29 @@
 }
 
 .outer{
-  position: relative;;
+  position: relative;
 }
 
 .svgrow {
   max-width: 100vw;
   display: flex;
   position: relative;
-  min-width: 1960px;
+
 }
+
 .map{
   position: absolute;
   object-fit: cover;
   object-position: top left;
+  min-width: 100vh;
+  min-height: 100vh;
+}
+
+@media (max-width:1025px) {
+  .map{
+    min-width: 2900px;
+    min-height: 2100px;
+  }
 }
 .townBox{
   position: absolute; 
