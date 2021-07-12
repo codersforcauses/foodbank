@@ -8,7 +8,7 @@
     margin-left: -7.6%;
 }
 
-.zoom-in:hover {
+.zoom-in {
     -webkit-transform: scale(1.05, 1.05);
     -webkit-transition: all 0.1s ease-in-out;
     z-index: 100;
