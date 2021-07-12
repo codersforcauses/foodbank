@@ -57,18 +57,18 @@ const Rng = ({ seed }: rngProps) => {
       <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
         Array: {arrayTest}
       </h1>
-      {/* <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
-        {shuffle(arrayTest)}
+      <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
+        {shuffle(arrayTest, { copy: true })}
       </h1>
       <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
-        {shuffle(arrayTest)}
+        {shuffle(arrayTest, { copy: true })}
       </h1>
       <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
-        {shuffle(arrayTest)}
+        {shuffle(arrayTest, { copy: true })}
       </h1>
       <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
-        {shuffle(arrayTest)}
-      </h1> */}
+        {shuffle(arrayTest, { copy: true })}
+      </h1>
       <h1 className='flex items-center p-4 m-4 space-x-4 shadow-md'>
         {shuffleArray(arrayTest)}
       </h1>
