@@ -1,6 +1,6 @@
 let initialCoordinates = [
     [20, 520, 140, 10, 415, 445, 200, 525], // dairy
-    [10, 10, 410, 5, 320, 420, 125, 325], //meat
+    [5, 140, 410, 5, 320, 420, 125, 325], //meat
     [20, 10, 410, 115, 250, 350], // fruit
     [10, 5, 325, 160, 410, 500, 10, 400], // vegetables
     [40, 540, 50, 270, 200, 70, 410, 5, 410, 410]] // grains
@@ -33,11 +33,11 @@ const resize_map = (previousWidth, coordinates, setPreviousWidth, setCoordinates
     let newCoordinates: number[][] = []
     let newPreviousWidth: { id: string; initialWidth: number }[] = []
 
-    previousWidth.map((width, index) => {
+    previousWidth.map((width: { [x: string]: number }, index: string | number) => {
         let newWidth = document.getElementById(previousWidth[index]["id"]).clientWidth
         let ratio = newWidth / width["initialWidth"]
 
-        let new_coordinates = coordinates[index].map(coordinate => {
+        let new_coordinates = coordinates[index].map((coordinate: number) => {
             return coordinate * ratio
         })
         newCoordinates.push(new_coordinates)

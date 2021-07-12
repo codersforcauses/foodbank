@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, { useEffect, useState } from 'react'
 import dairy from 'public/images/FoodGroups/dairy-shadow.png'
 import meat from 'public/images/FoodGroups/meat-shadow.png'
 import fruit from 'public/images/FoodGroups/fruit-shadow.png'
@@ -9,6 +9,7 @@ import styles from 'components/FoodGroups/foodgroups.module.css'
 
 import Image, {ImageProps} from "next/image";
 import {Modal} from '@components/Custom'
+import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
 
 import {
     resize_map,
@@ -75,6 +76,8 @@ const FoodGroups: React.FC = () => {
 							<h1>Modal</h1>
 						</Modal>
             }
+            {/* Handles resizing maps on screen resize for SSR */}
+            <WindowResizeHook params={ { previousWidth, coordinates, setPreviousWidth, setCoordinates } }/>
             <div className={"flex flex-col"}>
                 <div id="dairy"
                      className={styles['img-dairy'] + " " + foodGroupStyles.join(' ') + " " + dairyStyles.join(" ")}>
