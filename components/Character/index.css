@@ -1,0 +1,21 @@
+.main-window {
+    height:95vh;
+    width:100vw;  /* is this the right way to set 100% height + width*/
+    display: flex;
+    justify-content: space-around;  
+  }
+  
+  .info-window {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;  
+  }
+  
+  .navigation button {
+    font-weight: bold;
+  }
