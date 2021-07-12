@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, ChangeEvent } from 'react'
-import Characters from '@components/Characters'
+import Characters from '@components/Grid/Characters'
 
 const UsernameForm = () => {
   const [username, setUsername] = useState('')
