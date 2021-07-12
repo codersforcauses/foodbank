@@ -10,7 +10,7 @@ import descData from './assets/description.json'
 import Townbox from '../Townbox'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
-  const [height, setHeight] = useState(0)
+  const [height, setHeight] = useState(1)
   const [width, setWidth] = useState(0)
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
@@ -84,14 +84,11 @@ const Map: React.FC = () => {
   return (
     <div
       ref={elementRef}
-      className='flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5 flex justify-center'
+      className='block'
     >
-      
-      
       {height === 0 ? null : (
           <div className='svgrow'>
-            <div style={{position:"relative"}}>
-              <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+              <img src={mapImg} alt="Tucker Island Map" className="map" useMap="#tuckerislandmap"/>
               {svgData.groupArray.map(location =>{
                 const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                 const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
@@ -109,7 +106,6 @@ const Map: React.FC = () => {
                   </div>
                 )
               })}
-            </div>
             <map name="tuckerislandmap">
               {
                 svgData.groupArray.map(location => {

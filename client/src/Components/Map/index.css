@@ -16,14 +16,23 @@
   transform: scale(1.1, 1.1);
 }
 
-.svgrow {
-  max-width: 100vw;
-  overflow-x: auto;
-  display: flex;
+.outer{
+  position: relative;;
 }
 
+.svgrow {
+  max-width: 100vw;
+  display: flex;
+  position: relative;
+  min-width: 1960px;
+}
+.map{
+  position: absolute;
+  object-fit: cover;
+  object-position: top left;
+}
 .townBox{
-  position:absolute; 
+  position: absolute; 
   width: auto;
 }
 .up{
