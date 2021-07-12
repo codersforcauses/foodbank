@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react'
 import seedrandom from 'seedrandom'
 import shuffle from 'shuffle-array'
 import { v4 as uuid_v4 } from 'uuid'
@@ -54,237 +55,13 @@ interface Character {
   password?: string
 }
 
-interface SeedProps {
+interface GridProps {
   seed: string
 }
 
 const PASSWORD_LENGTH = 9
 
 const varToString = (varObj: Object) => Object.keys(varObj)[0]
-
-const imgSet: Array<Character> = [
-  {
-    image: BlueBoy,
-    name: varToString(BlueBoy),
-    isSelected: false
-  },
-
-  {
-    image: MilkMaid,
-    name: varToString(MilkMaid),
-    isSelected: false
-  },
-
-  {
-    image: YumYoghurt,
-    name: varToString(YumYoghurt),
-    isSelected: false
-  },
-
-  {
-    image: CheesyCheese,
-    name: varToString(CheesyCheese),
-    isSelected: false
-  },
-
-  {
-    image: LeanMeat,
-    name: varToString(LeanMeat),
-    isSelected: false
-  },
-
-  {
-    image: FishCan,
-    name: varToString(FishCan),
-    isSelected: false
-  },
-
-  {
-    image: CheekyChicken,
-    name: varToString(CheekyChicken),
-    isSelected: false
-  },
-
-  {
-    image: RangerRex,
-    name: varToString(RangerRex),
-    isSelected: false
-  },
-
-  {
-    image: HannahGoanna,
-    name: varToString(HannahGoanna),
-    isSelected: false
-  },
-
-  {
-    image: EagerEgg,
-    name: varToString(EagerEgg),
-    isSelected: false
-  },
-
-  {
-    image: FreshFish,
-    name: varToString(FreshFish),
-    isSelected: false
-  },
-  {
-    image: AcesApple,
-    name: varToString(AcesApple),
-    isSelected: false
-  },
-
-  {
-    image: FarmerOrange,
-    name: varToString(FarmerOrange),
-    isSelected: false
-  },
-
-  {
-    image: SportyBanana,
-    name: varToString(SportyBanana),
-    isSelected: false
-  },
-
-  {
-    image: MelodyMelon,
-    name: varToString(MelodyMelon),
-    isSelected: false
-  },
-
-  {
-    image: FruityPainter,
-    name: varToString(FruityPainter),
-    isSelected: false
-  },
-
-  {
-    image: MixedGrain,
-    name: varToString(MixedGrain),
-    isSelected: false
-  },
-
-  {
-    image: HealthyCereal,
-    name: varToString(HealthyCereal),
-    isSelected: false
-  },
-
-  {
-    image: PastaBowl,
-    name: varToString(PastaBowl),
-    isSelected: false
-  },
-
-  {
-    image: OutbackDamper,
-    name: varToString(OutbackDamper),
-    isSelected: false
-  },
-
-  {
-    image: PastaChef,
-    name: varToString(PastaChef),
-    isSelected: false
-  },
-
-  {
-    image: PostiePorridge,
-    name: varToString(PostiePorridge),
-    isSelected: false
-  },
-
-  {
-    image: ArtyCarrot,
-    name: varToString(ArtyCarrot),
-    isSelected: false
-  },
-
-  {
-    image: AthleticTomato,
-    name: varToString(AthleticTomato),
-    isSelected: false
-  },
-
-  {
-    image: TinnedBeans,
-    name: varToString(TinnedBeans),
-    isSelected: false
-  },
-
-  {
-    image: CrunchingCapsicum,
-    name: varToString(CrunchingCapsicum),
-    isSelected: false
-  },
-
-  {
-    image: CoachCarrot,
-    name: varToString(CoachCarrot),
-    isSelected: false
-  },
-
-  {
-    image: MrCucumber,
-    name: varToString(MrCucumber),
-    isSelected: false
-  },
-
-  {
-    image: DJCorn,
-    name: varToString(DJCorn),
-    isSelected: false
-  },
-
-  {
-    image: FootyGirl,
-    name: varToString(FootyGirl),
-    isSelected: false
-  },
-
-  {
-    image: FreshHerbs,
-    name: varToString(FreshHerbs),
-    isSelected: false
-  },
-
-  {
-    image: FrozenVegies,
-    name: varToString(FrozenVegies),
-    isSelected: false
-  },
-
-  {
-    image: GarlicDancer,
-    name: varToString(GarlicDancer),
-    isSelected: false
-  },
-  {
-    image: JackarooOnion,
-    name: varToString(JackarooOnion),
-    isSelected: false
-  },
-  {
-    image: WorkingSpud,
-    name: varToString(WorkingSpud),
-    isSelected: false
-  },
-  {
-    image: MrsBrocc,
-    name: varToString(MrsBrocc),
-    isSelected: false
-  },
-  {
-    image: PeaPod,
-    name: varToString(PeaPod),
-    isSelected: false
-  },
-  {
-    image: TinnedTradie,
-    name: varToString(TinnedTradie),
-    isSelected: false
-  }
-]
 
 const randomStringGen = (length: number) => {
   var result = ''
@@ -297,29 +74,260 @@ const randomStringGen = (length: number) => {
   return result
 }
 
-const Characters = ({ seed }: SeedProps) => {
+const imgSet: Array<Character> = [
+  {
+    image: BlueBoy,
+    name: 'BlueBoy',
+    isSelected: false
+  },
+
+  {
+    image: MilkMaid,
+    name: 'MilkMaid',
+    isSelected: false
+  },
+
+  {
+    image: YumYoghurt,
+    name: 'YumYoghurt',
+    isSelected: false
+  },
+
+  {
+    image: CheesyCheese,
+    name: 'CheesyCheese',
+    isSelected: false
+  },
+
+  {
+    image: LeanMeat,
+    name: 'LeanMeat',
+    isSelected: false
+  },
+
+  {
+    image: FishCan,
+    name: 'FishCan',
+    isSelected: false
+  },
+
+  {
+    image: CheekyChicken,
+    name: 'CheekyChicken',
+    isSelected: false
+  },
+
+  {
+    image: RangerRex,
+    name: 'RangerRex',
+    isSelected: false
+  },
+
+  {
+    image: HannahGoanna,
+    name: 'HannahGoanna',
+    isSelected: false
+  },
+
+  {
+    image: EagerEgg,
+    name: 'EagerEgg',
+    isSelected: false
+  },
+
+  {
+    image: FreshFish,
+    name: 'FreshFish',
+    isSelected: false
+  },
+  {
+    image: AcesApple,
+    name: 'AcesApple',
+    isSelected: false
+  },
+
+  {
+    image: FarmerOrange,
+    name: 'FarmerOrange',
+    isSelected: false
+  },
+
+  {
+    image: SportyBanana,
+    name: 'SportyBanana',
+    isSelected: false
+  },
+
+  {
+    image: MelodyMelon,
+    name: 'MelodyMelon',
+    isSelected: false
+  },
+
+  {
+    image: FruityPainter,
+    name: 'FruityPainter',
+    isSelected: false
+  },
+
+  {
+    image: MixedGrain,
+    name: 'MixedGrain',
+    isSelected: false
+  },
+
+  {
+    image: HealthyCereal,
+    name: 'HealthyCereal',
+    isSelected: false
+  },
+
+  {
+    image: PastaBowl,
+    name: 'PastaBowl',
+    isSelected: false
+  },
+
+  {
+    image: OutbackDamper,
+    name: 'OutbackDamper',
+    isSelected: false
+  },
+
+  {
+    image: PastaChef,
+    name: 'PastaChef',
+    isSelected: false
+  },
+
+  {
+    image: PostiePorridge,
+    name: 'PostiePorridge',
+    isSelected: false
+  },
+
+  {
+    image: ArtyCarrot,
+    name: 'ArtyCarrot',
+    isSelected: false
+  },
+
+  {
+    image: AthleticTomato,
+    name: 'AthleticTomato',
+    isSelected: false
+  },
+
+  {
+    image: TinnedBeans,
+    name: 'TinnedBeans',
+    isSelected: false
+  },
+
+  {
+    image: CrunchingCapsicum,
+    name: 'CrunchingCapsicum',
+    isSelected: false
+  },
+
+  {
+    image: CoachCarrot,
+    name: 'CoachCarrot',
+    isSelected: false
+  },
+
+  {
+    image: MrCucumber,
+    name: 'MrCucumber',
+    isSelected: false
+  },
+
+  {
+    image: DJCorn,
+    name: 'DJCorn',
+    isSelected: false
+  },
+
+  {
+    image: FootyGirl,
+    name: 'FootyGirl',
+    isSelected: false
+  },
+
+  {
+    image: FreshHerbs,
+    name: 'FreshHerbs',
+    isSelected: false
+  },
+
+  {
+    image: FrozenVegies,
+    name: 'FrozenVegies',
+    isSelected: false
+  },
+
+  {
+    image: GarlicDancer,
+    name: 'GarlicDancer',
+    isSelected: false
+  },
+  {
+    image: JackarooOnion,
+    name: 'JackarooOnion',
+    isSelected: false
+  },
+  {
+    image: WorkingSpud,
+    name: 'WorkingSpud',
+    isSelected: false
+  },
+  {
+    image: MrsBrocc,
+    name: 'MrsBrocc',
+    isSelected: false
+  },
+  {
+    image: PeaPod,
+    name: 'PeaPod',
+    isSelected: false
+  },
+  {
+    image: TinnedTradie,
+    name: 'TinnedTradie',
+    isSelected: false
+  }
+]
+
+const Characters = ({ seed }: GridProps) => {
   seedrandom(seed, { global: true })
   const imgSetLength = imgSet.length
-  const selectedSet = shuffle(imgSet).slice(
-    imgSetLength - PASSWORD_LENGTH,
-    imgSetLength
-  )
+  const selectedSet = shuffle(imgSet).slice(0, PASSWORD_LENGTH)
   selectedSet.map(img => {
     img.id = uuid_v4()
-    img.password = randomStringGen(PASSWORD_LENGTH)
+    // img.password = randomStringGen(PASSWORD_LENGTH)
+    img.password = img.name // For testing purposes
   })
   return (
-    <div className='flex content-center justify-center pt-72'>
-      {selectedSet.map(img => (
-        <div key={img.id} className='h-96 w-96 '>
+    <>
+      <div className='flex content-center justify-center pt-72'>
+        {selectedSet.map(img => (
           <Image
+            key={img.id}
+            className='h-96 w-96'
             src={img.image}
             alt={img.name}
             placeholder='blur'
           />
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+      <ul className='pt-11'>
+        {selectedSet.map(img => (
+          <li className='text-center' key={img.id}>
+            Password: {img.password}
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
