@@ -74,6 +74,28 @@ const randomStringGen = (length: number) => {
   return result
 }
 
+const shuffleArray = (arr: Array<Character>) => {
+  const array = [...arr]
+  //   const array = arr
+  var currentIndex = array.length,
+    randomIndex
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+
+    // And swap it with the current element.
+    ;[array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex]
+    ]
+  }
+
+  return array
+}
+
 const imgSet: Array<Character> = [
   {
     image: BlueBoy,
@@ -301,7 +323,7 @@ const imgSet: Array<Character> = [
 const Characters = ({ seed }: GridProps) => {
   seedrandom(seed, { global: true })
   const imgSetLength = imgSet.length
-  const selectedSet = shuffle(imgSet).slice(0, PASSWORD_LENGTH)
+  const selectedSet = shuffleArray(imgSet).slice(0, PASSWORD_LENGTH)
   selectedSet.map(img => {
     img.id = uuid_v4()
     // img.password = randomStringGen(PASSWORD_LENGTH)
