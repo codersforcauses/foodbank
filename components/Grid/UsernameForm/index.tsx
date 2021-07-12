@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, ChangeEvent } from 'react'
 import Characters from '@components/Grid/Characters'
+import Rng from '../RngTest'
 
 const UsernameForm = () => {
   const [username, setUsername] = useState('')
@@ -45,7 +46,8 @@ const UsernameForm = () => {
             Username: &emsp;
             {username}
           </p>
-          {/* <Characters seed={username} /> */}
+          <Characters seed={username} />
+          <Rng seed={username} />
         </>
       ) : (
         ''
