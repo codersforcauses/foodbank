@@ -29,7 +29,7 @@ const Navbar = () => {
   }, [])
 
   return (
-    <header className='fixed inset-x-0 top-0 z-10 py-3 bg-primary'>
+    <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
       <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
           <a className='relative w-12 h-10 hover:opacity-75'>
@@ -51,7 +51,8 @@ const Navbar = () => {
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
         >
-          {signIn ? 'Sign-out' : 'Sign-out'}
+          {/* need to add proper state when auth was added */}
+          {signIn ? 'Sign-out' : 'Sign-in'}
         </button>
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
