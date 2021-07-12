@@ -9,6 +9,7 @@ import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import Townbox from '../Townbox'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import './style.css'
 
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
@@ -53,7 +54,7 @@ const Map: React.FC = () => {
 
   const onMapClick = (area: Location) => {
     const areaDescription = getAreaDescription(area)
-    //console.log(selected)
+      //console.log(selected)
     //if(selected != null)  {
       //console.log("xtrans", svgData.groupArray[selected].xtrans)
       //const xtrans = svgData.groupArray[selected].xtrans;
@@ -102,11 +103,11 @@ const Map: React.FC = () => {
           <div className='svgrow'>
             <div style={{position:"relative"}}>
               <TransformWrapper>
-              {({ zoomToElement, resetTransform }) => (
+              {({ zoomToElement, resetTransform, setTransform }) => (
                 <>
                 <div>
                 <button
-                    onClick={() => zoomToElement("wickedWaterway")}
+                    onClick={() => zoomToElement("fruityOrchard")}
                   >
                     Zoom to cluckyCoop
                   </button>
@@ -155,11 +156,17 @@ const Map: React.FC = () => {
                 //zooming to any of these will zoom to the top left, possibly because it takes the values before the transformation occurs.
                 return (
                   <div id={location.id} key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
+                   
                     {location.name} 
                     {
                       selected === Location[location.id as keyof typeof Location] &&
                       <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}>{townbox}</div>
                     }
+                     <button
+                    onClick={() => setTransform(-xtrans, -ytrans, 2)}
+                  >
+                    CLICK ME
+                  </button>
                   </div>
                 )
               })}
