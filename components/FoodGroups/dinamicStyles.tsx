@@ -1,3 +1,11 @@
+import dairy from 'public/images/FoodGroups/dairy-shadow.png'
+import meat from 'public/images/FoodGroups/meat-shadow.png'
+import fruit from 'public/images/FoodGroups/fruit-shadow.png'
+import grains from 'public/images/FoodGroups/grains-shadow.png'
+import vegetables from 'public/images/FoodGroups/vegetables-shadow.png'
+
+import { FoodGroupImage } from "@components/FoodGroups/types"
+
 let initialCoordinates = [
     [20, 520, 140, 10, 415, 445, 200, 525], // dairy
     [5, 140, 410, 5, 320, 420, 125, 325], //meat
@@ -28,13 +36,57 @@ let initialWidths = [
     },
 ]
 
+const foodGroupsImages: FoodGroupImage[] = [
+    {
+        div_id: "dairy",
+        img_styles: 'img-dairy',
+        img_id: "dairy-img",
+        img_src: dairy.src,
+        map_name: "dairy_map"
+
+    },
+    {
+        div_id: "meat",
+        img_styles: 'img-meat',
+        img_id: "meat-img",
+        img_src: meat.src,
+        map_name: "meat_map"
+
+    },
+    {
+        div_id: "fruit",
+        img_styles: 'img-fruit',
+        img_id: "fruit-img",
+        img_src: fruit.src,
+        map_name: "fruit_map"
+
+    },
+    {
+        div_id: "vegetables",
+        img_styles: 'img-vegetables',
+        img_id: "vegetables-img",
+        img_src: vegetables.src,
+        map_name: "vegetables_map"
+
+    },
+    {
+        div_id: "grains",
+        img_styles: 'img-grains',
+        img_id: "grains-img",
+        img_src: grains.src,
+        map_name: "grains_map"
+
+    },
+]
+
+
 
 const resize_map = (previousWidth, coordinates, setPreviousWidth, setCoordinates) => {
     let newCoordinates: number[][] = []
     let newPreviousWidth: { id: string; initialWidth: number }[] = []
 
     previousWidth.map((width: { [x: string]: number }, index: string | number) => {
-        let newWidth = document.getElementById(previousWidth[index]["id"]).clientWidth
+        let newWidth = document.getElementById(width.id).clientWidth
         let ratio = newWidth / width["initialWidth"]
 
         let new_coordinates = coordinates[index].map((coordinate: number) => {
@@ -52,7 +104,7 @@ const resize_map = (previousWidth, coordinates, setPreviousWidth, setCoordinates
     setCoordinates(newCoordinates)
 }
 
-const handleMouseOver = (e, { allstates }) => {
+const handleMouseOver = (group_id, { allstates }) => {
     const {
         meatStyles,
         setMeatStyles,
@@ -67,7 +119,6 @@ const handleMouseOver = (e, { allstates }) => {
     } = allstates
     
     
-    const group_id = e.target.parentNode.parentNode.attributes["id"].value
     let styles
     let zoom = ["transform", "scale-105", "z-10"]
     switch (group_id) {
@@ -104,7 +155,7 @@ const handleMouseOver = (e, { allstates }) => {
     }
 }
 
-const handleMouseOut = (e, { allstates }) => {
+const handleMouseOut = (group_id, { allstates }) => {
     const {
         meatStyles,
         setMeatStyles,
@@ -118,7 +169,7 @@ const handleMouseOut = (e, { allstates }) => {
         setVegetablesStyles
     } = allstates
     
-    const group_id = e.target.parentNode.parentNode.attributes["id"].value
+    // const group_id = e.target.parentNode.parentNode.attributes["id"].value
     let styles
     switch (group_id) {
         case "meat":
@@ -159,4 +210,4 @@ const handleMouseOut = (e, { allstates }) => {
     }
 }
 
-export { resize_map, initialCoordinates, initialWidths, handleMouseOver, handleMouseOut }
+export { resize_map, initialCoordinates, initialWidths, handleMouseOver, handleMouseOut, foodGroupsImages }
