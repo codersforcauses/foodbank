@@ -106,19 +106,45 @@ const Map: React.FC = () => {
                 <>
                 <div>
                 <button
-                  onClick={() => zoomToElement("coolCloud")}
-                >
-                  Zoom to element 1
-                </button>
+                    onClick={() => zoomToElement("wickedWaterway")}
+                  >
+                    Zoom to cluckyCoop
+                  </button>
                   <button
-                  onClick={() => resetTransform()}
-                >
-                  Reset
-                </button>
-              </div>
+                    onClick={() => zoomToElement("wickedWaterway")}
+                  >
+                    Zoom to cluckyCoop
+                  </button>
+                  <button
+                    onClick={() => zoomToElement("healthyTown")}
+                  >
+                    Zoom to healthyTown
+                  </button>
+                    <button
+                    onClick={() => resetTransform()}
+                  >
+                    Reset
+                  </button>
+                </div>
+               
                 <TransformComponent>
                 <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
-                
+                <div
+                id="element2"
+                style={{
+                  background: "blue",
+                  width: "250px",
+                  height: "150px",
+                  marginTop: "200px",
+                  marginLeft: "200px",
+                }}
+              >
+                Zoom element 2
+              </div>         
+              <div 
+              id="wickedWaterway" 
+              >
+                Wicked Waterway</div>     
               {svgData.groupArray.map(location =>{
                 const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                 const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
@@ -126,6 +152,7 @@ const Map: React.FC = () => {
                 const up = ["aquaOcean", "zombieWasteland", "grainField"]
                 const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
                 //console.log(translation);
+                //zooming to any of these will zoom to the top left, possibly because it takes the values before the transformation occurs.
                 return (
                   <div id={location.id} key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
                     {location.name} 
@@ -137,7 +164,7 @@ const Map: React.FC = () => {
                 )
               })}
               </TransformComponent>
-                </>
+              </>
               )}
               
               </TransformWrapper>
