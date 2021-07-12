@@ -26,6 +26,8 @@ export interface TownboxProps {
   maxWidth?: string
 
   maxHeight?: string
+
+  close: () => void
 }
 
 /**
@@ -37,7 +39,8 @@ export const Townbox: React.FC<TownboxProps> = ({
   headerColor = 'orange',
   showButton = false,
   maxWidth = 'none',
-  maxHeight = 'none'
+  maxHeight = 'none',
+  close = undefined
 }) => {
   const bgColour: 'bg-primary' | 'bg-orange' = headerColor === 'primary' ? 'bg-primary' : 'bg-orange'
   return (
@@ -53,11 +56,12 @@ export const Townbox: React.FC<TownboxProps> = ({
       ></div>
       <div
         className='captionbox place-self-center p-8 mt-12 border-black flex relative flex-col items-center justify-center w-full h-64 pb-2 pt-2'
-        style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight}}
+        style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight, position:"relative"}}
       >
         <p className='font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl pt-3'>
           {captionText}
         </p>
+        <button onClick={close} style={{position:"absolute", right:20, top:10, transform:"scale(1.2)", cursor:"pointer"}}>&#10006;</button>
         {showButton && (
           <Button
             bgColor={ bgColour }
