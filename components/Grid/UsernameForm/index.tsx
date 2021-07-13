@@ -3,7 +3,7 @@ import { Button, Form, TextField, Modal } from '@components/Custom'
 import GridDisplay, { selectSet, Character } from '@components/Grid/Characters'
 import Rng from '../RngTest'
 
-const charactersForAuth = 3
+const CHARACTERS_FOR_AUTH = 3
 
 const UsernameForm = () => {
   const [username, setUsername] = useState('')
@@ -44,7 +44,7 @@ const UsernameForm = () => {
   }
 
   const handlePasswordSubmit = () => {
-    if (selectedCount !== charactersForAuth) {
+    if (selectedCount !== CHARACTERS_FOR_AUTH) {
       return
     }
     const newFilteredGrid = [...grid].filter(char => char.isSelected)
@@ -84,7 +84,7 @@ const UsernameForm = () => {
               <div className='flex content-center justify-center text-center'>
                 <button
                   className={
-                    selectedCount === charactersForAuth
+                    selectedCount === CHARACTERS_FOR_AUTH
                       ? 'text-white bg-primary'
                       : 'bg-grey text-black'
                   }
