@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import blackboard from 'public/images/blackboard.jpg'
+import blackboard from 'public/images/school-blackboard.jpg'
 
 /**
  * Renders a Blackboard for achievements to be shown on.

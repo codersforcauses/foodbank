@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import type { Achievement } from 'lib/types'
 
-import explosion from 'public/images/explosion.png'
+import explosion from 'public/images/circle.png'
 
 interface Props {
   achievements: Array<Achievement>
@@ -45,8 +45,8 @@ const Display: React.FC<Props> = ({ achievements }) => {
               (unlocked ? '' : 'grayscale contrast-50 opacity-50')
             }
           >
-            <div>{title}</div>
-            <div>
+            <div className='text-white' >{title}</div>
+            <div className='text-white' >
               {progress} / {total}
             </div>
           </div>
