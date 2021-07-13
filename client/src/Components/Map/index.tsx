@@ -11,7 +11,7 @@ import descData from './assets/description.json'
 import Townbox from '../Townbox'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
-  const [height, setHeight] = useState(0)
+  const [height, setHeight] = useState(1)
   const [width, setWidth] = useState(0)
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
@@ -47,7 +47,9 @@ const Map: React.FC = () => {
 
     return null
   }
-
+  const onClose = () => {
+    onSelect(null) 
+  }
   const onMapClick = (area: Location) => {
     selected === area ? onSelect(null) : onSelect(area)
   }
@@ -58,17 +60,16 @@ const Map: React.FC = () => {
     onMapClick(Location[area as keyof typeof Location])
   }
 
+
   // Data can be made from dev/svgParse.py
   return (
     <div
       ref={elementRef}
-      className='flex-auto w-screen'
-      style={{position: 'relative'}}
+      className='block'
     >
-      
       {height === 0 ? null : (
-          <div className='svgrow relative'>
-            <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+          <div className='svgrow'>
+              <img src={mapImg} alt="Tucker Island Map" className="map" useMap="#tuckerislandmap"/>
             <map name="tuckerislandmap">
               {
                 svgData.groupArray.map(location => {
@@ -111,20 +112,25 @@ const Map: React.FC = () => {
                       const xtrans = parseInt(area.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                       const ytrans = parseInt(area.ytrans) * scale * 8; // this is probably worth looking into
                       const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
+                      const up = ["aquaOcean", "zombieWasteland", "grainField"]
+                      const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
 
-
-                      console.log(selectedArea);
-
+                      console.log("area",selectedArea);
+                      console.log(area.id)
+                      console.log(translation)
                       return (
-                        <div style={{position:"absolute", transform:translation}}>
-                          <Townbox 
-                            maxWidth={maxWidth} 
-                            maxHeight={maxHeight}
-                            headerColor={headerColor}
-                            headerText={header}
-                            captionText={caption}
-                            showButton = {showButton}
-                          />
+                        <div key={area.id} style={{transform:translation}}>
+                          <div className={`townBox ${up.includes(area.id)? "up" : ""} ${left.includes(area.id)? "left " : ""}`}>
+                            <Townbox 
+                              maxWidth={maxWidth} 
+                              maxHeight={maxHeight}
+                              headerColor={headerColor}
+                              headerText={header}
+                              captionText={caption}
+                              showButton = {showButton}
+                              close={onClose}
+                            />
+                          </div>
                         </div>
                       )
                     }
