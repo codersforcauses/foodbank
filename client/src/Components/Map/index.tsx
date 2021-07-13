@@ -12,7 +12,6 @@ import Townbox from '../Townbox'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(1)
-  const [width, setWidth] = useState(0)
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
@@ -27,14 +26,12 @@ const Map: React.FC = () => {
   useEffect(() => {
     function handleResize() {
       setScale(window.innerWidth/4961)
-    } window.addEventListener('resize', handleResize)})
-
-  useEffect(() => {
-    if (elementRef?.current?.clientWidth) {
-      setWidth(elementRef?.current?.clientWidth)
-      setScale(width/4961)
     }
-  }, [width])
+    handleResize();
+    window.addEventListener('resize', handleResize)
+    },
+    []
+  )
 
   // to get the area description given an area so you can actually use headers/captions
   // returns null if such area doesn't exist in assets/description.json
