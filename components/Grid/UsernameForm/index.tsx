@@ -6,6 +6,7 @@ import Rng from '../RngTest'
 const CHARACTERS_FOR_AUTH = 3
 
 const UsernameForm = () => {
+  const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
   const [selectedCount, setSelectedCount] = useState(0)
   const [grid, setGrid] = useState<Character[]>([])
@@ -19,14 +20,15 @@ const UsernameForm = () => {
   })
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value)
+    setInput(e.target.value)
     setGrid([])
   }
 
   const handleUsernameSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setGrid(selectSet(username))
-    // setUsername('')
+    setUsername(input)
+    setGrid(selectSet(input))
+    setInput('')
   }
 
   const toggleSelect = (id: string) => {
@@ -61,7 +63,7 @@ const UsernameForm = () => {
         <input
           type='text'
           placeholder='Username'
-          value={username}
+          value={input}
           name='text'
           className=''
           onChange={handleUsernameChange}
@@ -69,14 +71,22 @@ const UsernameForm = () => {
         />
         <button className='text-white bg-primary'>YOU SURE????</button>
       </form>
-      {username ? (
+      {username || input ? (
         <>
-          <p className='flex content-center justify-center pt-40'>
-            Username: &emsp;
-            {username}
-          </p>
+          {input ? (
+            <p className='flex content-center justify-center'>
+              Username: &emsp;
+              {input}
+            </p>
+          ) : (
+            ''
+          )}
           {grid.length ? (
             <>
+              <p className='flex content-center justify-center'>
+                Username: &emsp;
+                {username}
+              </p>
               <p className='flex content-center justify-center'>
                 Count: &emsp;
                 {selectedCount}
@@ -99,7 +109,6 @@ const UsernameForm = () => {
                 ''
               )}
               <GridDisplay selectedSet={grid} toggleSelect={toggleSelect} />
-              {console.log(username)}
               <Rng seed={username} />
             </>
           ) : (
