@@ -57,6 +57,7 @@ export interface Character {
 
 interface GridProps {
   selectedSet: Array<Character>
+  toggleSelect: Function
 }
 
 const PASSWORD_LENGTH = 9
@@ -310,24 +311,30 @@ export const selectSet = (seed: string) => {
   return selectedSet
 }
 
-const GridDisplay = ({ selectedSet }: GridProps) => {
+const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
   return (
     <>
       <div className='flex content-center justify-center pt-72'>
         {selectedSet.map(img => (
-          <Image
-            key={img.id}
-            className='h-96 w-96'
-            src={img.image}
-            alt={img.name}
-            placeholder='blur'
-          />
+          <div key={img.id}>
+            <Image
+              key={img.id}
+              className={`w-max h-max border-8 ${
+                img.isSelected ? '' : 'opacity-30'
+              }`}
+              src={img.image}
+              alt={img.name}
+              placeholder='blur'
+              onClick={() => toggleSelect(img.id)}
+            />
+            <p className='text-center'>{img.name}</p>
+          </div>
         ))}
       </div>
       <ul className='pt-11'>
         {selectedSet.map(img => (
           <li className='text-center' key={img.id}>
-            Password: {img.password}
+            Secret Code: {img.password}
           </li>
         ))}
       </ul>
