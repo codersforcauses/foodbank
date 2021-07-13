@@ -47,7 +47,7 @@ import MrsBrocc from './Vegetables/MrsBrocc.jpg'
 import PeaPod from './Vegetables/PeaPod.jpg'
 import TinnedTradie from './Vegetables/TinnedTradie.jpg'
 
-interface Character {
+export interface Character {
   id?: string
   image: StaticImageData
   name: string
@@ -56,7 +56,7 @@ interface Character {
 }
 
 interface GridProps {
-  seed: string
+  selectedSet: Array<Character>
 }
 
 const PASSWORD_LENGTH = 9
@@ -298,7 +298,7 @@ const imgSet: Array<Character> = [
   }
 ]
 
-const Characters = ({ seed }: GridProps) => {
+export const selectSet = (seed: string) => {
   seedrandom(seed, { global: true })
   const imgSetLength = imgSet.length
   const selectedSet = shuffle(imgSet, { copy: true }).slice(0, PASSWORD_LENGTH)
@@ -307,6 +307,10 @@ const Characters = ({ seed }: GridProps) => {
     // img.password = randomStringGen(PASSWORD_LENGTH)
     img.password = img.name // For testing purposes
   })
+  return selectedSet
+}
+
+const GridDisplay = ({ selectedSet }: GridProps) => {
   return (
     <>
       <div className='flex content-center justify-center pt-72'>
@@ -331,4 +335,4 @@ const Characters = ({ seed }: GridProps) => {
   )
 }
 
-export default Characters
+export default GridDisplay
