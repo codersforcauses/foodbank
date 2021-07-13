@@ -140,7 +140,6 @@ const Map: React.FC = () => {
                 const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
                 return (
                   <div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
-                    {location.name} 
                     {
                       selected === Location[location.id as keyof typeof Location] &&
                       <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}></div>
