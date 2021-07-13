@@ -1,0 +1,574 @@
+{
+    "superhero": [
+        {
+            "name":"Mixed Grain",
+            "baseImage":"",
+            "about":"Toast or lunchtime bite - try grainy bread instead!",
+            "aliasName":"Toasty",
+            "recipe":"Super Fruity French Toast",
+            "transformedImage":"",
+            "superPowers":"Energises your body and brain.",
+            "foodGroup":"Breads and Cereals - Energy Foods",
+            "location":["Grain Field"]
+        },
+        {
+            "name":"Healthy Cereal",
+            "baseImage":"",
+            "about":"Launch into your day with a healthy breakfast.",
+            "aliasName":"Silver Spoon",
+            "recipe":"Super Fruity Smoothy",
+            "transformedImage":"",
+            "superPowers":"Teeming with fibre to dodge hunger.",
+            "foodGroup":"Breads and Cereals - Energy Foods",
+            "location":["Grain Field"]
+        },
+        {
+            "name":"Pasta Bowl",
+            "baseImage":"",
+            "about":"Comes in cool shapes and sizes.",
+            "aliasName":"Noodle Ninja",
+            "recipe":"Noodle Ninja Mince",
+            "transformedImage":"",
+            "superPowers":"Powers up your brain and muscles.",
+            "foodGroup":"Breads and Cereals - Energy Foods",
+            "location":["Grain Field"]
+        },
+        {
+            "name":"Mrs Brocc",
+            "baseImage":"",
+            "about":"Green goodness shaped like little trees.",
+            "aliasName":"Mean Green",
+            "recipe":"Faster Pasta",
+            "transformedImage":"",
+            "superPowers":"Bursting with folate to keep your body's cells healthy.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Sprouting Soil"]
+        },
+        {
+            "name":"Arty Carrot",
+            "baseImage":"",
+            "about":"Crunchy carrot eaten raw makes for a healthy smile.",
+            "aliasName":"The Dicer",
+            "recipe":"The Dicer Slice",
+            "transformedImage":"",
+            "superPowers":"Loaded with vitamins for super strong eyes.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Hidden Root"]
+        },
+        {
+            "name":"Aces Apple",
+            "baseImage":"",
+            "about":"Simple snack in an edible package.",
+            "aliasName":"Atomic Apple",
+            "recipe":"Atomic Apple Crumble Cups",
+            "transformedImage":"",
+            "superPowers":"Contains an army load of antioxidants to fight illness.",
+            "foodGroup":"Fruit - Protective Foods",
+            "location":["Fruity Orchard"]
+        },
+        {
+            "name":"Sporty Banana",
+            "baseImage":"",
+            "about":"Perfect pick me up - snack on the run.",
+            "aliasName":"Super Fruity",
+            "recipe":"Sporty Banana Bites",
+            "transformedImage":"",
+            "superPowers":"Packed with potassium to power up the heart.",
+            "foodGroup":"Fruit - Protective Foods",
+            "location":["Banana Bunches"]
+        },
+        {
+            "name":"Tinned Beans",
+            "baseImage":"",
+            "about":"Beans for breakfast makes a good start, but do they really make you fart?",
+            "aliasName":"Bean Machine",
+            "recipe":"Mexican Stuffed Spuds",
+            "transformedImage":"",
+            "superPowers":"Pumped with protein to grow a healthy body.",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location": [
+                "Supply Store",
+                "Vegie Zone",
+                "Twisting Vine"
+            ]
+        },
+        {
+            "name":"Lean Meat",
+            "baseImage":"",
+            "about":"Try trimmed and terrific beef in a hearty stew",
+            "aliasName":"Beefy Boy",
+            "recipe":"Nanna's Curry",
+            "transformedImage":"",
+            "superPowers":"Jam packed with protein and iron to build muscles.",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location":["Grazing Land"]
+        },
+        {
+            "name":"Fish Can",
+            "baseImage":"",
+            "about":"Canned fish is a quick, easy and healthy snack.",
+            "aliasName":"Flying Fish",
+            "recipe":"Flying Fish Parcels",
+            "transformedImage":"",
+            "superPowers":"Dripping with omega-3 for a super healthy heart.",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location":["Aqua Ocean"]
+        },    
+        {
+            "name":"Yum Yoghurt",
+            "baseImage":"",
+            "about":"Cool or frozen, always yummy.",
+            "aliasName":"Yo-Girl",
+            "recipe":"Zany Zucchini Dip",
+            "transformedImage":"",
+            "superPowers":"Packed with probiotics for fighting tummy illness.",
+            "foodGroup":"Dairy Foods - Body Building",
+            "location":["Dairy Park"]
+        },    
+        {
+            "name":"Blue Boy",
+            "baseImage":"",
+            "about":"Yummy yoghurt added to cereal tastes great.",
+            "aliasName":"Yo-Boy",
+            "recipe":"Rainbow Salad",
+            "transformedImage":"",
+            "superPowers":"Erupting with calcium to build tough teeth.",
+            "foodGroup":"Dairy Foods - Body Building",
+            "location":["Dairy Park"]
+        },    
+        {
+            "name":"Cheesy Cheese",
+            "baseImage":"",
+            "about":"Chock-a-block with flavour, sliced or grated.",
+            "aliasName":"Speedy Cheese",
+            "recipe":"Speedy Cheese Fritatta",
+            "transformedImage":"",
+            "superPowers":"Crazy full of calcium for super strong bones.",
+            "foodGroup":"Dairy Foods - Body Building",
+            "location":["Dairy Park"]
+        },    
+        {
+            "name":"Cool Glass",
+            "baseImage":"",
+            "about":"Cool and fresh, water is the best choice.",
+            "aliasName":"Wonder Water",
+            "recipe":"Mighty Minestrone Soup",
+            "transformedImage":"",
+            "superPowers":"Bursting with hydration for supercharged blood flow.",
+            "foodGroup":"Water",
+            "location":["Cool Cloud"]
+        },  
+        {
+            "name":"Milk Maid",
+            "baseImage":"",
+            "about":"Cool and yummy for thirsty kids.",
+            "aliasName":"Mighty Milk",
+            "recipe":"Fruity Frypan Cake",
+            "transformedImage":"",
+            "superPowers":"Builds a super strong skeleton.",
+            "foodGroup":"Dairy Foods - Body Building",
+            "location":["Dairy Park"]
+        },   
+        {
+            "name":"Working Spud",
+            "baseImage":"",
+            "about":"Go for a stuffed spud for a tasty twist.",
+            "aliasName":"Masher Man",
+            "recipe":"Spud Surprise",
+            "transformedImage":"",
+            "superPowers":"Packed full of carbs, he's energy for your body and brain.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Fruity Orchard"]
+        },
+        {
+            "name":"Farmer Orange",
+            "baseImage":"",
+            "about":"Great sporty snack to quench thirst.",
+            "aliasName":"Vitamin C Lion",
+            "recipe":"Muesli Bars",
+            "transformedImage":"",
+            "superPowers":"Roaring with Vitamin C to boost the body's defences",
+            "foodGroup":"Fruit - Protective Foods",
+            "location":["Fruity Orchard"]
+        },  
+        {
+            "name":"Athletic Tomato",
+            "baseImage":"",
+            "about":"Undercover fruit disguised as a vegetable./",
+            "aliasName":"Saucy Lady",
+            "recipe":"Super Sonic Dip",
+            "transformedImage":"",
+            "superPowers":"Seriously full of antioxidants to fight illness.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Sprouting Plant"]
+        },  
+        {
+            "name":"Coach Carrot",
+            "baseImage":"",
+            "about":"Perfectly packed healthy snack.",
+            "aliasName":"Purple Princess",
+            "recipe":"Rainbow Rice",
+            "transformedImage":"",
+            "superPowers":"Stacked with vitamins for super vision.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Hidden Root"]
+        },
+        {
+            "name":"Tucker Trackers",
+            "baseImage":"",
+            "about":"Seek out bush tucker. It's low in fat, sugar and salt.",
+            "aliasName":"Bush Tucker Team",
+            "recipe":"Add to your favourite bush tucker!",
+            "transformedImage":"",
+            "superPowers":"Packed with goodness for a strong mind and body.",
+            "foodGroup":"Multi/Bush Tucker",
+            "location":["Bushlands"]
+        },
+        {
+            "name":"Crunching Capsicum",
+            "baseImage":"",
+            "about":"Crunchy and munchy eaten raw or cooked.",
+            "aliasName":"Captain Capsicum",
+            "recipe":"Power Up Pizza",
+            "transformedImage":"",
+            "superPowers":"Oodles of Vitamin C in a rainbow of colours.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Sprouting Plant"]
+        },
+        {
+            "name":"Cheeky Chicken",
+            "baseImage":"",
+            "about":"A scrumptious way to help you beat hunger at lunch or dinner.",
+            "aliasName":"Chicken Drummer",
+            "recipe":"Chicken Drummer Rice",
+            "transformedImage":"",
+            "superPowers":"Chock-full of protein for healthy skin, nails and hair.",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location":["Clucky Coup"]
+        },
+        {
+            "name":"Outback Damper",
+            "baseImage":"",
+            "about":"Delicious when cooked in the coals.",
+            "aliasName":"Deadly Damper",
+            "recipe":"Deadly Damper Scrolls",
+            "transformedImage":"",
+            "superPowers":"Full of Energy to power up your brain.",
+            "foodGroup":"Breads and Cereals - Energy Foods",
+            "location":["Grain Fields"]
+        },
+        {
+            "name":"Garlic Dancer",
+            "baseImage":"",
+            "about":"Flavours food for tasty tucker",
+            "aliasName":"Garlic Shield",
+            "recipe":"Herbalicious Garlic Dip",
+            "transformedImage":"",
+            "superPowers":"Protects the body against rascal bacteria.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Bursting Bulb"]
+        },
+        {
+            "name":"Hannah Goanna",
+            "baseImage":"",
+            "about":"Bush tucker meat teeming with taste.",
+            "aliasName":"Go-Go Goanna",
+            "recipe":"Cook Over Coals",
+            "transformedImage":"",
+            "superPowers":"Slam dunks iron for super strong blood.",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location":["Bushlands"]
+        },
+        {
+            "name":"Fresh Herbs",
+            "baseImage":"",
+            "about":"Adds fabulous flavor to food.",
+            "aliasName":"Herbalicious",
+            "recipe":"Herbalicious Salad",
+            "transformedImage":"",
+            "superPowers":"Perfect way to pack in taste.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Sprouting Plant"]
+        },
+        {
+            "name":"Ranger Rex",
+            "baseImage":"",
+            "about":"Tasty bush tucker meat makes a wild meaty stew.",
+            "aliasName":"Cool Kangaroo",
+            "recipe":"Legendary Lasagne",
+            "transformedImage":"",
+            "superPowers":"Booming with protein and iron for super strong blood and muscles.",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location":["Grazing Land"]
+        },
+        {
+            "name":"Melody Melon",
+            "baseImage":"",
+            "about":"Maximum coolness and full of juice.",
+            "aliasName":"The Melonator",
+            "recipe":"Tutti Fruity Fruit Salad",
+            "transformedImage":"",
+            "superPowers":"Builds body armour to wipe out illness.",
+            "foodGroup":"Fruit - Protective Foods",
+            "location":["Vegie Zone - Twisting Vine"]
+        },
+        {
+            "name":"Jackaroo Onion",
+            "baseImage":"",
+            "about":"Adds layers of fab flavour.",
+            "aliasName":"Onion Ringer",
+            "recipe":"Oodles of Noodles",
+            "transformedImage":"",
+            "superPowers":"Runs rings around illness.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Bursting Bulb"]
+        },
+        {
+            "name":"Footy Girl",
+            "baseImage":"",
+            "about":"Sweet taste roasted or mashed.",
+            "aliasName":"Super Sweet Potato",
+            "recipe":"Fancy Fish Patties",
+            "transformedImage":"",
+            "superPowers":"Stacks of Vitamin A for seeing in the dark.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Hidden Root"]
+        },
+        {
+            "name":"Tinned Tradie",
+            "baseImage":"",
+            "about":"Convenience contained in a can.",
+            "aliasName":"Vegie Squad",
+            "recipe":"Vegie Fritters",
+            "transformedImage":"",
+            "superPowers":"Builds a super strong body with an army of vitamins.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Supply Store"]
+        },
+        {
+            "name":"Fruity Painter",
+            "baseImage":"",
+            "about":"Always on hand for a deadly snack.",
+            "aliasName":"Fruit Mob",
+            "recipe":"Rockin' Rice Pudding",
+            "transformedImage":"",
+            "superPowers":"Rainbow of nutrients jammed with juice.",
+            "foodGroup":"Fruit - Protective Foods",
+            "location":["Supply Store"]
+        },
+        {
+            "name":"Eager Egg",
+            "baseImage":"",
+            "about":"Whip up a quick and easy meal in a flash.",
+            "aliasName":"The Scrambler",
+            "recipe":"Speedy Cheese Muffins",
+            "transformedImage":"",
+            "superPowers":"Egg-ceptionally healthy and packed with protein.",
+            "foodGroup":"Meat/Protein",
+            "location":["Clucky Coup"]
+        },
+        {
+            "name":"Pasta Chef",
+            "baseImage":"",
+            "about":"Pasta comes in fun shapes like tubes, shells and wagon wheels.",
+            "aliasName":"Pasta Blast",
+            "recipe":"Cheesy Pasta Blast",
+            "transformedImage":"",
+            "superPowers":"5,4,3,2,1... Blast off! Pasta blast is a powerhouse of energy for your body and mind.",
+            "foodGroup":"Breads and Cereals - Energy Foods",
+            "location":["Grain Fields"]
+        },
+        {
+            "name":"Pea Pod",
+            "baseImage":"",
+            "about":"Yummy eaten raw. Pick a pod full of peas straight from the garden.",
+            "aliasName":"Queen Pea",
+            "recipe":"K-Pow Fritters",
+            "transformedImage":"",
+            "superPowers":"protein packed into a small package.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Twisting Vine"]
+        },
+        {
+            "name":"Mr Cucumber",
+            "baseImage":"",
+            "about":"A tasty and crunchy snack to help you cool down.",
+            "aliasName":"Cool Cucumber",
+            "recipe":"Cool Cucumber Salad",
+            "transformedImage":"",
+            "superPowers":"High amounts of water helps to keep you hydrated.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Vegie Zone - Twisting Vine"]
+        },
+        {
+            "name":"Frozen Vegies",
+            "baseImage":"",
+            "about":"Frozen goodness always ready to go.",
+            "aliasName":"Snap Frozen",
+            "recipe":"Vegie Squad Curry",
+            "transformedImage":"",
+            "superPowers":"Packed full of frozen goodness loaded with vitamins and minerals.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":["Supply Store"]
+        }
+    ],
+    "baby": [
+        {
+            "name":"Lil' Sporty Banana",
+            "baseImage":"",
+            "about":"A tasty little fruit and a great healthy snack to keep you energised for play time.",
+            "likes":["Lil' Sporty Banana likes playing footy with his dad, Sporty Banana. They practice kicking goals together at the local footy oval.","Lil' Super Fruity zooms around Healthy Town to practice being the next leader of the Superhero Foods."],
+            "aliasName":"Lil' Super Fruity",
+            "aliasImage":"",
+            "superPowers":"Loaded with fibre to keep your gut healthy.",
+            "foodGroup":"Fruit - Protective",
+            "location":"Banana Bunch",
+            "use":"Mash with a fork for an easy snack to feed to bubs."
+        },
+        {
+            "name":"Lil' Broc",
+            "baseImage":"",
+            "about":"Lightly steamed and tastes great and reduces the loss of vitamins.",
+            "likes":["Lil' Broc loves to play with the other Superhero Food Babies at playgroup.","Lil' Mean Green enjoys being outside and exploring all the hiding places within Vegie Zone."],
+            "aliasName":"Lil' Mean Green",
+            "aliasImage":"",
+            "superPowers":"A bundle of vitamins and minerals.",
+            "foodGroup":"Vegetables - Protective",
+            "location":"Vegie Zone - Sprouting Soil",
+            "use":"Try brocollini or broccoli chopped up into small pieces and add to your next pasta for a green burst of goodness."
+        },
+        {
+            "name":"Lil' Lean Meat",
+            "baseImage":"",
+            "about":"Try a tasty chop or chew on your meat cut into soldiers.",
+            "likes":["Lil' Lean Meat is always reading books about the world. He wants to travel to every country when he grows up.","Lil' Beefy Boy loves doing athletics to build his strength. He wants to lift weights at the Grazing Land Gymnasium when he's older."],
+            "aliasName":"Lil' Beefy Boy",
+            "aliasImage":"",
+            "superPowers":"Packed with iron and protein to build a strong body.",
+            "foodGroup":"Meat - Build",
+            "location":"Grazing Land",
+            "use":"Did you know red meat is the best source of Iron? Eat meat with iron helpers like fruit and veg to help our bodies absorb Iron."
+        },
+        {
+            "name":"Lil' Milk Maid",
+            "baseImage":"",
+            "about":"Plain milk is a great way to quench your thirst.",
+            "likes":["Lil’ Milk Maid is learning how to hula-hoop. She is practicing for the school assembly.","Lil’ Mighty Milk has lots of fun at the Dairy Park. Sliding down the giant milk slide is her favourite."],
+            "aliasName":"Lil' Mighty Milk",
+            "aliasImage":"",
+            "superPowers":"Brimming vwith calcium to build super strong bones and teeth.",
+            "foodGroup":"Meat - Build",
+            "location":"Dairy Land",
+            "use":"Water and milk are the best choice when you’re thirsty. "
+        },
+        {
+            "name":"Lil' Mixed Grain",
+            "baseImage":"",
+            "about":"Yummy as a snack when toasted with a thin spread of vegemite.",
+            "likes":["Lil’ Mixed Grain likes spending time in the grain fields. He loves helping out during the harvest.","Lil’ Toasty enjoys firing up his flames to blast his way around Healthy Town."],
+            "aliasName":"Lil' Toasty",
+            "aliasImage":"",
+            "superPowers":"Boosts your energy to keep you active.",
+            "foodGroup":"Grain - Energise",
+            "location":"Grain Field",
+            "use":"Spread with avocado and cut into small pieces for a nutritious snack for little hands."
+        }
+    ],
+    "everyday":[
+        {
+            "name":"Postie Porridge",
+            "baseImage":"",
+            "about":"Sprinkle over other breakfast cereals for an extra boost of fibre.",
+            "likes":["Rain, hail or shine, Postie Porridge delivers all the mail and parcels in Healthy Town.","Powerful Porridge has lots of fun flying through the Grain Fields at lighting speed."],
+            "aliasName":"Powerful Porridge",
+            "recipe":"Humble Crumble",
+            "aliasImage":"",
+            "superPowers":"Helps power you up at breakfast time to blast you into your day.",
+            "foodGroup":"Breads and Cereals - Energy Foods",
+            "location":"Grain Field",
+            "use":"Add oats to any breakfast cereal to add extra flavour. Toast the oats first for extra yumminess."
+        },
+        {
+            "name":"DJ Corn",
+            "baseImage":"",
+            "about":"Eating corn on the cob can be some messy fun!",
+            "likes":["DJ Corn loves to pump out the music to his crowd of corn friends from the Vegie Zone.","King Corn protects and rules over his land to protect all the citizens of Tucker Island."],
+            "aliasName":"King Corn",
+            "recipe":"Crazy Corn Dip",
+            "aliasImage":"",
+            "superPowers":"Every kernel is rich in vitamins to fight away illness.",
+            "foodGroup":"Vegetables - Protective Foods",
+            "location":"Vegie Zone - Twisting Vine",
+            "use":"Add tinned corn to any savoury meal to make it more colourful and fun! Cut it from the cob if you prefer."
+        },
+        {
+            "name":"Fresh Fish",
+            "baseImage":"",
+            "about":"Fo fishing to catch your own fish - you can't get any fresher!",
+            "likes":["Fresh Fish delights in swimming through the Aqua Ocean collecting shells and sea grass.","With her trusty trident, The Sea Raider creates the weather in Tucker Island. She loves to make rainbows."],
+            "aliasName":"The Sea Raider",
+            "recipe":"Lean Mean Curry",
+            "aliasImage":"",
+            "superPowers":"Powerhouse of omega-3 fatty acids for a healthy heart",
+            "foodGroup":"Meat/Protein - Body Building",
+            "location":"Aqua Ocean",
+            "use":"Swap out red meat for fish next time at dinner. Add a squeeze of lemon for a flavour boost."
+        }
+    ],
+    "villain":[
+        {
+            "name":"Illness",
+            "baseImage":"",
+            "specialPowers":"Attacks the body when defences are low. Wears out the immune system."
+        },
+        {
+            "name":"Obesity",
+            "baseImage":"",
+            "specialPowers":"Hides fat in the body, steals fitness and slows you down."
+        },
+        {
+            "name":"Decay",
+            "baseImage":"",
+            "specialPowers":"Rots teeth making them weak. He hates hygiene."
+        }
+    ],
+    "zombie":[
+        {
+            "name":"Zombie Choc",
+            "baseImage":"",
+            "zombiePowers":"Rots teeth and stores fat in the body.",
+            "zombieGroup":"Fat and sugar",
+            "location":"Zombie Wasteland"
+        },
+        {
+            "name":"Zombie Chips",
+            "baseImage":"",
+            "zombiePowers":"Stuffed full of fat and salt - best friends with obesity.",
+            "zombieGroup":"Salt and fat",
+            "location":"Zombie Wasteland"
+        },
+        {
+            "name":"Zombie Energy",
+            "baseImage":"",
+            "zombiePowers":"Crammed with sugar and caffeine – stresses out the brain, heart and body.",
+            "zombieGroup":"Sugar and caffeine",
+            "location":"Zombie Wasteland"
+        },
+        {
+            "name":"Zombie Donut",
+            "baseImage":"",
+            "zombiePowers":"Seething with sugar and fat – drains energy & makes the body sluggish.",
+            "zombieGroup":"Fat and sugar.",
+            "location":"Zombie Wasteland"
+        },
+        {
+            "name":"Zombie Fizz",
+            "baseImage":"",
+            "zombiePowers":"Sugar overload - best friends with decay.",
+            "zombieGroup":"Sugar.",
+            "location":"Zombie Wasteland"
+        }
+    ]
+}
+  
+  
