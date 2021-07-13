@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect, ChangeEvent } from 'react'
-import Characters from '@components/Grid/Characters'
+import { Button, Form, TextField, Modal } from '@components/Custom'
+import GridDisplay, { selectSet, Character } from '@components/Grid/Characters'
 import Rng from '../RngTest'
 
 const UsernameForm = () => {
   const [username, setUsername] = useState('')
   const [selectedCount, setSelectedCount] = useState(0)
-  const [grid, setGrid] = useState([])
+  const [grid, setGrid] = useState<Character[]>([])
 
   const focusRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
@@ -16,11 +17,12 @@ const UsernameForm = () => {
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value)
+    setGrid([])
   }
   const handleUsernameSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setUsername(username)
-    alert(username)
+    setGrid(selectSet(username))
+    // setUsername(username)
   }
 
   return (
@@ -38,7 +40,7 @@ const UsernameForm = () => {
           onChange={handleUsernameChange}
           ref={focusRef}
         />
-        <button className=''>YOU SURE???</button>
+        <button className=''>YOU SURE????</button>
       </form>
       {username ? (
         <>
@@ -46,10 +48,18 @@ const UsernameForm = () => {
             Username: &emsp;
             {username}
           </p>
-          <Characters seed={username} />
-          <Rng seed={username} />
+          {grid.length ? (
+            <>
+              <GridDisplay selectedSet={grid} />
+              {console.log(username)}
+              <Rng seed={username} />
+            </>
+          ) : (
+            ''
+          )}
         </>
       ) : (
+        // <>{setGrid([])}</>
         ''
       )}
     </>
