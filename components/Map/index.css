@@ -1,0 +1,55 @@
+.map-selected {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  transform: scale(1.1, 1.1);
+}
+
+.map-unselected {
+  transition: 0.2s all;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+
+.map-selected:hover,
+.map-unselected:hover {
+  cursor: pointer;
+  transform: scale(1.1, 1.1);
+}
+
+.outer{
+  position: relative;
+}
+
+.svgrow {
+  max-width: 100vw;
+  display: flex;
+  position: relative;
+
+}
+
+.map{
+  position: absolute;
+  object-fit: cover;
+  object-position: top left;
+  min-width: 100vh;
+  min-height: 100vh;
+}
+
+@media (max-width:1170px) {
+  .map{
+    min-width: 2900px;
+    min-height: 2100px;
+  }
+}
+
+.townBox{
+  position: absolute; 
+  width: auto;
+}
+.up{
+  transform: translate(0,-300px);
+}
+
+.left{
+  transform: translate(-500px , 0);
+}
