@@ -230,7 +230,7 @@
             "about":"Crunchy and munchy eaten raw or cooked.",
             "aliasName":"Captain Capsicum",
             "recipe":"Power Up Pizza",
-            "transformedImage":"public/images/characters/image42.jpeg",
+            "transformedImage":"public/images/characters/image93.jpeg",
             "superPowers":"Oodles of Vitamin C in a rainbow of colours.",
             "foodGroup":"Vegetables - Protective Foods",
             "location":["Vegie Zone - Sprouting Plant"]
@@ -274,7 +274,7 @@
             "about":"Bush tucker meat teeming with taste.",
             "aliasName":"Go-Go Goanna",
             "recipe":"Cook Over Coals",
-            "transformedImage":"",
+            "transformedImage":"public/images/characters/image95.jpeg",
             "superPowers":"Slam dunks iron for super strong blood.",
             "foodGroup":"Meat/Protein - Body Building",
             "location":["Bushlands"]
@@ -296,7 +296,7 @@
             "about":"Tasty bush tucker meat makes a wild meaty stew.",
             "aliasName":"Cool Kangaroo",
             "recipe":"Legendary Lasagne",
-            "transformedImage":"",
+            "transformedImage":"public/images/characters/image96.jpeg",
             "superPowers":"Booming with protein and iron for super strong blood and muscles.",
             "foodGroup":"Meat/Protein - Body Building",
             "location":["Grazing Land"]
@@ -307,7 +307,7 @@
             "about":"Maximum coolness and full of juice.",
             "aliasName":"The Melonator",
             "recipe":"Tutti Fruity Fruit Salad",
-            "transformedImage":"",
+            "transformedImage":"public/images/characters/image97.jpeg",
             "superPowers":"Builds body armour to wipe out illness.",
             "foodGroup":"Fruit - Protective Foods",
             "location":["Vegie Zone - Twisting Vine"]
@@ -329,7 +329,7 @@
             "about":"Sweet taste roasted or mashed.",
             "aliasName":"Super Sweet Potato",
             "recipe":"Fancy Fish Patties",
-            "transformedImage":"",
+            "transformedImage":"public/images/characters/image98.jpeg",
             "superPowers":"Stacks of Vitamin A for seeing in the dark.",
             "foodGroup":"Vegetables - Protective Foods",
             "location":["Vegie Zone - Hidden Root"]
@@ -340,7 +340,7 @@
             "about":"Convenience contained in a can.",
             "aliasName":"Vegie Squad",
             "recipe":"Vegie Fritters",
-            "transformedImage":"",
+            "transformedImage":"public/images/characters/image99.jpeg",
             "superPowers":"Builds a super strong body with an army of vitamins.",
             "foodGroup":"Vegetables - Protective Foods",
             "location":["Supply Store"]
@@ -351,7 +351,7 @@
             "about":"Always on hand for a deadly snack.",
             "aliasName":"Fruit Mob",
             "recipe":"Rockin' Rice Pudding",
-            "transformedImage":"",
+            "transformedImage":"public/images/characters/image100.jpeg",
             "superPowers":"Rainbow of nutrients jammed with juice.",
             "foodGroup":"Fruit - Protective Foods",
             "location":["Supply Store"]
