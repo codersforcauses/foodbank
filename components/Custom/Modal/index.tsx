@@ -12,10 +12,7 @@ const Modal = ({
   if (size === 'md') sizeClass = 'max-w-2lg'
   return (
     <Transition show={props.open} as={Fragment}>
-      <Dialog
-        {...props}
-        className='fixed inset-0 z-40 text-primary'
-      >
+      <Dialog {...props} className='fixed inset-0 z-40 text-primary'>
         <Transition.Child
           as={Fragment}
           enter='transition-all ease-out duration-300'
@@ -39,8 +36,7 @@ const Modal = ({
             sizeClass
           ]
             .join(' ')
-            .trim()
-          }
+            .trim()}
         >
           <div className='relative z-50 transform translate-y-1/2 bg-white rounded-xl'>
             <div className='sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'>

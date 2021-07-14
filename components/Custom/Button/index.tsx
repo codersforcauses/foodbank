@@ -1,10 +1,15 @@
-import { ButtonHTMLAttributes, PropsWithChildren } from "react"
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'orange' | 'blue' | 'teal'
 }
 
-const Button = ({ children, color, className, ...props }: PropsWithChildren<ButtonProps>) => {
+const Button = ({
+  children,
+  color,
+  className,
+  ...props
+}: PropsWithChildren<ButtonProps>) => {
   let bgColor: string
 
   switch (color) {
@@ -30,8 +35,7 @@ const Button = ({ children, color, className, ...props }: PropsWithChildren<Butt
         className
       ]
         .join(' ')
-        .trim()
-      }
+        .trim()}
     >
       {children}
     </button>
