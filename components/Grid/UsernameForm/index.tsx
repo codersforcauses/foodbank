@@ -8,9 +8,9 @@ const CHARACTERS_FOR_AUTH = 3
 const UsernameForm = () => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
-  const [selectedCount, setSelectedCount] = useState(0)
-  const [grid, setGrid] = useState<Character[]>([])
   const [password, setPassword] = useState('')
+  const [grid, setGrid] = useState<Character[]>([])
+  const [selectedCount, setSelectedCount] = useState(0)
 
   const focusRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
@@ -29,6 +29,7 @@ const UsernameForm = () => {
     setUsername(input)
     setGrid(selectSet(input))
     setInput('')
+    setPassword('')
     setSelectedCount(0)
   }
 
