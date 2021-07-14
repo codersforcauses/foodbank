@@ -1,5 +1,5 @@
-import React from 'react';
-import './index.css';
+//import './index.css';
+import chars from './characters.json';
 
 interface CharacterProps {
   baseName: string;
@@ -13,7 +13,7 @@ interface CharacterProps {
   location: string;
 }
 
-export const Character: React.FC<CharacterProps> = ({
+const Character: React.FC<CharacterProps> = ({
   baseName,
   // aliasName,
   baseImageUrl,
@@ -54,3 +54,5 @@ export const Character: React.FC<CharacterProps> = ({
     </div>
   );
 };
+
+export default Character;
