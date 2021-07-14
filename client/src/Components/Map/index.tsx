@@ -25,7 +25,10 @@ const Map: React.FC = () => {
 
   useEffect(() => {
     function handleResize() {
-      setScale(window.innerWidth/4961)
+      const mobileWidth = 2900
+      const minStaticWidth = 1025
+      const targetWidth = window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
+      setScale(targetWidth/4961)
     }
     handleResize();
     window.addEventListener('resize', handleResize)
