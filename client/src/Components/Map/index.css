@@ -2,6 +2,8 @@
   transform-origin: 50% 50%;
   transform-box: fill-box;
   transform: scale(1.1, 1.1);
+
+  filter: brightness(80%);
 }
 
 .map-unselected {
@@ -27,13 +29,36 @@
 
 }
 
-.map{
+@keyframes lighten-map {
+  0%   {filter: brightness(0.6);}
+  100% {filter: brightness(1.0);}
+}
+
+.map {
   position: absolute;
   object-fit: cover;
   object-position: top left;
   min-width: 100vh;
   min-height: 100vh;
+
+  transition: 1s;
+
+  animation-name: lighten-map;
+  animation-duration: 1s;
 }
+
+@keyframes darken-map {
+  0%   {filter: brightness(1.0);}
+  100% {filter: brightness(0.6);}
+}
+
+.map-inactive {
+  animation-name: darken-map;
+  animation-duration: 1s;
+
+  filter: brightness(0.6);
+}
+
 
 @media (max-width:1170px) {
   .map{
@@ -41,11 +66,11 @@
     min-height: 2100px;
   }
 }
-
 .townBox{
   position: absolute; 
   width: auto;
 }
+
 .up{
   transform: translate(0,-300px);
 }

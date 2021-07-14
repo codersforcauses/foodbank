@@ -2,7 +2,6 @@
 // svg tree generated from dev/svgParse.py (super hacky atm)
 
 import React, { useEffect, useRef, useState } from 'react'
-// import { Menu } from '@headlessui/react'
 import './index.css'
 import { Location } from '../../lib/types'
 import svgData from './svgImageData.json'
@@ -65,11 +64,31 @@ const Map: React.FC = () => {
   return (
     <div
       ref={elementRef}
-      className='block'
+      className='block w-full min-h-full items-stretch'
+      style={{minHeight:'900px'}}
     >
       {height === 0 ? null : (
           <div className='svgrow'>
-              <img src={mapImg} alt="Tucker Island Map" className="map" useMap="#tuckerislandmap"/>
+            {
+              selected === null &&
+                <img
+                  src={mapImg}
+                  alt="Tucker Island Map"
+                  className="map"
+                  useMap="#tuckerislandmap"
+                />
+            }
+
+            {
+              selected !== null &&
+                <img
+                  src={mapImg}
+                  alt="Tucker Island Map"
+                  className="map map-inactive"
+                  useMap="#tuckerislandmap"
+                />
+            }
+
             <map name="tuckerislandmap">
               {
                 svgData.groupArray.map(location => {
@@ -106,24 +125,10 @@ const Map: React.FC = () => {
                       
                       const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
 
-                      const maxWidth = selectedArea?.maxWidth
-                      const maxHeight = selectedArea?.maxHeight
-
-                      const xtrans = parseInt(area.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                      const ytrans = parseInt(area.ytrans) * scale * 8; // this is probably worth looking into
-                      const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
-                      const up = ["aquaOcean", "zombieWasteland", "grainField"]
-                      const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
-
-                      console.log("area",selectedArea);
-                      console.log(area.id)
-                      console.log(translation)
                       return (
-                        <div key={area.id} style={{transform:translation}}>
-                          <div className={`townBox ${up.includes(area.id)? "up" : ""} ${left.includes(area.id)? "left " : ""}`}>
+                        <div className='flex content-center w-full' style={{position: 'fixed', minHeight: '1000px', justifyContent: 'center', alignItems: 'center'}}>
+                          <div className='block' style={{height:'50vh'  }}>
                             <Townbox 
-                              maxWidth={maxWidth} 
-                              maxHeight={maxHeight}
                               headerColor={headerColor}
                               headerText={header}
                               captionText={caption}
@@ -137,23 +142,6 @@ const Map: React.FC = () => {
                   }
                 })
               }
-
-            {svgData.groupArray.map(location =>{
-                const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
-                const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
-                const up = ["aquaOcean", "zombieWasteland", "grainField"]
-                const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
-                return (
-                  <div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
-                    {
-                      selected === Location[location.id as keyof typeof Location] &&
-                      <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}></div>
-                    }
-                  </div>
-                )
-              })}
-
         </div>
       )}
     </div>
