@@ -78,3 +78,19 @@
 .left{
   transform: translate(-500px , 0);
 }
+
+.full-page-wrapper {
+  position: fixed;
+
+  width:  100vw;
+  height: 100vh;
+
+  transform: translate(-100% -100%);
+
+  display: flex;
+  justify-content: center;
+}
+
+.townbox-wrapper {
+  align-self: center;
+}

@@ -62,6 +62,7 @@ const Map: React.FC = () => {
 
   // Data can be made from dev/svgParse.py
   return (
+    <>
     <div
       ref={elementRef}
       className='block w-full min-h-full items-stretch'
@@ -112,39 +113,41 @@ const Map: React.FC = () => {
                 })
               }
             </map>
-
-            {
-                svgData.groupArray.map(area => {
-                  if (selected !== null && area.coords){
-                    const selectedArea = getAreaDescription(selected)
-
-                    if(selectedArea !== null && selectedArea.id === area.id) {
-                      const header = selectedArea?.headerText
-                      const caption = selectedArea?.captionText
-                      const showButton = selectedArea?.showButton
-                      
-                      const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
-
-                      return (
-                        <div className='flex content-center w-full' style={{position: 'fixed', minHeight: '1000px', justifyContent: 'center', alignItems: 'center'}}>
-                          <div className='block' style={{height:'50vh'  }}>
-                            <Townbox 
-                              headerColor={headerColor}
-                              headerText={header}
-                              captionText={caption}
-                              showButton = {showButton}
-                              close={onClose}
-                            />
-                          </div>
-                        </div>
-                      )
-                    }
-                  }
-                })
-              }
         </div>
       )}
     </div>
+
+    <div className='full-page-wrapper'>
+      {
+        svgData.groupArray.map(area => {
+          if (selected !== null && area.coords){
+            const selectedArea = getAreaDescription(selected)
+
+            if(selectedArea !== null && selectedArea.id === area.id) {
+              const header = selectedArea?.headerText
+              const caption = selectedArea?.captionText
+              const showButton = selectedArea?.showButton
+              
+              const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
+
+              return (
+                  <div className="townbox-wrapper">
+                    <Townbox 
+                      headerColor={headerColor}
+                      headerText={header}
+                      captionText={caption}
+                      showButton = {showButton}
+                      close={onClose}
+                    />
+                  </div>
+              )
+            }
+          }
+        })
+      }
+    </div>
+
+    </>
   )
 }
 
