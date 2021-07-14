@@ -35,7 +35,7 @@
   min-height: 100vh;
 }
 
-@media (max-width:1025px) {
+@media (max-width:1170px) {
   .map{
     min-width: 2900px;
     min-height: 2100px;
