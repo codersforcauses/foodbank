@@ -29,10 +29,11 @@ const UsernameForm = () => {
     setUsername(input)
     setGrid(selectSet(input))
     setInput('')
+    setSelectedCount(0)
   }
 
   const toggleSelect = (id: string) => {
-    const newGrid = [...grid]
+    const newGrid: Array<Character> = JSON.parse(JSON.stringify(grid))
     const character = newGrid.find(char => char.id === id)
     if (character) {
       if (character.isSelected) {
