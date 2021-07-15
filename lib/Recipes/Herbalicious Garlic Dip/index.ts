@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Herbalicious Garlic Dip/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Herbalicious Garlic Dip/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Herbalicious Garlic Dip/Equipment.webp'
@@ -7,12 +7,13 @@ import step2Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 2.webp'
 import step3Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 3.webp'
 import step4Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 4.webp'
 import step5Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Peel garlic clove and dice into very small pieces. Chop basil leaves and slice ' +
+  description:
+    'Peel garlic clove and dice into very small pieces. Chop basil leaves and slice ' +
     'spring onion into small pieces. Grate cheese.'
 }
 
@@ -34,17 +35,14 @@ const step3: RecipeStep = {
 const step4: RecipeStep = {
   number: 4,
   image: step4Img,
-  description:
-    ''
+  description: ''
 }
 
 const step5: RecipeStep = {
   number: 5,
   image: step5Img,
-  description:
-    ''
+  description: ''
 }
-
 
 const herbaliciousGarlicDip: Recipe = {
   slug: 'herbalicious-garlic-dip',
@@ -79,7 +77,7 @@ const herbaliciousGarlicDip: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme,
+  colorScheme: orangeScheme
 }
 
 export default herbaliciousGarlicDip

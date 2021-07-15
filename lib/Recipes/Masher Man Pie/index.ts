@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Masher Man Pie/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Masher Man Pie/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Masher Man Pie/Equipment.webp'
@@ -7,13 +7,14 @@ import step2Img from 'public/images/recipes/Masher Man Pie/Step 2.webp'
 import step3Img from 'public/images/recipes/Masher Man Pie/Step 3.webp'
 import step4Img from 'public/images/recipes/Masher Man Pie/Step 4.webp'
 import step5Img from 'public/images/recipes/Masher Man Pie/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Dice onion and garlic. Spray frypan with oil and turn on to a medium heat. Add onion, garlic and beef ' +
-  'to the frypan. Cook until browned.'
+  description:
+    'Dice onion and garlic. Spray frypan with oil and turn on to a medium heat. Add onion, garlic and beef ' +
+    'to the frypan. Cook until browned.'
 }
 
 const step2: RecipeStep = {
@@ -28,7 +29,7 @@ const step3: RecipeStep = {
   number: 3,
   image: step3Img,
   description:
-    'Add baked beans into frypan and stir to combine. Turn frypan down to low heat. Grate potatoes.' 
+    'Add baked beans into frypan and stir to combine. Turn frypan down to low heat. Grate potatoes.'
 }
 
 const step4: RecipeStep = {
@@ -45,7 +46,6 @@ const step5: RecipeStep = {
     'Spread grated cheese on top of meat and potato mixture. Place lid on frypan and cook for 10 minutes or until cheese is melted.'
 }
 
-
 const masherManPie: Recipe = {
   slug: 'masher-man-pie',
   name: 'Masher Man Pie',
@@ -59,7 +59,6 @@ const masherManPie: Recipe = {
     'Strainer',
     'Can opener',
     'Grater'
-
   ],
   ingredients: [
     '1 brown onion',

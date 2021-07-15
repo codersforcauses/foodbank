@@ -5,7 +5,6 @@ import sportyBananaImage from 'public/images/Characters/Fruit/14. Everyday Food 
 import superFruityImage from 'public/images/Characters/Fruit/13. Superhero Food - Super Fruity.webp'
 import superFruityImageGif from 'public/images/Characters/No background images/Super-Fruity-Colour.gif'
 
-
 const acesApple: Character = {
   name: 'Aces Apple',
   image: acesAppleImage.src,
@@ -32,5 +31,4 @@ const sportyBanana: Character = {
   facing: 'left'
 }
 
-
-export { acesApple, sportyBanana };
+export { acesApple, sportyBanana }

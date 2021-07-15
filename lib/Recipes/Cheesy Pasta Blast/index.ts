@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Cheesy Pasta Blast/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Cheesy Pasta Blast/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Cheesy Pasta Blast/Equipment.webp'
@@ -7,13 +7,14 @@ import step2Img from 'public/images/recipes/Cheesy Pasta Blast/Step 2.webp'
 import step3Img from 'public/images/recipes/Cheesy Pasta Blast/Step 3.webp'
 import step4Img from 'public/images/recipes/Cheesy Pasta Blast/Step 4.webp'
 import step5Img from 'public/images/recipes/Cheesy Pasta Blast/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Measure water, milk, stock powder and macaroni into frypan. Turn frypan on to medium heat, stir gently then cover with lid. ' + 
-  'Cook for 5 minutes, stirring once. '
+  description:
+    'Measure water, milk, stock powder and macaroni into frypan. Turn frypan on to medium heat, stir gently then cover with lid. ' +
+    'Cook for 5 minutes, stirring once. '
 }
 
 const step2: RecipeStep = {
@@ -27,8 +28,7 @@ const step2: RecipeStep = {
 const step3: RecipeStep = {
   number: 3,
   image: step3Img,
-  description:
-    'Grate cheese. Drain tinned tuna with a strainer. '
+  description: 'Grate cheese. Drain tinned tuna with a strainer. '
 }
 
 const step4: RecipeStep = {
@@ -47,7 +47,6 @@ const step5: RecipeStep = {
     'cook until cheese is melted.'
 }
 
-
 const cheesyPastaBlast: Recipe = {
   slug: 'cheesy-pasta-blast',
   name: 'Cheesy Pasta Blast',
@@ -63,7 +62,6 @@ const cheesyPastaBlast: Recipe = {
     'Grater',
     'Can opener',
     'Strainer'
-
   ],
   ingredients: [
     '2¼ cups water',
@@ -81,7 +79,6 @@ const cheesyPastaBlast: Recipe = {
     'Pepper',
     '1/3 cup grated parmesan',
     '1/3 cup breadcrumbs'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

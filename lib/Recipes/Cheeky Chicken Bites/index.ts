@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Cheeky Chicken Bites/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Cheeky Chicken Bites/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Cheeky Chicken Bites/Equipment.webp'
@@ -7,7 +7,7 @@ import step2Img from 'public/images/recipes/Cheeky Chicken Bites/Step 2.webp'
 import step3Img from 'public/images/recipes/Cheeky Chicken Bites/Step 3.webp'
 import step4Img from 'public/images/recipes/Cheeky Chicken Bites/Step 4.webp'
 import step5Img from 'public/images/recipes/Cheeky Chicken Bites/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
@@ -46,7 +46,6 @@ const step5: RecipeStep = {
     'Top each chicken patty with a small amount of salsa and sprinkle with remaining cheese. Serve warm.'
 }
 
-
 const cheekyChickenBites: Recipe = {
   slug: 'cheeky-chicken-bites',
   name: 'Cheeky Chicken Bites',
@@ -77,7 +76,6 @@ const cheekyChickenBites: Recipe = {
     '½ cup grated parmesan cheese',
     'Spray oil',
     '½ cup tomato salsa'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

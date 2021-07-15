@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Super Sweet Potato Bake/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Super Sweet Potato Bake/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Super Sweet Potato Bake/Equipment.webp'
@@ -7,13 +7,14 @@ import step2Img from 'public/images/recipes/Super Sweet Potato Bake/Step 2.webp'
 import step3Img from 'public/images/recipes/Super Sweet Potato Bake/Step 3.webp'
 import step4Img from 'public/images/recipes/Super Sweet Potato Bake/Step 4.webp'
 import step5Img from 'public/images/recipes/Super Sweet Potato Bake/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Slice spring onion and finely dice garlic. Cut potatoes and sweet potato in half ' +
-  'and then slice very thinly. Grate cheese.'
+  description:
+    'Slice spring onion and finely dice garlic. Cut potatoes and sweet potato in half ' +
+    'and then slice very thinly. Grate cheese.'
 }
 
 const step2: RecipeStep = {
@@ -48,7 +49,6 @@ const step5: RecipeStep = {
     'until the cheese is melted and potatoes are soft.'
 }
 
-
 const superSweetPotatoBake: Recipe = {
   slug: 'super-sweet-potato-bake',
   name: 'Super Sweet Potato Bake',
@@ -62,7 +62,6 @@ const superSweetPotatoBake: Recipe = {
     'Measuring cups',
     'Measuring Spoons',
     'Strainer'
-
   ],
   ingredients: [
     '2 spring onions',
@@ -81,7 +80,6 @@ const superSweetPotatoBake: Recipe = {
     '1 tablespoon Dijon mustard',
     '125g light cream cheese',
     '420g tin corn kernels'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

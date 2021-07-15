@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls final shot.webp'
 import ingredientsImg from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls ingredients.webp'
 import equipmentImg from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls equipment.webp'
@@ -7,12 +7,13 @@ import step2Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper 
 import step3Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls step 3.webp'
 import step4Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls step 4.webp'
 import step5Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Heat oven to 180oC. Line baking tray with baking paper or spray with oil. ' +
+  description:
+    'Heat oven to 180oC. Line baking tray with baking paper or spray with oil. ' +
     'Sift flour and cinnamon into a large bowl. Add yoghurt and honey. Mix together to form a dough.'
 }
 
@@ -35,8 +36,7 @@ const step3: RecipeStep = {
 const step4: RecipeStep = {
   number: 4,
   image: step4Img,
-  description:
-    'Cut rolled log into 12 even slices.'
+  description: 'Cut rolled log into 12 even slices.'
 }
 
 const step5: RecipeStep = {
@@ -45,7 +45,6 @@ const step5: RecipeStep = {
   description:
     'Place scrolls cut-side up on baking tray. Bake in oven for 15-20 minutes or until golden brown.\n'
 }
-
 
 const deadlyDumperScrolls: Recipe = {
   slug: 'deadly-damper-scrolls',

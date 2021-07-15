@@ -12,7 +12,7 @@ const peaPod: Character = {
   image: peaPodImage.src,
   aliasName: 'Queen Pea',
   about: 'Yummy eaten raw. Pick a pod full of peas straight from the garden.',
-  aliasImage: queenPeaImage.src ,
+  aliasImage: queenPeaImage.src,
   imageGif: queenPeaImagePng.src,
   superPowers: 'Protein packed into a small package',
   foodGroup: 'Vegetables – protective foods',
@@ -25,7 +25,7 @@ const athleticTomato: Character = {
   image: athleticTomatoImage.src,
   aliasName: 'Saucy Lady',
   about: 'Undercover fruit disguised as a vegetable.',
-  aliasImage: saucyLadyImage.src ,
+  aliasImage: saucyLadyImage.src,
   imageGif: saucyLadyImagePng.src,
   superPowers: 'Seriously full of antioxidants to fight illness.',
   foodGroup: 'Vegetables – protective foods',
@@ -33,5 +33,4 @@ const athleticTomato: Character = {
   facing: 'left'
 }
 
-
-export { peaPod, athleticTomato };
+export { peaPod, athleticTomato }

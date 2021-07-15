@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Humble Crumble/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Humble Crumble/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Humble Crumble/Equipment.webp'
@@ -7,12 +7,13 @@ import step2Img from 'public/images/recipes/Humble Crumble/Step 2.webp'
 import step3Img from 'public/images/recipes/Humble Crumble/Step 3.webp'
 import step4Img from 'public/images/recipes/Humble Crumble/Step 4.webp'
 import step5Img from 'public/images/recipes/Humble Crumble/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Topping: Mix the oats, coconut, wheat flakes and cinnamon in a large bowl.'
+  description:
+    'Topping: Mix the oats, coconut, wheat flakes and cinnamon in a large bowl.'
 }
 
 const step2: RecipeStep = {
@@ -41,10 +42,8 @@ const step4: RecipeStep = {
 const step5: RecipeStep = {
   number: 5,
   image: step5Img,
-  description:
-    'Turn off the frypan. Sprinkle topping over the fruit and serve.'
+  description: 'Turn off the frypan. Sprinkle topping over the fruit and serve.'
 }
-
 
 const humbleCrumble: Recipe = {
   slug: 'humble-crumble',
@@ -60,21 +59,19 @@ const humbleCrumble: Recipe = {
     'Chopping board',
     'Knife',
     'Can opener'
-
   ],
   ingredients: [
-    '1 cup rolled oats',                //toppings how to separate them? ideas?
+    '1 cup rolled oats', //toppings how to separate them? ideas?
     '¾ cup shredded coconut',
     '1 cup wheat flake cereal',
     '1 teaspoon ground cinnamon',
     '1 tablespoon honey',
     '2 tablespoons margarine',
-    '4 green apples',                   //base
+    '4 green apples', //base
     '1 tablespoon margarine',
     '825g tin peaches, in juice',
     '1 teaspoon ground cinnamon',
     '1 teaspoon cornflour'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

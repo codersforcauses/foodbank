@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Noodle Ninja Salad/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Noodle Ninja Salad/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Noodle Ninja Salad/Equipment.webp'
@@ -7,12 +7,13 @@ import step2Img from 'public/images/recipes/Noodle Ninja Salad/Step 2.webp'
 import step3Img from 'public/images/recipes/Noodle Ninja Salad/Step 3.webp'
 import step4Img from 'public/images/recipes/Noodle Ninja Salad/Step 4.webp'
 import step5Img from 'public/images/recipes/Noodle Ninja Salad/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Gently pull apart rice noodles and place into a small bowl. Add boiling water and let noodles soften ' +
+  description:
+    'Gently pull apart rice noodles and place into a small bowl. Add boiling water and let noodles soften ' +
     'for 5 minutes. Drain using a strainer and place noodles into a large bowl.'
 }
 
@@ -46,7 +47,6 @@ const step5: RecipeStep = {
   description:
     'Finely chop mint. Pour dressing over salad, toss to mix through and sprinkle mint on top to serve.'
 }
-
 
 const noodleNinjaSalad: Recipe = {
   slug: 'noodle-ninja-salad',
@@ -82,7 +82,6 @@ const noodleNinjaSalad: Recipe = {
     'chilli sauce',
     '2 teaspoons olive oil',
     '½ bunch fresh mint (leaves only)'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

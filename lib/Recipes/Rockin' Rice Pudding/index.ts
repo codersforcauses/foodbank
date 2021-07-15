@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding final shot.webp"
 import ingredientsImg from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding ingredients.webp"
 import equipmentImg from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding equipment.webp"
@@ -7,12 +7,13 @@ import step2Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pu
 import step3Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 3.webp"
 import step4Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 4.webp"
 import step5Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 5.webp"
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Gently pull apart rice noodles and place into a small bowl. Add boiling water and let noodles soften ' +
+  description:
+    'Gently pull apart rice noodles and place into a small bowl. Add boiling water and let noodles soften ' +
     'for 5 minutes. Drain using a strainer and place noodles into a large bowl.'
 }
 
@@ -46,7 +47,6 @@ const step5: RecipeStep = {
   description:
     'Finely chop mint. Pour dressing over salad, toss to mix through and sprinkle mint on top to serve.'
 }
-
 
 const rockinRicePudding: Recipe = {
   slug: 'rockin-rice-pudding',

@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Cool Cucumber Salad/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Cool Cucumber Salad/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Cool Cucumber Salad/Equipment.webp'
@@ -7,12 +7,13 @@ import step2Img from 'public/images/recipes/Cool Cucumber Salad/Step 2.webp'
 import step3Img from 'public/images/recipes/Cool Cucumber Salad/Step 3.webp'
 import step4Img from 'public/images/recipes/Cool Cucumber Salad/Step 4.webp'
 import step5Img from 'public/images/recipes/Cool Cucumber Salad/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Chop lettuce, cucumber and capsicum into small pieces. Finely slice red onion. ' +
+  description:
+    'Chop lettuce, cucumber and capsicum into small pieces. Finely slice red onion. ' +
     'Slice cherry tomatoes in half.'
 }
 
@@ -34,8 +35,7 @@ const step3: RecipeStep = {
 const step4: RecipeStep = {
   number: 4,
   image: step4Img,
-  description:
-    'Pour dressing over the salad and mix well.'
+  description: 'Pour dressing over the salad and mix well.'
 }
 
 const step5: RecipeStep = {
@@ -44,7 +44,6 @@ const step5: RecipeStep = {
   description:
     'Chop feta into bite-sized chunks and spread over the top of the salad.'
 }
-
 
 const coolCucumberSalad: Recipe = {
   slug: 'cool-cucumber-salad',

@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Vegie Squad Curry/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Vegie Squad Curry/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Vegie Squad Curry/Equipment.webp'
@@ -7,13 +7,14 @@ import step2Img from 'public/images/recipes/Vegie Squad Curry/Step 2.webp'
 import step3Img from 'public/images/recipes/Vegie Squad Curry/Step 3.webp'
 import step4Img from 'public/images/recipes/Vegie Squad Curry/Step 4.webp'
 import step5Img from 'public/images/recipes/Vegie Squad Curry/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Finely dice onion and garlic. Spray frypan with oil and turn on to medium heat. Add onion and garlic to frypan. ' +
-  'Cook until browned.'
+  description:
+    'Finely dice onion and garlic. Spray frypan with oil and turn on to medium heat. Add onion and garlic to frypan. ' +
+    'Cook until browned.'
 }
 
 const step2: RecipeStep = {
@@ -46,7 +47,6 @@ const step5: RecipeStep = {
     'Add cornflour mix to frypan. Gently stir as the cornflour begins to thicken the sauce. Cook for 5 minutes then serve.'
 }
 
-
 const vegieSquadCurry: Recipe = {
   slug: 'vegie-squad-curry',
   name: 'Vegie Squad Curry',
@@ -62,7 +62,6 @@ const vegieSquadCurry: Recipe = {
     'Measuring cups',
     'Bowl',
     'Spoon'
-
   ],
   ingredients: [
     '1 onion',
@@ -77,7 +76,6 @@ const vegieSquadCurry: Recipe = {
     '400ml tin light coconut milk',
     '3 tablespoons cornflour',
     '1 cup water'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

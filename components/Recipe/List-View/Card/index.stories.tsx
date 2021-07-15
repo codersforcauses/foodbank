@@ -18,7 +18,7 @@ export const Unlocked = Template.bind({})
 Unlocked.args = {
   unlocked: true,
   label: 'Recipe Name',
-  image: "cheeky-chicken-bites.jpg",
+  image: 'cheeky-chicken-bites.jpg',
   text: 'Image Alt Text',
   color: 'Primary'
 }

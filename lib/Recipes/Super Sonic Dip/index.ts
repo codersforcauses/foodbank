@@ -32,11 +32,7 @@ const superSonicDip: Recipe = {
   slug: 'super-sonic-dip',
   name: 'Super Sonic Dip',
   category: ['Snack'],
-  tags: [
-    'Dip',
-    'Vegetables',
-    'Snacks'
-  ],
+  tags: ['Dip', 'Vegetables', 'Snacks'],
   equipment: [
     'Chopping board',
     'Knife',

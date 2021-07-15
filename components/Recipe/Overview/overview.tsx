@@ -17,14 +17,14 @@ import CategoryInfo from 'components/Recipe/CategoryInfo'
  * steps in a slideshow or one page format.
  */
 const RecipeOverview: React.FC = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+  const router = useRouter()
+  const { slug } = router.query
 
-  let recipe: Recipe | null = null;
+  let recipe: Recipe | null = null
 
   for (const potential_recipe of recipes) {
     if (slug === potential_recipe.slug) {
-      recipe = potential_recipe;
+      recipe = potential_recipe
     }
   }
 
@@ -35,13 +35,15 @@ const RecipeOverview: React.FC = () => {
     return (
       <div
         className={
-          'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' + colorScheme.bg
+          'relative grid gap-4 grid-cols-1 sm:grid-cols-2 p-10 ' +
+          colorScheme.bg
         }
       >
         <div>
           <h1
             className={
-              'text-4xl underline font-semibold font-serif ' + colorScheme.header
+              'text-4xl underline font-semibold font-serif ' +
+              colorScheme.header
             }
           >
             {recipe.name}

@@ -1,5 +1,5 @@
 import React from 'react'
-import Link  from 'next/link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { recipes } from 'lib/Recipes'
 import { Recipe } from 'lib/types'
@@ -9,14 +9,14 @@ import Step from 'components/Recipe/Step'
  * A page that displays all steps for a recipe in a single page format.
  */
 const RecipeSteps: React.FC = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+  const router = useRouter()
+  const { slug } = router.query
 
-  let recipe: Recipe | null = null;
+  let recipe: Recipe | null = null
 
   for (const potential_recipe of recipes) {
     if (slug === potential_recipe.slug) {
-      recipe = potential_recipe;
+      recipe = potential_recipe
     }
   }
 

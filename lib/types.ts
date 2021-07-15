@@ -39,6 +39,5 @@ interface Character {
   foodGroup: string
   location: string
   facing?: string
-
 }
 export type { ColorScheme, Recipe, RecipeStep, Character }

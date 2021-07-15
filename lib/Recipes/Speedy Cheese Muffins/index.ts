@@ -1,4 +1,4 @@
-import {Recipe, RecipeStep} from 'lib/types'
+import { Recipe, RecipeStep } from 'lib/types'
 import finalShot from 'public/images/recipes/Speedy Cheese Muffins/Final Shot.webp'
 import ingredientsImg from 'public/images/recipes/Speedy Cheese Muffins/Ingredients.webp'
 import equipmentImg from 'public/images/recipes/Speedy Cheese Muffins/Equipment.webp'
@@ -7,12 +7,13 @@ import step2Img from 'public/images/recipes/Speedy Cheese Muffins/Step 2.webp'
 import step3Img from 'public/images/recipes/Speedy Cheese Muffins/Step 3.webp'
 import step4Img from 'public/images/recipes/Speedy Cheese Muffins/Step 4.webp'
 import step5Img from 'public/images/recipes/Speedy Cheese Muffins/Step 5.webp'
-import {orangeScheme} from 'lib/colorSchemes'
+import { orangeScheme } from 'lib/colorSchemes'
 
 const step1: RecipeStep = {
   number: 1,
   image: step1Img,
-  description: 'Pre-heat oven to 180°C. Grate pumpkin, finely slice spring onions and drain corn.'
+  description:
+    'Pre-heat oven to 180°C. Grate pumpkin, finely slice spring onions and drain corn.'
 }
 
 const step2: RecipeStep = {
@@ -43,7 +44,6 @@ const step5: RecipeStep = {
     'Sprinkle pepitas evenly on top of each muffin. Cook for 20-25 minutes or until muffins are golden brown.'
 }
 
-
 const speedyCheeseMuffins: Recipe = {
   slug: 'speedy-cheese-muffins',
   name: 'Speedy Cheese Muffins',
@@ -62,7 +62,6 @@ const speedyCheeseMuffins: Recipe = {
     'Large spoon',
     '2 muffin trays',
     'Spoon'
-    
   ],
   ingredients: [
     '¼ pumpkin',
@@ -76,7 +75,6 @@ const speedyCheeseMuffins: Recipe = {
     '100g reduced fat feta',
     'Spray oil',
     '2 tablespoons pepita seeds'
-
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

@@ -34,7 +34,6 @@ yarn-error.log*
 .vercel
 
 # lock files
-package-lock.json
 yarn.lock
 
 # IDE settings
