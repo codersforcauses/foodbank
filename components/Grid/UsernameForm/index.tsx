@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, ChangeEvent } from 'react'
 import { Button, Form, TextField, Modal } from '@components/Custom'
-import GridDisplay, { selectSet, Character } from '@components/Grid/Characters'
-import Rng from '../RngTest'
+import GridDisplay, { selectSet, Character } from '@components/Grid/GridForm'
+import Rng from '@components/Grid/RngTest'
 
 const CHARACTERS_FOR_AUTH = 3
 
