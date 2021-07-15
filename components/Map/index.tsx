@@ -3,10 +3,11 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 // import { Menu } from '@headlessui/react'
-import './index.css'
-import { Location } from '../../lib/types'
+import './index.module.css'
+import { Location } from './types'
 import svgData from './svgImageData.json'
 import mapImg from './assets/TuckerMap.jpg'
+import Image from 'next/image';
 import descData from './assets/description.json'
 import Townbox from '../TownBox'
 const Map: React.FC = () => {
@@ -15,6 +16,7 @@ const Map: React.FC = () => {
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
+  const img = mapImg
   // const [townbox, setTownbox] = useState(<></>)
   type HeaderColor = 'primary' | 'orange';
   useEffect(() => {
@@ -69,7 +71,7 @@ const Map: React.FC = () => {
     >
       {height === 0 ? null : (
           <div className='svgrow'>
-              <img src={mapImg} alt="Tucker Island Map" className="map" useMap="#tuckerislandmap"/>
+              <Image src={mapImg} alt="Tucker Island Map" className="map" useMap="#tuckerislandmap"/>
             <map name="tuckerislandmap">
               {
                 svgData.groupArray.map(location => {
