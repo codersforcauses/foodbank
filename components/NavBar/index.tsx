@@ -13,8 +13,8 @@ const links: Array<NavLinkProps> = [
     route: '/'
   },
   {
-    page: 'Recipe',
-    route: '/'
+    page: 'Recipes',
+    route: '/recipes'
   },
   {
     page: 'Progress',
