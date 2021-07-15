@@ -1,12 +1,22 @@
 {
-  "extends": ["next", "next/core-web-vitals", "plugin:jsx-a11y/recommended", "plugin:prettier/recommended"],
-  "overrides": [{
-    "files": [
-      "*.ts",
-      "*.tsx"
-    ],
-    "rules": {
-      "jsx-a11y/anchor-is-valid": "off"
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "jsx-a11y/anchor-is-valid": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ]
+      }
     }
-  }]
+  ]
 }
