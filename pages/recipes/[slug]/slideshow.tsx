@@ -1,14 +1,13 @@
+import { Carousel } from '@components/Custom'
+import Image from 'next/image'
 import { recipes } from 'lib/Recipes'
 import { Recipe } from 'lib/types'
-import SlideShowButton from 'components/Recipe/Buttons/slideshow'
 
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Image from 'next/image'
 
-const RecipeSlideshow: React.FC = () => {
-  const [step, setStep] = useState(0)
-
+// to be deleted after it's used for recipes
+const RecipeSlideShow: React.FC = () => {
   const router = useRouter()
   const { slug } = router.query
 
@@ -22,34 +21,30 @@ const RecipeSlideshow: React.FC = () => {
 
   if (!recipe) return <div> Error </div>
 
-  const numSteps = recipe.steps.length
-
-  const changeIndex = (isIncrement: boolean, num: number) => {
-    if (isIncrement) return Math.min(num + 1, numSteps - 1)
-    else return Math.max(num - 1, 0)
-  }
-
   return (
-    <div className='flex h-screen'>
-      <div className='m-auto'>
-        <SlideShowButton
-          name='Previous'
-          handleClick={() => {
-            setStep(changeIndex(false, step))
-          }}
-          shouldRender={step != 0 ? true : false}
-        />
-        <Image src={recipe.steps[step].image} alt='image {step}' />
-        <SlideShowButton
-          name='Next'
-          handleClick={() => {
-            setStep(changeIndex(true, step))
-          }}
-          shouldRender={step != numSteps - 1 ? true : false}
-        />
-      </div>
+    <div className='flex justify-center align-center'>
+      <Carousel
+        controls
+        indicators
+        length={recipe.steps.length}
+        className='h-72 w-96'
+      >
+        {recipe.steps.map((recipeStep, index) => (
+          // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
+          <React.Fragment key={recipeStep.image}>
+            <div> {recipeStep.description} </div>
+            <div className='bg-opacity-25 bg-grey keen-slider__slide'>
+              <Image
+                src={recipeStep.image}
+                alt={`image ${index}`}
+                layout='fill'
+              />
+            </div>
+          </React.Fragment>
+        ))}
+      </Carousel>
     </div>
   )
 }
 
-export default RecipeSlideshow
+export default RecipeSlideShow
