@@ -68,18 +68,24 @@
   box-shadow: -1px -4px 0px 1px #a05b14 inset;
 }
 
+.grid-title{
+  font-size:50px;
+  color:#671E75;
+  font-family: Abraham;
+}
+
 .grid{
+  background-color:#CECFCB;
+}
+
+.grid-super{
   display: grid;
-  grid-template-columns: repeat(auto-fit, 120px);
-  grid-template-rows: repeat(auto-fit, 120px);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, 130px);
+  grid-template-rows: repeat(auto-fit, 130px);
+  gap: 20px;
 }
 
 .grid-cell{
-  border: 2;
-  gap: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 13px;
+
 }
 

@@ -1,25 +1,38 @@
 import React from 'react'
 import Image from 'next/image'
+import Character from '@components/Character/index'
 import chars from '@components/Character/characters.json'
 
-// seems to be a problem here with using map
-// https://sentry.io/answers/unique-key-prop/
+function CharInfo(props:any) {  
+  const ChosenChar = props.char;
+  return (
+    Character(ChosenChar)  
+  )
+}
 
 const Grid = () => (
-  <div className='grid'>
-    {chars.superhero.map(char => (
-      <div className='grid-cell' key={char.name}>
-        <div className='grid-name'>{char.aliasName}</div>
-        <Image
-          className='grid-image'
-          src={char.baseImage}
-          alt={char.name}
-          width='100px'
-          height='100px'
-        />
-      </div>
-    ))}
+  <div className="grid">
+    <h1 className='grid-title'>
+      THE SUPERHEROS
+    </h1>
+    <div className='grid-super'>
+      {chars.superhero.map(char => (
+        <button 
+          className='grid-cell' 
+          key={char.name} 
+          onClick={(e) => CharInfo(char)}>
+            <Image
+              className='grid-image'
+              src={char.baseImage}
+              alt={char.name}
+              width='200px'
+              height='200px'
+            />
+        </button>
+      ))}
+    </div>
   </div>
 )
-
+ 
 export default Grid
+

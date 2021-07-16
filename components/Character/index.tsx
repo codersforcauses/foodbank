@@ -1,4 +1,4 @@
-//import './index.css';
+import React from 'react';
 import chars from './characters.json'
 import Image from 'next/image'
 
@@ -16,31 +16,25 @@ interface CharacterProps {
 
 const Character: React.FC<CharacterProps> = ({
   baseName,
-  // aliasName,
+  aliasName,
   baseImageUrl,
-  // aliasImageUrl,
+  aliasImageUrl,
   about,
   recipe,
   superPowers,
   foodGroup,
   location
 }) => {
-  // const [isTransformed, setIsTransformed] = useState(false);
-  // const getName = () => isTransformed ? aliasName : baseName;
-  // const getImageUrl = () => isTransformed ? aliasImageUrl : baseImageUrl;
-
   return (
     <div className='main-window'>
       <button className='bg-primary'></button>
       <div className='character-card-container'>
         <div className='character-image-container'>
-          <p>
-            {' '}
-            img src={baseImageUrl} alt={baseName} /img{' '}
-          </p>
+            <img src={baseImageUrl} alt={baseName}></img>
         </div>
         <button>Activate super form!</button>
       </div>
+      
       <div className='info-window'>
         <div className='name-window'>{baseName}</div>
         <div className='about-window'>{about}</div>
@@ -57,5 +51,7 @@ const Character: React.FC<CharacterProps> = ({
     </div>
   )
 }
+
+
 
 export default Character
