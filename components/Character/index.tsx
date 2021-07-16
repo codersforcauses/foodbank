@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import chars from './characters.json'
 import Image from 'next/image'
 
@@ -30,11 +30,11 @@ const Character: React.FC<CharacterProps> = ({
       <button className='bg-primary'></button>
       <div className='character-card-container'>
         <div className='character-image-container'>
-            <img src={baseImageUrl} alt={baseName}></img>
+          {/* <img src={baseImageUrl} alt={baseName}></img> */}
         </div>
         <button>Activate super form!</button>
       </div>
-      
+
       <div className='info-window'>
         <div className='name-window'>{baseName}</div>
         <div className='about-window'>{about}</div>
@@ -51,7 +51,5 @@ const Character: React.FC<CharacterProps> = ({
     </div>
   )
 }
-
-
 
 export default Character
