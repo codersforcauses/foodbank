@@ -54,14 +54,6 @@ const Map: React.FC = () => {
 
   const onMapClick = (area: Location) => {
     const areaDescription = getAreaDescription(area)
-      //console.log(selected)
-    //if(selected != null)  {
-      //console.log("xtrans", svgData.groupArray[selected].xtrans)
-      //const xtrans = svgData.groupArray[selected].xtrans;
-      //const transformation = "transform: translate3d("+100+"," + 100+ ",0) scale(2)"
-      //setZoom(transformation)
-     // console.log('transformation', transformation)
-    //}
     if(selected !== area) {
       const header = areaDescription?.headerText
       const caption = areaDescription?.captionText
@@ -87,6 +79,7 @@ const Map: React.FC = () => {
   // eslint-disable-next-line
   const handleClick = (event: any) => { //need to change this type
     event.preventDefault()
+    console.log('test')
     const area = event.target.alt
     onMapClick(Location[area as keyof typeof Location])
   }
@@ -97,30 +90,12 @@ const Map: React.FC = () => {
       ref={elementRef}
       className='flex-auto 2xl:flex-none xl:flex-none 2xl:h-4/5 xl:h-4/5 flex justify-center'
     >
-      
-      
-      {height === 0 ? null : (
-          <div className='svgrow'>
-            <div style={{position:"relative"}}>
-              <TransformWrapper>
-              {({ zoomToElement, resetTransform, setTransform }) => (
+      <TransformWrapper>
+              {({ resetTransform, setTransform }) => (
+                
                 <>
                 <div>
-                <button
-                    onClick={() => zoomToElement("fruityOrchard")}
-                  >
-                    Zoom to cluckyCoop
-                  </button>
-                  <button
-                    onClick={() => zoomToElement("wickedWaterway")}
-                  >
-                    Zoom to cluckyCoop
-                  </button>
-                  <button
-                    onClick={() => zoomToElement("healthyTown")}
-                  >
-                    Zoom to healthyTown
-                  </button>
+
                     <button
                     onClick={() => resetTransform()}
                   >
@@ -129,23 +104,14 @@ const Map: React.FC = () => {
                 </div>
                
                 <TransformComponent>
+      
+      
+      {height === 0 ? null : (
+          <div className='svgrow'>
+            <div style={{position:"relative"}}>
+              
                 <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
-                <div
-                id="element2"
-                style={{
-                  background: "blue",
-                  width: "250px",
-                  height: "150px",
-                  marginTop: "200px",
-                  marginLeft: "200px",
-                }}
-              >
-                Zoom element 2
-              </div>         
-              <div 
-              id="wickedWaterway" 
-              >
-                Wicked Waterway</div>     
+                
               {svgData.groupArray.map(location =>{
                 const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                 const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
@@ -162,35 +128,32 @@ const Map: React.FC = () => {
                       selected === Location[location.id as keyof typeof Location] &&
                       <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}>{townbox}</div>
                     }
-                     <button
-                    onClick={() => setTransform(-xtrans, -ytrans, 2)}
-                  >
-                    CLICK ME
-                  </button>
                   </div>
                 )
               })}
-              </TransformComponent>
-              </>
-              )}
               
-              </TransformWrapper>
             </div>
             <map name="tuckerislandmap">
               {
                 svgData.groupArray.map(location => {
                   if (location.coords){
                     //console.log(location.id)
+                    const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
+                    const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
                     const scaledCoords = location.coords.map(coord => coord*scale)
                     const className = Location[location.id as keyof typeof Location] === selected
                           ? 'map-selected'
                           : 'map-unselected'
                     return (
                           <area
+                            role="button"
                             key={location.id}
                             alt={location.id}
-                            onClick={handleClick}
-                            href={location.id}
+                            //onClick={handleClick}
+                            onClick={(e) => { handleClick(e); setTransform(-xtrans, -ytrans, 2)}}
+                            //onClick={() => setTransform(-xtrans, -ytrans, 1.5); handleClick;}
+                            href='#'
+                            //href={location.id}
                             coords={scaledCoords.join()}
                             className={className}
                             shape="poly"
@@ -202,6 +165,11 @@ const Map: React.FC = () => {
             </map>
         </div>
       )}
+      </TransformComponent>
+              </>
+              )}
+              
+              </TransformWrapper>
     </div>
   )
 }
