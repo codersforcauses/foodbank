@@ -14,6 +14,7 @@ const Map: React.FC = () => {
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
+  const [display, changeDisplay] = useState(false)
   // const [townbox, setTownbox] = useState(<></>)
   type HeaderColor = 'primary' | 'orange';
   useEffect(() => {
@@ -48,9 +49,11 @@ const Map: React.FC = () => {
   }
   const onClose = () => {
     onSelect(null) 
+    changeDisplay(false)
   }
   const onMapClick = (area: Location) => {
     selected === area ? onSelect(null) : onSelect(area)
+    changeDisplay(!display)
   }
   // eslint-disable-next-line
   const handleClick = (event: any) => { //need to change this type
@@ -62,7 +65,7 @@ const Map: React.FC = () => {
 
   // Data can be made from dev/svgParse.py
   return (
-    <>
+    <div>
     <div
       ref={elementRef}
       className='block w-full min-h-full items-stretch'
@@ -117,7 +120,7 @@ const Map: React.FC = () => {
       )}
     </div>
 
-    <div className='full-page-wrapper'>
+    <div className={`full-page-wrapper ${display ? '': 'none'}`}>
       {
         svgData.groupArray.map(area => {
           if (selected !== null && area.coords){
@@ -131,7 +134,7 @@ const Map: React.FC = () => {
               const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
 
               return (
-                  <div className="townbox-wrapper">
+                  <div key={selectedArea.id} className="townbox-wrapper">
                     <Townbox 
                       headerColor={headerColor}
                       headerText={header}
@@ -147,7 +150,7 @@ const Map: React.FC = () => {
       }
     </div>
 
-    </>
+    </div>
   )
 }
 
