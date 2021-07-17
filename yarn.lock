@@ -13733,6 +13733,14 @@ react-snap@1.23.0:
     serve-static "1.13.2"
     sourcemapped-stacktrace-node "2.1.8"
 
+react-svg-pan-zoom@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/react-svg-pan-zoom/-/react-svg-pan-zoom-3.10.0.tgz#d27453fa0dcc777d3e942f67d37718c01639fb1c"
+  integrity sha512-sJt/ekGlC/VNypwcLeg5+EXNuwj8ag0geRT2D7MTFpDXVN7Oot/6oxyrYyJ8R1WsgV4A4s4BaowZ2LNF7tSjGQ==
+  dependencies:
+    prop-types "^15.7.2"
+    transformation-matrix "^2.6.0"
+
 react-syntax-highlighter@^13.5.0:
   version "13.5.3"
   resolved "https://registry.yarnpkg.com/react-syntax-highlighter/-/react-syntax-highlighter-13.5.3.tgz#9712850f883a3e19eb858cf93fad7bb357eea9c6"
@@ -13752,6 +13760,11 @@ react-textarea-autosize@^8.1.1:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
+
+react-zoom-pan-pinch@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-zoom-pan-pinch/-/react-zoom-pan-pinch-2.1.2.tgz#b69733626d0334cc5a37276655c8867e2b42ac58"
+  integrity sha512-nSpU3IBx+MwO1GNzIF5moc8hDBGuh1Ctr7t8fH+tLYQpB9AiCdvrCk27ZLXD2vVC6wdhFJKUPCLBdlcFvXoX3A==
 
 react@17.0.1:
   version "17.0.1"
@@ -15868,6 +15881,11 @@ tr46@^2.0.2:
   integrity sha512-3n1qG+/5kg+jrbTzwAykB5yRYtQCTqOGKq5U5PE3b0a1/mzo6snDhjGS0zJVJunO0NrT3Dg1MLy5TjWP/UJppg==
   dependencies:
     punycode "^2.1.1"
+
+transformation-matrix@^2.6.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/transformation-matrix/-/transformation-matrix-2.8.0.tgz#34186b5d4b761b5cd35f8d32b7085838ed69b621"
+  integrity sha512-ciqdbEofLC3RFCj1bo06fH/IXf/83DOyuXi50RKdUx2iWFI02+mvsiSqB7pKKypBJgAxzCf7IvA+FMD70HXWQQ==
 
 tree-kill@^1.2.2:
   version "1.2.2"

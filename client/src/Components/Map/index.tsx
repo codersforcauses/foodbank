@@ -92,85 +92,79 @@ const Map: React.FC = () => {
     >
       <TransformWrapper>
               {({ resetTransform, setTransform }) => (
-                
                 <>
                 <div>
-
                     <button
                     onClick={() => resetTransform()}
                   >
                     Reset
                   </button>
-                </div>
-               
+                </div>  
                 <TransformComponent>
-      
-      
-      {height === 0 ? null : (
-          <div className='svgrow'>
-            <div style={{position:"relative"}}>
-              
-                <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
-                
-              {svgData.groupArray.map(location =>{
-                const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
-                const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
-                const up = ["aquaOcean", "zombieWasteland", "grainField"]
-                const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
-                //console.log(translation);
-                //zooming to any of these will zoom to the top left, possibly because it takes the values before the transformation occurs.
-                return (
-                  <div id={location.id} key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
-                   
-                    {location.name} 
-                    {
-                      selected === Location[location.id as keyof typeof Location] &&
-                      <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}>{townbox}</div>
-                    }
-                  </div>
-                )
-              })}
-              
-            </div>
-            <map name="tuckerislandmap">
-              {
-                svgData.groupArray.map(location => {
-                  if (location.coords){
-                    //console.log(location.id)
-                    const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                    const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
-                    const scaledCoords = location.coords.map(coord => coord*scale)
-                    const className = Location[location.id as keyof typeof Location] === selected
-                          ? 'map-selected'
-                          : 'map-unselected'
-                    return (
-                          <area
-                            role="button"
-                            key={location.id}
-                            alt={location.id}
-                            //onClick={handleClick}
-                            onClick={(e) => { handleClick(e); setTransform(-xtrans, -ytrans, 2)}}
-                            //onClick={() => setTransform(-xtrans, -ytrans, 1.5); handleClick;}
-                            href='#'
-                            //href={location.id}
-                            coords={scaledCoords.join()}
-                            className={className}
-                            shape="poly"
-                          />
-                    )
-                  }
-                })
-              }
-            </map>
-        </div>
-      )}
-      </TransformComponent>
+                    {height === 0 ? null : (
+                        <div className='svgrow'>
+                          <div style={{position:"relative"}}>
+                            
+                              <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
+                              
+                            {svgData.groupArray.map(location =>{
+                              const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
+                              const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
+                              const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
+                              const up = ["aquaOcean", "zombieWasteland", "grainField"]
+                              const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
+                              //console.log(translation);
+                              //zooming to any of these will zoom to the top left, possibly because it takes the values before the transformation occurs.
+                              return (
+                                <div id={location.id} key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
+                                
+                                  {location.name} 
+                                  {
+                                    selected === Location[location.id as keyof typeof Location] &&
+                                    <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}>{townbox}</div>
+                                  }
+                                </div>
+                              )
+                            })}
+                            
+                          </div>
+                          <map name="tuckerislandmap">
+                            {
+                              svgData.groupArray.map(location => {
+                                if (location.coords){
+                                  //console.log(location.id)
+                                  const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
+                                  const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
+                                  const scaledCoords = location.coords.map(coord => coord*scale)
+                                  const className = Location[location.id as keyof typeof Location] === selected
+                                        ? 'map-selected'
+                                        : 'map-unselected'
+                                  return (
+                                        <area
+                                          role="button"
+                                          key={location.id}
+                                          alt={location.id}
+                                          //onClick={handleClick}
+                                          onClick={(e) => { handleClick(e); setTransform(-xtrans, -ytrans, 2)}}
+                                          //onClick={() => setTransform(-xtrans, -ytrans, 1.5); handleClick;}
+                                          href='#'
+                                          //href={location.id}
+                                          coords={scaledCoords.join()}
+                                          className={className}
+                                          shape="poly"
+                                        />
+                                  )
+                                }
+                              })
+                            }
+                          </map>
+                      </div>
+                    )}
+                  </TransformComponent>
               </>
               )}
-              
               </TransformWrapper>
-    </div>
+        </div>
   )
 }
 
