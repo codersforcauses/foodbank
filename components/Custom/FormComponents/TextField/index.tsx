@@ -44,6 +44,7 @@ const TextField = ({
             .join(' ')
             .trim()}
           {...register?.(props.name, rules)}
+          //   onChange={props.onChange}
         />
         {error ? (
           <FieldMessage>{error}</FieldMessage>
