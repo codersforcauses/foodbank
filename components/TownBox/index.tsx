@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import './index.module.css'
+import styles from './Town.module.css'
 // import Button from '../Button'
 export interface TownboxProps {
   /**
@@ -51,11 +51,11 @@ export const Townbox: React.FC<TownboxProps> = ({
         {' '}{headerText}{' '}
       </h2>
       <div
-        className='captionboxborder h-64 absolute mt-12 w-tb1 md:w-tb2 lg:w-tb3 xl:w-tb4'
+        className={`${styles.captionboxborder} h-64 absolute mt-12 w-tb1 md:w-tb2 lg:w-tb3 xl:w-tb4`}
         style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight}}
       ></div>
       <div
-        className='captionbox place-self-center p-8 mt-12 border-black flex relative flex-col items-center justify-center w-full h-64 pb-2 pt-2'
+        className={`${styles.captionbox} place-self-center p-8 mt-12 border-black flex relative flex-col items-center justify-center w-full h-64 pb-2 pt-2`}
         style={{'maxWidth' : maxWidth, 'maxHeight' : maxHeight, position:"relative"}}
       >
         <p className='font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl pt-3'>

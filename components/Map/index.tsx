@@ -1,13 +1,11 @@
 // naming conventions of items in svg = id of group in camelCase, image import name in PascalCase.
 // svg tree generated from dev/svgParse.py (super hacky atm)
-
-import React, { useEffect, useRef, useState } from 'react'
-// import { Menu } from '@headlessui/react'
-import './index.module.css'
+import Image from 'next/image'
+import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import styles from './Map.module.css'
 import { Location } from './types'
 import svgData from './svgImageData.json'
 import mapImg from './assets/TuckerMap.jpg'
-import Image from 'next/image';
 import descData from './assets/description.json'
 import Townbox from '../TownBox'
 const Map: React.FC = () => {
@@ -16,7 +14,7 @@ const Map: React.FC = () => {
   const elementRef = useRef(null as null | HTMLDivElement)
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
-  const img = mapImg
+  const [display, changeDisplay] = useState(false)
   // const [townbox, setTownbox] = useState(<></>)
   type HeaderColor = 'primary' | 'orange';
   useEffect(() => {
@@ -51,41 +49,62 @@ const Map: React.FC = () => {
   }
   const onClose = () => {
     onSelect(null) 
+    changeDisplay(false)
   }
   const onMapClick = (area: Location) => {
     selected === area ? onSelect(null) : onSelect(area)
+    changeDisplay(!display)
   }
   // eslint-disable-next-line
   const handleClick = (event: any) => { //need to change this type
-    event.preventDefault()
-    const area = event.target.alt
+    const area = event?.target?.alt
     onMapClick(Location[area as keyof typeof Location])
   }
 
 
   // Data can be made from dev/svgParse.py
   return (
+    <div>
     <div
       ref={elementRef}
-      className='block'
+      className='block w-full min-h-full items-stretch'
+      style={{minHeight:'900px'}}
     >
       {height === 0 ? null : (
-          <div className='svgrow'>
-              <Image src={mapImg} alt="Tucker Island Map" className="map" useMap="#tuckerislandmap"/>
+          <div className={styles.svgrow}>
+            {
+              selected === null &&
+                <Image
+                  src={mapImg}
+                  alt="Tucker Island Map"
+                  className={styles.map}
+                  useMap="#tuckerislandmap"
+                />
+            }
+
+            {
+              selected !== null &&
+                <Image
+                  src={mapImg}
+                  alt="Tucker Island Map"
+                  className={`${styles.map} ${styles.mapinactive}`}
+                  useMap="#tuckerislandmap"
+                />
+            }
+
             <map name="tuckerislandmap">
               {
                 svgData.groupArray.map(location => {
                   if (location.coords){
                     const scaledCoords = location.coords.map(coord => coord*scale)
                     const className = Location[location.id as keyof typeof Location] === selected
-                          ? 'map-selected'
-                          : 'map-unselected'
+                          ? styles.mapselected
+                          : styles.mapunselected
                     return (
                         <area 
                           key={location.id}
                           alt={location.id}
                           onClick={handleClick}
-                          href={location.id}
                           coords={scaledCoords.join()}
                           className={className}
                           shape="poly"
@@ -95,69 +114,40 @@ const Map: React.FC = () => {
                 })
               }
             </map>
-
-            {
-                svgData.groupArray.map(area => {
-                  if (selected !== null && area.coords){
-                    const selectedArea = getAreaDescription(selected)
-
-                    if(selectedArea !== null && selectedArea.id === area.id) {
-                      const header = selectedArea?.headerText
-                      const caption = selectedArea?.captionText
-                      const showButton = selectedArea?.showButton
-                      
-                      const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
-
-                      const maxWidth = selectedArea?.maxWidth
-                      const maxHeight = selectedArea?.maxHeight
-
-                      const xtrans = parseInt(area.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                      const ytrans = parseInt(area.ytrans) * scale * 8; // this is probably worth looking into
-                      const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
-                      const up = ["aquaOcean", "zombieWasteland", "grainField"]
-                      const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
-
-                      console.log("area",selectedArea);
-                      console.log(area.id)
-                      console.log(translation)
-                      return (
-                        <div key={area.id} style={{transform:translation}}>
-                          <div className={`townBox ${up.includes(area.id)? "up" : ""} ${left.includes(area.id)? "left " : ""}`}>
-                            <Townbox 
-                              maxWidth={maxWidth} 
-                              maxHeight={maxHeight}
-                              headerColor={headerColor}
-                              headerText={header}
-                              captionText={caption}
-                              showButton = {showButton}
-                              close={onClose}
-                            />
-                          </div>
-                        </div>
-                      )
-                    }
-                  }
-                })
-              }
-
-            {svgData.groupArray.map(location =>{
-                const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
-                const translation = "translate(" + String(xtrans) + "px, " + String(ytrans) + "px)";
-                const up = ["aquaOcean", "zombieWasteland", "grainField"]
-                const left = ["yoghurtMountains", "cluckyCoop", "grainField", "supplyStore", "wickedWaterway"]
-                return (
-                  <div key={location.id} style={{position:"absolute", zIndex:4, top:0, transform:translation}}>
-                    {
-                      selected === Location[location.id as keyof typeof Location] &&
-                      <div className={`townBox ${up.includes(location.id)? "up" : ""} ${left.includes(location.id)? "left " : ""}`}></div>
-                    }
-                  </div>
-                )
-              })}
-
         </div>
       )}
+    </div>
+
+    <div className={`${styles.fullPageWrapper} ${display ? '': styles.none}`}>
+      {
+        svgData.groupArray.map(area => {
+          if (selected !== null && area.coords){
+            const selectedArea = getAreaDescription(selected)
+
+            if(selectedArea !== null && selectedArea.id === area.id) {
+              const header = selectedArea?.headerText
+              const caption = selectedArea?.captionText
+              const showButton = selectedArea?.showButton
+              
+              const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
+
+              return (
+                  <div key={selectedArea.id} className={styles.townboxWrapper}>
+                    <Townbox 
+                      headerColor={headerColor}
+                      headerText={header}
+                      captionText={caption}
+                      showButton = {showButton}
+                      close={onClose}
+                    />
+                  </div>
+              )
+            }
+          }
+        })
+      }
+    </div>
+
     </div>
   )
 }

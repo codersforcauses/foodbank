@@ -1,12 +1,19 @@
 .captionbox {
+  background-image: radial-gradient(#df740044 69%, #e6d7c7b3 69%);
+  background-size: 20px 20px;
+  background-color: #eeeeee;
   clip-path: polygon(6% 2%, 99% 2%, 94% 98%, 1% 98%);
+  width: 600px;
+  height: 240px;
 }
-
-/* h2 {
+/* 
+h2 {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 } */
 
 .captionboxborder {
+  width : 600px;
+  height: 240px;
   background-color: black;
   clip-path: polygon(
     5% 0,
@@ -21,3 +28,4 @@
     100% 0%
   );
 }
+
