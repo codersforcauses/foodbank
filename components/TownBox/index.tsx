@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import styles from './Town.module.css'
-// import Button from '../Button'
+import Button from '../Button'
 export interface TownboxProps {
   /**
    * Header colour: enter either orange/primary
@@ -62,13 +62,13 @@ export const Townbox: React.FC<TownboxProps> = ({
           {captionText}
         </p>
         <button onClick={close} style={{position:"absolute", right:20, top:10, transform:"scale(1.2)", cursor:"pointer"}}>&#10006;</button>
-        {/* {showButton && (
+        {showButton && (
           <Button
             bgColor={ bgColour }
           >
             Visit
           </Button>
-        )} */}
+        )}
       </div>
     </div>
   )
