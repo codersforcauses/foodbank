@@ -14,9 +14,7 @@ const UsernameForm = () => {
 
   const focusRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    if (focusRef.current !== null) {
-      focusRef.current.focus()
-    }
+    focusRef?.current?.focus()
   })
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +37,7 @@ const UsernameForm = () => {
     if (character) {
       if (character.isSelected) {
         setSelectedCount(prevCount => prevCount - 1)
+        // setSelectedCount(selectedCount - 1)
       } else {
         setSelectedCount(prevCount => prevCount + 1)
       }
