@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect, ChangeEvent } from 'react'
-import { Button, Form, TextField, Modal } from '@components/Custom'
 import GridDisplay, { selectSet, Character } from '@components/Grid/GridForm'
 import Rng from '@components/Grid/RngTest'
 
@@ -37,7 +36,6 @@ const UsernameForm = () => {
     if (character) {
       if (character.isSelected) {
         setSelectedCount(prevCount => prevCount - 1)
-        // setSelectedCount(selectedCount - 1)
       } else {
         setSelectedCount(prevCount => prevCount + 1)
       }
@@ -65,7 +63,7 @@ const UsernameForm = () => {
           type='text'
           placeholder='Username'
           value={input}
-          name='text'
+          name='username'
           className=''
           onChange={handleUsernameChange}
           ref={focusRef}
