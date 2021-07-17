@@ -107,3 +107,8 @@
 .none{
   display: none;
 }
+
+/* Due to a bug in the library (react-zoom-pan-pinch), this allows for areas within image maps to be clicked */
+img   {
+  pointer-events: auto !important;
+}   
