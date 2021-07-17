@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Legendary Lasagne/Legendary lasagne 
 import step4Img from 'public/images/recipes/Legendary Lasagne/Legendary lasagne step 4.webp'
 import step5Img from 'public/images/recipes/Legendary Lasagne/Legendary lasagne step 5.webp'
 import { primaryScheme } from 'lib/colorSchemes'
+import { leanMeat } from '@lib/Characters/Meat'
 
 const step1: RecipeStep = {
   number: 1,
@@ -87,7 +88,8 @@ const legendaryLasagne: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: primaryScheme
+  colorScheme: primaryScheme,
+  character: leanMeat
 }
 
 export default legendaryLasagne

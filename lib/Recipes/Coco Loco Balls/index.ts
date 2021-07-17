@@ -6,6 +6,7 @@ import step1Img from 'public/images/recipes/Coco Loco Balls/Step 1.webp'
 import step2Img from 'public/images/recipes/Coco Loco Balls/Step 2.webp'
 import step3Img from 'public/images/recipes/Coco Loco Balls/Step 3.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { sportyBanana, superFruity } from '@lib/Characters/Fruit'
 
 const step1: RecipeStep = {
   number: 1,
@@ -57,7 +58,8 @@ const cocoLocoBalls: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: superFruity
 }
 
 export default cocoLocoBalls

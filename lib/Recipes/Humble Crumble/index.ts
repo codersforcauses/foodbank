@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Humble Crumble/Step 3.webp'
 import step4Img from 'public/images/recipes/Humble Crumble/Step 4.webp'
 import step5Img from 'public/images/recipes/Humble Crumble/Step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { acesApple, fruityPainter } from '@lib/Characters/Fruit'
 
 const step1: RecipeStep = {
   number: 1,
@@ -77,7 +78,8 @@ const humbleCrumble: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: fruityPainter
 }
 
 export default humbleCrumble

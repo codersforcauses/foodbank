@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 3
 import step4Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 4.webp'
 import step5Img from 'public/images/recipes/Power-Up Pizza/Power-up pizza step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { crunchingCapsicum } from '@lib/Characters/Vegetables'
 
 const step1: RecipeStep = {
   number: 1,
@@ -82,7 +83,8 @@ const powerUpPizza: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: crunchingCapsicum
 }
 
 export default powerUpPizza

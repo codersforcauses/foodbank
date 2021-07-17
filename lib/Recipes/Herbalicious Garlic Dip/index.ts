@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 3.webp'
 import step4Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 4.webp'
 import step5Img from 'public/images/recipes/Herbalicious Garlic Dip/Step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { garlicDancer } from '@lib/Characters/Vegetables'
 
 const step1: RecipeStep = {
   number: 1,
@@ -77,7 +78,8 @@ const herbaliciousGarlicDip: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: garlicDancer
 }
 
 export default herbaliciousGarlicDip

@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Mean Green Salad/Mean green salad st
 import step4Img from 'public/images/recipes/Mean Green Salad/Mean green salad step 4.webp'
 import step5Img from 'public/images/recipes/Mean Green Salad/Mean green salad step 5.webp'
 import { primaryScheme } from 'lib/colorSchemes'
+import { mrsBrocc } from '@lib/Characters/Vegetables'
 
 const step1: RecipeStep = {
   number: 1,
@@ -76,7 +77,8 @@ const meanGreenSalad: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: primaryScheme
+  colorScheme: primaryScheme,
+  character: mrsBrocc
 }
 
 export default meanGreenSalad

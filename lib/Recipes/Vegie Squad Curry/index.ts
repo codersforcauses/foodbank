@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Vegie Squad Curry/Step 3.webp'
 import step4Img from 'public/images/recipes/Vegie Squad Curry/Step 4.webp'
 import step5Img from 'public/images/recipes/Vegie Squad Curry/Step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { tinnedTradie } from '@lib/Characters/Vegetables'
 
 const step1: RecipeStep = {
   number: 1,
@@ -81,7 +82,8 @@ const vegieSquadCurry: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: tinnedTradie
 }
 
 export default vegieSquadCurry

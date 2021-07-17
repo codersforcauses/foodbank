@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Oodles of Noodles/Oodles of noodles 
 import step4Img from 'public/images/recipes/Oodles of Noodles/Oodles of noodles step 4.webp'
 import step5Img from 'public/images/recipes/Oodles of Noodles/Oodles of noodles step 5.webp'
 import { primaryScheme } from 'lib/colorSchemes'
+import { pastaBowl } from '@lib/Characters/Grains'
 
 const step1: RecipeStep = {
   number: 1,
@@ -74,7 +75,8 @@ const oodlesOfNoodles: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: primaryScheme
+  colorScheme: primaryScheme,
+  character: pastaBowl
 }
 
 export default oodlesOfNoodles

@@ -8,6 +8,7 @@ import step3Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pu
 import step4Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 4.webp"
 import step5Img from "public/images/recipes/Rockin' Rice Pudding/Rockin' Rice Pudding step 5.webp"
 import { orangeScheme } from 'lib/colorSchemes'
+import { fruityPainter } from '@lib/Characters/Fruit'
 
 const step1: RecipeStep = {
   number: 1,
@@ -78,7 +79,8 @@ const rockinRicePudding: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: fruityPainter
 }
 
 export default rockinRicePudding

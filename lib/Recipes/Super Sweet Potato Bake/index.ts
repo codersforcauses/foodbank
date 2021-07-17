@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Super Sweet Potato Bake/Step 3.webp'
 import step4Img from 'public/images/recipes/Super Sweet Potato Bake/Step 4.webp'
 import step5Img from 'public/images/recipes/Super Sweet Potato Bake/Step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { footyGirl } from '@lib/Characters/Vegetables'
 
 const step1: RecipeStep = {
   number: 1,
@@ -85,7 +86,8 @@ const superSweetPotatoBake: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: footyGirl
 }
 
 export default superSweetPotatoBake
