@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import { resize_map } from '@components/FoodGroups/dinamicStyles'
 
 export default function WindowResizeHook({ params }) {

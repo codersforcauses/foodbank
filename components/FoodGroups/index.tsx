@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Image, {ImageProps} from "next/image";
+import Image from "next/image";
 
 import styles from 'components/FoodGroups/foodgroups.module.css'
 import {Modal} from '@components/Custom'
@@ -18,17 +18,25 @@ import {
  * A page displaying all food groups in a pie chart
  */
 
-
 const FoodGroups: React.FC = () => {
-    const toggleModal = () => {
-        console.log("toggle modal!")
+    
+    const toggleModal = (group) => {
+        if (!modalState) {
+            setProps({
+                ...props,
+                group: group.div_id,
+                heading: group.div_id.charAt(0).toUpperCase() + group.div_id.slice(1)
+
+            })
+        }
         setModalState(!modalState)
     }
 
     const [modalState, setModalState] = useState(false);
     const [props, setProps] = useState({
         open: true,
-        heading: "General"
+        heading: "General",
+        group: ""
     })
 
     const [foodGroupStyles, setFoodGroupStyles] = useState([" ", "z-0", "transition", "duration-500", "ease-in-out"])
@@ -63,7 +71,7 @@ const FoodGroups: React.FC = () => {
         <div className="flex justify-center">
             {modalState &&
 						<Modal {...props} onClose={toggleModal} size='lg'>
-							<h1>Modal</h1>
+                          <h1>{props.group}</h1>
 						</Modal>
             }
             {/* Handles resizing maps on screen resize for SSR */}
@@ -78,7 +86,7 @@ const FoodGroups: React.FC = () => {
                                 <map id={`map-${index}`} name={group.map_name}>
                                     <area onMouseOver={() => handleMouseOver(group.div_id, {allstates})}
                                           onMouseOut={() => handleMouseOut(group.div_id, {allstates})}
-                                          onClick={toggleModal}
+                                          onClick={() => toggleModal(group)}
                                           alt={group.div_id} shape='poly'
                                           coords={coordinates[index].join(', ')}
                                     />

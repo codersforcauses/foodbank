@@ -170,7 +170,6 @@ const handleMouseOut = (group_id, { allstates }) => {
     } = allstates
     
     // const group_id = e.target.parentNode.parentNode.attributes["id"].value
-    let styles
     switch (group_id) {
         case "meat":
             setGrainsStyles(["z-5"])
