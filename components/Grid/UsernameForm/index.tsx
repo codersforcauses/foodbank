@@ -38,9 +38,9 @@ const UsernameForm = () => {
     const character = newGrid.find(char => char.id === id)
     if (character) {
       if (character.isSelected) {
-        setSelectedCount(selectedCount - 1)
+        setSelectedCount(prevCount => prevCount - 1)
       } else {
-        setSelectedCount(selectedCount + 1)
+        setSelectedCount(prevCount => prevCount + 1)
       }
       character.isSelected = !character.isSelected
     }
