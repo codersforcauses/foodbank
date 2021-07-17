@@ -314,14 +314,14 @@ export const selectSet = (seed: string) => {
 const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
   return (
     <>
-      <div className='flex content-center justify-center pt-72'>
+      <div className='grid grid-cols-3 gap-4 '>
         {selectedSet.map(img => (
           <div key={img.id}>
             <Image
               key={img.id}
-              className={`w-max h-max border-8 ${
-                img.isSelected ? '' : 'opacity-30'
-              }`}
+              className={`${img.isSelected ? '' : 'opacity-30'}`}
+              height={200}
+              width={200}
               src={img.image}
               alt={img.name}
               placeholder='blur'
@@ -331,13 +331,13 @@ const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
           </div>
         ))}
       </div>
-      <ul className='pt-11'>
+      {/* <ul className='pt-11'>
         {selectedSet.map(img => (
           <li className='text-center' key={img.id}>
             Secret Code: {img.password}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   )
 }

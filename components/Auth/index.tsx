@@ -5,9 +5,9 @@ import {
   ChangeEvent,
   MouseEventHandler
 } from 'react'
+import { SubmitHandler } from 'react-hook-form'
 import { Button, Form, TextField, Modal } from '@components/Custom'
 import GridDisplay, { selectSet, Character } from '@components/Grid/GridForm'
-import { SubmitHandler } from 'react-hook-form'
 
 const CHARACTERS_FOR_AUTH = 3
 interface AuthProps {
@@ -63,44 +63,89 @@ const Auth = (props: AuthProps) => {
     setGrid(newGrid)
   }
 
-  const handlePasswordSubmit = () => {
+  const handlePasswordSubmit: SubmitHandler<FormValues> = (
+    value: FormValues
+  ) => {
     if (selectedCount !== CHARACTERS_FOR_AUTH) {
       return
     }
     const newFilteredGrid = [...grid].filter(char => char.isSelected)
     const newPassword = newFilteredGrid.map(char => char.password).join('')
     setPassword(newPassword)
+    console.log(newPassword)
   }
 
   return (
     <Modal {...props} size='sm' heading='Sign-in'>
-      <Form<FormValues>
-        defaultValues={defaultValues}
-        onSubmit={handleUsernameSubmit}
-      >
-        <TextField
-          label='Name'
-          name='username'
-          onChange={handleUsernameChange}
-        />
-        <p>{input}</p>
-        <div className='flex justify-center pt-4'>
-          <Button className='flex items-center'>
-            Login
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 25 25'
-              className='h-6 ml-8'
+      {!username ? (
+        <Form<FormValues>
+          defaultValues={defaultValues}
+          onSubmit={handleUsernameSubmit}
+        >
+          <TextField
+            label='Name'
+            name='username'
+            onChange={handleUsernameChange}
+          />
+          <p>{input}</p>
+          <div className='flex justify-center pt-4'>
+            <Button className='flex items-center'>
+              Set Username
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 25 25'
+                className='h-6 ml-8'
+              >
+                <path
+                  fill='#FFF'
+                  fillRule='evenodd'
+                  d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                />
+              </svg>
+            </Button>
+          </div>
+        </Form>
+      ) : (
+        <Form<FormValues>
+          defaultValues={defaultValues}
+          onSubmit={handlePasswordSubmit}
+        >
+          <GridDisplay selectedSet={grid} toggleSelect={toggleSelect} />
+          <div className='flex justify-center pt-4'>
+            <Button
+              onClick={() => setUsername('')}
+              className='flex items-center'
             >
-              <path
-                fill='#FFF'
-                fillRule='evenodd'
-                d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-              />
-            </svg>
-          </Button>
-        </div>
-      </Form>
+              Back
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 25 25'
+                className='h-6 ml-8'
+              >
+                <path
+                  fill='#FFF'
+                  fillRule='evenodd'
+                  d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                />
+              </svg>
+            </Button>
+            <Button className='flex items-center'>
+              Confirm Selections
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 25 25'
+                className='h-6 ml-8'
+              >
+                <path
+                  fill='#FFF'
+                  fillRule='evenodd'
+                  d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                />
+              </svg>
+            </Button>
+          </div>
+        </Form>
+      )}
     </Modal>
   )
 }
