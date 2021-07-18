@@ -1,4 +1,17 @@
-import { useState, useRef, useEffect } from 'react'
+import {
+  useState,
+  useRef,
+  useEffect,
+  InputHTMLAttributes,
+  useContext
+} from 'react'
+import { RegisterOptions } from 'react-hook-form'
+import { FormContext } from '@components/Custom/FormComponents/Form/context'
+import {
+  FieldControl,
+  FieldLabel,
+  FieldMessage
+} from '@components/Custom/FormComponents/utils'
 import seedrandom from 'seedrandom'
 import shuffle from 'shuffle-array'
 import { v4 as uuid_v4 } from 'uuid'
@@ -314,7 +327,7 @@ export const selectSet = (seed: string) => {
 const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
   return (
     <>
-      <div className='grid grid-cols-3 gap-4 '>
+      <div className='grid grid-cols-3 gap-4'>
         {selectedSet.map(img => (
           <div key={img.id}>
             <Image
@@ -343,3 +356,75 @@ const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
 }
 
 export default GridDisplay
+
+export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+  grid: Array<Character>
+  toggleSelect: Function
+  label: string
+  name: string
+  description?: string
+  rules?: RegisterOptions
+}
+
+export const GridField = ({
+  toggleSelect,
+  color,
+  description,
+  disabled = false,
+  label,
+  required = false,
+  rules = {},
+  ...props
+}: GridFieldProps) => {
+  const {
+    formState,
+    disabled: formDisabled,
+    register
+  } = useContext(FormContext)
+  const error: string = formState?.errors?.[props.name]?.message
+
+  return (
+    <FieldControl
+      name={props.name}
+      error={error}
+      required={'required' in rules || required}
+      disabled={formDisabled || disabled}
+    >
+      <div className='grid flex-col w-full grid-cols-3 gap-4'>
+        {props.grid.map(char => (
+          <FieldLabel key={char.id}>
+            <input
+              {...props}
+              aria-describedby={`${char.name}-label`}
+              aria-invalid={!!error}
+              id={char.id}
+              name={char.name}
+              value={char.name}
+              //   ref={register}
+              className={['text-lg px-4 py-2 rounded-2xl font-sans input']
+                .join(' ')
+                .trim()}
+              {...register?.(props.name, rules)}
+            />{' '}
+            <Image
+              key={char.id}
+              className={`${char.isSelected ? '' : 'opacity-30'}`}
+              height={200}
+              width={200}
+              src={char.image}
+              alt={char.name}
+              placeholder='blur'
+              onClick={() => toggleSelect(char.id)}
+            />
+            <p className='text-center'>{char.name}</p>
+          </FieldLabel>
+        ))}
+        {error ? (
+          <FieldMessage>{error}</FieldMessage>
+        ) : (
+          description && <FieldMessage description>{description}</FieldMessage>
+        )}
+      </div>
+    </FieldControl>
+  )
+}

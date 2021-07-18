@@ -1,13 +1,7 @@
-import {
-  useState,
-  useRef,
-  useEffect,
-  ChangeEvent,
-  MouseEventHandler
-} from 'react'
+import { useState, ChangeEvent } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { Button, Form, TextField, Modal } from '@components/Custom'
-import GridDisplay, { selectSet, Character } from '@components/Grid/GridForm'
+import { selectSet, Character, GridField } from '@components/Grid/GridForm'
 
 const CHARACTERS_FOR_AUTH = 3
 interface AuthProps {
@@ -17,12 +11,12 @@ interface AuthProps {
 
 interface FormValues {
   username: string
-  password: string
+  password: Array<Character>
 }
 
 const defaultValues: FormValues = {
   username: '',
-  password: ''
+  password: []
 }
 
 const Auth = (props: AuthProps) => {
@@ -34,19 +28,14 @@ const Auth = (props: AuthProps) => {
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
-    console.log(e.target.value)
     setGrid([])
   }
 
-  const handleUsernameSubmit: SubmitHandler<FormValues> = (
-    value: FormValues
-  ) => {
-    // e.preventDefault()
+  const handleUsernameSubmit: SubmitHandler<FormValues> = value => {
     setUsername(value.username)
     setGrid(selectSet(value.username))
     setPassword('')
     setSelectedCount(0)
-    console.log(value.username)
   }
 
   const toggleSelect = (id: string) => {
@@ -63,15 +52,15 @@ const Auth = (props: AuthProps) => {
     setGrid(newGrid)
   }
 
-  const handlePasswordSubmit: SubmitHandler<FormValues> = (
-    value: FormValues
-  ) => {
+  const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
+    console.log(selectedCount)
     if (selectedCount !== CHARACTERS_FOR_AUTH) {
       return
     }
     const newFilteredGrid = [...grid].filter(char => char.isSelected)
     const newPassword = newFilteredGrid.map(char => char.password).join('')
     setPassword(newPassword)
+    console.log(value)
     console.log(newPassword)
   }
 
@@ -80,14 +69,9 @@ const Auth = (props: AuthProps) => {
       {!username ? (
         <Form<FormValues>
           defaultValues={defaultValues}
-          onSubmit={handleUsernameSubmit}
+          onSubmit={value => handleUsernameSubmit(value)}
         >
-          <TextField
-            label='Name'
-            name='username'
-            onChange={handleUsernameChange}
-          />
-          <p>{input}</p>
+          <TextField label='Name' type='text' name='username' />
           <div className='flex justify-center pt-4'>
             <Button className='flex items-center'>
               Set Username
@@ -108,11 +92,19 @@ const Auth = (props: AuthProps) => {
       ) : (
         <Form<FormValues>
           defaultValues={defaultValues}
-          onSubmit={handlePasswordSubmit}
+          onSubmit={value => handlePasswordSubmit(value)}
         >
-          <GridDisplay selectedSet={grid} toggleSelect={toggleSelect} />
+          <TextField label='' type='hidden' name='username' value={username} />
+          <GridField
+            label='grid'
+            type='checkbox'
+            name='password'
+            grid={grid}
+            toggleSelect={toggleSelect}
+          />
           <div className='flex justify-center pt-4'>
             <Button
+              type='button'
               onClick={() => setUsername('')}
               className='flex items-center'
             >
