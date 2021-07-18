@@ -49,6 +49,11 @@ const UsernameForm = () => {
       return
     }
     const newFilteredGrid = [...grid].filter(char => char.isSelected)
+    // const terst = newFilteredGrid.reduce(
+    //   (total, cur) => total + cur.password,
+    //   ''
+    // )
+    // alert(terst)
     const newPassword = newFilteredGrid.map(char => char.password).join('')
     setPassword(newPassword)
   }
