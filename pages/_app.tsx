@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import Navbar from '@components/NavBar'
 import '@styles/main.css'
-import MobileMenu from '@components/MobileMenu/index'
+import MobileMenu from '@components/MobileMenu'
 const FoodBank = ({ Component, pageProps }: AppProps) => {
   return (
     <>
