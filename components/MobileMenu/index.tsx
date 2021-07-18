@@ -32,7 +32,9 @@ const MobileMenu = () => {
           </div>
         </Popover.Panel>
       </Transition>
-      <Popover.Button className='menu-button bg-primary w-10 h-10 rounded-full'>+</Popover.Button>
+      <Popover.Button className='menu-button block md:hidden bg-primary w-10 h-10 rounded-full'>
+        +
+      </Popover.Button>
     </Popover>
   )
 }

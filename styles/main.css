@@ -67,8 +67,3 @@
 .shadow-orange {
   box-shadow: -1px -4px 0px 1px #a05b14 inset;
 }
-@media only screen and (min-width: 767px) {
-  .menu {
-    display: none;
-  }
-}
