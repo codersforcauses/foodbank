@@ -20,76 +20,82 @@ const defaultValues: FormValues = {
 }
 
 const Auth = (props: AuthProps) => {
-  const [input, setInput] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [grid, setGrid] = useState<Character[]>([])
-  const [selectedCount, setSelectedCount] = useState(0)
+  //   const [input, setInput] = useState('')
+  //   const [username, setUsername] = useState('')
+  //   const [password, setPassword] = useState('')
+  //   const [grid, setGrid] = useState<Character[]>([])
+  //   const [selectedCount, setSelectedCount] = useState(0)
 
-  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value)
-    setGrid([])
-  }
+  //   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //     setInput(e.target.value)
+  //     setGrid([])
+  //   }
 
-  const handleUsernameSubmit: SubmitHandler<FormValues> = value => {
-    setUsername(value.username)
-    setGrid(selectSet(value.username))
-    setPassword('')
-    setSelectedCount(0)
-  }
+  //   const handleUsernameSubmit: SubmitHandler<FormValues> = value => {
+  //     setUsername(value.username)
+  //     setGrid(selectSet(value.username))
+  //     setPassword('')
+  //     setSelectedCount(0)
+  //     console.log(defaultValues)
+  //   }
 
-  const toggleSelect = (id: string) => {
-    const newGrid: Array<Character> = JSON.parse(JSON.stringify(grid))
-    const character = newGrid.find(char => char.id === id)
-    if (character) {
-      if (character.isSelected) {
-        setSelectedCount(prevCount => prevCount - 1)
-      } else {
-        setSelectedCount(prevCount => prevCount + 1)
-      }
-      character.isSelected = !character.isSelected
-    }
-    setGrid(newGrid)
-  }
+  //   const toggleSelect = (id: string) => {
+  //     const newGrid: Array<Character> = JSON.parse(JSON.stringify(grid))
+  //     const character = newGrid.find(char => char.id === id)
+  //     if (character) {
+  //       if (character.isSelected) {
+  //         setSelectedCount(prevCount => prevCount - 1)
+  //       } else {
+  //         setSelectedCount(prevCount => prevCount + 1)
+  //       }
+  //       character.isSelected = !character.isSelected
+  //     }
+  //     setGrid(newGrid)
+  //   }
 
-  const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
-    console.log(selectedCount)
-    if (selectedCount !== CHARACTERS_FOR_AUTH) {
-      return
-    }
-    const newFilteredGrid = [...grid].filter(char => char.isSelected)
-    const newPassword = newFilteredGrid.map(char => char.password).join('')
-    setPassword(newPassword)
-    console.log(value)
-    console.log(newPassword)
-  }
+  //   const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
+  //     // if (selectedCount !== CHARACTERS_FOR_AUTH) {
+  //     //   return
+  //     // }
+  //     if (value.password.length !== CHARACTERS_FOR_AUTH) {
+  //       return
+  //     }
+  //     // const newFilteredGrid = [...grid].filter(char => char.isSelected)
+  //     // const newPassword = newFilteredGrid.map(char => char.password).join('')
+  //     const newPassword = value.password.map(char => char.password).join('')
+  //     setPassword(newPassword)
+  //     console.log(value)
+  //     console.log(newPassword)
+  //     console.log(defaultValues)
+  //   }
 
   return (
     <Modal {...props} size='sm' heading='Sign-in'>
-      {!username ? (
-        <Form<FormValues>
-          defaultValues={defaultValues}
-          onSubmit={value => handleUsernameSubmit(value)}
-        >
-          <TextField label='Name' type='text' name='username' />
-          <div className='flex justify-center pt-4'>
-            <Button className='flex items-center'>
-              Set Username
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 25 25'
-                className='h-6 ml-8'
-              >
-                <path
-                  fill='#FFF'
-                  fillRule='evenodd'
-                  d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                />
-              </svg>
-            </Button>
-          </div>
-        </Form>
-      ) : (
+      {/* {!username ? ( */}
+      <Form<FormValues>
+        defaultValues={defaultValues}
+        // onSubmit={value => handleUsernameSubmit(value)}
+        onSubmit={value => console.log(value)}
+      >
+        <TextField label='Name' type='text' name='username' />
+        <div className='flex justify-center pt-4'>
+          <Button className='flex items-center'>
+            Set Username
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 25 25'
+              className='h-6 ml-8'
+            >
+              <path
+                fill='#FFF'
+                fillRule='evenodd'
+                d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+              />
+            </svg>
+          </Button>
+        </div>
+      </Form>
+      {/* ) : (
         <Form<FormValues>
           defaultValues={defaultValues}
           onSubmit={value => handlePasswordSubmit(value)}
@@ -137,7 +143,7 @@ const Auth = (props: AuthProps) => {
             </Button>
           </div>
         </Form>
-      )}
+      )} */}
     </Modal>
   )
 }
