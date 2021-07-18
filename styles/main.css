@@ -67,16 +67,6 @@
 .shadow-orange {
   box-shadow: -1px -4px 0px 1px #a05b14 inset;
 }
-.menu{
-  color: white;
-}
-.menu-button{
-  width: 10vw;
-  height: 5vh;
-  border-radius: 50%;
-  background-color: #51185f;
-}
-
 @media only screen and (min-width: 767px) {
   .menu {
     display: none;

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const MobileMenu = () => {
   return (
-    <Popover className='menu fixed flex flex-col items-center z-10 bottom-5 padding-0 right-5 w-2/12'>
+    <Popover className='menu text-white fixed flex flex-col items-center z-10 bottom-5 padding-0 right-5 w-2/12'>
       <Transition
         enter='transition duration-400 ease-in'
         enterFrom='transform scale-95 opacity-0'
@@ -32,7 +32,7 @@ const MobileMenu = () => {
           </div>
         </Popover.Panel>
       </Transition>
-      <Popover.Button className='menu-button w-'>+</Popover.Button>
+      <Popover.Button className='menu-button bg-primary w-10 h-10 rounded-full'>+</Popover.Button>
     </Popover>
   )
 }
