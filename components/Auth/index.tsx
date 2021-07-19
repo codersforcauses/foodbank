@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, MouseEventHandler } from 'react'
+import { useState, useMemo, ChangeEvent, MouseEventHandler } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { Button, Form, TextField, Modal } from '@components/Custom'
 import { selectSet, Character, GridField } from '@components/Grid/GridForm'
@@ -11,7 +11,7 @@ interface AuthProps {
 
 interface FormValues {
   username: string
-  password: Array<Character>
+  password: Character[]
 }
 
 const defaultValues: FormValues = {
@@ -22,55 +22,34 @@ const defaultValues: FormValues = {
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [grid, setGrid] = useState<Character[]>([])
-  const [selectedCount, setSelectedCount] = useState(0)
+  const grid = useMemo<Character[]>(() => selectSet(username), [username])
 
   const handleUsernameChange = (
     e: ChangeEvent<HTMLInputElement>,
     values: 'username'
   ) => {
     setInput(e.target.value)
-    console.log(e.target.value)
-    console.log(JSON.stringify(defaultValues))
+    // console.log(e.target.value)
+    // console.log(JSON.stringify(defaultValues))
   }
 
   const handleUsernameSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     setUsername(input)
-    setGrid(selectSet(input))
-    setPassword('')
-    setSelectedCount(0)
-    console.log(input)
-    console.log(defaultValues)
-  }
-
-  const toggleSelect = (id: string) => {
-    const newGrid: Array<Character> = JSON.parse(JSON.stringify(grid))
-    const character = newGrid.find(char => char.id === id)
-    if (character) {
-      if (character.isSelected) {
-        setSelectedCount(prevCount => prevCount - 1)
-      } else {
-        setSelectedCount(prevCount => prevCount + 1)
-      }
-      character.isSelected = !character.isSelected
-    }
-    setGrid(newGrid)
+    // console.log(input)
+    // console.log(defaultValues)
   }
 
   const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
-    if (selectedCount !== CHARACTERS_FOR_AUTH) {
+    if (value.password.length !== CHARACTERS_FOR_AUTH) {
       return
     }
-    // if (value.password.length !== CHARACTERS_FOR_AUTH) {
-    //   return
-    // }
     const newPassword = value.password.join('')
-    setPassword(newPassword)
+    console.log(username)
     console.log(value.password)
     console.log(newPassword)
-    console.log(defaultValues)
   }
+
+  console.log('RENDERED!!!')
 
   return (
     <Modal {...props} size='sm' heading='Sign-in'>
@@ -116,7 +95,6 @@ const Auth = (props: AuthProps) => {
               type='checkbox'
               name='password'
               grid={grid}
-              toggleSelect={toggleSelect}
             />
             <div className='flex justify-center pt-4'>
               <Button

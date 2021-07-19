@@ -413,7 +413,6 @@ export const GridField = ({
                 src={char.image}
                 alt={char.name}
                 placeholder='blur'
-                // onClick={() => toggleSelect(char.id)}
               />
               <p className='text-center'>{char.name}</p>
             </FieldLabel>
