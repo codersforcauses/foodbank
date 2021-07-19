@@ -20,8 +20,8 @@ const defaultValues: FormValues = {
 }
 
 const Auth = (props: AuthProps) => {
-  const [input, setInput] = useState('')
-  const [username, setUsername] = useState('')
+  const [input, setInput] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
 
   const handleUsernameChange = (
@@ -44,15 +44,9 @@ const Auth = (props: AuthProps) => {
       return
     }
     const newPassword = value.password.join('')
-    console.log(username)
-    console.log(value.password)
-    console.log(newPassword)
   }
 
-  const handleReset = () => {
-    // setUsername('')
-    setInput('')
-  }
+  const handleReset = () => setInput('')
 
   console.log('RENDERED!!!')
 
@@ -104,7 +98,7 @@ const Auth = (props: AuthProps) => {
             <div className='flex justify-center pt-4'>
               <Button
                 type='button'
-                onClick={() => handleReset()}
+                onClick={handleReset}
                 className='flex items-center'
               >
                 Back
