@@ -391,7 +391,8 @@ export const GridField = ({
     >
       <div className='grid flex-col w-full grid-cols-3 gap-4'>
         {props.grid.map(char => (
-          <div key={char.id}>
+          //   <div key={char.id}>
+          <FieldLabel key={char.id}>
             <input
               {...props}
               aria-describedby={`${char.name}-label`}
@@ -404,19 +405,18 @@ export const GridField = ({
                 .trim()}
               {...register?.(props.name, rules)}
             />
-            <FieldLabel for={char.id}>
-              <Image
-                key={char.id}
-                className={`${!char.isSelected ? '' : 'opacity-30'}`}
-                height={200}
-                width={200}
-                src={char.image}
-                alt={char.name}
-                placeholder='blur'
-              />
-              <p className='text-center'>{char.name}</p>
-            </FieldLabel>
-          </div>
+            <Image
+              key={char.id}
+              className={`${!char.isSelected ? '' : 'opacity-30'}`}
+              height={200}
+              width={200}
+              src={char.image}
+              alt={char.name}
+              placeholder='blur'
+            />
+            <p className='text-center'>{char.name}</p>
+          </FieldLabel>
+          //   </div>
         ))}
         {error ? (
           <FieldMessage>{error}</FieldMessage>
