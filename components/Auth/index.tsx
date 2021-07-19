@@ -49,6 +49,11 @@ const Auth = (props: AuthProps) => {
     console.log(newPassword)
   }
 
+  const handleReset = () => {
+    // setUsername('')
+    setInput('')
+  }
+
   console.log('RENDERED!!!')
 
   return (
@@ -99,7 +104,7 @@ const Auth = (props: AuthProps) => {
             <div className='flex justify-center pt-4'>
               <Button
                 type='button'
-                onClick={() => setUsername('')}
+                onClick={() => handleReset()}
                 className='flex items-center'
               >
                 Back
