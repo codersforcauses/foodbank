@@ -3,9 +3,10 @@ import {
   useRef,
   useEffect,
   InputHTMLAttributes,
-  useContext
+  useContext,
+  ChangeEvent
 } from 'react'
-import { RegisterOptions } from 'react-hook-form'
+import { useForm, RegisterOptions, SubmitHandler } from 'react-hook-form'
 import { FormContext } from '@components/Custom/FormComponents/Form/context'
 import {
   FieldControl,
@@ -318,8 +319,8 @@ export const selectSet = (seed: string) => {
   const selectedSet = shuffle(imgSet, { copy: true }).slice(0, PASSWORD_LENGTH)
   selectedSet.map(img => {
     img.id = uuid_v4()
-    // img.password = randomStringGen(PASSWORD_LENGTH)
-    img.password = img.name // For testing purposes
+    img.password = randomStringGen(PASSWORD_LENGTH)
+    // img.password = img.name // For testing purposes
   })
   return selectedSet
 }
@@ -399,8 +400,7 @@ export const GridField = ({
               aria-invalid={!!error}
               id={char.id}
               name='food'
-              value={char.name}
-              //   ref={register}
+              value={char.password}
               className={['text-lg px-4 py-2 rounded-2xl font-sans input']
                 .join(' ')
                 .trim()}
@@ -426,5 +426,44 @@ export const GridField = ({
         )}
       </div>
     </FieldControl>
+  )
+}
+
+interface TestValues {
+  username: string
+  password: string
+}
+
+export const TestForm = () => {
+  const { register, watch, setValue, handleSubmit } = useForm({
+    defaultValues: {
+      username: '',
+      password: ''
+    }
+  })
+  const { username, password } = watch()
+
+  useEffect(() => {
+    register('username')
+    register('password')
+  }, [register])
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    values: 'username' | 'password'
+  ) => {
+    setValue(values, e.target.value)
+    console.log(username)
+  }
+
+  const onSubmit: SubmitHandler<TestValues> = data => console.log(data)
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input onChange={e => handleChange(e, 'username')} value={username} />
+
+      <input onChange={e => handleChange(e, 'password')} value={password} />
+      <input type='submit' />
+    </form>
   )
 }
