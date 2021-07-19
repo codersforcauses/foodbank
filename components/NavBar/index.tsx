@@ -19,7 +19,7 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Progress',
-    route: '/'
+    route: '/achievements'
   },
 ]
 
