@@ -459,9 +459,16 @@ export const TestForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input onChange={e => handleChange(e, 'username')} value={username} />
-
-      <input onChange={e => handleChange(e, 'password')} value={password} />
+      <input
+        onChange={e => handleChange(e, 'username')}
+        value={username}
+        name='username'
+      />
+      <input
+        onChange={e => handleChange(e, 'password')}
+        value={password}
+        name='password'
+      />
       <input type='submit' />
     </form>
   )
