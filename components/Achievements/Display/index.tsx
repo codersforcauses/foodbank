@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import type { Achievement } from 'lib/types'
+import { AchievementContext } from 'contexts'
 
 import explosion from 'public/images/explosion.png'
-
-interface Props {
-  achievements: Map<string, Achievement>
-}
 
 /**
  * Renders all unlockable achievements.
  */
-const Display: React.FC<Props> = ({ achievements }) => {
+const Display: React.FC = () => {
+  const achievements: Map<string, Achievement> = useContext(AchievementContext)
+
   return (
     <div className='absolute m-28 grid grid-cols-5 gap-16'>
       {Array.from(achievements.values()).map(
