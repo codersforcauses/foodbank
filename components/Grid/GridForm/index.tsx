@@ -360,7 +360,6 @@ export default GridDisplay
 
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   grid: Array<Character>
-  toggleSelect: Function
   label: string
   name: string
   description?: string
@@ -368,7 +367,6 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const GridField = ({
-  toggleSelect,
   color,
   description,
   disabled = false,
@@ -393,7 +391,7 @@ export const GridField = ({
     >
       <div className='grid flex-col w-full grid-cols-3 gap-4'>
         {props.grid.map(char => (
-          <FieldLabel key={char.id}>
+          <div key={char.id}>
             <input
               {...props}
               aria-describedby={`${char.name}-label`}
@@ -405,19 +403,21 @@ export const GridField = ({
                 .join(' ')
                 .trim()}
               {...register?.(props.name, rules)}
-            />{' '}
-            <Image
-              key={char.id}
-              className={`${char.isSelected ? '' : 'opacity-30'}`}
-              height={200}
-              width={200}
-              src={char.image}
-              alt={char.name}
-              placeholder='blur'
-              onClick={() => toggleSelect(char.id)}
             />
-            <p className='text-center'>{char.name}</p>
-          </FieldLabel>
+            <FieldLabel for={char.id}>
+              <Image
+                key={char.id}
+                className={`${!char.isSelected ? '' : 'opacity-30'}`}
+                height={200}
+                width={200}
+                src={char.image}
+                alt={char.name}
+                placeholder='blur'
+                // onClick={() => toggleSelect(char.id)}
+              />
+              <p className='text-center'>{char.name}</p>
+            </FieldLabel>
+          </div>
         ))}
         {error ? (
           <FieldMessage>{error}</FieldMessage>
