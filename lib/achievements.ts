@@ -5,7 +5,7 @@ import grains from 'public/images/achievements/Grains.png'
 import meat from 'public/images/achievements/Meat.png'
 import vegetables from 'public/images/achievements/Vegetables.png'
 
-const achievements: Array<Achievement> = [
+const achievementsList: Array<Achievement> = [
   {
     title: 'Dairy Demon',
     slug: 'dairy-demon',
@@ -47,5 +47,9 @@ const achievements: Array<Achievement> = [
     total: 7
   }
 ]
+
+const achievements: Map<string, Achievement> = new Map(
+  achievementsList.map(achievement => [achievement.slug, achievement])
+)
 
 export default achievements
