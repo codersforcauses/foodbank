@@ -12,8 +12,8 @@ const Label = ({ title, unlocked, progress, total }: Props): JSX.Element => {
   return (
     <div
       className={
-        'relative left-5 top-9 font-serif text-center ' +
-        (unlocked || 'grayscale contrast-50 opacity-50')
+        'relative left-5 top-9 font-serif text-center text-white ' +
+        (unlocked || 'grayscale contrast-50 opacity-20')
       }
     >
       <div className='cursor-default transition duration-500 ease-in-out transform hover:scale-110'>
