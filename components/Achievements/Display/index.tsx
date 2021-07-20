@@ -11,9 +11,19 @@ interface Props {
 const Display = ({ unlocked, image }: Props): JSX.Element => {
   return (
     <div className='relative'>
+      <svg className='absolute' height='120' width='120'>
+        <circle
+          stroke='white'
+          strokeWidth='4'
+          fill='transparent'
+          r='52'
+          cx='60'
+          cy='60'
+        />
+      </svg>
       <div
         className={
-          'm-auto w-20 h-20 left-12 top-9 filter ' +
+          'relative m-auto w-20 h-20 left-6 top-6 filter ' +
           (unlocked || 'grayscale contrast-50 opacity-50')
         }
       >

@@ -12,7 +12,7 @@ const Label = ({ title, unlocked, progress, total }: Props): JSX.Element => {
   return (
     <div
       className={
-        'font-serif text-center ' +
+        'relative left-5 top-9 font-serif text-center ' +
         (unlocked || 'grayscale contrast-50 opacity-50')
       }
     >
