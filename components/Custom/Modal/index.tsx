@@ -38,7 +38,7 @@ const Modal = ({
             .join(' ')
             .trim()}
         >
-          <div className='relative z-50 transform translate-y-1/2 bg-white rounded-xl'>
+          <div className='relative z-50 transform bg-white rounded-xl'>
             <div className='sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'>
               <Dialog.Title className='font-serif text-2xl'>
                 {heading}
