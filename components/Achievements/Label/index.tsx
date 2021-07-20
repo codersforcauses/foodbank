@@ -16,8 +16,10 @@ const Label = ({ title, unlocked, progress, total }: Props): JSX.Element => {
         (unlocked || 'grayscale contrast-50 opacity-50')
       }
     >
-      <div>{title}</div>
-      <div>
+      <div className='cursor-default transition duration-500 ease-in-out transform hover:scale-110'>
+        {title}
+      </div>
+      <div className='cursor-default transition duration-500 ease-in-out transform hover:scale-110'>
         {progress} / {total}
       </div>
     </div>

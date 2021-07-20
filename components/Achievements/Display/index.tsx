@@ -18,7 +18,7 @@ const centreOffset = boxLength / 2 - strokeWidth / 2
  */
 const Display = ({ unlocked, image, progress, total }: Props): JSX.Element => {
   return (
-    <div className='relative'>
+    <div className='relative transition duration-500 ease-in-out transform hover:scale-105'>
       <svg
         className='absolute progress-ring'
         height={boxLength}
