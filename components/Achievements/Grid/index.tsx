@@ -8,7 +8,7 @@ import Label from 'components/Achievements/Label'
 /**
  * Renders all unlockable achievements.
  */
-const Display: React.FC = () => {
+const Grid: React.FC = () => {
   const achievements: Map<string, Achievement> = useContext(AchievementContext)
 
   return (
@@ -39,4 +39,4 @@ const Display: React.FC = () => {
   )
 }
 
-export default Display
+export default Grid
