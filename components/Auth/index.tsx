@@ -24,20 +24,15 @@ const Auth = (props: AuthProps) => {
   const [username, setUsername] = useState<string>('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
 
-  const handleUsernameChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    value: 'username'
-  ) => {
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
-    // console.log(e.target.value)
-    console.log(value)
+    console.log(e.target.value)
     // console.log(JSON.stringify(defaultValues))
   }
 
   const handleUsernameSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     setUsername(input)
     console.log(input)
-    console.log(defaultValues)
   }
 
   const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
@@ -46,14 +41,23 @@ const Auth = (props: AuthProps) => {
     }
     const newPassword = value?.password?.join('')
     console.log(newPassword)
+    alert('Username : \t' + username + '\nPassword  : \t' + newPassword)
   }
 
-  const handleReset = () => setInput('')
+  const handleReset = () => {
+    setInput('')
+    setUsername('')
+  }
+
+  const onClose = () => {
+    props.onClose()
+    handleReset()
+  }
 
   console.log('RENDERED!!!')
 
   return (
-    <Modal {...props} size='sm' heading='Sign-in'>
+    <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
       <Form<FormValues>
         defaultValues={defaultValues}
         onSubmit={handlePasswordSubmit}
@@ -65,7 +69,7 @@ const Auth = (props: AuthProps) => {
               type='text'
               name='username'
               value={input}
-              onChange={e => handleUsernameChange(e, 'username')}
+              onChange={e => handleUsernameChange(e)}
             />
             <div className='flex justify-center pt-4'>
               <Button
@@ -90,12 +94,11 @@ const Auth = (props: AuthProps) => {
           </>
         ) : (
           <>
-            {/* <TextField label='' type='hidden' name='username' value={username} /> */}
             <GridField
               label='grid'
               type='checkbox'
               name='password'
-              grid={grid}
+              charSet={grid}
             />
             <div className='flex justify-center pt-4'>
               <Button
