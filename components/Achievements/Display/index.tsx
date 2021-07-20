@@ -3,7 +3,7 @@ import Image from 'next/image'
 import type { Achievement } from 'lib/types'
 import { AchievementContext } from 'contexts'
 
-import explosion from 'public/images/explosion.png'
+import Label from 'components/Achievements/Label'
 
 /**
  * Renders all unlockable achievements.
@@ -26,17 +26,12 @@ const Display: React.FC = () => {
                 <Image src={image} alt='Achievement' width={70} height={70} />
               </div>
             </div>
-            <div
-              className={
-                'font-serif text-center ' +
-                (unlocked || 'grayscale contrast-50 opacity-50')
-              }
-            >
-              <div>{title}</div>
-              <div>
-                {progress} / {total}
-              </div>
-            </div>
+            <Label
+              title={title}
+              unlocked={unlocked}
+              progress={progress}
+              total={total}
+            />
           </div>
         )
       )}
