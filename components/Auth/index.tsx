@@ -40,10 +40,10 @@ const Auth = (props: AuthProps) => {
   }
 
   const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
-    if (value.password.length !== CHARACTERS_FOR_AUTH) {
+    if (value?.password?.length !== CHARACTERS_FOR_AUTH) {
       return
     }
-    const newPassword = value.password.join('')
+    const newPassword = value?.password?.join('')
   }
 
   const handleReset = () => setInput('')
