@@ -1,3 +1,5 @@
+import {StaticImageData} from 'next/Image'
+
 interface ColorScheme {
   bg: string
   header: string
@@ -24,7 +26,7 @@ interface Recipe {
 
 interface RecipeStep {
   number: number
-  image: string
+  image: StaticImageData
   description: string
 }
 

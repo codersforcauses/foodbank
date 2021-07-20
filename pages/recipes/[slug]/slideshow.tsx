@@ -22,25 +22,25 @@ const RecipeSlideShow: React.FC = () => {
   if (!recipe) return <div> Error </div>
 
   return (
-    <div className='flex justify-center align-center'>
+    <div className='flex justify-center items-center' style={{ height: "calc(100vh - 4rem)"}}>
       <Carousel
         controls
         indicators
         length={recipe.steps.length}
-        className='h-72 w-96'
+        className="h-full"
       >
         {recipe.steps.map((recipeStep, index) => (
           // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
-          <React.Fragment key={recipeStep.image}>
-            <div> {recipeStep.description} </div>
-            <div className='bg-opacity-25 bg-grey keen-slider__slide'>
-              <Image
-                src={recipeStep.image}
-                alt={`image ${index}`}
-                layout='fill'
-              />
+            <div className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32'>
+              <div className="w-full md:w-1/2 flex justify-center">
+                <img
+                  src={recipeStep.image.src}
+                  alt={`image ${index}`}
+                  className="h-full w-full bg-cover"
+                  />
+              </div>
+                <div className="w-full md:w-1/2 min-w-32 flex justify-center"> {recipeStep.description} </div>
             </div>
-          </React.Fragment>
         ))}
       </Carousel>
     </div>
