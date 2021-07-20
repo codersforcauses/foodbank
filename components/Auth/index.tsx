@@ -26,17 +26,18 @@ const Auth = (props: AuthProps) => {
 
   const handleUsernameChange = (
     e: ChangeEvent<HTMLInputElement>,
-    values: 'username'
+    value: 'username'
   ) => {
     setInput(e.target.value)
     // console.log(e.target.value)
+    console.log(value)
     // console.log(JSON.stringify(defaultValues))
   }
 
   const handleUsernameSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     setUsername(input)
-    // console.log(input)
-    // console.log(defaultValues)
+    console.log(input)
+    console.log(defaultValues)
   }
 
   const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
@@ -44,6 +45,7 @@ const Auth = (props: AuthProps) => {
       return
     }
     const newPassword = value?.password?.join('')
+    console.log(newPassword)
   }
 
   const handleReset = () => setInput('')
