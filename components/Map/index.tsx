@@ -1,13 +1,14 @@
 // naming conventions of items in svg = id of group in camelCase, image import name in PascalCase.
 // svg tree generated from dev/svgParse.py (super hacky atm)
 import Image from 'next/image'
-import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { FormEventHandler, MouseEventHandler, useEffect, useRef, useState } from 'react'
 import styles from './Map.module.css'
 import { Location } from './types'
 import svgData from './svgImageData.json'
 import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import Townbox from '../TownBox'
+import assetMap, { AssetMapProps } from './assets/AssetMap'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(1)
@@ -55,10 +56,15 @@ const Map: React.FC = () => {
     selected === area ? onSelect(null) : onSelect(area)
     changeDisplay(!display)
   }
-  // eslint-disable-next-line
-  const handleClick = (event: any) => { //need to change this type
+  // eslint-disable-next-line MouseEventHandler<HTMLAreaElement>
+  const handleClick = (event: any ) => { //need to change this type
+    if(event){
+      console.log("success")
+    }
     const area = event?.target?.alt
     onMapClick(Location[area as keyof typeof Location])
+    event.stopPropagation();
+    return false;
   }
 
 
@@ -140,6 +146,7 @@ const Map: React.FC = () => {
                       showButton = {showButton}
                       close={onClose}
                     />
+                    {/* <Image src={assetMap[selectedArea.id as keyof AssetMapProps]}/> */}
                   </div>
               )
             }

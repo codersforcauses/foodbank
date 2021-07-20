@@ -16,22 +16,22 @@ import YoghurtMountains from './locations/YoghurtMountains.png'
 import ZombieWasteland from './locations/ZombieWasteland.png'
 
 export interface AssetMapProps {
-  bg: string
-  coolCloud: string
-  fruityOrchard: string
-  bushLand: string
-  vegieZone: string
-  zombieWasteland: string
-  wickedWaterway: string
-  supplyStore: string
-  grazingLands: string
-  grainField: string
-  bananaBunches: string
-  healthyTown: string
-  dairyPark: string
-  cluckyCoop: string
-  yoghurtMountains: string
-  aquaOcean: string
+  bg: StaticImageData
+  coolCloud: StaticImageData
+  fruityOrchard: StaticImageData
+  bushLand: StaticImageData
+  vegieZone: StaticImageData
+  zombieWasteland: StaticImageData
+  wickedWaterway: StaticImageData
+  supplyStore: StaticImageData
+  grazingLands: StaticImageData
+  grainField: StaticImageData
+  bananaBunches: StaticImageData
+  healthyTown: StaticImageData
+  dairyPark: StaticImageData
+  cluckyCoop: StaticImageData
+  yoghurtMountains: StaticImageData
+  aquaOcean: StaticImageData
 }
 
 // needed for keyof functionality else Jeremiah's linter throws errors
