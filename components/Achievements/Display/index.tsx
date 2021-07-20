@@ -5,6 +5,9 @@ interface Props {
   image: StaticImageData
 }
 
+/**
+ * The image display for an achievement including a circular progress bar.
+ */
 const Display = ({ unlocked, image }: Props): JSX.Element => {
   return (
     <div className='relative'>

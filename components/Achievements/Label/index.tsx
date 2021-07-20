@@ -5,6 +5,9 @@ interface Props {
   total: number
 }
 
+/**
+ * Displays achievement title and progress.
+ */
 const Label = ({ title, unlocked, progress, total }: Props): JSX.Element => {
   return (
     <div

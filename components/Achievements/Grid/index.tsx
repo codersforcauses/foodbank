@@ -6,7 +6,7 @@ import Display from 'components/Achievements/Display'
 import Label from 'components/Achievements/Label'
 
 /**
- * Renders all unlockable achievements.
+ * Renders all unlockable achievements in a flex grid.
  */
 const Grid: React.FC = () => {
   const achievements: Map<string, Achievement> = useContext(AchievementContext)
