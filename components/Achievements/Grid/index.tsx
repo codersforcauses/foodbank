@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import Image from 'next/image'
 import type { Achievement } from 'lib/types'
 import { AchievementContext } from 'contexts'
 
+import Display from 'components/Achievements/Display'
 import Label from 'components/Achievements/Label'
 
 /**
@@ -16,16 +16,7 @@ const Grid: React.FC = () => {
       {Array.from(achievements.values()).map(
         ({ title, image, unlocked, progress, total }) => (
           <div key={title} className='grid grid-cols-1 place-items-center'>
-            <div className='relative'>
-              <div
-                className={
-                  'm-auto w-20 h-20 left-12 top-9 filter ' +
-                  (unlocked || 'grayscale contrast-50 opacity-50')
-                }
-              >
-                <Image src={image} alt='Achievement' width={70} height={70} />
-              </div>
-            </div>
+            <Display unlocked={unlocked} image={image} />
             <Label
               title={title}
               unlocked={unlocked}
