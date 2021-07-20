@@ -16,7 +16,12 @@ const Grid = (): JSX.Element => {
       {Array.from(achievements.values()).map(
         ({ title, image, unlocked, progress, total }) => (
           <div key={title} className='grid grid-cols-1 place-items-center'>
-            <Display unlocked={unlocked} image={image} />
+            <Display
+              unlocked={unlocked}
+              image={image}
+              progress={progress}
+              total={total}
+            />
             <Label
               title={title}
               unlocked={unlocked}
