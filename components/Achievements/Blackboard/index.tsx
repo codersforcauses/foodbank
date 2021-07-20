@@ -7,8 +7,8 @@ import blackboard from 'public/images/blackboard.png'
 const Blackboard = (): JSX.Element => {
   return (
     <>
-      <div className='absolute'>
-        <Image src={blackboard} alt='Blackboard' />
+      <div className='absolute h-screen w-screen'>
+        <Image src={blackboard} alt='Blackboard' layout='fill' />
       </div>
       <h1 className='relative top-16 underline text-5xl font-serif text-white text-center'>
         Achievements

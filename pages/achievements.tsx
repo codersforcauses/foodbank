@@ -6,7 +6,7 @@ import Grid from '@components/Achievements/Grid'
  */
 const Achievements = (): JSX.Element => {
   return (
-    <div className='relative'>
+    <div>
       <Blackboard />
       <Grid />
     </div>
