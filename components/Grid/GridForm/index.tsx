@@ -89,7 +89,7 @@ const randomStringGen = (length: number) => {
   return result
 }
 
-const imgSet: Array<Character> = [
+const imgSet: Character[] = [
   {
     image: BlueBoy,
     name: 'BlueBoy',
@@ -319,8 +319,8 @@ export const selectSet = (seed: string) => {
   const selectedSet = shuffle(imgSet, { copy: true }).slice(0, PASSWORD_LENGTH)
   selectedSet.map(img => {
     img.id = uuid_v4()
-    img.password = randomStringGen(PASSWORD_LENGTH)
-    // img.password = img.name // For testing purposes
+    // img.password = randomStringGen(PASSWORD_LENGTH)
+    img.password = img.name // For testing purposes
   })
   return selectedSet
 }
@@ -345,13 +345,6 @@ const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
           </div>
         ))}
       </div>
-      {/* <ul className='pt-11'>
-        {selectedSet.map(img => (
-          <li className='text-center' key={img.id}>
-            Secret Code: {img.password}
-          </li>
-        ))}
-      </ul> */}
     </>
   )
 }
@@ -359,7 +352,7 @@ const GridDisplay = ({ selectedSet, toggleSelect }: GridProps) => {
 export default GridDisplay
 
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  grid: Array<Character>
+  charSet: Character[]
   label: string
   name: string
   description?: string
@@ -367,6 +360,7 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const GridField = ({
+  charSet,
   color,
   description,
   disabled = false,
@@ -382,6 +376,19 @@ export const GridField = ({
   } = useContext(FormContext)
   const error: string = formState?.errors?.[props.name]?.message
 
+  const [grid, setGrid] = useState<Character[]>(charSet)
+
+  const toggleSelect = (e: ChangeEvent<HTMLInputElement>, id?: string) => {
+    const newGrid: Character[] = JSON.parse(JSON.stringify(grid))
+    const character = newGrid?.find(char => char.id === id)
+    if (character) {
+      character.isSelected = e.target.checked
+      setGrid(newGrid)
+    }
+  }
+
+  console.log('GRID RENDERED!!!')
+
   return (
     <FieldControl
       name={props.name}
@@ -390,9 +397,9 @@ export const GridField = ({
       disabled={formDisabled || disabled}
     >
       <div className='grid flex-col w-full grid-cols-3 gap-4'>
-        {props.grid.map(char => (
-          //   <div key={char.id}>
+        {grid.map(char => (
           //   <FieldLabel key={char.id}>
+          //   <div>
           <label key={char.id}>
             <input
               {...props}
@@ -401,14 +408,14 @@ export const GridField = ({
               id={char.id}
               name='food'
               value={char.password}
-              //   className={['text-lg px-4 py-2 rounded-2xl font-sans input']
-              //     .join(' ')
-              //     .trim()}
+              // className='hidden'
+              //   className='opacity-0'
               {...register?.(props.name, rules)}
+              onChange={e => toggleSelect(e, char.id)}
             />
             <Image
               key={char.id}
-              className={`${!char.isSelected ? '' : 'opacity-30'}`}
+              className={`${char.isSelected ? '' : 'opacity-30'}`}
               height={200}
               width={200}
               src={char.image}
@@ -417,8 +424,8 @@ export const GridField = ({
             />
             <p className='text-center'>{char.name}</p>
           </label>
-          //   </FieldLabel>
           //   </div>
+          //   </FieldLabel>
         ))}
         {error ? (
           <FieldMessage>{error}</FieldMessage>
