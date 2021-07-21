@@ -1,0 +1,213 @@
+Index: components/Recipe/List-View/Card/index.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* eslint-disable react/prop-types */\nimport React from 'react'\nimport Link from 'next/link'\nimport styles from './Card.module.css'\nimport { Character } from '@lib/types'\nimport explosion from 'public/images/Extra/explosion.png'\nimport Image from 'next/image'\n\nexport interface CardProps {\n  /**\n   * Has this recipe been unlocked?\n   */\n  unlocked?: boolean\n  /**\n   * Recipe title\n   */\n  label: string\n  /**\n   * Image to show\n   */\n  image: string\n  /**\n   * Alt text for image\n   */\n  text: string\n  /**\n   * Color of Card\n   */\n  color: 'Primary' | 'Orange' | 'Teal' | 'Blue'\n  /**\n   * Optional click handler\n   */\n  onClick?: () => void\n  /**\n   * Slug part of the recipe url\n   */\n  slug: string\n  /**\n   * Character for the recipe\n   */\n  character?: Character\n}\n\nconst getClassesFromColor = (color: string, unlocked: boolean) => {\n  if (unlocked) {\n    switch (color) {\n      case 'Primary':\n        return `relative unlocked bg-primary text-white shadow-xl hover:shadow-2xl`\n\n      case 'Teal':\n        return `relative unlocked bg-teal text-black shadow-xl hover:shadow-2xl`\n\n      case 'Orange':\n        return `relative unlocked bg-orange text-black shadow-xl hover:shadow-2xl`\n\n      default:\n        return `relative unlocked bg-blue text-black shadow-xl hover:shadow-2xl`\n    }\n  } else {\n    return `relative locked bg-grey opacity-50 text-black shadow-xl hover:shadow-2xl`\n  }\n}\n\nconst Card = ({\n  unlocked = true,\n  label,\n  image,\n  text,\n  color,\n  slug,\n  character,\n  ...props\n}: CardProps) => {\n  return (\n    <div\n      className={[styles.card, getClassesFromColor(color, unlocked)]\n        .join(' ')\n        .trim()}\n      {...props}\n    >\n      <div className='absolute top-0 right-0'>\n        {character && (\n          <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>\n            <Image layout='fill' src={explosion} alt='explosion' />\n            <div className='h-3/4 w-3/4 relative m-4'>\n              <Image\n                layout='fill'\n                src={character.imageGif}\n                alt={character.name}\n              />\n            </div>\n          </div>\n        )}\n      </div>\n      <Link href={'/recipes/' + slug}>\n        <a>\n          <Image src={image} alt={text} className={styles['card-image']} />\n          <h1>{label}</h1>\n        </a>\n      </Link>\n    </div>\n  )\n}\n\nexport default Card\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/Recipe/List-View/Card/index.tsx b/components/Recipe/List-View/Card/index.tsx
+--- a/components/Recipe/List-View/Card/index.tsx	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
++++ b/components/Recipe/List-View/Card/index.tsx	(date 1626505722457)
+@@ -78,26 +78,46 @@
+         .trim()}
+       {...props}
+     >
+-      <div className='absolute top-0 right-0'>
+-        {character && (
+-          <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
+-            <Image layout='fill' src={explosion} alt='explosion' />
+-            <div className='h-3/4 w-3/4 relative m-4'>
+-              <Image
+-                layout='fill'
+-                src={character.imageGif}
+-                alt={character.name}
+-              />
+-            </div>
+-          </div>
+-        )}
+-      </div>
+       <Link href={'/recipes/' + slug}>
+         <a>
+           <Image src={image} alt={text} className={styles['card-image']} />
+           <h1>{label}</h1>
+         </a>
+       </Link>
++      <div className='flex flex-col'>
++        
++        {character && (
++            <div className={styles["image-container"] + " flex flex-col"}>
++              <Image layout='fill' 
++                     src={explosion} 
++                     alt='explosion'
++                     className={styles['image']}
++
++              />
++              <Image src={character.imageGif}
++                     alt={character.imageGif}
++                     layout="fill"
++                     className={styles['image']}
++                     id={character.name}
++              />
++              
++            </div>
++            
++            
++            
++          // <div className='z-10 relative h-24 w-24 transform translate-x-4 -translate-y-4'>
++          //   <Image layout='fill' src={explosion} alt='explosion' />
++          //   <div className='h-3/4 w-3/4 relative m-4'>
++          //     <Image
++          //       layout='fill'
++          //       src={character.imageGif}
++          //       alt={character.name}
++          //     />
++          //   </div>
++          // </div>
++        )}
++      </div>
++      
+     </div>
+   )
+ }
+Index: pages/recipes/index.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState } from 'react'\nimport Card from 'components/Recipe/List-View/Card'\nimport { recipes } from 'lib/Recipes'\nimport { Recipe } from '@lib/types'\n\nconst RecipesGridView: React.FC = () => {\n  const [filteredCards, setFilteredCards] = useState(recipes)\n\n  const allTags: string | string[] = [] // all tags from all the recipes\n  const allCategories: string | string[] = [] // all categories from all the recipes. Some recipes belong to\n  // several categories\n\n  recipes.map(recipe => {\n    // getting all the tags\n    recipe.tags.map(tag => {\n      if (!allTags.includes(tag)) allTags.push(tag)\n    })\n    // getting all the categories\n    recipe.category.map(category => {\n      if (!allCategories.includes(category)) allCategories.push(category)\n    })\n  })\n\n  // Creating a list of recipes filtered by the passed category\n  const filterCategory = (category: string) => {\n    let filtered: React.SetStateAction<Recipe[]> = []\n    recipes.map(recipe => {\n      recipe.category.map(cat => {\n        if (cat === category) filtered.push(recipe)\n      })\n    })\n    setFilteredCards(filtered)\n  }\n\n  const recipeCards = filteredCards.map(recipe => {\n    const { name, slug, finalShot, character } = recipe\n    return (\n      <Card\n        label={name}\n        image={finalShot}\n        text={name}\n        color='Primary'\n        key={name}\n        slug={slug}\n        character={character}\n      />\n    )\n  })\n\n  return (\n    <div className='grid grid-1 gap-10'>\n      <div className='flex justify-center gap-10 mt-10'>\n        {allCategories.map(category => {\n          return (\n            <p\n              onClick={e => filterCategory(category)}\n              className='text-lg'\n              style={{ cursor: 'pointer' }}\n              key={category}\n            >\n              {category}\n            </p>\n          )\n        })}\n        <p\n          onClick={e => setFilteredCards(recipes)}\n          className='text-lg'\n          style={{ cursor: 'pointer' }}\n        >\n          All\n        </p>\n      </div>\n      <div className='flex justify-center m-3'>\n        <div className='mt-6 grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-14'>\n          {recipeCards}\n        </div>\n      </div>\n    </div>\n  )\n}\n\nexport default RecipesGridView\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/recipes/index.tsx b/pages/recipes/index.tsx
+--- a/pages/recipes/index.tsx	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
++++ b/pages/recipes/index.tsx	(date 1626505029066)
+@@ -71,7 +71,7 @@
+         </p>
+       </div>
+       <div className='flex justify-center m-3'>
+-        <div className='mt-6 grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-14'>
++        <div className='mt-6 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-14'>
+           {recipeCards}
+         </div>
+       </div>
+Index: components/Recipe/List-View/Card/Card.module.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.card {\r\n    text-align: center;\r\n    border-radius: 10%;\r\n    position: relative;\r\n    width: fit-content;\r\n    height: fit-content;\r\n}\r\n\r\n.card-image {\r\n    border-top-left-radius: 10%;\r\n    border-top-right-radius: 10%;\r\n    width: 350px;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/Recipe/List-View/Card/Card.module.css b/components/Recipe/List-View/Card/Card.module.css
+--- a/components/Recipe/List-View/Card/Card.module.css	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
++++ b/components/Recipe/List-View/Card/Card.module.css	(date 1626505822627)
+@@ -10,4 +10,39 @@
+     border-top-left-radius: 10%;
+     border-top-right-radius: 10%;
+     width: 350px;
+-}
+\ No newline at end of file
++}
++
++.image-container {
++
++    width: 20%;
++}
++
++.image-container> div {
++    position: unset !important;
++}
++
++.image {
++    object-fit: contain;
++    width: 50% !important;
++    /*position: relative !important;*/
++    height: unset !important;
++}
++
++
++
++.custom-img {
++    object-fit: contain;
++    /*max-width: 400px;*/
++    width: 100% !important;
++    position: relative !important;
++    height: unset !important;
++}
++
++.unset-img {
++    /*display: flex;*/
++    position: absolute;
++    width: 30%;
++}
++.custom-img > div {
++    position: unset !important;
++}
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_4_31_pm_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_4_31_pm_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_4_31_pm_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_4_31_pm_[Default_Changelist]/shelved.patch	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
++++ /dev/null	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
+@@ -1,38 +0,0 @@
+-Index: components/Recipe/List-View/Card/Card.module.css
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>.card {\r\n    text-align: center;\r\n    border-radius: 10%;\r\n    position: relative;\r\n    width: fit-content;\r\n    height: fit-content;\r\n}\r\n\r\n/*h1 {\r\n    padding: 5px;\r\n}*/\r\n\r\n.card-image {\r\n    border-top-left-radius: 10%;\r\n    border-top-right-radius: 10%;\r\n    width: 350px;\r\n}\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/components/Recipe/List-View/Card/Card.module.css b/components/Recipe/List-View/Card/Card.module.css
+---- a/components/Recipe/List-View/Card/Card.module.css	(revision 1145be4d832bba64ab2cfbfd92a90d9ef532a954)
+-+++ b/components/Recipe/List-View/Card/Card.module.css	(date 1625732906785)
+-@@ -6,13 +6,23 @@
+-     height: fit-content;
+- }
+- 
+--/*h1 {
+--    padding: 5px;
+--}*/
+--
+- .card-image {
+-     border-top-left-radius: 10%;
+-     border-top-right-radius: 10%;
+-     width: 350px;
+- }
+- 
+-+.character {
+-+    margin-right: -5%;
+-+    margin-top: -10%;
+-+    width: 25%;
+-+
+-+}
+-+
+-+.splash {
+-+    width: 45%;
+-+    height: 45%;
+-+    margin-right: -13%;
+-+    margin-top: -10px;
+-+}
+-+
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__4_31_pm__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__4_31_pm__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__4_31_pm__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__4_31_pm__Default_Changelist_.xml	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
++++ /dev/null	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_8_7_21,_4_31_pm_[Default_Changelist]" date="1625733095794" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_4_31_pm_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 8/7/21, 4:31 pm [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__11_03_am__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__11_03_am__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__11_03_am__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21__11_03_am__Default_Changelist_.xml	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
++++ /dev/null	(revision 522cdacfa45e3befa6c7e58b58adb954ae1cb9bd)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_8_7_21,_11_03_am_[Default_Changelist]" date="1625713435895" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_11_03_am_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 8/7/21, 11:03 am [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_11_03_am_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_7_21,_11_03_am_[Default_Changelist]/shelved.patch
+deleted file mode 100644

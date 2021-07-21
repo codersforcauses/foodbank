@@ -39,24 +39,23 @@
 }
 
 
-.recipe-hero-image {
-    width: 25%;
-    max-height: 400px;
-    max-width: 250px;
-    min-width: 50px;
-}
+/*.recipe-hero-image {*/
+/*    !*width: 25%;*!*/
+/*    !*max-height: 400px;*!*/
+/*    !*max-width: 250px;*!*/
+/*    !*min-width: 50px;*!*/
+/*}*/
 
 /* Flip hero image if it's facing left */
 .flip-hero-image {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-/* Yellow bubble image for a hint */
-.hint-main-image {
-    width: 100%;
-    min-width: 50px;
-    opacity: 80%;
-}
+/*.hint-main-image {*/
+/*    width: 100%;*/
+/*    min-width: 50px;*/
+/*    opacity: 80%;*/
+/*}*/
 
 /* Hint text */
 .hint-text {
@@ -87,6 +86,7 @@
     letter-spacing: 4px;
     font-size: 1.5rem;
 }
+
 /* Header "Ingredients" */
 .ingredients-header {
     opacity: 80%;
@@ -97,18 +97,8 @@
     margin-top: 20px;
 }
 
-/* div for the ingredients image and the frame-image (over the ingredients image) */
-.image-box-1 {
-    align-items: flex-start;
-    padding-left: 5%;
-    padding-top: 2%;
-    max-width: 700px;
-    margin-left: 15px
-}
-
 
 .ingredients-image {
-    /*margin-left: -100%;*/
     max-width: 700px;
     margin-top: 5%;
 }
@@ -125,14 +115,51 @@
 }
 
 
+/* Main image on the top of the page */
+.image-container {
+    width: 100%;
+}
+
+/* Hero image */
+.hero-image-container {
+    width: 40%;
+    margin-top: -35%;
+    margin-bottom: -10%;
+    margin-left: -20%
+}
+
+/* Yellow bubble tip image */
+.tip-plate-container {
+    width: 40%;
+    margin-top: -75%;
+    margin-left: 75%;
+    margin-right: -15%;
+}
+
+.image-container> div {
+    position: unset !important;
+}
+
+.hero-image-container> div {
+    position: unset !important;
+}
+
+.tip-plate-container> div {
+    position: unset !important;
+}
+
+.image {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+}
+
+
 /* Media limiters. Two options: less that 901px and more */
 @media screen and (min-width: 901px) {
     .recipe-name {
         font-size: 50px;
-    }
-    .recipe-hero-image {
-        margin-top: 470px;
-        margin-left: -10%;
     }
     .hint-main-image {
         margin-left: 200px;
@@ -151,10 +178,6 @@
 }
 
 @media screen and (max-width: 900px) {
-    .recipe-hero-image {
-        margin-top: 60%;
-        margin-left: -3%;
-    }
     .hint-main-image {
         margin-left: 80%;
         margin-top: -130%;

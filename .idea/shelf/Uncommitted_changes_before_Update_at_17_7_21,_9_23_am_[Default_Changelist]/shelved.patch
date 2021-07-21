@@ -1,0 +1,36 @@
+Index: components/FoodGroups/index.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useState} from 'react'\nimport dairy from 'public/images/FoodGroups/dairy-shadow.png'\nimport meat from 'public/images/FoodGroups/meat-shadow.png'\nimport fruit from 'public/images/FoodGroups/fruit-shadow.png'\nimport grains from 'public/images/FoodGroups/grains-shadow.png'\nimport vegetables from 'public/images/FoodGroups/vegetables-shadow.png'\n\nimport styles from 'components/FoodGroups/foodgroups.module.css'\nimport FoodGroupModal from \"@components/FoodGroups/Modal\";\n\nimport Image from \"next/image\";\n\n/**\n * A page displaying all food groups in a pie chart\n */\nconst FoodGroups: React.FC = () => {\n\n    const [modalState, setModalState] = useState(false);\n\n    const toggleModal = () => {\n        setModalState(!modalState)\n    }\n\n    const foodGroupData = {\n        name: \"sdsdsd\"\n    }\n\n    return (\n        <div className=\"flex justify-center\">\n            {modalState && <FoodGroupModal toggleModal={toggleModal} data={foodGroupData}/>}\n            <div className={\"flex flex-col\"}>\n                <div className={styles['img-dairy'] + ' transform hover:scale-105 transition duration-500 ease-in-out'}>\n                    <Image src={dairy.src}\n                           alt='dairy'\n                           // onClick={toggleModal}\n                           layout=\"fill\" // required\n                        className={styles['custom-img']}\n                    />\n                </div>\n\n                <div className={styles['img-meat'] + ' transform hover:scale-105 transition duration-500 ease-in-out'}>\n                    <Image src={meat.src}\n                           alt='meat'\n                        // onClick={toggleModal}\n                           layout=\"fill\" // required\n                           className={styles['custom-img']}\n                    />\n                </div>\n\n                <div className={styles['img-fruit'] + ' transform hover:scale-105 transition duration-500 ease-in-out'}>\n                    <Image src={fruit.src}\n                           alt='fruit'\n                        // onClick={toggleModal}\n                           layout=\"fill\" // required\n                           className={styles['custom-img']}\n                    />\n                </div>\n\n                <div className={styles['img-vegetables'] + ' transform hover:scale-105 transition duration-500 ease-in-out'}>\n                    <Image src={vegetables.src}\n                           alt='vegetables'\n                        // onClick={toggleModal}\n                           layout=\"fill\" // required\n                           className={styles['custom-img']}\n                    />\n                </div>\n\n                <div className={styles['img-grains'] + ' transform hover:scale-105 transition duration-500 ease-in-out'}>\n                    <Image src={grains.src}\n                           alt='grains'\n                        // onClick={toggleModal}\n                           layout=\"fill\" // required\n                           className={styles['custom-img']}\n                    />\n                </div>\n                \n                \n                {/*<img src={meat.src} alt='meat'*/}\n                {/*     className={styles[\"meat\"] + ' transform hover:scale-105 absolute ' +*/}\n                {/*     'transition duration-500 ease-in-out'}/>*/}\n                {/*<img src={fruit.src} alt='explosion'*/}\n                {/*     className={styles[\"fruit\"] + ' transform hover:scale-105 absolute ' +*/}\n                {/*     'transition duration-500 ease-in-out'}/>*/}\n                {/*<img src={vegetables.src} alt='explosion'*/}\n                {/*     className={styles[\"vegetables\"] + ' transform hover:scale-105 absolute ' +*/}\n                {/*     'transition duration-500 ease-in-out'}/>*/}\n                {/*<img src={grains.src} alt='explosion'*/}\n                {/*     className={styles[\"grains\"] + ' transform hover:scale-105 absolute ' +*/}\n                {/*     'transition duration-500 ease-in-out'}/>*/}\n            </div>\n        </div>\n    )\n}\nexport default FoodGroups\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/FoodGroups/index.tsx b/components/FoodGroups/index.tsx
+--- a/components/FoodGroups/index.tsx	(revision 676a43f9b3441092ba87ee3724061fe46f993e14)
++++ b/components/FoodGroups/index.tsx	(date 1625917044397)
+@@ -70,23 +70,10 @@
+                            alt='grains'
+                         // onClick={toggleModal}
+                            layout="fill" // required
+-                           className={styles['custom-img']}
++                           className={styles['custom-img']
++                               }
+                     />
+                 </div>
+-                
+-                
+-                {/*<img src={meat.src} alt='meat'*/}
+-                {/*     className={styles["meat"] + ' transform hover:scale-105 absolute ' +*/}
+-                {/*     'transition duration-500 ease-in-out'}/>*/}
+-                {/*<img src={fruit.src} alt='explosion'*/}
+-                {/*     className={styles["fruit"] + ' transform hover:scale-105 absolute ' +*/}
+-                {/*     'transition duration-500 ease-in-out'}/>*/}
+-                {/*<img src={vegetables.src} alt='explosion'*/}
+-                {/*     className={styles["vegetables"] + ' transform hover:scale-105 absolute ' +*/}
+-                {/*     'transition duration-500 ease-in-out'}/>*/}
+-                {/*<img src={grains.src} alt='explosion'*/}
+-                {/*     className={styles["grains"] + ' transform hover:scale-105 absolute ' +*/}
+-                {/*     'transition duration-500 ease-in-out'}/>*/}
+             </div>
+         </div>
+     )
