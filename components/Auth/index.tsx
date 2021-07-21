@@ -1,7 +1,11 @@
 import { useState, useMemo, ChangeEvent, MouseEventHandler } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { Button, Form, TextField, Modal } from '@components/Custom'
-import { selectSet, Character, GridField } from '@components/Grid/GridForm'
+import {
+  selectSet,
+  GridField
+} from '@components/Custom/FormComponents/GridForm'
+import { Character } from '@components/Custom/FormComponents/GridForm/GridSet'
 
 const CHARACTERS_FOR_AUTH = 3
 

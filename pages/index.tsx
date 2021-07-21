@@ -1,12 +1,7 @@
 import Map from '@components/Map'
-import Characters from '@components/Grid/GridForm'
-import UsernameForm from '@components/Grid/UsernameForm'
+import TestForm from '@components/TestForm'
 
 const Home = () => {
-  return (
-    <>
-      <UsernameForm />
-    </>
-  )
+  return <TestForm />
 }
 export default Home
