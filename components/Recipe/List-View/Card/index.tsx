@@ -86,17 +86,17 @@ const Card = ({
                             <div className="">
                             <Link href={'/recipes/' + slug}>
                                 <a>
-                                    <Image src={image} alt={text} className={styles['card-image']}/>
-                                    <h1>{label}</h1>
+                                    <Image src={image} alt={text} className={styles['card-image'] } />
+                                    <h1 className="tracking-wide font-semibold text-3xl">{label}</h1>
                                 </a>
                             </Link>
                             </div>
                             {/* Superhero on t0p of the recipe image */}
-                            <div className={styles["splash-container"] + " absolute top-0 right-0 -mr-10 -mt-10 opacity-70"}>
+                            <div className={styles["splash-container"] + " absolute top-0 right-0 -mr-10 -mt-10 opacity-80"}>
                                 <Image layout='fill' src={explosion} alt='explosion' className={styles.image}/>
                             
                             </div>
-                            <div className={styles["image-container"] + " absolute top-0 right-0 -mr-4 -mt-12 items-center"}>
+                            <div className={styles["image-container"] + " absolute top-0 right-0 -mr-4 -mt-12"}>
                                 <Image
                                     layout='fill'
                                     src={character.imageGif}

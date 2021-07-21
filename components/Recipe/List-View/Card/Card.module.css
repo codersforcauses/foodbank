@@ -13,41 +13,6 @@
 }
 
 .image-container {
-
-    width: 20%;
-}
-
-.image-container> div {
-    position: unset !important;
-}
-
-.image {
-    object-fit: contain;
-    width: 50% !important;
-    /*position: relative !important;*/
-    height: unset !important;
-}
-
-
-
-.custom-img {
-    object-fit: contain;
-    /*max-width: 400px;*/
-    width: 100% !important;
-    position: relative !important;
-    height: unset !important;
-}
-
-.unset-img {
-    /*display: flex;*/
-    position: absolute;
-    width: 30%;
-}
-.custom-img > div {
-    position: unset !important;
-}
-
-.image-container {
     width: 35%;
     /*height: 55%*/
 }

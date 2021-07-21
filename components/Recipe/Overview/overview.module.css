@@ -35,27 +35,15 @@
     margin-top: -50%;
     margin-left: 28%;
     text-shadow: -2px 3px 8px rgba(0, 0, 0, 0.17);
-    z-index: 10;
+    z-index: 1;
 }
 
-
-/*.recipe-hero-image {*/
-/*    !*width: 25%;*!*/
-/*    !*max-height: 400px;*!*/
-/*    !*max-width: 250px;*!*/
-/*    !*min-width: 50px;*!*/
-/*}*/
 
 /* Flip hero image if it's facing left */
 .flip-hero-image {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-/*.hint-main-image {*/
-/*    width: 100%;*/
-/*    min-width: 50px;*/
-/*    opacity: 80%;*/
-/*}*/
 
 /* Hint text */
 .hint-text {

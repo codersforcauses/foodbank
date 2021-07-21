@@ -77,7 +77,6 @@ const RecipeOverview: React.FC = ({recipe}) => {
                                     layout="fill"
                                     className={styles.image}
                                     >
-                                    
                                 </Image>
                                 <div
                                     className={

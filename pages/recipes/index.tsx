@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import Card from 'components/Recipe/List-View/Card'
 import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
 
-const RecipesGridView: React.FC = () => {
+
+const RecipesGridView: React.FC = ( props ) => {
   const [filteredCards, setFilteredCards] = useState(recipes)
 
   const allTags: string | string[] = [] // all tags from all the recipes
@@ -22,15 +23,33 @@ const RecipesGridView: React.FC = () => {
   })
 
   // Creating a list of recipes filtered by the passed category
-  const filterCategory = (category: string) => {
+  const filterByCategory = (param: string) => {
     let filtered: React.SetStateAction<Recipe[]> = []
     recipes.map(recipe => {
-      recipe.category.map(cat => {
-        if (cat === category) filtered.push(recipe)
+      recipe.category.map(category => {
+        if (category === param) filtered.push(recipe)
       })
     })
     setFilteredCards(filtered)
   }
+  
+  // Creating a list of recipes filtered by the passed parameter, maybe a category or tag
+  const filterByTag = (param: string) => {
+    let filtered: React.SetStateAction<Recipe[]> = []
+    recipes.map(recipe => {
+      recipe.tags.map(tag => {
+        if (tag === param) filtered.push(recipe)
+      })
+    })
+    setFilteredCards(filtered)
+  }
+  
+  useEffect(() => {
+    if (props.tag !== 'all') {
+      filterByTag(props.tag)
+    }
+  }, []);
+  
 
   const recipeCards = filteredCards.map(recipe => {
     const { name, slug, finalShot, character } = recipe
@@ -53,7 +72,7 @@ const RecipesGridView: React.FC = () => {
         {allCategories.map(category => {
           return (
             <p
-              onClick={e => filterCategory(category)}
+              onClick={() => filterByCategory(category)}
               className='text-lg'
               style={{ cursor: 'pointer' }}
               key={category}
@@ -63,7 +82,7 @@ const RecipesGridView: React.FC = () => {
           )
         })}
         <p
-          onClick={e => setFilteredCards(recipes)}
+          onClick={() => setFilteredCards(recipes)}
           className='text-lg'
           style={{ cursor: 'pointer' }}
         >
@@ -77,6 +96,22 @@ const RecipesGridView: React.FC = () => {
       </div>
     </div>
   )
+}
+
+// Capture the props and send them to the 
+export const getServerSideProps = async (context: { query: { tag: string } }) => {
+  if (!context.query.tag) {
+    return {
+      props: {
+        tag: 'all' //pass it to the page props
+      }
+    }
+  }
+  return {
+    props: {
+      tag: context.query.tag //pass it to the page props
+    }
+  }
 }
 
 export default RecipesGridView
