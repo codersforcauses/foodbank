@@ -29,7 +29,6 @@ const randomStringGen = (length: number) => {
 
 export const selectSet = (seed: string) => {
   seedrandom(seed, { global: true })
-  const imgSetLength = imgSet.length
   const selectedSet = shuffle(imgSet, { copy: true }).slice(0, PASSWORD_LENGTH)
   selectedSet.map(img => {
     img.id = uuid_v4()
