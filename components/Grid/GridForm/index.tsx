@@ -379,14 +379,17 @@ export const GridField = ({
   const [grid, setGrid] = useState<Character[]>(charSet)
   const [test, setTest] = useState<number>(0)
 
-  const toggleSelect = (e: ChangeEvent<HTMLInputElement>, id?: string) => {
-    const newGrid: Character[] = JSON.parse(JSON.stringify(grid))
-    const character = newGrid?.find(char => char.id === id)
-    if (character) {
-      character.isSelected = e.target.checked
-      setGrid(newGrid)
-      setTest(1)
-    }
+  const toggleSelect = (
+    e: ChangeEvent<HTMLInputElement>,
+    currentChar: Character
+  ) => {
+    const newChar: Character = { ...currentChar }
+    newChar.isSelected = e.target.checked
+    const newGrid: Character[] = grid
+      .slice()
+      .map(char => (char.id === newChar.id ? newChar : char))
+    setGrid(newGrid)
+    setTest(1)
   }
 
   console.table(grid)
@@ -415,7 +418,7 @@ export const GridField = ({
               // className='hidden'
               //   className='opacity-0'
               {...register?.(props.name, rules)}
-              onChange={e => toggleSelect(e, char.id)}
+              onChange={e => toggleSelect(e, char)}
             />
             <Image
               key={char.id}
