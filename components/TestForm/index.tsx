@@ -32,25 +32,31 @@ const TestForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor='username'>Username</label>
+      <label>
+        Username
+        <br />
+        <input
+          type='username'
+          id='username'
+          name='username'
+          placeholder='Enter username'
+          value={username}
+          onChange={e => handleChange(e, 'username')}
+        />
+      </label>
       <br />
-      <input
-        onChange={e => handleChange(e, 'username')}
-        value={username}
-        name='username'
-        id='username'
-        placeholder='Enter username'
-      />
-      <br />
-      <label htmlFor='password'>Password</label>
-      <br />
-      <input
-        onChange={e => handleChange(e, 'password')}
-        value={password}
-        name='password'
-        id='password'
-        placeholder='Enter password'
-      />
+      <label>
+        Password
+        <br />
+        <input
+          type='password'
+          id='password'
+          name='password'
+          placeholder='Enter password'
+          value={password}
+          onChange={e => handleChange(e, 'password')}
+        />
+      </label>
       <br />
       <input type='submit' />
     </form>
