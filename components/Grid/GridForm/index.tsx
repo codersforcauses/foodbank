@@ -399,7 +399,7 @@ export const GridField = ({
       required={'required' in rules || required}
       disabled={formDisabled || disabled}
     >
-      <div className='grid flex-col w-full grid-cols-3 gap-4'>
+      <div className='grid w-full grid-cols-3 gap-4'>
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
           //   <div>
