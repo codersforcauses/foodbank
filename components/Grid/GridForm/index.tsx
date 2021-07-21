@@ -377,6 +377,7 @@ export const GridField = ({
   const error: string = formState?.errors?.[props.name]?.message
 
   const [grid, setGrid] = useState<Character[]>(charSet)
+  const [test, setTest] = useState<number>(0)
 
   const toggleSelect = (e: ChangeEvent<HTMLInputElement>, id?: string) => {
     const newGrid: Character[] = JSON.parse(JSON.stringify(grid))
@@ -384,9 +385,11 @@ export const GridField = ({
     if (character) {
       character.isSelected = e.target.checked
       setGrid(newGrid)
+      setTest(1)
     }
   }
 
+  console.table(grid)
   console.log('GRID RENDERED!!!')
 
   return (
@@ -408,6 +411,7 @@ export const GridField = ({
               id={char.id}
               name='food'
               value={char.password}
+              checked={char.isSelected}
               // className='hidden'
               //   className='opacity-0'
               {...register?.(props.name, rules)}
@@ -415,7 +419,7 @@ export const GridField = ({
             />
             <Image
               key={char.id}
-              className={`${char.isSelected ? '' : 'opacity-30'}`}
+              className={char.isSelected ? '' : 'opacity-30'}
               height={200}
               width={200}
               src={char.image}
@@ -423,6 +427,8 @@ export const GridField = ({
               placeholder='blur'
             />
             <p className='text-center'>{char.name}</p>
+            <p className='text-center'>{char.isSelected.toString()}</p>
+            <p className='text-center'>{test}</p>
           </label>
           //   </div>
           //   </FieldLabel>

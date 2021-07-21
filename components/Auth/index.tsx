@@ -4,6 +4,8 @@ import { Button, Form, TextField, Modal } from '@components/Custom'
 import { selectSet, Character, GridField } from '@components/Grid/GridForm'
 
 const CHARACTERS_FOR_AUTH = 3
+
+const PAGES = { FIRST: 1 }
 interface AuthProps {
   open: boolean
   onClose: () => void
@@ -23,6 +25,8 @@ const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
+  //   const [grid, setGrid] = useState<Character[]>([])
+  const [page, setPage] = useState<number>(1)
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
@@ -30,7 +34,7 @@ const Auth = (props: AuthProps) => {
     // console.log(JSON.stringify(defaultValues))
   }
 
-  const handleUsernameSubmit: MouseEventHandler<HTMLButtonElement> = () => {
+  const handleUsernameSubmit = () => {
     setUsername(input)
     console.log(input)
   }
@@ -46,23 +50,36 @@ const Auth = (props: AuthProps) => {
 
   const handleReset = () => {
     setInput('')
-    setUsername('')
+    // setUsername('')
   }
 
   const onClose = () => {
     props.onClose()
     handleReset()
+    setPage(1)
   }
 
   console.log('RENDERED!!!')
 
-  return (
-    <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
-      <Form<FormValues>
-        defaultValues={defaultValues}
-        onSubmit={handlePasswordSubmit}
-      >
-        {!username ? (
+  const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
+    handleReset()
+    setPage(prev => prev - 1)
+  }
+
+  const goNextPage: MouseEventHandler<HTMLButtonElement> = () => {
+    if (!input) {
+      return
+    }
+    if (input !== username) {
+      handleUsernameSubmit()
+    }
+    setPage(next => next + 1)
+  }
+
+  const pageDisplay = () => {
+    switch (page) {
+      case 1:
+        return (
           <>
             <TextField
               label='Name'
@@ -75,7 +92,7 @@ const Auth = (props: AuthProps) => {
               <Button
                 className='flex items-center'
                 type='button'
-                onClick={handleUsernameSubmit}
+                onClick={goNextPage}
               >
                 Set Username
                 <svg
@@ -92,7 +109,9 @@ const Auth = (props: AuthProps) => {
               </Button>
             </div>
           </>
-        ) : (
+        )
+      case 2:
+        return (
           <>
             <GridField
               label='grid'
@@ -103,7 +122,7 @@ const Auth = (props: AuthProps) => {
             <div className='flex justify-center pt-4'>
               <Button
                 type='button'
-                onClick={handleReset}
+                onClick={goPrevPage}
                 className='flex items-center'
               >
                 Back
@@ -135,7 +154,19 @@ const Auth = (props: AuthProps) => {
               </Button>
             </div>
           </>
-        )}
+        )
+      default:
+        return <p>ERROR!!!</p>
+    }
+  }
+
+  return (
+    <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
+      <Form<FormValues>
+        defaultValues={defaultValues}
+        onSubmit={handlePasswordSubmit}
+      >
+        {pageDisplay()}
       </Form>
     </Modal>
   )
