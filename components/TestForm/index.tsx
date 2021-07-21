@@ -38,6 +38,7 @@ const TestForm = () => {
         onChange={e => handleChange(e, 'username')}
         value={username}
         name='username'
+        id='username'
         placeholder='Enter username'
       />
       <br />
@@ -47,6 +48,7 @@ const TestForm = () => {
         onChange={e => handleChange(e, 'password')}
         value={password}
         name='password'
+        id='password'
         placeholder='Enter password'
       />
       <br />
