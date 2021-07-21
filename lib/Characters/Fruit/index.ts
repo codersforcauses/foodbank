@@ -2,7 +2,7 @@ import { Character } from 'lib/types'
 import atomicAppleImage from 'public/images/Characters/Fruit/11. Superhero Food - Atomic Apple.webp'
 import acesAppleImage from 'public/images/Characters/Fruit/12. Everyday Food - Aces Apple.webp'
 import sportyBananaImage from 'public/images/Characters/Fruit/14. Everyday Food - Sporty Banana.webp'
-import superFruityImage from 'public/images/Characters/Fruit/13. Superhero Food - Super Fruity.webp'
+import superFruityImage from 'public/images/Characters/No background images/13. Superhero Food - Super Fruity.png'
 import superFruityImageGif from 'public/images/Characters/No background images/Super-Fruity-Colour.gif'
 
 import fruityPainterImage from 'public/images/Characters/Fruit/64. Every Day Food - Fruity Painter.webp'

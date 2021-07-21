@@ -11,3 +11,28 @@
     border-top-right-radius: 10%;
     width: 350px;
 }
+
+.image-container {
+    width: 35%;
+    /*height: 55%*/
+}
+
+.splash-container {
+    width: 50%;
+}
+
+.splash-container> div {
+    position: unset !important;
+}
+
+.image-container> div {
+    position: unset !important;
+    /*display: flex !important;*/
+}
+
+.image {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+}
