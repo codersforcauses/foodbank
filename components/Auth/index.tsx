@@ -25,7 +25,6 @@ const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
-  //   const [grid, setGrid] = useState<Character[]>([])
   const [page, setPage] = useState<number>(1)
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +49,7 @@ const Auth = (props: AuthProps) => {
 
   const handleReset = () => {
     setInput('')
-    // setUsername('')
+    setUsername('')
   }
 
   const onClose = () => {
@@ -62,7 +61,7 @@ const Auth = (props: AuthProps) => {
   console.log('RENDERED!!!')
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
-    handleReset()
+    // handleReset()
     setPage(prev => prev - 1)
   }
 
