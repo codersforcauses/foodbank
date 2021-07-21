@@ -6,7 +6,7 @@ const validationSchema: Record<LoginFormValues, RegisterOptions> = {
     required: 'Please enter your name or a username'
   },
   password: {
-    required: 'Please pick your 3 of your favorite foods'
+    required: 'Please pick your 3 favorite foods'
   }
 }
 
