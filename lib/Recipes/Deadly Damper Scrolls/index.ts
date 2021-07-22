@@ -8,6 +8,7 @@ import step3Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper 
 import step4Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls step 4.webp'
 import step5Img from 'public/images/recipes/Deadly Damper Scrolls/Deadly damper scrolls step 5.webp'
 import { orangeScheme } from 'lib/colorSchemes'
+import { acesApple } from 'lib/Characters/Fruit'
 
 const step1: RecipeStep = {
   number: 1,
@@ -78,7 +79,8 @@ const deadlyDumperScrolls: Recipe = {
   finalShot: finalShot,
   ingredientsImg: ingredientsImg,
   equipmentImg: equipmentImg,
-  colorScheme: orangeScheme
+  colorScheme: orangeScheme,
+  character: acesApple
 }
 
 export default deadlyDumperScrolls
