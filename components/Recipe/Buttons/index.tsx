@@ -35,6 +35,19 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
           Let&apos;s Cook
         </button>
       </Link>
+
+      <a
+        download
+        href={`/pdfs/recipes/${recipe.name}.pdf`}
+        className={
+          'w-48 my-4 py-2 px-4 rounded-full text-center ' +
+          colorScheme.buttonBg +
+          ' ' +
+          colorScheme.buttonText
+        }
+      >
+        Download
+      </a>
     </div>
   )
 }
