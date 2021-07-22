@@ -1,5 +1,9 @@
-import { useEffect, ChangeEvent } from 'react'
+import {useState, useCallback, useEffect, ChangeEvent } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+
+const Auth = dynamic(() => import('../Auth'), { ssr: false })
+
+const links: Array<NavLinkProps> = [
 
 interface TestValues {
   username: string
@@ -13,6 +17,12 @@ const TestForm = () => {
       password: ''
     }
   })
+
+  const [signIn, setSignIn] = useState(false)
+  const toggleSignIn = useCallback(() => {
+    setSignIn(prev => !prev)
+  }, [])
+
   const { username, password } = watch()
 
   useEffect(() => {
@@ -64,6 +74,15 @@ const TestForm = () => {
         <br />
         <input type='submit' />
       </form>
+
+      <button
+          className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
+          onClick={toggleSignIn}
+        >
+          {/* need to add proper state when auth was added */}
+          {signIn ? 'Sign-out' : 'Sign-in'}
+        </button>
+
     </div>
   )
 }
