@@ -1,8 +1,5 @@
 import { useState, InputHTMLAttributes, useContext, ChangeEvent } from 'react'
 import { RegisterOptions } from 'react-hook-form'
-import seedrandom from 'seedrandom'
-import shuffle from 'shuffle-array'
-import { v4 as uuid_v4 } from 'uuid'
 import Image from 'next/image'
 import { FormContext } from '@components/Custom/FormComponents/Form/context'
 import {
@@ -10,33 +7,8 @@ import {
   FieldLabel,
   FieldMessage
 } from '@components/Custom/FormComponents/utils'
-import imgSet, {
-  Character
-} from '@components/Custom/FormComponents/GridForm/GridSet'
+import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 
-const PASSWORD_LENGTH = 9
-
-const randomStringGen = (length: number) => {
-  let result = ''
-  let characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  let charactersLength = characters.length
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
-}
-
-export const selectSet = (seed: string) => {
-  seedrandom(seed, { global: true })
-  const selectedSet = shuffle(imgSet, { copy: true }).slice(0, PASSWORD_LENGTH)
-  selectedSet.map(img => {
-    img.id = uuid_v4()
-    // img.password = randomStringGen(PASSWORD_LENGTH)
-    img.password = img.name // For testing purposes
-  })
-  return selectedSet
-}
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
   label: string
@@ -45,7 +17,7 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   rules?: RegisterOptions
 }
 
-export const GridField = ({
+const GridField = ({
   charSet,
   color,
   description,
@@ -131,3 +103,5 @@ export const GridField = ({
     </FieldControl>
   )
 }
+
+export default GridField

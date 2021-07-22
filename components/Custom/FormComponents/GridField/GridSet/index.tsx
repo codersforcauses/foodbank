@@ -1,3 +1,7 @@
+import seedrandom from 'seedrandom'
+import shuffle from 'shuffle-array'
+import { v4 as uuid_v4 } from 'uuid'
+
 export interface Character {
   id?: string
   image: string
@@ -6,7 +10,32 @@ export interface Character {
   password?: string
 }
 
-const imgSet: Character[] = [
+const PASSWORD_LENGTH = 9
+
+const randomStringGen = (length: number) => {
+  let result = ''
+  let characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let charactersLength = characters.length
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
+}
+const selectSet = (seed: string) => {
+  seedrandom(seed, { global: true })
+  const selectedSet = shuffle(GridSet, { copy: true }).slice(0, PASSWORD_LENGTH)
+  selectedSet.map(img => {
+    img.id = uuid_v4()
+    // img.password = randomStringGen(PASSWORD_LENGTH)
+    img.password = img.name // For testing purposes
+  })
+  return selectedSet
+}
+
+export default selectSet
+
+const GridSet: Character[] = [
   {
     image: '/images/Characters/Dairy/BlueBoy.jpg',
     name: 'BlueBoy',
@@ -229,5 +258,3 @@ const imgSet: Character[] = [
     isSelected: false
   }
 ]
-
-export default imgSet
