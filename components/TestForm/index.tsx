@@ -1,5 +1,6 @@
 import {useState, useCallback, useEffect, ChangeEvent } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import dynamic from 'next/dynamic'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
