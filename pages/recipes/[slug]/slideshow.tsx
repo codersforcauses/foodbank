@@ -1,5 +1,4 @@
 import { Carousel } from '@components/Custom'
-import Image from 'next/image'
 import { recipes } from 'lib/Recipes'
 import { Recipe } from 'lib/types'
 
@@ -22,25 +21,34 @@ const RecipeSlideShow: React.FC = () => {
   if (!recipe) return <div> Error </div>
 
   return (
-    <div className='flex justify-center items-center' style={{ height: "calc(100vh - 4rem)"}}>
+    <div
+      className='flex justify-center items-center'
+      style={{ height: 'calc(100vh - 4rem)' }}
+    >
       <Carousel
         controls
         indicators
         length={recipe.steps.length}
-        className="h-full"
+        className='h-full'
       >
         {recipe.steps.map((recipeStep, index) => (
           // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
-            <div className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32'>
-              <div className="w-full md:w-1/2 flex justify-center">
-                <img
-                  src={recipeStep.image.src}
-                  alt={`image ${index}`}
-                  className="h-full w-full bg-cover"
-                  />
-              </div>
-                <div className="w-full md:w-1/2 min-w-32 flex justify-center"> {recipeStep.description} </div>
+          <div
+            key={recipeStep.image.src}
+            className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32'
+          >
+            <div className='w-full lg:w-1/2 flex justify-center'>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={recipeStep.image.src}
+                alt={`step ${index}`}
+                className='object-scale-down bg-cover'
+              />
             </div>
+            <div className='py-5 md:py-0 text-xl px-14 w-full lg:w-1/2 min-w-32 flex justify-center items-center'>
+              {index + 1}. {recipeStep.description}
+            </div>
+          </div>
         ))}
       </Carousel>
     </div>
