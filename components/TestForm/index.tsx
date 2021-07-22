@@ -42,7 +42,7 @@ const TestForm = () => {
   const onSubmit: SubmitHandler<TestValues> = data =>
     alert('Username : \t' + username + '\nPassword  : \t' + password)
 
-  return (
+  return (<>
     <div className='text-center'>
       <p>Username : {username}</p>
       <p>Password : {password}</p>
@@ -85,6 +85,9 @@ const TestForm = () => {
         </button>
 
     </div>
+
+  <Auth open={signIn} onClose={toggleSignIn} />
+</>
   )
 }
 
