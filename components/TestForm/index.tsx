@@ -28,38 +28,43 @@ const TestForm = () => {
     console.log(username)
   }
 
-  const onSubmit: SubmitHandler<TestValues> = data => console.log(data)
+  const onSubmit: SubmitHandler<TestValues> = data =>
+    alert('Username : \t' + username + '\nPassword  : \t' + password)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Username
+    <div className='text-center'>
+      <p>Username : {username}</p>
+      <p>Password : {password}</p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          Username
+          <br />
+          <input
+            type='username'
+            id='username'
+            name='username'
+            placeholder='Enter username'
+            value={username}
+            onChange={e => handleChange(e, 'username')}
+          />
+        </label>
         <br />
-        <input
-          type='username'
-          id='username'
-          name='username'
-          placeholder='Enter username'
-          value={username}
-          onChange={e => handleChange(e, 'username')}
-        />
-      </label>
-      <br />
-      <label>
-        Password
+        <label>
+          Password
+          <br />
+          <input
+            type='password'
+            id='password'
+            name='password'
+            placeholder='Enter password'
+            value={password}
+            onChange={e => handleChange(e, 'password')}
+          />
+        </label>
         <br />
-        <input
-          type='password'
-          id='password'
-          name='password'
-          placeholder='Enter password'
-          value={password}
-          onChange={e => handleChange(e, 'password')}
-        />
-      </label>
-      <br />
-      <input type='submit' />
-    </form>
+        <input type='submit' />
+      </form>
+    </div>
   )
 }
 
