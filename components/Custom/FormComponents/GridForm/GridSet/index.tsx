@@ -8,223 +8,223 @@ export interface Character {
 
 const imgSet: Character[] = [
   {
-    image: '/public/images/Characters/Dairy/BlueBoy.jpg',
+    image: '/images/Characters/Dairy/BlueBoy.jpg',
     name: 'BlueBoy',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Dairy/MilkMaid.jpg',
+    image: '/images/Characters/Dairy/MilkMaid.jpg',
     name: 'MilkMaid',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Dairy/YumYoghurt.jpg',
+    image: '/images/Characters/Dairy/YumYoghurt.jpg',
     name: 'YumYoghurt',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Dairy/CheesyCheese.jpg',
+    image: '/images/Characters/Dairy/CheesyCheese.jpg',
     name: 'CheesyCheese',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/LeanMeat.jpg',
+    image: '/images/Characters/Meat/LeanMeat.jpg',
     name: 'LeanMeat',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/FishCan.jpg',
+    image: '/images/Characters/Meat/FishCan.jpg',
     name: 'FishCan',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/CheekyChicken.jpg',
+    image: '/images/Characters/Meat/CheekyChicken.jpg',
     name: 'CheekyChicken',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/RangerRex.jpg',
+    image: '/images/Characters/Meat/RangerRex.jpg',
     name: 'RangerRex',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/HannahGoanna.jpg',
+    image: '/images/Characters/Meat/HannahGoanna.jpg',
     name: 'HannahGoanna',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/EagerEgg.jpg',
+    image: '/images/Characters/Meat/EagerEgg.jpg',
     name: 'EagerEgg',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Meat/FreshFish.jpg',
+    image: '/images/Characters/Meat/FreshFish.jpg',
     name: 'FreshFish',
     isSelected: false
   },
   {
-    image: '/public/images/Characters/Fruit/AcesApple.jpg',
+    image: '/images/Characters/Fruit/AcesApple.jpg',
     name: 'AcesApple',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Fruit/FarmerOrange.jpg',
+    image: '/images/Characters/Fruit/FarmerOrange.jpg',
     name: 'FarmerOrange',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Fruit/SportyBanana.jpg',
+    image: '/images/Characters/Fruit/SportyBanana.jpg',
     name: 'SportyBanana',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Fruit/MelodyMelon.jpg',
+    image: '/images/Characters/Fruit/MelodyMelon.jpg',
     name: 'MelodyMelon',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Fruit/FruityPainter.jpg',
+    image: '/images/Characters/Fruit/FruityPainter.jpg',
     name: 'FruityPainter',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Grains/MixedGrain.jpg',
+    image: '/images/Characters/Grains/MixedGrain.jpg',
     name: 'MixedGrain',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Grains/HealthyCereal.jpg',
+    image: '/images/Characters/Grains/HealthyCereal.jpg',
     name: 'HealthyCereal',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Grains/PastaBowl.jpg',
+    image: '/images/Characters/Grains/PastaBowl.jpg',
     name: 'PastaBowl',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Grains/OutbackDamper.jpg',
+    image: '/images/Characters/Grains/OutbackDamper.jpg',
     name: 'OutbackDamper',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Grains/PastaChef.jpg',
+    image: '/images/Characters/Grains/PastaChef.jpg',
     name: 'PastaChef',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Grains/PostiePorridge.jpg',
+    image: '/images/Characters/Grains/PostiePorridge.jpg',
     name: 'PostiePorridge',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/ArtyCarrot.jpg',
+    image: '/images/Characters/Vegetables/ArtyCarrot.jpg',
     name: 'ArtyCarrot',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/AthleticTomato.jpg',
+    image: '/images/Characters/Vegetables/AthleticTomato.jpg',
     name: 'AthleticTomato',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/TinnedBeans.jpg',
+    image: '/images/Characters/Vegetables/TinnedBeans.jpg',
     name: 'TinnedBeans',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/CrunchingCapsicum.jpg',
+    image: '/images/Characters/Vegetables/CrunchingCapsicum.jpg',
     name: 'CrunchingCapsicum',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/CoachCarrot.jpg',
+    image: '/images/Characters/Vegetables/CoachCarrot.jpg',
     name: 'CoachCarrot',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/MrCucumber.jpg',
+    image: '/images/Characters/Vegetables/MrCucumber.jpg',
     name: 'MrCucumber',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/DJCorn.jpg',
+    image: '/images/Characters/Vegetables/DJCorn.jpg',
     name: 'DJCorn',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/FootyGirl.jpg',
+    image: '/images/Characters/Vegetables/FootyGirl.jpg',
     name: 'FootyGirl',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/FreshHerbs.jpg',
+    image: '/images/Characters/Vegetables/FreshHerbs.jpg',
     name: 'FreshHerbs',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/FrozenVegies.jpg',
+    image: '/images/Characters/Vegetables/FrozenVegies.jpg',
     name: 'FrozenVegies',
     isSelected: false
   },
 
   {
-    image: '/public/images/Characters/Vegetables/GarlicDancer.jpg',
+    image: '/images/Characters/Vegetables/GarlicDancer.jpg',
     name: 'GarlicDancer',
     isSelected: false
   },
   {
-    image: '/public/images/Characters/Vegetables/JackarooOnion.jpg',
+    image: '/images/Characters/Vegetables/JackarooOnion.jpg',
     name: 'JackarooOnion',
     isSelected: false
   },
   {
-    image: '/public/images/Characters/Vegetables/WorkingSpud.jpg',
+    image: '/images/Characters/Vegetables/WorkingSpud.jpg',
     name: 'WorkingSpud',
     isSelected: false
   },
   {
-    image: '/public/images/Characters/Vegetables/MrsBrocc.jpg',
+    image: '/images/Characters/Vegetables/MrsBrocc.jpg',
     name: 'MrsBrocc',
     isSelected: false
   },
   {
-    image: '/public/images/Characters/Vegetables/PeaPod.jpg',
+    image: '/images/Characters/Vegetables/PeaPod.jpg',
     name: 'PeaPod',
     isSelected: false
   },
   {
-    image: '/public/images/Characters/Vegetables/TinnedTradie.jpg',
+    image: '/images/Characters/Vegetables/TinnedTradie.jpg',
     name: 'TinnedTradie',
     isSelected: false
   }

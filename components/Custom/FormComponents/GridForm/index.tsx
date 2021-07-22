@@ -111,7 +111,7 @@ export const GridField = ({
               className={char.isSelected ? '' : 'opacity-30'}
               height={200}
               width={200}
-              src={`${char.image}`}
+              src={char.image}
               alt={char.name}
               //   placeholder='blur'
             />
