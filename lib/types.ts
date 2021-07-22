@@ -1,4 +1,4 @@
-import {StaticImageData} from 'next/Image'
+import { StaticImageData } from 'next/Image'
 
 interface ColorScheme {
   bg: string

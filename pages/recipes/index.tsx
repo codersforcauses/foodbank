@@ -1,10 +1,9 @@
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from 'components/Recipe/List-View/Card'
 import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
 
-
-const RecipesGridView: React.FC = ( props ) => {
+const RecipesGridView: React.FC = props => {
   const [filteredCards, setFilteredCards] = useState(recipes)
 
   const allTags: string | string[] = [] // all tags from all the recipes
@@ -32,7 +31,7 @@ const RecipesGridView: React.FC = ( props ) => {
     })
     setFilteredCards(filtered)
   }
-  
+
   // Creating a list of recipes filtered by the passed parameter, maybe a category or tag
   const filterByTag = (param: string) => {
     let filtered: React.SetStateAction<Recipe[]> = []
@@ -43,13 +42,12 @@ const RecipesGridView: React.FC = ( props ) => {
     })
     setFilteredCards(filtered)
   }
-  
+
   useEffect(() => {
     if (props.tag !== 'all') {
       filterByTag(props.tag)
     }
-  }, []);
-  
+  }, [])
 
   const recipeCards = filteredCards.map(recipe => {
     const { name, slug, finalShot, character } = recipe
@@ -71,6 +69,7 @@ const RecipesGridView: React.FC = ( props ) => {
       <div className='flex justify-center gap-10 mt-10'>
         {allCategories.map(category => {
           return (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <p
               onClick={() => filterByCategory(category)}
               className='text-lg'
@@ -81,6 +80,7 @@ const RecipesGridView: React.FC = ( props ) => {
             </p>
           )
         })}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <p
           onClick={() => setFilteredCards(recipes)}
           className='text-lg'
@@ -90,7 +90,7 @@ const RecipesGridView: React.FC = ( props ) => {
         </p>
       </div>
       <div className='flex justify-center m-3'>
-        <div className='mt-6 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-14'>
+        <div className='mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-14'>
           {recipeCards}
         </div>
       </div>
@@ -98,8 +98,10 @@ const RecipesGridView: React.FC = ( props ) => {
   )
 }
 
-// Capture the props and send them to the 
-export const getServerSideProps = async (context: { query: { tag: string } }) => {
+// Capture the props and send them to the
+export const getServerSideProps = async (context: {
+  query: { tag: string }
+}) => {
   if (!context.query.tag) {
     return {
       props: {
