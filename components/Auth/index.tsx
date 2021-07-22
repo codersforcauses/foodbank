@@ -9,7 +9,11 @@ import { Character } from '@components/Custom/FormComponents/GridForm/GridSet'
 
 const CHARACTERS_FOR_AUTH = 3
 
-const PAGES = { FIRST: 1 }
+const PAGES = {
+  USERNAME_FORM: 1,
+  SIGNIN_FORM: 2,
+  SIGNUP_FORM: 3
+}
 interface AuthProps {
   open: boolean
   onClose: () => void
@@ -29,7 +33,7 @@ const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
-  const [page, setPage] = useState<number>(1)
+  const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
@@ -59,14 +63,14 @@ const Auth = (props: AuthProps) => {
   const onClose = () => {
     props.onClose()
     handleReset()
-    setPage(1)
+    setPage(PAGES.USERNAME_FORM)
   }
 
   console.log('RENDERED!!!')
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
     // handleReset()
-    setPage(prev => prev - 1)
+    setPage(current => current - 1)
   }
 
   const goNextPage: MouseEventHandler<HTMLButtonElement> = () => {
@@ -76,7 +80,7 @@ const Auth = (props: AuthProps) => {
     if (input !== username) {
       handleUsernameSubmit()
     }
-    setPage(next => next + 1)
+    setPage(current => current + 1)
   }
 
   const pageDisplay = () => {
