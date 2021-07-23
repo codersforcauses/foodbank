@@ -14,8 +14,8 @@ const CHARACTERS_FOR_AUTH = 3
 
 const PAGES = {
   USERNAME_FORM: 1,
-  SIGNIN_FORM: 2,
-  SIGNUP_FORM: 3
+  PASSWORD_FORM: 2,
+  REPEAT_PASSWORD_FORM: 3
 }
 interface AuthProps {
   open: boolean
@@ -25,23 +25,28 @@ interface AuthProps {
 interface FormValues {
   username: string
   password: Character[]
+  repeatedPassword: Character[]
 }
 
 const defaultValues: FormValues = {
   username: '',
-  password: []
+  password: [],
+  repeatedPassword: []
 }
+
+const checkFirebase = (username: string) => username === 'hello' // <------ CHECKS IF USERNAME IS TAKEN
 
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
+  const [registered, setRegistered] = useState<boolean>(false)
   const [username, setUsername] = useState<string>('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
+  const [error, setError] = useState<string>('')
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
-    console.log(e.target.value)
-    // console.log(JSON.stringify(defaultValues))
+    setRegistered(() => checkFirebase(e.target.value))
   }
 
   const handleUsernameSubmit = () => {
@@ -49,13 +54,25 @@ const Auth = (props: AuthProps) => {
     console.log(input)
   }
 
-  const handlePasswordSubmit: SubmitHandler<FormValues> = value => {
-    if (value?.password?.length !== CHARACTERS_FOR_AUTH) {
-      return
+  // LOGIN OR SIGNUP HERE
+  const handleValuesSubmit: SubmitHandler<FormValues> = value => {
+    if (registered && value.password.length === CHARACTERS_FOR_AUTH) {
+      const newPassword = value.password.join('')
+      console.log(value)
+      if (registered)
+        alert('Username : \t' + username + '\nPassword  : \t' + newPassword)
     }
-    const newPassword = value?.password?.join('')
-    console.log(newPassword)
-    alert('Username : \t' + username + '\nPassword  : \t' + newPassword)
+    if (
+      !registered &&
+      value.password.length === CHARACTERS_FOR_AUTH &&
+      value.repeatedPassword.length === CHARACTERS_FOR_AUTH
+    ) {
+      const newPassword = value.password.join('')
+      const newRepeatedPassword = value.repeatedPassword.join('')
+      if (newRepeatedPassword === newPassword)
+        alert('Username : \t' + username + '\nPassword  : \t' + newPassword)
+      else alert('Wrong Selections')
+    }
   }
 
   const handleReset = () => {
@@ -88,7 +105,7 @@ const Auth = (props: AuthProps) => {
 
   const pageDisplay = () => {
     switch (page) {
-      case 1:
+      case PAGES.USERNAME_FORM:
         return (
           <>
             <TextField
@@ -96,7 +113,7 @@ const Auth = (props: AuthProps) => {
               type='text'
               name='username'
               value={input}
-              onChange={e => handleUsernameChange(e)}
+              onChange={handleUsernameChange}
             />
             <div className='flex justify-center pt-4'>
               <Button
@@ -104,7 +121,7 @@ const Auth = (props: AuthProps) => {
                 type='button'
                 onClick={goNextPage}
               >
-                Set Username
+                {registered ? 'WELCOME BACK, FRIEND!!!!' : 'HI, NEW FRIEND!!!!'}
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   viewBox='0 0 25 25'
@@ -120,7 +137,7 @@ const Auth = (props: AuthProps) => {
             </div>
           </>
         )
-      case 2:
+      case PAGES.PASSWORD_FORM:
         return (
           <>
             <GridField
@@ -148,21 +165,91 @@ const Auth = (props: AuthProps) => {
                   />
                 </svg>
               </Button>
-              <Button className='flex items-center'>
-                Confirm Selections
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 25 25'
-                  className='h-6 ml-8'
+              {registered ? (
+                <Button className='flex items-center'>
+                  Confirm Selections
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    viewBox='0 0 25 25'
+                    className='h-6 ml-8'
+                  >
+                    <path
+                      fill='#FFF'
+                      fillRule='evenodd'
+                      d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                    />
+                  </svg>
+                </Button>
+              ) : (
+                <Button
+                  className='flex items-center'
+                  type='button'
+                  onClick={goNextPage}
                 >
-                  <path
-                    fill='#FFF'
-                    fillRule='evenodd'
-                    d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                  />
-                </svg>
-              </Button>
+                  Repeat Selections
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    viewBox='0 0 25 25'
+                    className='h-6 ml-8'
+                  >
+                    <path
+                      fill='#FFF'
+                      fillRule='evenodd'
+                      d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                    />
+                  </svg>
+                </Button>
+              )}
             </div>
+          </>
+        )
+      case PAGES.REPEAT_PASSWORD_FORM:
+        return (
+          <>
+            {!registered && (
+              <>
+                <GridField
+                  label='grid'
+                  type='checkbox'
+                  name='repeatedPassword'
+                  charSet={grid}
+                />
+                <div className='flex justify-center pt-4'>
+                  <Button
+                    type='button'
+                    onClick={goPrevPage}
+                    className='flex items-center'
+                  >
+                    Back
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      viewBox='0 0 25 25'
+                      className='h-6 ml-8'
+                    >
+                      <path
+                        fill='#FFF'
+                        fillRule='evenodd'
+                        d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                      />
+                    </svg>
+                  </Button>
+                  <Button className='flex items-center'>
+                    Confirm Selections
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      viewBox='0 0 25 25'
+                      className='h-6 ml-8'
+                    >
+                      <path
+                        fill='#FFF'
+                        fillRule='evenodd'
+                        d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
+                      />
+                    </svg>
+                  </Button>
+                </div>
+              </>
+            )}
           </>
         )
       default:
@@ -174,7 +261,7 @@ const Auth = (props: AuthProps) => {
     <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
       <Form<FormValues>
         defaultValues={defaultValues}
-        onSubmit={handlePasswordSubmit}
+        onSubmit={handleValuesSubmit}
       >
         {pageDisplay()}
       </Form>
