@@ -12,8 +12,8 @@ const MobileMenu = () => {
         leaveFrom='transform scale-100 opacity-100'
         leaveTo='transform scale-95 opacity-0'
       >
-        <Popover.Panel className='menu-list p-1'>
-          <div className='menu-ele bg-primary flex flex-col items-center mt-1 p-3 rounded-lg '>
+        <Popover.Panel className='menu-list p-1 '>
+          <div className='menu-ele bg-primary flex justify-around flex-col items-center mt-1 p-3 rounded-lg h-96'>
             <Link href='/'>
               <a>Home</a>
             </Link>
