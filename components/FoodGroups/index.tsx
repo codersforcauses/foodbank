@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import Image from "next/image";
 
 import styles from 'components/FoodGroups/foodgroups.module.css'
-import {Modal} from '@components/Custom'
-import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
+import { Modal } from '@components/Custom'
+import { WindowResizeHook, resize_map }from '@components/FoodGroups/WindowResizeHook'
+import { FoodGroupImage } from '@components/FoodGroups/types'
 
 import {
-    resize_map,
     initialCoordinates,
     initialWidths,
     handleMouseOver,
@@ -20,7 +20,7 @@ import {
 
 const FoodGroups: React.FC = () => {
     
-    const toggleModal = (group) => {
+    const toggleModal = (group: FoodGroupImage) => {
         if (!modalState) {
             setProps({
                 ...props,
@@ -70,12 +70,12 @@ const FoodGroups: React.FC = () => {
     return (
         <div className="flex justify-center">
             {modalState &&
-						<Modal {...props} onClose={toggleModal} size='lg'>
+						<Modal {...props} onClose={() => setModalState(!modalState)} size='lg'>
                           <h1>{props.group}</h1>
 						</Modal>
             }
             {/* Handles resizing maps on screen resize for SSR */}
-            <WindowResizeHook params={{previousWidth, coordinates, setPreviousWidth, setCoordinates}}/>
+            <WindowResizeHook params ={{ previousWidth, coordinates, setPreviousWidth, setCoordinates }}></WindowResizeHook>
 
             <div className={"flex flex-col"}>
                 {
@@ -98,7 +98,8 @@ const FoodGroups: React.FC = () => {
                                        useMap={`#${group.map_name}`}
                                        id={group.img_id}
                                 />
-                            </div>)
+                            </div>
+                        )
                     })
                 }
             </div>

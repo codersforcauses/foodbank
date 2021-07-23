@@ -81,30 +81,8 @@ const foodGroupsImages: FoodGroupImage[] = [
 
 
 
-const resize_map = (previousWidth, coordinates, setPreviousWidth, setCoordinates) => {
-    let newCoordinates: number[][] = []
-    let newPreviousWidth: { id: string; initialWidth: number }[] = []
 
-    previousWidth.map((width: { [x: string]: number }, index: string | number) => {
-        let newWidth = document.getElementById(width.id).clientWidth
-        let ratio = newWidth / width["initialWidth"]
-
-        let new_coordinates = coordinates[index].map((coordinate: number) => {
-            return coordinate * ratio
-        })
-        newCoordinates.push(new_coordinates)
-
-        newPreviousWidth.push({
-            "id": previousWidth[index]["id"],
-            "initialWidth": newWidth
-        })
-    })
-    
-    setPreviousWidth(newPreviousWidth)
-    setCoordinates(newCoordinates)
-}
-
-const handleMouseOver = (group_id, { allstates }) => {
+const handleMouseOver = (group_id: string, { allstates }) => {
     const {
         meatStyles,
         setMeatStyles,
@@ -155,7 +133,7 @@ const handleMouseOver = (group_id, { allstates }) => {
     }
 }
 
-const handleMouseOut = (group_id, { allstates }) => {
+const handleMouseOut = (group_id: string, { allstates }) => {
     const {
         meatStyles,
         setMeatStyles,
@@ -180,9 +158,10 @@ const handleMouseOut = (group_id, { allstates }) => {
             break
         case "grains":
             setMeatStyles(["z-10"])
-            setVegetablesStyles(["z-10"])
+            setVegetablesStyles(["z-5"])
             setGrainsStyles(["z-0"])
-            setDairyStyles(["z-0"])
+            setDairyStyles(["z-10"])
+            setFruitStyles(["z-8"])
             break
         case "dairy":
             setMeatStyles(["z-10"])
@@ -209,4 +188,4 @@ const handleMouseOut = (group_id, { allstates }) => {
     }
 }
 
-export { resize_map, initialCoordinates, initialWidths, handleMouseOver, handleMouseOut, foodGroupsImages }
+export { initialCoordinates, initialWidths, handleMouseOver, handleMouseOut, foodGroupsImages }

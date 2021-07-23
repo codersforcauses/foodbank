@@ -11,4 +11,23 @@ interface FoodGroupProps {
     onClose: () => void
 }
 
-export type { FoodGroupImage, FoodGroupProps }
+interface PreviousWidth {
+    id: string, 
+    initialWidth: number 
+}
+
+interface Coordinates {
+    coordinates: number [][]
+}
+
+interface SetPreviousWidth {
+    setPreviousWidth: React.Dispatch<React.SetStateAction<{ id: string, initialWidth: number }[]>>,
+}
+
+interface SetCoordinates {
+    setCoordinates: React.Dispatch<React.SetStateAction<number[][]>>
+
+}
+
+
+export type { FoodGroupImage, FoodGroupProps, Coordinates, SetCoordinates, PreviousWidth, SetPreviousWidth }
