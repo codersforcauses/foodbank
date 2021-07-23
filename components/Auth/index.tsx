@@ -35,11 +35,13 @@ const defaultValues: FormValues = {
 }
 
 const checkFirebase = (username: string) => username === 'hello' // <------ CHECKS IF USERNAME IS TAKEN
+const checkPassword = (password: string) =>
+  password === 'BlueBoyFishCanFreshFish' // <------ CHECKS IF PASSWORD IS CORRECT
 
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
-  const [registered, setRegistered] = useState<boolean>(false)
   const [username, setUsername] = useState<string>('')
+  const [registered, setRegistered] = useState<boolean>(false)
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
@@ -54,13 +56,17 @@ const Auth = (props: AuthProps) => {
     console.log(input)
   }
 
-  // LOGIN OR SIGNUP HERE
+  // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = value => {
     if (registered && value.password.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value.password.join('')
       console.log(value)
-      if (registered)
-        alert('Username : \t' + username + '\nPassword  : \t' + newPassword)
+      if (checkPassword(newPassword)) {
+        setError('')
+        alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNIN
+      } else {
+        setError('Wrong Selections')
+      }
     }
     if (
       !registered &&
@@ -69,15 +75,20 @@ const Auth = (props: AuthProps) => {
     ) {
       const newPassword = value.password.join('')
       const newRepeatedPassword = value.repeatedPassword.join('')
-      if (newRepeatedPassword === newPassword)
-        alert('Username : \t' + username + '\nPassword  : \t' + newPassword)
-      else alert('Wrong Selections')
+      if (newRepeatedPassword === newPassword) {
+        setError('')
+        alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNUP
+      } else {
+        setError('Wrong Selections')
+      }
     }
   }
 
   const handleReset = () => {
     setInput('')
     setUsername('')
+    setRegistered(false)
+    setError('')
   }
 
   const onClose = () => {
@@ -90,6 +101,7 @@ const Auth = (props: AuthProps) => {
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
     // handleReset()
+    setError('')
     setPage(current => current - 1)
   }
 
@@ -100,6 +112,7 @@ const Auth = (props: AuthProps) => {
     if (input !== username) {
       handleUsernameSubmit()
     }
+    setError('')
     setPage(current => current + 1)
   }
 
@@ -134,12 +147,15 @@ const Auth = (props: AuthProps) => {
                   />
                 </svg>
               </Button>
+              {registered && <p>NOT YOU? TRY A DIFFERENT USERNAME!!!</p>}
             </div>
           </>
         )
       case PAGES.PASSWORD_FORM:
         return (
           <>
+            <p>Pick 3</p>
+            {error && <p>{error}</p>}
             <GridField
               label='grid'
               type='checkbox'
@@ -208,6 +224,8 @@ const Auth = (props: AuthProps) => {
           <>
             {!registered && (
               <>
+                <p>REpick 3</p>
+                {error && <p>{error}</p>}
                 <GridField
                   label='grid'
                   type='checkbox'
