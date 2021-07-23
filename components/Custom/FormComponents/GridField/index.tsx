@@ -50,7 +50,6 @@ const GridField = ({
     setTest(1)
   }
 
-  console.table(grid)
   console.log('GRID RENDERED!!!')
 
   return (
