@@ -60,7 +60,6 @@ const Auth = (props: AuthProps) => {
   const handleValuesSubmit: SubmitHandler<FormValues> = value => {
     if (registered && value.password.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value.password.join('')
-      console.log(value)
       if (checkPassword(newPassword)) {
         setError('')
         alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNIN
