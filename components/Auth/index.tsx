@@ -1,4 +1,9 @@
-import { useState, useMemo, ChangeEvent, MouseEventHandler } from 'react'
+import React, {
+  useState,
+  useMemo,
+  ChangeEventHandler,
+  MouseEventHandler
+} from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import {
   Button,
@@ -9,6 +14,9 @@ import {
   selectSet
 } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
+import UsernameForm from './UsernameForm'
+import PasswordForm from './PasswordForm'
+import RepeatPasswordForm from './RepeatPasswordForm'
 
 const CHARACTERS_FOR_AUTH = 3
 
@@ -46,7 +54,7 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
 
-  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value)
     setRegistered(() => checkFirebase(e.target.value))
   }
@@ -58,8 +66,8 @@ const Auth = (props: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = value => {
-    if (registered && value.password.length === CHARACTERS_FOR_AUTH) {
-      const newPassword = value.password.join('')
+    if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
+      const newPassword = value?.password?.join('')
       if (checkPassword(newPassword)) {
         setError('')
         alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNIN
@@ -69,11 +77,11 @@ const Auth = (props: AuthProps) => {
     }
     if (
       !registered &&
-      value.password.length === CHARACTERS_FOR_AUTH &&
-      value.repeatedPassword.length === CHARACTERS_FOR_AUTH
+      value?.password?.length === CHARACTERS_FOR_AUTH &&
+      value?.repeatedPassword?.length === CHARACTERS_FOR_AUTH
     ) {
-      const newPassword = value.password.join('')
-      const newRepeatedPassword = value.repeatedPassword.join('')
+      const newPassword = value?.password?.join('')
+      const newRepeatedPassword = value?.repeatedPassword?.join('')
       if (newRepeatedPassword === newPassword) {
         setError('')
         alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNUP
@@ -82,6 +90,7 @@ const Auth = (props: AuthProps) => {
       }
     }
   }
+  console.log(page)
 
   const handleReset = () => {
     setInput('')
@@ -119,155 +128,36 @@ const Auth = (props: AuthProps) => {
     switch (page) {
       case PAGES.USERNAME_FORM:
         return (
-          <>
-            <TextField
-              label='Name'
-              type='text'
-              name='username'
-              value={input}
-              onChange={handleUsernameChange}
-            />
-            <div className='flex justify-center pt-4'>
-              <Button
-                className='flex items-center'
-                type='button'
-                onClick={goNextPage}
-              >
-                {registered ? 'WELCOME BACK, FRIEND!!!!' : 'HI, NEW FRIEND!!!!'}
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 25 25'
-                  className='h-6 ml-8'
-                >
-                  <path
-                    fill='#FFF'
-                    fillRule='evenodd'
-                    d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                  />
-                </svg>
-              </Button>
-              {registered && <p>NOT YOU? TRY A DIFFERENT USERNAME!!!</p>}
-            </div>
-          </>
+          <UsernameForm
+            input={input}
+            handleUsernameChange={handleUsernameChange}
+            goNextPage={goNextPage}
+            registered={registered}
+          />
         )
       case PAGES.PASSWORD_FORM:
         return (
-          <>
-            <p>Pick 3</p>
-            {error && <p>{error}</p>}
-            <GridField
-              label='grid'
-              type='checkbox'
-              name='password'
-              charSet={grid}
-            />
-            <div className='flex justify-center pt-4'>
-              <Button
-                type='button'
-                onClick={goPrevPage}
-                className='flex items-center'
-              >
-                Back
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 25 25'
-                  className='h-6 ml-8'
-                >
-                  <path
-                    fill='#FFF'
-                    fillRule='evenodd'
-                    d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                  />
-                </svg>
-              </Button>
-              {registered ? (
-                <Button className='flex items-center'>
-                  Confirm Selections
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 25 25'
-                    className='h-6 ml-8'
-                  >
-                    <path
-                      fill='#FFF'
-                      fillRule='evenodd'
-                      d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                    />
-                  </svg>
-                </Button>
-              ) : (
-                <Button
-                  className='flex items-center'
-                  type='button'
-                  onClick={goNextPage}
-                >
-                  Repeat Selections
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 25 25'
-                    className='h-6 ml-8'
-                  >
-                    <path
-                      fill='#FFF'
-                      fillRule='evenodd'
-                      d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                    />
-                  </svg>
-                </Button>
-              )}
-            </div>
-          </>
+          <PasswordForm
+            label='Pick 3'
+            name='password'
+            error={error}
+            grid={grid}
+            goPrevPage={goPrevPage}
+            goNextPage={goNextPage}
+            registered={registered}
+          />
         )
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
-          <>
-            {!registered && (
-              <>
-                <p>REpick 3</p>
-                {error && <p>{error}</p>}
-                <GridField
-                  label='grid'
-                  type='checkbox'
-                  name='repeatedPassword'
-                  charSet={grid}
-                />
-                <div className='flex justify-center pt-4'>
-                  <Button
-                    type='button'
-                    onClick={goPrevPage}
-                    className='flex items-center'
-                  >
-                    Back
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      viewBox='0 0 25 25'
-                      className='h-6 ml-8'
-                    >
-                      <path
-                        fill='#FFF'
-                        fillRule='evenodd'
-                        d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                      />
-                    </svg>
-                  </Button>
-                  <Button className='flex items-center'>
-                    Confirm Selections
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      viewBox='0 0 25 25'
-                      className='h-6 ml-8'
-                    >
-                      <path
-                        fill='#FFF'
-                        fillRule='evenodd'
-                        d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-                      />
-                    </svg>
-                  </Button>
-                </div>
-              </>
-            )}
-          </>
+          <RepeatPasswordForm
+            label='Repick 3'
+            name='repeatedPassword'
+            error={error}
+            grid={grid}
+            goPrevPage={goPrevPage}
+            goNextPage={goNextPage}
+            registered={registered}
+          />
         )
       default:
         return <p>ERROR!!!</p>
