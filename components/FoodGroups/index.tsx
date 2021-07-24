@@ -84,8 +84,8 @@ const FoodGroups: React.FC = () => {
                             <div id={group.div_id} key={group.div_id}
                                  className={styles[`${group.img_styles}`] + " " + foodGroupStyles.join(' ') + " " + hoverStyles[index].join(' ')}>
                                 <map id={`map-${index}`} name={group.map_name}>
-                                    <area onMouseOver={() => handleMouseOver(group.div_id, {allstates})}
-                                          onMouseOut={() => handleMouseOut(group.div_id, {allstates})}
+                                    <area onMouseOver={() => handleMouseOver(group.div_id, allstates)}
+                                          onMouseOut={() => handleMouseOut(group.div_id, allstates)}
                                           onClick={() => toggleModal(group)}
                                           alt={group.div_id} shape='poly'
                                           coords={coordinates[index].join(', ')}

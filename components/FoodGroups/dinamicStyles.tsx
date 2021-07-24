@@ -80,9 +80,14 @@ const foodGroupsImages: FoodGroupImage[] = [
 ]
 
 
+interface AllStates {
+    
+}
 
 
-const handleMouseOver = (group_id: string, { allstates }) => {
+
+
+const handleMouseOver = (group_id: string,  allstates ) => {
     const {
         meatStyles,
         setMeatStyles,
@@ -133,7 +138,7 @@ const handleMouseOver = (group_id: string, { allstates }) => {
     }
 }
 
-const handleMouseOut = (group_id: string, { allstates }) => {
+const handleMouseOut = (group_id: string,  allstates) => {
     const {
         meatStyles,
         setMeatStyles,
