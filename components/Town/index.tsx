@@ -1,11 +1,5 @@
-export interface TownProps{
+export interface TownProps {}
 
-}
-
-export const Town:React.FC<TownProps> = () =>{
-    return(
-        <div>
-            hello
-        </div>
-    )
+export const Town: React.FC<TownProps> = () => {
+  return <div>hello</div>
 }
