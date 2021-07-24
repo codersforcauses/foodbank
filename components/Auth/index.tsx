@@ -90,7 +90,6 @@ const Auth = (props: AuthProps) => {
       }
     }
   }
-  console.log(page)
 
   const handleReset = () => {
     setInput('')
