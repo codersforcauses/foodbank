@@ -35,7 +35,7 @@ const GridField = ({
   const error: string = formState?.errors?.[props.name]?.message
 
   const [grid, setGrid] = useState<Character[]>(charSet)
-  const [test, setTest] = useState<number>(0)
+  const [test, setTest] = useState(0)
 
   const toggleSelect = (
     e: ChangeEvent<HTMLInputElement>,
@@ -63,7 +63,7 @@ const GridField = ({
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
           //   <div>
-          <label key={char.id}>
+          <label key={char.id} className='flex flex-col justify-content-center'>
             <input
               {...props}
               aria-describedby={`${char.name}-label`}
@@ -80,8 +80,8 @@ const GridField = ({
             <Image
               key={char.id}
               className={char.isSelected ? '' : 'opacity-30'}
-              height={200}
-              width={200}
+              height={50}
+              width={50}
               src={char.image}
               alt={char.name}
               //   placeholder='blur'
