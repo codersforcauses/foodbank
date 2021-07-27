@@ -50,7 +50,6 @@ const GridField = ({
     setTest(1)
   }
 
-  console.log('GRID RENDERED!!!')
 
   return (
     <FieldControl

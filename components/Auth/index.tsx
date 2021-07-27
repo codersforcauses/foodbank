@@ -17,6 +17,8 @@ import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 import RepeatPasswordForm from './RepeatPasswordForm'
+import { firestore } from './firebase'
+
 
 const CHARACTERS_FOR_AUTH = 3
 
@@ -42,9 +44,7 @@ const defaultValues: FormValues = {
   repeatedPassword: []
 }
 
-const checkFirebase = (username: string) => username === 'hello' // <------ CHECKS IF USERNAME IS TAKEN
-const checkPassword = (password: string) =>
-  password === 'BlueBoyFishCanFreshFish' // <------ CHECKS IF PASSWORD IS CORRECT
+
 
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
@@ -54,9 +54,16 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
 
-  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
+
+  // CHECKS IF USERNAME IS TAKEN
+  const checkFirebase = async (username: string) => username ? (await firestore.doc(`usernames/${username}`).get()).exists : false
+
+  // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
+  const checkPassword = async (password: string) => password == (await firestore.doc(`usernames/${username}`).get()).data()?.password
+
+  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = async e => {
     setInput(e.target.value)
-    setRegistered(() => checkFirebase(e.target.value))
+    setRegistered(await checkFirebase(e.target.value))
   }
 
   const handleUsernameSubmit = () => {
@@ -65,17 +72,18 @@ const Auth = (props: AuthProps) => {
   }
 
   // SIGNIN OR SIGNUP HERE
-  const handleValuesSubmit: SubmitHandler<FormValues> = value => {
+  const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
-      if (checkPassword(newPassword)) {
+      if (await checkPassword(newPassword)) {
+        console.log("Password Matched!")
         setError('')
-        alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNIN
+        alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
       } else {
-        setError('Wrong Selections')
+        setError('Uh-oh! You have selected the wrong characters!')
       }
     }
-    if (
+    else if (
       !registered &&
       value?.password?.length === CHARACTERS_FOR_AUTH &&
       value?.repeatedPassword?.length === CHARACTERS_FOR_AUTH
@@ -84,9 +92,18 @@ const Auth = (props: AuthProps) => {
       const newRepeatedPassword = value?.repeatedPassword?.join('')
       if (newRepeatedPassword === newPassword) {
         setError('')
-        alert('Username : \t' + username + '\nPassword  : \t' + newPassword) //<-- SIGNUP
+        alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNUP
+
+        //Sending the details to the Firebase Firestore database
+        const batch = firestore.batch();
+        batch.set(
+          firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
+          { "password": newPassword } // The information to be stored in that document.
+        )
+        await batch.commit()
+        
       } else {
-        setError('Wrong Selections')
+        setError('Uh-Oh, your Repeated Seletions don\'t match!')
       }
     }
   }
@@ -103,8 +120,6 @@ const Auth = (props: AuthProps) => {
     handleReset()
     setPage(PAGES.USERNAME_FORM)
   }
-
-  console.log('RENDERED!!!')
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
     // handleReset()
@@ -137,7 +152,7 @@ const Auth = (props: AuthProps) => {
       case PAGES.PASSWORD_FORM:
         return (
           <PasswordForm
-            label='Pick 3'
+            label='Choose your three characters.'
             name='password'
             error={error}
             grid={grid}
@@ -149,7 +164,7 @@ const Auth = (props: AuthProps) => {
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
           <RepeatPasswordForm
-            label='Repick 3'
+            label='Re-select those same three characters and remember them.'
             name='repeatedPassword'
             error={error}
             grid={grid}
