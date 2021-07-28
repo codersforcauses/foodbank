@@ -2,6 +2,7 @@ import { ChangeEventHandler, MouseEventHandler } from 'react'
 import { Button, TextField } from '@components/Custom'
 
 interface UsernameFormProps {
+  label: string
   input: string
   handleUsernameChange: ChangeEventHandler<HTMLInputElement>
   goNextPage: MouseEventHandler<HTMLButtonElement>
@@ -9,6 +10,7 @@ interface UsernameFormProps {
 }
 
 const UsernameForm = ({
+  label,
   input,
   handleUsernameChange,
   goNextPage,
@@ -17,7 +19,7 @@ const UsernameForm = ({
   return (
     <>
       <TextField
-        label='Name'
+        label={label}
         type='text'
         name='username'
         value={input}
