@@ -16,7 +16,7 @@ const centreOffset = boxLength / 2 - strokeWidth / 2
 /**
  * The image display for an achievement including a circular progress bar.
  */
-const Display = ({ unlocked, image, progress, total }: Props): JSX.Element => {
+const Display = ({ unlocked, image, progress, total }: Props) => {
   return (
     <div className='relative transition duration-500 ease-in-out transform hover:scale-105'>
       <svg
