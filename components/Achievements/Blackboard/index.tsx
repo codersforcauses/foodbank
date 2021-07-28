@@ -4,7 +4,7 @@ import blackboard from 'public/images/blackboard.png'
 /**
  * Renders a Blackboard for achievements to be shown on.
  */
-const Blackboard = (): JSX.Element => {
+const Blackboard = () => {
   return (
     <>
       <div className='absolute h-screen w-screen'>
