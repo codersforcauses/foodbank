@@ -8,7 +8,7 @@ interface Props {
 /**
  * Displays achievement title and progress.
  */
-const Label = ({ title, unlocked, progress, total }: Props): JSX.Element => {
+const Label = ({ title, unlocked, progress, total }: Props) => {
   return (
     <div
       className={

@@ -4,7 +4,7 @@ import Grid from '@components/Achievements/Grid'
 /**
  * This page displays a list of all unlockable achievements.
  */
-const Achievements = (): JSX.Element => {
+const Achievements = () => {
   return (
     <div>
       <Blackboard />
