@@ -67,21 +67,6 @@ export const Townbox: React.FC<TownboxProps> = ({
         <p className='font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl pt-3'>
           {captionText}
         </p>
-<<<<<<< HEAD
-        <button
-          onClick={close}
-          style={{
-            position: 'absolute',
-            right: 20,
-            top: 10,
-            transform: 'scale(1.2)',
-            cursor: 'pointer'
-          }}
-        >
-          &#10006;
-        </button>
-        {showButton && <Button bgColor={bgColour}>Visit</Button>}
-=======
         <button onClick={close} style={{position:"absolute", right:20, top:10, transform:"scale(1.2)", cursor:"pointer"}}>&#10006;</button>
         {showButton && (
           <Button
@@ -91,7 +76,6 @@ export const Townbox: React.FC<TownboxProps> = ({
             Visit
           </Button>
         )}
->>>>>>> ea00b23daf96e84d573932f49ef4da36d45decbd
       </div>
     </div>
   )
