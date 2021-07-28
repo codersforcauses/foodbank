@@ -8,7 +8,7 @@ import Label from 'components/Achievements/Label'
 /**
  * Renders all unlockable achievements in a flex grid.
  */
-const Grid = (): JSX.Element => {
+const Grid = () => {
   const achievements: Map<string, Achievement> = useContext(AchievementContext)
 
   return (
