@@ -1,9 +1,6 @@
 import firebase from '@firebase/app'
 import '@firebase/firestore'
 
-
-
-
 const firebaseConfig = {
   apiKey: 'AIzaSyCRl0J6FOUJEOphf3sOiD22yHYDxkJ1QKo',
   authDomain: 'foodbank-c9a2f.firebaseapp.com',
@@ -18,5 +15,5 @@ if (!firebase.apps.length) {
   console.log('Initialised!')
 }
 
-const firestore = firebase.firestore();
+const firestore = firebase.firestore()
 export { firestore }

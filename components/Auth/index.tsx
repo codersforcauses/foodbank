@@ -19,7 +19,6 @@ import PasswordForm from './PasswordForm'
 import RepeatPasswordForm from './RepeatPasswordForm'
 import { firestore } from './firebase'
 
-
 const CHARACTERS_FOR_AUTH = 3
 
 const PAGES = {
@@ -44,8 +43,6 @@ const defaultValues: FormValues = {
   repeatedPassword: []
 }
 
-
-
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState<string>('')
   const [username, setUsername] = useState<string>('')
@@ -54,17 +51,22 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
 
-
   // CHECKS IF USERNAME IS TAKEN
-  const checkFirebase = async (username: string) => username ? (await firestore.doc(`usernames/${username}`).get()).exists : false
+  const checkFirebase = async (username: string) =>
+    username
+      ? (await firestore.doc(`usernames/${username}`).get()).exists
+      : false
 
   // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
-  const checkPassword = async (password: string) => password == (await firestore.doc(`usernames/${username}`).get()).data()?.password
+  const checkPassword = async (password: string) =>
+    password ==
+    (await firestore.doc(`usernames/${username}`).get()).data()?.password
 
-  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = async e => {
-    setInput(e.target.value)
-    setRegistered(await checkFirebase(e.target.value))
-  }
+  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
+    async e => {
+      setInput(e.target.value)
+      setRegistered(await checkFirebase(e.target.value))
+    }
 
   const handleUsernameSubmit = () => {
     setUsername(input)
@@ -76,14 +78,13 @@ const Auth = (props: AuthProps) => {
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
       if (await checkPassword(newPassword)) {
-        console.log("Password Matched!")
+        console.log('Password Matched!')
         setError('')
         alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
       } else {
         setError('Uh-oh! You have selected the wrong characters!')
       }
-    }
-    else if (
+    } else if (
       !registered &&
       value?.password?.length === CHARACTERS_FOR_AUTH &&
       value?.repeatedPassword?.length === CHARACTERS_FOR_AUTH
@@ -95,15 +96,14 @@ const Auth = (props: AuthProps) => {
         alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNUP
 
         //Sending the details to the Firebase Firestore database
-        const batch = firestore.batch();
+        const batch = firestore.batch()
         batch.set(
           firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
-          { "password": newPassword } // The information to be stored in that document.
+          { password: newPassword } // The information to be stored in that document.
         )
         await batch.commit()
-        
       } else {
-        setError('Uh-Oh, your Repeated Seletions don\'t match!')
+        setError("Uh-Oh, your Repeated Seletions don't match!")
       }
     }
   }
