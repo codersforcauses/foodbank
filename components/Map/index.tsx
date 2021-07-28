@@ -20,7 +20,7 @@ import assetMap, { AssetMapProps } from './assets/AssetMap'
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(1)
-  const elementRef = useRef(null as null | HTMLDivElement)
+  const elementRef = useRef<HTMLDivElement>(null)
   const [selected, onSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
   const [display, changeDisplay] = useState(false)
