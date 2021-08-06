@@ -53,6 +53,7 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
+  const [enteredCredStatus, setEnteredCredStatus] = useState('')
 
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value)
