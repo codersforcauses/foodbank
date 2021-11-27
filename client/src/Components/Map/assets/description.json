@@ -4,7 +4,7 @@
         "id": "coolCloud",
         "headerColor": "primary",
         "headerText": "cool Cloud",
-        "captionText": "Floating up high in the sky, a soft cool cloud stores fresh water which is ready to drink or water all the Superhero Foods growing below",
+        "captionText": "Floating up high in the sky, a soft cool cloud stores fresh water which is ready to drink or water all the Superhero Foods growing below.",
         "showButton": true,
         "maxWidth":"10",
         "maxHeight":"100"

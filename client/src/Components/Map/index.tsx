@@ -92,8 +92,17 @@ const Map: React.FC = () => {
               {
                 svgData.groupArray.map(location => {
                   if (location.coords){
-                    const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                    const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
+                    //const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
+                   // const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
+                    
+                   // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
+                   // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
+                   //scaling by 10 seems to give better views of the locations
+                    console.log(location.xtrans)
+                    const xtrans = parseInt(location.xtrans) * scale * 10
+                    const ytrans = parseInt(location.ytrans) * scale * 10
+                    console.log(xtrans)
+                    //
                     const scaledCoords = location.coords.map(coord => coord*scale)
                     const className = Location[location.id as keyof typeof Location] === selected
                           ? 'map-selected'
@@ -124,6 +133,7 @@ const Map: React.FC = () => {
         svgData.groupArray.map(area => {
           if (selected !== null && area.coords){
             const selectedArea = getAreaDescription(selected)
+            console.log(selectedArea)
 
             if(selectedArea !== null && selectedArea.id === area.id) {
               const header = selectedArea?.headerText
