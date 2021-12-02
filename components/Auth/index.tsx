@@ -61,15 +61,22 @@ const Auth = (props: AuthProps) => {
   const [error, setError] = useState<string>('')
 
   // CHECKS IF USERNAME IS TAKEN
-  const checkFirebase = async (username: string) =>
-    username
-      ? (await firestore.doc(`usernames/${username}`).get()).exists
-      : false
+  //   const checkFirebase = async (username: string) =>
+  //     username
+  //       ? (await firestore.doc(`usernames/${username}`).get()).exists
+  //       : false
+
+  // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
+  //   const checkPassword = async (password: string) =>
+  //     password ===
+  //     (await firestore.doc(`usernames/${username}`).get()).data()?.password
+
+  // CHECKS IF USERNAME IS TAKEN
+  const checkFirebase = async (username: string) => username === 'hello'
 
   // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
   const checkPassword = async (password: string) =>
-    password ==
-    (await firestore.doc(`usernames/${username}`).get()).data()?.password
+    password === 'BlueBoyFishCanFreshFish'
 
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
     async e => {
@@ -84,6 +91,18 @@ const Auth = (props: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+    if (!value?.password?.length && page !== PAGES.PASSWORD_FORM) {
+      setPage(PAGES.PASSWORD_FORM)
+      return
+    }
+    if (
+      !registered &&
+      !value?.repeatedPassword?.length &&
+      page !== PAGES.REPEAT_PASSWORD_FORM
+    ) {
+      setPage(PAGES.REPEAT_PASSWORD_FORM)
+      return
+    }
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
       if (await checkPassword(newPassword)) {
