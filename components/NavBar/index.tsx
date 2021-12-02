@@ -2,25 +2,12 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import NavLink, { NavLinkProps } from './NavLink'
+import DropDownMenu, { DropDownMenuProps } from './DropDownMenu'
 import logo from '../../public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
-const links: Array<NavLinkProps> = [
-  {
-    page: 'Super Hero Foods',
-    route: '/'
-  },
-  {
-    page: 'Recipe',
-    route: '/'
-  },
-  {
-    page: 'Progress',
-    route: '/'
-  }
-]
+
 
 const Navbar = () => {
   const [signIn, setSignIn] = useState(false)
@@ -42,11 +29,7 @@ const Navbar = () => {
             />
           </a>
         </Link>
-        <nav className='flex items-center space-x-10'>
-          {links.map(nav => (
-            <NavLink key={nav.page} {...nav} />
-          ))}
-        </nav>
+        <DropDownMenu/>
         <button
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
