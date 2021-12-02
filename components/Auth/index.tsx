@@ -81,7 +81,7 @@ const Auth = (props: AuthProps) => {
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
     async e => {
       setInput(e.target.value)
-      setRegistered(await checkFirebase(e.target.value))
+      // setRegistered(await checkFirebase(e.target.value))
     }
 
   const handleUsernameSubmit = () => {
@@ -91,6 +91,14 @@ const Auth = (props: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+    if (!input) {
+      return
+    } else if (!username) {
+      handleUsernameSubmit()
+      setPage(PAGES.PASSWORD_FORM)
+      return
+    }
+    console.log(username)
     if (!value?.password?.length && page !== PAGES.PASSWORD_FORM) {
       setPage(PAGES.PASSWORD_FORM)
       return
