@@ -40,6 +40,7 @@
     "react-hook-form": "^7.20.5",
     "seedrandom": "^3.0.5",
     "shuffle-array": "^1.0.1",
+    "tailwind-scrollbar-hide": "^1.1.6",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

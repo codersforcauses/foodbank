@@ -57,7 +57,10 @@ const GridField = ({
       required={'required' in rules || required}
       disabled={formDisabled || disabled}
     >
-      <div className='grid w-full grid-cols-3 gap-4'>
+      <div
+        className='grid w-full grid-cols-3 gap-4'
+        // style={{ border: '20px solid blue' }}
+      >
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
           //   <div>
@@ -71,23 +74,20 @@ const GridField = ({
               value={char.password}
               checked={char.isSelected}
               // className='hidden'
-              //   className='opacity-0'
+              className='opacity-0'
               {...register?.(props.name, rules)}
               onChange={e => toggleSelect(e, char)}
             />
             <Image
               key={char.id}
-              className={
-                'object-contain ' + (char.isSelected ? '' : 'opacity-30')
-              }
-              height={250}
-              width={250}
+              className={char.isSelected ? '' : ' opacity-30'}
+              height={100}
+              width={100}
               layout='responsive'
               src={char.image}
               alt={char.name}
               //   placeholder='blur'
             />
-            <p className='text-center'>{char.name}</p>
             {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
             {/* <p className='text-center'>{test}</p> */}
           </label>
