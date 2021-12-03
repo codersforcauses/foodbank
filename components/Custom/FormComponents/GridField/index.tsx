@@ -35,7 +35,7 @@ const GridField = ({
   const error: string = formState?.errors?.[props.name]?.message
 
   const [grid, setGrid] = useState<Character[]>(charSet)
-  const [test, setTest] = useState(0)
+  // const [test, setTest] = useState(0)
 
   const toggleSelect = (
     e: ChangeEvent<HTMLInputElement>,
@@ -47,7 +47,7 @@ const GridField = ({
       .slice()
       .map(char => (char.id === newChar.id ? newChar : char))
     setGrid(newGrid)
-    setTest(1)
+    // setTest(1)
   }
 
   return (
@@ -77,16 +77,19 @@ const GridField = ({
             />
             <Image
               key={char.id}
-              className={char.isSelected ? '' : 'opacity-30'}
-              height={50}
-              width={50}
+              className={
+                'object-contain ' + (char.isSelected ? '' : 'opacity-30')
+              }
+              height={250}
+              width={250}
+              layout='responsive'
               src={char.image}
               alt={char.name}
               //   placeholder='blur'
             />
             <p className='text-center'>{char.name}</p>
-            <p className='text-center'>{char.isSelected.toString()}</p>
-            <p className='text-center'>{test}</p>
+            {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
+            {/* <p className='text-center'>{test}</p> */}
           </label>
           //   </div>
           //   </FieldLabel>

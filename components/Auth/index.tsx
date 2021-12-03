@@ -26,6 +26,15 @@ const PAGES = {
   PASSWORD_FORM: 2,
   REPEAT_PASSWORD_FORM: 3
 }
+
+const MESSAGES = {
+  USERNAME_LABEL: 'Enter a username.',
+  PASSWORD_LABEL: 'Choose your three characters.',
+  REPEATED_PASSWORD_LABEL:
+    'Re-select those same three characters and remember them.',
+  WRONG_PASSWORD: 'Uh-oh! You have selected the wrong characters!',
+  PASSWORDS_NOT_MATCHED: 'Uh-oh! You have selected the wrong characters!'
+}
 interface AuthProps {
   open: boolean
   onClose: () => void
@@ -75,6 +84,26 @@ const Auth = (props: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+    if (!input) {
+      return
+    } else if (!username) {
+      handleUsernameSubmit()
+      setPage(PAGES.PASSWORD_FORM)
+      return
+    }
+    console.log(username)
+    if (!value?.password?.length && page !== PAGES.PASSWORD_FORM) {
+      setPage(PAGES.PASSWORD_FORM)
+      return
+    }
+    if (
+      !registered &&
+      !value?.repeatedPassword?.length &&
+      page !== PAGES.REPEAT_PASSWORD_FORM
+    ) {
+      setPage(PAGES.REPEAT_PASSWORD_FORM)
+      return
+    }
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
       if (await checkPassword(newPassword)) {
@@ -82,7 +111,7 @@ const Auth = (props: AuthProps) => {
         setError('')
         alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
       } else {
-        setError('Uh-oh! You have selected the wrong characters!')
+        setError(MESSAGES.WRONG_PASSWORD)
       }
     } else if (
       !registered &&
@@ -103,7 +132,7 @@ const Auth = (props: AuthProps) => {
         )
         await batch.commit()
       } else {
-        setError("Uh-Oh, your Repeated Seletions don't match!")
+        setError(MESSAGES.PASSWORDS_NOT_MATCHED)
       }
     }
   }
@@ -143,6 +172,7 @@ const Auth = (props: AuthProps) => {
       case PAGES.USERNAME_FORM:
         return (
           <UsernameForm
+            label={MESSAGES.USERNAME_LABEL}
             input={input}
             handleUsernameChange={handleUsernameChange}
             goNextPage={goNextPage}
@@ -152,7 +182,7 @@ const Auth = (props: AuthProps) => {
       case PAGES.PASSWORD_FORM:
         return (
           <PasswordForm
-            label='Choose your three characters.'
+            label={MESSAGES.PASSWORD_LABEL}
             name='password'
             error={error}
             grid={grid}
@@ -164,7 +194,7 @@ const Auth = (props: AuthProps) => {
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
           <RepeatPasswordForm
-            label='Re-select those same three characters and remember them.'
+            label={MESSAGES.REPEATED_PASSWORD_LABEL}
             name='repeatedPassword'
             error={error}
             grid={grid}
