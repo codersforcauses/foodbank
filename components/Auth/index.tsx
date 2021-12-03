@@ -35,9 +35,15 @@ const MESSAGES = {
   WRONG_PASSWORD: 'Uh-oh! You have selected the wrong characters!',
   PASSWORDS_NOT_MATCHED: 'Uh-oh! You have selected the wrong characters!'
 }
+
+interface UserProps {
+  name: string
+  data: string
+}
 interface AuthProps {
   open: boolean
   onClose: () => void
+  updateUser: (currentUser: UserProps) => void
 }
 
 interface FormValues {

@@ -69,7 +69,7 @@ const Navbar = () => {
           {signIn ? 'Sign-out' : 'Sign-in'}
         </button>
       </div>
-      <Auth open={signIn} onClose={toggleSignIn} />
+      <Auth open={signIn} onClose={toggleSignIn} updateUser={updateUser} />
     </header>
   )
 }
