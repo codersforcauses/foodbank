@@ -41,6 +41,7 @@ const GridField = ({
     e: ChangeEvent<HTMLInputElement>,
     currentChar: Character
   ) => {
+    console.log(currentChar.name)
     const newChar: Character = { ...currentChar }
     newChar.isSelected = e.target.checked
     const newGrid: Character[] = grid
@@ -72,7 +73,10 @@ const GridField = ({
               checked={char.isSelected}
               // className='hidden'
               //   className='opacity-0'
-              {...register?.(props.name, rules)}
+              {...register?.(props.name, {
+                ...rules
+                // onChange: e => toggleSelect(e, char)
+              })}
               onChange={e => toggleSelect(e, char)}
             />
             <Image
@@ -88,7 +92,7 @@ const GridField = ({
               //   placeholder='blur'
             />
             <p className='text-center'>{char.name}</p>
-            {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
+            <p className='text-center'>{char.isSelected.toString()}</p>
             {/* <p className='text-center'>{test}</p> */}
           </label>
           //   </div>
