@@ -23,7 +23,11 @@ const UsernameForm = ({
         type='text'
         name='username'
         value={input}
-        onChange={handleUsernameChange}
+        rules={{
+          required: true,
+          onChange: handleUsernameChange
+        }}
+        // onChange={handleUsernameChange}
       />
       <div className='flex justify-center pt-4'>
         <Button

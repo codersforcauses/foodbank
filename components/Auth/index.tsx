@@ -35,9 +35,15 @@ const MESSAGES = {
   WRONG_PASSWORD: 'Uh-oh! You have selected the wrong characters!',
   PASSWORDS_NOT_MATCHED: 'Uh-oh! You have selected the wrong characters!'
 }
+
+interface UserProps {
+  name: string
+  data: string
+}
 interface AuthProps {
   open: boolean
   onClose: () => void
+  updateUser: (currentUser: UserProps) => void
 }
 
 interface FormValues {
@@ -60,16 +66,23 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
 
+  // // CHECKS IF USERNAME IS TAKEN
+  // const checkFirebase = async (username: string) =>
+  //   username
+  //     ? (await firestore.doc(`usernames/${username}`).get()).exists
+  //     : false
+
+  // // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
+  // const checkPassword = async (password: string) =>
+  //   password ===
+  //   (await firestore.doc(`usernames/${username}`).get()).data()?.password
+
   // CHECKS IF USERNAME IS TAKEN
-  const checkFirebase = async (username: string) =>
-    username
-      ? (await firestore.doc(`usernames/${username}`).get()).exists
-      : false
+  const checkFirebase = async (username: string) => username === 'hello'
 
   // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
   const checkPassword = async (password: string) =>
-    password ==
-    (await firestore.doc(`usernames/${username}`).get()).data()?.password
+    password === 'BlueBoyFishCanFreshFish'
 
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
     async e => {

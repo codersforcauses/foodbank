@@ -41,6 +41,7 @@ const GridField = ({
     e: ChangeEvent<HTMLInputElement>,
     currentChar: Character
   ) => {
+    console.log(currentChar.name)
     const newChar: Character = { ...currentChar }
     newChar.isSelected = e.target.checked
     const newGrid: Character[] = grid
@@ -88,7 +89,8 @@ const GridField = ({
               alt={char.name}
               //   placeholder='blur'
             />
-            {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
+            <p className='text-center'>{char.name}</p>
+            <p className='text-center'>{char.isSelected.toString()}</p>
             {/* <p className='text-center'>{test}</p> */}
           </label>
           //   </div>
