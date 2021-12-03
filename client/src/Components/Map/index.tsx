@@ -68,7 +68,11 @@ const Map: React.FC = () => {
   // Data can be made from dev/svgParse.py
   return (
     <div>
-      <TransformWrapper>
+      <TransformWrapper
+        doubleClick={{ disabled: true }}
+        wheel={{ disabled: true }}
+        initialScale={1}
+      >
       {({ resetTransform, setTransform }) => (
                 <>
                 <div>
@@ -95,6 +99,7 @@ const Map: React.FC = () => {
                     //const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
                    // const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
                     
+                   // CHECK SCALING OF ENTIRE IMAGE TO SCREEN
                    // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
                    // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
                    //scaling by 10 seems to give better views of the locations
