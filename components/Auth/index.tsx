@@ -60,16 +60,16 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
 
-  // CHECKS IF USERNAME IS TAKEN
-  //   const checkFirebase = async (username: string) =>
-  //     username
-  //       ? (await firestore.doc(`usernames/${username}`).get()).exists
-  //       : false
+  // // CHECKS IF USERNAME IS TAKEN
+  // const checkFirebase = async (username: string) =>
+  //   username
+  //     ? (await firestore.doc(`usernames/${username}`).get()).exists
+  //     : false
 
-  // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
-  //   const checkPassword = async (password: string) =>
-  //     password ===
-  //     (await firestore.doc(`usernames/${username}`).get()).data()?.password
+  // // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
+  // const checkPassword = async (password: string) =>
+  //   password ===
+  //   (await firestore.doc(`usernames/${username}`).get()).data()?.password
 
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) => username === 'hello'
@@ -81,7 +81,7 @@ const Auth = (props: AuthProps) => {
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
     async e => {
       setInput(e.target.value)
-      // setRegistered(await checkFirebase(e.target.value))
+      setRegistered(await checkFirebase(e.target.value))
     }
 
   const handleUsernameSubmit = () => {
