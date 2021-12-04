@@ -2,6 +2,7 @@ import { ChangeEventHandler, MouseEventHandler } from 'react'
 import { Button, TextField } from '@components/Custom'
 
 interface UsernameFormProps {
+  label: string
   input: string
   handleUsernameChange: ChangeEventHandler<HTMLInputElement>
   goNextPage: MouseEventHandler<HTMLButtonElement>
@@ -9,6 +10,7 @@ interface UsernameFormProps {
 }
 
 const UsernameForm = ({
+  label,
   input,
   handleUsernameChange,
   goNextPage,
@@ -17,17 +19,22 @@ const UsernameForm = ({
   return (
     <>
       <TextField
-        label='Name'
+        label={label}
         type='text'
         name='username'
         value={input}
-        onChange={handleUsernameChange}
+        rules={{
+          required: true,
+          onChange: handleUsernameChange
+        }}
+        // onChange={handleUsernameChange}
       />
       <div className='flex justify-center pt-4'>
         <Button
-          className='flex items-center'
+          className='flex items-center disabled:opacity-50'
           type='button'
           onClick={goNextPage}
+          disabled={!input}
         >
           {registered ? 'WELCOME BACK, FRIEND!!!!' : 'HI, NEW FRIEND!!!!'}
           <svg

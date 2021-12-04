@@ -35,22 +35,21 @@ const GridField = ({
   const error: string = formState?.errors?.[props.name]?.message
 
   const [grid, setGrid] = useState<Character[]>(charSet)
-  const [test, setTest] = useState(0)
+  // const [test, setTest] = useState(0)
 
   const toggleSelect = (
     e: ChangeEvent<HTMLInputElement>,
     currentChar: Character
   ) => {
+    console.log(currentChar.name)
     const newChar: Character = { ...currentChar }
     newChar.isSelected = e.target.checked
     const newGrid: Character[] = grid
       .slice()
       .map(char => (char.id === newChar.id ? newChar : char))
     setGrid(newGrid)
-    setTest(1)
+    // setTest(1)
   }
-
-  console.log('GRID RENDERED!!!')
 
   return (
     <FieldControl
@@ -59,7 +58,10 @@ const GridField = ({
       required={'required' in rules || required}
       disabled={formDisabled || disabled}
     >
-      <div className='grid w-full grid-cols-3 gap-4'>
+      <div
+        className='grid w-full grid-cols-3 gap-4'
+        // style={{ border: '20px solid blue' }}
+      >
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
           //   <div>
@@ -73,22 +75,23 @@ const GridField = ({
               value={char.password}
               checked={char.isSelected}
               // className='hidden'
-              //   className='opacity-0'
+              className='opacity-0'
               {...register?.(props.name, rules)}
               onChange={e => toggleSelect(e, char)}
             />
             <Image
               key={char.id}
-              className={char.isSelected ? '' : 'opacity-30'}
-              height={50}
-              width={50}
+              className={char.isSelected ? '' : ' opacity-30'}
+              height={100}
+              width={100}
+              layout='responsive'
               src={char.image}
               alt={char.name}
               //   placeholder='blur'
             />
             <p className='text-center'>{char.name}</p>
             <p className='text-center'>{char.isSelected.toString()}</p>
-            <p className='text-center'>{test}</p>
+            {/* <p className='text-center'>{test}</p> */}
           </label>
           //   </div>
           //   </FieldLabel>
