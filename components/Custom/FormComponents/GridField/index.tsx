@@ -61,41 +61,47 @@ const GridField = ({
       <div className='grid w-full grid-cols-3 gap-4'>
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
-          //   <div>
-          <label key={char.id} className='flex flex-col justify-content-center'>
+          <div key={char.id}>
             <input
-              {...props}
+              type='checkbox'
               aria-describedby={`${char.name}-label`}
               aria-invalid={!!error}
               id={char.id}
               name='food'
               value={char.password}
-              checked={char.isSelected}
+              // checked={char.isSelected}
               // className='hidden'
-              //   className='opacity-0'
+              // className='opacity-0'
+              className='peer'
               {...register?.(props.name, {
                 ...rules
                 // onChange: e => toggleSelect(e, char)
               })}
-              onChange={e => toggleSelect(e, char)}
+              // onChange={e => toggleSelect(e, char)}
             />
-            <Image
-              key={char.id}
-              className={
-                'object-contain ' + (char.isSelected ? '' : 'opacity-30')
-              }
-              height={250}
-              width={250}
-              layout='responsive'
-              src={char.image}
-              alt={char.name}
-              //   placeholder='blur'
-            />
-            <p className='text-center'>{char.name}</p>
-            <p className='text-center'>{char.isSelected.toString()}</p>
-            {/* <p className='text-center'>{test}</p> */}
-          </label>
-          //   </div>
+            <label
+              htmlFor={char.id}
+              // className='flex flex-col justify-content-center'
+              className='opacity-30 peer-checked:opacity-100'
+            >
+              <Image
+                // key={char.id}
+                // className={
+                //   'object-contain ' + (char.isSelected ? '' : 'opacity-30')
+                // }
+                height={250}
+                width={250}
+                layout='responsive'
+                src={char.image}
+                alt={char.name}
+                //   placeholder='blur'
+              />
+              {/* <p className='text-center'>{char.name}</p> */}
+              {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
+              {/* <p className='text-center'>{test}</p> */}
+            </label>
+            <p className='hidden text-center peer-checked:block'>{char.name}</p>
+          </div>
           //   </FieldLabel>
         ))}
         {error ? (

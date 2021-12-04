@@ -25,7 +25,7 @@ const PasswordForm = ({
     <>
       <p>{label}</p>
       {error && <p>{error}</p>}
-      <GridField label='grid' type='checkbox' name={name} charSet={grid} />
+      <GridField label='grid' name={name} charSet={grid} />
       <div className='flex justify-center pt-4 space-x-2'>
         <Button
           type='button'
