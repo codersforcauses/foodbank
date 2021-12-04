@@ -14,9 +14,9 @@ const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [height, setHeight] = useState(1)
   const elementRef = useRef(null as null | HTMLDivElement)
-  const [selected, onSelect] = useState<Location | null>(null)
+  const [selected, setSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
-  const [display, changeDisplay] = useState(false)
+  const [display, setDisplay] = useState(false)
   // const [townbox, setTownbox] = useState(<></>)
   type HeaderColor = 'primary' | 'orange';
   useEffect(() => {
@@ -49,13 +49,13 @@ const Map: React.FC = () => {
 
     return null
   }
-  const onClose = () => {
-    onSelect(null) 
-    changeDisplay(false)
+  const close = () => {
+    setSelect(null) 
+    setDisplay(false)
   }
   const onMapClick = (area: Location) => {
-    selected === area ? onSelect(null) : onSelect(area)
-    changeDisplay(!display)
+    selected === area ? setSelect(null) : setSelect(area)
+    setDisplay(!display)
   }
   // eslint-disable-next-line
   const handleClick = (event: any) => { //need to change this type
@@ -67,8 +67,13 @@ const Map: React.FC = () => {
 
   // Data can be made from dev/svgParse.py
   return (
+  <>
     <div>
-      <TransformWrapper>
+      <TransformWrapper
+        doubleClick={{ disabled: true }}
+        wheel={{ disabled: true }}
+        initialScale={1}
+      >
       {({ resetTransform, setTransform }) => (
                 <>
                 <div>
@@ -79,11 +84,11 @@ const Map: React.FC = () => {
                   </button>
                 </div>  
       <TransformComponent>
-    <div
+      <div
       ref={elementRef}
       className='block w-full min-h-full items-stretch'
       style={{minHeight:'900px'}}
-    >
+      >
       {height === 0 ? null : (
           <div className='svgrow'>
             <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
@@ -92,17 +97,13 @@ const Map: React.FC = () => {
               {
                 svgData.groupArray.map(location => {
                   if (location.coords){
-                    //const xtrans = parseInt(location.xtrans) * scale * 8; // I have no clue why everything is overscaled 8x
-                   // const ytrans = parseInt(location.ytrans) * scale * 8; // this is probably worth looking into
-                    
+                   // CHECK SCALING OF ENTIRE IMAGE TO SCREEN
                    // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
                    // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
                    //scaling by 10 seems to give better views of the locations
-                    console.log(location.xtrans)
                     const xtrans = parseInt(location.xtrans) * scale * 10
                     const ytrans = parseInt(location.ytrans) * scale * 10
-                    console.log(xtrans)
-                    //
+
                     const scaledCoords = location.coords.map(coord => coord*scale)
                     const className = Location[location.id as keyof typeof Location] === selected
                           ? 'map-selected'
@@ -111,7 +112,6 @@ const Map: React.FC = () => {
                         <area 
                           key={location.id}
                           alt={location.id}
-                          //onClick={handleClick}
                           onClick={(e) => { handleClick(e); setTransform(-xtrans, -ytrans, 2)}}
                           href={location.id}
                           coords={scaledCoords.join()}
@@ -127,6 +127,11 @@ const Map: React.FC = () => {
       )}
       
     </div>
+    </TransformComponent>
+              </>
+              )}
+    </TransformWrapper>
+    </div>
 
     <div className={`full-page-wrapper ${display ? '': 'none'}`}>
       {
@@ -139,30 +144,27 @@ const Map: React.FC = () => {
               const header = selectedArea?.headerText
               const caption = selectedArea?.captionText
               const showButton = selectedArea?.showButton
-              
-              const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
+              const headerColor = selectedArea?.headerColor as HeaderColor;
 
               return (
+                <>
                   <div key={selectedArea.id} className="townbox-wrapper">
                     <Townbox 
                       headerColor={headerColor}
                       headerText={header}
                       captionText={caption}
                       showButton = {showButton}
-                      close={onClose}
+                      close={close}
                     />
                   </div>
+                  </>
               )
             }
           }
         })
       }
     </div>
-    </TransformComponent>
-              </>
-              )}
-    </TransformWrapper>
-    </div>
+    </>
   )
 }
 

@@ -2,6 +2,7 @@
 import React from 'react'
 import './index.css'
 import Button from '../Button'
+
 export interface TownboxProps {
   /**
    * Header colour: enter either orange/primary
