@@ -89,9 +89,7 @@ const GridField = ({
             >
               <Image
                 // key={char.id}
-                // className={
-                //   'object-contain ' + (char.isSelected ? '' : 'opacity-30')
-                // }
+                className='object-contain'
                 height={250}
                 width={250}
                 layout='responsive'
