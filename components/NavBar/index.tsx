@@ -2,12 +2,10 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import DropDownMenu, { DropDownMenuProps } from './DropDownMenu'
+import DropDownMenu from './DropDownMenu'
 import logo from '../../public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
-
-
 
 const Navbar = () => {
   const [signIn, setSignIn] = useState(false)
@@ -29,7 +27,7 @@ const Navbar = () => {
             />
           </a>
         </Link>
-        <DropDownMenu/>
+        <DropDownMenu />
         <button
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
