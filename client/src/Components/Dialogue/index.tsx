@@ -8,6 +8,8 @@ interface Props {
   avatar: string //file location??
 }
 
+//
+
 const Dialogue: React.FC<Props> = ({ messages, speaker, avatar }) => {
   const [displayDialogue, setDisplayDialogue] = useState('block')
 
@@ -71,6 +73,9 @@ const Dialogue: React.FC<Props> = ({ messages, speaker, avatar }) => {
         <div className='dialogueMessage'>
           <Message message={messages[typingState.currentMessage]} />
         </div>
+        {
+          //Change this to visit dynamically for town clicks
+        }
         <div
           role='button'
           className='dialogueNext'
