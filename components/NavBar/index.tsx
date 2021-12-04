@@ -29,18 +29,9 @@ interface UserProps {
 
 const Navbar = () => {
   const [signIn, setSignIn] = useState(false)
-  const [user, setUser] = useState<UserProps>({ name: '', data: '' })
   const toggleSignIn = useCallback(() => {
     setSignIn(prev => !prev)
   }, [])
-
-  const updateUser = (currentUser: UserProps) => {
-    setUser(currentUser)
-  }
-
-  const removeUser = () => {
-    setUser({ name: '', data: '' })
-  }
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
@@ -69,7 +60,7 @@ const Navbar = () => {
           {signIn ? 'Sign-out' : 'Sign-in'}
         </button>
       </div>
-      <Auth open={signIn} onClose={toggleSignIn} updateUser={updateUser} />
+      <Auth open={signIn} onClose={toggleSignIn} />
     </header>
   )
 }
