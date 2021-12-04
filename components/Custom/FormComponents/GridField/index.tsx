@@ -58,7 +58,10 @@ const GridField = ({
       required={'required' in rules || required}
       disabled={formDisabled || disabled}
     >
-      <div className='grid w-full grid-cols-3 gap-4'>
+      <div
+        className='grid w-full grid-cols-3 gap-4'
+        // style={{ border: '20px solid blue' }}
+      >
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
           <div key={char.id}>
