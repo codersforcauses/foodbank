@@ -118,40 +118,38 @@ const handleMouseOver = (
   group_id: string,
   { meat, grains, dairy, fruit, vegetables }: FoodGroupStates
 ) => {
-  console.log(group_id)
   let styles
   let zoom = ['transform', 'scale-105', 'z-10']
   switch (group_id) {
     case 'meat':
       styles = [...meat.styles, ...zoom]
       meat.setStyles(styles)
-      // dairy.setStyles([''])
-      // grains.setStyles([''])
+      dairy.setStyles([''])
+      grains.setStyles([''])
       break
     case 'grains':
       styles = [...grains.styles, ...zoom]
       grains.setStyles(styles)
-      // meat.setStyles([''])
-      // vegetables.setStyles([''])
+      meat.setStyles([''])
+      vegetables.setStyles([''])
       break
     case 'dairy':
       styles = [...dairy.styles, ...zoom]
       dairy.setStyles(styles)
-      // meat.setStyles([''])
-      // fruit.setStyles([''])
+      meat.setStyles([''])
+      fruit.setStyles([''])
       break
     case 'fruit':
       styles = [...fruit.styles, ...zoom]
       fruit.setStyles(styles)
-      // dairy.setStyles([''])
-      // vegetables.setStyles([''])
+      dairy.setStyles([''])
+      vegetables.setStyles([''])
       break
     case 'vegetables':
-      console.log('SUS')
       styles = [...vegetables.styles, ...zoom]
       vegetables.setStyles(styles)
-      // grains.setStyles([''])
-      // fruit.setStyles([''])
+      grains.setStyles([''])
+      fruit.setStyles([''])
       break
   }
 }

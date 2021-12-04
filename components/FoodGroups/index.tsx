@@ -76,12 +76,13 @@ const FoodGroups: React.FC = () => {
 
   // const hoverStyles = Object.values(allStates).map(e => e.styles)
   const hoverStyles = [
-    allStates.meat.styles,
-    allStates.grains.styles,
+    // meat
     allStates.dairy.styles,
+    allStates.meat.styles,
     allStates.fruit.styles,
-    allStates.vegetables.styles
-  ]
+    allStates.vegetables.styles,
+    allStates.grains.styles
+  ] // vegetables
 
   // const allStates = {
   //     meatStyles,
