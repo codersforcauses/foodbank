@@ -9,6 +9,8 @@ import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import Townbox from '../Townbox'
 import {TransformWrapper, TransformComponent} from 'react-zoom-pan-pinch'
+//import Dialogue from 'Components/Dialogue'
+//import bananamanAvatar from 'lib/assets/banana.jpg'
 
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
@@ -67,6 +69,7 @@ const Map: React.FC = () => {
 
   // Data can be made from dev/svgParse.py
   return (
+  <>
     <div>
       <TransformWrapper
         doubleClick={{ disabled: true }}
@@ -83,11 +86,11 @@ const Map: React.FC = () => {
                   </button>
                 </div>  
       <TransformComponent>
-    <div
+      <div
       ref={elementRef}
       className='block w-full min-h-full items-stretch'
       style={{minHeight:'900px'}}
-    >
+      >
       {height === 0 ? null : (
           <div className='svgrow'>
             <img src={mapImg} alt="Tucker Island Map" useMap="#tuckerislandmap"/>
@@ -132,7 +135,11 @@ const Map: React.FC = () => {
       )}
       
     </div>
-
+    </TransformComponent>
+              </>
+              )}
+    </TransformWrapper>
+    </div>          
     <div className={`full-page-wrapper ${display ? '': 'none'}`}>
       {
         svgData.groupArray.map(area => {
@@ -148,6 +155,8 @@ const Map: React.FC = () => {
               const headerColor:HeaderColor = selectedArea?.headerColor as HeaderColor;
 
               return (
+                <>
+
                   <div key={selectedArea.id} className="townbox-wrapper">
                     <Townbox 
                       headerColor={headerColor}
@@ -157,17 +166,15 @@ const Map: React.FC = () => {
                       close={onClose}
                     />
                   </div>
+                  </>
               )
             }
           }
         })
       }
     </div>
-    </TransformComponent>
-              </>
-              )}
-    </TransformWrapper>
-    </div>
+    
+    </>
   )
 }
 
