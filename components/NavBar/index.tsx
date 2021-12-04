@@ -27,14 +27,16 @@ const Navbar = () => {
             />
           </a>
         </Link>
-        <DropDownMenu />
-        <button
-          className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
-          onClick={toggleSignIn}
-        >
-          {/* need to add proper state when auth was added */}
-          {signIn ? 'Sign-out' : 'Sign-in'}
-        </button>
+        <div className="justify-right">
+          <DropDownMenu />
+          <button
+            className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
+            onClick={toggleSignIn}
+          >
+            {/* need to add proper state when auth was added */}
+            {signIn ? 'Sign-out' : 'Sign-in'}
+          </button>
+        </div>
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
     </header>
