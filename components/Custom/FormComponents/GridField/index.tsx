@@ -69,6 +69,7 @@ const GridField = ({
               type='checkbox'
               aria-describedby={`${char.name}-label`}
               aria-invalid={!!error}
+              aria-label={`${char.name}-checkbox`}
               id={char.id}
               name='food'
               value={char.password}

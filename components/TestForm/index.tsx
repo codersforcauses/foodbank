@@ -93,6 +93,7 @@ const TestForm = () => {
 
       <div className='flex w-full h-full p-8 place-items-center'>
         <input
+          aria-label={`themeToggler-checkbox`}
           type='checkbox'
           name='themeToggler'
           id='themeToggler'
@@ -108,8 +109,9 @@ const TestForm = () => {
 
       <div className='flex w-full h-full p-8 place-items-center'>
         <input
+          aria-label={`themeToggler1-checkbox`}
           type='checkbox'
-          name='themeToggler='
+          name='themeToggler1'
           id='themeToggler1'
           className='peer'
         />
@@ -139,6 +141,7 @@ const TestForm = () => {
             <input
               type='checkbox'
               aria-describedby={`${char.name}-label`}
+              aria-label={`${char.name}-checkbox`}
               id={char.id}
               name='food'
               value={char.password}
