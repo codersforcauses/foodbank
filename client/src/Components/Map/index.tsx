@@ -56,7 +56,7 @@ const Map: React.FC = () => {
     selected === area ? setSelect(null) : setSelect(area)
     setDisplay(!display)
   }
-  // eslint-disable-next-line
+
   const handleClick = (
     event: any,
     setTransform: any,
@@ -73,8 +73,6 @@ const Map: React.FC = () => {
   // Data can be made from dev/svgParse.py
   return (
     <>
-      {/* THIS IS THE INSERTION POINT*/}
-
       <div>
         <TransformWrapper
           doubleClick={{ disabled: true }}
@@ -83,10 +81,6 @@ const Map: React.FC = () => {
         >
           {({ resetTransform, setTransform }) => (
             <>
-              <div>
-                <button onClick={() => resetTransform()}>Reset</button>
-              </div>
-
               <TransformComponent>
                 <div
                   ref={elementRef}
@@ -146,7 +140,6 @@ const Map: React.FC = () => {
                 {svgData.groupArray.map(area => {
                   if (selected !== null && area.coords) {
                     const selectedArea = getAreaDescription(selected)
-                    console.log(selectedArea)
 
                     if (selectedArea !== null && selectedArea.id === area.id) {
                       const header = selectedArea?.headerText
