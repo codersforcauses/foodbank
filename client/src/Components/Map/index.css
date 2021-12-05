@@ -18,7 +18,7 @@
   transform: scale(1.1, 1.1);
 }
 
-.outer{
+.outer {
   position: relative;
 }
 
@@ -26,12 +26,15 @@
   max-width: 100vw;
   display: flex;
   position: relative;
-
 }
 
 @keyframes lighten-map {
-  0%   {filter: brightness(0.6);}
-  100% {filter: brightness(1.0);}
+  0% {
+    filter: brightness(0.6);
+  }
+  100% {
+    filter: brightness(1);
+  }
 }
 
 .map {
@@ -48,8 +51,12 @@
 }
 
 @keyframes darken-map {
-  0%   {filter: brightness(1.0);}
-  100% {filter: brightness(0.6);}
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(0.6);
+  }
 }
 
 .map-inactive {
@@ -59,44 +66,42 @@
   filter: brightness(0.6);
 }
 
-
-@media (max-width:1170px) {
-  .map{
+@media (max-width: 1170px) {
+  .map {
     min-width: 2900px;
     min-height: 2100px;
   }
-  .full-page-wrapper{
+  .full-page-wrapper {
     min-width: 2900px;
     min-height: 2100px;
-
   }
-  .townbox-wrapper{
-    transform: scale(3.0);
+  .townbox-wrapper {
+    transform: scale(3);
   }
 }
-.townBox{
-  position: absolute; 
+.townBox {
+  position: absolute;
   width: auto;
 }
 
-.up{
-  transform: translate(0,-300px);
+.up {
+  transform: translate(0, -300px);
 }
 
-.left{
-  transform: translate(-500px , 0);
+.left {
+  transform: translate(-500px, 0);
 }
 
 .full-page-wrapper {
   position: fixed;
 
-  width:  100vw;
+  width: 100vw;
   height: 100vh;
 
   top: 0;
   left: 0;
 
-  display: flex;
+  /display: flex;
   justify-content: center;
 }
 
@@ -104,11 +109,11 @@
   align-self: center;
 }
 
-.none{
+.none {
   display: none;
 }
 
 /* Due to a bug in the library (react-zoom-pan-pinch), this allows for areas within image maps to be clicked */
-img   {
+img {
   pointer-events: auto !important;
-}   
+}
