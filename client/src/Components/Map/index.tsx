@@ -9,6 +9,7 @@ import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import Townbox from '../Townbox'
 import {TransformWrapper, TransformComponent} from 'react-zoom-pan-pinch'
+//import internal from 'stream'
 //import Dialogue from 'Components/Dialogue'
 //import bananamanAvatar from 'lib/assets/banana.jpg'
 
@@ -60,10 +61,11 @@ const Map: React.FC = () => {
     setDisplay(!display)
   }
   // eslint-disable-next-line
-  const handleClick = (event: any) => { //need to change this type
+  const handleClick = (event: any, setTransform:any, xtrans: number, ytrans: number) => { //need to change this type
     event.preventDefault()
     const area = event.target.alt
     onMapClick(Location[area as keyof typeof Location])
+    setTransform(xtrans,ytrans ,2)
   }
 
 
@@ -79,6 +81,7 @@ const Map: React.FC = () => {
       {({ resetTransform, setTransform }) => (
                 <>
                 <div>
+                  <Townbox close={() => {close; resetTransform()}} />
                     <button
                     onClick={() => resetTransform()}
                   >
@@ -114,7 +117,7 @@ const Map: React.FC = () => {
                         <area 
                           key={location.id}
                           alt={location.id}
-                          onClick={(e) => { handleClick(e); setTransform(-xtrans, -ytrans, 2)}}
+                          onClick={(e) => { handleClick(e, setTransform, -xtrans, -ytrans)}}
                           href={location.id}
                           coords={scaledCoords.join()}
                           className={className}

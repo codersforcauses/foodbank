@@ -28,7 +28,7 @@ export interface TownboxProps {
 
   maxHeight?: string
 
-  close: () => void
+  close: any
 }
 
 /**
