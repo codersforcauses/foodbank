@@ -142,11 +142,6 @@ const Map: React.FC = () => {
                     const selectedArea = getAreaDescription(selected)
 
                     if (selectedArea !== null && selectedArea.id === area.id) {
-                      const header = selectedArea?.headerText
-                      const caption = selectedArea?.captionText
-                      const showButton = selectedArea?.showButton
-                      const headerColor = selectedArea?.headerColor as HeaderColor
-
                       return (
                         <>
                           <div
@@ -154,10 +149,10 @@ const Map: React.FC = () => {
                             className='townbox-wrapper'
                           >
                             <Townbox
-                              headerColor={headerColor}
-                              headerText={header}
-                              captionText={caption}
-                              showButton={showButton}
+                              headerColor={selectedArea?.headerColor as HeaderColor}
+                              headerText={selectedArea?.headerText}
+                              captionText={selectedArea?.captionText}
+                              showButton={selectedArea?.showButton}
                               close={() => {
                                 close()
                                 resetTransform()
