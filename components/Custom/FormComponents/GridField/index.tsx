@@ -75,7 +75,7 @@ const GridField = ({
               // checked={char.isSelected}
               // className='hidden'
               // className='opacity-0'
-              className='peer'
+              className='peer opacity-0'
               {...register?.(props.name, {
                 ...rules
                 // onChange: e => toggleSelect(e, char)
@@ -89,7 +89,7 @@ const GridField = ({
             >
               <Image
                 // key={char.id}
-                className='object-contain'
+                className='object-contain transition-all hover:scale-110'
                 height={250}
                 width={250}
                 layout='responsive'

@@ -47,7 +47,7 @@ const PasswordForm = ({
         </Button>
         {registered ? (
           <Button className='flex items-center'>
-            Confirm Selections
+            Confirm
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 25 25'
@@ -66,7 +66,7 @@ const PasswordForm = ({
             type='button'
             onClick={goNextPage}
           >
-            Repeat Selections
+            Confirm
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 25 25'
