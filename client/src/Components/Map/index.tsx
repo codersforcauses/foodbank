@@ -41,9 +41,9 @@ const Map: React.FC = () => {
   // to get the area description given an area so you can actually use headers/captions
   // returns null if such area doesn't exist in assets/description.json
   const getAreaDescription = (area: Location) => {
-    for (const description of descData.descriptionArray) {
-      if (description.id === Location[area]) {
-        return description
+    for (const place of descData.descriptionArray) {
+      if (place.id === Location[area]) {
+        return place
       }
     }
     return null
@@ -52,9 +52,9 @@ const Map: React.FC = () => {
     setSelect(null)
     setDisplay(false)
   }
-  const onMapClick = (area: Location) => {
-    selected === area ? setSelect(null) : setSelect(area)
-    setDisplay(!display)
+  const selectArea = (area: Location) => {
+    setSelect(area)
+    setDisplay(true)
   }
 
   const handleClick = (
@@ -66,7 +66,7 @@ const Map: React.FC = () => {
     //need to change this type
     event.preventDefault()
     const area = event.target.alt
-    onMapClick(Location[area as keyof typeof Location])
+    selectArea(Location[area as keyof typeof Location])
     setTransform(xtrans, ytrans, 2)
   }
 
