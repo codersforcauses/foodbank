@@ -4,9 +4,10 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 
 interface DropdownProp {
   username: string
+  signOut: () => void
 }
 
-export default function DropdownSignOut1({ username }: DropdownProp) {
+export default function DropdownSignOut1({ username, signOut }: DropdownProp) {
   return (
     <div className='w-56 text-right'>
       <Menu as='div' className='relative inline-block text-left'>
@@ -32,6 +33,7 @@ export default function DropdownSignOut1({ username }: DropdownProp) {
             <Menu.Item>
               {({ active }) => (
                 <button
+                  onClick={() => signOut()}
                   className={`${
                     active
                       ? 'bg-primary text-white'

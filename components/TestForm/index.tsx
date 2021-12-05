@@ -25,9 +25,15 @@ const TestForm = () => {
   })
 
   const [signIn, setSignIn] = useState(false)
+  const [signedIn, setSignedIn] = useState(true)
   const toggleSignIn = useCallback(() => {
     setSignIn(prev => !prev)
   }, [])
+
+  const signOut = () => {
+    setSignedIn(false)
+  }
+
   const grid = selectSet('hello')
 
   const { username, password } = watch()
@@ -82,13 +88,20 @@ const TestForm = () => {
           <br />
           <input type='submit' />
         </form>
-
         <button
           className='px-4 py-1 font-serif text-xl hover:opacity-75'
           onClick={toggleSignIn}
         >
           {/* need to add proper state when auth was added */}
           {signIn ? 'Sign-out' : 'Sign-in'}
+        </button>
+        <br />
+        {signedIn ? 'Signed in' : 'Signed Out'}
+        <button
+          className='px-4 py-1 font-serif text-xl hover:opacity-75'
+          onClick={() => setSignedIn(true)}
+        >
+          Reset
         </button>
       </div>
 
@@ -99,13 +112,13 @@ const TestForm = () => {
       <br />
       <br />
 
-      <DropdownSignOut username='Nick' />
+      <DropdownSignOut username='Nick' signOut={signOut} />
 
       <br />
       <br />
       <br />
 
-      <DropdownSignOut1 username='Nick' />
+      <DropdownSignOut1 username='Nick' signOut={signOut} />
 
       <br />
       <br />
