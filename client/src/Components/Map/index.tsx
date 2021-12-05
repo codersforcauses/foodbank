@@ -83,8 +83,9 @@ const Map: React.FC = () => {
         >
           {({ resetTransform, setTransform }) => (
             <>
-            <div>                <button onClick={() => resetTransform()}>Reset</button></div>
-
+              <div>
+                <button onClick={() => resetTransform()}>Reset</button>
+              </div>
 
               <TransformComponent>
                 <div
@@ -139,9 +140,9 @@ const Map: React.FC = () => {
                     </div>
                   )}
                 </div>
+              </TransformComponent>
 
-
-                <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
+              <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
                 {svgData.groupArray.map(area => {
                   if (selected !== null && area.coords) {
                     const selectedArea = getAreaDescription(selected)
@@ -166,7 +167,8 @@ const Map: React.FC = () => {
                               showButton={showButton}
                               close={() => {
                                 close()
-                                resetTransform()}}
+                                resetTransform()
+                              }}
                             />
                           </div>
                         </>
@@ -175,7 +177,6 @@ const Map: React.FC = () => {
                   }
                 })}
               </div>
-              </TransformComponent>
             </>
           )}
         </TransformWrapper>
