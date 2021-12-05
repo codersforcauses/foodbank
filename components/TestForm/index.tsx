@@ -155,7 +155,7 @@ const TestForm = () => {
             <label
               htmlFor={char.id}
               // className='flex flex-col justify-content-center'
-              className='opacity-30 peer-checked:opacity-100'
+              className='w-10 h-10 opacity-30 peer-checked:opacity-100'
             >
               <Image
                 // key={char.id}
@@ -164,7 +164,7 @@ const TestForm = () => {
                 // }
                 height={250}
                 width={250}
-                layout='responsive'
+                // layout='responsive'
                 src={char.image}
                 alt={char.name}
                 //   placeholder='blur'
