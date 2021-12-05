@@ -3,8 +3,11 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Dropdown from './Dropdown'
+import DropdownOptions from './DropdownOptions'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { selectSet } from '@components/Custom'
+import DropdownSignOut from './DropdownSignOut'
+import DropdownSignOut1 from './DropdownSignOut1'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
@@ -90,6 +93,23 @@ const TestForm = () => {
       </div>
 
       <Auth open={signIn} onClose={toggleSignIn} />
+
+      <DropdownOptions />
+
+      <br />
+      <br />
+
+      <DropdownSignOut username='Nick' />
+
+      <br />
+      <br />
+      <br />
+
+      <DropdownSignOut1 username='Nick' />
+
+      <br />
+      <br />
+      <br />
 
       <div className='flex w-full h-full p-8 place-items-center'>
         <input
