@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   variants: {
-    extend: { opacity: ['disabled'] }
+    extend: {}
   },
   plugins: [require('tailwind-scrollbar-hide')]
 }

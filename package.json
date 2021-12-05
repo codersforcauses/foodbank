@@ -28,6 +28,7 @@
   "dependencies": {
     "@firebase/app-types": "^0.7.0",
     "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "@types/seedrandom": "^3.0.1",
     "@types/shuffle-array": "^1.0.1",
     "@types/uuid": "^8.3.1",

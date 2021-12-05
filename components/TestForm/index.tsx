@@ -3,8 +3,11 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Dropdown from './Dropdown'
+import DropdownOptions from './DropdownOptions'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { selectSet } from '@components/Custom'
+import DropdownSignOut from './DropdownSignOut'
+import DropdownSignOut1 from './DropdownSignOut1'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
@@ -22,9 +25,15 @@ const TestForm = () => {
   })
 
   const [signIn, setSignIn] = useState(false)
+  const [signedIn, setSignedIn] = useState(true)
   const toggleSignIn = useCallback(() => {
     setSignIn(prev => !prev)
   }, [])
+
+  const signOut = () => {
+    setSignedIn(false)
+  }
+
   const grid = selectSet('hello')
 
   const { username, password } = watch()
@@ -79,7 +88,6 @@ const TestForm = () => {
           <br />
           <input type='submit' />
         </form>
-
         <button
           className='px-4 py-1 font-serif text-xl hover:opacity-75'
           onClick={toggleSignIn}
@@ -87,12 +95,38 @@ const TestForm = () => {
           {/* need to add proper state when auth was added */}
           {signIn ? 'Sign-out' : 'Sign-in'}
         </button>
+        <br />
+        {signedIn ? 'Signed in' : 'Signed Out'}
+        <button
+          className='px-4 py-1 font-serif text-xl hover:opacity-75'
+          onClick={() => setSignedIn(true)}
+        >
+          Reset
+        </button>
       </div>
 
       <Auth open={signIn} onClose={toggleSignIn} />
 
+      <DropdownOptions />
+
+      <br />
+      <br />
+
+      <DropdownSignOut username='Nick' signOut={signOut} />
+
+      <br />
+      <br />
+      <br />
+
+      <DropdownSignOut1 username='Nick' signOut={signOut} />
+
+      <br />
+      <br />
+      <br />
+
       <div className='flex w-full h-full p-8 place-items-center'>
         <input
+          aria-label={`themeToggler-checkbox`}
           type='checkbox'
           name='themeToggler'
           id='themeToggler'
@@ -108,8 +142,9 @@ const TestForm = () => {
 
       <div className='flex w-full h-full p-8 place-items-center'>
         <input
+          aria-label={`themeToggler1-checkbox`}
           type='checkbox'
-          name='themeToggler='
+          name='themeToggler1'
           id='themeToggler1'
           className='peer'
         />
@@ -139,6 +174,7 @@ const TestForm = () => {
             <input
               type='checkbox'
               aria-describedby={`${char.name}-label`}
+              aria-label={`${char.name}-checkbox`}
               id={char.id}
               name='food'
               value={char.password}
@@ -155,7 +191,7 @@ const TestForm = () => {
             <label
               htmlFor={char.id}
               // className='flex flex-col justify-content-center'
-              className='opacity-30 peer-checked:opacity-100'
+              className='w-10 h-10 opacity-30 peer-checked:opacity-100'
             >
               <Image
                 // key={char.id}
@@ -164,7 +200,7 @@ const TestForm = () => {
                 // }
                 height={250}
                 width={250}
-                layout='responsive'
+                // layout='responsive'
                 src={char.image}
                 alt={char.name}
                 //   placeholder='blur'
