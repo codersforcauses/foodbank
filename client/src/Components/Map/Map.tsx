@@ -1,47 +1,4 @@
-<<<<<<< HEAD
-
-
-const Map = (setTransform) => {
-    const [scale, setScale] = useState(1)
-    const [height, setHeight] = useState(1)
-
-    const close = () => {
-        setSelect(null)
-        setDisplay(false)
-      }
-      const selectArea = (area: Location) => {
-        selected === area ? setSelect(null) : setSelect(area)
-        setDisplay(!display)
-      }
-    
-      const handleClick = (
-        event: any,
-        setTransform: any,
-        xtrans: number,
-        ytrans: number
-      ) => {
-        //need to change this type
-        event.preventDefault()
-        const area = event.target.alt
-        selectArea(Location[area as keyof typeof Location])
-        setTransform(xtrans, ytrans, 2)
-      }
-
-      return (
-  <div
-    ref={elementRef}
-    className='block w-full min-h-full items-stretch'
-    style={{ minHeight: '900px' }}
-  >
-    {height === 0 ? null : (
-      <div className='svgrow'>
-        {/* <img
-                        src={mapImg}
-                        alt='Tucker Island Map'
-                        useMap='#tuckerislandmap'
-                      /> */}
-=======
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import mapImg from './assets/TuckerMap.jpg'
 import svgData from './svgImageData.json'
 
@@ -83,7 +40,6 @@ const MapImage = ({
     >
       <div className='svgrow'>
         <img src={mapImg} alt='Tucker Island Map' useMap='#tuckerislandmap' />
->>>>>>> temp1
 
         <map name='tuckerislandmap'>
           {svgData.groupArray.map(location => {
@@ -117,17 +73,8 @@ const MapImage = ({
           })}
         </map>
       </div>
-<<<<<<< HEAD
-    )}
-  </div>)
-}
-
-
-export default Map
-=======
     </div>
   )
 }
 
 export default MapImage
->>>>>>> temp1
