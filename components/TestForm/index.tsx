@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Dropdown from './Dropdown'
-import DropdownOptions from './DropdownOptions'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { selectSet } from '@components/Custom'
 import DropdownSignOut from './DropdownSignOut'
@@ -106,8 +105,6 @@ const TestForm = () => {
       </div>
 
       <Auth open={signIn} onClose={toggleSignIn} />
-
-      <DropdownOptions />
 
       <br />
       <br />
