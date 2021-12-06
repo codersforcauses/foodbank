@@ -1,19 +1,26 @@
-import React, { useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import mapImg from './assets/TuckerMap.jpg'
 import svgData from './svgImageData.json'
 
 interface MapProps {
-  scale: number,
-  setTransform: any,
-  setHeight: (elementRef: any) => void,
-  setDisplay: (display: boolean) => void,
-  display: boolean,
-  selected: any,
-  setSelect: any
+  scale: number;
+  setTransform: (xtrans: number, ytrans: number, scale: number ) => void;
+  setHeight: (elementRef: any) => void;
+  setDisplay: (display: boolean) => void;
+  display: boolean;
+  selected: any;
+  setSelect: (state: any) => void
 }
 
-const Map = ({ scale, setTransform, setHeight, setDisplay, selected, setSelect}: MapProps) => {
-  //const [selected, setSelect] = useState<Location | null>(null)
+const Map = ({
+  scale,
+  setTransform,
+  setHeight,
+  setDisplay,
+  selected,
+  setSelect
+}: MapProps) => {
+
   const elementRef = useRef(null as null | HTMLDivElement)
 
   useEffect(() => {
@@ -21,15 +28,6 @@ const Map = ({ scale, setTransform, setHeight, setDisplay, selected, setSelect}:
       setHeight(elementRef?.current?.clientHeight)
     }
   }, []) //empty dependency array so it only runs once at render
-
-  // const close = () => {
-  //     setSelect(null)
-  //     setDisplay(false)
-  //   }
-
-//   const selectArea = (area: Location) => {
-
-//   }
 
   const handleClick = (
     event: any,
@@ -42,8 +40,6 @@ const Map = ({ scale, setTransform, setHeight, setDisplay, selected, setSelect}:
     const area = event.target.alt
     selected === area ? setSelect(null) : setSelect(area)
     setDisplay(true)
-    console.log(xtrans, ytrans)
-    console.log("scale: " + scale)
     setTransform(xtrans, ytrans, 2)
   }
 

@@ -15,7 +15,7 @@ import Map from './Map'
 
 type HeaderColor = 'primary' | 'orange'
 
-interface mytest {
+interface TownBox {
   headerColor: any
   headerText: string
   captionText: string
@@ -29,7 +29,6 @@ const Test: React.FC = () => {
   const [height, setHeight] = useState(1)
   const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
-  // const [townbox, setTownbox] = useState(<></>)
 
   useEffect(() => {
     function handleResize() {
@@ -43,45 +42,6 @@ const Test: React.FC = () => {
     window.addEventListener('resize', handleResize)
   }, [])
 
-  // to get the area description given an area so you can actually use headers/captions
-  // returns null if such area doesn't exist in assets/description.json
-  // const getAreaDescription = (area: Location) => {
-  //   for (const place of descData.descriptionArray) {
-  //     if (place.id === Location[area]) {
-  //       return place
-  //     }
-  //   }
-  //   return null
-  // }
-
-  // const close = () => {
-  //   setSelect(null)
-  //   setDisplay(false)
-  // }
-
-  if (height) {
-    console.log('height')
-  }
-
-  // const selectArea = (area: Location) => {
-  //   selected === area ? setSelect(null) : setSelect(area)
-  //   setDisplay(!display)
-  // }
-
-  // const handleClick = (
-  //   event: any,
-  //   setTransform: any,
-  //   xtrans: number,
-  //   ytrans: number
-  // ) => {
-  //   //need to change this type
-  //   event.preventDefault()
-  //   const area = event.target.alt
-  //   selectArea(Location[area as keyof typeof Location])
-  //   setTransform(xtrans, ytrans, 2)
-  // }
-
-  // Data can be made from dev/svgParse.py
   return (
     <>
       <div>
@@ -105,7 +65,7 @@ const Test: React.FC = () => {
               </TransformComponent>
 
               <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
-                <TB_Wrapper
+                <TownBoxWrapper
                   selected={select}
                   resetTransform={resetTransform}
                   setSelect={setSelect}
@@ -120,19 +80,19 @@ const Test: React.FC = () => {
   )
 }
 
-interface TB {
+interface TownBoxProps {
   selected: string | null
   resetTransform: () => void
   setSelect: (state: any) => void
   setDisplay: (state: boolean) => void
 }
 
-const TB_Wrapper = ({
+const TownBoxWrapper = ({
   selected,
   resetTransform,
   setSelect,
   setDisplay
-}: TB) => {
+}: TownBoxProps) => {
   const handleClose = () => {
     setSelect(null)
     setDisplay(false)
@@ -149,7 +109,7 @@ const TB_Wrapper = ({
         headerColor,
         showButton,
         id
-      }: mytest | undefined = selectedArea
+      }: TownBox | undefined = selectedArea
 
       return (
         <>
@@ -166,7 +126,6 @@ const TB_Wrapper = ({
       )
     }
   }
-
   return null
 }
 
