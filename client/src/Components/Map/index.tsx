@@ -3,23 +3,33 @@
 
 import React, { useEffect, useState } from 'react'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
-import { Location } from '../../lib/types'
-import Townbox from '../Townbox'
+//import { mutateInterface } from 'swr/dist/types'
+//import { Location } from '../../lib/types'
+import { Townbox } from '../Townbox' //, TownboxProps
 //import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import './index.css'
-import svgData from './svgImageData.json'
+//import svgData from './svgImageData.json'
 import Map from './Map'
 //import internal from 'stream'
+
+type HeaderColor = 'primary' | 'orange'
+
+interface mytest {
+  headerColor: any
+  headerText: string
+  captionText: string
+  showButton: boolean
+  id: string
+}
 
 const Test: React.FC = () => {
   // Used because SVG does not scale properly without
   const [scale, setScale] = useState(1)
   const [height, setHeight] = useState(1)
-  const [selected, setSelect] = useState<Location | null>(null)
+  const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
   // const [townbox, setTownbox] = useState(<></>)
-  type HeaderColor = 'primary' | 'orange'
 
   useEffect(() => {
     function handleResize() {
@@ -35,21 +45,22 @@ const Test: React.FC = () => {
 
   // to get the area description given an area so you can actually use headers/captions
   // returns null if such area doesn't exist in assets/description.json
-  const getAreaDescription = (area: Location) => {
-    for (const place of descData.descriptionArray) {
-      if (place.id === Location[area]) {
-        return place
-      }
-    }
-    return null
-  }
-  const close = () => {
-    setSelect(null)
-    setDisplay(false)
-  }
+  // const getAreaDescription = (area: Location) => {
+  //   for (const place of descData.descriptionArray) {
+  //     if (place.id === Location[area]) {
+  //       return place
+  //     }
+  //   }
+  //   return null
+  // }
+
+  // const close = () => {
+  //   setSelect(null)
+  //   setDisplay(false)
+  // }
 
   if (height) {
-    console.log("height")
+    console.log('height')
   }
 
   // const selectArea = (area: Location) => {
@@ -89,41 +100,17 @@ const Test: React.FC = () => {
                   setDisplay={setDisplay}
                   display={display}
                   setSelect={setSelect}
-                  selected={selected}
+                  selected={select}
                 />
               </TransformComponent>
 
-              <div className='full-page-wrapper none'>
-                {svgData.groupArray.map(area => {
-                  console.log(selected)
-                  if (selected !== null && area.coords) {
-                    const selectedArea = getAreaDescription(selected)
-
-                    if (selectedArea !== null && selectedArea.id === area.id) {
-                      return (
-                        <>
-                          <div
-                            key={selectedArea.id}
-                            className='townbox-wrapper'
-                          >
-                            <Townbox
-                              headerColor={
-                                selectedArea?.headerColor as HeaderColor
-                              }
-                              headerText={selectedArea?.headerText}
-                              captionText={selectedArea?.captionText}
-                              showButton={selectedArea?.showButton}
-                              close={() => {
-                                close()
-                                resetTransform()
-                              }}
-                            />
-                          </div>
-                        </>
-                      )
-                    }
-                  }
-                })}
+              <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
+                <TB_Wrapper
+                  selected={select}
+                  resetTransform={resetTransform}
+                  setSelect={setSelect}
+                  setDisplay={setDisplay}
+                />
               </div>
             </>
           )}
@@ -131,6 +118,56 @@ const Test: React.FC = () => {
       </div>
     </>
   )
+}
+
+interface TB {
+  selected: string | null
+  resetTransform: () => void
+  setSelect: (state: any) => void
+  setDisplay: (state: boolean) => void
+}
+
+const TB_Wrapper = ({
+  selected,
+  resetTransform,
+  setSelect,
+  setDisplay
+}: TB) => {
+  const handleClose = () => {
+    setSelect(null)
+    setDisplay(false)
+    resetTransform()
+  }
+
+  if (selected) {
+    const selectedArea = descData.descriptionArray.find(x => x.id === selected)
+
+    if (selectedArea) {
+      const {
+        headerText,
+        captionText,
+        headerColor,
+        showButton,
+        id
+      }: mytest | undefined = selectedArea
+
+      return (
+        <>
+          <div key={id} className='townbox-wrapper'>
+            <Townbox
+              headerColor={headerColor as HeaderColor}
+              headerText={headerText}
+              captionText={captionText}
+              showButton={showButton}
+              close={handleClose}
+            />
+          </div>
+        </>
+      )
+    }
+  }
+
+  return null
 }
 
 export default Test
