@@ -3,15 +3,10 @@
 
 import React, { useEffect, useState } from 'react'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
-//import { mutateInterface } from 'swr/dist/types'
-//import { Location } from '../../lib/types'
-import { Townbox } from '../Townbox' //, TownboxProps
-//import mapImg from './assets/TuckerMap.jpg'
+import { Townbox } from '../Townbox'
 import descData from './assets/description.json'
 import './index.css'
-//import svgData from './svgImageData.json'
 import MapImage from './Map'
-//import internal from 'stream'
 
 type HeaderColor = 'primary' | 'orange'
 
