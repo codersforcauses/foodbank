@@ -10,7 +10,7 @@ interface DropdownProp {
 export default function DropdownSignOut({ username, signOut }: DropdownProp) {
   return (
     <div className='w-56 text-right'>
-      <Menu as='div' className='relative inline-block text-left'>
+      <Menu as='div' className='relative inline-block'>
         <div>
           <Menu.Button className='inline-flex justify-center w-full px-4 py-1 font-serif text-sm font-medium text-white rounded-md hover:text-opacity-75 bg-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
             {username}
@@ -30,7 +30,7 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           leaveTo='transform opacity-0 scale-95'
         >
           <div className='inline-block w-16 overflow-hidden'>
-            <div className='origin-bottom-left transform rotate-45 bg-black  h-11 w-11'></div>
+            <div className='w-5 h-5 origin-bottom-left transform rotate-45 bg-black'></div>
           </div>
         </Transition>
         <Transition
@@ -42,7 +42,7 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='absolute right-0 w-56 mt-2 font-serif origin-top-right bg-white divide-y rounded-md shadow-lg divide-grey ring-1 ring-black ring-opacity-5 focus:outline-none'>
+          <Menu.Items className='absolute right-0 w-56 font-serif origin-top-right bg-white divide-y rounded-md shadow-lg divide-grey ring-1 ring-black ring-opacity-5 focus:outline-none'>
             <Menu.Item>
               {({ active }) => (
                 <button
