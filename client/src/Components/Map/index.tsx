@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './index.css'
 import { Location } from '../../lib/types'
 import svgData from './svgImageData.json'
-import mapImg from './assets/TuckerMap.jpg'
+//import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
 import Townbox from '../Townbox'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
@@ -41,6 +41,7 @@ const Map: React.FC = () => {
   // to get the area description given an area so you can actually use headers/captions
   // returns null if such area doesn't exist in assets/description.json
   const getAreaDescription = (area: Location) => {
+
     for (const place of descData.descriptionArray) {
       if (place.id === Location[area]) {
         return place
@@ -53,8 +54,8 @@ const Map: React.FC = () => {
     setDisplay(false)
   }
   const selectArea = (area: Location) => {
-    setSelect(area)
-    setDisplay(true)
+    selected === area ? setSelect(null) : setSelect(area)
+    setDisplay(!display)
   }
 
   const handleClick = (
@@ -89,11 +90,11 @@ const Map: React.FC = () => {
                 >
                   {height === 0 ? null : (
                     <div className='svgrow'>
-                      <img
+                      {/* <img
                         src={mapImg}
                         alt='Tucker Island Map'
                         useMap='#tuckerislandmap'
-                      />
+                      /> */}
 
                       <map name='tuckerislandmap'>
                         {svgData.groupArray.map(location => {
