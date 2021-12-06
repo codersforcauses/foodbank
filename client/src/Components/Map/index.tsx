@@ -57,7 +57,7 @@ const Map: React.FC = () => {
                 />
               </TransformComponent>
 
-              <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
+              <div className={`fixed top-0 left-0 w-screen h-screen flex justify-center ${display ? '' : 'hidden'}`}>
                 <TownBoxWrapper
                   selected={select}
                   resetTransform={resetTransform}
@@ -106,7 +106,7 @@ const TownBoxWrapper = ({
 
       return (
         <>
-          <div key={id} className='townbox-wrapper'>
+          <div key={id} className='self-center'>
             <Townbox
               headerColor={headerColor as HeaderColor}
               headerText={headerText}

@@ -2,7 +2,6 @@
   transform-origin: 50% 50%;
   transform-box: fill-box;
   transform: scale(1.1, 1.1);
-
   filter: brightness(80%);
 }
 
@@ -19,12 +18,6 @@
 }
 
 .outer {
-  position: relative;
-}
-
-.svgrow {
-  max-width: 100vw;
-  display: flex;
   position: relative;
 }
 
@@ -79,10 +72,6 @@
     transform: scale(3);
   }
 }
-.townBox {
-  position: absolute;
-  width: auto;
-}
 
 .up {
   transform: translate(0, -300px);
@@ -90,27 +79,6 @@
 
 .left {
   transform: translate(-500px, 0);
-}
-
-.full-page-wrapper {
-  position: fixed;
-
-  width: 100vw;
-  height: 100vh;
-
-  top: 0;
-  left: 0;
-
-  display: flex;
-  justify-content: center;
-}
-
-.townbox-wrapper {
-  align-self: center;
-}
-
-.none {
-  display: none;
 }
 
 /* Due to a bug in the library (react-zoom-pan-pinch), this allows for areas within image maps to be clicked */
