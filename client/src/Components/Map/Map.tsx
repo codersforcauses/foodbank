@@ -1,44 +1,59 @@
+import React, { useEffect, useRef} from 'react'
+import mapImg from './assets/TuckerMap.jpg'
+import svgData from './svgImageData.json'
 
+interface MapProps {
+  scale: number,
+  setTransform: () => void,
+  setHeight: (elementRef: any) => void,
+  setDisplay: (display: boolean) => void,
+  display: boolean,
+  selected: any,
+  setSelect: any
+}
 
-const Map = (setTransform) => {
-    const [scale, setScale] = useState(1)
-    const [height, setHeight] = useState(1)
+const Map = ({ scale, setTransform, setHeight, setDisplay, display , selected, setSelect}: MapProps) => {
+  //const [selected, setSelect] = useState<Location | null>(null)
+  const elementRef = useRef(null as null | HTMLDivElement)
 
-    const close = () => {
-        setSelect(null)
-        setDisplay(false)
-      }
-      const selectArea = (area: Location) => {
-        selected === area ? setSelect(null) : setSelect(area)
-        setDisplay(!display)
-      }
-    
-      const handleClick = (
-        event: any,
-        setTransform: any,
-        xtrans: number,
-        ytrans: number
-      ) => {
-        //need to change this type
-        event.preventDefault()
-        const area = event.target.alt
-        selectArea(Location[area as keyof typeof Location])
-        setTransform(xtrans, ytrans, 2)
-      }
+  useEffect(() => {
+    if (elementRef?.current?.clientHeight) {
+      setHeight(elementRef?.current?.clientHeight)
+    }
+  }, []) //empty dependency array so it only runs once at render
 
-      return (
-  <div
-    ref={elementRef}
-    className='block w-full min-h-full items-stretch'
-    style={{ minHeight: '900px' }}
-  >
-    {height === 0 ? null : (
+  // const close = () => {
+  //     setSelect(null)
+  //     setDisplay(false)
+  //   }
+
+//   const selectArea = (area: Location) => {
+
+//   }
+
+  const handleClick = (
+    event: any,
+    setTransform: any,
+    xtrans: number,
+    ytrans: number
+  ) => {
+    //need to change this type
+    event.preventDefault()
+    const area = event.target.alt
+    selected === area ? setSelect(null) : setSelect(area)
+    setDisplay(true)
+    console.log(xtrans, ytrans)
+    setTransform(xtrans, ytrans, 2)
+  }
+
+  return (
+    <div
+      ref={elementRef}
+      className='block w-full min-h-full items-stretch'
+      style={{ minHeight: '900px' }}
+    >
       <div className='svgrow'>
-        {/* <img
-                        src={mapImg}
-                        alt='Tucker Island Map'
-                        useMap='#tuckerislandmap'
-                      /> */}
+        <img src={mapImg} alt='Tucker Island Map' useMap='#tuckerislandmap' />
 
         <map name='tuckerislandmap'>
           {svgData.groupArray.map(location => {
@@ -72,9 +87,8 @@ const Map = (setTransform) => {
           })}
         </map>
       </div>
-    )}
-  </div>)
+    </div>
+  )
 }
-
 
 export default Map

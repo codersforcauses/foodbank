@@ -1,30 +1,25 @@
 // naming conventions of items in svg = id of group in camelCase, image import name in PascalCase.
 // svg tree generated from dev/svgParse.py (super hacky atm)
 
-import React, { useEffect, useRef, useState } from 'react'
-import './index.css'
+import React, { useEffect, useState } from 'react'
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 import { Location } from '../../lib/types'
-import svgData from './svgImageData.json'
-import mapImg from './assets/TuckerMap.jpg'
-import descData from './assets/description.json'
 import Townbox from '../Townbox'
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
+//import mapImg from './assets/TuckerMap.jpg'
+import descData from './assets/description.json'
+import './index.css'
+import svgData from './svgImageData.json'
+import Map from './Map'
 //import internal from 'stream'
 
-const Map: React.FC = () => {
+const Test: React.FC = () => {
   // Used because SVG does not scale properly without
-  const [height, setHeight] = useState(1)
-  const elementRef = useRef(null as null | HTMLDivElement)
-  const [selected, setSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
+  const [height, setHeight] = useState(1)
+  const [selected, setSelect] = useState<Location | null>(null)
   const [display, setDisplay] = useState(false)
   // const [townbox, setTownbox] = useState(<></>)
   type HeaderColor = 'primary' | 'orange'
-  useEffect(() => {
-    if (elementRef?.current?.clientHeight) {
-      setHeight(elementRef?.current?.clientHeight)
-    }
-  }, []) //empty dependency array so it only runs once at render
 
   useEffect(() => {
     function handleResize() {
@@ -52,23 +47,28 @@ const Map: React.FC = () => {
     setSelect(null)
     setDisplay(false)
   }
-  const selectArea = (area: Location) => {
-    setSelect(area)
-    setDisplay(true)
+
+  if (height) {
+    console.log(2)
   }
 
-  const handleClick = (
-    event: any,
-    setTransform: any,
-    xtrans: number,
-    ytrans: number
-  ) => {
-    //need to change this type
-    event.preventDefault()
-    const area = event.target.alt
-    selectArea(Location[area as keyof typeof Location])
-    setTransform(xtrans, ytrans, 2)
-  }
+  // const selectArea = (area: Location) => {
+  //   selected === area ? setSelect(null) : setSelect(area)
+  //   setDisplay(!display)
+  // }
+
+  // const handleClick = (
+  //   event: any,
+  //   setTransform: any,
+  //   xtrans: number,
+  //   ytrans: number
+  // ) => {
+  //   //need to change this type
+  //   event.preventDefault()
+  //   const area = event.target.alt
+  //   selectArea(Location[area as keyof typeof Location])
+  //   setTransform(xtrans, ytrans, 2)
+  // }
 
   // Data can be made from dev/svgParse.py
   return (
@@ -82,62 +82,20 @@ const Map: React.FC = () => {
           {({ resetTransform, setTransform }) => (
             <>
               <TransformComponent>
-                <div
-                  ref={elementRef}
-                  className='block w-full min-h-full items-stretch'
-                  style={{ minHeight: '900px' }}
-                >
-                  {height === 0 ? null : (
-                    <div className='svgrow'>
-                      <img
-                        src={mapImg}
-                        alt='Tucker Island Map'
-                        useMap='#tuckerislandmap'
-                      />
-
-                      <map name='tuckerislandmap'>
-                        {svgData.groupArray.map(location => {
-                          if (location.coords) {
-                            // CHECK SCALING OF ENTIRE IMAGE TO SCREEN
-                            // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
-                            // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
-                            //scaling by 10 seems to give better views of the locations
-                            const xtrans =
-                              parseInt(location.xtrans) * scale * 10
-                            const ytrans =
-                              parseInt(location.ytrans) * scale * 10
-
-                            const scaledCoords = location.coords.map(
-                              coord => coord * scale
-                            )
-                            const className =
-                              Location[location.id as keyof typeof Location] ===
-                              selected
-                                ? 'map-selected'
-                                : 'map-unselected'
-                            return (
-                              <area
-                                key={location.id}
-                                alt={location.id}
-                                onClick={e => {
-                                  handleClick(e, setTransform, -xtrans, -ytrans)
-                                }}
-                                href={location.id}
-                                coords={scaledCoords.join()}
-                                className={className}
-                                shape='poly'
-                              />
-                            )
-                          }
-                        })}
-                      </map>
-                    </div>
-                  )}
-                </div>
+                <Map
+                  scale={scale}
+                  setTransform={() => setTransform}
+                  setHeight={setHeight}
+                  setDisplay={setDisplay}
+                  display={display}
+                  setSelect={setSelect}
+                  selected={selected}
+                />
               </TransformComponent>
 
-              <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
+              <div className='full-page-wrapper none'>
                 {svgData.groupArray.map(area => {
+                  console.log(selected)
                   if (selected !== null && area.coords) {
                     const selectedArea = getAreaDescription(selected)
 
@@ -149,7 +107,9 @@ const Map: React.FC = () => {
                             className='townbox-wrapper'
                           >
                             <Townbox
-                              headerColor={selectedArea?.headerColor as HeaderColor}
+                              headerColor={
+                                selectedArea?.headerColor as HeaderColor
+                              }
                               headerText={selectedArea?.headerText}
                               captionText={selectedArea?.captionText}
                               showButton={selectedArea?.showButton}
@@ -173,4 +133,4 @@ const Map: React.FC = () => {
   )
 }
 
-export default Map
+export default Test
