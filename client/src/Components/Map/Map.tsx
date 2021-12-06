@@ -4,7 +4,7 @@ import svgData from './svgImageData.json'
 
 interface MapProps {
   scale: number,
-  setTransform: () => void,
+  setTransform: any,
   setHeight: (elementRef: any) => void,
   setDisplay: (display: boolean) => void,
   display: boolean,
@@ -12,7 +12,7 @@ interface MapProps {
   setSelect: any
 }
 
-const Map = ({ scale, setTransform, setHeight, setDisplay, display , selected, setSelect}: MapProps) => {
+const Map = ({ scale, setTransform, setHeight, setDisplay, selected, setSelect}: MapProps) => {
   //const [selected, setSelect] = useState<Location | null>(null)
   const elementRef = useRef(null as null | HTMLDivElement)
 
@@ -43,6 +43,7 @@ const Map = ({ scale, setTransform, setHeight, setDisplay, display , selected, s
     selected === area ? setSelect(null) : setSelect(area)
     setDisplay(true)
     console.log(xtrans, ytrans)
+    console.log("scale: " + scale)
     setTransform(xtrans, ytrans, 2)
   }
 

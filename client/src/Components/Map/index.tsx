@@ -49,7 +49,7 @@ const Test: React.FC = () => {
   }
 
   if (height) {
-    console.log(2)
+    console.log("height")
   }
 
   // const selectArea = (area: Location) => {
@@ -84,7 +84,7 @@ const Test: React.FC = () => {
               <TransformComponent>
                 <Map
                   scale={scale}
-                  setTransform={() => setTransform}
+                  setTransform={setTransform}
                   setHeight={setHeight}
                   setDisplay={setDisplay}
                   display={display}
