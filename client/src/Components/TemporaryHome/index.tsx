@@ -1,5 +1,5 @@
 import React from 'react'
-import Test from 'Components/Map'
+import Map from 'Components/Map'
 import Dialogue from 'Components/Dialogue'
 import bananamanAvatar from 'lib/assets/banana.jpg'
 import AudioButton from 'Components/AudioButton'
@@ -18,7 +18,7 @@ const TemporaryHome: React.FC = () => {
   return (
     <>
       <AudioButton soundFile={songLocation} loop={true} />
-      <Test />
+      <Map />
       <Dialogue
         messages={messages}
         speaker={'bananaman'}
