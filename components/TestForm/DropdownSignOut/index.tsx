@@ -29,23 +29,34 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
+          <div className='inline-block w-16 overflow-hidden'>
+            <div className='origin-bottom-left transform rotate-45 bg-black  h-11 w-11'></div>
+          </div>
+        </Transition>
+        <Transition
+          as={Fragment}
+          enter='transition ease-out duration-100'
+          enterFrom='transform opacity-0 scale-95'
+          enterTo='transform opacity-100 scale-100'
+          leave='transition ease-in duration-75'
+          leaveFrom='transform opacity-100 scale-100'
+          leaveTo='transform opacity-0 scale-95'
+        >
           <Menu.Items className='absolute right-0 w-56 mt-2 font-serif origin-top-right bg-white divide-y rounded-md shadow-lg divide-grey ring-1 ring-black ring-opacity-5 focus:outline-none'>
-            <div className='px-1 py-1'>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    onClick={() => signOut()}
-                    className={`${
-                      active
-                        ? 'bg-primary text-white'
-                        : 'text-primary bg-grey-light'
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    Sign-Out
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={() => signOut()}
+                  className={`${
+                    active
+                      ? 'bg-primary text-white'
+                      : 'text-primary bg-grey-light'
+                  } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                >
+                  Sign-Out
+                </button>
+              )}
+            </Menu.Item>
           </Menu.Items>
         </Transition>
       </Menu>
