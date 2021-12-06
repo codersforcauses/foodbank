@@ -5,29 +5,19 @@ import svgData from './svgImageData.json'
 interface MapProps {
   scale: number;
   setTransform: (xtrans: number, ytrans: number, scale: number ) => void;
-  setHeight: (elementRef: any) => void;
   setDisplay: (display: boolean) => void;
   display: boolean;
   selected: any;
   setSelect: (state: any) => void
 }
 
-const Map = ({
+const MapImage = ({
   scale,
   setTransform,
-  setHeight,
   setDisplay,
   selected,
   setSelect
 }: MapProps) => {
-
-  const elementRef = useRef(null as null | HTMLDivElement)
-
-  useEffect(() => {
-    if (elementRef?.current?.clientHeight) {
-      setHeight(elementRef?.current?.clientHeight)
-    }
-  }, []) //empty dependency array so it only runs once at render
 
   const handleClick = (
     event: any,
@@ -45,7 +35,6 @@ const Map = ({
 
   return (
     <div
-      ref={elementRef}
       className='block w-full min-h-full items-stretch'
       style={{ minHeight: '900px' }}
     >
@@ -88,4 +77,4 @@ const Map = ({
   )
 }
 
-export default Map
+export default MapImage

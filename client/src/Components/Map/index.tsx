@@ -10,7 +10,7 @@ import { Townbox } from '../Townbox' //, TownboxProps
 import descData from './assets/description.json'
 import './index.css'
 //import svgData from './svgImageData.json'
-import Map from './Map'
+import MapImage from './Map'
 //import internal from 'stream'
 
 type HeaderColor = 'primary' | 'orange'
@@ -23,10 +23,9 @@ interface TownBox {
   id: string
 }
 
-const Test: React.FC = () => {
+const Map: React.FC = () => {
   // Used because SVG does not scale properly without
   const [scale, setScale] = useState(1)
-  const [height, setHeight] = useState(1)
   const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
 
@@ -53,10 +52,9 @@ const Test: React.FC = () => {
           {({ resetTransform, setTransform }) => (
             <>
               <TransformComponent>
-                <Map
+                <MapImage
                   scale={scale}
                   setTransform={setTransform}
-                  setHeight={setHeight}
                   setDisplay={setDisplay}
                   display={display}
                   setSelect={setSelect}
@@ -129,4 +127,4 @@ const TownBoxWrapper = ({
   return null
 }
 
-export default Test
+export default Map
