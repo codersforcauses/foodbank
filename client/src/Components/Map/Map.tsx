@@ -38,7 +38,7 @@ const MapImage = ({
       className='block w-full min-h-full items-stretch'
       style={{ minHeight: '900px' }}
     >
-      <div className='max-w-full flex relative'>
+      <div className='svgrow'>
         <img src={mapImg} alt='Tucker Island Map' useMap='#tuckerislandmap' />
 
         <map name='tuckerislandmap'>
@@ -52,6 +52,7 @@ const MapImage = ({
               const ytrans = parseInt(location.ytrans) * scale * 10
 
               const scaledCoords = location.coords.map(coord => coord * scale)
+              //TODO: consider changing className to a state and use tailwind
               const className =
                 Location[location.id as keyof typeof Location] === selected
                   ? 'map-selected'
