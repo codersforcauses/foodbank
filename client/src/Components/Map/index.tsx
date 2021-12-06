@@ -1,30 +1,40 @@
 // naming conventions of items in svg = id of group in camelCase, image import name in PascalCase.
 // svg tree generated from dev/svgParse.py (super hacky atm)
 
+<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from 'react'
 import './index.css'
 import { Location } from '../../lib/types'
 import svgData from './svgImageData.json'
+=======
+import React, { useEffect, useState } from 'react'
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
+//import { mutateInterface } from 'swr/dist/types'
+//import { Location } from '../../lib/types'
+import { Townbox } from '../Townbox' //, TownboxProps
+>>>>>>> temp1
 //import mapImg from './assets/TuckerMap.jpg'
 import descData from './assets/description.json'
-import Townbox from '../Townbox'
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
+import './index.css'
+//import svgData from './svgImageData.json'
+import MapImage from './Map'
 //import internal from 'stream'
+
+type HeaderColor = 'primary' | 'orange'
+
+interface TownBox {
+  headerColor: any
+  headerText: string
+  captionText: string
+  showButton: boolean
+  id: string
+}
 
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
-  const [height, setHeight] = useState(1)
-  const elementRef = useRef(null as null | HTMLDivElement)
-  const [selected, setSelect] = useState<Location | null>(null)
   const [scale, setScale] = useState(1)
+  const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
-  // const [townbox, setTownbox] = useState(<></>)
-  type HeaderColor = 'primary' | 'orange'
-  useEffect(() => {
-    if (elementRef?.current?.clientHeight) {
-      setHeight(elementRef?.current?.clientHeight)
-    }
-  }, []) //empty dependency array so it only runs once at render
 
   useEffect(() => {
     function handleResize() {
@@ -38,6 +48,7 @@ const Map: React.FC = () => {
     window.addEventListener('resize', handleResize)
   }, [])
 
+<<<<<<< HEAD
   // to get the area description given an area so you can actually use headers/captions
   // returns null if such area doesn't exist in assets/description.json
   const getAreaDescription = (area: Location) => {
@@ -72,6 +83,8 @@ const Map: React.FC = () => {
   }
 
   // Data can be made from dev/svgParse.py
+=======
+>>>>>>> temp1
   return (
     <>
       <div>
@@ -83,6 +96,7 @@ const Map: React.FC = () => {
           {({ resetTransform, setTransform }) => (
             <>
               <TransformComponent>
+<<<<<<< HEAD
                 <div
                   ref={elementRef}
                   className='block w-full min-h-full items-stretch'
@@ -135,36 +149,25 @@ const Map: React.FC = () => {
                     </div>
                   )}
                 </div>
+=======
+                <MapImage
+                  scale={scale}
+                  setTransform={setTransform}
+                  setDisplay={setDisplay}
+                  display={display}
+                  setSelect={setSelect}
+                  selected={select}
+                />
+>>>>>>> temp1
               </TransformComponent>
 
               <div className={`full-page-wrapper ${display ? '' : 'none'}`}>
-                {svgData.groupArray.map(area => {
-                  if (selected !== null && area.coords) {
-                    const selectedArea = getAreaDescription(selected)
-
-                    if (selectedArea !== null && selectedArea.id === area.id) {
-                      return (
-                        <>
-                          <div
-                            key={selectedArea.id}
-                            className='townbox-wrapper'
-                          >
-                            <Townbox
-                              headerColor={selectedArea?.headerColor as HeaderColor}
-                              headerText={selectedArea?.headerText}
-                              captionText={selectedArea?.captionText}
-                              showButton={selectedArea?.showButton}
-                              close={() => {
-                                close()
-                                resetTransform()
-                              }}
-                            />
-                          </div>
-                        </>
-                      )
-                    }
-                  }
-                })}
+                <TownBoxWrapper
+                  selected={select}
+                  resetTransform={resetTransform}
+                  setSelect={setSelect}
+                  setDisplay={setDisplay}
+                />
               </div>
             </>
           )}
@@ -172,6 +175,55 @@ const Map: React.FC = () => {
       </div>
     </>
   )
+}
+
+interface TownBoxProps {
+  selected: string | null
+  resetTransform: () => void
+  setSelect: (state: any) => void
+  setDisplay: (state: boolean) => void
+}
+
+const TownBoxWrapper = ({
+  selected,
+  resetTransform,
+  setSelect,
+  setDisplay
+}: TownBoxProps) => {
+  const handleClose = () => {
+    setSelect(null)
+    setDisplay(false)
+    resetTransform()
+  }
+
+  if (selected) {
+    const selectedArea = descData.descriptionArray.find(x => x.id === selected)
+
+    if (selectedArea) {
+      const {
+        headerText,
+        captionText,
+        headerColor,
+        showButton,
+        id
+      }: TownBox | undefined = selectedArea
+
+      return (
+        <>
+          <div key={id} className='townbox-wrapper'>
+            <Townbox
+              headerColor={headerColor as HeaderColor}
+              headerText={headerText}
+              captionText={captionText}
+              showButton={showButton}
+              close={handleClose}
+            />
+          </div>
+        </>
+      )
+    }
+  }
+  return null
 }
 
 export default Map
