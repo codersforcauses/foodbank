@@ -9,7 +9,7 @@ interface DropdownProp {
 
 export default function DropdownSignOut({ username, signOut }: DropdownProp) {
   return (
-    <Menu as='div' className='relative text-right'>
+    <Menu as='div' className='relative flex text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
         {username}
         <ChevronDownIcon
@@ -28,7 +28,7 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           leaveFrom='translate-y-0 opacity-100'
           leaveTo='translate-y-full opacity-0'
         >
-          <div className='absolute ml-[2.5rem] c-triangle-up'></div>
+          <div className='absolute right-[-0.13rem] top-8 c-triangle-up'></div>
         </Transition.Child>
         {/* Menu Items */}
         <Transition.Child
@@ -40,7 +40,7 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Menu.Items className='absolute right-[-0.21rem] w-24 font-serif top-[2.45rem]'>
+          <Menu.Items className='absolute right-[-0.15rem] w-24 font-serif top-[2.75rem]'>
             <Menu.Item>
               {({ active }) => (
                 <button
