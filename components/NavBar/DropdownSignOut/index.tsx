@@ -9,7 +9,6 @@ interface DropdownProp {
 
 export default function DropdownSignOut({ username, signOut }: DropdownProp) {
   return (
-    // <div className='text-right'>
     <Menu as='div' className='relative text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
         {username}
@@ -18,42 +17,45 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           aria-hidden='true'
         />
       </Menu.Button>
-      <Transition
-        as={Fragment}
-        enter='transition ease-out duration-100'
-        enterFrom='transform scale-50'
-        enterTo='transform scale-100'
-        leave='transition ease-in duration-75'
-        leaveFrom='transform scale-100'
-        leaveTo='transform scale-95'
-      >
-        <div className='absolute ml-[2.5rem] c-triangle-up'></div>
-      </Transition>
-      <Transition
-        as={Fragment}
-        enter='transition ease-out duration-100'
-        enterFrom='transform scale-95'
-        enterTo='transform scale-100'
-        leave='transition ease-in duration-75'
-        leaveFrom='transform scale-100'
-        leaveTo='transform scale-95'
-      >
-        <Menu.Items className='absolute right-[-0.2095rem] w-24 font-serif top-[2.45rem]'>
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                onClick={() => signOut()}
-                className={`${
-                  active ? 'text-opacity-75' : ''
-                } text-white rounded-md items-center px-2 py-2 bg-orange`}
-              >
-                SIGN OUT
-              </button>
-            )}
-          </Menu.Item>
-        </Menu.Items>
+      <Transition>
+        {/* Arrow */}
+        <Transition.Child
+          as={Fragment}
+          enter='transition ease-in-out duration-150 transform'
+          enterFrom='translate-y-full opacity-0'
+          enterTo='translate-y-0 opacity-100'
+          leave='transition ease-in-out duration-75 transform'
+          leaveFrom='translate-y-0 opacity-100'
+          leaveTo='translate-y-full opacity-0'
+        >
+          <div className='absolute ml-[2.5rem] c-triangle-up'></div>
+        </Transition.Child>
+        {/* Menu Items */}
+        <Transition.Child
+          as={Fragment}
+          enter='transition-opacity ease-linear duration-75'
+          enterFrom='opacity-0'
+          enterTo='opacity-100'
+          leave='transition-opacity ease-linear duration-100'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'
+        >
+          <Menu.Items className='absolute right-[-0.21rem] w-24 font-serif top-[2.45rem]'>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={() => signOut()}
+                  className={`${
+                    active ? 'text-opacity-75' : ''
+                  } text-white rounded-md items-center px-2 py-2 bg-orange`}
+                >
+                  SIGN OUT
+                </button>
+              )}
+            </Menu.Item>
+          </Menu.Items>
+        </Transition.Child>
       </Transition>
     </Menu>
-    // </div>
   )
 }
