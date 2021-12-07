@@ -59,7 +59,7 @@ const GridField = ({
       disabled={formDisabled || disabled}
     >
       <div
-        className='grid w-full grid-cols-3 gap-4'
+        className='grid w-full grid-cols-3 gap-2'
         // style={{ border: '20px solid blue' }}
       >
         {grid.map(char => (
@@ -76,7 +76,7 @@ const GridField = ({
               // checked={char.isSelected}
               // className='hidden'
               // className='opacity-0'
-              className='peer opacity-0'
+              className='opacity-0 peer'
               {...register?.(props.name, {
                 ...rules
                 // onChange: e => toggleSelect(e, char)
@@ -90,7 +90,7 @@ const GridField = ({
             >
               <Image
                 // key={char.id}
-                className='object-contain transition-all hover:scale-110'
+                className='object-contain transition-all scale-90 hover:scale-100'
                 height={250}
                 width={250}
                 // layout='responsive'
@@ -98,11 +98,11 @@ const GridField = ({
                 alt={char.name}
                 //   placeholder='blur'
               />
-              {/* <p className='text-center'>{char.name}</p> */}
+              <p className='text-center'>{char.name}</p>
               {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
               {/* <p className='text-center'>{test}</p> */}
             </label>
-            <p className='hidden text-center peer-checked:block'>{char.name}</p>
+            {/* <p className='hidden text-center peer-checked:block'>{char.name}</p> */}
           </div>
           //   </FieldLabel>
         ))}
