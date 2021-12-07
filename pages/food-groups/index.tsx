@@ -6,7 +6,14 @@ import FoodGroups from 'components/FoodGroups'
 const FoodGroupsPage: React.FC = () => {
   return (
     <>
-      <FoodGroups />
+      <div
+        className='relative items-center'
+        style={{ maxWidth: '95vh', margin: '5%' }} //TODO: Style
+      >
+        {' '}
+        {/* RESIZE WHEEL TO ALWAYS BE WITHIN THE SCREEN W/O SCROLLING */}
+        <FoodGroups />
+      </div>
     </>
   )
 }

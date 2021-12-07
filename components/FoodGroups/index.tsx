@@ -99,10 +99,10 @@ const FoodGroups: React.FC = () => {
 
   useEffect(() => {
     resize_map({ previousWidth, coordinates, setPreviousWidth, setCoordinates })
-  }, [previousWidth, coordinates])
+  }, [setPreviousWidth, setCoordinates])
 
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center scale-wheel'>
       {modalState && (
         <Modal {...props} onClose={toggleModal} size='lg'>
           <h1>Modal</h1>
