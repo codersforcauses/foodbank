@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect, ChangeEvent } from 'react'
+import { useState, useCallback, useEffect, ChangeEvent, Fragment } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { Transition } from '@headlessui/react'
 import Dropdown from './Dropdown'
-import DropdownOptions from './DropdownOptions'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { selectSet } from '@components/Custom'
 import DropdownSignOut from './DropdownSignOut'
@@ -105,9 +105,23 @@ const TestForm = () => {
         </button>
       </div>
 
-      <Auth open={signIn} onClose={toggleSignIn} />
+      <br />
+      <br />
+      <br />
+      <Transition
+        as={Fragment}
+        show={true}
+        enter='transition ease-out duration-100'
+        enterFrom='transform opacity-0 scale-95'
+        enterTo='transform opacity-100 scale-100'
+        leave='transition ease-in duration-75'
+        leaveFrom='transform opacity-100 scale-100'
+        leaveTo='transform opacity-0 scale-95'
+      >
+        <div className='c-triangle-up'></div>
+      </Transition>
 
-      <DropdownOptions />
+      <Auth open={signIn} onClose={toggleSignIn} />
 
       <br />
       <br />

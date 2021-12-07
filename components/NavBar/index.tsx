@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import NavLink, { NavLinkProps } from './NavLink'
 import logo from '../../public/images/foodbank-logo.webp'
+import DropdownSignOut from './DropdownSignOut'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
@@ -21,11 +22,6 @@ const links: Array<NavLinkProps> = [
     route: '/'
   }
 ]
-
-interface UserProps {
-  name: string
-  data: string
-}
 
 const Navbar = () => {
   const [signIn, setSignIn] = useState(false)
@@ -52,13 +48,13 @@ const Navbar = () => {
             <NavLink key={nav.page} {...nav} />
           ))}
         </nav>
-        <button
+        {/* <button
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
         >
-          {/* need to add proper state when auth was added */}
           {signIn ? 'Sign-out' : 'Sign-in'}
-        </button>
+        </button> */}
+        <DropdownSignOut username='Nick' signOut={() => {}} />
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
     </header>
