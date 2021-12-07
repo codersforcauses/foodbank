@@ -13,36 +13,32 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
     <Menu as='div' className='relative text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
         {username}
-        <span>
-          <ChevronDownIcon
-            className='inline w-5 h-5 ml-2 -mr-1'
-            aria-hidden='true'
-          />
-        </span>
+        <ChevronDownIcon
+          className='inline w-5 h-5 ml-2 -mr-1'
+          aria-hidden='true'
+        />
       </Menu.Button>
       <Transition
         as={Fragment}
         enter='transition ease-out duration-100'
-        enterFrom='transform opacity-0'
-        enterTo='transform opacity-100'
+        enterFrom='transform scale-50'
+        enterTo='transform scale-100'
         leave='transition ease-in duration-75'
-        leaveFrom='transform opacity-100'
-        leaveTo='transform opacity-0'
+        leaveFrom='transform scale-100'
+        leaveTo='transform scale-95'
       >
-        <div className='ml-5 overflow-hidden w-7'>
-          <div className='w-5 h-5 origin-bottom-left transform rotate-45 bg-orange'></div>
-        </div>
+        <div className='absolute ml-[2.5rem] c-triangle-up'></div>
       </Transition>
       <Transition
         as={Fragment}
         enter='transition ease-out duration-100'
-        enterFrom='transform opacity-0'
-        enterTo='transform opacity-100'
+        enterFrom='transform scale-95'
+        enterTo='transform scale-100'
         leave='transition ease-in duration-75'
-        leaveFrom='transform opacity-100'
-        leaveTo='transform opacity-0'
+        leaveFrom='transform scale-100'
+        leaveTo='transform scale-95'
       >
-        <Menu.Items className='absolute right-0 w-24 font-serif rounded-md'>
+        <Menu.Items className='absolute right-[-0.2095rem] w-24 font-serif top-[2.45rem]'>
           <Menu.Item>
             {({ active }) => (
               <button
