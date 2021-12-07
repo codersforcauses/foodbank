@@ -40,7 +40,7 @@ const DropdownSignOut = ({ username, signOut }: DropdownProp) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Menu.Items className='absolute right-[-0.15rem] w-28 font-serif top-[2.75rem]'>
+          <Menu.Items className='absolute right-[-0.15rem] w-28 font-serif top-[3rem]'>
             <Menu.Item>
               {({ active }) => (
                 <button
