@@ -7,7 +7,7 @@ interface DropdownProp {
   signOut: () => void
 }
 
-export default function DropdownSignOut({ username, signOut }: DropdownProp) {
+const DropdownSignOut = ({ username, signOut }: DropdownProp) => {
   return (
     <Menu as='div' className='relative flex text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
@@ -59,3 +59,5 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
     </Menu>
   )
 }
+
+export default DropdownSignOut
