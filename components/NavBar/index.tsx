@@ -23,11 +23,6 @@ const links: Array<NavLinkProps> = [
   }
 ]
 
-interface UserProps {
-  name: string
-  data: string
-}
-
 const Navbar = () => {
   const [signIn, setSignIn] = useState(false)
   const toggleSignIn = useCallback(() => {
