@@ -38,3 +38,5 @@ yarn.lock
 
 # IDE settings
 .vscode/
+.idea/vcs.xml
+.idea/workspace.xml
