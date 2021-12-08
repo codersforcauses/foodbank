@@ -82,18 +82,21 @@ const Card = ({
         <div className='flex flex-col'>
           {character && (
             <>
-              <div className=''>
+              <div >
                 <Link href={'/recipes/' + slug}>
-                  <a>
+                  {/*<a>*/}
+                  <div className={styles["image-container"] + " absolute absolute top-0 right-0"}>
                     <Image
                       src={image}
+                      layout='fill'
                       alt={text}
                       className={styles['card-image']}
                     />
-                    <h1 className='tracking-wide font-semibold text-3xl'>
+                    gi<h1 className='tracking-wide font-semibold text-3xl'>
                       {label}
                     </h1>
-                  </a>
+                  {/*</a>*/}
+                  </div>
                 </Link>
               </div>
               {/* Superhero on t0p of the recipe image */}
