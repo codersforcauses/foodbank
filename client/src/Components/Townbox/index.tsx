@@ -4,30 +4,12 @@ import './index.css'
 import Button from '../Button'
 
 export interface TownboxProps {
-  /**
-   * Header colour: enter either orange/primary
-   */
   headerColor?: 'primary' | 'orange'
-
-  /**
-   * Heading contents
-   */
   headerText?: string
-
-  /**
-   * Textbox contents
-   */
   captionText?: string
-
-  /**
-   * Show visited button?
-   */
   showButton?: boolean
-
   maxWidth?: string
-
   maxHeight?: string
-
   close?: any
 }
 

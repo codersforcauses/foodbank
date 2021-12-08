@@ -2,10 +2,7 @@ import React from 'react'
 import { Townbox } from '../Townbox'
 import descData from './assets/description.json'
 
-type HeaderColor = 'primary' | 'orange'
-
-
-interface TownBoxProps {
+interface TownBoxWrapperProps {
   selected: string | null
   resetTransform: () => void
   setSelect: (state: any) => void
@@ -25,8 +22,8 @@ const TownBoxWrapper = ({
   resetTransform,
   setSelect,
   setDisplay
-}: TownBoxProps) => {
-    
+}: TownBoxWrapperProps) => {
+
   const handleClose = () => {
     setSelect(null)
     setDisplay(false)
@@ -49,7 +46,7 @@ const TownBoxWrapper = ({
         <>
           <div key={id} className='self-center'>
             <Townbox
-              headerColor={headerColor as HeaderColor}
+              headerColor={headerColor}
               headerText={headerText}
               captionText={captionText}
               showButton={showButton}
