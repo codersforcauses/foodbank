@@ -7,8 +7,10 @@ type WidthState = { id: string; initialWidth: number }
 interface FoodGroupResizeArguments {
   previousWidth: WidthState[]
   coordinates: number[][]
+  previousFlexHeight: number
   setPreviousWidth: StateDispatch<WidthState[]>
   setCoordinates: StateDispatch<number[][]>
+  setFlexHeight: StateDispatch<number>
 }
 
 interface FoodGroupStates {

@@ -10,12 +10,11 @@
   --scale: 1.45; /* Arbitrary scale multiplier to make wheel fit within div completely */
 }
 
-.dairy {
-  /*width: 22.5%;*/
-  /*height: 30rem;*/
-  /*width: 23rem;*/
-  margin-top: 31.5%;
-  margin-left: -7.6%;
+.food-wheel {
+  max-width: 95vh;
+  height: 50%;
+  width: 50%;
+  position: relative;
 }
 
 .custom-img {
@@ -27,7 +26,7 @@
 }
 
 .unset-img {
-  /*display: flex;*/
+  display: flex;
   position: absolute;
   width: 30%;
 }

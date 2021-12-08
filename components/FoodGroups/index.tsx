@@ -47,6 +47,7 @@ const FoodGroups: React.FC = () => {
 
   const [coordinates, setCoordinates] = useState(initialCoordinates)
   const [previousWidth, setPreviousWidth] = useState(initialWidths)
+  const [previousFlexHeight, setFlexHeight] = useState(0)
 
   // interface allStates {
   //     [index: string]: {
@@ -98,8 +99,15 @@ const FoodGroups: React.FC = () => {
   // }
 
   useEffect(() => {
-    resize_map({ previousWidth, coordinates, setPreviousWidth, setCoordinates })
-  }, [setPreviousWidth, setCoordinates])
+    resize_map({
+      previousWidth,
+      coordinates,
+      previousFlexHeight,
+      setPreviousWidth,
+      setCoordinates,
+      setFlexHeight
+    })
+  }, [setPreviousWidth, setCoordinates, setFlexHeight])
 
   return (
     <div className='flex justify-center scale-wheel'>
@@ -113,12 +121,20 @@ const FoodGroups: React.FC = () => {
         params={{
           previousWidth,
           coordinates,
+          previousFlexHeight,
           setPreviousWidth,
-          setCoordinates
+          setCoordinates,
+          setFlexHeight
         }}
       />
 
-      <div className={'flex flex-col'}>
+      <div
+        className={'flex flex-col'}
+        style={{
+          height: previousFlexHeight + 'px',
+          margin: 0.05 * previousFlexHeight + 'px' // 5% margin, variable (Animation makes slices go above the height)
+        }}
+      >
         {foodGroupsImages.map((group, index) => {
           return (
             <div
