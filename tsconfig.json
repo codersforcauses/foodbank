@@ -22,9 +22,9 @@
       "@data/*": ["data/*"],
       "@helpers/*": ["helpers/*"],
       "@lib/*": ["lib/*"],
-      "@styles/*": ["styles/*"],
-      "@public/*": ["public/*"]
-    }
+      "@styles/*": ["styles/*"]
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
