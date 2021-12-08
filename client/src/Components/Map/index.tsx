@@ -3,20 +3,10 @@
 
 import React, { useEffect, useState } from 'react'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
-import { Townbox } from '../Townbox'
-import descData from './assets/description.json'
+import TownBoxWrapper from './TownBoxWrapper'
 import './index.css'
-import MapImage from './Map'
+import MapImage from './MapImage'
 
-type HeaderColor = 'primary' | 'orange'
-
-interface TownBox {
-  headerColor: any
-  headerText: string
-  captionText: string
-  showButton: boolean
-  id: string
-}
 
 const Map: React.FC = () => {
   // Used because SVG does not scale properly without
@@ -71,55 +61,6 @@ const Map: React.FC = () => {
       </div>
     </>
   )
-}
-
-interface TownBoxProps {
-  selected: string | null
-  resetTransform: () => void
-  setSelect: (state: any) => void
-  setDisplay: (state: boolean) => void
-}
-
-const TownBoxWrapper = ({
-  selected,
-  resetTransform,
-  setSelect,
-  setDisplay
-}: TownBoxProps) => {
-  const handleClose = () => {
-    setSelect(null)
-    setDisplay(false)
-    resetTransform()
-  }
-
-  if (selected) {
-    const selectedArea = descData.descriptionArray.find(x => x.id === selected)
-
-    if (selectedArea) {
-      const {
-        headerText,
-        captionText,
-        headerColor,
-        showButton,
-        id
-      }: TownBox | undefined = selectedArea
-
-      return (
-        <>
-          <div key={id} className='self-center'>
-            <Townbox
-              headerColor={headerColor as HeaderColor}
-              headerText={headerText}
-              captionText={captionText}
-              showButton={showButton}
-              close={handleClose}
-            />
-          </div>
-        </>
-      )
-    }
-  }
-  return null
 }
 
 export default Map
