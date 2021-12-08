@@ -60,23 +60,23 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
 
-  // // CHECKS IF USERNAME IS TAKEN
-  // const checkFirebase = async (username: string) =>
-  //   username
-  //     ? (await firestore.doc(`usernames/${username}`).get()).exists
-  //     : false
-
-  // // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
-  // const checkPassword = async (password: string) =>
-  //   password ===
-  //   (await firestore.doc(`usernames/${username}`).get()).data()?.password
-
   // CHECKS IF USERNAME IS TAKEN
-  const checkFirebase = async (username: string) => username === 'hello'
+  const checkFirebase = async (username: string) =>
+    username
+      ? (await firestore.doc(`usernames/${username}`).get()).exists
+      : false
 
   // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
   const checkPassword = async (password: string) =>
-    password === 'BlueBoyFishCanFreshFish'
+    password ===
+    (await firestore.doc(`usernames/${username}`).get()).data()?.password
+
+  // CHECKS IF USERNAME IS TAKEN
+  // const checkFirebase = async (username: string) => username === 'hello'
+
+  // // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
+  // const checkPassword = async (password: string) =>
+  //   password === 'BlueBoyFishCanFreshFish'
 
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
     async e => {

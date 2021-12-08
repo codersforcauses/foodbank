@@ -29,7 +29,7 @@ const UsernameForm = ({
         }}
         // onChange={handleUsernameChange}
       />
-      <div className='flex justify-center pt-4'>
+      <div className='flex flex-col items-center pt-4 space-x-3'>
         <Button
           className='flex items-center disabled:opacity-50'
           type='button'
@@ -52,7 +52,7 @@ const UsernameForm = ({
         {registered && (
           <>
             <br />
-            <p>NOT YOU? TRY A DIFFERENT USERNAME!!!</p>
+            <p>NOT YOU? TRY A DIFFERENT USERNAME!</p>
           </>
         )}
       </div>
