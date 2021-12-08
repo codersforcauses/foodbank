@@ -78,11 +78,12 @@ const Auth = (props: AuthProps) => {
   const checkPassword = async (password: string) =>
     password === 'BlueBoyFishCanFreshFish'
 
-  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> =
-    async e => {
-      setInput(e.target.value)
-      setRegistered(await checkFirebase(e.target.value))
-    }
+  const handleUsernameChange: ChangeEventHandler<
+    HTMLInputElement
+  > = async e => {
+    setInput(e.target.value)
+    setRegistered(await checkFirebase(e.target.value))
+  }
 
   const handleUsernameSubmit = () => {
     setUsername(input)
