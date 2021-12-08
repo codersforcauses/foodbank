@@ -38,7 +38,7 @@ const MapImage = ({
       className='block w-full min-h-full items-stretch'
       style={{ minHeight: '900px' }}
     >
-      <div className='svgrow'>
+      <div className='flex relative max-w-screen'>
         <img src={mapImg} alt='Tucker Island Map' useMap='#tuckerislandmap' />
 
         <map name='tuckerislandmap'>
