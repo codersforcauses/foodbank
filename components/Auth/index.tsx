@@ -32,6 +32,8 @@ const MESSAGES = {
   PASSWORD_LABEL: 'Choose your three characters.',
   REPEATED_PASSWORD_LABEL:
     'Re-select those same three characters and remember them.',
+  PASSWORD_MATCHED: 'Signed in',
+  REPEATED_PASSWORD_MATCHED: 'Registered',
   WRONG_PASSWORD: 'Uh-oh! You have selected the wrong characters!',
   PASSWORDS_NOT_MATCHED: 'Uh-oh! You have selected the wrong characters!'
 }
@@ -81,7 +83,7 @@ const Auth = (props: AuthProps) => {
 
   const handleUsernameSubmit = () => {
     setUsername(input)
-    console.log(input)
+    // console.log(input)
   }
 
   // SIGNIN OR SIGNUP HERE
@@ -93,7 +95,6 @@ const Auth = (props: AuthProps) => {
       setPage(PAGES.PASSWORD_FORM)
       return
     }
-    console.log(username)
     if (!value?.password?.length && page !== PAGES.PASSWORD_FORM) {
       setPage(PAGES.PASSWORD_FORM)
       return
@@ -109,9 +110,9 @@ const Auth = (props: AuthProps) => {
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
       if (await checkPassword(newPassword)) {
-        console.log('Password Matched!')
+        // console.log('Password Matched!')
         setError('')
-        alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
+        alert(MESSAGES.PASSWORD_MATCHED) //<-- SIGNIN
       } else {
         setError(MESSAGES.WRONG_PASSWORD)
       }
@@ -124,7 +125,7 @@ const Auth = (props: AuthProps) => {
       const newRepeatedPassword = value?.repeatedPassword?.join('')
       if (newRepeatedPassword === newPassword) {
         setError('')
-        alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNUP
+        alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
 
         //Sending the details to the Firebase Firestore database
         const batch = firestore.batch()
@@ -148,8 +149,8 @@ const Auth = (props: AuthProps) => {
 
   const onClose = () => {
     props.onClose()
-    handleReset()
-    setPage(PAGES.USERNAME_FORM)
+    // handleReset()
+    // setPage(PAGES.USERNAME_FORM)
   }
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
