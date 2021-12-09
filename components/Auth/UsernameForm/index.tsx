@@ -27,7 +27,6 @@ const UsernameForm = ({
           required: true,
           onChange: handleUsernameChange
         }}
-        // onChange={handleUsernameChange}
       />
       <div className='flex flex-col items-center pt-4 space-x-3'>
         <Button
