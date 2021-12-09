@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3b8602fa-7743-4c0f-b1c1-2000a9e04189" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/Card.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/Card.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes-notion/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes-notion/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

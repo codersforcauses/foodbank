@@ -11,10 +11,17 @@
     border-top-right-radius: 10%;
     width: 350px;
 }
+.card-image > div {
+    position: unset !important;
+}
 
 .image-container {
-    width: 35%;
-    /*height: 55%*/
+    width: 30%;
+    height: 55%
+}
+
+.card-image-container {
+    width: 100%;
 }
 
 .splash-container {
@@ -25,7 +32,7 @@
     position: unset !important;
 }
 
-.image-container> div {
+.card-image-container> div {
     position: unset !important;
     /*display: flex !important;*/
 }

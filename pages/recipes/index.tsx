@@ -93,7 +93,7 @@ const RecipesGridView: React.FC = ({ tag, recipes, chars }) => {
           All
         </p>
       </div>
-      <div className='flex justify-center m-3'>
+      <div className='flex justify-center m-10'>
         <div className='mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-14'>
           {recipeCards}
         </div>
@@ -117,19 +117,7 @@ export const getServerSideProps = async (context: {
   const chars = await notion.databases.query({
     database_id: process.env.NOTION_CHARACTERS_DB_ID,
   })
-
-  //
-  // name: 'Garlic Dancer',
-  //   image: garlicDancerImage.src,
-  //   aliasName: 'Garlic Shield',
-  //   about: 'Flavours food for tasty tucker.',
-  //   aliasImage: garlicShieldImage.src,
-  //   imageGif: garlicShieldImage.src,
-  //   superPowers: 'Protects the body against rascal bacteria.',
-  //   foodGroup: 'Vegetables – protective foods',
-  //   location: 'Vegie Zone - Bursting Bulb',
-  //   facing: 'left'
-
+  
   const getCharacterProps = (charId: String) => {
     let character = chars.results.filter(char => char.id == charId)
     return {
@@ -147,7 +135,7 @@ export const getServerSideProps = async (context: {
 
   const recipes = data.results.map(recipe => ({
     page_id: recipe.id,
-    title: recipe.properties.Recipe.title[0].plain_text,
+    name: recipe.properties.Recipe.title[0].plain_text,
     category: recipe.properties.Category.multi_select.map(category => category.name),
     tags: recipe.properties.Tags.multi_select.map(tag => tag.name),
     equipment: recipe.properties.Equipment.multi_select.map(item => item.name),

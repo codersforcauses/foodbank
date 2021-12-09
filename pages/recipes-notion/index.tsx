@@ -49,7 +49,7 @@ export const getStaticProps = async () => {
 
   const reps = data.results.map(recipe => ({
     page_id: recipe.id,
-    title: recipe.properties.Recipe.title[0].plain_text,
+    name: recipe.properties.Recipe.title[0].plain_text,
     categories: recipe.properties.Category.multi_select.map(category => category.name),
     tags: recipe.properties.Tags.multi_select.map(tag => tag.name),
     equipment: recipe.properties.Equipment.multi_select.map(item => item.name),
