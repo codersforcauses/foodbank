@@ -8,6 +8,7 @@ import {
   FieldMessage
 } from '@components/Custom/FormComponents/utils'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
+import { BsFillCheckCircleFill } from 'react-icons/bs'
 
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
@@ -73,7 +74,7 @@ const GridField = ({
       >
         {grid.map(char => (
           //   <FieldLabel key={char.id}>
-          <div key={char.id}>
+          <div key={char.id} className='relative'>
             <input
               type='checkbox'
               aria-describedby={`${char.name}-label`}
@@ -84,8 +85,8 @@ const GridField = ({
               value={char.password}
               // disabled={selectedCount === 3}
               // checked={char.isSelected}
-              // className='opacity-0 peer'
-              className='peer'
+              className='hidden peer'
+              // className='peer'
               {...register?.(props.name, {
                 ...rules
                 // onChange: e => toggleSelect(e, char)
@@ -96,11 +97,11 @@ const GridField = ({
             <label
               htmlFor={char.id}
               // className='flex flex-col justify-content-center'
-              className='opacity-30 peer-checked:opacity-100'
+              className='relative opacity-100 peer-checked:opacity-40'
             >
               <Image
                 // key={char.id}
-                className='object-contain transition-all scale-90 hover:scale-100'
+                className='object-contain transition-all scale-90 hover:scale-100 z-0'
                 height={250}
                 width={250}
                 // layout='responsive'
@@ -112,6 +113,20 @@ const GridField = ({
               {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
             </label>
             {/* <p className='hidden text-center peer-checked:block'>{char.name}</p> */}
+
+            <BsFillCheckCircleFill
+              className={
+                'absolute top-0 ' +
+                'bottom-0 left-0 ' +
+                'right-0 ' +
+                'text-center ' +
+                'm-auto ' +
+                'text-3xl ' +
+                'z-1 ' +
+                'pointer-events-none ' +
+                (char.isSelected ? 'opacity-100' : 'opacity-0')
+              }
+            />
           </div>
           //   </FieldLabel>
         ))}
