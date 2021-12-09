@@ -59,6 +59,7 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
+  const [enteredCredStatus, setEnteredCredStatus] = useState('')
 
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) =>
@@ -70,13 +71,6 @@ const Auth = (props: AuthProps) => {
   const checkPassword = async (password: string) =>
     password ===
     (await firestore.doc(`usernames/${username}`).get()).data()?.password
-
-  // CHECKS IF USERNAME IS TAKEN
-  // const checkFirebase = async (username: string) => username === 'hello'
-
-  // // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
-  // const checkPassword = async (password: string) =>
-  //   password === 'BlueBoyFishCanFreshFish'
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement

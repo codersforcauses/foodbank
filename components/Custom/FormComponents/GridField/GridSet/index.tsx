@@ -6,8 +6,8 @@ export interface Character {
   id?: string
   image: string
   name: string
-  isSelected: boolean
   password?: string
+  isSelected: boolean
 }
 
 const PASSWORD_LENGTH = 9
