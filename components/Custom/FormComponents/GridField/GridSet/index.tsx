@@ -6,7 +6,6 @@ export interface Character {
   id?: string
   image: string
   name: string
-  isSelected: boolean
   password?: string
 }
 
@@ -38,223 +37,185 @@ export default selectSet
 const GridSet: Character[] = [
   {
     image: '/images/Characters/Dairy/BlueBoy.jpg',
-    name: 'BlueBoy',
-    isSelected: false
+    name: 'BlueBoy'
   },
 
   {
     image: '/images/Characters/Dairy/MilkMaid.jpg',
-    name: 'MilkMaid',
-    isSelected: false
+    name: 'MilkMaid'
   },
 
   {
     image: '/images/Characters/Dairy/YumYoghurt.jpg',
-    name: 'YumYoghurt',
-    isSelected: false
+    name: 'YumYoghurt'
   },
 
   {
     image: '/images/Characters/Dairy/CheesyCheese.jpg',
-    name: 'CheesyCheese',
-    isSelected: false
+    name: 'CheesyCheese'
   },
 
   {
     image: '/images/Characters/Meat/LeanMeat.jpg',
-    name: 'LeanMeat',
-    isSelected: false
+    name: 'LeanMeat'
   },
 
   {
     image: '/images/Characters/Meat/FishCan.jpg',
-    name: 'FishCan',
-    isSelected: false
+    name: 'FishCan'
   },
 
   {
     image: '/images/Characters/Meat/CheekyChicken.jpg',
-    name: 'CheekyChicken',
-    isSelected: false
+    name: 'CheekyChicken'
   },
 
   {
     image: '/images/Characters/Meat/RangerRex.jpg',
-    name: 'RangerRex',
-    isSelected: false
+    name: 'RangerRex'
   },
 
   {
     image: '/images/Characters/Meat/HannahGoanna.jpg',
-    name: 'HannahGoanna',
-    isSelected: false
+    name: 'HannahGoanna'
   },
 
   {
     image: '/images/Characters/Meat/EagerEgg.jpg',
-    name: 'EagerEgg',
-    isSelected: false
+    name: 'EagerEgg'
   },
 
   {
     image: '/images/Characters/Meat/FreshFish.jpg',
-    name: 'FreshFish',
-    isSelected: false
+    name: 'FreshFish'
   },
   {
     image: '/images/Characters/Fruit/AcesApple.jpg',
-    name: 'AcesApple',
-    isSelected: false
+    name: 'AcesApple'
   },
 
   {
     image: '/images/Characters/Fruit/FarmerOrange.jpg',
-    name: 'FarmerOrange',
-    isSelected: false
+    name: 'FarmerOrange'
   },
 
   {
     image: '/images/Characters/Fruit/SportyBanana.jpg',
-    name: 'SportyBanana',
-    isSelected: false
+    name: 'SportyBanana'
   },
 
   {
     image: '/images/Characters/Fruit/MelodyMelon.jpg',
-    name: 'MelodyMelon',
-    isSelected: false
+    name: 'MelodyMelon'
   },
 
   {
     image: '/images/Characters/Fruit/FruityPainter.jpg',
-    name: 'FruityPainter',
-    isSelected: false
+    name: 'FruityPainter'
   },
 
   {
     image: '/images/Characters/Grains/MixedGrain.jpg',
-    name: 'MixedGrain',
-    isSelected: false
+    name: 'MixedGrain'
   },
 
   {
     image: '/images/Characters/Grains/HealthyCereal.jpg',
-    name: 'HealthyCereal',
-    isSelected: false
+    name: 'HealthyCereal'
   },
 
   {
     image: '/images/Characters/Grains/PastaBowl.jpg',
-    name: 'PastaBowl',
-    isSelected: false
+    name: 'PastaBowl'
   },
 
   {
     image: '/images/Characters/Grains/OutbackDamper.jpg',
-    name: 'OutbackDamper',
-    isSelected: false
+    name: 'OutbackDamper'
   },
 
   {
     image: '/images/Characters/Grains/PastaChef.jpg',
-    name: 'PastaChef',
-    isSelected: false
+    name: 'PastaChef'
   },
 
   {
     image: '/images/Characters/Grains/PostiePorridge.jpg',
-    name: 'PostiePorridge',
-    isSelected: false
+    name: 'PostiePorridge'
   },
 
   {
     image: '/images/Characters/Vegetables/ArtyCarrot.jpg',
-    name: 'ArtyCarrot',
-    isSelected: false
+    name: 'ArtyCarrot'
   },
 
   {
     image: '/images/Characters/Vegetables/AthleticTomato.jpg',
-    name: 'AthleticTomato',
-    isSelected: false
+    name: 'AthleticTomato'
   },
 
   {
     image: '/images/Characters/Vegetables/TinnedBeans.jpg',
-    name: 'TinnedBeans',
-    isSelected: false
+    name: 'TinnedBeans'
   },
 
   {
     image: '/images/Characters/Vegetables/CrunchingCapsicum.jpg',
-    name: 'CrunchingCapsicum',
-    isSelected: false
+    name: 'CrunchingCapsicum'
   },
 
   {
     image: '/images/Characters/Vegetables/CoachCarrot.jpg',
-    name: 'CoachCarrot',
-    isSelected: false
+    name: 'CoachCarrot'
   },
 
   {
     image: '/images/Characters/Vegetables/MrCucumber.jpg',
-    name: 'MrCucumber',
-    isSelected: false
+    name: 'MrCucumber'
   },
 
   {
     image: '/images/Characters/Vegetables/DJCorn.jpg',
-    name: 'DJCorn',
-    isSelected: false
+    name: 'DJCorn'
   },
 
   {
     image: '/images/Characters/Vegetables/FootyGirl.jpg',
-    name: 'FootyGirl',
-    isSelected: false
+    name: 'FootyGirl'
   },
 
   {
     image: '/images/Characters/Vegetables/FreshHerbs.jpg',
-    name: 'FreshHerbs',
-    isSelected: false
+    name: 'FreshHerbs'
   },
 
   {
     image: '/images/Characters/Vegetables/FrozenVegies.jpg',
-    name: 'FrozenVegies',
-    isSelected: false
+    name: 'FrozenVegies'
   },
 
   {
     image: '/images/Characters/Vegetables/GarlicDancer.jpg',
-    name: 'GarlicDancer',
-    isSelected: false
+    name: 'GarlicDancer'
   },
   {
     image: '/images/Characters/Vegetables/JackarooOnion.jpg',
-    name: 'JackarooOnion',
-    isSelected: false
+    name: 'JackarooOnion'
   },
   {
     image: '/images/Characters/Vegetables/WorkingSpud.jpg',
-    name: 'WorkingSpud',
-    isSelected: false
+    name: 'WorkingSpud'
   },
   {
     image: '/images/Characters/Vegetables/MrsBrocc.jpg',
-    name: 'MrsBrocc',
-    isSelected: false
+    name: 'MrsBrocc'
   },
   {
     image: '/images/Characters/Vegetables/PeaPod.jpg',
-    name: 'PeaPod',
-    isSelected: false
+    name: 'PeaPod'
   },
   {
     image: '/images/Characters/Vegetables/TinnedTradie.jpg',
-    name: 'TinnedTradie',
-    isSelected: false
+    name: 'TinnedTradie'
   }
 ]
