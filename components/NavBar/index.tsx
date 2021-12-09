@@ -10,7 +10,7 @@ const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
 const links: Array<NavLinkProps> = [
   {
-    page: 'Super Hero Foods',
+    page: 'Superhero Foods',
     route: '/'
   },
   {
