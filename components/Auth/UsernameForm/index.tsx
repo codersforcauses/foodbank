@@ -36,7 +36,7 @@ const UsernameForm = ({
           onClick={goNextPage}
           disabled={!input}
         >
-          {registered ? 'WELCOME BACK, FRIEND!!!!' : 'HI, NEW FRIEND!!!!'}
+          {registered ? `WELCOME BACK, ${input}!!!` : 'HI, NEW FRIEND!!!!'}
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 25 25'

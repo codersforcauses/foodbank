@@ -59,6 +59,7 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
+  const [enteredCredStatus, setEnteredCredStatus] = useState('')
 
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) =>
