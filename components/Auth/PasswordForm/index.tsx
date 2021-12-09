@@ -25,7 +25,7 @@ const PasswordForm = ({
     <>
       <p>{label}</p>
       {error && <p>{error}</p>}
-      <GridField label='grid' type='checkbox' name={name} charSet={grid} />
+      <GridField label='grid' name={name} charSet={grid} />
       <div className='flex justify-center pt-4 space-x-2'>
         <Button
           type='button'
@@ -47,7 +47,7 @@ const PasswordForm = ({
         </Button>
         {registered ? (
           <Button className='flex items-center'>
-            Confirm Selections
+            Confirm
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 25 25'
@@ -66,7 +66,7 @@ const PasswordForm = ({
             type='button'
             onClick={goNextPage}
           >
-            Repeat Selections
+            Confirm
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 25 25'
