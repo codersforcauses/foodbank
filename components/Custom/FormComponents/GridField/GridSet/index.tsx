@@ -7,7 +7,7 @@ export interface Character {
   image: string
   name: string
   password?: string
-  isSelected: boolean
+  isSelected?: boolean
 }
 
 const PASSWORD_LENGTH = 9
@@ -24,11 +24,15 @@ const randomStringGen = (length: number) => {
 }
 const selectSet = (seed: string) => {
   seedrandom(seed, { global: true })
-  const selectedSet = shuffle(GridSet, { copy: true }).slice(0, PASSWORD_LENGTH)
+  const selectedSet: Character[] = shuffle(GridSet, { copy: true }).slice(
+    0,
+    PASSWORD_LENGTH
+  )
   selectedSet.map(img => {
     img.id = uuid_v4()
     // img.password = randomStringGen(PASSWORD_LENGTH)
     img.password = img.name // For testing purposes
+    img.isSelected = false
   })
   return selectedSet
 }

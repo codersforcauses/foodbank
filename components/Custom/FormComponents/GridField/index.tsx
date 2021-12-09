@@ -1,6 +1,7 @@
 import { useState, InputHTMLAttributes, useContext, ChangeEvent } from 'react'
 import { RegisterOptions } from 'react-hook-form'
 import Image from 'next/image'
+import cloneDeep from 'lodash.clonedeep'
 import { FormContext } from '@components/Custom/FormComponents/Form/context'
 import {
   FieldControl,
@@ -9,6 +10,8 @@ import {
 } from '@components/Custom/FormComponents/utils'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
+
+const CHARACTERS_FOR_AUTH = 3
 
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
@@ -35,25 +38,22 @@ const GridField = ({
   } = useContext(FormContext)
   const error: string = formState?.errors?.[props.name]?.message
 
-  const [grid, setGrid] = useState<Character[]>(charSet)
+  const [grid, setGrid] = useState<Character[]>(cloneDeep(charSet))
   const [selectedCount, setSelectedCount] = useState(0)
 
-  // const toggleSelect = (
-  //   e: ChangeEvent<HTMLInputElement>,
-  //   currentChar: Character
-  // ) => {
-  //   console.log(currentChar.name)
-  //   const newChar: Character = { ...currentChar }
-  //   newChar.isSelected = e.target.checked
-  //   const newGrid: Character[] = grid
-  //     .slice()
-  //     .map(char => (char.id === newChar.id ? newChar : char))
-  //   setGrid(newGrid)
-  // }
+  const toggleSelect = (
+    e: ChangeEvent<HTMLInputElement>,
+    currentChar: Character
+  ) => {
+    const newChar: Character = { ...currentChar }
+    newChar.isSelected = e.target.checked
+    const newGrid: Character[] = grid
+      .slice()
+      .map(char => (char.id === newChar.id ? newChar : char))
+    setGrid(newGrid)
+  }
 
-  const toggleSelect = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(selectedCount)
-    console.log(e.target.checked)
+  const toggleSelectedCount = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setSelectedCount(prev => prev + 1)
     } else {
@@ -68,6 +68,7 @@ const GridField = ({
       required={'required' in rules || required}
       disabled={formDisabled || disabled}
     >
+      <p>{selectedCount}</p>
       <div
         className='grid w-full grid-cols-3 gap-2'
         // style={{ border: '20px solid blue' }}
@@ -83,21 +84,31 @@ const GridField = ({
               id={char.id}
               name='food'
               value={char.password}
-              // disabled={selectedCount === 3}
-              // checked={char.isSelected}
+              checked={char.isSelected}
+              disabled={
+                !char.isSelected && selectedCount === CHARACTERS_FOR_AUTH
+              }
               className='hidden peer'
-              // className='peer'
+              // className='opacity-0 peer'
+              // className='opacity-0'
               {...register?.(props.name, {
                 ...rules
-                // onChange: e => toggleSelect(e, char)
+                // ,onChange: e => {
+                //   toggleSelect(e, char)
+                //   toggleSelectedCount(e)
+                // }
               })}
-              // onChange={e => toggleSelect(e, char)}
-              // onChange={e => toggleSelect(e)}
+              onChange={e => {
+                toggleSelect(e, char)
+                toggleSelectedCount(e)
+              }}
+              // onChange={e => toggleSelectedCount(e)}
             />
             <label
               htmlFor={char.id}
               // className='flex flex-col justify-content-center'
-              className='relative opacity-100 peer-checked:opacity-40'
+              // className='opacity-30 peer-checked:opacity-100'
+              className={char.isSelected ? 'opacity-40' : 'opacity-100'}
             >
               <Image
                 // key={char.id}
@@ -110,7 +121,7 @@ const GridField = ({
                 //   placeholder='blur'
               />
               <p className='text-center'>{char.name}</p>
-              {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
+              <p className='text-center'>{char?.isSelected?.toString()}</p>
             </label>
             {/* <p className='hidden text-center peer-checked:block'>{char.name}</p> */}
 
