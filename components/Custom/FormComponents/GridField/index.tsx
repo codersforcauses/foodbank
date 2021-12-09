@@ -35,20 +35,29 @@ const GridField = ({
   const error: string = formState?.errors?.[props.name]?.message
 
   const [grid, setGrid] = useState<Character[]>(charSet)
-  // const [test, setTest] = useState(0)
+  const [selectedCount, setSelectedCount] = useState(0)
 
-  const toggleSelect = (
-    e: ChangeEvent<HTMLInputElement>,
-    currentChar: Character
-  ) => {
-    console.log(currentChar.name)
-    const newChar: Character = { ...currentChar }
-    newChar.isSelected = e.target.checked
-    const newGrid: Character[] = grid
-      .slice()
-      .map(char => (char.id === newChar.id ? newChar : char))
-    setGrid(newGrid)
-    // setTest(1)
+  // const toggleSelect = (
+  //   e: ChangeEvent<HTMLInputElement>,
+  //   currentChar: Character
+  // ) => {
+  //   console.log(currentChar.name)
+  //   const newChar: Character = { ...currentChar }
+  //   newChar.isSelected = e.target.checked
+  //   const newGrid: Character[] = grid
+  //     .slice()
+  //     .map(char => (char.id === newChar.id ? newChar : char))
+  //   setGrid(newGrid)
+  // }
+
+  const toggleSelect = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(selectedCount)
+    console.log(e.target.checked)
+    if (e.target.checked) {
+      setSelectedCount(prev => prev + 1)
+    } else {
+      setSelectedCount(prev => prev - 1)
+    }
   }
 
   return (
@@ -73,15 +82,16 @@ const GridField = ({
               id={char.id}
               name='food'
               value={char.password}
+              // disabled={selectedCount === 3}
               // checked={char.isSelected}
-              // className='hidden'
-              // className='opacity-0'
-              className='opacity-0 peer'
+              // className='opacity-0 peer'
+              className='peer'
               {...register?.(props.name, {
                 ...rules
                 // onChange: e => toggleSelect(e, char)
               })}
               // onChange={e => toggleSelect(e, char)}
+              // onChange={e => toggleSelect(e)}
             />
             <label
               htmlFor={char.id}
@@ -100,7 +110,6 @@ const GridField = ({
               />
               <p className='text-center'>{char.name}</p>
               {/* <p className='text-center'>{char.isSelected.toString()}</p> */}
-              {/* <p className='text-center'>{test}</p> */}
             </label>
             {/* <p className='hidden text-center peer-checked:block'>{char.name}</p> */}
           </div>
