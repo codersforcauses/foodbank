@@ -23,7 +23,7 @@ const PasswordForm = ({
 }: PasswordFormProps) => {
   return (
     <>
-      <p>{label}</p>
+      <p className='text-lg'>{label}</p>
       {error && <p>{error}</p>}
       <GridField label='grid' name={name} charSet={grid} />
       <div className='flex justify-center pt-4 space-x-2'>
