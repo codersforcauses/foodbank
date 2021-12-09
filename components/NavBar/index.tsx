@@ -48,13 +48,13 @@ const Navbar = () => {
             <NavLink key={nav.page} {...nav} />
           ))}
         </nav>
-        {/* <button
+        <button
           className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
           onClick={toggleSignIn}
         >
           {signIn ? 'Sign-out' : 'Sign-in'}
-        </button> */}
-        <DropdownSignOut username='Nick' signOut={() => {}} />
+        </button>
+        {/* <DropdownSignOut username='Nick' signOut={() => {}} /> */}
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
     </header>
