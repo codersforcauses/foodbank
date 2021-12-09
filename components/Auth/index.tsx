@@ -149,7 +149,7 @@ const Auth = (props: AuthProps) => {
 
   const onClose = () => {
     props.onClose()
-    // handleReset()
+    handleReset()
     // setPage(PAGES.USERNAME_FORM)
   }
 
