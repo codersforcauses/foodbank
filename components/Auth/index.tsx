@@ -71,13 +71,6 @@ const Auth = (props: AuthProps) => {
     password ===
     (await firestore.doc(`usernames/${username}`).get()).data()?.password
 
-  // CHECKS IF USERNAME IS TAKEN
-  // const checkFirebase = async (username: string) => username === 'hello'
-
-  // // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
-  // const checkPassword = async (password: string) =>
-  //   password === 'BlueBoyFishCanFreshFish'
-
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
   > = async e => {
