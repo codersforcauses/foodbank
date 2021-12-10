@@ -8,7 +8,7 @@ import { app, auth, db } from '@components/firebase'
 interface FirebaseContextProps {
   auth: Auth
   db: Firestore
-  user?: User
+  user?: User | null | undefined
   userLoading?: boolean
   userError?: Error | undefined
 }
