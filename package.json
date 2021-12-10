@@ -31,6 +31,7 @@
     "@heroicons/react": "^1.0.5",
     "critters": "0.0.15",
     "firebase": "^9.6.0",
+    "generate-username-from-email": "^1.0.2",
     "keen-slider": "6.0.5",
     "lodash.clonedeep": "^4.5.0",
     "next": "12.0.4",
