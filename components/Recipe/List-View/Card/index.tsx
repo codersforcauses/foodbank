@@ -71,6 +71,8 @@ const Card = ({
                 character,
                 ...props
               }: CardProps) => {
+  
+  
   return (
     <div
       className={[styles.card, getClassesFromColor(color, unlocked)]
@@ -78,52 +80,58 @@ const Card = ({
         .trim()}
       {...props}
     >
-      <div className=''>
-        <div className='flex flex-col'>
+      <div className="">
+        <div className="flex flex-col">
           {character && (
             <>
               <div>
-                <Link href={'/recipes/' + slug}>
-                  {/*<a>*/}
-                <div>
-                  <div className={styles['card-image-container'] + " mt-8"}>
-                    <Image
-                      src={image}
-                      layout='fill'
-                      alt={text}
-                      className={styles.image}
-                    />
-                  </div>
-                    <h1 className='tracking-wide font-semibold text-2xl'>
+
+                <Link href={{
+                  pathname: "/recipes/" + slug,
+                  query: {
+                    data: "sdsdsdsd"
+                  }
+
+                }}>
+                  <div>
+                    <div className={styles["card-image-container"] + " mt-8"}>
+                      <Image
+                        src={image}
+                        layout="fill"
+                        alt={text}
+                        className={styles.image}
+                      />
+                    </div>
+                    <h1 className="tracking-wide font-semibold text-2xl">
                       {label}
                     </h1>
                     {/*</a>*/}
-                  
-                </div>
+
+                  </div>
                 </Link>
               </div>
-              {/* Superhero on t0p of the recipe image */}
+              {/* Superhero on top of the recipe image */}
               <div
                 className={
-                  styles['splash-container'] +
-                  ' absolute top-0 right-0 -mr-10 -mt-14 opacity-80'
+                  styles["splash-container"] +
+                  " absolute top-0 right-0 -mr-10 -mt-14 opacity-80"
                 }
               >
                 <Image
-                  layout='fill'
+                  layout="fill"
                   src={explosion}
-                  alt='explosion'
+                  alt="explosion"
                   className={styles.image}
                 />
               </div>
               <div
                 className={
-                  styles['image-container'] +
-                  ' absolute top-0 right-0 -mr-2 -mt-16'
+                  styles["image-container"] +
+                  " absolute top-0 right-0 -mr-2 -mt-16"
                 }
               >
                 <Image
-                  layout='fill'
+                  layout="fill"
                   src={character.imageGif}
                   alt={character.name}
                   className={styles.image}
@@ -134,7 +142,7 @@ const Card = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

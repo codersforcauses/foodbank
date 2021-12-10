@@ -11,6 +11,8 @@ import Buttons from 'components/Recipe/Buttons'
 import EquipmentList from 'components/Recipe/EquipmentList'
 import IngredientsList from 'components/Recipe/IngredientsList'
 import CategoryInfo from 'components/Recipe/CategoryInfo'
+import { ColorScheme } from 'lib/types'
+import { primaryScheme, tealScheme, orangeScheme } from 'lib/colorSchemes'
 
 interface ParamTypes {
   recipe: Recipe
@@ -25,8 +27,14 @@ interface ParamTypes {
 const RecipeOverview: React.FC = ({ recipe }) => {
   // console.log(recipe.hint)
   // console.log(styles['recipe-name'])
+  let colorScheme: ColorScheme
+  recipe.colorScheme === 'primaryScheme' ? colorScheme = primaryScheme : ''
+  recipe.colorScheme === 'orangeScheme' ? colorScheme = orangeScheme : ''
+  recipe.colorScheme === 'tealScheme' ? colorScheme = tealScheme : ''
+  console.log(colorScheme)
+  
   return (
-    <div className={recipe.colorScheme.bg}>
+    <div className={colorScheme.bg}>
       <div className='flex justify-center m-1'>
         <div className='flex flex-col w-3/4'>
           <div
@@ -37,14 +45,14 @@ const RecipeOverview: React.FC = ({ recipe }) => {
             }
           >
             <Image
-              src={recipe.finalShot.src}
+              src={recipe.finalShot}
               alt={recipe.name}
               layout='fill'
               className={styles['image']}
             />
           </div>
           <div className={styles['label-main-image'] + ' absolute'}>
-            <img src={starLabel.src} alt='label'></img>
+            <img src={starLabel} alt='label'></img>
             <div
               className={
                 styles['recipe-name'] + ' absolute font-semibold font-serif'
@@ -78,7 +86,7 @@ const RecipeOverview: React.FC = ({ recipe }) => {
             <div className='flex'>
               <div className={styles['tip-plate-container']}>
                 <Image
-                  src={hintPlate.src}
+                  src={hintPlate}
                   alt='hint'
                   layout='fill'
                   className={styles.image}

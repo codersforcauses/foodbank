@@ -1,6 +1,7 @@
 import { ColorScheme } from 'lib/types'
 
 const primaryScheme: ColorScheme = {
+  name: 'primaryScheme',
   bg: 'bg-primary',
   header: 'text-teal',
   text: 'text-white',
@@ -9,6 +10,7 @@ const primaryScheme: ColorScheme = {
 }
 
 const tealScheme: ColorScheme = {
+  name: 'tealScheme',
   bg: 'bg-teal',
   header: 'text-primary',
   text: 'text-black',
@@ -17,6 +19,7 @@ const tealScheme: ColorScheme = {
 }
 
 const orangeScheme: ColorScheme = {
+  name: 'orangeScheme',
   bg: 'bg-orange',
   header: 'text-primary',
   text: 'text-black',

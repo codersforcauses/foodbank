@@ -1,6 +1,6 @@
 import Map from "@components/Map";
 
 
-const Home = () => <Map recipes=recipes />;
+const Home = () => <Map />;
 
 export default Home;

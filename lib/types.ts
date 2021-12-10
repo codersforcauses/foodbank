@@ -1,6 +1,7 @@
 import { StaticImageData } from 'next/Image'
 
 interface ColorScheme {
+  name: string
   bg: string
   header: string
   text: string
@@ -20,7 +21,7 @@ interface Recipe {
   finalShot: string
   ingredientsImg: string
   equipmentImg: string
-  colorScheme: ColorScheme
+  colorScheme: string
   hint?: string
 }
 

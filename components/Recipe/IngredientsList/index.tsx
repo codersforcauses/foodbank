@@ -49,7 +49,7 @@ const IngredientsList: React.FC<Props> = ({ recipe }) => {
 
         <img
           className={'rounded-3xl self-center pr-8'}
-          src={recipe.ingredientsImg.src}
+          src={recipe.ingredientsImg}
           alt='equipment'
         />
       </div>

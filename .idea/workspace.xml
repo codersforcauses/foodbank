@@ -6,9 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3b8602fa-7743-4c0f-b1c1-2000a9e04189" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/Card.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/Card.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/EquipmentList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/EquipmentList/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/IngredientsList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/IngredientsList/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes-notion/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes-notion/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/colorSchemes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/colorSchemes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
