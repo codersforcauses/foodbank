@@ -85,11 +85,11 @@ const Auth = (props: AuthProps) => {
     HTMLInputElement
   > = async e => {
     setInput(e.target.value)
-    setRegistered(await checkFirebase(e.target.value))
+    setRegistered(await checkFirebase(e.target.value.toLowerCase()))
   }
 
   const handleUsernameSubmit = () => {
-    setUsername(input)
+    setUsername(input.toLowerCase())
     // console.log(input)
   }
 
