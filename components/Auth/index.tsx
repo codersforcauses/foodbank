@@ -88,7 +88,9 @@ const Auth = (props: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+    console.log(value)
     if (!input) {
+      console.log(value)
       return
     } else if (!username) {
       handleUsernameSubmit()
@@ -110,11 +112,14 @@ const Auth = (props: AuthProps) => {
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
       if (await checkPassword(newPassword)) {
-        // console.log('Password Matched!')
-        setError('')
+        console.log('Password Matched!')
+        // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
         alert(MESSAGES.PASSWORD_MATCHED) //<-- SIGNIN
+        setError('')
       } else {
+        console.log('Wrong')
         setError(MESSAGES.WRONG_PASSWORD)
+        alert(MESSAGES.WRONG_PASSWORD)
       }
     } else if (
       !registered &&
@@ -124,8 +129,10 @@ const Auth = (props: AuthProps) => {
       const newPassword = value?.password?.join('')
       const newRepeatedPassword = value?.repeatedPassword?.join('')
       if (newRepeatedPassword === newPassword) {
-        setError('')
+        console.log('Password Matched!')
+        // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNUP
         alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
+        setError('')
 
         //Sending the details to the Firebase Firestore database
         const batch = firestore.batch()
