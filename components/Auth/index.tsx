@@ -12,7 +12,7 @@ import {
 } from 'firebase/auth'
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { app, auth, db } from '../../firebase/firebase'
+import { useFirebase } from '@components/firebase/context'
 import {
   Button,
   Form,
@@ -69,9 +69,9 @@ const Auth = (props: AuthProps) => {
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
   const [enteredCredStatus, setEnteredCredStatus] = useState('')
-
+  const { auth, db, user, userLoading, userError } = useFirebase()
   // User Authentication
-  const [user, userLoading, userError] = useAuthState(auth)
+  // const [user, userLoading, userError] = useAuthState(auth)
 
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) =>
@@ -244,8 +244,8 @@ const Auth = (props: AuthProps) => {
         defaultValues={defaultValues}
         onSubmit={handleValuesSubmit}
       >
-        {user && <p>{user.email}</p>}
-        <button onClick={() => signOut(auth)}>Sign Out</button>
+        {/* {user && <p>{user.email}</p>}
+        <button onClick={() => signOut(auth)}>Sign Out</button> */}
         {pageDisplay()}
       </Form>
     </Modal>
