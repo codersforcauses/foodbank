@@ -32,6 +32,7 @@
 }
 
 .img-dairy {
+  user-select: none;
   position: absolute;
   width: calc(22.6% * var(--scale));
   margin-top: calc(31% * var(--scale));
@@ -39,6 +40,7 @@
 }
 
 .img-meat {
+  user-select: none;
   position: absolute;
   width: calc(28% * var(--scale));
   margin-left: calc(-27.9% * var(--scale));
@@ -46,6 +48,7 @@
 }
 
 .img-fruit {
+  user-select: none;
   position: absolute;
   width: calc(28.5% * var(--scale));
   margin-top: calc(29.6% * var(--scale));
@@ -53,12 +56,14 @@
 }
 
 .img-vegetables {
+  user-select: none;
   position: absolute;
   width: calc(30% * var(--scale));
   margin-left: calc(-0.3% * var(--scale));
 }
 
 .img-grains {
+  user-select: none;
   position: absolute;
   width: calc(30% * var(--scale));
   margin-left: calc(-30% * var(--scale));

@@ -1,6 +1,7 @@
 import React from 'react'
 import FoodGroups from 'components/FoodGroups'
 import styles from 'components/FoodGroups/foodgroups.module.css'
+import Draggable from '@components/FoodGroups/Draggable'
 
 /**
  */
@@ -12,7 +13,7 @@ const FoodGroupsPage: React.FC = () => {
         <div className={styles['food-wheel']}>
           <FoodGroups />
         </div>
-        {/* Other stuff */}
+        <Draggable boundingBox={{x1:0,y1:0,x2:1000,y2:1000}} />
       </div>
     </>
   )

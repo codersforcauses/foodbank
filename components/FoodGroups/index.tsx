@@ -150,9 +150,11 @@ const FoodGroups: React.FC = () => {
             >
               <map id={`map-${index}`} name={group.map_name}>
                 <area
+                  onDragOver={() => handleMouseOver(group.div_id, allStates)}
                   onMouseOver={() => handleMouseOver(group.div_id, allStates)}
                   onKeyDown={() => {}} // TODO: ACCESSIBILITY
                   onFocus={() => {}} // TODO: ACCESSIBILITY
+                  onDragLeave={() => handleMouseOut(group.div_id, allStates)}
                   onMouseOut={() => handleMouseOut(group.div_id, allStates)}
                   onBlur={() => {}} // TODO: ACCESSIBILITY
                   onClick={toggleModal}
@@ -170,6 +172,7 @@ const FoodGroups: React.FC = () => {
                 className={styles['custom-img']}
                 useMap={`#${group.map_name}`}
                 id={group.img_id}
+                draggable={false}
               />
             </div>
           )
