@@ -71,12 +71,8 @@ const GridField = ({
       disabled={formDisabled || disabled}
     >
       <p>{selectedCount}</p>
-      <div
-        className='grid w-full grid-cols-3 gap-2'
-        // style={{ border: '20px solid blue' }}
-      >
+      <div className='grid w-full grid-cols-3 gap-2'>
         {grid.map(char => (
-          //   <FieldLabel key={char.id}>
           <div key={char.id} className='relative'>
             <input
               type='checkbox'
@@ -90,42 +86,30 @@ const GridField = ({
               disabled={
                 !char.isSelected && selectedCount === CHARACTERS_FOR_AUTH
               }
-              className='hidden peer'
-              // className='opacity-0 peer'
+              // className='hidden'
               // className='opacity-0'
               {...register?.(props.name, {
                 ...rules
-                // ,onChange: e => {
-                //   toggleSelect(e, char)
-                //   toggleSelectedCount(e)
-                // }
               })}
               onChange={e => {
                 toggleSelect(e, char)
                 toggleSelectedCount(e)
               }}
-              // onChange={e => toggleSelectedCount(e)}
             />
             <label
               htmlFor={char.id}
-              // className='flex flex-col justify-content-center'
-              // className='opacity-30 peer-checked:opacity-100'
               className={char.isSelected ? 'opacity-40' : 'opacity-100'}
             >
               <Image
-                // key={char.id}
-                className='object-contain transition-all scale-90 hover:scale-100 z-0'
+                className='z-0 object-contain transition-all scale-90 hover:scale-100'
                 height={250}
                 width={250}
-                // layout='responsive'
                 src={char.image}
                 alt={char.name}
-                //   placeholder='blur'
               />
               <p className='text-center'>{char.name}</p>
               <p className='text-center'>{char?.isSelected?.toString()}</p>
             </label>
-            {/* <p className='hidden text-center peer-checked:block'>{char.name}</p> */}
 
             <BsFillCheckCircleFill
               className={
@@ -141,7 +125,6 @@ const GridField = ({
               }
             />
           </div>
-          //   </FieldLabel>
         ))}
         {error ? (
           <FieldMessage>{error}</FieldMessage>

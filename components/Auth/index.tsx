@@ -6,6 +6,14 @@ import React, {
 } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from 'firebase/auth'
+import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { app, auth, db } from '../../firebase/firebase'
+import {
   Button,
   Form,
   TextField,
@@ -17,7 +25,6 @@ import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 import RepeatPasswordForm from './RepeatPasswordForm'
-import { firestore } from './firebase'
 
 const CHARACTERS_FOR_AUTH = 3
 
@@ -63,16 +70,16 @@ const Auth = (props: AuthProps) => {
   const [error, setError] = useState<string>('')
   const [enteredCredStatus, setEnteredCredStatus] = useState('')
 
+  // User Authentication
+  const [user, userLoading, userError] = useAuthState(auth)
+
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) =>
-    username
-      ? (await firestore.doc(`usernames/${username}`).get()).exists
-      : false
+    username ? (await getDoc(doc(db, 'usernames', username))).exists() : false
 
   // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
   const checkPassword = async (password: string) =>
-    password ===
-    (await firestore.doc(`usernames/${username}`).get()).data()?.password
+    password === (await getDoc(doc(db, 'usernames', username))).data()?.password
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
@@ -88,7 +95,9 @@ const Auth = (props: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+    console.log(value)
     if (!input) {
+      console.log(value)
       return
     } else if (!username) {
       handleUsernameSubmit()
@@ -110,11 +119,19 @@ const Auth = (props: AuthProps) => {
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
       if (await checkPassword(newPassword)) {
-        // console.log('Password Matched!')
-        setError('')
+        await signInWithEmailAndPassword(
+          auth,
+          `${username}@test123.xyz`,
+          newPassword
+        )
+        console.log('Password Matched!')
+        // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
         alert(MESSAGES.PASSWORD_MATCHED) //<-- SIGNIN
+        setError('')
       } else {
+        console.log('Wrong')
         setError(MESSAGES.WRONG_PASSWORD)
+        alert(MESSAGES.WRONG_PASSWORD)
       }
     } else if (
       !registered &&
@@ -124,16 +141,26 @@ const Auth = (props: AuthProps) => {
       const newPassword = value?.password?.join('')
       const newRepeatedPassword = value?.repeatedPassword?.join('')
       if (newRepeatedPassword === newPassword) {
-        setError('')
+        console.log('Password Matched!')
+        // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNUP
         alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
+        setError('')
 
         //Sending the details to the Firebase Firestore database
-        const batch = firestore.batch()
-        batch.set(
-          firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
-          { password: newPassword } // The information to be stored in that document.
+        // const batch = firestore.batch()
+        // batch.set(
+        //   firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
+        //   { password: newPassword } // The information to be stored in that document.
+        // )
+        // await batch.commit()
+        await createUserWithEmailAndPassword(
+          auth,
+          `${username}@test123.xyz`,
+          newPassword
         )
-        await batch.commit()
+        await setDoc(doc(db, 'usernames', username), {
+          password: newPassword
+        })
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
       }
@@ -217,6 +244,8 @@ const Auth = (props: AuthProps) => {
         defaultValues={defaultValues}
         onSubmit={handleValuesSubmit}
       >
+        {user && <p>{user.email}</p>}
+        <button onClick={() => signOut(auth)}>Sign Out</button>
         {pageDisplay()}
       </Form>
     </Modal>
