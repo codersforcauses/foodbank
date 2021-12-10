@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
-    optimizeCss: true
+    optimizeCss: false
   },
   // need to remove once test is deleted
   images: {
