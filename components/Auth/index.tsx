@@ -14,10 +14,12 @@ import {
   selectSet
 } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
+import {} from 'firebase/auth'
+import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
+import { app, auth, db } from './firebase'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 import RepeatPasswordForm from './RepeatPasswordForm'
-import { firestore } from './firebase'
 
 const CHARACTERS_FOR_AUTH = 3
 
@@ -65,14 +67,11 @@ const Auth = (props: AuthProps) => {
 
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) =>
-    username
-      ? (await firestore.doc(`usernames/${username}`).get()).exists
-      : false
+    username ? (await getDoc(doc(db, 'usernames', username))).exists() : false
 
   // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
   const checkPassword = async (password: string) =>
-    password ===
-    (await firestore.doc(`usernames/${username}`).get()).data()?.password
+    password === (await getDoc(doc(db, 'usernames', username))).data()?.password
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
@@ -135,12 +134,13 @@ const Auth = (props: AuthProps) => {
         setError('')
 
         //Sending the details to the Firebase Firestore database
-        const batch = firestore.batch()
-        batch.set(
-          firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
-          { password: newPassword } // The information to be stored in that document.
-        )
-        await batch.commit()
+        // const batch = firestore.batch()
+        // batch.set(
+        //   firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
+        //   { password: newPassword } // The information to be stored in that document.
+        // )
+        // await batch.commit()
+        await setDoc(doc(db, 'usernames', username), { password: newPassword })
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
       }
