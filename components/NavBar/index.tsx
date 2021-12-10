@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { signOut } from 'firebase/auth'
+import capitalize from 'lodash.capitalize'
 import { useFirebase } from '@components/firebase/context'
 import NavLink, { NavLinkProps } from './NavLink'
 import logo from '../../public/images/foodbank-logo.webp'
@@ -54,7 +54,7 @@ const Navbar = () => {
         </nav>
         {user ? (
           <DropdownSignOut
-            username={user!.email!.replace(/@[^@]+$/, '')}
+            username={capitalize(user!.email!.replace(/@[^@]+$/, ''))}
             auth={auth}
           />
         ) : (
