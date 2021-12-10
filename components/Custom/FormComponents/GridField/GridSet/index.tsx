@@ -30,8 +30,8 @@ const selectSet = (seed: string) => {
   )
   selectedSet.map(img => {
     img.id = uuid_v4()
-    // img.password = randomStringGen(PASSWORD_LENGTH)
-    img.password = img.name // For testing purposes
+    img.password = randomStringGen(PASSWORD_LENGTH)
+    // img.password = img.name // For testing purposes
     img.isSelected = false
   })
   return selectedSet
