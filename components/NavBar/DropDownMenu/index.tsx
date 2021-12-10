@@ -21,17 +21,20 @@ const links: Array<NavLinkProps> = [
 ]
 
 export interface DropDownMenuProps {
-  page: string
-  route: string
+  page?: string
+  route?: string
 }
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
   const [subMenu, setSubMenu] = useState(false)
   return (
-    <nav>
+    <nav className='relative'>
       <button
         onClick={() => setSubMenu(!subMenu)}
-        className='px-4 py-1 font-serif text-xl text-black hover:opacity-75 bg-teal rounded-md'
+        className='px-4 py-1 font-serif 
+                    text-xl text-black 
+                    hover:opacity-75 
+                    bg-teal rounded-md'
       >
         <b>&#9776;</b> MENU
       </button>
@@ -39,15 +42,17 @@ const DropDownMenu = () => {
         <div
           className='shadow-lg 
                         overflow-hidden 
-                        absolute 
-                        rounded-lg 
+                        absolute rounded-lg 
                         z-10 
-                        left-1/2 transform -translate-x-1/2 mt-6 px-2 w-auto max-w-md sm:px-0'
+                        right-0 w-max 
+                        mt-6'
         >
           <div className='relative grid gap-6 bg-primary px-5 py-6 sm:gap-8 sm:p-8'>
             <div className='block items-center'>
               {links.map(nav => (
-                <NavLink key={nav.page} {...nav} />
+                <>
+                  <NavLink key={nav.page} {...nav} />
+                </>
               ))}
             </div>
           </div>

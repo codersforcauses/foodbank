@@ -17,7 +17,7 @@ const Navbar = () => {
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
       <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
-          <a className='relative w-12 h-10 hover:opacity-75'>
+          <a className='absolute left-10 top-1 w-20 h-14 hover:opacity-75'>
             <Image
               src={logo}
               alt='Foodbank logo'
@@ -27,7 +27,7 @@ const Navbar = () => {
             />
           </a>
         </Link>
-        <div className='flex'>
+        <div className='flex justify-end w-screen'>
           <DropDownMenu />
           <button
             className='px-4 py-1 font-serif text-2xl text-white hover:opacity-75'
