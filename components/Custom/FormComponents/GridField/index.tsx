@@ -56,8 +56,10 @@ const GridField = ({
   const toggleSelectedCount = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setSelectedCount(prev => prev + 1)
+      console.log('evoked!')
     } else {
       setSelectedCount(prev => prev - 1)
+      console.log('revoked!')
     }
   }
 

@@ -18,6 +18,17 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
           aria-hidden='true'
         />
       </Menu.Button>
+      {/* <Transition
+        as={Fragment}
+        enter='transition ease-out duration-100'
+        enterFrom='transform opacity-0 scale-95'
+        enterTo='transform opacity-100 scale-100'
+        leave='transition ease-in duration-75'
+        leaveFrom='transform opacity-100 scale-100'
+        leaveTo='transform opacity-0 scale-95'
+      >
+        <div className='absolute right-0 ml-5 c-triangle-up'></div>
+      </Transition> */}
       <Transition
         as={Fragment}
         enter='transition ease-out duration-100'
@@ -27,25 +38,15 @@ export default function DropdownSignOut({ username, signOut }: DropdownProp) {
         leaveFrom='transform opacity-100 scale-100'
         leaveTo='transform opacity-0 scale-95'
       >
-        <div className='absolute ml-5 c-triangle-up'></div>
-      </Transition>
-      <Transition
-        as={Fragment}
-        enter='transition ease-out duration-100'
-        enterFrom='transform opacity-0 scale-95'
-        enterTo='transform opacity-100 scale-100'
-        leave='transition ease-in duration-75'
-        leaveFrom='transform opacity-100 scale-100'
-        leaveTo='transform opacity-0 scale-95'
-      >
-        <Menu.Items className='absolute right-0 w-24 font-serif rounded-md top-[2.8rem]'>
+        <Menu.Items className='absolute right-0 w-24 font-serif rounded-md top-[1.8rem]'>
+          <div className='absolute right-0 top-0 ml-5 c-triangle-up'></div>
           <Menu.Item>
             {({ active }) => (
               <button
                 onClick={() => signOut()}
                 className={`${
                   active ? 'text-opacity-75' : ''
-                } text-white rounded-md items-center px-2 py-2 bg-orange`}
+                } text-white rounded-md items-center px-2 py-2 bg-orange relative top-2.5`}
               >
                 SIGN OUT
               </button>
