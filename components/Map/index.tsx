@@ -26,7 +26,7 @@ const Map = () => {
                   setSelect={setSelect}
                   selected={select}
                 />
-                 {/* <Image
+                {/* <Image
                   priority
                   src={baseMap}
                   alt='Tucker Island Map'

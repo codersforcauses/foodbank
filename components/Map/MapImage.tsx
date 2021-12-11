@@ -5,7 +5,7 @@ import svgData from './svgImageData.json'
 import Image from 'next/image'
 import testImg from './assets/TuckerMap.jpg'
 import baseMap from '../../public/images/tuckerMap.webp'
-import styles from "./index.module.css"
+import styles from './index.module.css'
 
 interface MapProps {
   scale: number
@@ -62,7 +62,7 @@ const MapImage = ({
           placeholder='blur'
           objectFit='cover'
           objectPosition='left center'
-          useMap="#tuckerislandmap"
+          useMap='#tuckerislandmap'
         />
         {/*<img src={String(testImg)} alt='Tucker Island Map' useMap='#tuckerislandmap' />*/}
 
