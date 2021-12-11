@@ -125,12 +125,12 @@ const Auth = (props: AuthProps) => {
         setError('')
       } catch (err) {
         console.dir(err)
-        console.log(err?.message)
-        if (err.code === 'auth/wrong-password') {
-          console.log('Wrong')
-          setError(MESSAGES.WRONG_PASSWORD)
-          alert(MESSAGES.WRONG_PASSWORD)
-        }
+        // console.log(err?.message)
+        // if (err.code === 'auth/wrong-password') {
+        //   console.log('Wrong')
+        //   setError(MESSAGES.WRONG_PASSWORD)
+        //   alert(MESSAGES.WRONG_PASSWORD)
+        // }
       }
     } else if (
       !registered &&
@@ -157,9 +157,9 @@ const Auth = (props: AuthProps) => {
           `${username}@test123.xyz`,
           newPassword
         )
-        await updateProfile(auth!.currentUser, {
-          displayName: username
-        })
+        // await updateProfile(auth!.currentUser, {
+        //   displayName: username
+        // })
         await setDoc(doc(db, 'usernames', username), {
           password: newPassword
         })
