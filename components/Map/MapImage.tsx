@@ -27,6 +27,7 @@ const MapImage = ({
     ytrans: number
   ) => {
     //need to change this type
+    console.log("hello" + event.target.alt)
     event.preventDefault()
     const area = event.target.alt
     selected === area ? setSelect(null) : setSelect(area)
@@ -36,10 +37,10 @@ const MapImage = ({
 
   return (
     <div
-      className='block w-full min-h-full items-stretch'
+      className='block w-full min-h-full items-stretch h-screen w-screen pointer-events-auto'
       style={{ minHeight: '900px' }}
     >
-      <div className='flex relative max-w-screen'>
+
         <Image
           priority
           src={testImg}
@@ -48,8 +49,9 @@ const MapImage = ({
           layout='fill'
           objectFit='cover'
           objectPosition='left center'
+          className='pointer-events-auto'
         />
-        {/* <img src={testImg} alt='Tucker Island Map' useMap='#tuckerislandmap' /> */}
+        {/* <img src={testImg} alt='Tucker Island Map' useMap='#tuckerislandmap' className='h-screen w-screen'/> */}
 
         <map name='tuckerislandmap'>
           {svgData.groupArray.map(location => {
@@ -70,6 +72,7 @@ const MapImage = ({
                   key={location.id}
                   alt={location.id}
                   onClick={e => {
+                      console.log('test')
                     handleClick(e, setTransform, -xtrans, -ytrans)
                   }}
                   href={location.id}
@@ -81,7 +84,7 @@ const MapImage = ({
             }
           })}
         </map>
-      </div>
+
     </div>
   )
 }
