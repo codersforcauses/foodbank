@@ -2,8 +2,8 @@ import React from 'react'
 
 const TrophyRoom = () => {
   return (
-    <div>
-      <h1>Trophy Room</h1>
+    <div className='bg-primary'>
+      <h1 className='text-white font-bold text-6xl text-center'>Trophy Room</h1>
     </div>
   )
 }
