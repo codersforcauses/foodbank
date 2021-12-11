@@ -1,13 +1,6 @@
-import { useState, InputHTMLAttributes, useContext, ChangeEvent } from 'react'
-import { RegisterOptions } from 'react-hook-form'
+import { useState, InputHTMLAttributes, ChangeEvent } from 'react'
+import { useForm } from 'react-hook-form'
 import Image from 'next/image'
-import cloneDeep from 'lodash.clonedeep'
-import { FormContext } from '@components/Custom/FormComponents/Form/context'
-import {
-  FieldControl,
-  FieldLabel,
-  FieldMessage
-} from '@components/Custom/FormComponents/utils'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
 
@@ -16,29 +9,10 @@ const CHARACTERS_FOR_AUTH = 3
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
   label: string
-  name: string
-  description?: string
-  rules?: RegisterOptions
 }
 
-const GridField = ({
-  charSet,
-  color,
-  description,
-  disabled = false,
-  label,
-  required = false,
-  rules = {},
-  ...props
-}: GridFieldProps) => {
-  const {
-    formState,
-    disabled: formDisabled,
-    register
-  } = useContext(FormContext)
-  const error: string = formState?.errors?.[props.name]?.message
-
-  const [grid, setGrid] = useState<Character[]>(cloneDeep(charSet))
+const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
+  const [grid, setGrid] = useState<Character[]>(charSet)
   const [selectedCount, setSelectedCount] = useState(0)
 
   const toggleSelect = (
@@ -63,13 +37,11 @@ const GridField = ({
     }
   }
 
+  const { register, handleSubmit } = useForm()
+  const onSubmit = data => console.log(data)
+
   return (
-    <FieldControl
-      name={props.name}
-      error={error}
-      required={'required' in rules || required}
-      disabled={formDisabled || disabled}
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <p>{selectedCount}</p>
       <div className='grid w-full grid-cols-3 gap-2'>
         {grid.map(char => (
@@ -77,7 +49,7 @@ const GridField = ({
             <input
               type='checkbox'
               aria-describedby={`${char.name}-label`}
-              aria-invalid={!!error}
+              //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
               name='food'
@@ -88,9 +60,9 @@ const GridField = ({
               }
               // className='hidden'
               // className='opacity-0'
-              {...register?.(props.name, {
-                ...rules
-              })}
+              //    {...register.(props.name, {
+              //      ...rules
+              //    })}
               onChange={e => {
                 toggleSelect(e, char)
                 toggleSelectedCount(e)
@@ -126,13 +98,8 @@ const GridField = ({
             />
           </div>
         ))}
-        {error ? (
-          <FieldMessage>{error}</FieldMessage>
-        ) : (
-          description && <FieldMessage description>{description}</FieldMessage>
-        )}
       </div>
-    </FieldControl>
+    </form>
   )
 }
 
