@@ -23,9 +23,9 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
         <button
           className={
             'w-48 my-4 py-2 px-4 rounded-full ' +
-            colorScheme.buttonBg +
+            recipe.colorScheme.buttonBg +
             ' ' +
-            colorScheme.buttonText
+            recipe.colorScheme.buttonText
           }
         >
           View All Steps
@@ -35,9 +35,9 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
         <button
           className={
             'w-48 my-4 py-2 px-4 rounded-full ' +
-            colorScheme.buttonBg +
+            recipe.colorScheme.buttonBg +
             ' ' +
-            colorScheme.buttonText
+            recipe.colorScheme.buttonText
           }
         >
           Let&apos;s Cook
@@ -49,9 +49,9 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
         href={`/pdfs/recipes/${recipe.name}.pdf`}
         className={
           'w-48 my-4 py-2 px-4 rounded-full text-center ' +
-          colorScheme.buttonBg +
+          recipe.colorScheme.buttonBg +
           ' ' +
-          colorScheme.buttonText
+          recipe.colorScheme.buttonText
         }
       >
         Download

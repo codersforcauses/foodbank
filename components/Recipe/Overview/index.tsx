@@ -28,13 +28,15 @@ const RecipeOverview: React.FC = ({ recipe }) => {
   // console.log(recipe.hint)
   // console.log(styles['recipe-name'])
   let colorScheme: ColorScheme
-  recipe.colorScheme === 'primaryScheme' ? colorScheme = primaryScheme : ''
-  recipe.colorScheme === 'orangeScheme' ? colorScheme = orangeScheme : ''
-  recipe.colorScheme === 'tealScheme' ? colorScheme = tealScheme : ''
-  console.log(colorScheme)
+  recipe.colorScheme === 'primaryScheme' ? recipe.colorScheme = primaryScheme : ''
+  recipe.colorScheme === 'orangeScheme' ? recipe.colorScheme = orangeScheme : ''
+  recipe.colorScheme === 'tealScheme' ? recipe.colorScheme = tealScheme : ''
+  // recipe.colorScheme = colorScheme
+  
+  console.log(recipe.colorScheme)
   
   return (
-    <div className={colorScheme.bg}>
+    <div className={recipe.colorScheme.bg}>
       <div className='flex justify-center m-1'>
         <div className='flex flex-col w-3/4'>
           <div
@@ -52,7 +54,7 @@ const RecipeOverview: React.FC = ({ recipe }) => {
             />
           </div>
           <div className={styles['label-main-image'] + ' absolute'}>
-            <img src={starLabel} alt='label'></img>
+            <Image src={starLabel} alt='label'></Image>
             <div
               className={
                 styles['recipe-name'] + ' absolute font-semibold font-serif'
