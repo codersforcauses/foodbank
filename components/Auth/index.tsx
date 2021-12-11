@@ -8,7 +8,7 @@ import { SubmitHandler } from 'react-hook-form'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  updateProfile
 } from 'firebase/auth'
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -68,18 +68,13 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
   const [error, setError] = useState<string>('')
-  const [enteredCredStatus, setEnteredCredStatus] = useState('')
   const { auth, db, user, userLoading, userError } = useFirebase()
   // User Authentication
   // const [user, userLoading, userError] = useAuthState(auth)
 
   // CHECKS IF USERNAME IS TAKEN
   const checkFirebase = async (username: string) =>
-    username ? (await getDoc(doc(db, 'usernames', username))).exists() : false
-
-  // CHECKS IF PASSWORD MATCHES THE USERNAME IN THE DATABASE.
-  const checkPassword = async (password: string) =>
-    password === (await getDoc(doc(db, 'usernames', username))).data()?.password
+    (await getDoc(doc(db, 'usernames', username))).exists()
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
@@ -118,20 +113,24 @@ const Auth = (props: AuthProps) => {
     }
     if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
       const newPassword = value?.password?.join('')
-      if (await checkPassword(newPassword)) {
+      try {
         await signInWithEmailAndPassword(
           auth,
           `${username}@test123.xyz`,
           newPassword
-        )
+        ) //<-- SIGNIN
         console.log('Password Matched!')
         // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
-        alert(MESSAGES.PASSWORD_MATCHED) //<-- SIGNIN
+        alert(MESSAGES.PASSWORD_MATCHED)
         setError('')
-      } else {
-        console.log('Wrong')
-        setError(MESSAGES.WRONG_PASSWORD)
-        alert(MESSAGES.WRONG_PASSWORD)
+      } catch (err) {
+        console.dir(err)
+        console.log(err?.message)
+        if (err.code === 'auth/wrong-password') {
+          console.log('Wrong')
+          setError(MESSAGES.WRONG_PASSWORD)
+          alert(MESSAGES.WRONG_PASSWORD)
+        }
       }
     } else if (
       !registered &&
@@ -158,6 +157,9 @@ const Auth = (props: AuthProps) => {
           `${username}@test123.xyz`,
           newPassword
         )
+        await updateProfile(auth!.currentUser, {
+          displayName: username
+        })
         await setDoc(doc(db, 'usernames', username), {
           password: newPassword
         })
