@@ -10,22 +10,22 @@ const Map = () => {
 
   return (
     <div className='h-screen'>
-        <TransformWrapper
-          doubleClick={{ disabled: true }}
-          wheel={{ disabled: true }}
-          initialScale={1}
-        >
+      <TransformWrapper
+        doubleClick={{ disabled: true }}
+        wheel={{ disabled: true }}
+        initialScale={1}
+      >
         {({ resetTransform, setTransform }) => (
           <>
             <TransformComponent>
-                <MapImage
-                  scale={scale}
-                  setTransform={setTransform}
-                  setDisplay={setDisplay}
-                  display={display}
-                  setSelect={setSelect}
-                  selected={select}
-                />
+              <MapImage
+                scale={scale}
+                setTransform={setTransform}
+                setDisplay={setDisplay}
+                display={display}
+                setSelect={setSelect}
+                selected={select}
+              />
             </TransformComponent>
 
             <div

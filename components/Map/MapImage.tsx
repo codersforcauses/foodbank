@@ -27,7 +27,7 @@ const MapImage = ({
     ytrans: number
   ) => {
     //TODO: need to change this type
-    console.log("hello" + event.target.alt)
+    console.log('hello' + event.target.alt)
     event.preventDefault()
     const area = event.target.alt
     selected === area ? setSelect(null) : setSelect(area)
@@ -57,8 +57,8 @@ const MapImage = ({
               // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
               // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
               //scaling by 10 seems to give better views of the locations
-              const xtrans = parseInt(location.xtrans) * scale 
-              const ytrans = parseInt(location.ytrans) * scale 
+              const xtrans = parseInt(location.xtrans) * scale
+              const ytrans = parseInt(location.ytrans) * scale
 
               const scaledCoords = location.coords.map(coord => coord * scale)
               //TODO: consider changing className to a state and use tailwind
@@ -69,7 +69,7 @@ const MapImage = ({
                   key={location.id}
                   alt={location.id}
                   onClick={e => {
-                      console.log('test')
+                    console.log('test')
                     handleClick(e, setTransform, -xtrans, -ytrans)
                   }}
                   href={location.id}
@@ -81,7 +81,7 @@ const MapImage = ({
             }
           })}
         </map>
-        </div>
+      </div>
     </div>
   )
 }
