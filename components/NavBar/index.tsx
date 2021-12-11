@@ -33,15 +33,10 @@ const Navbar = () => {
       <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
           <a className='relative w-12 h-10 hover:opacity-75'>
-            <Image
-              src={logo}
-              alt='Foodbank logo'
-              placeholder='blur'
-              layout='fill'
-              quality={50}
-            />
+            <Image src={logo} alt='Foodbank logo' layout='fill' />
           </a>
         </Link>
+        <Link href='/CharacterPage'> Character Page </Link>
         <nav className='flex items-center space-x-10'>
           {links.map(nav => (
             <NavLink key={nav.page} {...nav} />
