@@ -1,5 +1,8 @@
 .captionbox {
-  clip-path: polygon(6% 2%, 99% 2%, 94% 98%, 1% 98%);
+  background-image: radial-gradient(#df740044 69%, #e6d7c7b3 69%);
+  background-size: 20px 20px;
+  background-color: #eeeeee;
+  /* clip-path: polygon(6% 2%, 99% 2%, 94% 98%, 1% 98%); */
 }
 
 .h2 {

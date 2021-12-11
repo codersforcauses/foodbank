@@ -1,7 +1,4 @@
-import Image from 'next/image'
-import testImg from './assets/TuckerMap.jpg'
 import React, { useEffect, useState } from 'react'
-import baseMap from '../../public/images/tuckerMap.webp'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 import TownBoxWrapper from './TownBoxWrapper'
 import MapImage from './MapImage'
@@ -12,7 +9,7 @@ const Map = () => {
   const [display, setDisplay] = useState(false)
 
   return (
-    <div className='h-screen w-screen'>
+    <div className='h-screen'>
         <TransformWrapper
           doubleClick={{ disabled: true }}
           wheel={{ disabled: true }}
@@ -21,7 +18,6 @@ const Map = () => {
         {({ resetTransform, setTransform }) => (
           <>
             <TransformComponent>
-              <div className="className='h-screen w-screen">
                 <MapImage
                   scale={scale}
                   setTransform={setTransform}
@@ -30,17 +26,8 @@ const Map = () => {
                   setSelect={setSelect}
                   selected={select}
                 />
-                {/* <Image
-                  priority
-                  src={baseMap}
-                  alt='Tucker Island Map'
-                  placeholder='blur'
-                  objectFit='cover'
-                  objectPosition='left center'
-                />*/}
-              </div>
             </TransformComponent>
-{/* 
+
             <div
               className={`fixed top-0 left-0 w-screen h-screen flex justify-center ${
                 display ? '' : 'hidden'
@@ -52,7 +39,7 @@ const Map = () => {
                 setSelect={setSelect}
                 setDisplay={setDisplay}
               />
-            </div> */}
+            </div>
           </>
         )}
       </TransformWrapper>

@@ -1,9 +1,6 @@
 import React from 'react'
-//import mapImg from '../../public/images/tuckerMap'
-import mapImg from '../../public/images/tuckerMap.webp'
 import svgData from './svgImageData.json'
 import Image from 'next/image'
-import testImg from './assets/TuckerMap.jpg'
 import baseMap from '../../public/images/tuckerMap.webp'
 import styles from './index.module.css'
 
@@ -29,7 +26,7 @@ const MapImage = ({
     xtrans: number,
     ytrans: number
   ) => {
-    //need to change this type
+    //TODO: need to change this type
     console.log("hello" + event.target.alt)
     event.preventDefault()
     const area = event.target.alt
@@ -44,29 +41,15 @@ const MapImage = ({
       style={{ minHeight: '900px' }}
     >
       <div className='flex relative max-w-screen'>
-        {/*<Image
-          id="mapImageID"
-          priority
-          src={mapImg}
-          alt='Tucker Island Map'
-          placeholder='blur'
-          layout='fill'
-          objectFit='cover'
-          objectPosition='left center'
-          useMap='#tuckerislandmap'
-        /> */}
         <Image
           className={styles.mapImage}
           priority
           src={baseMap}
           alt='Tucker Island Map'
           placeholder='blur'
-          objectFit='cover'
           objectPosition='left center'
           useMap='#tuckerislandmap'
         />
-        {/*<img src={String(testImg)} alt='Tucker Island Map' useMap='#tuckerislandmap' />*/}
-
         <map name='tuckerislandmap'>
           {svgData.groupArray.map(location => {
             if (location.coords) {
@@ -74,8 +57,8 @@ const MapImage = ({
               // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
               // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
               //scaling by 10 seems to give better views of the locations
-              const xtrans = parseInt(location.xtrans) * scale * 10
-              const ytrans = parseInt(location.ytrans) * scale * 10
+              const xtrans = parseInt(location.xtrans) * scale 
+              const ytrans = parseInt(location.ytrans) * scale 
 
               const scaledCoords = location.coords.map(coord => coord * scale)
               //TODO: consider changing className to a state and use tailwind

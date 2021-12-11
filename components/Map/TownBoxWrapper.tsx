@@ -10,19 +10,20 @@ interface TownBoxWrapperProps {
 }
 
 interface TownBox {
-  headerColor: any
-  headerText: string
-  captionText: string
-  showButton: boolean
-  id: string
+  headerColor?: any
+  headerText?: string
+  captionText?: string
+  showButton?: boolean
+  id?: string
 }
 
-const TownBoxWrapper = ({
+const TownBoxWrapper : React.FC = ({
   selected,
   resetTransform,
   setSelect,
   setDisplay
 }: TownBoxWrapperProps) => {
+
   const handleClose = () => {
     setSelect(null)
     setDisplay(false)
@@ -39,20 +40,18 @@ const TownBoxWrapper = ({
         headerColor,
         showButton,
         id
-      }: TownBox | undefined = selectedArea
+      }: TownBox  = selectedArea
 
       return (
-        <>
           <div key={id} className='self-center'>
             <Townbox
               headerColor={headerColor}
               headerText={headerText}
               captionText={captionText}
               showButton={showButton}
-              //close={handleClose}
+              close={handleClose}
             />
           </div>
-        </>
       )
     }
   }
