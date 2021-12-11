@@ -13,7 +13,11 @@ const Map = () => {
 
   return (
     <div className='h-screen w-screen'>
-      <TransformWrapper>
+        <TransformWrapper
+          doubleClick={{ disabled: true }}
+          wheel={{ disabled: true }}
+          initialScale={1}
+        >
         {({ resetTransform, setTransform }) => (
           <>
             <TransformComponent>
@@ -36,7 +40,7 @@ const Map = () => {
                 />*/}
               </div>
             </TransformComponent>
-
+{/* 
             <div
               className={`fixed top-0 left-0 w-screen h-screen flex justify-center ${
                 display ? '' : 'hidden'
@@ -48,7 +52,7 @@ const Map = () => {
                 setSelect={setSelect}
                 setDisplay={setDisplay}
               />
-            </div>
+            </div> */}
           </>
         )}
       </TransformWrapper>
