@@ -1,0 +1,87 @@
+.map-selected {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  transform: scale(1.1, 1.1);
+  filter: brightness(80%);
+}
+
+.map-unselected {
+  transition: 0.2s all;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+
+.map-selected:hover,
+.map-unselected:hover {
+  cursor: pointer;
+  transform: scale(1.1, 1.1);
+}
+
+.outer {
+  position: relative;
+}
+
+@keyframes lighten-map {
+  0% {
+    filter: brightness(0.6);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.map {
+  position: absolute;
+  object-fit: cover;
+  object-position: top left;
+  min-width: 100vh;
+  min-height: 100vh;
+
+  transition: 1s;
+
+  animation-name: lighten-map;
+  animation-duration: 1s;
+}
+
+@keyframes darken-map {
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(0.6);
+  }
+}
+
+.map-inactive {
+  animation-name: darken-map;
+  animation-duration: 1s;
+
+  filter: brightness(0.6);
+}
+
+@media (max-width: 1170px) {
+  .map {
+    min-width: 2900px;
+    min-height: 2100px;
+  }
+  .full-page-wrapper {
+    min-width: 2900px;
+    min-height: 2100px;
+  }
+  .townbox-wrapper {
+    transform: scale(3);
+  }
+}
+
+.up {
+  transform: translate(0, -300px);
+}
+
+.left {
+  transform: translate(-500px, 0);
+}
+
+/* Due to a bug in the library (react-zoom-pan-pinch), this allows for areas within image maps to be clicked */
+.img {
+  pointer-events: auto !important;
+}
