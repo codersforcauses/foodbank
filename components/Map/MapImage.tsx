@@ -1,8 +1,11 @@
 import React from 'react'
+//import mapImg from '../../public/images/tuckerMap'
 import mapImg from '../../public/images/tuckerMap.webp'
 import svgData from './svgImageData.json'
 import Image from 'next/image'
 import testImg from './assets/TuckerMap.jpg'
+import baseMap from '../../public/images/tuckerMap.webp'
+import styles from "./index.module.css"
 
 interface MapProps {
   scale: number
@@ -40,16 +43,28 @@ const MapImage = ({
       style={{ minHeight: '900px' }}
     >
       <div className='flex relative max-w-screen'>
-        <Image
+        {/*<Image
+          id="mapImageID"
           priority
-          src={testImg}
+          src={mapImg}
           alt='Tucker Island Map'
           placeholder='blur'
           layout='fill'
           objectFit='cover'
           objectPosition='left center'
+          useMap='#tuckerislandmap'
+        /> */}
+        <Image
+          className={styles.mapImage}
+          priority
+          src={baseMap}
+          alt='Tucker Island Map'
+          placeholder='blur'
+          objectFit='cover'
+          objectPosition='left center'
+          useMap="#tuckerislandmap"
         />
-        {/* <img src={testImg} alt='Tucker Island Map' useMap='#tuckerislandmap' /> */}
+        {/*<img src={String(testImg)} alt='Tucker Island Map' useMap='#tuckerislandmap' />*/}
 
         <map name='tuckerislandmap'>
           {svgData.groupArray.map(location => {

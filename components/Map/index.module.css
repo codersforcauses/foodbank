@@ -82,6 +82,6 @@
 }
 
 /* Due to a bug in the library (react-zoom-pan-pinch), this allows for areas within image maps to be clicked */
-.img {
+.mapImage {
   pointer-events: auto !important;
 }

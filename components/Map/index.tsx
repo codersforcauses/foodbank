@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import baseMap from '../../public/images/tuckerMap.webp'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 import TownBoxWrapper from './TownBoxWrapper'
+import MapImage from './MapImage'
 
 const Map = () => {
   const [scale, setScale] = useState(1)
@@ -17,14 +18,22 @@ const Map = () => {
           <>
             <TransformComponent>
               <div className="className='h-screen w-screen">
-                <Image
+                <MapImage
+                  scale={scale}
+                  setTransform={setTransform}
+                  setDisplay={setDisplay}
+                  display={display}
+                  setSelect={setSelect}
+                  selected={select}
+                />
+                 {/* <Image
                   priority
                   src={baseMap}
                   alt='Tucker Island Map'
                   placeholder='blur'
                   objectFit='cover'
                   objectPosition='left center'
-                />
+                />*/}
               </div>
             </TransformComponent>
 
