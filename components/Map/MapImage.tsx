@@ -5,11 +5,11 @@ import Image from 'next/image'
 import testImg from './assets/TuckerMap.jpg'
 
 interface MapProps {
-  scale: number;
-  setTransform: (xtrans: number, ytrans: number, scale: number ) => void;
-  setDisplay: (display: boolean) => void;
-  display: boolean;
-  selected: any;
+  scale: number
+  setTransform: (xtrans: number, ytrans: number, scale: number) => void
+  setDisplay: (display: boolean) => void
+  display: boolean
+  selected: any
   setSelect: (state: any) => void
 }
 
@@ -20,7 +20,6 @@ const MapImage = ({
   selected,
   setSelect
 }: MapProps) => {
-
   const handleClick = (
     event: any,
     setTransform: any,
@@ -40,19 +39,18 @@ const MapImage = ({
       className='block w-full min-h-full items-stretch'
       style={{ minHeight: '900px' }}
     >
-      <div className='flex relative max-w-screen'>              
-      
-      <Image
-        priority
-        src={testImg}
-        alt='Tucker Island Map'
-        placeholder='blur'
-        layout='fill'
-        objectFit='cover'
-        objectPosition='left center'
-      />
-      {/* <img src={testImg} alt='Tucker Island Map' useMap='#tuckerislandmap' /> */}
-      
+      <div className='flex relative max-w-screen'>
+        <Image
+          priority
+          src={testImg}
+          alt='Tucker Island Map'
+          placeholder='blur'
+          layout='fill'
+          objectFit='cover'
+          objectPosition='left center'
+        />
+        {/* <img src={testImg} alt='Tucker Island Map' useMap='#tuckerislandmap' /> */}
+
         <map name='tuckerislandmap'>
           {svgData.groupArray.map(location => {
             if (location.coords) {
@@ -66,9 +64,7 @@ const MapImage = ({
               const scaledCoords = location.coords.map(coord => coord * scale)
               //TODO: consider changing className to a state and use tailwind
               const className =
-              location.id === selected
-                  ? 'map-selected'
-                  : 'map-unselected'
+                location.id === selected ? 'map-selected' : 'map-unselected'
               return (
                 <area
                   key={location.id}

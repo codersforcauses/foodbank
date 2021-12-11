@@ -13,31 +13,35 @@ const Map = () => {
   return (
     <div className='h-screen w-screen'>
       <TransformWrapper>
-      {({ resetTransform, setTransform }) => (
-        <>
-        <TransformComponent>
-          <div className="className='h-screen w-screen">
-            <Image
-              priority
-              src={baseMap}
-              alt='Tucker Island Map'
-              placeholder='blur'
-              objectFit='cover'
-              objectPosition='left center'
-            />
-          </div>
-        </TransformComponent>
-
-        <div className={`fixed top-0 left-0 w-screen h-screen flex justify-center ${display ? '' : 'hidden'}`}>
-                <TownBoxWrapper
-                  selected={select}
-                  resetTransform={resetTransform}
-                  setSelect={setSelect}
-                  setDisplay={setDisplay}
+        {({ resetTransform, setTransform }) => (
+          <>
+            <TransformComponent>
+              <div className="className='h-screen w-screen">
+                <Image
+                  priority
+                  src={baseMap}
+                  alt='Tucker Island Map'
+                  placeholder='blur'
+                  objectFit='cover'
+                  objectPosition='left center'
                 />
               </div>
-              </>
-          )}
+            </TransformComponent>
+
+            <div
+              className={`fixed top-0 left-0 w-screen h-screen flex justify-center ${
+                display ? '' : 'hidden'
+              }`}
+            >
+              <TownBoxWrapper
+                selected={select}
+                resetTransform={resetTransform}
+                setSelect={setSelect}
+                setDisplay={setDisplay}
+              />
+            </div>
+          </>
+        )}
       </TransformWrapper>
     </div>
   )

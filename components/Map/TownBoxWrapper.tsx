@@ -1,5 +1,5 @@
 import React from 'react'
-import  Townbox  from '../TownBox'
+import Townbox from '../TownBox'
 import descData from './assets/description.json'
 
 interface TownBoxWrapperProps {
@@ -23,7 +23,6 @@ const TownBoxWrapper = ({
   setSelect,
   setDisplay
 }: TownBoxWrapperProps) => {
-
   const handleClose = () => {
     setSelect(null)
     setDisplay(false)
