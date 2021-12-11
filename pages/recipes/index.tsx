@@ -3,16 +3,19 @@ import Card from 'components/Recipe/List-View/Card'
 // import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
 import { Client } from "@notionhq/client";
-import getNotionData from '../../components/API/getData'
+import { getAllRecipes, getRecipeDetails } from '../../components/API/getData'
 
-const RecipesGridView: React.FC = ({ tag, recipes, chars }) => {
+const RecipesGridView: React.FC = ({ tag, recipes }) => {
   const [filteredCards, setFilteredCards] = useState(recipes)
 
   const allTags: string | string[] = [] // all tags from all the recipes
   const allCategories: string | string[] = [] // all categories from all the recipes. Some recipes belong to
   // several categories
-  console.log("recipessss: ", recipes)
-  console.log("charrrs: ", chars)
+  // console.log("recipessss: ", recipes)
+  // console.log("charrrs: ", chars)
+  // console.log("data: ", data)
+
+  // console.log("recipe:", recipe);
 
   recipes.map(recipe => {
     // getting all the tags
@@ -107,24 +110,21 @@ export const getServerSideProps = async (context: {
   query: { tag: string }
 }) => {
   
-  const { recipes, chars } = await getNotionData()
+  const { recipes, chars, data } = await getAllRecipes()
+  // const { recipe }  = await getRecipeDetails("sporty-banana-bites")
   
   if (!context.query.tag) {
     return {
       props: {
         tag: 'all', //pass it to the page props
-        // data,
         recipes,
-        chars
       }
     }
   }
   return {
     props: {
       tag: context.query.tag, //pass it to the page props
-      // data,
       recipes,
-      chars
     }
   }
 }

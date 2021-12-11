@@ -1,21 +1,19 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import { Recipe } from 'lib/types'
-import Image from 'next/image'
-import styles from 'components/Recipe/Overview/overview.module.css'
+import React from "react";
+import { Recipe } from "lib/types";
+import Image from "next/image";
+import styles from "components/Recipe/Overview/overview.module.css";
 
-import starLabel from 'public/images/Extra/star_label.png'
-import hintPlate from 'public/images/Extra/hint-plate.png'
+import starLabel from "public/images/Extra/star_label.png";
+import hintPlate from "public/images/Extra/hint-plate.png";
 
-import Buttons from 'components/Recipe/Buttons'
-import EquipmentList from 'components/Recipe/EquipmentList'
-import IngredientsList from 'components/Recipe/IngredientsList'
-import CategoryInfo from 'components/Recipe/CategoryInfo'
-import { ColorScheme } from 'lib/types'
-import { primaryScheme, tealScheme, orangeScheme } from 'lib/colorSchemes'
+import Buttons from "components/Recipe/Buttons";
+import EquipmentList from "components/Recipe/EquipmentList";
+import IngredientsList from "components/Recipe/IngredientsList";
+import CategoryInfo from "components/Recipe/CategoryInfo";
+import { primaryScheme, tealScheme, orangeScheme } from "lib/colorSchemes";
 
 interface ParamTypes {
-  recipe: Recipe
+  recipe: Recipe;
 }
 
 /**
@@ -25,77 +23,77 @@ interface ParamTypes {
  * steps in a slideshow or one page format.
  */
 const RecipeOverview: React.FC = ({ recipe }) => {
-  // console.log(recipe.hint)
-  // console.log(styles['recipe-name'])
-  let colorScheme: ColorScheme
-  recipe.colorScheme === 'primaryScheme' ? recipe.colorScheme = primaryScheme : ''
-  recipe.colorScheme === 'orangeScheme' ? recipe.colorScheme = orangeScheme : ''
-  recipe.colorScheme === 'tealScheme' ? recipe.colorScheme = tealScheme : ''
-  // recipe.colorScheme = colorScheme
-  
-  console.log(recipe.colorScheme)
-  
+
+  // getting color scheme for the recipe by it's name
+  recipe.colorScheme === "primaryScheme" ? recipe.colorScheme = primaryScheme : "";
+  recipe.colorScheme === "orangeScheme" ? recipe.colorScheme = orangeScheme : "";
+  recipe.colorScheme === "tealScheme" ? recipe.colorScheme = tealScheme : "";
+
+  console.log(recipe);
+
   return (
-    <div className={recipe.colorScheme.bg}>
-      <div className='flex justify-center m-1'>
-        <div className='flex flex-col w-3/4'>
+    <div className={recipe.colorScheme.bg + ' flex justify-center'}>
+      <div className="max-w-screen-2xl ">
+      <div className="flex justify-center m-1">
+        <div className="flex flex-col w-3/4">
           <div
             className={
-              styles['image-container'] +
-              ' w-full ' +
-              styles['recipe-main-image']
+              styles["image-container"] +
+              " w-full " +
+              styles["recipe-main-image"]
             }
           >
             <Image
               src={recipe.finalShot}
               alt={recipe.name}
-              layout='fill'
-              className={styles['image']}
+              layout="fill"
+              className={styles["image"]}
             />
           </div>
-          <div className={styles['label-main-image'] + ' absolute'}>
-            <Image src={starLabel} alt='label'></Image>
+          <div className={styles["label-main-image"] + " absolute"}>
+            <Image src={starLabel} alt="label"></Image>
             <div
               className={
-                styles['recipe-name'] + ' absolute font-semibold font-serif'
+                styles["recipe-name"] + " absolute font-semibold font-serif"
               }
             >
-              {recipe.name.split(' ').map((el: string | null | undefined) => {
-                return <p key={el}>{el}</p>
+              {recipe.name.split(" ").map((el: string | null | undefined) => {
+                return <p key={el}>{el}</p>;
               })}
             </div>
           </div>
           {recipe.character && (
             <div
               className={
-                styles['hero-image-container'] +
+                styles["hero-image-container"] +
                 ` ${
-                  recipe.character.facing === 'left'
-                    ? styles['flip-hero-image']
-                    : ''
+                  recipe.character.facing === "left"
+                    ? styles["flip-hero-image"]
+                    : ""
                 }`
               }
             >
               <Image
                 src={recipe.character.imageGif}
-                alt='label'
-                layout='fill'
-                className={styles['image']}
-              ></Image>
+                alt="label"
+                layout="fill"
+                className={styles["image"]}
+              />
             </div>
           )}
           {recipe.hint && (
-            <div className='flex'>
-              <div className={styles['tip-plate-container']}>
+            <div className="flex">
+              <div className={styles["tip-plate-container"]}>
                 <Image
                   src={hintPlate}
-                  alt='hint'
-                  layout='fill'
+                  alt="hint"
+                  layout="fill"
                   className={styles.image}
-                ></Image>
+                />
                 <div
                   className={
-                    styles['hint-text'] + ' absolute font-semibold font-serif'
+                    styles["hint-text"] + " absolute font-semibold font-serif "
+                    // styles['hint-text'] + ' text-5xl'
                   }
                 >
                   {recipe.hint}
@@ -105,8 +103,8 @@ const RecipeOverview: React.FC = ({ recipe }) => {
           )}
         </div>
       </div>
-      <div className='flex justify-center m-1 w-full'>
-        <div className={styles['recipe-main-content'] + ' flex flex-col'}>
+      <div className="flex justify-center m-1 max-w-screen-2xl">
+        <div className={styles["recipe-main-content"] + " flex flex-col"}>
           <div>
             <CategoryInfo recipe={recipe} />
           </div>
@@ -121,8 +119,9 @@ const RecipeOverview: React.FC = ({ recipe }) => {
           </div>
         </div>
       </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RecipeOverview
+export default RecipeOverview;

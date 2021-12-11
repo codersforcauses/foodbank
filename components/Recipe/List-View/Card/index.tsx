@@ -87,9 +87,9 @@ const Card = ({
               <div>
 
                 <Link href={{
-                  pathname: "/recipes/" + slug,
+                  pathname: "/recipes/recipe/",
                   query: {
-                    data: "sdsdsdsd"
+                    name: slug,
                   }
 
                 }}>

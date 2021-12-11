@@ -1,29 +1,10 @@
 import React from 'react'
-import { useRouter } from 'next/router'
-import { Recipe } from 'lib/types'
-// import { recipes } from 'lib/Recipes'
-import getNotionData from '../../../components/API/getData'
-
+import { getRecipeDetails } from '../../../components/API/getData'
 import RecipeOverview from 'components/Recipe/Overview'
 
 /**
  */
-const RecipePage: React.FC = ({ recipes, chars } ) => {
-  const router = useRouter()
-  const { slug } = router.query
-
-
-
-  console.log(recipes)
-  console.log(chars)
-  let recipe: Recipe | null = null
-
-  for (const potential_recipe of recipes) {
-    console.log(potential_recipe)
-    if (slug === potential_recipe.slug) {
-      recipe = potential_recipe
-    }
-  }
+const RecipePage: React.FC = ({ recipe } ) => {
 
   if (!recipe) {
     return <div>Recipe cannot be found!</div>
@@ -31,20 +12,20 @@ const RecipePage: React.FC = ({ recipes, chars } ) => {
     return (
       <>
         <RecipeOverview recipe={recipe} />
-        {/*<h1>recipeeeee!</h1>*/}
       </>
     )
   }
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: {
+  query: { name: string }
+}) => {
 
-  const { recipes, chars } = await getNotionData()
-
+  const { recipe }  = await getRecipeDetails(context.query.name)
+  
   return {
     props: {
-      recipes,
-      chars
+      recipe
     }
   }
 }

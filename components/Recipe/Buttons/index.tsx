@@ -1,8 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { Recipe } from 'lib/types'
-import { ColorScheme } from 'lib/types'
-import { primaryScheme, tealScheme, orangeScheme } from 'lib/colorSchemes'
 
 interface Props {
   recipe: Recipe
@@ -10,12 +8,6 @@ interface Props {
 
 /** The buttons to navigate to the slideshow or one-page display recipe steps. */
 const Buttons: React.FC<Props> = ({ recipe }) => {
-  
-  // getting colorScheme for the recipe by it's name 
-  let colorScheme: ColorScheme
-  recipe.colorScheme === 'primaryScheme' ? colorScheme = primaryScheme : ''
-  recipe.colorScheme === 'orangeScheme' ? colorScheme = orangeScheme : ''
-  recipe.colorScheme === 'tealScheme' ? colorScheme = tealScheme : ''
   
   return (
     <div className='flex flex-row space-x-2 items-center'>

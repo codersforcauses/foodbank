@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b8602fa-7743-4c0f-b1c1-2000a9e04189" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_7_21,_9_23_am_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_7_21__9_23_am__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_7_21,_1_54_pm_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_7_21__1_54_pm__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/API/getData.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/EquipmentList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/EquipmentList/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/overview.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/overview.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +31,26 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/colorSchemes.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pages/recipes/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/Overview/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/Overview/overview.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/types.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1v5ISr7pBHJQvcBL173TDyF5alP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
