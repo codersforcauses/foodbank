@@ -12,50 +12,33 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
   name: string
   rules?: RegisterOptions
+  selectedCount: number
+  updateCount: (arg0: number) => void
 }
 
 const GridField = ({
   charSet,
   label,
   rules = {},
+  selectedCount,
+  updateCount,
   ...props
 }: GridFieldProps) => {
   const { register, watch } = useFormContext()
 
-  const [grid, setGrid] = useState<Character[]>(charSet)
-  const [selectedCount, setSelectedCount] = useState(0)
+  // const [grid, setGrid] = useState<Character[]>(charSet)
+  const grid = charSet
+
   const [array, setArray] = useState([])
-
-  const toggleSelect = (
-    e: ChangeEvent<HTMLInputElement>,
-    currentChar: Character
-  ) => {
-    const newChar: Character = { ...currentChar }
-    newChar.isSelected = e.target.checked
-    const newGrid: Character[] = grid
-      .slice()
-      .map(char => (char.id === newChar.id ? newChar : char))
-    setGrid(newGrid)
-  }
-
-  const toggleSelectedCount = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setSelectedCount(prev => prev + 1)
-      console.log('evoked!')
-    } else {
-      setSelectedCount(prev => prev - 1)
-      console.log('revoked!')
-    }
-  }
 
   useEffect(() => {
     const subscription = watch(data => {
       setArray(data.password)
-      setSelectedCount(data.password.filter(Boolean).length)
+      updateCount(data.password.filter(Boolean).length)
       console.log(data.password)
     })
     return () => subscription.unsubscribe()
-  }, [watch, props.name])
+  }, [watch, updateCount])
   // const imagesIndex = watch(props.name)
   // console.log(imagesIndex)
 
@@ -71,9 +54,6 @@ const GridField = ({
               //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
-              // value={char.password}
-              // value={index}
-              // checked={char.isSelected}
               disabled={!array[index] && selectedCount === CHARACTERS_FOR_AUTH}
               // className='hidden'
               className='peer'
