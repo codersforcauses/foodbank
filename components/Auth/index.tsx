@@ -177,7 +177,7 @@ const Auth = (props: AuthProps) => {
 
   const onClose = async () => {
     props.onClose()
-    await sleep(1000)
+    await sleep(150)
     handleReset()
     setPage(PAGES.USERNAME_FORM)
   }
