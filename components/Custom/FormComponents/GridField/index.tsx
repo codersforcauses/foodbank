@@ -1,4 +1,4 @@
-import { useState, InputHTMLAttributes, ChangeEvent } from 'react'
+import { useState, useEffect, InputHTMLAttributes, ChangeEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
@@ -20,10 +20,11 @@ const GridField = ({
   rules = {},
   ...props
 }: GridFieldProps) => {
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
 
   const [grid, setGrid] = useState<Character[]>(charSet)
   const [selectedCount, setSelectedCount] = useState(0)
+  const [array, setArray] = useState([])
 
   const toggleSelect = (
     e: ChangeEvent<HTMLInputElement>,
@@ -47,11 +48,22 @@ const GridField = ({
     }
   }
 
+  useEffect(() => {
+    const subscription = watch(data => {
+      setArray(data.password)
+      setSelectedCount(data.password.filter(Boolean).length)
+      console.log(data.password)
+    })
+    return () => subscription.unsubscribe()
+  }, [watch, props.name])
+  // const imagesIndex = watch(props.name)
+  // console.log(imagesIndex)
+
   return (
     <>
       <p>{selectedCount}</p>
       <div className='grid w-full grid-cols-3 gap-2'>
-        {grid.map(char => (
+        {grid.map((char, index) => (
           <div key={char.id} className='relative'>
             <input
               type='checkbox'
@@ -59,24 +71,20 @@ const GridField = ({
               //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
-              value={char.password}
-              checked={char.isSelected}
-              disabled={
-                !char.isSelected && selectedCount === CHARACTERS_FOR_AUTH
-              }
+              // value={char.password}
+              // value={index}
+              // checked={char.isSelected}
+              disabled={!array[index] && selectedCount === CHARACTERS_FOR_AUTH}
               // className='hidden'
+              className='peer'
               // className='opacity-0'
-              {...register?.(props.name, {
+              {...register?.(`${props.name}.${index}`, {
                 ...rules
               })}
-              onChange={e => {
-                toggleSelect(e, char)
-                toggleSelectedCount(e)
-              }}
             />
             <label
               htmlFor={char.id}
-              className={char.isSelected ? 'opacity-40' : 'opacity-100'}
+              className='peer-checked:opacity-40 opacity-100'
             >
               <Image
                 className='z-0 object-contain transition-all scale-90 hover:scale-100'
@@ -86,7 +94,6 @@ const GridField = ({
                 alt={char.name}
               />
               <p className='text-center'>{char.name}</p>
-              <p className='text-center'>{char?.isSelected?.toString()}</p>
             </label>
 
             <BsFillCheckCircleFill
@@ -99,7 +106,7 @@ const GridField = ({
                 'text-3xl ' +
                 'z-1 ' +
                 'pointer-events-none ' +
-                (char.isSelected ? 'opacity-100' : 'opacity-0')
+                'peer-checked:opacity-100 opacity-0'
               }
             />
           </div>
