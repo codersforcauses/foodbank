@@ -1,8 +1,9 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react'
+import { useState, ChangeEventHandler, MouseEventHandler } from 'react'
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
-import { useForm, FormProvider } from 'react-hook-form'
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 
+const CHARACTERS_FOR_AUTH = 3
 interface PasswordFormProps {
   label: string
   name: string
@@ -11,6 +12,10 @@ interface PasswordFormProps {
   goPrevPage: MouseEventHandler<HTMLButtonElement>
   goNextPage: MouseEventHandler<HTMLButtonElement>
   registered: boolean
+}
+
+interface FormValues {
+  password: boolean[]
 }
 
 const PasswordForm = ({
@@ -22,15 +27,37 @@ const PasswordForm = ({
   goNextPage,
   registered
 }: PasswordFormProps) => {
+  const [selectedCount, setSelectedCount] = useState(0)
   const methods = useForm()
-  const onSubmit = data => console.log(data)
+
+  const updateCount = (newSelectedCount: number) => {
+    setSelectedCount(newSelectedCount)
+  }
+
+  const getPassword = (mask: boolean[]) => {
+    const selectedGrid = grid.filter((item, i) => mask[i])
+    // return selectedGrid.map(item => item.password).join('')
+    return selectedGrid.map(item => item.password).join(', ')
+  }
+
+  // const onSubmit: SubmitHandler<FormValues> = ({ password }) =>
+  //   console.log(password)
+  const onSubmit: SubmitHandler<FormValues> = ({ password }) =>
+    console.log(getPassword(password))
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <p>{selectedCount}</p>
         <p className='text-lg'>{label}</p>
         {error && <p>{error}</p>}
-        <GridField label='grid' name={name} charSet={grid} />
+        <GridField
+          label='grid'
+          name={name}
+          charSet={grid}
+          selectedCount={selectedCount}
+          updateCount={updateCount}
+        />
         <div className='flex justify-center pt-4 space-x-2'>
           <Button
             type='button'
@@ -51,7 +78,10 @@ const PasswordForm = ({
             Back
           </Button>
           {registered ? (
-            <Button className='flex items-center'>
+            <Button
+              className='flex items-center disabled:opacity-50'
+              disabled={selectedCount !== CHARACTERS_FOR_AUTH}
+            >
               Confirm
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -67,9 +97,10 @@ const PasswordForm = ({
             </Button>
           ) : (
             <Button
-              className='flex items-center'
+              className='flex items-center disabled:opacity-50'
               type='button'
               onClick={goNextPage}
+              disabled={selectedCount !== CHARACTERS_FOR_AUTH}
             >
               Confirm
               <svg
