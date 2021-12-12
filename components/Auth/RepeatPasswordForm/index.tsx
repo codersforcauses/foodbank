@@ -12,8 +12,6 @@ interface PasswordFormProps {
   registered: boolean
 }
 
-const REPEAT_PASSWORD_PAGE = 3
-
 const RepeatPasswordForm = ({
   label,
   name,

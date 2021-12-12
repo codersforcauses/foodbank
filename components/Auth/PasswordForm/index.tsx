@@ -23,11 +23,11 @@ const PasswordForm = ({
   registered
 }: PasswordFormProps) => {
   const methods = useForm()
-  // const onSubmit = data => console.log(data)
+  const onSubmit = data => console.log(data)
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(data => console.log(data))}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <p className='text-lg'>{label}</p>
         {error && <p>{error}</p>}
         <GridField label='grid' name={name} charSet={grid} />
