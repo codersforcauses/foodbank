@@ -3,15 +3,25 @@ import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
+import { RegisterOptions, useFormContext } from 'react-hook-form'
 
 const CHARACTERS_FOR_AUTH = 3
 
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
   label: string
+  name: string
+  rules?: RegisterOptions
 }
 
-const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
+const GridField = ({
+  charSet,
+  label,
+  rules = {},
+  ...props
+}: GridFieldProps) => {
+  const { register } = useFormContext()
+
   const [grid, setGrid] = useState<Character[]>(charSet)
   const [selectedCount, setSelectedCount] = useState(0)
 
@@ -37,11 +47,8 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
     }
   }
 
-  const { register, handleSubmit } = useForm()
-  const onSubmit = data => console.log(data)
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <p>{selectedCount}</p>
       <div className='grid w-full grid-cols-3 gap-2'>
         {grid.map(char => (
@@ -52,7 +59,6 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
               //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
-              name='food'
               value={char.password}
               checked={char.isSelected}
               disabled={
@@ -60,9 +66,9 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
               }
               // className='hidden'
               // className='opacity-0'
-              //    {...register.(props.name, {
-              //      ...rules
-              //    })}
+              {...register?.(props.name, {
+                ...rules
+              })}
               onChange={e => {
                 toggleSelect(e, char)
                 toggleSelectedCount(e)
@@ -99,7 +105,7 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
           </div>
         ))}
       </div>
-    </form>
+    </>
   )
 }
 
