@@ -23,6 +23,7 @@ const UsernameForm = ({
         type='text'
         name='username'
         value={input}
+        focus={true}
         rules={{
           required: true,
           onChange: handleUsernameChange
