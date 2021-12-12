@@ -51,8 +51,8 @@ interface AuthProps {
 
 interface FormValues {
   username: string
-  password: Character[]
-  repeatedPassword: Character[]
+  password: string[]
+  repeatedPassword: string[]
 }
 
 const defaultValues: FormValues = {
@@ -62,19 +62,21 @@ const defaultValues: FormValues = {
 }
 
 const Auth = (props: AuthProps) => {
-  const [input, setInput] = useState<string>('')
-  const [username, setUsername] = useState<string>('')
-  const [registered, setRegistered] = useState<boolean>(false)
+  const [input, setInput] = useState('')
+  const [username, setUsername] = useState('')
+  const [registered, setRegistered] = useState(false)
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
-  const [page, setPage] = useState<number>(PAGES.USERNAME_FORM)
-  const [error, setError] = useState<string>('')
+  const [page, setPage] = useState(PAGES.USERNAME_FORM)
+  const [error, setError] = useState('')
   const { auth, db, user, userLoading, userError } = useFirebase()
-  // User Authentication
-  // const [user, userLoading, userError] = useAuthState(auth)
 
   // CHECKS IF USERNAME IS TAKEN
-  const checkFirebase = async (username: string) =>
-    (await getDoc(doc(db, 'usernames', username))).exists()
+  const checkFirebase = async (username: string) => {
+    if (!username) {
+      return false
+    }
+    return (await getDoc(doc(db, 'usernames', username))).exists()
+  }
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
@@ -120,7 +122,6 @@ const Auth = (props: AuthProps) => {
           newPassword
         ) //<-- SIGNIN
         console.log('Password Matched!')
-        // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNIN
         alert(MESSAGES.PASSWORD_MATCHED)
         setError('')
       } catch (err) {
@@ -141,25 +142,19 @@ const Auth = (props: AuthProps) => {
       const newRepeatedPassword = value?.repeatedPassword?.join('')
       if (newRepeatedPassword === newPassword) {
         console.log('Password Matched!')
-        // alert('Username : ' + username + '\nPassword  : ' + newPassword) //<-- SIGNUP
         alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
         setError('')
 
-        //Sending the details to the Firebase Firestore database
-        // const batch = firestore.batch()
-        // batch.set(
-        //   firestore.doc(`usernames/${username}`), // Selecting the reference to the document associated with username
-        //   { password: newPassword } // The information to be stored in that document.
-        // )
-        // await batch.commit()
         await createUserWithEmailAndPassword(
           auth,
           `${username}@test123.xyz`,
           newPassword
         )
-        // await updateProfile(auth!.currentUser, {
-        //   displayName: username
-        // })
+        if (auth?.currentUser) {
+          await updateProfile(auth.currentUser, {
+            displayName: username
+          })
+        }
         await setDoc(doc(db, 'usernames', username), {
           password: newPassword
         })
@@ -179,7 +174,7 @@ const Auth = (props: AuthProps) => {
   const onClose = () => {
     props.onClose()
     handleReset()
-    // setPage(PAGES.USERNAME_FORM)
+    setPage(PAGES.USERNAME_FORM)
   }
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
@@ -203,13 +198,18 @@ const Auth = (props: AuthProps) => {
     switch (page) {
       case PAGES.USERNAME_FORM:
         return (
-          <UsernameForm
-            label={MESSAGES.USERNAME_LABEL}
-            input={input}
-            handleUsernameChange={handleUsernameChange}
-            goNextPage={goNextPage}
-            registered={registered}
-          />
+          <Form<FormValues>
+            defaultValues={defaultValues}
+            onSubmit={handleValuesSubmit}
+          >
+            <UsernameForm
+              label={MESSAGES.USERNAME_LABEL}
+              input={input}
+              handleUsernameChange={handleUsernameChange}
+              goNextPage={goNextPage}
+              registered={registered}
+            />
+          </Form>
         )
       case PAGES.PASSWORD_FORM:
         return (
@@ -242,14 +242,7 @@ const Auth = (props: AuthProps) => {
 
   return (
     <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
-      <Form<FormValues>
-        defaultValues={defaultValues}
-        onSubmit={handleValuesSubmit}
-      >
-        {/* {user && <p>{user.email}</p>}
-        <button onClick={() => signOut(auth)}>Sign Out</button> */}
-        {pageDisplay()}
-      </Form>
+      {pageDisplay()}
     </Modal>
   )
 }
