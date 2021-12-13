@@ -79,7 +79,9 @@ const Auth = (props: AuthProps) => {
     HTMLInputElement
   > = async e => {
     setInput(e.target.value)
-    setRegistered(await checkFirebase(e.target.value.toLowerCase()))
+    const isRegistered = await checkFirebase(e.target.value.toLowerCase())
+    console.log(`${e.target.value.toLowerCase()}:`, isRegistered)
+    setRegistered(isRegistered)
   }
 
   const handleInputSubmit = () => {
