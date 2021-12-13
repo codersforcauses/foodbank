@@ -30,7 +30,7 @@ const GridField = ({
   // const [grid, setGrid] = useState<Character[]>(charSet)
   const grid = charSet
 
-  const [array, setArray] = useState([])
+  const [mask, setMask] = useState([])
 
   // useEffect(() => {
   //   if (formState.isSubmitSuccessful) {
@@ -41,7 +41,7 @@ const GridField = ({
   useEffect(() => {
     const subscription = watch(data => {
       console.log(data.mask[name])
-      setArray(data.mask[name])
+      setMask(data.mask[name])
       updateCount(data.mask[name].filter(Boolean).length)
     })
     return () => subscription.unsubscribe()
@@ -61,7 +61,7 @@ const GridField = ({
               //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
-              disabled={!array[index] && selectedCount === CHARACTERS_FOR_AUTH}
+              disabled={!mask[index] && selectedCount === CHARACTERS_FOR_AUTH}
               // className='hidden'
               className='peer opacity-0'
               // className='opacity-0'
