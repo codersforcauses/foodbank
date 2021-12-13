@@ -4,10 +4,17 @@ import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 
 const CHARACTERS_FOR_AUTH = 3
+
+const PAGES = {
+  USERNAME_FORM: 1,
+  PASSWORD_FORM: 2,
+  REPEAT_PASSWORD_FORM: 3
+}
 interface PasswordFormProps {
   label: string
   error: string
   name: string
+  page: number
   grid: Character[]
   goPrevPage: MouseEventHandler<HTMLButtonElement>
   goNextPage: MouseEventHandler<HTMLButtonElement>
@@ -20,6 +27,7 @@ const PasswordForm = ({
   error,
   grid,
   name,
+  page,
   goPrevPage,
   goNextPage,
   registered,
@@ -77,7 +85,9 @@ const PasswordForm = ({
             className='flex items-center disabled:opacity-50'
             disabled={selectedCount !== CHARACTERS_FOR_AUTH}
           >
-            {registered ? 'Confirm' : 'Next'}
+            {registered || page === PAGES.REPEAT_PASSWORD_FORM
+              ? 'Confirm'
+              : 'Next'}
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 25 25'
