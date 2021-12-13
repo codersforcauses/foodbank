@@ -102,7 +102,8 @@ const Auth = (props: AuthProps) => {
           newPassword
         ) //<-- SIGNIN
         console.log('Password Matched!')
-        alert(MESSAGES.PASSWORD_MATCHED)
+        onClose()
+        // alert(MESSAGES.PASSWORD_MATCHED)
         setError('')
       } catch (err) {
         console.dir(err)
@@ -136,7 +137,8 @@ const Auth = (props: AuthProps) => {
     ) {
       if (newRepeatedPassword === password) {
         console.log('Registered!')
-        alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
+        onClose()
+        // alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
         setError('')
 
         await createUserWithEmailAndPassword(
@@ -238,6 +240,7 @@ const Auth = (props: AuthProps) => {
           <PasswordForm
             label={MESSAGES.PASSWORD_LABEL}
             error={error}
+            name='password'
             grid={grid}
             goPrevPage={goPrevPage}
             goNextPage={goNextPage}
@@ -247,9 +250,11 @@ const Auth = (props: AuthProps) => {
         )
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
-          <PasswordForm
+          <RepeatPasswordForm
+            // <PasswordForm
             label={MESSAGES.REPEATED_PASSWORD_LABEL}
             error={error}
+            name='repeatPassword'
             grid={grid}
             goPrevPage={goPrevPage}
             goNextPage={goNextPage}
