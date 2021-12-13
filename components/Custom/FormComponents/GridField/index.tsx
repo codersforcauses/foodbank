@@ -32,11 +32,11 @@ const GridField = ({
 
   const [mask, setMask] = useState([])
 
-  // useEffect(() => {
-  //   if (formState.isSubmitSuccessful) {
-  //     reset()
-  //   }
-  // }, [formState, reset])
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset()
+    }
+  }, [formState, reset])
 
   useEffect(() => {
     const subscription = watch(data => {
