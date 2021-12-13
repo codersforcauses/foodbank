@@ -87,20 +87,22 @@ const Auth = (props: AuthProps) => {
     //   isRegistered
     // )
     // setRegistered(isRegistered)
-    if (e.target.value) {
+    if (!e.target.value) {
+      setRegistered(false)
+      return
+    }
+    try {
       const signInMethods = await fetchSignInMethodsForEmail(
         auth,
         `${e.target.value.toLowerCase()}@test123.xyz`
       )
-      if (
-        signInMethods.indexOf(
-          EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
-        ) != -1
-      ) {
-        // User can sign in with email/password.
-        console.log('REGISTERED')
-        setRegistered(prev => !prev)
-      }
+      // User can sign in with email/password.
+      signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) !==
+      -1
+        ? setRegistered(true)
+        : setRegistered(false)
+    } catch (err) {
+      console.log(err?.message)
     }
   }
 
@@ -128,8 +130,8 @@ const Auth = (props: AuthProps) => {
         // alert(MESSAGES.PASSWORD_MATCHED)
         setError('')
       } catch (err) {
-        console.dir(err)
-        // console.log(err?.message)
+        // console.dir(err)
+        console.log(err?.message)
         // if (err.code === 'auth/wrong-password') {
         //   console.log('Wrong')
         //   setError(MESSAGES.WRONG_PASSWORD)
@@ -162,28 +164,35 @@ const Auth = (props: AuthProps) => {
         onClose()
         // alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
         setError('')
-
-        await createUserWithEmailAndPassword(
-          auth,
-          `${username}@test123.xyz`,
-          password
-        )
-        if (auth?.currentUser) {
-          await updateProfile(auth.currentUser, {
-            displayName: username
-          })
+        try {
+          await createUserWithEmailAndPassword(
+            auth,
+            `${username}@test123.xyz`,
+            password
+          )
+        } catch (err) {
+          console.log(err?.message)
         }
-        await setDoc(doc(db, 'usernames', username), {
-          achievement1: false,
-          achievement2: false,
-          achievement3: false,
-          achievement4: false,
-          achievement5: false,
-          achievement6: false,
-          achievement7: false,
-          achievement8: false,
-          achievement9: false
-        })
+        // if (auth?.currentUser) {
+        //   await updateProfile(auth.currentUser, {
+        //     displayName: username
+        //   })
+        // }
+        try {
+          await setDoc(doc(db, 'usernames', username), {
+            achievement1: false,
+            achievement2: false,
+            achievement3: false,
+            achievement4: false,
+            achievement5: false,
+            achievement6: false,
+            achievement7: false,
+            achievement8: false,
+            achievement9: false
+          })
+        } catch (err) {
+          console.log(err?.message)
+        }
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
       }
@@ -263,6 +272,7 @@ const Auth = (props: AuthProps) => {
             label={MESSAGES.PASSWORD_LABEL}
             error={error}
             name='password'
+            page={page}
             grid={grid}
             goPrevPage={goPrevPage}
             goNextPage={goNextPage}
@@ -272,11 +282,12 @@ const Auth = (props: AuthProps) => {
         )
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
-          <RepeatPasswordForm
-            // <PasswordForm
+          // <RepeatPasswordForm
+          <PasswordForm
             label={MESSAGES.REPEATED_PASSWORD_LABEL}
             error={error}
             name='repeatPassword'
+            page={page}
             grid={grid}
             goPrevPage={goPrevPage}
             goNextPage={goNextPage}
