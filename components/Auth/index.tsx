@@ -80,7 +80,10 @@ const Auth = (props: AuthProps) => {
   > = async e => {
     setInput(e.target.value)
     const isRegistered = await checkFirebase(e.target.value.toLowerCase())
-    console.log(`${e.target.value.toLowerCase()}:`, isRegistered)
+    console.log(
+      `input: ${e.target.value.toLowerCase()} username: ${username}`,
+      isRegistered
+    )
     setRegistered(isRegistered)
   }
 
