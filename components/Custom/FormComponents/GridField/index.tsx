@@ -10,10 +10,9 @@ const CHARACTERS_FOR_AUTH = 3
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
   label: string
-  name: string
   rules?: RegisterOptions
   selectedCount: number
-  updateCount: (arg0: number) => void
+  updateCount: (count: number) => void
 }
 
 const GridField = ({
@@ -33,9 +32,8 @@ const GridField = ({
 
   useEffect(() => {
     const subscription = watch(data => {
-      setArray(data.password)
-      updateCount(data.password.filter(Boolean).length)
-      console.log(data.password)
+      setArray(data.mask)
+      updateCount(data.mask.filter(Boolean).length)
     })
     return () => subscription.unsubscribe()
   }, [watch, updateCount])
@@ -44,7 +42,7 @@ const GridField = ({
 
   return (
     <>
-      {/* <p>{selectedCount}</p> */}
+      <p>{selectedCount}/3 Selections</p>
       <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-6'>
         {grid.map((char, index) => (
           <div key={char.id} className='relative md:-m-4'>
@@ -57,7 +55,8 @@ const GridField = ({
               disabled={!array[index] && selectedCount === CHARACTERS_FOR_AUTH}
               // className='hidden'
               className='peer opacity-0'
-              {...register?.(`${props.name}.${index}`, {
+              // className='opacity-0'
+              {...register?.(`mask.${index}`, {
                 ...rules
               })}
             />

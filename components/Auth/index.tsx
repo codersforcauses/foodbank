@@ -26,7 +26,7 @@ import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 import RepeatPasswordForm from './RepeatPasswordForm'
 
-const CHARACTERS_FOR_AUTH = 3
+const PASSWORD_LENGTH = 27
 
 const PAGES = {
   USERNAME_FORM: 1,
@@ -51,19 +51,16 @@ interface AuthProps {
 
 interface FormValues {
   username: string
-  password: string[]
-  repeatedPassword: string[]
 }
 
 const defaultValues: FormValues = {
-  username: '',
-  password: [],
-  repeatedPassword: []
+  username: ''
 }
 
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [registered, setRegistered] = useState(false)
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
@@ -85,36 +82,19 @@ const Auth = (props: AuthProps) => {
     setRegistered(await checkFirebase(e.target.value.toLowerCase()))
   }
 
-  const handleUsernameSubmit = () => {
+  const handleInputSubmit = () => {
     setUsername(input.toLowerCase())
     // console.log(input)
   }
 
-  // SIGNIN OR SIGNUP HERE
-  const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
-    console.log(value)
-    if (!input) {
-      console.log(value)
-      return
-    } else if (!username) {
-      handleUsernameSubmit()
+  const handlePasswordSubmit = async (newPassword: string) => {
+    console.log(newPassword)
+    if (newPassword?.length && page !== PAGES.PASSWORD_FORM) {
       setPage(PAGES.PASSWORD_FORM)
       return
     }
-    if (!value?.password?.length && page !== PAGES.PASSWORD_FORM) {
-      setPage(PAGES.PASSWORD_FORM)
-      return
-    }
-    if (
-      !registered &&
-      !value?.repeatedPassword?.length &&
-      page !== PAGES.REPEAT_PASSWORD_FORM
-    ) {
-      setPage(PAGES.REPEAT_PASSWORD_FORM)
-      return
-    }
-    if (registered && value?.password?.length === CHARACTERS_FOR_AUTH) {
-      const newPassword = value?.password?.join('')
+    setPassword(newPassword)
+    if (registered && newPassword?.length === PASSWORD_LENGTH) {
       try {
         await signInWithEmailAndPassword(
           auth,
@@ -133,22 +113,36 @@ const Auth = (props: AuthProps) => {
         //   alert(MESSAGES.WRONG_PASSWORD)
         // }
       }
-    } else if (
+    } else if (!registered && newPassword?.length === PASSWORD_LENGTH) {
+      setPage(PAGES.REPEAT_PASSWORD_FORM)
+    } else {
+      setError(MESSAGES.PASSWORDS_NOT_MATCHED)
+    }
+  }
+
+  const handleRepeatedPasswordSubmit = async (newRepeatedPassword: string) => {
+    if (
       !registered &&
-      value?.password?.length === CHARACTERS_FOR_AUTH &&
-      value?.repeatedPassword?.length === CHARACTERS_FOR_AUTH
+      !newRepeatedPassword?.length &&
+      page !== PAGES.REPEAT_PASSWORD_FORM
     ) {
-      const newPassword = value?.password?.join('')
-      const newRepeatedPassword = value?.repeatedPassword?.join('')
-      if (newRepeatedPassword === newPassword) {
-        console.log('Password Matched!')
+      setPage(PAGES.REPEAT_PASSWORD_FORM)
+      return
+    }
+    if (
+      !registered &&
+      password?.length === PASSWORD_LENGTH &&
+      newRepeatedPassword?.length === PASSWORD_LENGTH
+    ) {
+      if (newRepeatedPassword === password) {
+        console.log('Registered!')
         alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
         setError('')
 
         await createUserWithEmailAndPassword(
           auth,
           `${username}@test123.xyz`,
-          newPassword
+          password
         )
         if (auth?.currentUser) {
           await updateProfile(auth.currentUser, {
@@ -156,11 +150,31 @@ const Auth = (props: AuthProps) => {
           })
         }
         await setDoc(doc(db, 'usernames', username), {
-          password: newPassword
+          achievement1: false,
+          achievement2: false,
+          achievement3: false,
+          achievement4: false,
+          achievement5: false,
+          achievement6: false,
+          achievement7: false,
+          achievement8: false,
+          achievement9: false
         })
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
       }
+    }
+  }
+
+  // SIGNIN OR SIGNUP HERE
+  const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+    if (!input) {
+      console.log(value)
+      return
+    } else if (!username) {
+      handleInputSubmit()
+      setPage(PAGES.PASSWORD_FORM)
+      return
     }
   }
 
@@ -184,6 +198,9 @@ const Auth = (props: AuthProps) => {
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
     // handleReset()
+    if (page === PAGES.PASSWORD_FORM) {
+      handleReset()
+    }
     setError('')
     setPage(current => current - 1)
   }
@@ -193,7 +210,7 @@ const Auth = (props: AuthProps) => {
       return
     }
     if (input !== username) {
-      handleUsernameSubmit()
+      handleInputSubmit()
     }
     setError('')
     setPage(current => current + 1)
@@ -220,24 +237,24 @@ const Auth = (props: AuthProps) => {
         return (
           <PasswordForm
             label={MESSAGES.PASSWORD_LABEL}
-            name='password'
             error={error}
             grid={grid}
             goPrevPage={goPrevPage}
             goNextPage={goNextPage}
             registered={registered}
+            updatePassword={handlePasswordSubmit}
           />
         )
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
-          <RepeatPasswordForm
+          <PasswordForm
             label={MESSAGES.REPEATED_PASSWORD_LABEL}
-            name='repeatedPassword'
             error={error}
             grid={grid}
             goPrevPage={goPrevPage}
             goNextPage={goNextPage}
             registered={registered}
+            updatePassword={handleRepeatedPasswordSubmit}
           />
         )
       default:
