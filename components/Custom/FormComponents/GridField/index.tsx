@@ -38,12 +38,12 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
   }
 
   const { register, handleSubmit } = useForm()
-  const onSubmit = data => console.log(data)
+  const onSubmit = (data: any) => console.log(data)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p>{selectedCount}</p>
-      <div className='grid w-full grid-cols-3 gap-2'>
+      {/* <p>{selectedCount}</p> */}
+      <div className='grid w-auto grid-cols-3 gap-2'>
         {grid.map(char => (
           <div key={char.id} className='relative'>
             <input
@@ -59,7 +59,7 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
                 !char.isSelected && selectedCount === CHARACTERS_FOR_AUTH
               }
               // className='hidden'
-              // className='opacity-0'
+              className='opacity-0'
               //    {...register.(props.name, {
               //      ...rules
               //    })}
@@ -73,14 +73,14 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
               className={char.isSelected ? 'opacity-40' : 'opacity-100'}
             >
               <Image
-                className='z-0 object-contain transition-all scale-90 hover:scale-100'
+                className='z-0 object-contain transition-all scale-75 hover:scale-100 '
                 height={250}
                 width={250}
                 src={char.image}
                 alt={char.name}
               />
               <p className='text-center'>{char.name}</p>
-              <p className='text-center'>{char?.isSelected?.toString()}</p>
+              {/* <p className='text-center'>{char?.isSelected?.toString()}</p> */}
             </label>
 
             <BsFillCheckCircleFill
