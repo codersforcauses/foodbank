@@ -12,8 +12,6 @@ interface PasswordFormProps {
   registered: boolean
 }
 
-const REPEAT_PASSWORD_PAGE = 3
-
 const RepeatPasswordForm = ({
   label,
   name,
@@ -36,11 +34,10 @@ const RepeatPasswordForm = ({
               onClick={goPrevPage}
               className='flex items-center'
             >
-              Back
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 25 25'
-                className='h-6 ml-8'
+                className='h-6 mr-8 rotate-180'
               >
                 <path
                   fill='#FFF'
@@ -48,6 +45,7 @@ const RepeatPasswordForm = ({
                   d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
                 />
               </svg>
+              Back
             </Button>
             <Button className='flex items-center'>
               Confirm Selections

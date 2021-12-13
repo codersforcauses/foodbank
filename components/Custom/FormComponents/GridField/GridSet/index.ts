@@ -7,7 +7,6 @@ export interface Character {
   image: string
   name: string
   password?: string
-  isSelected?: boolean
 }
 
 const PASSWORD_LENGTH = 9
@@ -30,9 +29,8 @@ const selectSet = (seed: string) => {
   )
   selectedSet.map(img => {
     img.id = uuid_v4()
-    img.password = randomStringGen(PASSWORD_LENGTH)
-    // img.password = img.name // For testing purposes
-    img.isSelected = false
+    // img.password = randomStringGen(PASSWORD_LENGTH)
+    img.password = img.name // For testing purposes
   })
   return selectedSet
 }

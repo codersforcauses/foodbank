@@ -1,50 +1,52 @@
-import { useState, InputHTMLAttributes, ChangeEvent } from 'react'
+import { useState, useEffect, InputHTMLAttributes, ChangeEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
+import { RegisterOptions, useFormContext } from 'react-hook-form'
 
 const CHARACTERS_FOR_AUTH = 3
 
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
   label: string
+  name: string
+  rules?: RegisterOptions
+  selectedCount: number
+  updateCount: (arg0: number) => void
 }
 
-const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
-  const [grid, setGrid] = useState<Character[]>(charSet)
-  const [selectedCount, setSelectedCount] = useState(0)
+const GridField = ({
+  charSet,
+  label,
+  rules = {},
+  selectedCount,
+  updateCount,
+  ...props
+}: GridFieldProps) => {
+  const { register, watch } = useFormContext()
 
-  const toggleSelect = (
-    e: ChangeEvent<HTMLInputElement>,
-    currentChar: Character
-  ) => {
-    const newChar: Character = { ...currentChar }
-    newChar.isSelected = e.target.checked
-    const newGrid: Character[] = grid
-      .slice()
-      .map(char => (char.id === newChar.id ? newChar : char))
-    setGrid(newGrid)
-  }
+  // const [grid, setGrid] = useState<Character[]>(charSet)
+  const grid = charSet
 
-  const toggleSelectedCount = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setSelectedCount(prev => prev + 1)
-      console.log('evoked!')
-    } else {
-      setSelectedCount(prev => prev - 1)
-      console.log('revoked!')
-    }
-  }
+  const [array, setArray] = useState([])
 
-  const { register, handleSubmit } = useForm()
-  const onSubmit = (data: any) => console.log(data)
+  useEffect(() => {
+    const subscription = watch(data => {
+      setArray(data.password)
+      updateCount(data.password.filter(Boolean).length)
+      console.log(data.password)
+    })
+    return () => subscription.unsubscribe()
+  }, [watch, updateCount])
+  // const imagesIndex = watch(props.name)
+  // console.log(imagesIndex)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <p>{selectedCount}</p> */}
-      <div className='grid w-auto grid-cols-3 gap-2'>
-        {grid.map(char => (
+    <>
+      <p>{selectedCount}</p>
+      <div className='grid w-full grid-cols-3 gap-2'>
+        {grid.map((char, index) => (
           <div key={char.id} className='relative'>
             <input
               type='checkbox'
@@ -52,25 +54,17 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
               //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
-              name='food'
-              value={char.password}
-              checked={char.isSelected}
-              disabled={
-                !char.isSelected && selectedCount === CHARACTERS_FOR_AUTH
-              }
+              disabled={!array[index] && selectedCount === CHARACTERS_FOR_AUTH}
               // className='hidden'
-              className='opacity-0'
-              //    {...register.(props.name, {
-              //      ...rules
-              //    })}
-              onChange={e => {
-                toggleSelect(e, char)
-                toggleSelectedCount(e)
-              }}
+              className='peer'
+              // className='opacity-0'
+              {...register?.(`${props.name}.${index}`, {
+                ...rules
+              })}
             />
             <label
               htmlFor={char.id}
-              className={char.isSelected ? 'opacity-40' : 'opacity-100'}
+              className='peer-checked:opacity-40 opacity-100'
             >
               <Image
                 className='z-0 object-contain transition-all scale-75 hover:scale-100 '
@@ -80,7 +74,6 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
                 alt={char.name}
               />
               <p className='text-center'>{char.name}</p>
-              {/* <p className='text-center'>{char?.isSelected?.toString()}</p> */}
             </label>
 
             <BsFillCheckCircleFill
@@ -93,13 +86,13 @@ const GridField = ({ charSet, label, ...props }: GridFieldProps) => {
                 'text-3xl ' +
                 'z-1 ' +
                 'pointer-events-none ' +
-                (char.isSelected ? 'opacity-100' : 'opacity-0')
+                'peer-checked:opacity-100 opacity-0'
               }
             />
           </div>
         ))}
       </div>
-    </form>
+    </>
   )
 }
 
