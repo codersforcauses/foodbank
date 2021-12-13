@@ -10,6 +10,7 @@ const CHARACTERS_FOR_AUTH = 3
 export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   charSet: Character[]
   label: string
+  name: string
   rules?: RegisterOptions
   selectedCount: number
   updateCount: (count: number) => void
@@ -19,24 +20,32 @@ const GridField = ({
   charSet,
   label,
   rules = {},
+  name,
   selectedCount,
   updateCount,
   ...props
 }: GridFieldProps) => {
-  const { register, watch } = useFormContext()
+  const { register, watch, formState, reset } = useFormContext()
 
   // const [grid, setGrid] = useState<Character[]>(charSet)
   const grid = charSet
 
   const [array, setArray] = useState([])
 
+  // useEffect(() => {
+  //   if (formState.isSubmitSuccessful) {
+  //     reset()
+  //   }
+  // }, [formState, reset])
+
   useEffect(() => {
     const subscription = watch(data => {
-      setArray(data.mask)
-      updateCount(data.mask.filter(Boolean).length)
+      console.log(data.mask[name])
+      setArray(data.mask[name])
+      updateCount(data.mask[name].filter(Boolean).length)
     })
     return () => subscription.unsubscribe()
-  }, [watch, updateCount])
+  }, [watch, updateCount, name])
   // const imagesIndex = watch(props.name)
   // console.log(imagesIndex)
 
@@ -56,7 +65,7 @@ const GridField = ({
               // className='hidden'
               className='peer'
               // className='opacity-0'
-              {...register?.(`mask.${index}`, {
+              {...register?.(`mask.${name}.${index}`, {
                 ...rules
               })}
             />

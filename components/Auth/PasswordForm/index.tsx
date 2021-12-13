@@ -7,6 +7,7 @@ const CHARACTERS_FOR_AUTH = 3
 interface PasswordFormProps {
   label: string
   error: string
+  name: string
   grid: Character[]
   goPrevPage: MouseEventHandler<HTMLButtonElement>
   goNextPage: MouseEventHandler<HTMLButtonElement>
@@ -14,14 +15,11 @@ interface PasswordFormProps {
   updatePassword: (value: string) => void
 }
 
-interface FormValue {
-  mask: boolean[]
-}
-
 const PasswordForm = ({
   label,
   error,
   grid,
+  name,
   goPrevPage,
   goNextPage,
   registered,
@@ -40,19 +38,18 @@ const PasswordForm = ({
     // return selectedGrid.map(item => item.password).join(', ')
   }
 
-  // const onSubmit: SubmitHandler<FormValues> = ({ password }) =>
-  //   console.log(password)
-  const onSubmit: SubmitHandler<FormValue> = ({ mask }) => {
-    updatePassword(getPassword(mask))
-  }
-
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        onSubmit={methods.handleSubmit(data =>
+          updatePassword(getPassword(data.mask[name]))
+        )}
+      >
         <p className='text-lg'>{label}</p>
         {error && <p>{error}</p>}
         <GridField
           label='grid'
+          name={name}
           charSet={grid}
           selectedCount={selectedCount}
           updateCount={updateCount}
