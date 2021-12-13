@@ -55,6 +55,7 @@ const Navbar = () => {
         {user ? (
           <DropdownSignOut
             username={capitalize(user!.email!.replace(/@[^@]+$/, ''))}
+            // username={capitalize(user!.displayName)}
             auth={auth}
           />
         ) : (
