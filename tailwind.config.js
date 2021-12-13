@@ -33,6 +33,13 @@ module.exports = {
         height: '1em', // defaults to half the size; has no effect on the diagonal directions (e.g. 'left-up')
         color: '#df7400' // defaults to defaultColor
       }
+    },
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1281px', 
+      '2xl': '1536px'
     }
   },
   variants: {

@@ -45,7 +45,7 @@ const PasswordForm = ({
           updatePassword(getPassword(data.mask[name]))
         )}
       >
-        <p className='text-lg'>{label}</p>
+        <p className='text-lg text-center'>{label}</p>
         {error && <p>{error}</p>}
         <GridField
           label='grid'
