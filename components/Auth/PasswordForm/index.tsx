@@ -48,8 +48,8 @@ const PasswordForm = ({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <p>{selectedCount}</p>
-        <p className='text-lg'>{label}</p>
+        {/* <p>{selectedCount}</p> */}
+        <p className='text-lg text-center'>{label}</p>
         {error && <p>{error}</p>}
         <GridField
           label='grid'

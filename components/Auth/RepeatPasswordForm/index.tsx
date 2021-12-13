@@ -25,7 +25,7 @@ const RepeatPasswordForm = ({
     <>
       {!registered && (
         <>
-          <p className='text-lg'>{label}</p>
+          <p className='text-lg text-center'>{label}</p>
           {error && <p>{error}</p>}
           <GridField label='grid' name={name} charSet={grid} />
           <div className='flex justify-center pt-4'>

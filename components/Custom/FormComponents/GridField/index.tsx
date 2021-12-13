@@ -44,10 +44,10 @@ const GridField = ({
 
   return (
     <>
-      <p>{selectedCount}</p>
-      <div className='grid w-full grid-cols-3 gap-2'>
+      {/* <p>{selectedCount}</p> */}
+      <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-6'>
         {grid.map((char, index) => (
-          <div key={char.id} className='relative'>
+          <div key={char.id} className='relative md:-m-4'>
             <input
               type='checkbox'
               aria-describedby={`${char.name}-label`}
@@ -56,24 +56,24 @@ const GridField = ({
               id={char.id}
               disabled={!array[index] && selectedCount === CHARACTERS_FOR_AUTH}
               // className='hidden'
-              className='peer'
-              // className='opacity-0'
+              className='peer opacity-0'
               {...register?.(`${props.name}.${index}`, {
                 ...rules
               })}
             />
             <label
               htmlFor={char.id}
-              className='peer-checked:opacity-40 opacity-100'
+              className='block w-28 xl:w-36 peer-checked:opacity-40 opacity-100'
             >
               <Image
-                className='z-0 object-contain transition-all scale-75 hover:scale-100 '
-                height={250}
+                className='z-0 object-contain transition-all scale-90 md:scale-75 hover:scale-100 '
                 width={250}
+                height={250}
+                layout='responsive'
                 src={char.image}
                 alt={char.name}
               />
-              <p className='text-center'>{char.name}</p>
+              <p className='text-center text-sm md:text-lg'>{char.name}</p>
             </label>
 
             <BsFillCheckCircleFill

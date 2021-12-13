@@ -30,7 +30,7 @@ const Button = ({
     <button
       {...props}
       className={[
-        'text-2xl px-4 py-2 rounded-3xl uppercase font-serif transform duration-100 hover:scale-105',
+        'text-2xl px-4 py-2 rounded-3xl uppercase font-serif transform duration-100 hover:scale-105 active:opacity-70 no-tap-highlight',
         bgColor,
         className
       ]
