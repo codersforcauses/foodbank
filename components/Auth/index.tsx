@@ -8,7 +8,9 @@ import { SubmitHandler } from 'react-hook-form'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  fetchSignInMethodsForEmail,
+  EmailAuthProvider
 } from 'firebase/auth'
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -79,12 +81,27 @@ const Auth = (props: AuthProps) => {
     HTMLInputElement
   > = async e => {
     setInput(e.target.value)
-    const isRegistered = await checkFirebase(e.target.value.toLowerCase())
-    console.log(
-      `input: ${e.target.value.toLowerCase()} username: ${username}`,
-      isRegistered
-    )
-    setRegistered(isRegistered)
+    // const isRegistered = await checkFirebase(e.target.value.toLowerCase())
+    // console.log(
+    //   `input: ${e.target.value.toLowerCase()} username: ${username}`,
+    //   isRegistered
+    // )
+    // setRegistered(isRegistered)
+    if (e.target.value) {
+      const signInMethods = await fetchSignInMethodsForEmail(
+        auth,
+        `${e.target.value.toLowerCase()}@test123.xyz`
+      )
+      if (
+        signInMethods.indexOf(
+          EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
+        ) != -1
+      ) {
+        // User can sign in with email/password.
+        console.log('REGISTERED')
+        setRegistered(prev => !prev)
+      }
+    }
   }
 
   const handleInputSubmit = () => {
