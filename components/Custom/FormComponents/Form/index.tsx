@@ -16,7 +16,7 @@ const Form = <T,>({
 }: PropsWithChildren<HookFormProps<T>>) => {
   const methods = useForm({
     defaultValues,
-    mode: 'onSubmit'
+    mode: 'onChange'
   })
   const { register, formState, setFocus } = methods
   const value: FormProps = useMemo(
