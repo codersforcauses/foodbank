@@ -1,4 +1,10 @@
-import { InputHTMLAttributes, useContext, useEffect } from 'react'
+import {
+  InputHTMLAttributes,
+  useContext,
+  useEffect,
+  useState,
+  ChangeEventHandler
+} from 'react'
 import { RegisterOptions } from 'react-hook-form'
 import { FormContext } from '../Form/context'
 import { FieldControl, FieldLabel, FieldMessage } from '../utils'
@@ -9,6 +15,7 @@ export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: string
   rules?: RegisterOptions
   focus?: boolean
+  updateValidation?: (isValid: boolean) => void
 }
 
 const TextField = ({
@@ -19,6 +26,7 @@ const TextField = ({
   required = false,
   rules = {},
   focus = false,
+  updateValidation,
   ...props
 }: TextFieldProps) => {
   const {
@@ -28,12 +36,18 @@ const TextField = ({
     setFocus
   } = useContext(FormContext)
   const error: string = formState?.errors?.[props.name]?.message
+  const isValid = formState!.isValid
 
   useEffect(() => {
     if (focus) {
       setFocus?.(props.name)
     }
   }, [setFocus, props.name, focus])
+
+  useEffect(() => {
+    updateValidation?.(isValid)
+    // return () => {}
+  }, [isValid, updateValidation])
 
   return (
     <FieldControl

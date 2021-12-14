@@ -1,6 +1,7 @@
 import React, {
   useState,
   useMemo,
+  useEffect,
   ChangeEventHandler,
   MouseEventHandler
 } from 'react'
@@ -15,7 +16,6 @@ import {
 } from 'firebase/auth'
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import { useFirebase } from '@components/firebase/context'
 import {
   Button,
@@ -28,7 +28,6 @@ import {
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
-import RepeatPasswordForm from './RepeatPasswordForm'
 
 const PASSWORD_LENGTH = 27
 
@@ -64,6 +63,7 @@ const defaultValues: FormValues = {
 const Auth = (props: AuthProps) => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
+  const [validUsername, setValidUsername] = useState(false)
   const [password, setPassword] = useState('')
   const [registered, setRegistered] = useState(false)
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
@@ -71,13 +71,13 @@ const Auth = (props: AuthProps) => {
   const [error, setError] = useState('')
   const { auth, db, user, userLoading, userError } = useFirebase()
 
-  // CHECKS IF USERNAME IS TAKEN
-  const checkFirebase = async (username: string) => {
-    if (!username) {
-      return false
+  useEffect(() => {
+    if (validUsername) {
+      console.log(validUsername, input)
     }
-    return (await getDoc(doc(db, 'usernames', username))).exists()
-  }
+    // setValidUsername(false)
+    return () => setValidUsername(false)
+  }, [validUsername, input])
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
@@ -93,26 +93,32 @@ const Auth = (props: AuthProps) => {
       setRegistered(false)
       return
     }
-    try {
-      const signInMethods = await fetchSignInMethodsForEmail(
-        auth,
-        `${e.target.value.toLowerCase()}@test123.xyz`
-      )
-      // User can sign in with email/password.
-      signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) !==
-      -1
-        ? setRegistered(true)
-        : setRegistered(false)
-    } catch (err: unknown) {
-      if (err instanceof FirebaseError) {
-        console.log(err?.message)
-      }
-    }
+    setRegistered(false)
+    // console.log(e.target.value.toLowerCase())
+    // try {
+    //   const signInMethods = await fetchSignInMethodsForEmail(
+    //     auth,
+    //     `${e.target.value.toLowerCase()}@test123.xyz`
+    //   )
+    //   // User can sign in with email/password.
+    //   signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) !==
+    //   -1
+    //     ? setRegistered(true)
+    //     : setRegistered(false)
+    // } catch (err: unknown) {
+    //   if (err instanceof FirebaseError) {
+    //     console.log(err?.message)
+    //   }
+    // }
   }
 
   const handleInputSubmit = () => {
     setUsername(input.toLowerCase())
     // console.log(input)
+  }
+
+  const updateValidation = (isValid: boolean) => {
+    setValidUsername(isValid)
   }
 
   const handlePasswordSubmit = async (newPassword: string) => {
@@ -271,6 +277,7 @@ const Auth = (props: AuthProps) => {
               label={MESSAGES.USERNAME_LABEL}
               input={input}
               handleUsernameChange={handleUsernameChange}
+              updateValidation={updateValidation}
               goNextPage={goNextPage}
               registered={registered}
             />

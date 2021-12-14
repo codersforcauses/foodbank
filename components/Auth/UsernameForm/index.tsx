@@ -5,6 +5,7 @@ interface UsernameFormProps {
   label: string
   input: string
   handleUsernameChange: ChangeEventHandler<HTMLInputElement>
+  updateValidation: (isValid: boolean) => void
   goNextPage: MouseEventHandler<HTMLButtonElement>
   registered: boolean
 }
@@ -13,6 +14,7 @@ const UsernameForm = ({
   label,
   input,
   handleUsernameChange,
+  updateValidation,
   goNextPage,
   registered
 }: UsernameFormProps) => {
@@ -36,6 +38,7 @@ const UsernameForm = ({
           },
           onChange: handleUsernameChange
         }}
+        updateValidation={updateValidation}
       />
       <div className='flex flex-col items-center pt-4 space-x-3'>
         <Button
