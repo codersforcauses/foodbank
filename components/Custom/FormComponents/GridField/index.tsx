@@ -25,7 +25,6 @@ const GridField = ({
   ...props
 }: GridFieldProps) => {
   const { register, watch, formState, reset } = useFormContext()
-  const isSubmitSuccessful = formState.isSubmitSuccessful
 
   const grid = charSet
   const defaultMask = new Array(9).fill(false)
@@ -33,20 +32,20 @@ const GridField = ({
   const [mask, setMask] = useState(new Array(9).fill(false))
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (formState.isSubmitSuccessful) {
       updateCount(0)
-      reset(defaultMask)
+      reset({ mask: defaultMask })
       setMask(defaultMask)
     }
-  }, [isSubmitSuccessful, reset, updateCount, defaultMask])
+  }, [formState, reset, updateCount, defaultMask])
 
   useEffect(() => {
     const subscription = watch(data => {
-      setMask(data.mask[name])
-      updateCount(data.mask[name].filter(Boolean).length)
+      setMask(data.mask)
+      updateCount(data.mask.filter(Boolean).length)
     })
     return () => subscription.unsubscribe()
-  }, [watch, updateCount, name])
+  }, [watch, updateCount])
 
   return (
     <>
@@ -64,7 +63,7 @@ const GridField = ({
                 formState.isSubmitting
               }
               className='opacity-0 peer'
-              {...register?.(`mask.${name}.${index}`, {
+              {...register?.(`mask.${index}`, {
                 ...rules
               })}
             />

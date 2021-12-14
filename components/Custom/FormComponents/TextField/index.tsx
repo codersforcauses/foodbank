@@ -30,7 +30,6 @@ const TextField = ({
     setFocus
   } = useContext(FormContext)
   const error: string = formState?.errors?.[props.name]?.message
-  const isValid = formState!.isValid
 
   useEffect(() => {
     if (focus) {
@@ -39,8 +38,8 @@ const TextField = ({
   }, [setFocus, props.name, focus])
 
   useEffect(() => {
-    updateValidation?.(isValid)
-  }, [isValid, updateValidation])
+    updateValidation?.(formState!.isValid)
+  }, [formState, updateValidation])
 
   return (
     <FieldControl

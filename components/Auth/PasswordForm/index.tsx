@@ -47,7 +47,7 @@ const PasswordForm = ({
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(data =>
-          updatePassword(getPassword(data.mask[name]))
+          updatePassword(getPassword(data.mask))
         )}
       >
         <p className='text-lg text-center'>{label}</p>
