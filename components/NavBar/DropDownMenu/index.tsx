@@ -29,6 +29,7 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
   const [subMenu, setSubMenu] = useState(false)
   return (
     <nav className='relative'>
+      <div className='c-triangle-up'></div>
       <button
         onClick={() => setSubMenu(!subMenu)}
         className='px-4 py-1 font-serif 
