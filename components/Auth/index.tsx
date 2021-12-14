@@ -10,9 +10,11 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   fetchSignInMethodsForEmail,
-  EmailAuthProvider
+  EmailAuthProvider,
+  AuthErrorCodes
 } from 'firebase/auth'
 import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
+import { FirebaseError } from '@firebase/util'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useFirebase } from '@components/firebase/context'
 import {
@@ -101,8 +103,10 @@ const Auth = (props: AuthProps) => {
       -1
         ? setRegistered(true)
         : setRegistered(false)
-    } catch (err) {
-      console.log(err?.message)
+    } catch (err: unknown) {
+      if (err instanceof FirebaseError) {
+        console.log(err?.message)
+      }
     }
   }
 
@@ -129,14 +133,16 @@ const Auth = (props: AuthProps) => {
         onClose()
         // alert(MESSAGES.PASSWORD_MATCHED)
         setError('')
-      } catch (err) {
-        // console.dir(err)
-        console.log(err?.message)
-        // if (err.code === 'auth/wrong-password') {
-        //   console.log('Wrong')
-        //   setError(MESSAGES.WRONG_PASSWORD)
-        //   alert(MESSAGES.WRONG_PASSWORD)
-        // }
+      } catch (err: unknown) {
+        if (err instanceof FirebaseError) {
+          // console.dir(err)
+          console.log(err?.message)
+          if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
+            console.log('Wrong')
+            setError(MESSAGES.WRONG_PASSWORD)
+            alert(MESSAGES.WRONG_PASSWORD)
+          }
+        }
       }
     } else if (!registered && newPassword?.length === PASSWORD_LENGTH) {
       setPage(PAGES.REPEAT_PASSWORD_FORM)
@@ -170,8 +176,10 @@ const Auth = (props: AuthProps) => {
             `${username}@test123.xyz`,
             password
           )
-        } catch (err) {
-          console.log(err?.message)
+        } catch (err: unknown) {
+          if (err instanceof FirebaseError) {
+            console.log(err?.message)
+          }
         }
         // if (auth?.currentUser) {
         //   await updateProfile(auth.currentUser, {
@@ -190,8 +198,10 @@ const Auth = (props: AuthProps) => {
             achievement8: false,
             achievement9: false
           })
-        } catch (err) {
-          console.log(err?.message)
+        } catch (err: unknown) {
+          if (err instanceof FirebaseError) {
+            console.log(err?.message)
+          }
         }
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
