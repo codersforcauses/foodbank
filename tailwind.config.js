@@ -31,6 +31,12 @@ module.exports = {
         size: '1rem', // defaults to defaultSize
         height: '1em', // defaults to half the size; has no effect on the diagonal directions (e.g. 'left-up')
         color: '#df7400' // defaults to defaultColor
+      },
+      down: {
+        direction: 'down',
+        size: '1rem',
+        height: '1em',
+        color: '#df7400' 
       }
     },
   },

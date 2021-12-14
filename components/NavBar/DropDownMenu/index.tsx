@@ -1,31 +1,13 @@
 import NavLink, { NavLinkProps } from '../NavLink'
 import { useState } from 'react'
 
-const links: Array<NavLinkProps> = [
-  {
-    page: 'Tucker Island',
-    route: '/'
-  },
-  {
-    page: 'Recipes',
-    route: '/'
-  },
-  {
-    page: 'Drag-Drop Game',
-    route: '/'
-  },
-  {
-    page: 'Trophy Room',
-    route: '/'
-  }
-]
-
 export interface DropDownMenuProps {
   page?: string
   route?: string
+  links: Array<NavLinkProps>
 }
 
-const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
+const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
   const [subMenu, setSubMenu] = useState(false)
   return (
     <nav className='relative'>
@@ -48,7 +30,7 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
                         mt-3'
         >
           <div className='flex justify-end '>
-            <div 
+            <div
               className='relative right-5 c-triangle-up'
               style={{
                 borderBottom: '1em solid #671e75'
@@ -59,7 +41,7 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
             <div className='block items-center'>
               {links.map(nav => (
                 <>
-                  <NavLink key={nav.page} {...nav}/>
+                  <NavLink key={nav.page} {...nav} />
                 </>
               ))}
             </div>
