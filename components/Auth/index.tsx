@@ -6,6 +6,7 @@ import React, {
   MouseEventHandler
 } from 'react'
 import { SubmitHandler } from 'react-hook-form'
+import { useDebounce } from 'react-use'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -71,50 +72,45 @@ const Auth = (props: AuthProps) => {
   const [error, setError] = useState('')
   const { auth, db, user, userLoading, userError } = useFirebase()
 
-  useEffect(() => {
-    if (validUsername) {
-      console.log(validUsername, input)
-    }
-    // setValidUsername(false)
-    return () => setValidUsername(false)
-  }, [validUsername, input])
+  useDebounce(
+    async () => {
+      if (input && validUsername) {
+        console.log('Typing stopped')
+        console.log(input)
+        try {
+          const signInMethods = await fetchSignInMethodsForEmail(
+            auth,
+            `${input.toLowerCase()}@test123.xyz`
+          )
+          // User can sign in with email/password.
+          signInMethods.indexOf(
+            EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
+          ) !== -1
+            ? setRegistered(true)
+            : setRegistered(false)
+        } catch (err: unknown) {
+          if (err instanceof FirebaseError) {
+            console.log(err?.message)
+          }
+        }
+      }
+    },
+    400,
+    [input]
+  )
 
   const handleUsernameChange: ChangeEventHandler<
     HTMLInputElement
   > = async e => {
     setInput(e.target.value)
-    // const isRegistered = await checkFirebase(e.target.value.toLowerCase())
-    // console.log(
-    //   `input: ${e.target.value.toLowerCase()} username: ${username}`,
-    //   isRegistered
-    // )
-    // setRegistered(isRegistered)
     if (!e.target.value) {
       setRegistered(false)
       return
     }
-    setRegistered(false)
-    // console.log(e.target.value.toLowerCase())
-    // try {
-    //   const signInMethods = await fetchSignInMethodsForEmail(
-    //     auth,
-    //     `${e.target.value.toLowerCase()}@test123.xyz`
-    //   )
-    //   // User can sign in with email/password.
-    //   signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) !==
-    //   -1
-    //     ? setRegistered(true)
-    //     : setRegistered(false)
-    // } catch (err: unknown) {
-    //   if (err instanceof FirebaseError) {
-    //     console.log(err?.message)
-    //   }
-    // }
   }
 
   const handleInputSubmit = () => {
     setUsername(input.toLowerCase())
-    // console.log(input)
   }
 
   const updateValidation = (isValid: boolean) => {
@@ -277,6 +273,7 @@ const Auth = (props: AuthProps) => {
               label={MESSAGES.USERNAME_LABEL}
               input={input}
               handleUsernameChange={handleUsernameChange}
+              validUsername={validUsername}
               updateValidation={updateValidation}
               goNextPage={goNextPage}
               registered={registered}
