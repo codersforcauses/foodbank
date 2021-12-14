@@ -5,6 +5,7 @@ interface UsernameFormProps {
   label: string
   input: string
   handleUsernameChange: ChangeEventHandler<HTMLInputElement>
+  validUsername: boolean
   updateValidation: (isValid: boolean) => void
   goNextPage: MouseEventHandler<HTMLButtonElement>
   registered: boolean
@@ -14,6 +15,7 @@ const UsernameForm = ({
   label,
   input,
   handleUsernameChange,
+  validUsername,
   updateValidation,
   goNextPage,
   registered
@@ -45,7 +47,7 @@ const UsernameForm = ({
           className='flex items-center disabled:opacity-50'
           type='button'
           onClick={goNextPage}
-          disabled={!input}
+          disabled={!input || !validUsername}
         >
           {registered ? `WELCOME BACK, ${input}!!!` : 'HI, NEW FRIEND!!!!'}
           <svg
