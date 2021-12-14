@@ -30,29 +30,31 @@ const GridField = ({
   // const [grid, setGrid] = useState<Character[]>(charSet)
   const grid = charSet
 
-  const [mask, setMask] = useState([])
+  const [mask, setMask] = useState(new Array(9).fill(false))
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      reset()
+      updateCount(0)
+      reset(new Array(9).fill(false))
     }
-  }, [formState, reset])
+  }, [formState, reset, updateCount])
 
   useEffect(() => {
     const subscription = watch(data => {
-      console.log(data.mask[name])
+      // console.log(data.mask[name])
       setMask(data.mask[name])
       updateCount(data.mask[name].filter(Boolean).length)
     })
     return () => subscription.unsubscribe()
   }, [watch, updateCount, name])
-  // const imagesIndex = watch(props.name)
-  // console.log(imagesIndex)
+
+  const imagesIndex = watch(`mask.${name}`)
+  console.log(imagesIndex)
 
   return (
     <>
       <p>{selectedCount}/3 Selections</p>
-      <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-6'>
+      <div className='grid w-full grid-cols-3 gap-2 mb-6 -mt-6 place-items-center'>
         {grid.map((char, index) => (
           <div key={char.id} className='relative md:-m-4'>
             <input
@@ -61,17 +63,20 @@ const GridField = ({
               //   aria-invalid={!!error}
               aria-label={`${char.name}-checkbox`}
               id={char.id}
-              disabled={!mask[index] && selectedCount === CHARACTERS_FOR_AUTH}
+              disabled={
+                (!mask[index] && selectedCount === CHARACTERS_FOR_AUTH) ||
+                formState.isSubmitting
+              }
               // className='hidden'
-              className='peer opacity-0'
-              // className='opacity-0'
+              // className='opacity-0 peer'
+              className='peer'
               {...register?.(`mask.${name}.${index}`, {
                 ...rules
               })}
             />
             <label
               htmlFor={char.id}
-              className='block w-28 xl:w-36 peer-checked:opacity-40 opacity-100'
+              className='block opacity-100 w-28 xl:w-36 peer-checked:opacity-40'
             >
               <Image
                 className='z-0 object-contain transition-all scale-90 md:scale-75 hover:scale-100 '
@@ -81,7 +86,7 @@ const GridField = ({
                 src={char.image}
                 alt={char.name}
               />
-              <p className='text-center text-sm md:text-lg'>{char.name}</p>
+              <p className='text-sm text-center md:text-lg'>{char.name}</p>
             </label>
 
             <BsFillCheckCircleFill
