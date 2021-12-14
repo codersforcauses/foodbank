@@ -1,7 +1,6 @@
 import React, {
   useState,
   useMemo,
-  useEffect,
   ChangeEventHandler,
   MouseEventHandler
 } from 'react'
@@ -15,17 +14,10 @@ import {
   EmailAuthProvider,
   AuthErrorCodes
 } from 'firebase/auth'
-import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
 import { useFirebase } from '@components/firebase/context'
-import {
-  Button,
-  Form,
-  TextField,
-  Modal,
-  GridField,
-  selectSet
-} from '@components/Custom'
+import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
@@ -70,13 +62,11 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
   const [error, setError] = useState('')
-  const { auth, db, user, userLoading, userError } = useFirebase()
+  const { auth, db } = useFirebase()
 
   useDebounce(
     async () => {
       if (input && validUsername) {
-        console.log('Typing stopped')
-        console.log(input)
         try {
           const signInMethods = await fetchSignInMethodsForEmail(
             auth,
@@ -118,7 +108,6 @@ const Auth = (props: AuthProps) => {
   }
 
   const handlePasswordSubmit = async (newPassword: string) => {
-    console.log(newPassword)
     if (newPassword?.length && page !== PAGES.PASSWORD_FORM) {
       setPage(PAGES.PASSWORD_FORM)
       return
@@ -131,18 +120,13 @@ const Auth = (props: AuthProps) => {
           `${username}@test123.xyz`,
           newPassword
         ) //<-- SIGNIN
-        console.log('Password Matched!')
         onClose()
-        // alert(MESSAGES.PASSWORD_MATCHED)
         setError('')
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {
-          // console.dir(err)
           console.log(err?.message)
           if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
-            console.log('Wrong')
             setError(MESSAGES.WRONG_PASSWORD)
-            alert(MESSAGES.WRONG_PASSWORD)
           }
         }
       }
@@ -168,9 +152,7 @@ const Auth = (props: AuthProps) => {
       newRepeatedPassword?.length === PASSWORD_LENGTH
     ) {
       if (newRepeatedPassword === password) {
-        console.log('Registered!')
         onClose()
-        // alert(MESSAGES.REPEATED_PASSWORD_MATCHED) //<-- SIGNUP
         setError('')
         try {
           await createUserWithEmailAndPassword(
@@ -214,7 +196,6 @@ const Auth = (props: AuthProps) => {
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
     if (!input) {
-      console.log(value)
       return
     } else if (!username) {
       handleInputSubmit()
@@ -289,14 +270,12 @@ const Auth = (props: AuthProps) => {
             page={page}
             grid={grid}
             goPrevPage={goPrevPage}
-            goNextPage={goNextPage}
             registered={registered}
             updatePassword={handlePasswordSubmit}
           />
         )
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
-          // <RepeatPasswordForm
           <PasswordForm
             label={MESSAGES.REPEATED_PASSWORD_LABEL}
             error={error}
@@ -304,7 +283,6 @@ const Auth = (props: AuthProps) => {
             page={page}
             grid={grid}
             goPrevPage={goPrevPage}
-            goNextPage={goNextPage}
             registered={registered}
             updatePassword={handleRepeatedPasswordSubmit}
           />

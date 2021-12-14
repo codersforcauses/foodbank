@@ -1,7 +1,7 @@
-import { useState, ChangeEventHandler, MouseEventHandler } from 'react'
+import { useState, MouseEventHandler } from 'react'
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 
 const CHARACTERS_FOR_AUTH = 3
 
@@ -17,7 +17,6 @@ interface PasswordFormProps {
   page: number
   grid: Character[]
   goPrevPage: MouseEventHandler<HTMLButtonElement>
-  goNextPage: MouseEventHandler<HTMLButtonElement>
   registered: boolean
   updatePassword: (value: string) => void
 }
@@ -29,7 +28,6 @@ const PasswordForm = ({
   name,
   page,
   goPrevPage,
-  goNextPage,
   registered,
   updatePassword
 }: PasswordFormProps) => {
@@ -43,7 +41,6 @@ const PasswordForm = ({
   const getPassword = (mask: boolean[]) => {
     const selectedGrid = grid.filter((item, i) => mask[i])
     return selectedGrid.map(item => item.password).join('')
-    // return selectedGrid.map(item => item.password).join(', ')
   }
 
   return (

@@ -31,7 +31,7 @@ const Navbar = () => {
     setOpenSignInForm(prev => !prev)
   }, [])
 
-  const { auth, user, userLoading, userError } = useFirebase()
+  const { auth, user } = useFirebase()
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
@@ -55,7 +55,6 @@ const Navbar = () => {
         {user ? (
           <DropdownSignOut
             username={capitalize(user!.email!.replace(/@[^@]+$/, ''))}
-            // username={capitalize(user!.displayName)}
             auth={auth}
           />
         ) : (

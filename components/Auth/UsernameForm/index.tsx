@@ -29,7 +29,7 @@ const UsernameForm = ({
         value={input}
         focus={true}
         rules={{
-          required: true,
+          required: 'Please enter your name or a username',
           pattern: {
             value: /^[a-z0-9]+$/i,
             message: 'Alphanumeric characters only'

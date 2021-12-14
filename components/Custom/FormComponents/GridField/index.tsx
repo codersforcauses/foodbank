@@ -1,5 +1,4 @@
-import { useState, useEffect, InputHTMLAttributes, ChangeEvent } from 'react'
-import { useForm } from 'react-hook-form'
+import { useState, useEffect, InputHTMLAttributes } from 'react'
 import Image from 'next/image'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
@@ -26,34 +25,31 @@ const GridField = ({
   ...props
 }: GridFieldProps) => {
   const { register, watch, formState, reset } = useFormContext()
+  const isSubmitSuccessful = formState.isSubmitSuccessful
 
-  // const [grid, setGrid] = useState<Character[]>(charSet)
   const grid = charSet
+  const defaultMask = new Array(9).fill(false)
 
   const [mask, setMask] = useState(new Array(9).fill(false))
 
   useEffect(() => {
-    if (formState.isSubmitSuccessful) {
+    if (isSubmitSuccessful) {
       updateCount(0)
-      reset(new Array(9).fill(false))
+      reset(defaultMask)
+      setMask(defaultMask)
     }
-  }, [formState, reset, updateCount])
+  }, [isSubmitSuccessful, reset, updateCount, defaultMask])
 
   useEffect(() => {
     const subscription = watch(data => {
-      // console.log(data.mask[name])
       setMask(data.mask[name])
       updateCount(data.mask[name].filter(Boolean).length)
     })
     return () => subscription.unsubscribe()
   }, [watch, updateCount, name])
 
-  const imagesIndex = watch(`mask.${name}`)
-  console.log(imagesIndex)
-
   return (
     <>
-      {/* <p>{selectedCount}/3 Selections</p> */}
       <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-3'>
         {grid.map((char, index) => (
           <div key={char.id} className='relative md:-m-4'>
@@ -67,9 +63,7 @@ const GridField = ({
                 (!mask[index] && selectedCount === CHARACTERS_FOR_AUTH) ||
                 formState.isSubmitting
               }
-              // className='hidden'
-              // className='opacity-0 peer'
-              className='peer'
+              className='opacity-0 peer'
               {...register?.(`mask.${name}.${index}`, {
                 ...rules
               })}
