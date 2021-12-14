@@ -46,7 +46,6 @@ const TextField = ({
 
   useEffect(() => {
     updateValidation?.(isValid)
-    // return () => {}
   }, [isValid, updateValidation])
 
   return (
