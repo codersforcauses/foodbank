@@ -53,8 +53,8 @@ const GridField = ({
 
   return (
     <>
-      <p>{selectedCount}/3 Selections</p>
-      <div className='grid w-full grid-cols-3 gap-2 mb-6 -mt-6 place-items-center'>
+      {/* <p>{selectedCount}/3 Selections</p> */}
+      <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-3'>
         {grid.map((char, index) => (
           <div key={char.id} className='relative md:-m-4'>
             <input
