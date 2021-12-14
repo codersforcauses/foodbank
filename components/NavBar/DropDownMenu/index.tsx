@@ -29,7 +29,6 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
   const [subMenu, setSubMenu] = useState(false)
   return (
     <nav className='relative'>
-      <div className='c-triangle-up'></div>
       <button
         onClick={() => setSubMenu(!subMenu)}
         className='px-4 py-1 font-serif 
@@ -43,16 +42,24 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
         <div
           className='shadow-lg 
                         overflow-hidden 
-                        absolute rounded-lg 
+                        absolute 
                         z-10 
                         right-0 w-max 
-                        mt-6'
+                        mt-3'
         >
-          <div className='relative grid gap-6 bg-primary px-5 py-6 sm:gap-8 sm:p-8'>
+          <div className='flex justify-end '>
+            <div 
+              className='relative right-5 c-triangle-up'
+              style={{
+                borderBottom: '1em solid #671e75'
+              }}
+            />
+          </div>
+          <div className='relative grid gap-6 rounded-lg bg-primary px-5 py-6 sm:gap-8 sm:p-8'>
             <div className='block items-center'>
               {links.map(nav => (
                 <>
-                  <NavLink key={nav.page} {...nav} />
+                  <NavLink key={nav.page} {...nav}/>
                 </>
               ))}
             </div>

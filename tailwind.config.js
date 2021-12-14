@@ -23,10 +23,26 @@ module.exports = {
         sans: ['Bliss'],
         serif: ['Abraham']
       }
-    }
+    },
+    triangles: {
+      // defaults to {}
+      up: {
+        direction: 'up', // one of 'left', 'right', 'up', 'down', 'left-up', 'left-down', 'right-up', and 'right-down'
+        size: '1rem', // defaults to defaultSize
+        height: '1em', // defaults to half the size; has no effect on the diagonal directions (e.g. 'left-up')
+        color: '#df7400' // defaults to defaultColor
+      }
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
+    triangles:[]
   },
-  plugins: [require('tailwindcss')]
+  plugins: [
+    require('tailwindcss-triangles')({
+      componentPrefix: 'c-', // defaults to 'c-'
+      defaultSize: '1em', // defaults to '1em'
+      defaultColor: 'currentColor' // defaults to 'currentColor'
+    })
+  ]
 }
