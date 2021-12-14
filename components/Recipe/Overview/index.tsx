@@ -31,9 +31,7 @@ const RecipeOverview: React.FC = ({ recipe }) => {
         <div className='flex flex-col w-3/4'>
           <div
             className={
-              styles['image-container'] +
-              ' w-full ' +
-              styles['recipe-main-image']
+              styles['image-container'] + ' ' + styles['recipe-main-image']
             }
           >
             <Image

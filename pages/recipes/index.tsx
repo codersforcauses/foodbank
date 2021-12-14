@@ -47,7 +47,7 @@ const RecipesGridView: React.FC = props => {
     if (props.tag !== 'all') {
       filterByTag(props.tag)
     }
-  }, [])
+  }, [props.tag])
 
   const recipeCards = filteredCards.map(recipe => {
     const { name, slug, finalShot, character } = recipe
@@ -69,25 +69,23 @@ const RecipesGridView: React.FC = props => {
       <div className='flex justify-center gap-10 mt-10'>
         {allCategories.map(category => {
           return (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <p
+            <button
               onClick={() => filterByCategory(category)}
               className='text-lg'
               style={{ cursor: 'pointer' }}
               key={category}
             >
               {category}
-            </p>
+            </button>
           )
         })}
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-        <p
+        <button
           onClick={() => setFilteredCards(recipes)}
           className='text-lg'
           style={{ cursor: 'pointer' }}
         >
           All
-        </p>
+        </button>
       </div>
       <div className='flex justify-center m-3'>
         <div className='mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-14'>

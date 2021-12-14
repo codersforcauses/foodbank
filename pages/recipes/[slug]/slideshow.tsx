@@ -22,7 +22,7 @@ const RecipeSlideShow: React.FC = () => {
 
   return (
     <div
-      className='flex justify-center items-center'
+      className='flex justify-center items-center bg-orange'
       style={{ height: 'calc(100vh - 4rem)' }}
     >
       <Carousel
@@ -42,11 +42,11 @@ const RecipeSlideShow: React.FC = () => {
               <img
                 src={recipeStep.image.src}
                 alt={`step ${index}`}
-                className='object-scale-down bg-cover'
+                className='object-scale-down bg-contain'
               />
             </div>
             <div className='py-5 md:py-0 text-xl px-14 w-full lg:w-1/2 min-w-32 flex justify-center items-center'>
-              {index + 1}. {recipeStep.description}
+              {recipeStep.description}
             </div>
           </div>
         ))}

@@ -1,9 +1,9 @@
 import { PropsWithChildren, useState, useEffect, useRef } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
 import { TOptionsEvents } from 'keen-slider'
-import Arrow from './Arrow'
 import Dots from './Dots'
 import 'keen-slider/keen-slider.min.css'
+import Image from 'next/image'
 
 export interface CarouselProps extends TOptionsEvents {
   autoplay?: boolean
@@ -77,16 +77,26 @@ const Carousel = ({
       {/* styles for arrow and dots subject to changes later */}
       {controls && (
         <>
-          <Arrow
-            direction='left'
-            className='w-12 h-12 absolute p-1.5 top-1/2 rounded m-1 transform -translate-y-1/2 left-0'
+          <button
             onClick={() => slider.prev()}
-          />
-          <Arrow
-            direction='right'
-            className='w-12 h-12 absolute top-1/2 p-1.5 rounded m-1 transform -translate-y-1/2 right-0'
+            className='w-32 h-32 absolute p-1.5 m-1 bottom-0 left-0'
+          >
+            <Image
+              src='/images/Extra/Left-arrow.png'
+              alt='Left arrow'
+              layout='fill'
+            />
+          </button>
+          <button
             onClick={() => slider.next()}
-          />
+            className='w-32 h-32 absolute p-1.5 m-1 transform bottom-0 right-0'
+          >
+            <Image
+              src='/images/Extra/Right-arrow.png'
+              alt='Right arrow'
+              layout='fill'
+            />
+          </button>
         </>
       )}
       {indicators && (
