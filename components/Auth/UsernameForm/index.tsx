@@ -26,6 +26,14 @@ const UsernameForm = ({
         focus={true}
         rules={{
           required: true,
+          pattern: {
+            value: /^[a-z0-9]+$/i,
+            message: 'Alphanumeric characters only'
+          },
+          minLength: {
+            value: 3,
+            message: 'Must be more than 3 characters long'
+          },
           onChange: handleUsernameChange
         }}
       />
