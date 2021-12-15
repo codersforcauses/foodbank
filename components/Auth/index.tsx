@@ -23,6 +23,10 @@ import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 
+const DEBOUCNE_DELAY = 400
+
+const WAIT_FOR_MODAL_TO_CLOSE = 150
+
 interface AuthProps {
   open: boolean
   onClose: () => void
@@ -71,7 +75,7 @@ const Auth = (props: AuthProps) => {
         }
       }
     },
-    400,
+    DEBOUCNE_DELAY,
     [input]
   )
 
@@ -211,7 +215,7 @@ const Auth = (props: AuthProps) => {
 
   const onClose = async () => {
     props.onClose()
-    await sleep(150)
+    await sleep(WAIT_FOR_MODAL_TO_CLOSE)
     handleReset()
     setPage(PAGES.USERNAME_FORM)
   }
