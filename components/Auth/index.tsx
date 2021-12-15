@@ -14,32 +14,15 @@ import {
   EmailAuthProvider,
   AuthErrorCodes
 } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
-import { useFirebase } from '@components/Firebase/context'
+import { useFirebase, defaultAchievements } from '@components/Firebase/context'
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
+import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 
-const PASSWORD_LENGTH = 27
-
-const PAGES = {
-  USERNAME_FORM: 1,
-  PASSWORD_FORM: 2,
-  REPEAT_PASSWORD_FORM: 3
-}
-
-const MESSAGES = {
-  USERNAME_LABEL: 'Enter a username.',
-  PASSWORD_LABEL: 'Choose your three characters.',
-  REPEATED_PASSWORD_LABEL:
-    'Re-select those same three characters and remember them.',
-  PASSWORD_MATCHED: 'Signed in',
-  REPEATED_PASSWORD_MATCHED: 'Registered',
-  WRONG_PASSWORD: 'Uh-oh! You have selected the wrong characters!',
-  PASSWORDS_NOT_MATCHED: 'Uh-oh! You have selected the wrong characters!'
-}
 interface AuthProps {
   open: boolean
   onClose: () => void
@@ -57,12 +40,12 @@ const Auth = (props: AuthProps) => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
   const [validUsername, setValidUsername] = useState(false)
-  const [password, setPassword] = useState('')
   const [registered, setRegistered] = useState(false)
+  const [password, setPassword] = useState('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
   const [error, setError] = useState('')
-  const { auth, db } = useFirebase()
+  const { auth, db, setAchievements } = useFirebase()
 
   useDebounce(
     async () => {
@@ -80,7 +63,10 @@ const Auth = (props: AuthProps) => {
             : setRegistered(false)
         } catch (err: unknown) {
           if (err instanceof FirebaseError) {
-            console.log(err?.message)
+            switch (err.code) {
+              default:
+                console.log(err.message)
+            }
           }
         }
       }
@@ -122,12 +108,28 @@ const Auth = (props: AuthProps) => {
         ) //<-- SIGNIN
         onClose()
         setError('')
+        if (auth?.currentUser?.uid) {
+          console.log('Retrieving data...')
+          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid))
+          if (userDoc.exists()) {
+            setAchievements?.(prev => ({ ...prev, ...userDoc.data() }))
+            console.log('Document data:', userDoc.data())
+          } else {
+            // doc.data() will be undefined in this case
+            console.error(MESSAGES.NO_USER_DOCUMENT)
+          }
+        }
       } catch (err: unknown) {
         if (err instanceof FirebaseError) {
-          console.log(err?.message)
-          if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
-            setError(MESSAGES.WRONG_PASSWORD)
+          switch (err.code) {
+            case AuthErrorCodes.INVALID_PASSWORD:
+              setError(MESSAGES.WRONG_PASSWORD)
+              break
+            default:
+              console.log(err.message)
           }
+        } else {
+          console.error(err)
         }
       }
     } else if (!registered && newPassword?.length === PASSWORD_LENGTH) {
@@ -160,31 +162,23 @@ const Auth = (props: AuthProps) => {
             `${username}@test123.xyz`,
             password
           )
-        } catch (err: unknown) {
-          if (err instanceof FirebaseError) {
-            console.log(err?.message)
+          if (auth?.currentUser?.uid) {
+            await updateProfile(auth.currentUser, {
+              displayName: username
+            })
+            await setDoc(
+              doc(db, 'users', auth.currentUser.uid),
+              defaultAchievements
+            )
           }
-        }
-        // if (auth?.currentUser) {
-        //   await updateProfile(auth.currentUser, {
-        //     displayName: username
-        //   })
-        // }
-        try {
-          await setDoc(doc(db, 'usernames', username), {
-            achievement1: false,
-            achievement2: false,
-            achievement3: false,
-            achievement4: false,
-            achievement5: false,
-            achievement6: false,
-            achievement7: false,
-            achievement8: false,
-            achievement9: false
-          })
         } catch (err: unknown) {
           if (err instanceof FirebaseError) {
-            console.log(err?.message)
+            switch (err.code) {
+              default:
+                console.log(err.message)
+            }
+          } else {
+            console.error(err)
           }
         }
       } else {
@@ -194,7 +188,7 @@ const Auth = (props: AuthProps) => {
   }
 
   // SIGNIN OR SIGNUP HERE
-  const handleValuesSubmit: SubmitHandler<FormValues> = async value => {
+  const handleValuesSubmit: SubmitHandler<FormValues> = async () => {
     if (!input) {
       return
     } else if (!username) {
@@ -207,7 +201,7 @@ const Auth = (props: AuthProps) => {
   const handleReset = () => {
     setInput('')
     setUsername('')
-    setRegistered(false)
+    setRegistered?.(false)
     setError('')
   }
 
