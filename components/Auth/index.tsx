@@ -16,7 +16,7 @@ import {
 } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
-import { useFirebase } from '@components/firebase/context'
+import { useFirebase } from '@components/Firebase/context'
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import UsernameForm from './UsernameForm'
