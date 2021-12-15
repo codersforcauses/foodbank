@@ -38,14 +38,17 @@ const RecipeSlideShow: React.FC = () => {
             className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32'
           >
             <div className='w-full lg:w-1/2 flex justify-center'>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={recipeStep.image.src}
-                alt={`step ${index}`}
-                className='object-scale-down bg-contain'
-              />
+              <div className='m-auto px-5'>
+                <div className='w-max h-max px-6 py-2 transform -rotate-12 text-white text-5xl bg-primary font-genty border-8 border-black'>{`STEP ${index+1}`}</div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={recipeStep.image.src}
+                  alt={`step ${index + 1}`}
+                  className='border-8'
+                />
+              </div>
             </div>
-            <div className='py-5 md:py-0 text-xl px-14 w-full lg:w-1/2 min-w-32 flex justify-center items-center'>
+            <div className='font-sans py-5 md:py-0 font-bold text-3xl px-14 w-full lg:w-1/2 min-w-32 flex justify-center items-center'>
               {recipeStep.description}
             </div>
           </div>
