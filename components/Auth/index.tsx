@@ -69,7 +69,7 @@ const Auth = (props: AuthProps) => {
           if (err instanceof FirebaseError) {
             switch (err.code) {
               default:
-                console.log(err.message)
+                console.error(err.message)
             }
           }
         }
@@ -113,14 +113,18 @@ const Auth = (props: AuthProps) => {
         onClose()
         setError('')
         if (auth?.currentUser?.uid) {
-          console.log('Retrieving data...')
           const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid))
           if (userDoc.exists()) {
             setAchievements?.(prev => ({ ...prev, ...userDoc.data() }))
-            console.log('Document data:', userDoc.data())
           } else {
             // doc.data() will be undefined in this case
             console.error(MESSAGES.NO_USER_DOCUMENT)
+            if (auth?.currentUser?.uid) {
+              await setDoc(
+                doc(db, 'users', auth.currentUser.uid),
+                defaultAchievements
+              )
+            }
           }
         }
       } catch (err: unknown) {
@@ -130,7 +134,7 @@ const Auth = (props: AuthProps) => {
               setError(MESSAGES.WRONG_PASSWORD)
               break
             default:
-              console.log(err.message)
+              console.error(err.message)
           }
         } else {
           console.error(err)
@@ -179,7 +183,7 @@ const Auth = (props: AuthProps) => {
           if (err instanceof FirebaseError) {
             switch (err.code) {
               default:
-                console.log(err.message)
+                console.error(err.message)
             }
           } else {
             console.error(err)
