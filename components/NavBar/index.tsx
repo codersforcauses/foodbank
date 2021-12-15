@@ -3,9 +3,9 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import capitalize from 'lodash.capitalize'
-import { useFirebase } from '@components/firebase/context'
+import { useFirebase } from '@components/Firebase/context'
 import NavLink, { NavLinkProps } from './NavLink'
-import logo from '../../public/images/foodbank-logo.webp'
+import logo from 'public/images/foodbank-logo.webp'
 import DropdownSignOut from './DropdownSignOut'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })

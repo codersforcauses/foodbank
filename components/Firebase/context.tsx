@@ -3,7 +3,7 @@ import { User, Auth } from 'firebase/auth'
 import { Firestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useDocument } from 'react-firebase-hooks/firestore'
-import { app, auth, db } from '@components/firebase'
+import { app, auth, db } from '@components/Firebase'
 
 interface FirebaseContextProps {
   auth: Auth
