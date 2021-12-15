@@ -23,12 +23,6 @@ const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
       </button>
       <Transition
         show={subMenu}
-        enter='transition-opacity duration-75'
-        enterFrom='opacity-0'
-        enterTo='opacity-100'
-        leave='transition-opacity duration-150'
-        leaveFrom='opacity-100'
-        leaveTo='opacity-0'
       >
         <div
           className='shadow-lg 
@@ -38,23 +32,41 @@ const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
                         right-0 w-max 
                         mt-3'
         >
-          <div className='flex justify-end '>
-            <div
-              className='relative right-5 c-triangle-up'
-              style={{
-                borderBottom: '1em solid #671e75'
-              }}
-            />
-          </div>
-          <div className='relative grid gap-6 rounded-lg bg-primary px-5 py-6 sm:gap-8 sm:p-8'>
-            <div className='block items-center'>
-              {links.map(nav => (
-                <>
-                  <NavLink key={nav.page} {...nav} />
-                </>
-              ))}
+          <Transition.Child
+            enter='transition ease-in-out duration-150 transform'
+            enterFrom='translate-y-full opacity-0'
+            enterTo='translate-y-0 opacity-100'
+            leave='transition ease-in-out duration-75 transform'
+            leaveFrom='translate-y-0 opacity-100'
+            leaveTo='translate-y-full opacity-0'
+          >
+            <div className='flex justify-end '>
+              <div
+                className='relative right-5 c-triangle-up'
+                style={{
+                  borderBottom: '1em solid #671e75'
+                }}
+              />
             </div>
-          </div>
+          </Transition.Child>
+          <Transition.Child
+            enter='transition-opacity ease-linear duration-75'
+            enterFrom='opacity-0'
+            enterTo='opacity-100'
+            leave='transition-opacity ease-linear duration-100'
+            leaveFrom='opacity-100'
+            leaveTo='opacity-0'
+          >
+            <div className='relative grid gap-6 rounded-lg bg-primary px-5 py-6 sm:gap-8 sm:p-8'>
+              <div className='block items-center'>
+                {links.map(nav => (
+                  <>
+                    <NavLink key={nav.page} {...nav} />
+                  </>
+                ))}
+              </div>
+            </div>
+          </Transition.Child>
         </div>
       </Transition>
     </nav>
