@@ -106,16 +106,14 @@ const get_wheel_height = () => {
 const resize_map = ({
   previousWidth,
   coordinates,
-  previousFlexHeight,
   setPreviousWidth,
-  setCoordinates,
-  setFlexHeight
+  setCoordinates
 }: FoodGroupResizeArguments) => {
   let newCoordinates: number[][] = []
   let newPreviousWidth: WidthState[] = []
 
   console.log(get_wheel_height())
-  setFlexHeight(get_wheel_height())
+  // setFlexHeight(get_wheel_height())
 
   previousWidth.map(
     (width: { id: string; initialWidth: number }, index: number) => {

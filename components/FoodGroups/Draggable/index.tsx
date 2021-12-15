@@ -1,73 +1,77 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
+import styles from 'components/FoodGroups/foodgroups.module.css'
 
-const Draggable: React.FC<{boundingBox:BoundingBox}> = (props) => {
-  const { boundingBox } = props;
+const Draggable: React.FC = () => {
+  const [screenPosition, setScreenPosition] = useState({ x: 0.0, y: 0.0 })
+  const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
+  const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
 
-  // const [dragging, setDragging] = useState(false)
+  const [ptrEvents, setPtrEvents] = useState(true)
 
-  const [windowDimensions, setWindowDimensions] = useState({x:1000,y:1000})
-  const [scaleVector, setScaleVector] = useState({x:1,y:1})
+  const dragAround = (e: MouseEvent) => {
+    let point: Vector2 = { x: e.clientX, y: e.clientY }
+    if (parentRect && delta) {
+      let box = parentRect
+      console.log(delta)
 
-  const [cursorLocation, setCursorLocation] = useState({ x: 100, y: 100 })
-  const [relativePosition, setRelativePosition] = useState({ dx: 0, dy: 0 })
-
-  const dragAround=(e:MouseEvent)=>{
-    let point : Vector2 = {x:e.clientX,y:e.clientY};
-    // if (inBoundingBox(boundingBox,{x:e.clientX-relativePosition.dx,y:e.clientY-relativePosition.dy})) {
-      setCursorLocation(point)
-    // } else {
-    //   console.log("Out of box")
-    // }
-  }
-  
-  const stopDrag=()=>{
-    document.removeEventListener('mousemove',dragAround);
-    document.removeEventListener('mouseup',stopDrag);
+      let x = ((e.pageX - box.x + delta.x) / box.width) * 100.0
+      let y = ((e.pageY - box.y + delta.y) / box.height) * 100.0
+      if (x > 100.0 || y > 100.0 || x < 0 || y < 0) return
+      setScreenPosition({ x: x, y: y })
+    } else {
+      console.error('[ ERROR ]: Parent element bb does not exist')
+    }
   }
 
-  const startDrag=(e:React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
-    let box : DOMRect=e.currentTarget.getBoundingClientRect()
-    setRelativePosition({dx:box.x-e.pageX,dy:box.y-e.pageY})
-    setCursorLocation({ x: e.clientX, y: e.clientY })
-    document.addEventListener('mousemove',dragAround);
-    document.addEventListener('mouseup',stopDrag);
+  const stopDrag = () => {
+    setPtrEvents(true)
+    console.log('Stop')
+    document.removeEventListener('mousemove', dragAround)
+    document.removeEventListener('mouseup', stopDrag)
   }
 
-  const handleResize = () => {
-    let newWidth = document.body.clientWidth
-    let newHeight = document.body.clientHeight
-    setScaleVector({x:newWidth/windowDimensions.x,y:newHeight/windowDimensions.y})
-    setWindowDimensions({x:newWidth,y:newHeight})
+  const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    let parentRect: DOMRect
+    if (e.target instanceof Element && e.target.parentElement) {
+      parentRect = e.target.parentElement.getBoundingClientRect()
+      setParentRect(parentRect)
+    } else {
+      console.error('[ ERROR ]: Parent element bb does not exist')
+      return
+    }
+    setPtrEvents(false)
+    let box: DOMRect = e.currentTarget.getBoundingClientRect()
+    setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
   }
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize) // TODO: Remove event listener, move to separate object.
-    setWindowDimensions({x:document.body.clientWidth,y:document.body.clientHeight})
-  }, [setWindowDimensions])
+    if (delta) {
+      document.addEventListener('mousemove', dragAround)
+      document.addEventListener('mouseup', stopDrag)
+    }
+  }, [delta])
 
   return (
     <>
       <div
+        className={'z-20 ' + styles['drag-drop']}
         onMouseDown={startDrag}
         style={{
-          userSelect: 'none',
-          position:"fixed", // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
-          // transform:`translate(${cursorLocation.x+relativePosition.dx}px,${cursorLocation.y+relativePosition.dy}px)`,
-          // left:0,
-          // top:0,
-          left:`${scaleVector.x*(cursorLocation.x+relativePosition.dx)}px`,
-          top:`${scaleVector.y*(cursorLocation.y+relativePosition.dy)}px`,
-          width: '20%',
+          pointerEvents: ptrEvents ? 'auto' : 'none',
+          position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
+          height: 'fit-content',
+          left: `${screenPosition.x}%`, // % works!!
+          top: `${screenPosition.y}%`,
+          width: '20%'
         }}
-        // className='draggable'
-        draggable='false'
+        draggable={false}
       >
         <svg
           viewBox='0 0 20 20'
           xmlns='http://www.w3.org/2000/svg'
           fill='#ff0000'
-          style={{ zIndex: 100 }}
+          style={{ zIndex: 0, pointerEvents: 'none' }}
         >
           <rect width='20' height='20' />
         </svg>

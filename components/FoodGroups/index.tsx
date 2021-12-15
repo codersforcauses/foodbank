@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {
+  HTMLAttributes,
+  StyleHTMLAttributes,
+  useEffect,
+  useState
+} from 'react'
 import Image from 'next/image'
 
 import styles from 'components/FoodGroups/foodgroups.module.css'
@@ -15,12 +20,13 @@ import {
 } from '@components/FoodGroups/dinamicStyles'
 
 import { FoodGroupStates, StateDispatch } from '@components/FoodGroups/types'
+import Draggable from './Draggable'
 
 /**
  * A page displaying all food groups in a pie chart
  */
 
-const FoodGroups: React.FC = () => {
+const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
   const toggleModal = () => {
     console.log('toggle modal!')
     setModalState(!modalState)
@@ -47,7 +53,6 @@ const FoodGroups: React.FC = () => {
 
   const [coordinates, setCoordinates] = useState(initialCoordinates)
   const [previousWidth, setPreviousWidth] = useState(initialWidths)
-  const [previousFlexHeight, setFlexHeight] = useState(0)
 
   // interface allStates {
   //     [index: string]: {
@@ -102,15 +107,13 @@ const FoodGroups: React.FC = () => {
     resize_map({
       previousWidth,
       coordinates,
-      previousFlexHeight,
       setPreviousWidth,
-      setCoordinates,
-      setFlexHeight
+      setCoordinates
     })
-  }, [setPreviousWidth, setCoordinates, setFlexHeight])
+  }, [setPreviousWidth, setCoordinates])
 
   return (
-    <div className='flex justify-center scale-wheel'>
+    <>
       {modalState && (
         <Modal {...props} onClose={toggleModal} size='lg'>
           <h1>Modal</h1>
@@ -121,20 +124,31 @@ const FoodGroups: React.FC = () => {
         params={{
           previousWidth,
           coordinates,
-          previousFlexHeight,
           setPreviousWidth,
-          setCoordinates,
-          setFlexHeight
+          setCoordinates
         }}
       />
-
       <div
+        // className='flex flex-col'
+        className='scale-wheel'
+        // style={{ flexShrink: 0, position: 'relative' }}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          maxWidth: '95vh',
+          width: '80%',
+          ...style
+        }}
+        draggable={false}
+      >
+        {/* <div
         className={'flex flex-col'}
         style={{
           height: previousFlexHeight + 'px',
           margin: 0.05 * previousFlexHeight + 'px' // 5% margin, variable (Animation makes slices go above the height)
         }}
-      >
+      > */}
+        <Draggable />
         {foodGroupsImages.map((group, index) => {
           return (
             <div
@@ -147,10 +161,16 @@ const FoodGroups: React.FC = () => {
                 ' ' +
                 hoverStyles[index].join(' ')
               }
+              draggable={false}
             >
-              <map id={`map-${index}`} name={group.map_name}>
-                <area
-                  onDragOver={() => handleMouseOver(group.div_id, allStates)}
+              <map
+                id={`map-${index}`}
+                name={group.map_name}
+                className={styles['test-area']}
+                draggable={false}
+              >
+                <area // Is there a way to change the Z-index of just this area so it triggers the mouseover? But that would just prevent the draggable from being interacted with?
+                  onDragEnter={() => handleMouseOver(group.div_id, allStates)}
                   onMouseOver={() => handleMouseOver(group.div_id, allStates)}
                   onKeyDown={() => {}} // TODO: ACCESSIBILITY
                   onFocus={() => {}} // TODO: ACCESSIBILITY
@@ -178,7 +198,7 @@ const FoodGroups: React.FC = () => {
           )
         })}
       </div>
-    </div>
+    </>
   )
 }
 export default FoodGroups
