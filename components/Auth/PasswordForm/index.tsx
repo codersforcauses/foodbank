@@ -1,15 +1,9 @@
 import React, { useState, MouseEventHandler, useRef } from 'react'
+import { useForm, FormProvider } from 'react-hook-form'
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
-import { useForm, FormProvider } from 'react-hook-form'
+import { CHARACTERS_FOR_AUTH, PAGES } from '../enums'
 
-const CHARACTERS_FOR_AUTH = 3
-
-const PAGES = {
-  USERNAME_FORM: 1,
-  PASSWORD_FORM: 2,
-  REPEAT_PASSWORD_FORM: 3
-}
 interface PasswordFormProps {
   label: string
   error: string
