@@ -28,8 +28,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                               w-fit mr-20 overflow-clip whitespace-nowrap'
               >
                 {links.map(navItem => (
-                  // eslint-disable-next-line react/jsx-key
-                  <Link href={navItem.route}>
+                  <Link key={navItem.page} href={navItem.route}>
                     <a>{navItem.page}</a>
                   </Link>
                 ))}

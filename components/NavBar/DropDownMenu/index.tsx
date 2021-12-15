@@ -1,6 +1,6 @@
 import NavLink, { NavLinkProps } from '../NavLink'
 import { useState } from 'react'
-import { Transition } from '@headlessui/react'
+import { Transition, Popover } from '@headlessui/react'
 
 export interface DropDownMenuProps {
   page?: string
@@ -11,26 +11,24 @@ export interface DropDownMenuProps {
 const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
   const [subMenu, setSubMenu] = useState(false)
   return (
-    <nav className='relative'>
-      <button
-        onClick={() => setSubMenu(!subMenu)}
+    <Popover className='relative'>
+      <Popover.Button
         className='px-4 py-1 font-serif 
                     text-xl text-black 
                     hover:opacity-75 
                     bg-teal rounded-md'
       >
         <b>&#9776;</b> MENU
-      </button>
+      </Popover.Button>
       <Transition
-        show={subMenu}
-        enter='transition-opacity duration-75'
-        enterFrom='opacity-0'
+        enter='transition-opacity duration-90'
+        enterFrom='opacity-0 ease-in'
         enterTo='opacity-100'
         leave='transition-opacity duration-150'
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <div
+        <Popover.Panel
           className='shadow-lg 
                         overflow-hidden 
                         absolute 
@@ -55,9 +53,9 @@ const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
               ))}
             </div>
           </div>
-        </div>
+        </Popover.Panel>
       </Transition>
-    </nav>
+    </Popover>
   )
 }
 

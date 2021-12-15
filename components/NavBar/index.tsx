@@ -22,7 +22,7 @@ const Navbar = ({ links }: NavbarProps) => {
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary md:block'>
       <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
-          <a className='absolute left-10 top-1 w-20 h-14 hover:opacity-75'>
+          <a className='absolute left-10 top-2 w-[4.6rem] h-12 hover:opacity-75'>
             <Image
               src={logo}
               alt='Foodbank logo'
