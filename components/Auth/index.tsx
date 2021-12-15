@@ -23,7 +23,7 @@ import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 
-const DEBOUCNE_DELAY = 400
+const DEBOUNCE_DELAY = 400
 
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
@@ -75,7 +75,7 @@ const Auth = (props: AuthProps) => {
         }
       }
     },
-    DEBOUCNE_DELAY,
+    DEBOUNCE_DELAY,
     [input]
   )
 
@@ -225,7 +225,6 @@ const Auth = (props: AuthProps) => {
   }
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
-    // handleReset()
     if (page === PAGES.PASSWORD_FORM) {
       handleReset()
     }
