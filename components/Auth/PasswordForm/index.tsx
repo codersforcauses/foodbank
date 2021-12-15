@@ -34,6 +34,8 @@ const PasswordForm = ({
   const [selectedCount, setSelectedCount] = useState(0)
   const methods = useForm()
 
+  const defaultMask = new Array(9).fill(false)
+
   const updateCount = (newSelectedCount: number) => {
     setSelectedCount(newSelectedCount)
   }
@@ -43,21 +45,12 @@ const PasswordForm = ({
     return selectedGrid.map(item => item.password).join('')
   }
 
-  const formSelector = useRef<HTMLFormElement>(null)
-
-  const goBack = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (null !== formSelector.current) {
-      formSelector.current.reset()
-    }
-    goPrevPage(e)
-  }
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(data =>
           updatePassword(getPassword(data.mask))
         )}
-        ref={formSelector}
       >
         <p className='text-lg text-center'>{label}</p>
         {error && <p>{error}</p>}
@@ -65,11 +58,19 @@ const PasswordForm = ({
           label='grid'
           name={name}
           charSet={grid}
+          defaultMask={defaultMask}
           selectedCount={selectedCount}
           updateCount={updateCount}
         />
         <div className='flex justify-center pt-4 space-x-2'>
-          <Button type='button' onClick={goBack} className='flex items-center'>
+          <Button
+            type='button'
+            onClick={e => {
+              goPrevPage(e)
+              methods.reset({ mask: defaultMask })
+            }}
+            className='flex items-center'
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 25 25'
