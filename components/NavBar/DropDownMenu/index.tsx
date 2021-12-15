@@ -19,12 +19,12 @@ const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
         <b>&#9776;</b> MENU
       </Popover.Button>
       <Transition
-        enter='transition-opacity duration-90'
-        enterFrom='opacity-0 ease-in'
-        enterTo='opacity-100'
-        leave='transition-opacity duration-150'
-        leaveFrom='opacity-100'
-        leaveTo='opacity-0'
+        enter='transition duration-70 ease-in'
+        enterFrom='opacity-0 transform scale-95 -translate-y-1'
+        enterTo='opacity-100 transform scale-100 translate-y-0'
+        leave='transition duration-150 ease-linear'
+        leaveFrom='opacity-100 transform scale-100 translate-y-0'
+        leaveTo='opacity-0 transform scale-95 -translate-y-1'
       >
         <Popover.Panel
           className='shadow-lg 
