@@ -1,5 +1,6 @@
 import NavLink, { NavLinkProps } from '../NavLink'
 import { useState } from 'react'
+import { Transition } from '@headlessui/react'
 
 const links: Array<NavLinkProps> = [
   {
@@ -38,7 +39,15 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
       >
         <b>&#9776;</b> MENU
       </button>
-      {subMenu && (
+      <Transition
+        show={subMenu}
+        enter="transition-opacity duration-75"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
         <div
           className='shadow-lg 
                         overflow-hidden 
@@ -57,7 +66,7 @@ const DropDownMenu = ({ page, route }: DropDownMenuProps) => {
             </div>
           </div>
         </div>
-      )}
+      </Transition>
     </nav>
   )
 }
