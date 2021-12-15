@@ -32,7 +32,7 @@ const Modal = ({
           leaveFrom='opacity-100 scale-100'
           leaveTo='opacity-0 scale-95'
           className={[
-            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center md:block md:w-3/4 md:h-5/6 inset-1/2 scrollbar-hide rounded-xl',
+            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 xsm:flex xsm:justify-center xsm:items-center md:block md:w-3/4 md:h-5/6 inset-1/2 scrollbar-hide rounded-xl',
             sizeClass
           ]
             .join(' ')
