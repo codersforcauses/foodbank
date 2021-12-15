@@ -39,7 +39,7 @@ const Navbar = ({ links }: NavbarProps) => {
             onClick={toggleSignIn}
           >
             {/* need to add proper state when auth was added */}
-            {signIn ? 'Sign-out' : 'Sign-in'}
+            {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
           </button>
         </div>
       </div>

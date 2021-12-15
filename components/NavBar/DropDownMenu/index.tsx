@@ -12,9 +12,9 @@ const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
     <Popover className='relative'>
       <Popover.Button
         className='px-4 py-1 font-serif 
-                    text-xl text-black 
+                    text-2xl text-white 
                     hover:opacity-75 
-                    bg-teal rounded-md'
+                    '
       >
         <b>&#9776;</b> MENU
       </Popover.Button>
