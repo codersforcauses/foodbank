@@ -1,5 +1,4 @@
 import NavLink, { NavLinkProps } from '../NavLink'
-import { useState } from 'react'
 import { Transition, Popover } from '@headlessui/react'
 
 export interface DropDownMenuProps {
@@ -9,7 +8,6 @@ export interface DropDownMenuProps {
 }
 
 const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
-  const [subMenu, setSubMenu] = useState(false)
   return (
     <Popover className='relative'>
       <Popover.Button
