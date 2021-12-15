@@ -3,19 +3,18 @@ import Card from 'components/Recipe/List-View/Card'
 // import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
 import { Client } from "@notionhq/client";
-import { getAllRecipes, getRecipeDetails } from '../../components/API/getData'
+import { getAllRecipes } from '../../components/API/getData'
 
-const RecipesGridView: React.FC = ({ tag, recipes }) => {
+interface RecipesGridProps {
+  tag: String
+  recipes: Array<Recipe>
+}
+
+const RecipesGridView: React.FC<RecipesGridProps> = ({ tag, recipes }) => {
   const [filteredCards, setFilteredCards] = useState(recipes)
 
   const allTags: string | string[] = [] // all tags from all the recipes
   const allCategories: string | string[] = [] // all categories from all the recipes. Some recipes belong to
-  // several categories
-  // console.log("recipessss: ", recipes)
-  // console.log("charrrs: ", chars)
-  // console.log("data: ", data)
-
-  // console.log("recipe:", recipe);
 
   recipes.map(recipe => {
     // getting all the tags
@@ -30,7 +29,7 @@ const RecipesGridView: React.FC = ({ tag, recipes }) => {
 
   // Creating a list of recipes filtered by the passed category
   const filterByCategory = (param: string) => {
-    let filtered: React.SetStateAction<Recipe[]> = []
+    let filtered: Recipe[] = []
     recipes.map(recipe => {
       recipe.category.map(category => {
         if (category === param) filtered.push(recipe)
@@ -41,7 +40,7 @@ const RecipesGridView: React.FC = ({ tag, recipes }) => {
 
   // Creating a list of recipes filtered by the passed parameter, maybe a category or tag
   const filterByTag = (param: string) => {
-    let filtered: React.SetStateAction<Recipe[]> = []
+    let filtered: Recipe[] = []
     recipes.map(recipe => {
       recipe.tags.map(tag => {
         if (tag === param) filtered.push(recipe)
@@ -110,8 +109,7 @@ export const getServerSideProps = async (context: {
   query: { tag: string }
 }) => {
   
-  const { recipes, chars, data } = await getAllRecipes()
-  // const { recipe }  = await getRecipeDetails("sporty-banana-bites")
+  const { recipes } = await getAllRecipes()
   
   if (!context.query.tag) {
     return {

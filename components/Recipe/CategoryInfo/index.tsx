@@ -1,9 +1,10 @@
 import React from 'react'
-import { Recipe } from 'lib/types'
+import { Recipe, ColorScheme } from 'lib/types'
 import Link from 'next/link'
 
 interface Props {
-  recipe: Recipe
+  recipe: Recipe,
+  colorScheme: ColorScheme
 }
 
 const tagStyle = {
@@ -13,7 +14,7 @@ const tagStyle = {
 
 /** Displays the category and tags for a recipe. */
 const CategoryInfo: React.FC<Props> = ({ recipe }) => {
-  const colorScheme = recipe.colorScheme
+  const colorScheme: ColorScheme = recipe.colorScheme
   return (
     <div>
       <div className='flex flex-row flex-wrap justify-start gap-5 mt-5 mb-5'>

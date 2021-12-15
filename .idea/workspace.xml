@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b8602fa-7743-4c0f-b1c1-2000a9e04189" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_7_21,_9_23_am_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_7_21__9_23_am__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_7_21,_1_54_pm_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_7_21__1_54_pm__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/API/getData.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/EquipmentList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/EquipmentList/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/overview.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/overview.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes-notion/index.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/index.tsx" afterDir="false" />
     </list>
@@ -68,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images/FoodGroups" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images/Extra" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -80,6 +76,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images/Extra" />
       <recent name="$PROJECT_DIR$/public/images/FoodGroups" />
     </key>
   </component>
@@ -103,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626503318190</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="recipe data is pulled on a recipe page / changes structure of url of a recipe (now with a param) / various css fixes on the recipe page">
+      <created>1639230592430</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1639230592430</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,7 +126,8 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="recipe data is pulled on a recipe page / changes structure of url of a recipe (now with a param) / various css fixes on the recipe page" />
+    <option name="LAST_COMMIT_MESSAGE" value="recipe data is pulled on a recipe page / changes structure of url of a recipe (now with a param) / various css fixes on the recipe page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

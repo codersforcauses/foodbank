@@ -21,8 +21,10 @@ interface Recipe {
   finalShot: string
   ingredientsImg: string
   equipmentImg: string
-  colorScheme: string
+  colorSchemeName: string
+  colorScheme: ColorScheme
   hint?: string
+  page_id?: string
 }
 
 interface RecipeStep {

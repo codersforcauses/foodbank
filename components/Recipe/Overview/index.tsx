@@ -5,6 +5,7 @@ import styles from "components/Recipe/Overview/overview.module.css";
 
 import starLabel from "public/images/Extra/star_label.png";
 import hintPlate from "public/images/Extra/hint-plate.png";
+import bluebg from "public/images/Extra/BG_blue.jpg";
 
 import Buttons from "components/Recipe/Buttons";
 import EquipmentList from "components/Recipe/EquipmentList";
@@ -22,14 +23,12 @@ interface ParamTypes {
  * equipment. From here, a user can navigate to pages displaying the recipe's
  * steps in a slideshow or one page format.
  */
-const RecipeOverview: React.FC = ({ recipe }) => {
+const RecipeOverview: React.FC<ParamTypes> = ({ recipe }) => {
 
   // getting color scheme for the recipe by it's name
-  recipe.colorScheme === "primaryScheme" ? recipe.colorScheme = primaryScheme : "";
-  recipe.colorScheme === "orangeScheme" ? recipe.colorScheme = orangeScheme : "";
-  recipe.colorScheme === "tealScheme" ? recipe.colorScheme = tealScheme : "";
-
-  console.log(recipe);
+  recipe.colorSchemeName === "primaryScheme" ? recipe.colorScheme = primaryScheme : "";
+  recipe.colorSchemeName === "orangeScheme" ? recipe.colorScheme = orangeScheme : "";
+  recipe.colorSchemeName === "tealScheme" ? recipe.colorScheme = tealScheme : "";
 
   return (
     <div className={recipe.colorScheme.bg + ' flex justify-center'}>

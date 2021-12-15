@@ -61,7 +61,7 @@ const getClassesFromColor = (color: string, unlocked: boolean) => {
   }
 };
 
-const Card = ({
+const Card:React.FC<CardProps> = ({
                 unlocked = true,
                 label,
                 image,
@@ -70,7 +70,7 @@ const Card = ({
                 slug,
                 character,
                 ...props
-              }: CardProps) => {
+              }) => {
   
   
   return (
