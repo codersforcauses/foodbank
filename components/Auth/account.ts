@@ -89,7 +89,6 @@ const signUp = async (
       await updateProfile(auth.currentUser, {
         displayName: username
       })
-      await setDoc(doc(db, 'users', auth.currentUser.uid), defaultAchievements)
     }
   } catch (err: unknown) {
     if (err instanceof FirebaseError) {
