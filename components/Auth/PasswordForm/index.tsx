@@ -1,4 +1,4 @@
-import React, { useState, MouseEventHandler } from 'react'
+import { useState, MouseEventHandler } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
@@ -42,9 +42,10 @@ const PasswordForm = ({
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit(data =>
+        onSubmit={methods.handleSubmit(data => {
           updatePassword(getPassword(data.mask))
-        )}
+          setSelectedCount(0)
+        })}
       >
         <p className='text-lg text-center'>{label}</p>
         {error && <p>{error}</p>}
