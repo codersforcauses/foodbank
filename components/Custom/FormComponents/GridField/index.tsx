@@ -49,7 +49,7 @@ const GridField = ({
   return (
     <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-3'>
       {grid.map((char, index) => (
-        <div key={char.id} className='relative md:-m-4'>
+        <div key={index} className='relative md:-m-4'>
           <input
             type='checkbox'
             aria-describedby={`${char.name}-label`}
