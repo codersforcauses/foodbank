@@ -31,7 +31,7 @@ const Navbar = () => {
     setOpenSignInForm(prev => !prev)
   }, [])
 
-  const { auth, user } = useFirebase()
+  const { user } = useFirebase()
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
@@ -52,11 +52,8 @@ const Navbar = () => {
             <NavLink key={nav.page} {...nav} />
           ))}
         </nav>
-        {user ? (
-          <DropdownSignOut
-            username={capitalize(user!.email!.replace(/@[^@]+$/, ''))}
-            auth={auth}
-          />
+        {user?.displayName ? (
+          <DropdownSignOut username={capitalize(user.displayName)} />
         ) : (
           <button
             className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
