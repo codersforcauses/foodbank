@@ -47,7 +47,7 @@ const GridField = ({
   }, [watch, updateCount])
 
   return (
-    <div className='grid place-items-center w-full grid-cols-3 gap-2 mb-6 -mt-3'>
+    <div className='grid w-full grid-cols-3 gap-2 mb-6 -mt-3 place-items-center'>
       {grid.map((char, index) => (
         <div key={index} className='relative md:-m-4'>
           <input
@@ -67,7 +67,9 @@ const GridField = ({
           />
           <label
             htmlFor={char.name}
-            className='block opacity-100 w-28 xl:w-36 peer-checked:opacity-40'
+            className={`${
+              formState.isSubmitting ? 'opacity-40' : 'opacity-100'
+            } block w-28 xl:w-36 peer-checked:opacity-40`}
           >
             <Image
               className='z-0 object-contain transition-all scale-90 md:scale-75 hover:scale-100 '

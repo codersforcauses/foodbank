@@ -27,6 +27,7 @@ const PasswordForm = ({
 }: PasswordFormProps) => {
   const [selectedCount, setSelectedCount] = useState(0)
   const methods = useForm()
+  const { formState, handleSubmit } = methods
 
   const defaultMask = new Array(9).fill(false)
 
@@ -42,9 +43,8 @@ const PasswordForm = ({
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit(data => {
+        onSubmit={handleSubmit(data => {
           updatePassword(getPassword(data.mask))
-          setSelectedCount(0)
         })}
       >
         <p className='text-lg text-center'>{label}</p>
@@ -81,7 +81,9 @@ const PasswordForm = ({
           </Button>
           <Button
             className='flex items-center disabled:opacity-50'
-            disabled={selectedCount !== CHARACTERS_FOR_AUTH}
+            disabled={
+              selectedCount !== CHARACTERS_FOR_AUTH || formState.isSubmitting
+            }
           >
             {registered || page === PAGES.REPEAT_PASSWORD_FORM
               ? 'Confirm'
