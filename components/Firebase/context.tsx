@@ -7,7 +7,7 @@ import {
   SetStateAction
 } from 'react'
 import { User, Auth } from 'firebase/auth'
-import { doc, Firestore, updateDoc } from 'firebase/firestore'
+import { doc, Firestore, updateDoc, FirestoreError } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, db } from '@components/Firebase'
 
@@ -70,8 +70,13 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
         await updateDoc(userDocRef, newAchievements)
         setAchievements(prev => ({ ...prev, ...newAchievements }))
       }
-    } catch (err) {
-      console.error(err)
+    } catch (err: unknown) {
+      if (err instanceof FirestoreError) {
+        switch (err.code) {
+          default:
+            console.error(err.message)
+        }
+      } else console.error(err)
     }
   }
 
@@ -93,3 +98,4 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
 }
 
 export { useFirebase, FirebaseProvider, defaultAchievements }
+export type { AchievementsData }
