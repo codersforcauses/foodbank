@@ -34,7 +34,7 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
   const [error, setError] = useState('')
-  const { auth, db, setAchievements } = useFirebase()
+  const { auth, db } = useFirebase()
 
   useDebounce(
     async () => {
@@ -68,10 +68,7 @@ const Auth = (props: AuthProps) => {
     }
     setPassword(newPassword)
     if (registered && newPassword?.length === PASSWORD_LENGTH) {
-      if (
-        await signIn(auth, db, username, newPassword, setError, setAchievements)
-      )
-        onClose()
+      if (await signIn(auth, username, newPassword, setError)) onClose()
     } else if (!registered && newPassword?.length === PASSWORD_LENGTH)
       setPage(PAGES.REPEAT_PASSWORD_FORM)
     else setError(MESSAGES.PASSWORDS_NOT_MATCHED)

@@ -8,18 +8,9 @@ import {
   AuthErrorCodes,
   Auth
 } from 'firebase/auth'
-import {
-  doc,
-  setDoc,
-  getDoc,
-  Firestore,
-  FirestoreError
-} from 'firebase/firestore'
+import { doc, setDoc, Firestore, FirestoreError } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
-import {
-  defaultAchievements,
-  AchievementsData
-} from '@components/Firebase/context'
+import { defaultAchievements } from '@components/Firebase/context'
 import { MESSAGES } from './enums'
 
 const SIGNED_IN = true
@@ -55,30 +46,13 @@ const checkUsername = async (
 
 const signIn = async (
   auth: Auth,
-  db: Firestore,
   username: string,
   password: string,
-  setError: (value: SetStateAction<string>) => void,
-  setAchievements?: Dispatch<SetStateAction<AchievementsData>>
+  setError: (value: SetStateAction<string>) => void
 ) => {
   try {
     await signInWithEmailAndPassword(auth, `${username}@test123.xyz`, password) //<-- SIGNIN
-    if (auth?.currentUser?.uid) {
-      const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid))
-      setError('')
-      if (userDoc.exists())
-        setAchievements?.(prev => ({ ...prev, ...userDoc.data() }))
-      else {
-        // doc.data() will be undefined in this case
-        console.error(MESSAGES.NO_USER_DOCUMENT)
-        if (auth?.currentUser?.uid) {
-          await setDoc(
-            doc(db, 'users', auth.currentUser.uid),
-            defaultAchievements
-          )
-        }
-      }
-    }
+    setError('')
     return SIGNED_IN
   } catch (err: unknown) {
     if (err instanceof FirebaseError)

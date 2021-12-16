@@ -2,14 +2,22 @@ import {
   useState,
   createContext,
   useContext,
-  PropsWithChildren,
-  Dispatch,
-  SetStateAction
+  useCallback,
+  useEffect,
+  PropsWithChildren
 } from 'react'
-import { User, Auth } from 'firebase/auth'
-import { doc, Firestore, updateDoc, FirestoreError } from 'firebase/firestore'
+import { User, Auth, signOut } from 'firebase/auth'
+import {
+  doc,
+  Firestore,
+  getDoc,
+  setDoc,
+  updateDoc,
+  FirestoreError
+} from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, db } from '@components/Firebase'
+import { MESSAGES } from '@components/Auth/enums'
 
 interface FirebaseContextProps {
   auth: Auth
@@ -17,11 +25,11 @@ interface FirebaseContextProps {
   user?: User | null | undefined
   userLoading?: boolean
   userError?: Error | undefined
-  achievements?: AchievementsData
-  setAchievements?: Dispatch<SetStateAction<AchievementsData>>
+  achievements: AchievementsData
   updateAchievementsDocument?: (
     newAchievements: Partial<AchievementsData>
   ) => void
+  signOutClearData?: () => void
 }
 
 interface AchievementsData {
@@ -50,7 +58,8 @@ const defaultAchievements: AchievementsData = {
 
 const FirebaseContext = createContext<FirebaseContextProps>({
   auth: auth,
-  db: db
+  db: db,
+  achievements: defaultAchievements
 })
 const useFirebase = () => useContext(FirebaseContext)
 
@@ -60,6 +69,34 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
 
   // User Authentication
   const [user, userLoading, userError] = useAuthState(auth)
+
+  const retrieveData = useCallback(async () => {
+    try {
+      if (user?.uid) {
+        console.log('Retrieving data')
+        const userDoc = await getDoc(doc(db, 'users', user.uid))
+        if (userDoc.exists()) {
+          const userDocData = userDoc.data() as AchievementsData
+          setAchievements(userDocData)
+        } else {
+          // doc.data() will be undefined in this case
+          console.error(MESSAGES.NO_USER_DOCUMENT)
+          await setDoc(doc(db, 'users', user.uid), defaultAchievements)
+        }
+      }
+    } catch (err: unknown) {
+      if (err instanceof FirestoreError) {
+        switch (err.code) {
+          default:
+            console.error(err.message)
+        }
+      } else console.error(err)
+    }
+  }, [user])
+
+  useEffect(() => {
+    retrieveData()
+  }, [retrieveData])
 
   const updateAchievementsDocument = async (
     newAchievements: Partial<AchievementsData>
@@ -80,6 +117,11 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     }
   }
 
+  const signOutClearData = () => {
+    signOut(auth)
+    setAchievements(defaultAchievements)
+  }
+
   const value: FirebaseContextProps = {
     auth: auth,
     db: db,
@@ -87,7 +129,8 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     userLoading: userLoading,
     userError: userError,
     achievements: achievements,
-    updateAchievementsDocument: updateAchievementsDocument
+    updateAchievementsDocument: updateAchievementsDocument,
+    signOutClearData: signOutClearData
   }
 
   return (
