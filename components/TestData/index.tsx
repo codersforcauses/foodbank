@@ -6,8 +6,9 @@ const TestData = () => {
   return (
     <div>
       <ul>
-        {achievements &&
-          Object.entries(achievements).map(([key, value], i) => (
+        {Object.entries(achievements)
+          .sort()
+          .map(([key, value], i) => (
             <li className='travelcompany-input' key={i}>
               <span className='input-label'>
                 key: {key} value: {value.toString()}
