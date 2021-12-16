@@ -67,14 +67,14 @@ const Auth = (props: AuthProps) => {
       return
     }
     setPassword(newPassword)
-    if (registered && newPassword?.length === PASSWORD_LENGTH)
+    if (registered && newPassword?.length === PASSWORD_LENGTH) {
       if (
         await signIn(auth, db, username, newPassword, setError, setAchievements)
       )
         onClose()
-      else if (!registered && newPassword?.length === PASSWORD_LENGTH)
-        setPage(PAGES.REPEAT_PASSWORD_FORM)
-      else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
+    } else if (!registered && newPassword?.length === PASSWORD_LENGTH)
+      setPage(PAGES.REPEAT_PASSWORD_FORM)
+    else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
   }
 
   const handleRepeatedPasswordSubmit = async (newRepeatedPassword: string) => {
