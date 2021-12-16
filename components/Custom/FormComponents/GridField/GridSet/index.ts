@@ -1,12 +1,10 @@
 import seedrandom from 'seedrandom'
 import shuffle from 'shuffle-array'
-import { v4 as uuid_v4 } from 'uuid'
 import { generate } from 'generate-password'
 
 const PASSWORD_LENGTH = 9
 
 interface Character {
-  id?: string
   image: string
   name: string
   password?: string
@@ -19,7 +17,6 @@ const selectSet = (seed: string) => {
     PASSWORD_LENGTH
   )
   selectedSet.map(img => {
-    img.id = uuid_v4()
     img.password = generate({
       length: PASSWORD_LENGTH,
       numbers: true,

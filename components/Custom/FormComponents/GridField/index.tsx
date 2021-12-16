@@ -55,7 +55,7 @@ const GridField = ({
             aria-describedby={`${char.name}-label`}
             //   aria-invalid={!!error}
             aria-label={`${char.name}-checkbox`}
-            id={char.id}
+            id={char.name}
             disabled={
               (!mask[index] && selectedCount === CHARACTERS_FOR_AUTH) ||
               formState.isSubmitting
@@ -66,7 +66,7 @@ const GridField = ({
             })}
           />
           <label
-            htmlFor={char.id}
+            htmlFor={char.name}
             className='block opacity-100 w-28 xl:w-36 peer-checked:opacity-40'
           >
             <Image

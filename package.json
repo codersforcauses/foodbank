@@ -44,8 +44,7 @@
     "seedrandom": "^3.0.5",
     "shuffle-array": "^1.0.1",
     "tailwind-scrollbar-hide": "^1.1.6",
-    "tailwindcss-triangles": "^4.0.0",
-    "uuid": "^8.3.2"
+    "tailwindcss-triangles": "^4.0.0"
   },
   "devDependencies": {
     "@types/lodash.capitalize": "^4.2.6",
