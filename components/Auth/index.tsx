@@ -1,30 +1,15 @@
-import React, {
-  useState,
-  useMemo,
-  ChangeEventHandler,
-  MouseEventHandler
-} from 'react'
+import { useState, useMemo, ChangeEventHandler, MouseEventHandler } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useDebounce } from 'react-use'
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  fetchSignInMethodsForEmail,
-  EmailAuthProvider,
-  AuthErrorCodes
-} from 'firebase/auth'
-import { doc, setDoc, getDoc } from 'firebase/firestore'
-import { FirebaseError } from '@firebase/util'
-import { useFirebase, defaultAchievements } from '@components/Firebase/context'
+import { useFirebase } from '@components/Firebase/context'
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'
+import { sleep, checkUsername, signIn, signUp } from './account'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 
 const DEBOUNCE_DELAY = 400
-
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
 interface AuthProps {
@@ -53,35 +38,14 @@ const Auth = (props: AuthProps) => {
 
   useDebounce(
     async () => {
-      if (input && validUsername) {
-        try {
-          const signInMethods = await fetchSignInMethodsForEmail(
-            auth,
-            `${input.toLowerCase()}@test123.xyz`
-          )
-          // User can sign in with email/password.
-          signInMethods.indexOf(
-            EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
-          ) !== -1
-            ? setRegistered(true)
-            : setRegistered(false)
-        } catch (err: unknown) {
-          if (err instanceof FirebaseError) {
-            switch (err.code) {
-              default:
-                console.error(err.message)
-            }
-          }
-        }
-      }
+      if (input && validUsername)
+        await checkUsername(auth, input, setRegistered)
     },
     DEBOUNCE_DELAY,
     [input]
   )
 
-  const handleUsernameChange: ChangeEventHandler<
-    HTMLInputElement
-  > = async e => {
+  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value)
     if (!e.target.value) {
       setRegistered(false)
@@ -103,48 +67,14 @@ const Auth = (props: AuthProps) => {
       return
     }
     setPassword(newPassword)
-    if (registered && newPassword?.length === PASSWORD_LENGTH) {
-      try {
-        await signInWithEmailAndPassword(
-          auth,
-          `${username}@test123.xyz`,
-          newPassword
-        ) //<-- SIGNIN
+    if (registered && newPassword?.length === PASSWORD_LENGTH)
+      if (
+        await signIn(auth, db, username, newPassword, setError, setAchievements)
+      )
         onClose()
-        setError('')
-        if (auth?.currentUser?.uid) {
-          const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid))
-          if (userDoc.exists()) {
-            setAchievements?.(prev => ({ ...prev, ...userDoc.data() }))
-          } else {
-            // doc.data() will be undefined in this case
-            console.error(MESSAGES.NO_USER_DOCUMENT)
-            if (auth?.currentUser?.uid) {
-              await setDoc(
-                doc(db, 'users', auth.currentUser.uid),
-                defaultAchievements
-              )
-            }
-          }
-        }
-      } catch (err: unknown) {
-        if (err instanceof FirebaseError) {
-          switch (err.code) {
-            case AuthErrorCodes.INVALID_PASSWORD:
-              setError(MESSAGES.WRONG_PASSWORD)
-              break
-            default:
-              console.error(err.message)
-          }
-        } else {
-          console.error(err)
-        }
-      }
-    } else if (!registered && newPassword?.length === PASSWORD_LENGTH) {
-      setPage(PAGES.REPEAT_PASSWORD_FORM)
-    } else {
-      setError(MESSAGES.PASSWORDS_NOT_MATCHED)
-    }
+      else if (!registered && newPassword?.length === PASSWORD_LENGTH)
+        setPage(PAGES.REPEAT_PASSWORD_FORM)
+      else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
   }
 
   const handleRepeatedPasswordSubmit = async (newRepeatedPassword: string) => {
@@ -162,44 +92,17 @@ const Auth = (props: AuthProps) => {
       newRepeatedPassword?.length === PASSWORD_LENGTH
     ) {
       if (newRepeatedPassword === password) {
+        await signUp(auth, db, username, password)
         onClose()
         setError('')
-        try {
-          await createUserWithEmailAndPassword(
-            auth,
-            `${username}@test123.xyz`,
-            password
-          )
-          if (auth?.currentUser?.uid) {
-            await updateProfile(auth.currentUser, {
-              displayName: username
-            })
-            await setDoc(
-              doc(db, 'users', auth.currentUser.uid),
-              defaultAchievements
-            )
-          }
-        } catch (err: unknown) {
-          if (err instanceof FirebaseError) {
-            switch (err.code) {
-              default:
-                console.error(err.message)
-            }
-          } else {
-            console.error(err)
-          }
-        }
-      } else {
-        setError(MESSAGES.PASSWORDS_NOT_MATCHED)
-      }
+      } else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
     }
   }
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async () => {
-    if (!input) {
-      return
-    } else if (!username) {
+    if (!input) return
+    else if (!username) {
       handleInputSubmit()
       setPage(PAGES.PASSWORD_FORM)
       return
@@ -213,10 +116,6 @@ const Auth = (props: AuthProps) => {
     setError('')
   }
 
-  const sleep = async (ms: number) => {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
-
   const onClose = async () => {
     props.onClose()
     await sleep(WAIT_FOR_MODAL_TO_CLOSE)
@@ -225,20 +124,14 @@ const Auth = (props: AuthProps) => {
   }
 
   const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
-    if (page === PAGES.PASSWORD_FORM) {
-      handleReset()
-    }
+    if (page === PAGES.PASSWORD_FORM) handleReset()
     setError('')
     setPage(current => current - 1)
   }
 
   const goNextPage: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!input) {
-      return
-    }
-    if (input !== username) {
-      handleInputSubmit()
-    }
+    if (!input) return
+    if (input !== username) handleInputSubmit()
     setError('')
     setPage(current => current + 1)
   }
