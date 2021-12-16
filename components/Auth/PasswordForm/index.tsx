@@ -1,4 +1,4 @@
-import React, { useState, MouseEventHandler, useRef } from 'react'
+import React, { useState, MouseEventHandler } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
