@@ -1,26 +1,17 @@
 import seedrandom from 'seedrandom'
 import shuffle from 'shuffle-array'
 import { v4 as uuid_v4 } from 'uuid'
+import { generate } from 'generate-password'
 
-export interface Character {
+const PASSWORD_LENGTH = 9
+
+interface Character {
   id?: string
   image: string
   name: string
   password?: string
 }
 
-const PASSWORD_LENGTH = 9
-
-const randomStringGen = (length: number) => {
-  let result = ''
-  let characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  let charactersLength = characters.length
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength))
-  }
-  return result
-}
 const selectSet = (seed: string) => {
   seedrandom(seed, { global: true })
   const selectedSet: Character[] = shuffle(GridSet, { copy: true }).slice(
@@ -29,12 +20,18 @@ const selectSet = (seed: string) => {
   )
   selectedSet.map(img => {
     img.id = uuid_v4()
-    img.password = randomStringGen(PASSWORD_LENGTH)
+    img.password = generate({
+      length: PASSWORD_LENGTH,
+      numbers: true,
+      symbols: true,
+      strict: true
+    })
   })
   return selectedSet
 }
 
 export default selectSet
+export type { Character }
 
 const GridSet: Character[] = [
   {
