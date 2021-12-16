@@ -1,6 +1,5 @@
 import seedrandom from 'seedrandom'
 import shuffle from 'shuffle-array'
-import { generate } from 'generate-password'
 
 const PASSWORD_LENGTH = 9
 
@@ -10,6 +9,17 @@ interface Character {
   password?: string
 }
 
+const randomStringGen = (length: number) => {
+  let result = ''
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
+}
+
 const selectSet = (seed: string) => {
   seedrandom(seed, { global: true })
   const selectedSet: Character[] = shuffle(GridSet, { copy: true }).slice(
@@ -17,12 +27,7 @@ const selectSet = (seed: string) => {
     PASSWORD_LENGTH
   )
   selectedSet.map(img => {
-    img.password = generate({
-      length: PASSWORD_LENGTH,
-      numbers: true,
-      symbols: true,
-      strict: true
-    })
+    img.password = randomStringGen(PASSWORD_LENGTH)
   })
   return selectedSet
 }

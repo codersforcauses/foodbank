@@ -31,7 +31,6 @@
     "@heroicons/react": "^1.0.5",
     "critters": "0.0.15",
     "firebase": "^9.6.0",
-    "generate-password": "^1.7.0",
     "keen-slider": "6.0.5",
     "lodash.capitalize": "^4.2.1",
     "next": "12.0.4",
