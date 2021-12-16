@@ -71,8 +71,8 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   const [user, userLoading, userError] = useAuthState(auth)
 
   const retrieveData = useCallback(async () => {
-    try {
-      if (user?.uid) {
+    if (user?.uid) {
+      try {
         console.log('Retrieving data')
         const userDoc = await getDoc(doc(db, 'users', user.uid))
         if (userDoc.exists()) {
@@ -83,14 +83,14 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
           console.error(MESSAGES.NO_USER_DOCUMENT)
           await setDoc(doc(db, 'users', user.uid), defaultAchievements)
         }
+      } catch (err: unknown) {
+        if (err instanceof FirestoreError) {
+          switch (err.code) {
+            default:
+              console.error(err.message)
+          }
+        } else console.error(err)
       }
-    } catch (err: unknown) {
-      if (err instanceof FirestoreError) {
-        switch (err.code) {
-          default:
-            console.error(err.message)
-        }
-      } else console.error(err)
     }
   }, [user])
 
