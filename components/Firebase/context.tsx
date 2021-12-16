@@ -101,11 +101,11 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   const updateAchievementsDocument = async (
     newAchievements: Partial<AchievementsData>
   ) => {
+    setAchievements(prev => ({ ...prev, ...newAchievements }))
     try {
       if (user?.uid) {
         const userDocRef = doc(db, 'users', user.uid)
         await updateDoc(userDocRef, newAchievements)
-        setAchievements(prev => ({ ...prev, ...newAchievements }))
       }
     } catch (err: unknown) {
       if (err instanceof FirestoreError) {
