@@ -1,4 +1,3 @@
-import {} from 'react'
 import { useFirebase } from '@components/Firebase/context'
 import { Switch } from '@headlessui/react'
 
