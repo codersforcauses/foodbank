@@ -1,14 +1,15 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { Auth, signOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import { useFirebase } from '@components/Firebase/context'
 
 interface DropdownProp {
   username: string
-  auth: Auth
 }
 
-const DropdownSignOut = ({ username, auth }: DropdownProp) => {
+const DropdownSignOut = ({ username }: DropdownProp) => {
+  const { signOutClearData } = useFirebase()
   return (
     <Menu as='div' className='relative flex text-xl text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
@@ -45,7 +46,7 @@ const DropdownSignOut = ({ username, auth }: DropdownProp) => {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={() => signOut(auth)}
+                  onClick={() => signOutClearData?.()}
                   className={`${
                     active ? 'text-opacity-75' : ''
                   } text-white rounded-md items-center px-2 py-2 bg-orange`}
