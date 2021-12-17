@@ -10,6 +10,7 @@ import {
   FoodGroupStates,
   WidthState
 } from '@components/FoodGroups/types'
+import { FoodGroupCharacterImage } from './Draggable/types'
 
 let initialCoordinates = [
   [20, 520, 140, 10, 415, 445, 200, 525], // dairy
@@ -143,7 +144,8 @@ const resize_map = ({
 
 const handleMouseOver = (
   group_id: string,
-  { meat, grains, dairy, fruit, vegetables }: FoodGroupStates
+  { meat, grains, dairy, fruit, vegetables }: FoodGroupStates,
+  character ?: FoodGroupCharacterImage
 ) => {
   let styles
   let zoom = ['transform', 'scale-105', 'z-10']

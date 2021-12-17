@@ -6,19 +6,19 @@ import { FoodGroupCharacterImage } from './types'
 import Image from 'next/image'
 
 const Draggable: React.FC<FoodGroupCharacterImage> = (props) => {
-  const [screenPosition, setScreenPosition] = useState({ x: 0.0, y: 0.0 })
+  const [screenPosition, setScreenPosition] = useState({ x: props.starting_x, y: props.starting_y })
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
 
   const [ptrEvents, setPtrEvents] = useState(true)
 
-  console.log('props:', props)
+  // console.log('props:', props)
 
   const dragAround = (e: MouseEvent) => {
     let point: Vector2 = { x: e.clientX, y: e.clientY }
     if (parentRect && delta) {
       let box = parentRect
-      console.log(delta)
+      // console.log(delta)
 
       let x = ((e.pageX - box.x + delta.x) / box.width) * 100.0
       let y = ((e.pageY - box.y + delta.y) / box.height) * 100.0
@@ -31,7 +31,7 @@ const Draggable: React.FC<FoodGroupCharacterImage> = (props) => {
 
   const stopDrag = () => {
     setPtrEvents(true)
-    console.log('Stop')
+    // console.log('Stop')
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
   }
@@ -75,32 +75,26 @@ const Draggable: React.FC<FoodGroupCharacterImage> = (props) => {
       <div
         className={'z-20 ' + styles['drag-drop']}
         onMouseDown={startDrag}
+        draggable={false}
         style={{
           pointerEvents: ptrEvents ? 'auto' : 'none',
           position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
-          height: 'fit-content',
           left: `${screenPosition.x}%`, // % works!!
           top: `${screenPosition.y}%`,
-          width: '20%'
+          // backgroundColor: 'cyan',
+          height:'12%',
+          width:'12%',
         }}
-        draggable={false}
       >
-        <svg
-          viewBox='0 0 20 20'
-          xmlns='http://www.w3.org/2000/svg'
-          fill='#ff0000'
-          style={{ zIndex: 0, pointerEvents: 'none' }}
-        >
+          <div style={{ zIndex: 0, pointerEvents: 'none' }}>
           <Image
             src={props.img_src}
             alt={props.div_id}
             layout='fill'
-            // className={}
-            // useMap={/* */}
-            id={props.bounding_box_id}
           />
-          
-        </svg>
+          {/* Line below for debugging screen position of characters */}
+          {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
+          </div>
       </div>
     </>
   )

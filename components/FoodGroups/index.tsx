@@ -107,8 +107,8 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
   //     setVegetablesStyles
   // }
 
-  const firstImage = foodGroupsCharacterImages[0]
-  console.log('firstImage', firstImage)
+  // const firstImage = foodGroupsCharacterImages[0]
+  // console.log('firstImage', firstImage)
 
   useEffect(() => {
     resize_map({
@@ -127,14 +127,14 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
         </Modal>
       )}
       {/* Handles resizing maps on screen resize for SSR */}
-      {/* <WindowResizeHook
+      <WindowResizeHook
         params={{
           previousWidth,
           coordinates,
           setPreviousWidth,
           setCoordinates
         }}
-      /> */}
+      />
       <div
         // className='flex flex-col'
         className='scale-wheel'
@@ -144,6 +144,7 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
           gridTemplateColumns: '1fr',
           maxWidth: '95vh',
           width: '80%',
+          // backgroundColor:'yellow',
           ...style
         }}
         draggable={false}
@@ -158,7 +159,13 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
         {/* important stuff}
         {/* {console.log('hello', foodGroupsCharacterImages.map((element) => foodGroupsCharacterImages))} */}
 
-        <Draggable div_id={firstImage.div_id} img_src={firstImage.img_src} img_id={firstImage.img_id}/>
+        {/* <Draggable div_id={firstImage.div_id} img_src={firstImage.img_src} img_id={firstImage.img_id} starting_x={firstImage.starting_x} starting_y={firstImage.starting_y}/> */}
+
+        {foodGroupsCharacterImages.map((character,index) => {
+          return (
+            <Draggable div_id={character.div_id} img_src={character.img_src} img_id={character.img_id} starting_x={character.starting_x} starting_y={character.starting_y} bounding_box_id={index}/>
+          )
+        })}
 
         {foodGroupsImages.map((group, index) => {
           return (
@@ -172,6 +179,7 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
                 ' ' +
                 hoverStyles[index].join(' ')
               }
+              
               draggable={false}
             >
               <map
@@ -209,6 +217,7 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
           )
         })}
       </div>
+      {/* <div style={{width: '50%', height:'auto', backgroundColor:'yellow'}}></div> */}
     </>
   )
 }

@@ -1,4 +1,9 @@
-import dairy from 'public/images/Food Characters/Apple-Aces.png'
+import dairy from 'public/images/Food Characters/Cheese Chessy.png'
+import meat from 'public/images/Food Characters/Meat Lean.png'
+import fruit from 'public/images/Food Characters/Apple-Aces.png'
+import vegetable from 'public/images/Food Characters/Sweat Potato Footy Girl.png'
+import grain from 'public/images/Food Characters/Bread Mixed Grain.png'
+
 import { FoodGroupCharacterImage } from './types'
 
 const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
@@ -6,7 +11,41 @@ const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
       div_id: 'dairy-character',
       img_src: dairy.src,
       img_id: 'dairy-character-img',
-      bounding_box_id: 0
+      bounding_box_id: 0,
+      starting_x: 100,
+      starting_y: 2
+    },
+    {
+      div_id: 'meat-character',
+      img_src: meat.src,
+      img_id: 'meat-character-img',
+      bounding_box_id: 1,
+      starting_x: 100,
+      starting_y: 20
+    },
+    {
+      div_id: 'fruit-character',
+      img_src: fruit.src,
+      img_id: 'fruit-character-img',
+      bounding_box_id: 2,
+      starting_x: 100,
+      starting_y: 40
+    },
+    {
+      div_id: 'vegetable-character',
+      img_src: vegetable.src,
+      img_id: 'vegetable-character-img',
+      bounding_box_id: 3,
+      starting_x: 100,
+      starting_y: 60
+    },
+    {
+      div_id: 'grain-character',
+      img_src: grain.src,
+      img_id: 'grain-character-img',
+      bounding_box_id: 4,
+      starting_x: 100,
+      starting_y: 80
     },
 
 ]

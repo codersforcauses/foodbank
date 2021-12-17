@@ -12,8 +12,9 @@ const FoodGroupsPage: React.FC = () => {
       {/* div is required for the food wheel to resize when the screen height decreases, to keep the whole game on one page w/o scolling */}
       {/* <div className={styles['food-wheel']}>
         </div> */}
-      <div className='flex justify-start' draggable={false}>
-        <FoodGroups style={{ zIndex: 0 }} />
+      <div className='flex justify-center items-start' draggable={false}>
+        <FoodGroups/>
+        {/* <div style={{ width: '50%', height:'50%', backgroundColor:'yellowgreen' }}>Hello</div> */}
       </div>
     </>
   )
