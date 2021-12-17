@@ -11,6 +11,10 @@ import { Modal } from '@components/Custom'
 import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
 
 import {
+  foodGroupsCharacterImages
+} from './Draggable/characterimages'
+
+import {
   resize_map,
   initialCoordinates,
   initialWidths,
@@ -28,7 +32,7 @@ import Draggable from './Draggable'
 
 const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
   const toggleModal = () => {
-    console.log('toggle modal!')
+    // console.log('toggle modal!')
     setModalState(!modalState)
   }
 
@@ -103,6 +107,9 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
   //     setVegetablesStyles
   // }
 
+  const firstImage = foodGroupsCharacterImages[0]
+  console.log('firstImage', firstImage)
+
   useEffect(() => {
     resize_map({
       previousWidth,
@@ -120,14 +127,14 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
         </Modal>
       )}
       {/* Handles resizing maps on screen resize for SSR */}
-      <WindowResizeHook
+      {/* <WindowResizeHook
         params={{
           previousWidth,
           coordinates,
           setPreviousWidth,
           setCoordinates
         }}
-      />
+      /> */}
       <div
         // className='flex flex-col'
         className='scale-wheel'
@@ -148,7 +155,11 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
           margin: 0.05 * previousFlexHeight + 'px' // 5% margin, variable (Animation makes slices go above the height)
         }}
       > */}
-        <Draggable />
+        {/* important stuff}
+        {/* {console.log('hello', foodGroupsCharacterImages.map((element) => foodGroupsCharacterImages))} */}
+
+        <Draggable div_id={firstImage.div_id} img_src={firstImage.img_src} img_id={firstImage.img_id}/>
+
         {foodGroupsImages.map((group, index) => {
           return (
             <div

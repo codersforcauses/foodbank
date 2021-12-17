@@ -1,13 +1,18 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
 import styles from 'components/FoodGroups/foodgroups.module.css'
+import { FoodGroupCharacterImage } from './types'
 
-const Draggable: React.FC = () => {
+import Image from 'next/image'
+
+const Draggable: React.FC<FoodGroupCharacterImage> = (props) => {
   const [screenPosition, setScreenPosition] = useState({ x: 0.0, y: 0.0 })
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
 
   const [ptrEvents, setPtrEvents] = useState(true)
+
+  console.log('props:', props)
 
   const dragAround = (e: MouseEvent) => {
     let point: Vector2 = { x: e.clientX, y: e.clientY }
@@ -45,6 +50,19 @@ const Draggable: React.FC = () => {
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
   }
 
+  const showImage = (character_image:FoodGroupCharacterImage) => {
+    return(
+      <Image
+        src={character_image.img_src}
+        alt={character_image.div_id}
+        layout='fill'
+        // className={}
+        // useMap={/* */}
+        id={character_image.bounding_box_id}
+      />
+    )
+  }
+
   useEffect(() => {
     if (delta) {
       document.addEventListener('mousemove', dragAround)
@@ -73,7 +91,15 @@ const Draggable: React.FC = () => {
           fill='#ff0000'
           style={{ zIndex: 0, pointerEvents: 'none' }}
         >
-          <rect width='20' height='20' />
+          <Image
+            src={props.img_src}
+            alt={props.div_id}
+            layout='fill'
+            // className={}
+            // useMap={/* */}
+            id={props.bounding_box_id}
+          />
+          
         </svg>
       </div>
     </>

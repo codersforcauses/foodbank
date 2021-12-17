@@ -112,7 +112,7 @@ const resize_map = ({
   let newCoordinates: number[][] = []
   let newPreviousWidth: WidthState[] = []
 
-  console.log(get_wheel_height())
+  // console.log(get_wheel_height())
   // setFlexHeight(get_wheel_height())
 
   previousWidth.map(
