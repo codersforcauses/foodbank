@@ -79,7 +79,9 @@ const GridField = ({
               src={char.image}
               alt={char.name}
             />
-            <p className='text-sm text-center md:text-lg'>{char.name}</p>
+            <p className=' whitespace-nowrap text-sm text-center md:text-lg'>
+              {char.name}
+            </p>
           </label>
 
           <BsFillCheckCircleFill
