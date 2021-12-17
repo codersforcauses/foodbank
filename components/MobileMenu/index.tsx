@@ -25,12 +25,15 @@ const MobileMenu = ({ links }: MobileMenu) => {
                               bg-primary 
                               flex justify-around flex-col items-center 
                               p-3 rounded-lg h-96 
-                              w-fit mr-20 overflow-clip whitespace-nowrap'
+                              w-fit mr-20 overflow-clip whitespace-nowrap
+                              font-serif'
               >
                 {links.map(navItem => (
-                  <Link key={navItem.page} href={navItem.route}>
-                    <a>{navItem.page}</a>
-                  </Link>
+                  <>
+                    <Link key={navItem.page} href={navItem.route}>
+                      <a>{navItem.page}</a>
+                    </Link>
+                  </>
                 ))}
                 <Link href='/'>
                   <a>Sign In</a>
