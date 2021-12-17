@@ -36,7 +36,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                   <a>Sign In</a>
                 </Link>
               </div>
-              <div className='flex justify-content-end'>
+              <div className='flex justify-end pr-20 mr-4'>
                 <div
                   className='c-triangle-down'
                   style={{
