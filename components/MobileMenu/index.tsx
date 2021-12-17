@@ -26,17 +26,19 @@ const MobileMenu = ({ links }: MobileMenu) => {
                               flex justify-around flex-col items-center 
                               p-3 rounded-lg h-96 
                               w-fit mr-20 overflow-clip whitespace-nowrap
-                              font-serif'
+                              font-serif no-tap-highlight'
               >
                 {links.map(navItem => (
-                  <>
-                    <Link key={navItem.page} href={navItem.route}>
-                      <a>{navItem.page}</a>
-                    </Link>
-                  </>
+                  <Link key={navItem.page} href={navItem.route}>
+                    <a className='opacity-100 transition-all duration-150 hover:opacity-60'>
+                      {navItem.page}
+                    </a>
+                  </Link>
                 ))}
                 <Link href='/'>
-                  <a>Sign In</a>
+                  <a className='opacity-100 transition-all duration-150 hover:opacity-60'>
+                    Sign In
+                  </a>
                 </Link>
               </div>
               <div className='flex justify-end pr-20 mr-4'>
@@ -51,7 +53,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
           </Transition>
           <Popover.Button
             className={
-              'menu-button block md:hidden w-10 h-10 rounded-full m-2 ' +
+              'menu-button block md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ' +
               (open ? 'bg-teal text-black' : 'bg-primary')
             }
           >
