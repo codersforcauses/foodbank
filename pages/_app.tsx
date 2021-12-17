@@ -14,7 +14,7 @@ const links: Array<NavLinkProps> = [
     route: '/'
   },
   {
-    page: 'Drag-Drop Game',
+    page: 'Fun Food Sort',
     route: '/'
   },
   {
