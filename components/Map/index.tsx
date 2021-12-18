@@ -8,6 +8,18 @@ const Map = () => {
   const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
 
+  useEffect(() => {
+    function handleResize() {
+      const mobileWidth = 2900
+      const minStaticWidth = 1170
+      const targetWidth =
+        window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
+      setScale(targetWidth / 4961)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+  }, [])
+
   return (
     <div className='h-screen'>
       <TransformWrapper
