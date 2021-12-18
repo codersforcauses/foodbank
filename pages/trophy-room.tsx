@@ -8,7 +8,7 @@ const TrophyRoom = () => {
       <h1 className='text-white font-bold text-6xl text-center'>Trophy Room</h1>
       <div className='flex items-end'>
         <div className='melon'>
-          <img src='./images/watermelon.webp' alt='' />
+          <img src='./images/melonator.webp' alt='' />
         </div>
         <div>
           <Image src={TrophyCabinet} alt='Cabinet' />
