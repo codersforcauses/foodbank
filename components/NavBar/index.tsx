@@ -57,6 +57,7 @@ const Navbar = () => {
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
     </header>
+    
   )
 }
 

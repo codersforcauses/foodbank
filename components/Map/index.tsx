@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import baseMap from '../../public/images/tuckerMap.webp'
-
 const Map = () => (
+  <>
   <Image
     priority
     src={baseMap}
@@ -11,6 +11,8 @@ const Map = () => (
     objectFit='cover'
     objectPosition='left center'
   />
+
+  </>
 )
 
 export default Map
