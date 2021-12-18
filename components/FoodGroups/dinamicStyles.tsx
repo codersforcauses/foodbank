@@ -10,6 +10,7 @@ import {
   FoodGroupStates,
   WidthState
 } from '@components/FoodGroups/types'
+import { Vector2 } from './Draggable/boundingbox'
 
 let initialCoordinates = [
   [20, 520, 140, 10, 415, 445, 200, 525], // dairy
@@ -81,26 +82,34 @@ const foodGroupsImages: FoodGroupImage[] = [
 ]
 
 const get_wheel_height = () => {
-  const bounding_boxes = ['meat', 'dairy', 'fruit', 'vegetables', 'grains'].map(
-    x => {
-      let slice = document.getElementById(x)
-      if (slice == null) {
-        console.error("couldn't get element ")
-        return { top: 0, bottom: 0 }
-      }
-      return slice.getBoundingClientRect()
-    }
-  )
-  return (
-    Math.max.apply(
-      null,
-      bounding_boxes.map(box => box.bottom)
-    ) -
-    Math.min.apply(
-      null,
-      bounding_boxes.map(box => box.top)
-    )
-  )
+  const boundingBox = document.getElementById('meat')?.parentElement?.getBoundingClientRect()
+  if(boundingBox===undefined){
+    console.error("[ ERROR ] Could not get parent bounding box")
+    return;
+  }
+  const radius = boundingBox.height/2
+  const center : Vector2 = {x:boundingBox.x+boundingBox.width/2,y:boundingBox.y+boundingBox.height/2}
+  console.log()
+  // const bounding_boxes = ['meat', 'dairy', 'fruit', 'vegetables', 'grains'].map(
+  //   x => {
+  //     let slice = document.getElementById(x)
+  //     if (slice == null) {
+  //       console.error("couldn't get element ")
+  //       return { top: 0, bottom: 0 }
+  //     }
+  //     return slice.getBoundingClientRect()
+  //   }
+  // )
+  // return (
+  //   Math.max.apply(
+  //     null,
+  //     bounding_boxes.map(box => box.bottom)
+  //   ) -
+  //   Math.min.apply(
+  //     null,
+  //     bounding_boxes.map(box => box.top)
+  //   )
+  // )
 }
 
 const resize_map = ({
@@ -109,6 +118,7 @@ const resize_map = ({
   setPreviousWidth,
   setCoordinates
 }: FoodGroupResizeArguments) => {
+  get_wheel_height()
   let newCoordinates: number[][] = []
   let newPreviousWidth: WidthState[] = []
 

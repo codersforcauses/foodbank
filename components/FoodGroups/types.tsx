@@ -1,6 +1,7 @@
 import React from 'react'
 
 type StateDispatch<T> = React.Dispatch<React.SetStateAction<T>>
+type State_<T> = [T, StateDispatch<T>]
 type State<T> = { styles: T; setStyles: StateDispatch<T> }
 type WidthState = { id: string; initialWidth: number }
 
@@ -34,5 +35,6 @@ export type {
   FoodGroupProps,
   FoodGroupStates,
   StateDispatch,
-  WidthState
+  WidthState,
+  State_
 }

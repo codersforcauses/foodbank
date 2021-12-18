@@ -26,7 +26,7 @@ import Draggable from './Draggable'
  * A page displaying all food groups in a pie chart
  */
 
-const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
+const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
   const toggleModal = () => {
     console.log('toggle modal!')
     setModalState(!modalState)
@@ -128,76 +128,63 @@ const FoodGroups = ({ style }: { style: React.CSSProperties }) => {
           setCoordinates
         }}
       />
-      <div
-        // className='flex flex-col'
-        className='scale-wheel'
-        // style={{ flexShrink: 0, position: 'relative' }}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          maxWidth: '95vh',
-          width: '80%',
-          ...style
-        }}
-        draggable={false}
-      >
-        {/* <div
+      {/* <div
         className={'flex flex-col'}
         style={{
           height: previousFlexHeight + 'px',
           margin: 0.05 * previousFlexHeight + 'px' // 5% margin, variable (Animation makes slices go above the height)
         }}
       > */}
-        <Draggable />
-        {foodGroupsImages.map((group, index) => {
-          return (
-            <div
-              id={group.div_id}
-              key={group.div_id}
-              className={
-                styles[`${group.img_styles}`] +
-                ' ' +
-                foodGroupStyles.join(' ') +
-                ' ' +
-                hoverStyles[index].join(' ')
-              }
+      {foodGroupsImages.map((group, index) => {
+        return (
+          <div
+            id={group.div_id}
+            key={group.div_id}
+            className={
+              styles[`${group.img_styles}`] +
+              ' ' +
+              foodGroupStyles.join(' ') +
+              ' ' +
+              hoverStyles[index].join(' ') +
+              ' scale-wheel'
+            }
+            draggable={false}
+          >
+            <map
+              id={`map-${index}`}
+              name={group.map_name}
+              className={styles['test-area']}
               draggable={false}
             >
-              <map
-                id={`map-${index}`}
-                name={group.map_name}
-                className={styles['test-area']}
-                draggable={false}
-              >
-                <area // Is there a way to change the Z-index of just this area so it triggers the mouseover? But that would just prevent the draggable from being interacted with?
-                  onDragEnter={() => handleMouseOver(group.div_id, allStates)}
-                  onMouseOver={() => handleMouseOver(group.div_id, allStates)}
-                  onKeyDown={() => {}} // TODO: ACCESSIBILITY
-                  onFocus={() => {}} // TODO: ACCESSIBILITY
-                  onDragLeave={() => handleMouseOut(group.div_id, allStates)}
-                  onMouseOut={() => handleMouseOut(group.div_id, allStates)}
-                  onBlur={() => {}} // TODO: ACCESSIBILITY
-                  onClick={toggleModal}
-                  role='menu' // FIXME: Not sure if this is the right role
-                  tabIndex={0}
-                  alt={group.div_id}
-                  shape='poly'
-                  coords={coordinates[index].join(', ')}
-                />
-              </map>
-              <Image
-                src={group.img_src}
+              <area // Is there a way to change the Z-index of just this area so it triggers the mouseover? But that would just prevent the draggable from being interacted with?
+                onMouseOver={() => {
+                  handleMouseOver(group.div_id, allStates)
+                  setHoverType(group.div_id)
+                }}
+                onMouseOut={() => {
+                  handleMouseOut(group.div_id, allStates)
+                  setHoverType('')
+                }}
+                onClick={toggleModal}
+                tabIndex={0}
                 alt={group.div_id}
-                layout='fill'
-                className={styles['custom-img']}
-                useMap={`#${group.map_name}`}
-                id={group.img_id}
-                draggable={false}
+                shape='poly'
+                coords={coordinates[index].join(', ')}
               />
-            </div>
-          )
-        })}
-      </div>
+            </map>
+            <Image
+              src={group.img_src}
+              alt={group.div_id}
+              layout='fill'
+              className={styles['custom-img']}
+              useMap={`#${group.map_name}`}
+              id={group.img_id}
+              draggable={false}
+            />
+          </div>
+        )
+      })}
+      {/* </div> */}
     </>
   )
 }

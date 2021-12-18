@@ -1,8 +1,21 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
 import styles from 'components/FoodGroups/foodgroups.module.css'
+import { StateDispatch } from '../types'
 
-const Draggable: React.FC = () => {
+interface Props {
+  onEndDrag: Function
+  hoverType: string
+  setHoverTypeMutex: StateDispatch<boolean>
+  startPosition: Vector2
+}
+
+const Draggable: React.FC<Props> = ({
+  onEndDrag,
+  hoverType,
+  setHoverTypeMutex,
+  startPosition
+}: Props) => {
   const [screenPosition, setScreenPosition] = useState({ x: 0.0, y: 0.0 })
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
@@ -12,11 +25,8 @@ const Draggable: React.FC = () => {
   const dragAround = (e: MouseEvent) => {
     let point: Vector2 = { x: e.clientX, y: e.clientY }
     if (parentRect && delta) {
-      let box = parentRect
-      console.log(delta)
-
-      let x = ((e.pageX - box.x + delta.x) / box.width) * 100.0
-      let y = ((e.pageY - box.y + delta.y) / box.height) * 100.0
+      let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
+      let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
       if (x > 100.0 || y > 100.0 || x < 0 || y < 0) return
       setScreenPosition({ x: x, y: y })
     } else {
@@ -24,14 +34,22 @@ const Draggable: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    console.log(hoverType)
+  }, [hoverType])
+
   const stopDrag = () => {
-    setPtrEvents(true)
-    console.log('Stop')
+    setHoverTypeMutex(true)
+    console.log(hoverType)
+    onEndDrag(hoverType)
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
+    // setScreenPosition(startPosition)
+    setPtrEvents(true)
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setHoverTypeMutex(false)
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
       parentRect = e.target.parentElement.getBoundingClientRect()
@@ -51,6 +69,10 @@ const Draggable: React.FC = () => {
       document.addEventListener('mouseup', stopDrag)
     }
   }, [delta])
+
+  useEffect(() => {
+    setScreenPosition(startPosition)
+  }, [])
 
   return (
     <>
