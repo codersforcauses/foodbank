@@ -22,6 +22,9 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
+      },
+      width:{
+        '128':'32rem'
       }
     }
   },
