@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 export interface NavLinkProps {
   page: string
   route: string
