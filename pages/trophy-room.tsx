@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import TrophyCabinet from 'public/images/trophy-cabinet.png'
+import { trophies } from 'lib/trophies'
 
 const TrophyRoom = () => {
   return (
@@ -16,6 +17,7 @@ const TrophyRoom = () => {
         <div className='lion'>
           <img src='./images/lion.webp' alt='' />
         </div>
+        {trophies.map(trophy => trophy.name)}
       </div>
     </div>
   )
