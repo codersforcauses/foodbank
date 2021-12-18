@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b8602fa-7743-4c0f-b1c1-2000a9e04189" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="ecad1236-39f8-4776-b073-33cee1441ad9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/API/getData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/API/getData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Custom/Modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Custom/Modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes-notion/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Recipe/Step/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Step/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/all-steps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/all-steps.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/slideshow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/slideshow.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="65f66c33-7a6f-4efd-a8e3-e695796eb8d0" name="Default Changelist" comment="" />
+      <changelist id="ecad1236-39f8-4776-b073-33cee1441ad9" name="Changes" comment="" />
       <created>1625845527148</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -92,6 +92,7 @@
       <workItem from="1625898528006" duration="19778000" />
       <workItem from="1626503262690" duration="3751000" />
       <workItem from="1626846871479" duration="7581000" />
+      <workItem from="1639632746218" duration="14165000" />
     </task>
     <task id="LOCAL-00001">
       <created>1626503318190</created>

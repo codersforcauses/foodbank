@@ -3,15 +3,22 @@ import Link from 'next/link'
 import { Recipe } from 'lib/types'
 
 interface Props {
-  recipe: Recipe
+  recipe: Recipe,
 }
 
 /** The buttons to navigate to the slideshow or one-page display recipe steps. */
-const Buttons: React.FC<Props> = ({ recipe }) => {
+const Buttons: React.FC<Props> = ({ recipe, toggleSliderModal }) => {
   
   return (
     <div className='flex flex-row space-x-2 items-center'>
-      <Link href={'/recipes/' + recipe.slug + '/all-steps'} passHref>
+      <Link href={{
+        pathname: "/recipes/recipe/all-steps/",
+        query: {
+          name: recipe.slug,
+        }
+
+      }} passHref>
+        
         <button
           className={
             'w-48 my-4 py-2 px-4 rounded-full ' +
@@ -23,7 +30,7 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
           View All Steps
         </button>
       </Link>
-      <Link href={'/recipes/' + recipe.slug + '/slideshow'} passHref>
+      {/*<Link href={'/recipes/' + recipe.slug + '/slideshow'} passHref>*/}
         <button
           className={
             'w-48 my-4 py-2 px-4 rounded-full ' +
@@ -31,10 +38,12 @@ const Buttons: React.FC<Props> = ({ recipe }) => {
             ' ' +
             recipe.colorScheme.buttonText
           }
+          onClick={toggleSliderModal}
+
         >
           Let&apos;s Cook
         </button>
-      </Link>
+      {/*</Link>*/}
 
       <a
         download

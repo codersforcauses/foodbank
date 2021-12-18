@@ -8,8 +8,13 @@ const Modal = ({
   ...props
 }: PropsWithChildren<ModalProps>) => {
   let sizeClass = 'max-w-4xl'
+  let baseClass = 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2'
   if (size === 'sm') sizeClass = 'max-w-lg'
   if (size === 'md') sizeClass = 'max-w-2lg'
+  if (size === 'xl') {
+    sizeClass = "max-w-max";
+    baseClass = 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-3/4 md:w-3/4 lg:w1/2 inset-1/2 mt-20'
+  }
   return (
     <Transition show={props.open} as={Fragment}>
       <Dialog {...props} className='fixed inset-0 z-40 text-primary'>
@@ -32,7 +37,7 @@ const Modal = ({
           leaveFrom='opacity-100 scale-100'
           leaveTo='opacity-0 scale-95'
           className={[
-            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2',
+            baseClass,
             sizeClass
           ]
             .join(' ')
@@ -65,6 +70,6 @@ export default Modal
 interface ModalProps {
   open: boolean
   heading?: string
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
   onClose: () => void
 }

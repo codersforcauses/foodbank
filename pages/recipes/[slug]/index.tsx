@@ -3,18 +3,22 @@ import { Recipe } from "lib/types";
 import { getRecipeDetails } from '../../../components/API/getData'
 import RecipeOverview from 'components/Recipe/Overview'
 
+
 export interface RecipeProps {
   recipe: Recipe;
 }
 
-const RecipePage:React.FC<RecipeProps> = ({ recipe }) => {
+const RecipePage:React.FC<RecipeProps> = ({ recipe, data }) => {
+
+  // console.log("recipe page: ",recipe_page);
+  // console.log("Block1: ",block1);
 
   if (!recipe) {
     return <div>Recipe cannot be found!</div>
   } else {
     return (
       <>
-        <RecipeOverview recipe={recipe} />
+        <RecipeOverview recipe={recipe} data={data}/>
       </>
     )
   }
@@ -25,11 +29,14 @@ export const getServerSideProps = async (context: {
 }) => {
   
   // receiving recipe data from db by it's slug (name)
-  const { recipe }  = await getRecipeDetails(context.query.name)
+  const { recipe, data, recipe_page, block1 }  = await getRecipeDetails(context.query.name)
   
   return {
     props: {
-      recipe
+      recipe,
+      data,
+      recipe_page,
+      block1
     }
   }
 }

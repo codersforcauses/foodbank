@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { Recipe } from "lib/types";
+import { Recipe, RecipeStep } from "lib/types";
 
 
 const notion = new Client({
@@ -62,6 +62,29 @@ const getRecipeDetails = async (slug: string) =>  {
       }
     }
   })
+
+  const recipe_page = await notion.blocks.children.list({
+    block_id: recipe_data.results[0].id,
+  })
+  
+  const steps_db = await notion.databases.query({
+    database_id: recipe_page.results[0].id
+  })
+  
+  let steps:Array<RecipeStep> = []
+  
+  steps_db.results.map(step => {
+    let data = {
+      number: step.properties.number.title[0].plain_text,
+      image: step.properties.image.files[0].file.url,
+      description: step.properties.description.rich_text[0].plain_text
+    }
+    steps.push(data)
+  })
+  
+  steps.sort((a, b) => {
+    return a.number - b.number
+  })
   
   const characterId = recipe_data.results[0].properties.characterId.relation[0].id
   const character_data = await notion.pages.retrieve({
@@ -96,9 +119,10 @@ const getRecipeDetails = async (slug: string) =>  {
     hint: recipe_data.results[0].properties.hint.rich_text[0] ? recipe_data.results[0].properties.hint.rich_text[0].plain_text : '',
     slug: recipe_data.results[0].properties.slug.rich_text[0].plain_text,
     character: character,
+    steps: steps
   }
   
-  return { recipe }
+  return { recipe, data: recipe_data, recipe_page, block1: steps_db}
 }
 
 export { getAllRecipes, getRecipeDetails }
