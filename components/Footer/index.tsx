@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <header className='px-5 flex bg-primary h-16 content-center justify-between items-center'>
+    <header className='relative w-screen px-5 flex bg-primary h-16 content-center justify-between items-center'>
       <button className='bg-orange text-white font-serif text-2xl px-3 rounded hover:bg-white hover:text-orange transition ease-linear duration-200'>
         Other Characters
       </button>
