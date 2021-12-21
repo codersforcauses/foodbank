@@ -1,19 +1,18 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
 import styles from 'components/FoodGroups/foodgroups.module.css'
-import { StateDispatch } from '../types'
 
 interface Props {
   onEndDrag: Function
-  hoverType: string
-  setHoverTypeMutex: StateDispatch<boolean>
+  // hoverType: string
+  // setHoverTypeMutex: StateDispatch<boolean>
   startPosition: Vector2
 }
 
 const Draggable: React.FC<Props> = ({
   onEndDrag,
-  hoverType,
-  setHoverTypeMutex,
+  // hoverType,
+  // setHoverTypeMutex,
   startPosition
 }: Props) => {
   const [screenPosition, setScreenPosition] = useState({ x: 0.0, y: 0.0 })
@@ -34,14 +33,9 @@ const Draggable: React.FC<Props> = ({
     }
   }
 
-  useEffect(() => {
-    console.log(hoverType)
-  }, [hoverType])
-
   const stopDrag = () => {
-    setHoverTypeMutex(true)
-    console.log(hoverType)
-    onEndDrag(hoverType)
+    // setHoverTypeMutex(true)
+    onEndDrag()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
     // setScreenPosition(startPosition)
@@ -49,7 +43,7 @@ const Draggable: React.FC<Props> = ({
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setHoverTypeMutex(false)
+    // setHoverTypeMutex(false)
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
       parentRect = e.target.parentElement.getBoundingClientRect()

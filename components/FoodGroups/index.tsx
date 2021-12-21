@@ -12,15 +12,14 @@ import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
 
 import {
   resize_map,
-  initialCoordinates,
-  initialWidths,
   handleMouseOver,
   handleMouseOut,
-  foodGroupsImages
+  foodGroupsImages,
+  angleRegions
 } from '@components/FoodGroups/dinamicStyles'
 
 import { FoodGroupStates, StateDispatch } from '@components/FoodGroups/types'
-import Draggable from './Draggable'
+import { Vector2 } from './Draggable/boundingbox'
 
 /**
  * A page displaying all food groups in a pie chart
@@ -51,15 +50,9 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
   // const [fruitStyles, setFruitStyles] = useState([''])
   // const [vegetablesStyles, setVegetablesStyles] = useState([''])
 
-  const [coordinates, setCoordinates] = useState(initialCoordinates)
-  const [previousWidth, setPreviousWidth] = useState(initialWidths)
-
-  // interface allStates {
-  //     [index: string]: {
-  //         style: string[],
-  //         setStyle: Dispatch<React.SetStateAction<string[]>>
-  //     }
-  // };
+  const [radius, setRadius] = useState(0)
+  const [center, setCenter] = useState({ x: 0, y: 0 })
+  const [currentRegion, setCurrentRegion] = useState('') // Debounce mouse events
 
   const meat = useState([''])
   const grains = useState([''])
@@ -104,13 +97,58 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
   // }
 
   useEffect(() => {
-    resize_map({
-      previousWidth,
-      coordinates,
-      setPreviousWidth,
-      setCoordinates
-    })
-  }, [setPreviousWidth, setCoordinates])
+    resize_map({ setCenter, setRadius })
+  }, [setCenter, setRadius])
+
+  const getRegion = (theta: number) => {
+    for (let i = 0; i < angleRegions.length; i++) {
+      const region = angleRegions[i]
+      if (theta > region.start && theta < region.end) {
+        return region.region_name
+      }
+    }
+    return ''
+  }
+
+  const wheelMouseOver = ({ x, y }: Vector2) => {
+    const dx = x - center.x
+    const dy = y - center.y
+    if (dx * dx + dy * dy < radius * radius) {
+      const newRegion = getRegion(Math.atan2(dy, dx))
+      if (newRegion !== currentRegion) {
+        handleMouseOut(currentRegion, allStates)
+        if (newRegion !== '') {
+          handleMouseOver(newRegion, allStates)
+        }
+        setCurrentRegion(newRegion)
+      }
+    } else if (currentRegion !== '') {
+      handleMouseOut(currentRegion, allStates)
+      setCurrentRegion('')
+    }
+  }
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) =>
+      wheelMouseOver({ x: e.clientX, y: e.clientY })
+    document.addEventListener('mousemove', handler)
+    return () => {
+      document.removeEventListener('mousemove', handler)
+    }
+  }, [radius, center, currentRegion])
+
+  useEffect(() => {
+    const handler = (e: TouchEvent) =>
+      wheelMouseOver({ x: e.touches[0].clientX, y: e.touches[0].clientY })
+    document.addEventListener('touchmove', handler)
+    return () => {
+      document.removeEventListener('touchmove', handler)
+    }
+  }, [radius, center, currentRegion])
+
+  useEffect(() => {
+    setHoverType(currentRegion)
+  }, [currentRegion])
 
   return (
     <>
@@ -120,14 +158,7 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
         </Modal>
       )}
       {/* Handles resizing maps on screen resize for SSR */}
-      <WindowResizeHook
-        params={{
-          previousWidth,
-          coordinates,
-          setPreviousWidth,
-          setCoordinates
-        }}
-      />
+      <WindowResizeHook params={{ setRadius, setCenter }} />
       {/* <div
         className={'flex flex-col'}
         style={{
@@ -150,28 +181,6 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
             }
             draggable={false}
           >
-            <map
-              id={`map-${index}`}
-              name={group.map_name}
-              className={styles['test-area']}
-              draggable={false}
-            >
-              <area // Is there a way to change the Z-index of just this area so it triggers the mouseover? But that would just prevent the draggable from being interacted with?
-                onMouseOver={() => {
-                  handleMouseOver(group.div_id, allStates)
-                  setHoverType(group.div_id)
-                }}
-                onMouseOut={() => {
-                  handleMouseOut(group.div_id, allStates)
-                  setHoverType('')
-                }}
-                onClick={toggleModal}
-                tabIndex={0}
-                alt={group.div_id}
-                shape='poly'
-                coords={coordinates[index].join(', ')}
-              />
-            </map>
             <Image
               src={group.img_src}
               alt={group.div_id}

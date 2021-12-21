@@ -12,35 +12,15 @@ import {
 } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
 
-let initialCoordinates = [
-  [20, 520, 140, 10, 415, 445, 200, 525], // dairy
-  [5, 140, 410, 5, 320, 420, 125, 325], //meat
-  [20, 10, 410, 115, 250, 350], // fruit
-  [10, 5, 325, 160, 410, 500, 10, 400], // vegetables
-  [40, 540, 50, 270, 200, 70, 410, 5, 410, 410]
-] // grains
+const R = (deg: number) => (deg * Math.PI) / 180 // RADIANS
 
-let initialWidths = [
-  {
-    id: 'dairy-img',
-    initialWidth: 433
-  },
-  {
-    id: 'meat-img',
-    initialWidth: 424
-  },
-  {
-    id: 'fruit-img',
-    initialWidth: 420
-  },
-  {
-    id: 'vegetables-img',
-    initialWidth: 422
-  },
-  {
-    id: 'grains-img',
-    initialWidth: 424
-  }
+const angleRegions = [
+  { region_name: 'grains', start: R(-179), end: R(-90) },
+  { region_name: 'grains', start: R(161), end: R(180) },
+  { region_name: 'vegetables', start: R(-90), end: R(13) },
+  { region_name: 'fruit', start: R(13), end: R(57) },
+  { region_name: 'dairy', start: R(57), end: R(103) },
+  { region_name: 'meat', start: R(103), end: R(161) }
 ]
 
 const foodGroupsImages: FoodGroupImage[] = [
@@ -81,75 +61,84 @@ const foodGroupsImages: FoodGroupImage[] = [
   }
 ]
 
-const get_wheel_height = () => {
-  const boundingBox = document.getElementById('meat')?.parentElement?.getBoundingClientRect()
-  if(boundingBox===undefined){
-    console.error("[ ERROR ] Could not get parent bounding box")
-    return;
+const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
+  const boundingBox = document
+    .getElementById('meat')
+    ?.parentElement?.getBoundingClientRect()
+  if (boundingBox === undefined) {
+    console.error('[ ERROR ] Could not get parent bounding box')
+    return
   }
-  const radius = boundingBox.height/2
-  const center : Vector2 = {x:boundingBox.x+boundingBox.width/2,y:boundingBox.y+boundingBox.height/2}
-  console.log()
-  // const bounding_boxes = ['meat', 'dairy', 'fruit', 'vegetables', 'grains'].map(
-  //   x => {
-  //     let slice = document.getElementById(x)
-  //     if (slice == null) {
-  //       console.error("couldn't get element ")
-  //       return { top: 0, bottom: 0 }
-  //     }
-  //     return slice.getBoundingClientRect()
-  //   }
-  // )
-  // return (
-  //   Math.max.apply(
-  //     null,
-  //     bounding_boxes.map(box => box.bottom)
-  //   ) -
-  //   Math.min.apply(
-  //     null,
-  //     bounding_boxes.map(box => box.top)
-  //   )
-  // )
+  const radius = boundingBox.height / 2
+  const center: Vector2 = {
+    x: boundingBox.x + boundingBox.width / 2,
+    y: boundingBox.y + boundingBox.height / 2
+  }
+  setRadius(radius)
+  setCenter(center)
 }
 
-const resize_map = ({
-  previousWidth,
-  coordinates,
-  setPreviousWidth,
-  setCoordinates
-}: FoodGroupResizeArguments) => {
-  get_wheel_height()
-  let newCoordinates: number[][] = []
-  let newPreviousWidth: WidthState[] = []
+// const get_wheel_height = () => {
+// const bounding_boxes = ['meat', 'dairy', 'fruit', 'vegetables', 'grains'].map(
+//   x => {
+//     let slice = document.getElementById(x)
+//     if (slice == null) {
+//       console.error("couldn't get element ")
+//       return { top: 0, bottom: 0 }
+//     }
+//     return slice.getBoundingClientRect()
+//   }
+// )
+// return (
+//   Math.max.apply(
+//     null,
+//     bounding_boxes.map(box => box.bottom)
+//   ) -
+//   Math.min.apply(
+//     null,
+//     bounding_boxes.map(box => box.top)
+//   )
+// )
+// }
 
-  console.log(get_wheel_height())
-  // setFlexHeight(get_wheel_height())
+// const resize_map = ({
+//   previousWidth,
+//   coordinates,
+//   setPreviousWidth,
+//   setCoordinates
+// }: FoodGroupResizeArguments) => {
+//   get_wheel_height()
+//   let newCoordinates: number[][] = []
+//   let newPreviousWidth: WidthState[] = []
 
-  previousWidth.map(
-    (width: { id: string; initialWidth: number }, index: number) => {
-      let newWidth = document.getElementById(width.id)
-      if (newWidth == null) {
-        console.error("couldn't get element ")
-        return
-      }
-      let ratio = newWidth.clientWidth / width.initialWidth
+//   console.log(get_wheel_height())
+//   // setFlexHeight(get_wheel_height())
 
-      let new_coordinates = coordinates[index].map((coordinate: number) => {
-        return coordinate * ratio
-      })
-      // console.log(ratio, newCoordinates, coordinates)
-      newCoordinates.push(new_coordinates)
+//   previousWidth.map(
+//     (width: { id: string; initialWidth: number }, index: number) => {
+//       let newWidth = document.getElementById(width.id)
+//       if (newWidth == null) {
+//         console.error("couldn't get element ")
+//         return
+//       }
+//       let ratio = newWidth.clientWidth / width.initialWidth
 
-      newPreviousWidth.push({
-        id: previousWidth[index].id,
-        initialWidth: newWidth.clientWidth
-      })
-    }
-  )
+//       let new_coordinates = coordinates[index].map((coordinate: number) => {
+//         return coordinate * ratio
+//       })
+//       // console.log(ratio, newCoordinates, coordinates)
+//       newCoordinates.push(new_coordinates)
 
-  setPreviousWidth(newPreviousWidth)
-  setCoordinates(newCoordinates)
-}
+//       newPreviousWidth.push({
+//         id: previousWidth[index].id,
+//         initialWidth: newWidth.clientWidth
+//       })
+//     }
+//   )
+
+//   setPreviousWidth(newPreviousWidth)
+//   setCoordinates(newCoordinates)
+// }
 
 const handleMouseOver = (
   group_id: string,
@@ -238,9 +227,8 @@ const handleMouseOut = (
 
 export {
   resize_map,
-  initialCoordinates,
-  initialWidths,
   handleMouseOver,
   handleMouseOut,
-  foodGroupsImages
+  foodGroupsImages,
+  angleRegions
 }

@@ -6,19 +6,21 @@ import Draggable from '@components/FoodGroups/Draggable'
 /**
  */
 
+// FIXME: Hack to ensure function uses updated state variables
+const updatedFunction = (f: Function) => {
+  const [rerender, setRerender] = useState(0)
+  useEffect(() => {
+    f()
+  }, [rerender])
+  return () => setRerender(rerender + 1)
+}
+
 const FoodGroupsPage: React.FC = () => {
   const [hoverType, setHoverType] = useState('')
-  const [hoverTypeMutex, setHoverTypeMutex] = useState(false)
 
-  const setHoverMutex = (state: string) => {
-    if (!hoverTypeMutex) setHoverType(state)
-  }
-
-  const endLambda = (test: string) => {
-    console.log(`${test} Test`)
-    if (test !== '') {
-    }
-  }
+  const endDragF = updatedFunction(() => {
+    console.log(`Dropped on ${hoverType}`)
+  })
 
   return (
     <>
@@ -38,13 +40,8 @@ const FoodGroupsPage: React.FC = () => {
           }}
           draggable={false}
         >
-          <FoodGroups setHoverType={setHoverMutex} />
-          <Draggable
-            onEndDrag={endLambda}
-            hoverType={hoverType}
-            setHoverTypeMutex={setHoverTypeMutex}
-            startPosition={{x:90,y:90}}
-          />
+          <FoodGroups setHoverType={setHoverType} />
+          <Draggable onEndDrag={endDragF} startPosition={{ x: 90, y: 90 }} />
         </div>
         <p>{hoverType}</p>
       </div>
