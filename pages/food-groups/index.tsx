@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import FoodGroups from 'components/FoodGroups'
 import styles from 'components/FoodGroups/foodgroups.module.css'
 import Draggable from '@components/FoodGroups/Draggable'
+import { foodGroupsCharacterImages } from '@components/FoodGroups/Draggable/characterimages'
 
 /**
  */
@@ -41,7 +42,19 @@ const FoodGroupsPage: React.FC = () => {
           draggable={false}
         >
           <FoodGroups setHoverType={setHoverType} />
-          <Draggable onEndDrag={endDragF} startPosition={{ x: 90, y: 90 }} />
+          {foodGroupsCharacterImages.map((character, index) => {
+            return (
+              <Draggable
+                div_id={character.div_id}
+                img_src={character.img_src}
+                img_id={character.img_id}
+                starting_x={character.starting_x}
+                starting_y={character.starting_y}
+                bounding_box_id={index}
+              />
+            )
+          })}
+          {/* <Draggable onEndDrag={endDragF} startPosition={{ x: 90, y: 90 }} /> */}
         </div>
         <p>{hoverType}</p>
       </div>

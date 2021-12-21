@@ -27,6 +27,7 @@
   width: 50%;
   transform: translateX(-50%);
   position: relative;
+  margin-right: 50%;
 }
 
 .custom-img {
@@ -114,6 +115,7 @@
   box-sizing: border-box;
   transition: all 0.3s ease-out;
 }
+
 
 @media (min-width: 600px) {
   .food-group-modal {

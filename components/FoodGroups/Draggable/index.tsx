@@ -1,21 +1,15 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
 import styles from 'components/FoodGroups/foodgroups.module.css'
+import { FoodGroupCharacterImage } from './types'
 
-interface Props {
-  onEndDrag: Function
-  // hoverType: string
-  // setHoverTypeMutex: StateDispatch<boolean>
-  startPosition: Vector2
-}
+import Image from 'next/image'
 
-const Draggable: React.FC<Props> = ({
-  onEndDrag,
-  // hoverType,
-  // setHoverTypeMutex,
-  startPosition
-}: Props) => {
-  const [screenPosition, setScreenPosition] = useState({ x: 0.0, y: 0.0 })
+const Draggable: React.FC<FoodGroupCharacterImage> = props => {
+  const [screenPosition, setScreenPosition] = useState({
+    x: props.starting_x,
+    y: props.starting_y
+  })
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
 
@@ -57,6 +51,19 @@ const Draggable: React.FC<Props> = ({
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
   }
 
+  const showImage = (character_image: FoodGroupCharacterImage) => {
+    return (
+      <Image
+        src={character_image.img_src}
+        alt={character_image.div_id}
+        layout='fill'
+        // className={}
+        // useMap={/* */}
+        id={character_image.bounding_box_id}
+      />
+    )
+  }
+
   useEffect(() => {
     if (delta) {
       document.addEventListener('mousemove', dragAround)
@@ -73,24 +80,22 @@ const Draggable: React.FC<Props> = ({
       <div
         className={'z-20 ' + styles['drag-drop']}
         onMouseDown={startDrag}
+        draggable={false}
         style={{
           pointerEvents: ptrEvents ? 'auto' : 'none',
           position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
-          height: 'fit-content',
           left: `${screenPosition.x}%`, // % works!!
           top: `${screenPosition.y}%`,
-          width: '20%'
+          // backgroundColor: 'cyan',
+          height: '12%',
+          width: '12%'
         }}
-        draggable={false}
       >
-        <svg
-          viewBox='0 0 20 20'
-          xmlns='http://www.w3.org/2000/svg'
-          fill='#ff0000'
-          style={{ zIndex: 0, pointerEvents: 'none' }}
-        >
-          <rect width='20' height='20' />
-        </svg>
+        <div style={{ zIndex: 0, pointerEvents: 'none' }}>
+          <Image src={props.img_src} alt={props.div_id} layout='fill' />
+          {/* Line below for debugging screen position of characters */}
+          {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
+        </div>
       </div>
     </>
   )

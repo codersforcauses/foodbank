@@ -11,6 +11,7 @@ import {
   WidthState
 } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
+import { FoodGroupCharacterImage } from './Draggable/types'
 
 const R = (deg: number) => (deg * Math.PI) / 180 // RADIANS
 
@@ -78,71 +79,10 @@ const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
   setCenter(center)
 }
 
-// const get_wheel_height = () => {
-// const bounding_boxes = ['meat', 'dairy', 'fruit', 'vegetables', 'grains'].map(
-//   x => {
-//     let slice = document.getElementById(x)
-//     if (slice == null) {
-//       console.error("couldn't get element ")
-//       return { top: 0, bottom: 0 }
-//     }
-//     return slice.getBoundingClientRect()
-//   }
-// )
-// return (
-//   Math.max.apply(
-//     null,
-//     bounding_boxes.map(box => box.bottom)
-//   ) -
-//   Math.min.apply(
-//     null,
-//     bounding_boxes.map(box => box.top)
-//   )
-// )
-// }
-
-// const resize_map = ({
-//   previousWidth,
-//   coordinates,
-//   setPreviousWidth,
-//   setCoordinates
-// }: FoodGroupResizeArguments) => {
-//   get_wheel_height()
-//   let newCoordinates: number[][] = []
-//   let newPreviousWidth: WidthState[] = []
-
-//   console.log(get_wheel_height())
-//   // setFlexHeight(get_wheel_height())
-
-//   previousWidth.map(
-//     (width: { id: string; initialWidth: number }, index: number) => {
-//       let newWidth = document.getElementById(width.id)
-//       if (newWidth == null) {
-//         console.error("couldn't get element ")
-//         return
-//       }
-//       let ratio = newWidth.clientWidth / width.initialWidth
-
-//       let new_coordinates = coordinates[index].map((coordinate: number) => {
-//         return coordinate * ratio
-//       })
-//       // console.log(ratio, newCoordinates, coordinates)
-//       newCoordinates.push(new_coordinates)
-
-//       newPreviousWidth.push({
-//         id: previousWidth[index].id,
-//         initialWidth: newWidth.clientWidth
-//       })
-//     }
-//   )
-
-//   setPreviousWidth(newPreviousWidth)
-//   setCoordinates(newCoordinates)
-// }
-
 const handleMouseOver = (
   group_id: string,
-  { meat, grains, dairy, fruit, vegetables }: FoodGroupStates
+  { meat, grains, dairy, fruit, vegetables }: FoodGroupStates,
+  character?: FoodGroupCharacterImage
 ) => {
   let styles
   let zoom = ['transform', 'scale-105', 'z-10']
