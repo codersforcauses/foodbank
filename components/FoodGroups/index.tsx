@@ -10,9 +10,7 @@ import styles from 'components/FoodGroups/foodgroups.module.css'
 import { Modal } from '@components/Custom'
 import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
 
-import {
-  foodGroupsCharacterImages
-} from './Draggable/characterimages'
+import { foodGroupsCharacterImages } from './Draggable/characterimages'
 
 import {
   resize_map,
@@ -165,41 +163,7 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
         </Modal>
       )}
       {/* Handles resizing maps on screen resize for SSR */}
-<<<<<<< HEAD
       <WindowResizeHook params={{ setRadius, setCenter }} />
-      {/* <div
-=======
-      <WindowResizeHook
-        params={{
-          previousWidth,
-          coordinates,
-          setPreviousWidth,
-          setCoordinates
-        }}
-      />
-      <div
-        // className='flex flex-col'
-        className='scale-wheel'
-        // style={{ flexShrink: 0, position: 'relative' }}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          maxWidth: '95vh',
-          width: '80%',
-          // backgroundColor:'yellow',
-          ...style
-        }}
-        draggable={false}
-      >
-        {/* <div
->>>>>>> origin/experimental-drag-drop-rupert
-        className={'flex flex-col'}
-        style={{
-          height: previousFlexHeight + 'px',
-          margin: 0.05 * previousFlexHeight + 'px' // 5% margin, variable (Animation makes slices go above the height)
-        }}
-      > */}
-<<<<<<< HEAD
       {foodGroupsImages.map((group, index) => {
         return (
           <div
@@ -211,7 +175,7 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
               foodGroupStyles.join(' ') +
               ' ' +
               hoverStyles[index].join(' ') +
-              ' scale-wheel'
+              ' scale-wheel select-none'
             }
             draggable={false}
           >
@@ -227,71 +191,6 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
           </div>
         )
       })}
-      {/* </div> */}
-=======
-        {/* important stuff}
-        {/* {console.log('hello', foodGroupsCharacterImages.map((element) => foodGroupsCharacterImages))} */}
-
-        {/* <Draggable div_id={firstImage.div_id} img_src={firstImage.img_src} img_id={firstImage.img_id} starting_x={firstImage.starting_x} starting_y={firstImage.starting_y}/> */}
-
-        {foodGroupsCharacterImages.map((character,index) => {
-          return (
-            <Draggable div_id={character.div_id} img_src={character.img_src} img_id={character.img_id} starting_x={character.starting_x} starting_y={character.starting_y} bounding_box_id={index}/>
-          )
-        })}
-
-        {foodGroupsImages.map((group, index) => {
-          return (
-            <div
-              id={group.div_id}
-              key={group.div_id}
-              className={
-                styles[`${group.img_styles}`] +
-                ' ' +
-                foodGroupStyles.join(' ') +
-                ' ' +
-                hoverStyles[index].join(' ')
-              }
-              
-              draggable={false}
-            >
-              <map
-                id={`map-${index}`}
-                name={group.map_name}
-                className={styles['test-area']}
-                draggable={false}
-              >
-                <area // Is there a way to change the Z-index of just this area so it triggers the mouseover? But that would just prevent the draggable from being interacted with?
-                  onDragEnter={() => handleMouseOver(group.div_id, allStates)}
-                  onMouseOver={() => handleMouseOver(group.div_id, allStates)}
-                  onKeyDown={() => {}} // TODO: ACCESSIBILITY
-                  onFocus={() => {}} // TODO: ACCESSIBILITY
-                  onDragLeave={() => handleMouseOut(group.div_id, allStates)}
-                  onMouseOut={() => handleMouseOut(group.div_id, allStates)}
-                  onBlur={() => {}} // TODO: ACCESSIBILITY
-                  onClick={toggleModal}
-                  role='menu' // FIXME: Not sure if this is the right role
-                  tabIndex={0}
-                  alt={group.div_id}
-                  shape='poly'
-                  coords={coordinates[index].join(', ')}
-                />
-              </map>
-              <Image
-                src={group.img_src}
-                alt={group.div_id}
-                layout='fill'
-                className={styles['custom-img']}
-                useMap={`#${group.map_name}`}
-                id={group.img_id}
-                draggable={false}
-              />
-            </div>
-          )
-        })}
-      </div>
-      {/* <div style={{width: '50%', height:'auto', backgroundColor:'yellow'}}></div> */}
->>>>>>> origin/experimental-drag-drop-rupert
     </>
   )
 }

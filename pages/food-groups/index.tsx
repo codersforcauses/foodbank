@@ -18,43 +18,63 @@ const updatedFunction = (f: Function) => {
 
 const FoodGroupsPage: React.FC = () => {
   const [hoverType, setHoverType] = useState('')
+  const [selectedDraggable, setSelectedDraggable] = useState('')
+  const [unsortedCount, setUnsortedCount] = useState(5)
+  const [correctCount, setCorrectCount] = useState(0)
 
   const endDragF = updatedFunction(() => {
-    console.log(`Dropped on ${hoverType}`)
+    console.log(
+      `Dropped on '${hoverType}', Type of draggable is '${selectedDraggable}'`
+    )
+
+    let score = correctCount
+    // TODO: REPLACE WITH ENUM
+    if (hoverType === '') return
+    if (hoverType === selectedDraggable) {
+      score++
+      setCorrectCount(score)
+      console.log(score)
+
+      // alert('Yay correct answer')
+    } else {
+      // alert('wrong answer')
+    }
+
+    setUnsortedCount(unsortedCount - 1)
+    if (unsortedCount - 1 === 0) {
+      // RESET GAME
+      alert(`Score ${score}/5`)
+      setCorrectCount(0)
+      setUnsortedCount(5)
+    }
   })
 
   return (
     <>
-      {/* <div className='flex justify-center items-start'> */}
-      {/* div is required for the food wheel to resize when the screen height decreases, to keep the whole game on one page w/o scolling */}
-      {/* <div className={styles['food-wheel']}>
-        </div> */}
-      <div className='flex justify-start' draggable={false}>
+      <div
+        className='flex justify-start'
+        style={{ maxWidth: '100vh' }}
+        draggable={false}
+      >
         <div
           // className='flex flex-col'
           // style={{ flexShrink: 0, position: 'relative' }}
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr',
-            maxWidth: '95vh',
-            width: '80%'
+            width: '90vh'
           }}
           draggable={false}
         >
           <FoodGroups setHoverType={setHoverType} />
-          {foodGroupsCharacterImages.map((character, index) => {
-            return (
-              <Draggable
-                div_id={character.div_id}
-                img_src={character.img_src}
-                img_id={character.img_id}
-                starting_x={character.starting_x}
-                starting_y={character.starting_y}
-                bounding_box_id={index}
-              />
-            )
-          })}
-          {/* <Draggable onEndDrag={endDragF} startPosition={{ x: 90, y: 90 }} /> */}
+          {foodGroupsCharacterImages.map((character, index) => (
+            <Draggable
+              key={index}
+              onEndDrag={endDragF}
+              onStartDrag={() => setSelectedDraggable(character.type)}
+              {...character}
+            />
+          ))}
         </div>
         <p>{hoverType}</p>
       </div>

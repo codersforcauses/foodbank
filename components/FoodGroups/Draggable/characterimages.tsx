@@ -7,49 +7,46 @@ import grain from 'public/images/Food Characters/Bread Mixed Grain.png'
 import { FoodGroupCharacterImage } from './types'
 
 const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
-    {
-      div_id: 'dairy-character',
-      img_src: dairy.src,
-      img_id: 'dairy-character-img',
-      bounding_box_id: 0,
-      starting_x: 100,
-      starting_y: 2
-    },
-    {
-      div_id: 'meat-character',
-      img_src: meat.src,
-      img_id: 'meat-character-img',
-      bounding_box_id: 1,
-      starting_x: 100,
-      starting_y: 20
-    },
-    {
-      div_id: 'fruit-character',
-      img_src: fruit.src,
-      img_id: 'fruit-character-img',
-      bounding_box_id: 2,
-      starting_x: 100,
-      starting_y: 40
-    },
-    {
-      div_id: 'vegetable-character',
-      img_src: vegetable.src,
-      img_id: 'vegetable-character-img',
-      bounding_box_id: 3,
-      starting_x: 100,
-      starting_y: 60
-    },
-    {
-      div_id: 'grain-character',
-      img_src: grain.src,
-      img_id: 'grain-character-img',
-      bounding_box_id: 4,
-      starting_x: 100,
-      starting_y: 80
-    },
-
+  {
+    div_id: 'dairy-character',
+    img_src: dairy.src,
+    img_id: 'dairy-character-img',
+    bounding_box_id: 0,
+    type: 'dairy',
+    start_pos: { x: 90, y: 2 }
+  },
+  {
+    div_id: 'meat-character',
+    img_src: meat.src,
+    img_id: 'meat-character-img',
+    bounding_box_id: 1,
+    type: 'meat',
+    start_pos: { x: 90, y: 20 }
+  },
+  {
+    div_id: 'fruit-character',
+    img_src: fruit.src,
+    img_id: 'fruit-character-img',
+    bounding_box_id: 2,
+    type: 'fruit',
+    start_pos: { x: 90, y: 40 }
+  },
+  {
+    div_id: 'vegetable-character',
+    img_src: vegetable.src,
+    img_id: 'vegetable-character-img',
+    bounding_box_id: 3,
+    type: 'vegetables',
+    start_pos: { x: 90, y: 60 }
+  },
+  {
+    div_id: 'grain-character',
+    img_src: grain.src,
+    img_id: 'grain-character-img',
+    bounding_box_id: 4,
+    type: 'grains',
+    start_pos: { x: 90, y: 80 }
+  }
 ]
 
-export {
-    foodGroupsCharacterImages
-}
+export { foodGroupsCharacterImages }

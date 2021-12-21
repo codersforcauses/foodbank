@@ -5,13 +5,16 @@ import { FoodGroupCharacterImage } from './types'
 
 import Image from 'next/image'
 
-const Draggable: React.FC<FoodGroupCharacterImage> = props => {
-  const [screenPosition, setScreenPosition] = useState({
-    x: props.starting_x,
-    y: props.starting_y
-  })
+interface Props extends FoodGroupCharacterImage {
+  onEndDrag: Function
+  onStartDrag: Function
+}
+
+const Draggable: React.FC<Props> = (props: Props) => {
+  const [screenPosition, setScreenPosition] = useState(props.start_pos)
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
+  const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
 
   const [ptrEvents, setPtrEvents] = useState(true)
 
@@ -20,7 +23,7 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
     if (parentRect && delta) {
       let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
       let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
-      if (x > 100.0 || y > 100.0 || x < 0 || y < 0) return
+      if (x > maxPosition.x || y > maxPosition.y || x < 0 || y < 0) return
       setScreenPosition({ x: x, y: y })
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
@@ -29,7 +32,7 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
 
   const stopDrag = () => {
     // setHoverTypeMutex(true)
-    onEndDrag()
+    props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
     // setScreenPosition(startPosition)
@@ -38,6 +41,7 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // setHoverTypeMutex(false)
+    props.onStartDrag()
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
       parentRect = e.target.parentElement.getBoundingClientRect()
@@ -49,6 +53,9 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
     setPtrEvents(false)
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
+    // let max_x = (100.0 - box.width) / parentRect.width
+    // let max_y = (100.0 - box.height) / parentRect.height
+    // setMaxPosition({ x: max_x, y: max_y })
   }
 
   const showImage = (character_image: FoodGroupCharacterImage) => {
@@ -59,7 +66,7 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
         layout='fill'
         // className={}
         // useMap={/* */}
-        id={character_image.bounding_box_id}
+        id={`${character_image.bounding_box_id}`}
       />
     )
   }
@@ -70,10 +77,6 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
       document.addEventListener('mouseup', stopDrag)
     }
   }, [delta])
-
-  useEffect(() => {
-    setScreenPosition(startPosition)
-  }, [])
 
   return (
     <>
@@ -87,12 +90,22 @@ const Draggable: React.FC<FoodGroupCharacterImage> = props => {
           left: `${screenPosition.x}%`, // % works!!
           top: `${screenPosition.y}%`,
           // backgroundColor: 'cyan',
-          height: '12%',
-          width: '12%'
+          width: 'fit-content',
+          height: 'fit-content'
         }}
       >
-        <div style={{ zIndex: 0, pointerEvents: 'none' }}>
-          <Image src={props.img_src} alt={props.div_id} layout='fill' />
+        <div
+          className='select-none'
+          style={{ zIndex: 0, pointerEvents: 'none' }}
+          draggable={false}
+        >
+          <Image
+            src={props.img_src}
+            alt={props.div_id}
+            width='200%'
+            height='200%'
+            draggable={false}
+          />
           {/* Line below for debugging screen position of characters */}
           {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
         </div>
