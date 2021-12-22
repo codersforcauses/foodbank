@@ -18,7 +18,6 @@ import {
 import { useAuthState } from 'react-firebase-hooks/auth'
 // import * as FireStoreParser from 'firestore-parser'
 const FireStoreParser = require('firestore-parser')
-import { useFetch } from 'use-http'
 import { auth, db } from '@components/Firebase'
 import { MESSAGES } from '@components/Auth/enums'
 

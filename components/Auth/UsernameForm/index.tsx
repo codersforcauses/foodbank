@@ -27,7 +27,7 @@ const UsernameForm = ({
         type='text'
         name='username'
         value={input}
-        focus={true}
+        setFocused
         rules={{
           required: 'Please enter your name or a username',
           pattern: {
