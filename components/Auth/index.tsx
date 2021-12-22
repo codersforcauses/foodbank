@@ -89,7 +89,7 @@ const Auth = (props: AuthProps) => {
       newRepeatedPassword?.length === PASSWORD_LENGTH
     ) {
       if (newRepeatedPassword === password) {
-        await signUp(auth, db, username, password)
+        await signUp(auth, username, password)
         onClose()
         setError('')
       } else setError(MESSAGES.PASSWORDS_NOT_MATCHED)

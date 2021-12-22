@@ -8,9 +8,8 @@ import {
   AuthErrorCodes,
   Auth
 } from 'firebase/auth'
-import { doc, setDoc, Firestore, FirestoreError } from 'firebase/firestore'
+import { FirestoreError } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
-import { defaultAchievements } from '@components/Firebase/context'
 import { MESSAGES } from './enums'
 
 const SIGNED_IN = true
@@ -73,12 +72,7 @@ const signIn = async (
   }
 }
 
-const signUp = async (
-  auth: Auth,
-  db: Firestore,
-  username: string,
-  password: string
-) => {
+const signUp = async (auth: Auth, username: string, password: string) => {
   try {
     await createUserWithEmailAndPassword(
       auth,
