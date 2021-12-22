@@ -16,9 +16,14 @@ import {
   FirestoreError
 } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
+// import * as FireStoreParser from 'firestore-parser'
+const FireStoreParser = require('firestore-parser')
+import { useFetch } from 'use-http'
 import { auth, db } from '@components/Firebase'
 import { MESSAGES } from '@components/Auth/enums'
 
+const FIRESTORE_URL =
+  'https://firestore.googleapis.com/v1/projects/foodbank-c9a2f/databases/(default)/documents/users'
 interface FirebaseContextProps {
   auth: Auth
   db: Firestore
@@ -69,14 +74,25 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
 
   // User Authentication
   const [user, userLoading, userError] = useAuthState(auth)
+  // const { get, response, error } = useFetch(FIRESTORE_URL)
 
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
       try {
         console.log('Retrieving data')
-        const userDoc = await getDoc(doc(db, 'users', user.uid))
-        if (userDoc.exists()) {
-          const userDocData = userDoc.data() as AchievementsData
+        const userToken = await user.getIdToken()
+        const headers = { Authorization: `Bearer ${userToken}` }
+        console.log(userToken)
+        const response = await fetch(`${FIRESTORE_URL}/${user.uid}`, {
+          method: 'get',
+          headers: headers
+        })
+        console.log(response)
+        const userDoc = await response.json()
+        // const userDoc = await get(`/${user.uid}`)
+        if (response.ok && userDoc?.fields) {
+          const userDocData = FireStoreParser(userDoc.fields)
+          console.log(userDocData)
           setAchievements(userDocData)
         } else {
           // doc.data() will be undefined in this case
