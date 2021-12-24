@@ -17,13 +17,12 @@ interface TownBox {
   id?: string
 }
 
-const TownBoxWrapper : React.FC = ({
+const TownBoxWrapper: React.FC = ({
   selected,
   resetTransform,
   setSelect,
   setDisplay
 }: TownBoxWrapperProps) => {
-
   const handleClose = () => {
     setSelect(null)
     setDisplay(false)
@@ -34,24 +33,19 @@ const TownBoxWrapper : React.FC = ({
     const selectedArea = descData.descriptionArray.find(x => x.id === selected)
 
     if (selectedArea) {
-      const {
-        headerText,
-        captionText,
-        headerColor,
-        showButton,
-        id
-      }: TownBox  = selectedArea
+      const { headerText, captionText, headerColor, showButton, id }: TownBox =
+        selectedArea
 
       return (
-          <div key={id} className='self-center'>
-            <Townbox
-              headerColor={headerColor}
-              headerText={headerText}
-              captionText={captionText}
-              showButton={showButton}
-              close={handleClose}
-            />
-          </div>
+        <div key={id} className='self-center'>
+          <Townbox
+            headerColor={headerColor}
+            headerText={headerText}
+            captionText={captionText}
+            showButton={showButton}
+            close={handleClose}
+          />
+        </div>
       )
     }
   }

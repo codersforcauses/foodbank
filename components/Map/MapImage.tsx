@@ -57,8 +57,8 @@ const MapImage = ({
               // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
               // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
               //scaling by 10 seems to give better views of the locations
-              const xtrans = parseInt(location.xtrans) * scale
-              const ytrans = parseInt(location.ytrans) * scale
+              const xtrans = parseInt(location.xtrans) * scale * 10
+              const ytrans = parseInt(location.ytrans) * scale * 10
 
               const scaledCoords = location.coords.map(coord => coord * scale)
               //TODO: consider changing className to a state and use tailwind
