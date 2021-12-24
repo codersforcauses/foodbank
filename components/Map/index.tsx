@@ -14,7 +14,7 @@ const Map = () => {
       const minStaticWidth = 1170
       const targetWidth =
         window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
-      setScale(targetWidth / 4961)
+      setScale(targetWidth / 7151)
     }
     handleResize()
     window.addEventListener('resize', handleResize)
