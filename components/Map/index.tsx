@@ -14,7 +14,7 @@ const Map = () => {
       const minStaticWidth = 1170
       const targetWidth =
         window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
-      setScale(targetWidth / 7151)
+      setScale(targetWidth / 7151) //number is width of base image
     }
     handleResize()
     window.addEventListener('resize', handleResize)

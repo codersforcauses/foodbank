@@ -121,7 +121,7 @@
         "id": "yoghurtMountains",
         "headerColor": "primary",
         "headerText": "Yoghurt Mountains",
-        "captionText": "",
+        "captionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non laoreet ipsum. Mauris ultrices elit id justo rutrum, nec ornare.",
         "showButton": true,
         "maxWidth":"",
         "maxHeight":""

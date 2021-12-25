@@ -17,7 +17,7 @@ interface TownBox {
   id?: string
 }
 
-const TownBoxWrapper: React.FC = ({
+const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   selected,
   resetTransform,
   setSelect,
