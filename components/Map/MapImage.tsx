@@ -36,10 +36,6 @@ const MapImage = ({
   }
 
   return (
-    <div
-      className='block w-full min-h-full items-stretch h-screen pointer-events-auto'
-      style={{ minHeight: '900px' }}
-    >
       <div className='flex relative max-w-screen'>
         <Image
           className={styles.mapImage}
@@ -82,7 +78,6 @@ const MapImage = ({
           })}
         </map>
       </div>
-    </div>
   )
 }
 

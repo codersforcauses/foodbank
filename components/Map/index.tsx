@@ -21,7 +21,6 @@ const Map = () => {
   }, [])
 
   return (
-    <div className='h-screen'>
       <TransformWrapper
         doubleClick={{ disabled: true }}
         wheel={{ disabled: true }}
@@ -29,7 +28,7 @@ const Map = () => {
       >
         {({ resetTransform, setTransform }) => (
           <>
-            <TransformComponent>
+            <TransformComponent wrapperClass="main">
               <MapImage
                 scale={scale}
                 setTransform={setTransform}
@@ -55,7 +54,6 @@ const Map = () => {
           </>
         )}
       </TransformWrapper>
-    </div>
   )
 }
 
