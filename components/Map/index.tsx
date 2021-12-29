@@ -25,6 +25,7 @@ const Map = () => {
       doubleClick={{ disabled: true }}
       wheel={{ disabled: true }}
       initialScale={1}
+      centerZoomedOut={true}
     >
       {({ resetTransform, setTransform }) => (
         <>
