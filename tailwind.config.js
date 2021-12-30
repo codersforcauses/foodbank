@@ -21,9 +21,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Bliss'],
-        serif: ['Abraham'],
-        // eslint-disable-next-line prettier/prettier
-        'genty': ['GentySans-Regular']
+        serif: ['Abraham']
       }
     }
   },
