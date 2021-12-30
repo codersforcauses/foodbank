@@ -39,7 +39,9 @@ const RecipeSlideShow: React.FC = () => {
           >
             <div className='w-full lg:w-1/2 flex justify-center'>
               <div className='m-auto px-5'>
-                <div className='w-max h-max px-6 py-2 transform -rotate-12 text-white text-5xl bg-primary font-sans font-bold border-8 border-black'>{`STEP ${index+1}`}</div>
+                <div className='w-max h-max px-6 py-2 transform -rotate-12 text-white text-5xl bg-primary font-sans font-bold border-8 border-black'>{`STEP ${
+                  index + 1
+                }`}</div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={recipeStep.image.src}

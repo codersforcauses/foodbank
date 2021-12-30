@@ -68,7 +68,7 @@ const Carousel = ({
       {controls && (
         <>
           <button
-            onClick={() => slider.prev()}
+            onClick={() => slider.current?.prev()}
             className='w-32 h-32 absolute p-1.5 m-1 bottom-0 left-0'
           >
             <Image
@@ -78,7 +78,7 @@ const Carousel = ({
             />
           </button>
           <button
-            onClick={() => slider.next()}
+            onClick={() => slider.current?.next()}
             className='w-32 h-32 absolute p-1.5 m-1 transform bottom-0 right-0'
           >
             <Image
