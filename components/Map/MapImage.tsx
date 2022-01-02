@@ -32,7 +32,7 @@ const MapImage = ({
     const area = event.target.alt
     selected === area ? setSelect(null) : setSelect(area)
     setDisplay(true)
-    setTransform(xtrans, ytrans, 2)
+    setTransform(xtrans, ytrans, 2, 1000, 'easeOut')
   }
 
   return (

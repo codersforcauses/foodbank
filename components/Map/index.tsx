@@ -26,6 +26,8 @@ const Map = () => {
       wheel={{ disabled: true }}
       initialScale={1}
       centerZoomedOut={true}
+      panning={{ disabled: true}}
+      pinch={{disabled: true}}
     >
       {({ resetTransform, setTransform }) => (
         <>
