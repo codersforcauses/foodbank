@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
-import NavLink, { NavLinkProps } from '@components/NavBar/NavLink'
+import { NavLinkProps } from '@components/NavBar/NavLink'
 import Link from 'next/link'
 
 export interface MobileMenu {

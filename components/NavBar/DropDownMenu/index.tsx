@@ -2,12 +2,10 @@ import NavLink, { NavLinkProps } from '../NavLink'
 import { Transition, Popover } from '@headlessui/react'
 
 export interface DropDownMenuProps {
-  page?: string
-  route?: string
   links: Array<NavLinkProps>
 }
 
-const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
+const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
       <Popover.Button
@@ -42,7 +40,7 @@ const DropDownMenu = ({ page, route, links }: DropDownMenuProps) => {
               }}
             />
           </div>
-          <div className='relative grid gap-6 rounded-lg bg-primary px-5 py-6 sm:gap-8 sm:p-8'>
+          <div className='relative grid rounded-lg bg-primary gap-8 p-8'>
             <div className='block items-center'>
               {links.map(nav => (
                 <NavLink key={nav.page} {...nav} />
