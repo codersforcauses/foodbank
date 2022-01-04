@@ -27,15 +27,9 @@ const RecipeOverview: React.FC = ({ recipe }) => {
   // console.log(styles['recipe-name'])
   return (
     <div className={recipe.colorScheme.bg}>
-      <div className='flex justify-center m-1'>
-        <div className='flex flex-col w-3/4'>
-          <div
-            className={
-              styles['image-container'] +
-              ' relative z-0 ' +
-              styles['recipe-main-image']
-            }
-          >
+      <div className='flex justify-center m-1 relative z-10'>
+        <div className='flex flex-col w-96 h-96'>
+          <div className={'w-full h-full mt-1 border-4 border-neutral-700'}>
             <Image
               src={recipe.finalShot.src}
               alt={recipe.name}

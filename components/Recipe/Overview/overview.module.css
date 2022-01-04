@@ -3,13 +3,6 @@
 /* Recipe overview page */
 /**********/
 
-/* Main image */
-
-.recipe-main-image {
-    border: 3px solid #434343;
-    margin-top: 20%;
-}
-
 /* Star label for the recipe name */
 .label-main-image {
     margin-left: -10%;
@@ -102,12 +95,6 @@
     width: 40%;
 }
 
-
-/* Main image on the top of the page */
-.image-container {
-    width: 100%;
-}
-
 /* Hero image */
 .hero-image-container {
     width: 40%;
@@ -122,10 +109,6 @@
     margin-top: -75%;
     margin-left: 75%;
     margin-right: -15%;
-}
-
-.image-container> div {
-    position: unset !important;
 }
 
 .hero-image-container> div {
