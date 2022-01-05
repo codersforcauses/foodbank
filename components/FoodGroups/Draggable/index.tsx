@@ -41,7 +41,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // setHoverTypeMutex(false)
-    props.onStartDrag()
+    console.log(props.type)
+    props.onStartDrag(props.type)
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
       parentRect = e.target.parentElement.getBoundingClientRect()

@@ -3,6 +3,8 @@ import FoodGroups from 'components/FoodGroups'
 import styles from 'components/FoodGroups/foodgroups.module.css'
 import Draggable from '@components/FoodGroups/Draggable'
 import { foodGroupsCharacterImages } from '@components/FoodGroups/Draggable/characterimages'
+import CharacterSpawner from '@components/FoodGroups/Draggable/characterspawner'
+import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
 
 /**
  */
@@ -49,6 +51,11 @@ const FoodGroupsPage: React.FC = () => {
     }
   })
 
+  const startDragF = ((type : string) => {
+    setSelectedDraggable(type)
+    // console.log(character)
+  })
+
   return (
     <>
       <div
@@ -67,14 +74,21 @@ const FoodGroupsPage: React.FC = () => {
           draggable={false}
         >
           <FoodGroups setHoverType={setHoverType} />
-          {foodGroupsCharacterImages.map((character, index) => (
+          {/* {foodGroupsCharacterImages.map((character, index) => (
             <Draggable
               key={index}
               onEndDrag={endDragF}
               onStartDrag={() => setSelectedDraggable(character.type)}
               {...character}
             />
-          ))}
+          ))} */}
+          <CharacterSpawner
+            onEndDrag={endDragF}
+            onStartDrag={startDragF}
+          />
+          {/* <div>
+            Hi
+          </div> */}
         </div>
         <p>{hoverType}</p>
       </div>
