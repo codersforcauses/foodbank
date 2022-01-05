@@ -27,7 +27,7 @@ const Navbar = () => {
             />
           </a>
         </Link>
-        <div className="justify-right">
+        <div className='justify-right'>
           <DropDownMenu />
           <button
             className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
