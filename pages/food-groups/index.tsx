@@ -23,6 +23,7 @@ const FoodGroupsPage: React.FC = () => {
   const [selectedDraggable, setSelectedDraggable] = useState('')
   const [unsortedCount, setUnsortedCount] = useState(5)
   const [correctCount, setCorrectCount] = useState(0)
+  const [resetGame, setResetGame] = useState(false)
 
   const endDragF = updatedFunction(() => {
     console.log(
@@ -48,6 +49,7 @@ const FoodGroupsPage: React.FC = () => {
       alert(`Score ${score}/5`)
       setCorrectCount(0)
       setUnsortedCount(5)
+      setResetGame(!resetGame) // a bit hacky...
     }
   })
 
@@ -55,6 +57,7 @@ const FoodGroupsPage: React.FC = () => {
     setSelectedDraggable(type)
     // console.log(character)
   })
+
 
   return (
     <>
@@ -85,6 +88,7 @@ const FoodGroupsPage: React.FC = () => {
           <CharacterSpawner
             onEndDrag={endDragF}
             onStartDrag={startDragF}
+            resetlogic={resetGame}
           />
           {/* <div>
             Hi
