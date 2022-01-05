@@ -17,7 +17,7 @@ const TrophyRoom = () => {
           <Image src={Melonator} alt='Melonator' />
         </div>
         <div>
-          <div className='absolute mx-28 my-40 z-10 grid grid-cols-2 gap-y-20 gap-x-36'>
+          <div className='absolute mx-14 my-32 z-10 grid grid-cols-2 gap-y-10 gap-x-10'>
             {[...Array(n)].map((e, i) => (
               <TrophyGroup key={i} />
             ))}
