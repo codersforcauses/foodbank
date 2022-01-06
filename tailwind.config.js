@@ -28,15 +28,6 @@ module.exports = {
         serif: ['Abraham']
       }
     },
-    triangles: {
-      // defaults to {}
-      up: {
-        direction: 'up', // one of 'left', 'right', 'up', 'down', 'left-up', 'left-down', 'right-up', and 'right-down'
-        size: '1rem', // defaults to defaultSize
-        height: '1em', // defaults to half the size; has no effect on the diagonal directions (e.g. 'left-up')
-        color: '#df7400' // defaults to defaultColor
-      }
-    },
     screens: {
       xsm: '321px',
       sm: '640px',
@@ -47,15 +38,7 @@ module.exports = {
     }
   },
   variants: {
-    extend: {},
-    triangles: [] // defaults to []
+    extend: {}
   },
-  plugins: [
-    require('tailwind-scrollbar-hide'),
-    require('tailwindcss-triangles')({
-      componentPrefix: 'c-', // defaults to 'c-'
-      defaultSize: '1em', // defaults to '1em'
-      defaultColor: 'currentColor' // defaults to 'currentColor'
-    })
-  ]
+  plugins: [require('tailwind-scrollbar-hide')]
 }

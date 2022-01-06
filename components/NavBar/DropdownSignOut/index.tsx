@@ -1,6 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { signOut } from 'firebase/auth'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useFirebase } from '@components/Firebase/context'
 
@@ -30,7 +29,9 @@ const DropdownSignOut = ({ username }: DropdownProp) => {
           leaveFrom='translate-y-0 opacity-100'
           leaveTo='translate-y-full opacity-0'
         >
-          <div className='absolute right-[-0.13rem] top-8 c-triangle-up'></div>
+          <div className='absolute right-[-0.13rem] top-8'>
+            <div className='w-0 h-0 border-b-orange border-b-[1em] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]'></div>
+          </div>
         </Transition.Child>
         {/* Menu Items */}
         <Transition.Child
