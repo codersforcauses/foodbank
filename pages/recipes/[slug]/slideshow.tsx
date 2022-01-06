@@ -35,7 +35,7 @@ const RecipeSlideShow: React.FC = () => {
           // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
           <div
             key={recipeStep.image.src}
-            className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32'
+            className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32 py-8'
           >
             <div className='w-full lg:w-1/2 flex justify-center'>
               <div className='m-auto px-5'>

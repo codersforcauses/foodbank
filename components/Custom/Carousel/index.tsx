@@ -69,7 +69,7 @@ const Carousel = ({
         <>
           <button
             onClick={() => slider.current?.prev()}
-            className='w-32 h-32 absolute p-1.5 m-1 bottom-0 left-0'
+            className='w-20 h-20 absolute m-10 bottom-0 left-0'
           >
             <Image
               src='/images/Extra/Left-arrow.png'
@@ -79,7 +79,7 @@ const Carousel = ({
           </button>
           <button
             onClick={() => slider.current?.next()}
-            className='w-32 h-32 absolute p-1.5 m-1 transform bottom-0 right-0'
+            className='w-20 h-20 absolute m-10 bottom-0 right-0'
           >
             <Image
               src='/images/Extra/Right-arrow.png'
@@ -91,7 +91,7 @@ const Carousel = ({
       )}
       {indicators && slider.current && (
         <Dots
-          className='absolute bottom-0 left-0 right-0 z-10 flex justify-center'
+          className='w-32 m-auto absolute bottom-0 left-0 right-0 z-10 flex justify-center'
           nImages={length}
           onClick={moveToSlide}
           currentSlide={currentSlide}
