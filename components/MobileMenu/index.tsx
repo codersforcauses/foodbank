@@ -1,6 +1,7 @@
 import { Popover, Transition } from '@headlessui/react'
 import { NavLinkProps } from '@components/NavBar/NavLink'
 import Link from 'next/link'
+import Hamburger from '@components/Custom/Hamburger'
 
 export interface MobileMenu {
   links: Array<NavLinkProps>
@@ -41,11 +42,11 @@ const MobileMenu = ({ links }: MobileMenu) => {
           </Transition>
           <Popover.Button
             className={
-              'menu-button block md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ' +
+              ' flex items-center justify-center menu-button block md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ' +
               (open ? 'bg-teal text-black' : 'bg-primary')
             }
           >
-            {open ? <>&#9866;</> : <>&#9776;</>}
+            {open ? <>&#9866;</> : <Hamburger small />}
           </Popover.Button>
         </>
       )}

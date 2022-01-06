@@ -1,5 +1,6 @@
 import NavLink, { NavLinkProps } from '../NavLink'
 import { Transition, Popover } from '@headlessui/react'
+import Hamburger from '@components/Custom/Hamburger'
 
 export interface DropDownMenuProps {
   links: Array<NavLinkProps>
@@ -8,8 +9,10 @@ export interface DropDownMenuProps {
 const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
-      <Popover.Button className='px-4 py-1 font-serif text-2xl text-white hover:opacity-75'>
-        <b>&#9776;</b> MENU
+      <Popover.Button className='relative px-4 py-1 font-serif text-2xl text-white hover:opacity-75'>
+        <div className='flex'>
+          <Hamburger /> MENU
+        </div>
       </Popover.Button>
       <Transition
         enter='transition duration-70 ease-in'

@@ -33,14 +33,16 @@ const Navbar = ({ links }: NavbarProps) => {
           </a>
         </Link>
         <div className='flex justify-end w-screen'>
-          <DropDownMenu links={links} />
-          <button
-            className='px-4 py-1 font-serif text-2xl text-white hover:opacity-75'
-            onClick={toggleSignIn}
-          >
-            {/* need to add proper state when auth was added */}
-            {signIn ? 'Sign-out' : 'Sign-in'}
-          </button>
+          <div className='flex w-64 justify-between'>
+            <DropDownMenu links={links} />
+            <button
+              className='px-3 py-1 font-serif text-2xl text-white hover:opacity-75'
+              onClick={toggleSignIn}
+            >
+              {/* need to add proper state when auth was added */}
+              {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
+            </button>
+          </div>
         </div>
       </div>
       <Auth open={signIn} onClose={toggleSignIn} />
