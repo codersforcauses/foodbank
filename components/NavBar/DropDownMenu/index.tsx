@@ -8,12 +8,7 @@ export interface DropDownMenuProps {
 const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
-      <Popover.Button
-        className='px-4 py-1 font-serif 
-                    text-2xl text-white 
-                    hover:opacity-75 
-                    '
-      >
+      <Popover.Button className='px-4 py-1 font-serif text-2xl text-white hover:opacity-75'>
         <b>&#9776;</b> MENU
       </Popover.Button>
       <Transition
@@ -24,21 +19,9 @@ const DropDownMenu = ({ links }: DropDownMenuProps) => {
         leaveFrom='opacity-100 transform scale-100 translate-y-0'
         leaveTo='opacity-0 transform scale-95 -translate-y-1'
       >
-        <Popover.Panel
-          className='shadow-lg 
-                        overflow-hidden 
-                        absolute 
-                        z-10 
-                        right-0 w-max 
-                        mt-3'
-        >
-          <div className='flex justify-end '>
-            <div
-              className='relative right-5 c-triangle-up'
-              style={{
-                borderBottom: '1em solid #671e75'
-              }}
-            />
+        <Popover.Panel className='shadow-lg overflow-hidden absolute z-10 right-0 w-max mt-3'>
+          <div className='flex justify-end'>
+            <div className='relative right-5 traingle-up' />
           </div>
           <div className='relative grid rounded-lg bg-primary gap-8 p-8'>
             <div className='block items-center'>

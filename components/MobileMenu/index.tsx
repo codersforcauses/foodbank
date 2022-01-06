@@ -20,14 +20,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
             leaveTo='transform scale-95 opacity-0 translate-y-10'
           >
             <Popover.Panel className='menu-list p-1'>
-              <div
-                className='menu-ele 
-                              bg-primary 
-                              flex justify-around flex-col items-center 
-                              p-3 rounded-lg h-96 
-                              w-fit mr-20 overflow-clip whitespace-nowrap
-                              font-serif no-tap-highlight'
-              >
+              <div className='menu-ele bg-primary flex justify-around flex-col items-center p-3 rounded-lg h-96 w-fit mr-20 overflow-clip whitespace-nowrap font-serif no-tap-highlight'>
                 {links.map(navItem => (
                   <Link key={navItem.page} href={navItem.route}>
                     <a className='opacity-100 transition-all duration-150 hover:opacity-60'>
@@ -42,12 +35,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                 </Link>
               </div>
               <div className='flex justify-end pr-20 mr-4'>
-                <div
-                  className='c-triangle-down'
-                  style={{
-                    borderTop: '1em solid #671e75'
-                  }}
-                />
+                <div className='triangle-down' />
               </div>
             </Popover.Panel>
           </Transition>

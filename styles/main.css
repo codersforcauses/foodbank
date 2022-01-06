@@ -71,3 +71,19 @@
 .no-tap-highlight {
   -webkit-tap-highlight-color: transparent;
 }
+
+.traingle-up {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #671e75;
+}
+
+.triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #671e75;
+}
