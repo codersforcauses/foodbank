@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ecad1236-39f8-4776-b073-33cee1441ad9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/API/getData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/API/getData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Custom/Modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Custom/Modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/Step/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Step/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/all-steps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/all-steps.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/slideshow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/slideshow.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="john/food-groups" />
+        <entry key="$PROJECT_DIR$" value="john/notion" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,16 +30,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/colorSchemes.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pages/recipes/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/components/Recipe/Overview/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/components/Recipe/Overview/overview.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/types.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/colorSchemes.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1v5ISr7pBHJQvcBL173TDyF5alP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
