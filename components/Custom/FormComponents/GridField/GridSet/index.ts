@@ -37,186 +37,186 @@ export type { Character }
 
 const GridSet: Character[] = [
   {
-    image: '/images/Characters/Dairy/BlueBoy.jpg',
+    image: '/images/Characters/Dairy/BlueBoy.webp',
     name: 'Blue Boy'
   },
 
   {
-    image: '/images/Characters/Dairy/MilkMaid.jpg',
+    image: '/images/Characters/Dairy/MilkMaid.webp',
     name: 'Milk Maid'
   },
 
   {
-    image: '/images/Characters/Dairy/YumYoghurt.jpg',
+    image: '/images/Characters/Dairy/YumYoghurt.webp',
     name: 'Yum Yoghurt'
   },
 
   {
-    image: '/images/Characters/Dairy/CheesyCheese.jpg',
+    image: '/images/Characters/Dairy/CheesyCheese.webp',
     name: 'Cheesy Cheese'
   },
 
   {
-    image: '/images/Characters/Meat/LeanMeat.jpg',
+    image: '/images/Characters/Meat/LeanMeat.webp',
     name: 'Lean Meat'
   },
 
   {
-    image: '/images/Characters/Meat/FishCan.jpg',
+    image: '/images/Characters/Meat/FishCan.webp',
     name: 'Fish Can'
   },
 
   {
-    image: '/images/Characters/Meat/CheekyChicken.jpg',
+    image: '/images/Characters/Meat/CheekyChicken.webp',
     name: 'Cheeky Chicken'
   },
 
   {
-    image: '/images/Characters/Meat/RangerRex.jpg',
+    image: '/images/Characters/Meat/RangerRex.webp',
     name: 'Ranger Rex'
   },
 
   {
-    image: '/images/Characters/Meat/HannahGoanna.jpg',
+    image: '/images/Characters/Meat/HannahGoanna.webp',
     name: 'Hannah Goanna'
   },
 
   {
-    image: '/images/Characters/Meat/EagerEgg.jpg',
+    image: '/images/Characters/Meat/EagerEgg.webp',
     name: 'Eager Egg'
   },
 
   {
-    image: '/images/Characters/Meat/FreshFish.jpg',
+    image: '/images/Characters/Meat/FreshFish.webp',
     name: 'Fresh Fish'
   },
   {
-    image: '/images/Characters/Fruit/AcesApple.jpg',
+    image: '/images/Characters/Fruit/AcesApple.webp',
     name: 'Aces Apple'
   },
 
   {
-    image: '/images/Characters/Fruit/FarmerOrange.jpg',
+    image: '/images/Characters/Fruit/FarmerOrange.webp',
     name: 'Farmer Orange'
   },
 
   {
-    image: '/images/Characters/Fruit/SportyBanana.jpg',
+    image: '/images/Characters/Fruit/SportyBanana.webp',
     name: 'Sporty Banana'
   },
 
   {
-    image: '/images/Characters/Fruit/MelodyMelon.jpg',
+    image: '/images/Characters/Fruit/MelodyMelon.webp',
     name: 'Melody Melon'
   },
 
   {
-    image: '/images/Characters/Fruit/FruityPainter.jpg',
+    image: '/images/Characters/Fruit/FruityPainter.webp',
     name: 'Fruity Painter'
   },
 
   {
-    image: '/images/Characters/Grains/MixedGrain.jpg',
+    image: '/images/Characters/Grains/MixedGrain.webp',
     name: 'Mixed Grain'
   },
 
   {
-    image: '/images/Characters/Grains/HealthyCereal.jpg',
+    image: '/images/Characters/Grains/HealthyCereal.webp',
     name: 'Healthy Cereal'
   },
 
   {
-    image: '/images/Characters/Grains/PastaBowl.jpg',
+    image: '/images/Characters/Grains/PastaBowl.webp',
     name: 'Pasta Bowl'
   },
 
   {
-    image: '/images/Characters/Grains/OutbackDamper.jpg',
+    image: '/images/Characters/Grains/OutbackDamper.webp',
     name: 'Outback Damper'
   },
 
   {
-    image: '/images/Characters/Grains/PastaChef.jpg',
+    image: '/images/Characters/Grains/PastaChef.webp',
     name: 'Pasta Chef'
   },
 
   {
-    image: '/images/Characters/Grains/PostiePorridge.jpg',
+    image: '/images/Characters/Grains/PostiePorridge.webp',
     name: 'Postie Porridge'
   },
 
   {
-    image: '/images/Characters/Vegetables/ArtyCarrot.jpg',
+    image: '/images/Characters/Vegetables/ArtyCarrot.webp',
     name: 'Arty Carrot'
   },
 
   {
-    image: '/images/Characters/Vegetables/AthleticTomato.jpg',
+    image: '/images/Characters/Vegetables/AthleticTomato.webp',
     name: 'Athletic Tomato'
   },
 
   {
-    image: '/images/Characters/Vegetables/TinnedBeans.jpg',
+    image: '/images/Characters/Vegetables/TinnedBeans.webp',
     name: 'Tinned Beans'
   },
 
   {
-    image: '/images/Characters/Vegetables/CrunchingCapsicum.jpg',
+    image: '/images/Characters/Vegetables/CrunchingCapsicum.webp',
     name: 'Crunching Capsicum'
   },
 
   {
-    image: '/images/Characters/Vegetables/CoachCarrot.jpg',
+    image: '/images/Characters/Vegetables/CoachCarrot.webp',
     name: 'Coach Carrot'
   },
 
   {
-    image: '/images/Characters/Vegetables/MrCucumber.jpg',
+    image: '/images/Characters/Vegetables/MrCucumber.webp',
     name: 'Mr Cucumber'
   },
 
   {
-    image: '/images/Characters/Vegetables/DJCorn.jpg',
+    image: '/images/Characters/Vegetables/DJCorn.webp',
     name: 'DJ Corn'
   },
 
   {
-    image: '/images/Characters/Vegetables/FootyGirl.jpg',
+    image: '/images/Characters/Vegetables/FootyGirl.webp',
     name: 'Footy Girl'
   },
 
   {
-    image: '/images/Characters/Vegetables/FreshHerbs.jpg',
+    image: '/images/Characters/Vegetables/FreshHerbs.webp',
     name: 'Fresh Herbs'
   },
 
   {
-    image: '/images/Characters/Vegetables/FrozenVegies.jpg',
+    image: '/images/Characters/Vegetables/FrozenVegies.webp',
     name: 'Frozen Vegies'
   },
 
   {
-    image: '/images/Characters/Vegetables/GarlicDancer.jpg',
+    image: '/images/Characters/Vegetables/GarlicDancer.webp',
     name: 'Garlic Dancer'
   },
   {
-    image: '/images/Characters/Vegetables/JackarooOnion.jpg',
+    image: '/images/Characters/Vegetables/JackarooOnion.webp',
     name: 'Jackaroo Onion'
   },
   {
-    image: '/images/Characters/Vegetables/WorkingSpud.jpg',
+    image: '/images/Characters/Vegetables/WorkingSpud.webp',
     name: 'Working Spud'
   },
   {
-    image: '/images/Characters/Vegetables/MrsBrocc.jpg',
+    image: '/images/Characters/Vegetables/MrsBrocc.webp',
     name: 'Mrs Brocc'
   },
   {
-    image: '/images/Characters/Vegetables/PeaPod.jpg',
+    image: '/images/Characters/Vegetables/PeaPod.webp',
     name: 'Pea Pod'
   },
   {
-    image: '/images/Characters/Vegetables/TinnedTradie.jpg',
+    image: '/images/Characters/Vegetables/TinnedTradie.webp',
     name: 'Tinned Tradie'
   }
 ]

@@ -14,6 +14,7 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   rules?: RegisterOptions
   selectedCount: number
   updateCount: (count: number) => void
+  gridDisabled: boolean
 }
 
 const GridField = ({
@@ -24,6 +25,7 @@ const GridField = ({
   name,
   selectedCount,
   updateCount,
+  gridDisabled,
   ...props
 }: GridFieldProps) => {
   const { register, watch, formState, reset } = useFormContext()
@@ -58,7 +60,7 @@ const GridField = ({
             id={char.name}
             disabled={
               (!mask[index] && selectedCount === CHARACTERS_FOR_AUTH) ||
-              formState.isSubmitting
+              gridDisabled
             }
             className='opacity-0 peer'
             {...register?.(`mask.${index}`, {
@@ -68,11 +70,13 @@ const GridField = ({
           <label
             htmlFor={char.name}
             className={`${
-              formState.isSubmitting ? 'opacity-40' : 'opacity-100'
+              gridDisabled ? 'opacity-40' : 'opacity-100'
             } block w-28 xl:w-36 peer-checked:opacity-40`}
           >
             <Image
-              className='z-0 object-contain transition-all scale-90 md:scale-75 hover:scale-100 '
+              className={`${
+                !gridDisabled && 'hover:scale-100'
+              } z-0 object-contain transition-all scale-90 md:scale-75`}
               width={250}
               height={250}
               layout='responsive'

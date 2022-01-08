@@ -26,6 +26,7 @@ const PasswordForm = ({
   updatePassword
 }: PasswordFormProps) => {
   const [selectedCount, setSelectedCount] = useState(0)
+  const [gridDisabled, setGridDisabled] = useState(false)
   const methods = useForm()
   const { formState, handleSubmit } = methods
 
@@ -36,14 +37,17 @@ const PasswordForm = ({
   }
 
   const getPassword = (mask: boolean[]) => {
-    const selectedGrid = grid.filter((item, i) => mask[i])
+    const selectedGrid = grid.filter((_, i) => mask[i])
     return selectedGrid.map(item => item.password).join('')
   }
+
+  const disableGrid = () => setGridDisabled(true)
 
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(data => {
+          if (registered || page === PAGES.REPEAT_PASSWORD_FORM) disableGrid()
           updatePassword(getPassword(data.mask))
         })}
       >
@@ -56,6 +60,7 @@ const PasswordForm = ({
           defaultMask={defaultMask}
           selectedCount={selectedCount}
           updateCount={updateCount}
+          gridDisabled={gridDisabled}
         />
         <div className='flex justify-center pt-4 space-x-2'>
           <Button

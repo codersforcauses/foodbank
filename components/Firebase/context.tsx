@@ -73,7 +73,6 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
 
   // User Authentication
   const [user, userLoading, userError] = useAuthState(auth)
-  // const { get, response, error } = useFetch(FIRESTORE_URL)
 
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
@@ -88,7 +87,6 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
         })
         console.log(response)
         const userDoc = await response.json()
-        // const userDoc = await get(`/${user.uid}`)
         if (response.ok && userDoc?.fields) {
           const userDocData = FireStoreParser(userDoc.fields)
           console.log(userDocData)
