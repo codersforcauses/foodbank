@@ -7,8 +7,9 @@ import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
 import { trophies } from 'lib/trophies'
 
 const TrophyRoom = () => {
-  const n = 6
-  console.log(Array(n))
+  const numUnlocked = 13
+  const numTrophyGroups = Math.ceil(numUnlocked / 3)
+  console.log(Array(numTrophyGroups))
   return (
     <div className='bg-primary'>
       <h1 className='text-white font-bold text-6xl text-center'>Trophy Room</h1>
@@ -18,7 +19,7 @@ const TrophyRoom = () => {
         </div>
         <div>
           <div className='absolute mx-14 my-32 z-10 grid grid-cols-2 gap-y-10 gap-x-10'>
-            {[...Array(n)].map((e, i) => (
+            {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup key={i} />
             ))}
           </div>
