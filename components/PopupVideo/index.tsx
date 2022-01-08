@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import { useState, useEffect, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 interface PopupVideoProps {
   url: string
