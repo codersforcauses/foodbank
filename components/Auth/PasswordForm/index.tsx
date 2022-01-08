@@ -36,7 +36,7 @@ const PasswordForm = ({
   }
 
   const getPassword = (mask: boolean[]) => {
-    const selectedGrid = grid.filter((item, i) => mask[i])
+    const selectedGrid = grid.filter((_, i) => mask[i])
     return selectedGrid.map(item => item.password).join('')
   }
 
