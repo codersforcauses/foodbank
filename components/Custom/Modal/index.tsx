@@ -14,7 +14,7 @@ const Modal = ({
   if (size === 'md') sizeClass = 'max-w-2lg'
   if (size === 'xl') {
     sizeClass = "max-w-max";
-    baseClass = 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-3/4 md:w-3/4 lg:w-1/2 inset-1/2 mt-20';
+    baseClass = 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-3/4 md:w-3/4 lg:w-3/4 inset-1/2 mt-20';
     stickyClass = 'inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl';
   }
   return (
