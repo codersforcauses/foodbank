@@ -9,7 +9,7 @@ import { sleep, checkUsername, signIn, signUp } from './account'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 
-const DEBOUNCE_DELAY = 400
+const DEBOUNCE_DELAY = 200
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
 interface AuthProps {
