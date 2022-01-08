@@ -48,6 +48,7 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
     <>
       {sliderModalState &&
       <Modal {...props} onClose={toggleSliderModal} size="xl">
+        {/*<h1>{recipe.name}</h1>*/}
         <Slideshow recipe={recipe} />
       </Modal>
       }

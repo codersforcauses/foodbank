@@ -1,16 +1,16 @@
-import { Carousel } from '@components/Custom'
-import { recipes } from 'lib/Recipes'
-import { Recipe } from 'lib/types'
+import { Carousel } from "@components/Custom";
+import { recipes } from "lib/Recipes";
+import { Recipe } from "lib/types";
 import styles from "./Slideshow.module.css";
 
 
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import { useRouter } from "next/router";
+import Image from "next/image";
+import React, { useState } from "react";
 
-const RecipeSlideShow: React.FC = ({ recipe } ) => {
+const RecipeSlideShow: React.FC = ({ recipe }) => {
 
-  if (!recipe) return <div> Error </div>
+  if (!recipe) return <div> Error </div>;
   // return (
   //   <div
   //     className='flex justify-center items-center h-auto'
@@ -48,20 +48,20 @@ const RecipeSlideShow: React.FC = ({ recipe } ) => {
 
   return (
     <div
-      className='flex justify-center items-center'
+      className="flex justify-center items-center bg-orange"
       // style={{ height: 'calc(100vh - 4rem)' }}
     >
       <Carousel
         controls
         indicators
         length={recipe.steps.length}
-        className='h-full'
+        className="h-full"
       >
         {recipe.steps.map((recipeStep, index) => (
           // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
           <div
             key={`recipeStep_${index}`}
-            className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32 py-8'
+            className="keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32 py-8"
           >
             <div className='w-full lg:w-1/2 flex justify-center'>
               <div className='m-auto px-5 py-3'>
@@ -69,14 +69,18 @@ const RecipeSlideShow: React.FC = ({ recipe } ) => {
                   index + 1
                 }`}</div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={recipeStep.image}
-                  alt={`step ${index + 1}`}
-                  className='border-8'
-                />
+                <div className={styles["card-image-container"] + " flex justify-center"}>
+                  <Image
+                    src={recipeStep.image}
+                    alt={`step ${index}`}
+                    className={styles.image + " border-8"}
+                    layout="fill"
+                  />
+                </div>
               </div>
             </div>
-            <div className='font-sans py-5 md:py-0 font-bold text-3xl px-20 w-full lg:w-1/2 min-w-32 flex justify-center items-center'>
+            <div
+              className="font-sans py-5 md:py-0 font-bold text-3xl px-14 w-full lg:w-1/2 min-w-32 flex justify-center items-center">
               {recipeStep.description}
             </div>
           </div>
