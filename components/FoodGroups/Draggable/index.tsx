@@ -15,7 +15,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
   const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
-
+  const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
+  const [hoverBool, setHoverBool] = useState(false)
   const [ptrEvents, setPtrEvents] = useState(true)
 
   const dragAround = (e: MouseEvent) => {
@@ -33,6 +34,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const stopDrag = () => {
     // setHoverTypeMutex(true)
     props.onEndDrag()
+    setHoverStyle('z-20 ' + styles['drag-drop'])
+    setHoverBool()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
     // setScreenPosition(startPosition)
@@ -42,6 +45,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // setHoverTypeMutex(false)
     props.onStartDrag()
+    setHoverStyle('z-30 ' + styles['drag-drop'])
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
       parentRect = e.target.parentElement.getBoundingClientRect()
@@ -71,6 +75,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
     )
   }
 
+  const hoverOn = () => {
+    setHoverBool(true)
+  }
+
+  const hoverOff = () => {
+    setHoverBool(false)
+  }
+
   useEffect(() => {
     if (delta) {
       document.addEventListener('mousemove', dragAround)
@@ -81,11 +93,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div
-        className={'z-20 ' + styles['drag-drop']}
+        className={hoverStyle}
+        onClick={hoverOn}
+        onMouseOver={hoverOn}
+        onMouseOut={hoverOff}
         onMouseDown={startDrag}
         draggable={false}
         style={{
-          pointerEvents: ptrEvents ? 'auto' : 'none',
+          //pointerEvents: ptrEvents ? 'auto' : 'none',
           position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
           left: `${screenPosition.x}%`, // % works!!
           top: `${screenPosition.y}%`,
@@ -95,15 +110,15 @@ const Draggable: React.FC<Props> = (props: Props) => {
         }}
       >
         <div
-          className='select-none'
-          style={{ zIndex: 0, pointerEvents: 'none' }}
+          className='select-none z-0'
+          style={{ pointerEvents: 'none' }}
           draggable={false}
         >
           <Image
             src={props.img_src}
             alt={props.div_id}
-            width='200%'
-            height='200%'
+            width={hoverBool ? '220%' : '200%'}
+            height={hoverBool ? '220%' : '200%'}
             draggable={false}
           />
           {/* Line below for debugging screen position of characters */}
