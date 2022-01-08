@@ -58,9 +58,9 @@ const TrophyRoom = () => {
           >
             {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup
-                trophy1={trophies[3 * i]}
-                trophy2={trophies[3 * i + 1]}
-                trophy3={trophies[3 * i + 2]}
+                trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
+                trophy2={3 * i + 1 < numUnlocked ? trophies[3 * i + 1] : null}
+                trophy3={3 * i + 2 < numUnlocked ? trophies[3 * i + 2] : null}
                 key={i}
               />
             ))}
