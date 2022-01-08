@@ -4,7 +4,9 @@ import TrophyCabinet from 'public/images/trophy-cabinet.png'
 import Melonator from 'public/images/watermelonflipped.webp'
 import VitaminCLion from 'public/images/lion.webp'
 import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
-import { trophies } from 'lib/trophies'
+import BrightYellowTrophy from 'public/images/trophies/brightyellow.webp'
+import CyanBlueTrophy from 'public/images/trophies/cyanblue.webp'
+import MagentaPurpleTrophy from 'public/images/trophies/magentapurple.webp'
 
 const TrophyRoom = () => {
   const numUnlocked = 13
@@ -17,14 +19,15 @@ const TrophyRoom = () => {
           <Image src={Melonator} alt='Melonator' />
         </div>
         <div>
-          <div className='absolute mx-14 my-32 z-10 grid grid-cols-2 gap-y-10 gap-x-10'>
+          <div
+            className='absolute mx-14 my-32 z-10 grid grid-cols-2 gap-y-10 gap-x-10'
+            style={{ height: '10vw' }}
+          >
             {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup
-                numDisplayed={
-                  i < numTrophyGroups - 1
-                    ? 3
-                    : numUnlocked - (numTrophyGroups - 1) * 3
-                }
+                trophy1={BrightYellowTrophy}
+                trophy2={CyanBlueTrophy}
+                trophy3={MagentaPurpleTrophy}
                 key={i}
               />
             ))}
