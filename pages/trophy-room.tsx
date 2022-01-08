@@ -9,7 +9,6 @@ import { trophies } from 'lib/trophies'
 const TrophyRoom = () => {
   const numUnlocked = 13
   const numTrophyGroups = Math.ceil(numUnlocked / 3)
-  console.log(Array(numTrophyGroups))
   return (
     <div className='bg-primary'>
       <h1 className='text-white font-bold text-6xl text-center'>Trophy Room</h1>
