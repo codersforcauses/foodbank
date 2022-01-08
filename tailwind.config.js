@@ -5,7 +5,11 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      primary: '#671e75',
+      primary: {
+        shadow: '#4b1555',
+        DEFAULT: '#671e75',
+      }
+        ,
       blue: '#00acd0',
       orange: '#df7400',
       teal: '#47d5cd',

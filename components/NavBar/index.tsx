@@ -22,7 +22,7 @@ const Navbar = ({ links }: NavbarProps) => {
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary md:block'>
       <div className='container flex justify-between px-3 mx-auto'>
         <Link href='/'>
-          <a className='absolute left-10 top-2 w-16 h-12 hover:opacity-75'>
+          <a className='absolute left-10 top-2 w-20 h-14 hover:opacity-75'>
             <Image
               src={logo}
               alt='Foodbank logo'
@@ -33,10 +33,10 @@ const Navbar = ({ links }: NavbarProps) => {
           </a>
         </Link>
         <div className='flex justify-end w-screen'>
-          <div className='flex w-64 justify-between'>
+          <div className='flex w-80 justify-around  '>
             <DropDownMenu links={links} />
             <button
-              className='px-3 py-1 font-serif text-2xl text-white hover:opacity-75'
+              className='px-3 font-serif text-2xl text-white hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'
               onClick={toggleSignIn}
             >
               {/* need to add proper state when auth was added */}

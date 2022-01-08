@@ -9,8 +9,8 @@ export interface DropDownMenuProps {
 const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
-      <Popover.Button className='relative px-4 py-1 font-serif text-2xl text-white hover:opacity-75'>
-        <div className='flex'>
+      <Popover.Button className='relative px-4 py-2 font-serif text-2xl text-white hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'>
+        <div className='flex '>
           <Hamburger /> MENU
         </div>
       </Popover.Button>
