@@ -30,7 +30,6 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
-    triangles:[]
+    extend: {}
   }
 }
