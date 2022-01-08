@@ -20,7 +20,14 @@ const TrophyRoom = () => {
         <div>
           <div className='absolute mx-14 my-32 z-10 grid grid-cols-2 gap-y-10 gap-x-10'>
             {[...Array(numTrophyGroups)].map((e, i) => (
-              <TrophyGroup key={i} />
+              <TrophyGroup
+                numDisplayed={
+                  i < numTrophyGroups - 1
+                    ? 3
+                    : numUnlocked - (numTrophyGroups - 1) * 3
+                }
+                key={i}
+              />
             ))}
           </div>
           <div className='z-0'>
