@@ -1,21 +1,20 @@
 import React from 'react'
-import ReactPlayer from "react-player"
-import { useState, useEffect, PropsWithChildren } from 'react';
+import ReactPlayer from 'react-player'
+import { useState, useEffect, PropsWithChildren } from 'react'
 
 interface PopupVideoProps {
-  url: string;
+  url: string
 }
 
 const PopupVideo = ({
   children,
   ...props
 }: PropsWithChildren<PopupVideoProps>) => {
-  return(
+  return (
     <div>
-      <ReactPlayer url="https://www.youtube.com/watch?v=oUVCWNQFGTc"/>
+      <ReactPlayer url={props.url} />
     </div>
-  );
-    
-};
+  )
+}
 
 export default PopupVideo
