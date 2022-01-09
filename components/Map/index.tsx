@@ -24,9 +24,9 @@ const Map = () => {
     <TransformWrapper
       doubleClick={{ disabled: true }}
       wheel={{ disabled: true }}
-      initialScale={1}
-      centerZoomedOut={true}
-      panning={{ disabled: true}}
+      initialScale={1.5}
+      centerZoomedOut={false}
+      panning={{ disabled: false}}
       pinch={{disabled: true}}
     >
       {({ resetTransform, setTransform }) => (
