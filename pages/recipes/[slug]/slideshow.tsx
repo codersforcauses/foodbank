@@ -29,7 +29,7 @@ const RecipeSlideShow: React.FC<RecipeProps> = ( { recipe } ) => {
             className="keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32 py-8"
           >
             <div className='w-full lg:w-1/2 flex justify-center'>
-              <div className='m-auto pr-5 py-5 pl-12'>
+              <div className='m-auto py-5'>
                 <div className='w-max h-max px-6 py-2 transform -rotate-12 text-white text-5xl bg-primary font-sans font-bold border-8 border-black'>{`STEP ${
                   index + 1
                 }`}</div>
@@ -45,7 +45,7 @@ const RecipeSlideShow: React.FC<RecipeProps> = ( { recipe } ) => {
               </div>
             </div>
             <div
-              className="font-sans py-5 md:py-0 font-bold text-3xl px-6 w-fit lg:w-5/12 min-w-32 flex justify-center items-center">
+              className="font-sans py-5 md:py-0 font-bold text-3xl px-6 w-full lg:w-5/12 min-w-32 flex justify-center items-center">
               {recipeStep.description}
             </div>
           </div>
