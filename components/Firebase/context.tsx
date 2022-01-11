@@ -16,10 +16,11 @@ import {
   FirestoreError
 } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
-// import * as FireStoreParser from 'firestore-parser'
-const FireStoreParser = require('firestore-parser')
+import FireStoreParser from 'firestore-parser'
 import { auth, db } from '@components/Firebase'
 import { MESSAGES } from '@components/Auth/enums'
+
+const NUMBER_OF_ACHIEVEMENTS = 9
 
 const FIRESTORE_URL =
   'https://firestore.googleapis.com/v1/projects/foodbank-c9a2f/databases/(default)/documents/users'
@@ -30,34 +31,16 @@ interface FirebaseContextProps {
   userLoading?: boolean
   userError?: Error | undefined
   achievements: AchievementsData
-  updateAchievementsDocument?: (
-    newAchievements: Partial<AchievementsData>
-  ) => void
+  updateAchievementsDocument?: (newAchievements: AchievementsData) => void
   signOutClearData?: () => void
 }
 
 interface AchievementsData {
-  achievement1: boolean
-  achievement2: boolean
-  achievement3: boolean
-  achievement4: boolean
-  achievement5: boolean
-  achievement6: boolean
-  achievement7: boolean
-  achievement8: boolean
-  achievement9: boolean
+  [achievementName: string]: boolean
 }
-
-const defaultAchievements: AchievementsData = {
-  achievement1: false,
-  achievement2: false,
-  achievement3: false,
-  achievement4: false,
-  achievement5: false,
-  achievement6: false,
-  achievement7: false,
-  achievement8: false,
-  achievement9: false
+const defaultAchievements: AchievementsData = {}
+for (let i = 1; i <= NUMBER_OF_ACHIEVEMENTS; i++) {
+  defaultAchievements[`achievement${i}`] = false
 }
 
 const FirebaseContext = createContext<FirebaseContextProps>({
@@ -77,19 +60,15 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
       try {
-        console.log('Retrieving data')
         const userToken = await user.getIdToken()
         const headers = { Authorization: `Bearer ${userToken}` }
-        console.log(userToken)
         const response = await fetch(`${FIRESTORE_URL}/${user.uid}`, {
           method: 'get',
           headers: headers
         })
-        console.log(response)
         const userDoc = await response.json()
         if (response.ok && userDoc?.fields) {
-          const userDocData = FireStoreParser(userDoc.fields)
-          console.log(userDocData)
+          const userDocData: AchievementsData = FireStoreParser(userDoc.fields)
           setAchievements(userDocData)
         } else {
           // doc.data() will be undefined in this case
@@ -112,7 +91,7 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   }, [retrieveData])
 
   const updateAchievementsDocument = async (
-    newAchievements: Partial<AchievementsData>
+    newAchievements: AchievementsData
   ) => {
     setAchievements(prev => ({ ...prev, ...newAchievements }))
     try {
