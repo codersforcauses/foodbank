@@ -10,7 +10,7 @@ import {
 } from 'firebase/auth'
 import { FirestoreError } from 'firebase/firestore'
 import { FirebaseError } from '@firebase/util'
-import { MESSAGES } from './enums'
+import { MESSAGES, EMAIL_DOMAIN, FirestoreErrorCodes } from './enums'
 
 const SIGNED_IN = true
 
@@ -26,7 +26,7 @@ const checkUsername = async (
   try {
     const signInMethods = await fetchSignInMethodsForEmail(
       auth,
-      `${username.toLowerCase()}@test123.xyz`
+      `${username.toLowerCase()}@${EMAIL_DOMAIN}`
     )
     // User can sign in with email/password.
     signInMethods.indexOf(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD) !==
@@ -36,6 +36,8 @@ const checkUsername = async (
   } catch (err: unknown) {
     if (err instanceof FirebaseError) {
       switch (err.code) {
+        case AuthErrorCodes.QUOTA_EXCEEDED:
+          break
         default:
           console.error(err.message)
       }
@@ -47,22 +49,31 @@ const signIn = async (
   auth: Auth,
   username: string,
   password: string,
-  setError: (value: SetStateAction<string>) => void
+  setError: (value: SetStateAction<string>) => void,
+  setGridDisabled: (value: SetStateAction<boolean>) => void
 ) => {
   try {
-    await signInWithEmailAndPassword(auth, `${username}@test123.xyz`, password) //<-- SIGNIN
+    await signInWithEmailAndPassword(
+      auth,
+      `${username}@${EMAIL_DOMAIN}`,
+      password
+    ) //<-- SIGNIN
     setError('')
     return SIGNED_IN
   } catch (err: unknown) {
-    if (err instanceof FirebaseError)
+    if (err instanceof FirebaseError) {
       switch (err.code) {
         case AuthErrorCodes.INVALID_PASSWORD:
           setError(MESSAGES.WRONG_PASSWORD)
           break
+        case AuthErrorCodes.TOO_MANY_ATTEMPTS_TRY_LATER:
+          setError(MESSAGES.TOO_MANY_ATTEMPTS)
+          break
         default:
           console.error(err.message)
       }
-    else if (err instanceof FirestoreError) {
+      setGridDisabled(false)
+    } else if (err instanceof FirestoreError) {
       switch (err.code) {
         default:
           console.error(err.message)
@@ -76,7 +87,7 @@ const signUp = async (auth: Auth, username: string, password: string) => {
   try {
     await createUserWithEmailAndPassword(
       auth,
-      `${username}@test123.xyz`,
+      `${username}@${EMAIL_DOMAIN}`,
       password
     )
     if (auth?.currentUser?.uid) {

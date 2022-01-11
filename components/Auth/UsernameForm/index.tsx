@@ -3,6 +3,7 @@ import { Button, TextField } from '@components/Custom'
 
 interface UsernameFormProps {
   label: string
+  error: string
   input: string
   handleUsernameChange: ChangeEventHandler<HTMLInputElement>
   validUsername: boolean
@@ -14,6 +15,7 @@ interface UsernameFormProps {
 const UsernameForm = ({
   label,
   input,
+  error,
   handleUsernameChange,
   validUsername,
   updateValidation,
@@ -42,6 +44,7 @@ const UsernameForm = ({
         }}
         updateValidation={updateValidation}
       />
+      {error && <p className='text-lg text-center  text-red'>{error}</p>}
       <div className='flex flex-col items-center pt-4 space-x-3'>
         <Button
           className='flex items-center disabled:opacity-50'
