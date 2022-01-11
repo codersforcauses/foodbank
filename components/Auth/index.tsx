@@ -1,4 +1,10 @@
-import { useState, useMemo, ChangeEventHandler, MouseEventHandler } from 'react'
+import {
+  useState,
+  useMemo,
+  ChangeEventHandler,
+  MouseEventHandler,
+  SetStateAction
+} from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useDebounce } from 'react-use'
 import { useFirebase } from '@components/Firebase/context'
@@ -9,12 +15,14 @@ import { sleep, checkUsername, signIn, signUp } from './account'
 import UsernameForm from './UsernameForm'
 import PasswordForm from './PasswordForm'
 
-const DEBOUNCE_DELAY = 200
+const DEBOUNCE_DELAY = 150
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
 interface AuthProps {
   open: boolean
   onClose: () => void
+  gridDisabled: boolean
+  setGridDisabled: (value: SetStateAction<boolean>) => void
 }
 
 interface FormValues {
@@ -25,7 +33,7 @@ const defaultValues: FormValues = {
   username: ''
 }
 
-const Auth = (props: AuthProps) => {
+const Auth = ({ gridDisabled, setGridDisabled, ...props }: AuthProps) => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
   const [validUsername, setValidUsername] = useState(false)
@@ -34,7 +42,7 @@ const Auth = (props: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
   const [error, setError] = useState('')
-  const { auth, db } = useFirebase()
+  const { auth } = useFirebase()
 
   useDebounce(
     async () => {
@@ -68,7 +76,8 @@ const Auth = (props: AuthProps) => {
     }
     setPassword(newPassword)
     if (registered && newPassword?.length === PASSWORD_LENGTH) {
-      if (await signIn(auth, username, newPassword, setError)) onClose()
+      if (await signIn(auth, username, newPassword, setError, setGridDisabled))
+        onClose()
     } else if (!registered && newPassword?.length === PASSWORD_LENGTH)
       setPage(PAGES.REPEAT_PASSWORD_FORM)
     else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
@@ -92,7 +101,10 @@ const Auth = (props: AuthProps) => {
         await signUp(auth, username, password)
         onClose()
         setError('')
-      } else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
+      } else {
+        setError(MESSAGES.PASSWORDS_NOT_MATCHED)
+        setGridDisabled(false)
+      }
     }
   }
 
@@ -144,6 +156,7 @@ const Auth = (props: AuthProps) => {
             <UsernameForm
               label={MESSAGES.USERNAME_LABEL}
               input={input}
+              error={error}
               handleUsernameChange={handleUsernameChange}
               validUsername={validUsername}
               updateValidation={updateValidation}
@@ -163,6 +176,8 @@ const Auth = (props: AuthProps) => {
             goPrevPage={goPrevPage}
             registered={registered}
             updatePassword={handlePasswordSubmit}
+            gridDisabled={gridDisabled}
+            setGridDisabled={setGridDisabled}
           />
         )
       case PAGES.REPEAT_PASSWORD_FORM:
@@ -176,6 +191,8 @@ const Auth = (props: AuthProps) => {
             goPrevPage={goPrevPage}
             registered={registered}
             updatePassword={handleRepeatedPasswordSubmit}
+            gridDisabled={gridDisabled}
+            setGridDisabled={setGridDisabled}
           />
         )
       default:

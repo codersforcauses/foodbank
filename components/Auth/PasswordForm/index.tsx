@@ -1,4 +1,4 @@
-import { useState, MouseEventHandler } from 'react'
+import { useState, MouseEventHandler, SetStateAction } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
@@ -13,6 +13,8 @@ interface PasswordFormProps {
   goPrevPage: MouseEventHandler<HTMLButtonElement>
   registered: boolean
   updatePassword: (value: string) => void
+  gridDisabled: boolean
+  setGridDisabled: (value: SetStateAction<boolean>) => void
 }
 
 const PasswordForm = ({
@@ -23,10 +25,11 @@ const PasswordForm = ({
   page,
   goPrevPage,
   registered,
-  updatePassword
+  updatePassword,
+  gridDisabled,
+  setGridDisabled
 }: PasswordFormProps) => {
   const [selectedCount, setSelectedCount] = useState(0)
-  const [gridDisabled, setGridDisabled] = useState(false)
   const methods = useForm()
   const { formState, handleSubmit } = methods
 
@@ -52,7 +55,7 @@ const PasswordForm = ({
         })}
       >
         <p className='text-lg text-center'>{label}</p>
-        {error && <p>{error}</p>}
+        {error && <p className='text-lg text-center  text-red'>{error}</p>}
         <GridField
           label='grid'
           name={name}

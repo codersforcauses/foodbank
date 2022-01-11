@@ -27,11 +27,17 @@ const links: Array<NavLinkProps> = [
 
 const Navbar = () => {
   const [openSignInForm, setOpenSignInForm] = useState(false)
+  const [gridDisabled, setGridDisabled] = useState(false)
+  const { user, signOutClearData } = useFirebase()
+
   const toggleOpenSignInForm = useCallback(() => {
     setOpenSignInForm(prev => !prev)
   }, [])
 
-  const { user } = useFirebase()
+  const signOutClearDataUnlockGrid = () => {
+    signOutClearData?.()
+    setGridDisabled(false)
+  }
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
@@ -53,7 +59,10 @@ const Navbar = () => {
           ))}
         </nav>
         {user?.displayName ? (
-          <DropdownSignOut username={capitalize(user.displayName)} />
+          <DropdownSignOut
+            username={capitalize(user.displayName)}
+            signOutClearDataUnlockGrid={signOutClearDataUnlockGrid}
+          />
         ) : (
           <button
             className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
@@ -63,7 +72,12 @@ const Navbar = () => {
           </button>
         )}
       </div>
-      <Auth open={openSignInForm} onClose={toggleOpenSignInForm} />
+      <Auth
+        open={openSignInForm && !user}
+        onClose={toggleOpenSignInForm}
+        gridDisabled={gridDisabled}
+        setGridDisabled={setGridDisabled}
+      />
     </header>
   )
 }
