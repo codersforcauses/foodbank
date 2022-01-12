@@ -10,7 +10,6 @@ import { User, Auth, signOut } from 'firebase/auth'
 import {
   doc,
   Firestore,
-  getDoc,
   setDoc,
   updateDoc,
   FirestoreError
@@ -24,6 +23,7 @@ const NUMBER_OF_ACHIEVEMENTS = 9
 
 const FIRESTORE_URL =
   'https://firestore.googleapis.com/v1/projects/foodbank-c9a2f/databases/(default)/documents/users'
+
 interface FirebaseContextProps {
   auth: Auth
   db: Firestore
@@ -76,12 +76,14 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
           await setDoc(doc(db, 'users', user.uid), defaultAchievements)
         }
       } catch (err: unknown) {
+        //#region  //*=========== For logging ===========
         if (err instanceof FirestoreError) {
           switch (err.code) {
             default:
               console.error(err.message)
           }
         } else console.error(err)
+        //#endregion  //*======== For logging ===========
       }
     }
   }, [user])
@@ -100,12 +102,14 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
         await updateDoc(userDocRef, newAchievements)
       }
     } catch (err: unknown) {
+      //#region  //*=========== For logging ===========
       if (err instanceof FirestoreError) {
         switch (err.code) {
           default:
             console.error(err.message)
         }
       } else console.error(err)
+      //#endregion  //*======== For logging ===========
     }
   }
 
