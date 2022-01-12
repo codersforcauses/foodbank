@@ -12,8 +12,8 @@ const Map = () => {
     function handleResize() {
       const mobileWidth = 2900
       const minStaticWidth = 1170
-      const targetWidth =
-        window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
+      const targetWidth = window.innerWidth
+        //window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
       setScale(targetWidth / 7151) //number is width of base image
     }
     handleResize()
@@ -24,7 +24,7 @@ const Map = () => {
     <TransformWrapper
       doubleClick={{ disabled: true }}
       wheel={{ disabled: true }}
-      initialScale={1.4}
+      initialScale={1.5}
       centerZoomedOut={true}
       panning={{ disabled: false }}
       pinch={{ disabled: true }}
