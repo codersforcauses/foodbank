@@ -23,9 +23,10 @@ module.exports = {
         sans: ['Bliss'],
         serif: ['Abraham']
       }
-    },
+    }
   },
   variants: {
     extend: {}
-  }
+  },
+  plugins: []
 }

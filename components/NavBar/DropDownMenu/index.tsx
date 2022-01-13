@@ -1,18 +1,25 @@
 import NavLink, { NavLinkProps } from '../NavLink'
 import { Transition, Popover } from '@headlessui/react'
-import Hamburger from '@components/Custom/Hamburger'
+import Image from 'next/image'
+import Hamburger from 'public/images/Hamburger_icon.svg'
 
-export interface DropDownMenuProps {
+interface DropDownMenuProps {
   links: Array<NavLinkProps>
 }
 
 const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
-      <Popover.Button className='relative px-4 py-2 font-serif text-2xl text-white hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'>
-        <div className='flex '>
-          <Hamburger /> MENU
-        </div>
+      <Popover.Button className='flex items-center px-2 h-full hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'>
+        <Image
+          src={Hamburger}
+          alt='Hamburger'
+          className='text-white'
+          layout='fixed'
+          width={25}
+          height={25}
+        />
+        MENU
       </Popover.Button>
       <Transition
         enter='transition duration-70 ease-in'
@@ -22,16 +29,12 @@ const DropDownMenu = ({ links }: DropDownMenuProps) => {
         leaveFrom='opacity-100 transform scale-100 translate-y-0'
         leaveTo='opacity-0 transform scale-95 -translate-y-1'
       >
-        <Popover.Panel className='shadow-lg overflow-hidden absolute z-10 right-0 w-max mt-3'>
-          <div className='flex justify-end'>
-            <div className='relative right-5 traingle-up' />
-          </div>
-          <div className='relative grid rounded-lg bg-primary gap-8 p-8'>
-            <div className='block items-center'>
-              {links.map(nav => (
-                <NavLink key={nav.page} {...nav} />
-              ))}
-            </div>
+        <Popover.Panel className='flex flex-col items-end shadow-lg overflow-hidden absolute z-10 right-0 w-max mt-3'>
+          <div className='triangle-up mr-8' />
+          <div className='grid relative gap-4 p-8 rounded-lg bg-primary items-center font-serif text-xl text-white'>
+            {links.map(nav => (
+              <NavLink key={nav.page} {...nav} />
+            ))}
           </div>
         </Popover.Panel>
       </Transition>

@@ -19,32 +19,32 @@ const Navbar = ({ links }: NavbarProps) => {
   }, [])
 
   return (
-    <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary md:block'>
-      <div className='container flex justify-between px-3 mx-auto'>
+    <header className='fixed inset-x-0 top-0 z-10 hidden py-2 bg-primary md:block'>
+      <nav className='font-serif text-2xl text-white container flex justify-between px-3 mx-auto'>
         <Link href='/'>
-          <a className='absolute left-10 top-2 w-20 h-14 hover:opacity-75'>
+          <a className='flex relative hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus: focus:ring-opacity-50 rounded'>
             <Image
               src={logo}
               alt='Foodbank logo'
               placeholder='blur'
-              layout='fill'
+              layout='fixed'
+              height={45}
+              width={65}
               quality={50}
             />
           </a>
         </Link>
-        <div className='flex justify-end w-screen'>
-          <div className='flex w-80 justify-around  '>
-            <DropDownMenu links={links} />
-            <button
-              className='px-3 font-serif text-2xl text-white hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'
-              onClick={toggleSignIn}
-            >
-              {/* need to add proper state when auth was added */}
-              {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
-            </button>
-          </div>
+        <div className='flex justify-end'>
+          <DropDownMenu links={links} />
+          <button
+            className='px-3 ml-8 hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'
+            onClick={toggleSignIn}
+          >
+            {/* need to add proper state when auth was added */}
+            {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
+          </button>
         </div>
-      </div>
+      </nav>
       <Auth open={signIn} onClose={toggleSignIn} />
     </header>
   )

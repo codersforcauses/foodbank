@@ -28,7 +28,7 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
     <>
       <MobileMenu links={links} />
       <Navbar links={links} />
-      <main className='relative min-h-screen lg:main lg:mt-16'>
+      <main className='relative min-h-screen lg:main lg:mt-14'>
         <Component {...pageProps} />
       </main>
     </>
