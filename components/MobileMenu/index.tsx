@@ -36,7 +36,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                   </a>
                 </Link>
               </div>
-              <div className='triangle-down mr-5' />
+              <div className='mr-5 border-t-primary border-t-[1rem] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]' />
             </Popover.Panel>
           </Transition>
           <Popover.Button

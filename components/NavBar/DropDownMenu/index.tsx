@@ -30,7 +30,8 @@ const DropDownMenu = ({ links }: DropDownMenuProps) => {
         leaveTo='opacity-0 transform scale-95 -translate-y-1'
       >
         <Popover.Panel className='flex flex-col items-end shadow-lg overflow-hidden absolute z-10 right-0 w-max mt-3'>
-          <div className='triangle-up mr-8' />
+          {/* <div className='triangle-up mr-8' /> */}
+          <div className='mr-8 border-b-primary border-b-[1rem] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]'></div>
           <div className='grid relative gap-4 p-8 rounded-lg bg-primary items-center font-serif text-xl text-white'>
             {links.map(nav => (
               <NavLink key={nav.page} {...nav} />
