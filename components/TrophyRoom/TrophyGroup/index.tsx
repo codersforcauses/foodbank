@@ -12,8 +12,10 @@ const TrophyGroup = ({ trophy1, trophy2, trophy3, side }: Props) => {
   return (
     <div
       className={
-        'flex items-center h-16 lg:h-20 xl:h-24 ' +
-        (side === 'left' ? 'lg:pl-14 pl-16' : 'lg:pl-2 pl-4 lg:pr-12')
+        'flex items-center h-16 md:h-20 lg:h-20 xl:h-24 ' +
+        (side === 'left'
+          ? 'md: pl-12 lg:pl-14'
+          : 'md:pl-2 md: pr-10 lg:pl-2 lg:pr-12')
       }
     >
       {trophy1 && (

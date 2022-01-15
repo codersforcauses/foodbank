@@ -52,7 +52,7 @@ const TrophyRoom = () => {
           <Image src={Melonator} alt='Melonator' />
         </div>
         <div className='relative max-w-xl'>
-          <div className='absolute w-full pt-24 md:pt-28 lg:pt-24 xl:pt-32 z-10 grid grid-cols-2 gap-y-2 lg:gap-y-4 gap-x-10'>
+          <div className='absolute w-full pt-24 md:pt-24 lg:pt-24 xl:pt-32 z-10 grid grid-cols-2 md:gap-y-4 lg:gap-y-4 gap-x-10'>
             {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup
                 trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
