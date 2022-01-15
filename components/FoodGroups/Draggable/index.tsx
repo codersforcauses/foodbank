@@ -32,9 +32,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const stopDrag = () => {
     // setHoverTypeMutex(true)
-    props.onEndDrag()
-    setHoverStyle('z-20 ' + styles['drag-drop'])
+    defloat()
 
+    props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
     // setScreenPosition(startPosition)
@@ -43,8 +43,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // setHoverTypeMutex(false)
+    float()
+
     props.onStartDrag()
-    setHoverStyle('z-30 ' + styles['drag-drop'])
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
       parentRect = e.target.parentElement.getBoundingClientRect()
@@ -74,6 +75,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
     )
   }
 
+  const float = () => {
+    setHoverStyle('z-30 ' + styles['drag-drop'])
+  }
+
+  const defloat = () => {
+    setHoverStyle('z-20 ' + styles['drag-drop'])
+  }
+
   useEffect(() => {
     if (delta) {
       document.addEventListener('mousemove', dragAround)
@@ -86,6 +95,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
       <div
         aria-hidden='true'
         className={`${hoverStyle} w-60 h-60 transition ease-in duration-100 scale-100 hover:scale-110`}
+        onMouseOver={float}
+        onMouseOut={defloat}
         onMouseDown={startDrag}
         draggable={false}
         style={{
