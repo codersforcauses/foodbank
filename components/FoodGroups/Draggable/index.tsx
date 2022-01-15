@@ -16,7 +16,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
   const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
   const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
-  const [hoverBool, setHoverBool] = useState(false)
   const [ptrEvents, setPtrEvents] = useState(true)
 
   const dragAround = (e: MouseEvent) => {
@@ -35,7 +34,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     // setHoverTypeMutex(true)
     props.onEndDrag()
     setHoverStyle('z-20 ' + styles['drag-drop'])
-    setHoverBool()
+
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
     // setScreenPosition(startPosition)
@@ -75,14 +74,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     )
   }
 
-  const hoverOn = () => {
-    setHoverBool(true)
-  }
-
-  const hoverOff = () => {
-    setHoverBool(false)
-  }
-
   useEffect(() => {
     if (delta) {
       document.addEventListener('mousemove', dragAround)
@@ -93,20 +84,16 @@ const Draggable: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div
-        className={hoverStyle}
-        onClick={hoverOn}
-        onMouseOver={hoverOn}
-        onMouseOut={hoverOff}
+        aria-hidden='true'
+        className={`${hoverStyle} w-60 h-60 transition ease-in duration-100 scale-100 hover:scale-110`}
         onMouseDown={startDrag}
         draggable={false}
         style={{
           //pointerEvents: ptrEvents ? 'auto' : 'none',
           position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
           left: `${screenPosition.x}%`, // % works!!
-          top: `${screenPosition.y}%`,
+          top: `${screenPosition.y}%`
           // backgroundColor: 'cyan',
-          width: 'fit-content',
-          height: 'fit-content'
         }}
       >
         <div
@@ -117,8 +104,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
           <Image
             src={props.img_src}
             alt={props.div_id}
-            width={hoverBool ? '220%' : '200%'}
-            height={hoverBool ? '220%' : '200%'}
+            layout='fill'
             draggable={false}
           />
           {/* Line below for debugging screen position of characters */}
