@@ -47,8 +47,8 @@ const TrophyRoom = () => {
   return (
     <div className='bg-primary'>
       <h1 className='text-white font-bold text-6xl text-center'>Trophy Room</h1>
-      <div className='flex items-end'>
-        <div className='melon'>
+      <div className='flex items-end justify-center'>
+        <div className='max-w-sm'>
           <Image src={Melonator} alt='Melonator' />
         </div>
         <div className='relative max-w-xl'>
@@ -67,7 +67,7 @@ const TrophyRoom = () => {
             <Image src={TrophyCabinet} alt='Cabinet' />
           </div>
         </div>
-        <div className='lion'>
+        <div className='max-w-sm'>
           <Image src={VitaminCLion} alt='Vitamin C Lion' />
         </div>
       </div>
