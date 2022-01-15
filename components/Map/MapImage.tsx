@@ -11,6 +11,7 @@ interface MapProps {
   display: boolean
   selected: any
   setSelect: (state: any) => void
+  ignoreClicks: boolean
 }
 
 const MapImage = ({
@@ -18,7 +19,8 @@ const MapImage = ({
   setTransform,
   setDisplay,
   selected,
-  setSelect
+  setSelect,
+  ignoreClicks
 }: MapProps) => {
   const handleClick = (
     event: any,
@@ -27,8 +29,6 @@ const MapImage = ({
     ytrans: number
   ) => {
     //TODO: need to change this type
-    console.log('hello' + event.target.alt)
-    event.preventDefault()
     const area = event.target.alt
     selected === area ? setSelect(null) : setSelect(area)
     setDisplay(true)
@@ -65,8 +65,10 @@ const MapImage = ({
                 key={location.id}
                 alt={location.id}
                 onClick={e => {
-                  console.log('test')
-                  handleClick(e, setTransform, -xtrans, -ytrans)
+                  e.preventDefault()
+                  if (ignoreClicks === false) {
+                    handleClick(e, setTransform, -xtrans, -ytrans)
+                  }
                 }}
                 href={location.id}
                 coords={scaledCoords.join()}
