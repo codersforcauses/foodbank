@@ -39,6 +39,7 @@ const RecipeSlideShow: React.FC<RecipeProps> = ({ recipe }) => {
                     alt={`step ${index}`}
                     className={styles.image + ' border-8'}
                     layout='fill'
+                    priority={true}
                   />
                 </div>
               </div>
