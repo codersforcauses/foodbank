@@ -9,7 +9,7 @@ const Map = () => {
   const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
   const [initialScale, setInitialScale] = useState(1)
-  const transformWrapper = useRef(null)
+  const transformWrapper = useRef<ReactZoomPanPinchRef>(null)
 
   useEffect(() => {
     function handleResize() {
