@@ -68,7 +68,7 @@ const Map = () => {
           </TransformComponent>
 
           <div
-            className={`fixed opacity-50 top-0 left-0 w-screen h-screen flex justify-center ${
+            className={`fixed top-0 h-screen flex justify-center items-center ${
               display ? '' : 'hidden'
             }`}
           >

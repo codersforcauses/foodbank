@@ -37,7 +37,7 @@ const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
         selectedArea
 
       return (
-        <div key={id} className='self-center'>
+        <div key={id} className='sm:w-2/3'>
           <Townbox
             headerColor={headerColor}
             headerText={headerText}
