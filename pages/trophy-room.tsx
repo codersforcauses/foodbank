@@ -51,16 +51,14 @@ const TrophyRoom = () => {
         <div className='melon'>
           <Image src={Melonator} alt='Melonator' />
         </div>
-        <div>
-          <div
-            className='absolute mx-14 my-32 z-10 grid grid-cols-2 gap-y-10 gap-x-10'
-            style={{ height: '10vw' }}
-          >
+        <div className='relative max-w-xl'>
+          <div className='absolute w-full pt-36 z-10 grid grid-cols-2 gap-y-6 gap-x-10'>
             {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup
                 trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
                 trophy2={3 * i + 1 < numUnlocked ? trophies[3 * i + 1] : null}
                 trophy3={3 * i + 2 < numUnlocked ? trophies[3 * i + 2] : null}
+                side={i % 2 == 0 ? 'left' : 'right'}
                 key={i}
               />
             ))}
