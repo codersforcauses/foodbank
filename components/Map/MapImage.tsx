@@ -66,7 +66,9 @@ const MapImage = ({
                 alt={location.id}
                 onClick={e => {
                   e.preventDefault()
+                  console.log(`Current val: ${ignoreClicks}`)
                   if (ignoreClicks === false) {
+                    console.log('TRIGGED')
                     handleClick(e, setTransform, -xtrans, -ytrans)
                   }
                 }}

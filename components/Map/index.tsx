@@ -23,7 +23,6 @@ const Map = () => {
 
       const aspectRatio = window.innerWidth / window.innerHeight
       if (aspectRatio > 1.6) {
-        console.log('HERE')
         setInitialScale(1.2)
       } else if (aspectRatio > 1.4) {
         setInitialScale(1.4)
@@ -55,8 +54,14 @@ const Map = () => {
       pinch={{ disabled: true }}
       alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
       ref={transformWrapper}
-      onPanningStart={() => (ignoreClicks = true)}
-      onPanningStop={() => (ignoreClicks = false)}
+      onPanning={() => {
+        ignoreClicks = true
+        console.log('On')
+      }}
+      onPanningStop={() => {
+        ignoreClicks = false
+        console.log('Off')
+      }}
     >
       {({ resetTransform, setTransform }) => (
         <>
