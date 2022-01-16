@@ -8,8 +8,8 @@ const EMAIL_DOMAIN = 'test123.xyz'
 
 const enum PAGES {
   USERNAME_FORM = 1,
-  PASSWORD_FORM = 2,
-  REPEAT_PASSWORD_FORM = 3
+  PASSWORD_FORM,
+  REPEAT_PASSWORD_FORM
 }
 
 const enum MESSAGES {
