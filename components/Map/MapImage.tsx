@@ -11,7 +11,6 @@ interface MapProps {
   display: boolean
   selected: any
   setSelect: (state: any) => void
-  ignoreClicks: boolean
 }
 
 const MapImage = ({
@@ -19,8 +18,7 @@ const MapImage = ({
   setTransform,
   setDisplay,
   selected,
-  setSelect,
-  ignoreClicks
+  setSelect
 }: MapProps) => {
   const handleClick = (
     event: any,
@@ -34,6 +32,8 @@ const MapImage = ({
     setDisplay(true)
     setTransform(xtrans, ytrans, 2, 1000, 'easeOut')
   }
+
+  let timestamp: number
 
   return (
     <div className='flex relative max-w-screen'>
@@ -64,11 +64,14 @@ const MapImage = ({
               <area
                 key={location.id}
                 alt={location.id}
+                onMouseDown={() => {
+                  timestamp = new Date().getTime()
+                }}
                 onClick={e => {
                   e.preventDefault()
-                  console.log(`Current val: ${ignoreClicks}`)
-                  if (ignoreClicks === false) {
-                    console.log('TRIGGED')
+                  let timestamp2 = new Date().getTime()
+                  let interval = 300
+                  if (timestamp2 - timestamp < interval) {
                     handleClick(e, setTransform, -xtrans, -ytrans)
                   }
                 }}

@@ -11,7 +11,6 @@ const Map = () => {
   const [initialScale, setInitialScale] = useState(1)
 
   const transformWrapper = useRef<ReactZoomPanPinchRef>(null)
-  let ignoreClicks = false
 
   useEffect(() => {
     function handleResize() {
@@ -54,14 +53,6 @@ const Map = () => {
       pinch={{ disabled: true }}
       alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
       ref={transformWrapper}
-      onPanning={() => {
-        ignoreClicks = true
-        console.log('On')
-      }}
-      onPanningStop={() => {
-        ignoreClicks = false
-        console.log('Off')
-      }}
     >
       {({ resetTransform, setTransform }) => (
         <>
@@ -73,7 +64,6 @@ const Map = () => {
               display={display}
               setSelect={setSelect}
               selected={select}
-              ignoreClicks={ignoreClicks}
             />
           </TransformComponent>
 
