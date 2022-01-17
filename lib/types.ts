@@ -1,4 +1,4 @@
-import { StaticImageData } from 'next/Image'
+// import StaticImageData from 'next/Image'
 
 interface ColorScheme {
   name: string
@@ -14,35 +14,35 @@ interface Recipe {
   name: string
   category: string[]
   character?: Character
-  tags: Array<string>
-  equipment: Array<string>
-  ingredients: Array<string>
-  steps: Array<RecipeStep>
+  tags: string[]
+  equipment: string[]
+  ingredients: string[]
+  steps: RecipeStep[]
   finalShot: string
   ingredientsImg: string
   equipmentImg: string
   colorSchemeName: string
-  colorScheme: ColorScheme
+  colorScheme?: ColorScheme // getRecipeDetails() does not have this field
   hint?: string
   page_id?: string
 }
 
 interface RecipeStep {
-  number: number
-  image: StaticImageData
+  number: number // this is suppose to be a string
+  image: string // Used to be StaticImageData
   description: string
 }
 
 interface Character {
   name: string
-  image: string
+  image?: string // Do we need this?
   aliasName: string
   about: string
   aliasImage: string
   imageGif: string
   superPowers: string
   foodGroup: string
-  location: string
+  location: string[] // Used to be just string
   facing?: string
 }
 export type { ColorScheme, Recipe, RecipeStep, Character }
