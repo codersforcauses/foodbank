@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { FirebaseProvider } from '@components/Firebase/context'
+import { FirebaseProvider } from '@components/FirebaseContext'
 import Navbar from '@components/NavBar'
 import MobileMenu from '@components/MobileMenu'
 import '@styles/main.css'

@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useDebounce } from 'react-use'
-import { useFirebase } from '@components/Firebase/context'
+import { useFirebase } from '@components/FirebaseContext'
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'

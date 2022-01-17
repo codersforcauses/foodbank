@@ -16,7 +16,7 @@ import {
 } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import FireStoreParser from 'firestore-parser'
-import { auth, db } from '@components/Firebase'
+import { auth, db } from 'pages/api/firebase'
 import { MESSAGES } from '@components/Auth/enums'
 
 const NUMBER_OF_ACHIEVEMENTS = 9
@@ -78,10 +78,7 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
       } catch (err: unknown) {
         //#region  //*=========== For logging ===========
         if (err instanceof FirestoreError) {
-          switch (err.code) {
-            default:
-              console.error(err.message)
-          }
+          console.error(err.message)
         } else console.error(err)
         //#endregion  //*======== For logging ===========
       }
@@ -104,10 +101,7 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     } catch (err: unknown) {
       //#region  //*=========== For logging ===========
       if (err instanceof FirestoreError) {
-        switch (err.code) {
-          default:
-            console.error(err.message)
-        }
+        console.error(err.message)
       } else console.error(err)
       //#endregion  //*======== For logging ===========
     }
