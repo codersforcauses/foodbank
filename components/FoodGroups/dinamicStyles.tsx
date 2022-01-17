@@ -12,49 +12,50 @@ import {
 } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
 import { FoodGroupCharacterImage } from './Draggable/types'
+import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
 
 const R = (deg: number) => (deg * Math.PI) / 180 // RADIANS
 
 const angleRegions = [
-  { region_name: 'grains', start: R(-179), end: R(-90) },
-  { region_name: 'grains', start: R(161), end: R(180) },
-  { region_name: 'vegetables', start: R(-90), end: R(13) },
-  { region_name: 'fruit', start: R(13), end: R(57) },
-  { region_name: 'dairy', start: R(57), end: R(103) },
-  { region_name: 'meat', start: R(103), end: R(161) }
+  { region_name: GRAINS, start: R(-179), end: R(-90) },
+  { region_name: GRAINS, start: R(161), end: R(180) },
+  { region_name: VEGETABLES, start: R(-90), end: R(13) },
+  { region_name: FRUIT, start: R(13), end: R(57) },
+  { region_name: DAIRY, start: R(57), end: R(103) },
+  { region_name: MEAT, start: R(103), end: R(161) }
 ]
 
 const foodGroupsImages: FoodGroupImage[] = [
   {
-    div_id: 'dairy',
+    div_id: DAIRY,
     img_styles: 'img-dairy',
     img_id: 'dairy-img',
     img_src: dairy.src,
     map_name: 'dairy_map'
   },
   {
-    div_id: 'meat',
+    div_id: MEAT,
     img_styles: 'img-meat',
     img_id: 'meat-img',
     img_src: meat.src,
     map_name: 'meat_map'
   },
   {
-    div_id: 'fruit',
+    div_id: FRUIT,
     img_styles: 'img-fruit',
     img_id: 'fruit-img',
     img_src: fruit.src,
     map_name: 'fruit_map'
   },
   {
-    div_id: 'vegetables',
+    div_id: VEGETABLES,
     img_styles: 'img-vegetables',
     img_id: 'vegetables-img',
     img_src: vegetables.src,
     map_name: 'vegetables_map'
   },
   {
-    div_id: 'grains',
+    div_id: GRAINS,
     img_styles: 'img-grains',
     img_id: 'grains-img',
     img_src: grains.src,
@@ -64,7 +65,7 @@ const foodGroupsImages: FoodGroupImage[] = [
 
 const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
   const boundingBox = document
-    .getElementById('meat')
+    .getElementById(MEAT)
     ?.parentElement?.getBoundingClientRect()
   if (boundingBox === undefined) {
     console.error('[ ERROR ] Could not get parent bounding box')
@@ -87,31 +88,31 @@ const handleMouseOver = (
   let styles
   let zoom = ['transform', 'scale-105', 'z-10']
   switch (group_id) {
-    case 'meat':
+    case MEAT:
       styles = [...meat.styles, ...zoom]
       meat.setStyles(styles)
       dairy.setStyles([''])
       grains.setStyles([''])
       break
-    case 'grains':
+    case GRAINS:
       styles = [...grains.styles, ...zoom]
       grains.setStyles(styles)
       meat.setStyles([''])
       vegetables.setStyles([''])
       break
-    case 'dairy':
+    case DAIRY:
       styles = [...dairy.styles, ...zoom]
       dairy.setStyles(styles)
       meat.setStyles([''])
       fruit.setStyles([''])
       break
-    case 'fruit':
+    case FRUIT:
       styles = [...fruit.styles, ...zoom]
       fruit.setStyles(styles)
       dairy.setStyles([''])
       vegetables.setStyles([''])
       break
-    case 'vegetables':
+    case VEGETABLES:
       styles = [...vegetables.styles, ...zoom]
       vegetables.setStyles(styles)
       grains.setStyles([''])
@@ -127,27 +128,27 @@ const handleMouseOut = (
   // const group_id = e.target.parentNode.parentNode.attributes["id"].value
   let styles
   switch (group_id) {
-    case 'meat':
+    case MEAT:
       grains.setStyles(['z-5'])
       dairy.setStyles(['z-10'])
       meat.setStyles(['z-0'])
       fruit.setStyles(['z-0'])
       vegetables.setStyles(['z-0'])
       break
-    case 'grains':
+    case GRAINS:
       meat.setStyles(['z-10'])
       vegetables.setStyles(['z-10'])
       grains.setStyles(['z-0'])
       dairy.setStyles(['z-0'])
       break
-    case 'dairy':
+    case DAIRY:
       meat.setStyles(['z-10'])
       fruit.setStyles(['z-10'])
       dairy.setStyles(['z-0'])
       grains.setStyles(['z-0'])
       vegetables.setStyles(['z-0'])
       break
-    case 'fruit':
+    case FRUIT:
       dairy.setStyles(['z-10'])
       vegetables.setStyles(['z-5'])
       fruit.setStyles(['z-0'])
@@ -155,7 +156,7 @@ const handleMouseOut = (
       meat.setStyles(['z-0'])
 
       break
-    case 'vegetables':
+    case VEGETABLES:
       grains.setStyles(['z-10'])
       fruit.setStyles(['z-10'])
       dairy.setStyles(['z-0'])

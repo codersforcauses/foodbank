@@ -4,23 +4,34 @@ import styles from 'components/FoodGroups/foodgroups.module.css'
 import { FoodGroupCharacterImage } from './types'
 
 import Image from 'next/image'
+import { StateDispatch } from '../types'
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
   onStartDrag: Function
+  setScreenPosition: StateDispatch<Vector2>
+  setAbsPosition: StateDispatch<Vector2>
+  screenPosition: Vector2
 }
 
 const Draggable: React.FC<Props> = (props: Props) => {
-  const [screenPosition, setScreenPosition] = useState(props.start_pos)
+  const { screenPosition, setScreenPosition, setAbsPosition } = props
+  // const [screenPosition, setScreenPosition] = useState(props.start_pos)
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
   const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
 
-  const [ptrEvents, setPtrEvents] = useState(true)
+  const [ptrEvents, setPtrEvents] = useState(true) // TODO: Check if needed
 
   const dragAround = (e: MouseEvent) => {
     let point: Vector2 = { x: e.clientX, y: e.clientY }
+    console.log('dragaround', point)
+
     if (parentRect && delta) {
+      setAbsPosition({
+        x: e.pageX - parentRect.x + delta.x,
+        y: e.pageY - parentRect.y + delta.y
+      })
       let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
       let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
       if (x > maxPosition.x || y > maxPosition.y || x < 0 || y < 0) return

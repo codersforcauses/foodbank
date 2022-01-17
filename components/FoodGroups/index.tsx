@@ -1,16 +1,8 @@
-import React, {
-  HTMLAttributes,
-  StyleHTMLAttributes,
-  useEffect,
-  useState
-} from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import styles from 'components/FoodGroups/foodgroups.module.css'
-import { Modal } from '@components/Custom'
 import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
-
-import { foodGroupsCharacterImages } from './Draggable/characterimages'
 
 import {
   resize_map,
@@ -20,86 +12,60 @@ import {
   angleRegions
 } from '@components/FoodGroups/dinamicStyles'
 
-import { FoodGroupStates, StateDispatch } from '@components/FoodGroups/types'
+import {
+  FoodGroupStates,
+  StateDispatch,
+  State_
+} from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
+import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
 
 /**
  * A page displaying all food groups in a pie chart
  */
 
-const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
-  const toggleModal = () => {
-    // console.log('toggle modal!')
-    setModalState(!modalState)
-  }
+interface Props {
+  setHoverType: Function
+  enabled: boolean
+  overrideMouse: boolean
+  overrideMousePosition: Vector2
+}
 
-  const [modalState, setModalState] = useState(false)
-  const [props, setProps] = useState({
-    open: true,
-    heading: 'General'
-  })
-
-  const [foodGroupStyles, setFoodGroupStyles] = useState([
+const FoodGroups = ({
+  setHoverType,
+  enabled,
+  overrideMouse,
+  overrideMousePosition
+}: Props) => {
+  const FOODGROUP_STYLES = [
     ' ',
     'z-0',
     'transition',
     'duration-500',
-    'ease-in-out'
-  ])
-  // const [meatStyles, setMeatStyles] = useState([''])
-  // const [grainsStyles, setGrainsStyles] = useState([''])
-  // const [dairyStyles, setDairyStyles] = useState([''])
-  // const [fruitStyles, setFruitStyles] = useState([''])
-  // const [vegetablesStyles, setVegetablesStyles] = useState([''])
+    'ease-in-out',
+    'scale-wheel',
+    'select-none'
+  ].join(' ')
 
   const [radius, setRadius] = useState(0)
   const [center, setCenter] = useState({ x: 0, y: 0 })
   const [currentRegion, setCurrentRegion] = useState('') // Debounce mouse events
 
-  const meat = useState([''])
-  const grains = useState([''])
-  const dairy = useState([''])
-  const fruit = useState([''])
-  const vegetables = useState([''])
-
-  const makeStyle = (style: [string[], StateDispatch<string[]>]) => ({
-    styles: style[0],
-    setStyles: style[1]
-  })
-
-  const allStates: FoodGroupStates = {
-    meat: makeStyle(meat),
-    grains: makeStyle(grains),
-    dairy: makeStyle(dairy),
-    fruit: makeStyle(fruit),
-    vegetables: makeStyle(vegetables)
+  const makeStyle = () => {
+    const state = useState([''])
+    return {
+      styles: state[0],
+      setStyles: state[1]
+    }
   }
 
-  // const hoverStyles = Object.values(allStates).map(e => e.styles)
-  const hoverStyles = [
-    // meat
-    allStates.dairy.styles,
-    allStates.meat.styles,
-    allStates.fruit.styles,
-    allStates.vegetables.styles,
-    allStates.grains.styles
-  ] // vegetables
-
-  // const allStates = {
-  //     meatStyles,
-  //     setMeatStyles,
-  //     grainsStyles,
-  //     setGrainsStyles,
-  //     dairyStyles,
-  //     setDairyStyles,
-  //     fruitStyles,
-  //     setFruitStyles,
-  //     vegetablesStyles,
-  //     setVegetablesStyles
-  // }
-
-  // const firstImage = foodGroupsCharacterImages[0]
-  // console.log('firstImage', firstImage)
+  const allStates: FoodGroupStates = {
+    [MEAT]: makeStyle(),
+    [GRAINS]: makeStyle(),
+    [DAIRY]: makeStyle(),
+    [FRUIT]: makeStyle(),
+    [VEGETABLES]: makeStyle()
+  }
 
   useEffect(() => {
     resize_map({ setCenter, setRadius })
@@ -133,23 +99,49 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
     }
   }
 
+  // TODO: Move handlers outside of wheel so we can use the centers of the food objects as a point.
   useEffect(() => {
     const handler = (e: MouseEvent) =>
       wheelMouseOver({ x: e.clientX, y: e.clientY })
-    document.addEventListener('mousemove', handler)
+    if (enabled && !overrideMouse) {
+      document.addEventListener('mousemove', handler)
+    } else {
+      document.removeEventListener('mousemove', handler)
+    }
     return () => {
       document.removeEventListener('mousemove', handler)
     }
-  }, [radius, center, currentRegion])
+  }, [radius, center, currentRegion, enabled, overrideMouse])
+
+  // RESET HOVER STYLES
+  useEffect(() => {
+    if (!enabled) {
+      Object.keys(allStates).forEach(k => {
+        allStates[k].setStyles([''])
+      })
+    }
+  }, [enabled])
 
   useEffect(() => {
     const handler = (e: TouchEvent) =>
       wheelMouseOver({ x: e.touches[0].clientX, y: e.touches[0].clientY })
-    document.addEventListener('touchmove', handler)
+    if (enabled && !overrideMouse) {
+      document.addEventListener('touchmove', handler)
+    } else {
+      document.removeEventListener('touchmove', handler)
+    }
     return () => {
       document.removeEventListener('touchmove', handler)
     }
-  }, [radius, center, currentRegion])
+  }, [radius, center, currentRegion, enabled, overrideMouse])
+
+  useEffect(() => {
+    if (overrideMouse) {
+      console.log('Override')
+
+      wheelMouseOver(overrideMousePosition)
+    }
+  }, [overrideMouse, overrideMousePosition])
 
   useEffect(() => {
     setHoverType(currentRegion)
@@ -157,26 +149,18 @@ const FoodGroups = ({ setHoverType }: { setHoverType: Function }) => {
 
   return (
     <>
-      {modalState && (
-        <Modal {...props} onClose={toggleModal} size='lg'>
-          <h1>Modal</h1>
-        </Modal>
-      )}
       {/* Handles resizing maps on screen resize for SSR */}
       <WindowResizeHook params={{ setRadius, setCenter }} />
-      {foodGroupsImages.map((group, index) => {
+      {foodGroupsImages.map(group => {
         return (
           <div
             id={group.div_id}
             key={group.div_id}
-            className={
-              styles[`${group.img_styles}`] +
-              ' ' +
-              foodGroupStyles.join(' ') +
-              ' ' +
-              hoverStyles[index].join(' ') +
-              ' scale-wheel select-none'
-            }
+            className={[
+              FOODGROUP_STYLES,
+              styles[group.img_styles],
+              ...allStates[group.div_id].styles
+            ].join(' ')}
             draggable={false}
           >
             <Image

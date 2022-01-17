@@ -22,13 +22,13 @@
   grid-column-start: 1;
 }
 
-.food-wheel {
+/* .food-wheel {
   height: 50%;
   width: 50%;
   transform: translateX(-50%);
   position: relative;
   margin-right: 50%;
-}
+} */
 
 .custom-img {
   object-fit: contain;
@@ -101,7 +101,7 @@
 .img-grains > div {
   position: unset !important;
 }
-
+/* 
 .food-group-modal {
   position: fixed;
   z-index: 500;
@@ -114,7 +114,7 @@
   top: 30%;
   box-sizing: border-box;
   transition: all 0.3s ease-out;
-}
+} */
 
 @media (min-width: 600px) {
   .food-group-modal {

@@ -11,6 +11,7 @@ import vegetable_1 from 'public/images/Food Characters/Cucumber Business.png'
 import grain_1 from 'public/images/Food Characters/Bread Toasty.png'
 
 import { FoodGroupCharacterImage } from './types'
+import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from '../groups'
 
 const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
   {
@@ -18,7 +19,7 @@ const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
     img_src: dairy.src,
     img_id: 'dairy-character-img',
     bounding_box_id: 0,
-    type: 'dairy',
+    type: DAIRY,
     start_pos: { x: 90, y: 2 }
   },
   {
@@ -26,7 +27,7 @@ const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
     img_src: meat.src,
     img_id: 'meat-character-img',
     bounding_box_id: 1,
-    type: 'meat',
+    type: MEAT,
     start_pos: { x: 90, y: 20 }
   },
   {
@@ -34,7 +35,7 @@ const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
     img_src: fruit.src,
     img_id: 'fruit-character-img',
     bounding_box_id: 2,
-    type: 'fruit',
+    type: FRUIT,
     start_pos: { x: 90, y: 40 }
   },
   {
@@ -42,7 +43,7 @@ const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
     img_src: vegetable.src,
     img_id: 'vegetable-character-img',
     bounding_box_id: 3,
-    type: 'vegetables',
+    type: VEGETABLES,
     start_pos: { x: 90, y: 60 }
   },
   {
@@ -50,7 +51,7 @@ const foodGroupsCharacterImages: FoodGroupCharacterImage[] = [
     img_src: grain.src,
     img_id: 'grain-character-img',
     bounding_box_id: 4,
-    type: 'grains',
+    type: GRAINS,
     start_pos: { x: 90, y: 80 }
   },
   {
