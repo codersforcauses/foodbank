@@ -55,7 +55,6 @@ const GridField = ({
           <input
             type='checkbox'
             aria-describedby={`${char.name}-label`}
-            //   aria-invalid={!!error}
             aria-label={`${char.name}-checkbox`}
             id={char.name}
             disabled={
@@ -83,22 +82,14 @@ const GridField = ({
               src={char.image}
               alt={char.name}
             />
-            <p className=' whitespace-nowrap text-sm text-center md:text-lg'>
+            <p className='text-sm text-center whitespace-nowrap md:text-lg'>
               {char.name}
             </p>
           </label>
 
           <BsFillCheckCircleFill
             className={
-              'absolute top-0 ' +
-              'bottom-0 left-0 ' +
-              'right-0 ' +
-              'text-center ' +
-              'm-auto ' +
-              'text-3xl ' +
-              'z-1 ' +
-              'pointer-events-none ' +
-              'peer-checked:opacity-100 opacity-0'
+              'absolute top-0 bottom-0 left-0 right-0 text-center m-auto text-3xl z-1 pointer-events-none peer-checked:opacity-100 opacity-0'
             }
           />
         </div>

@@ -55,7 +55,7 @@ const PasswordForm = ({
         })}
       >
         <p className='text-lg text-center'>{label}</p>
-        {error && <p className='text-lg text-center  text-red'>{error}</p>}
+        {error && <p className='text-lg text-center text-red'>{error}</p>}
         <GridField
           label='grid'
           name={name}
