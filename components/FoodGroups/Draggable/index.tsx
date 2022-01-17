@@ -32,7 +32,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const stopDrag = () => {
     // setHoverTypeMutex(true)
-    defloat()
 
     props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
