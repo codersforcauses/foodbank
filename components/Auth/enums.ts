@@ -7,13 +7,16 @@ const PASSWORD_LENGTH = 27
 const EMAIL_DOMAIN = 'test123.xyz'
 
 const enum PAGES {
-  USERNAME_FORM = 1,
+  USERNAME_FORM,
   PASSWORD_FORM,
   REPEAT_PASSWORD_FORM
 }
 
 const enum MESSAGES {
   USERNAME_LABEL = 'Enter a username',
+  USERNAME_REQUIRED = 'Please enter your name or a username',
+  USERNAME_ALPHANUMERIC = 'Alphanumeric characters only',
+  USERNAME_MIN_LENGTH = 'Must be more than 3 characters long',
   PASSWORD_LABEL = 'Choose your three characters',
   REPEATED_PASSWORD_LABEL = 'Re-select those same three characters and remember them',
   PASSWORD_MATCHED = 'Signed in',

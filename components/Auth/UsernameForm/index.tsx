@@ -1,5 +1,6 @@
 import { ChangeEventHandler, MouseEventHandler } from 'react'
 import { Button, TextField } from '@components/Custom'
+import { MESSAGES } from '../enums'
 
 interface UsernameFormProps {
   label: string
@@ -31,20 +32,20 @@ const UsernameForm = ({
         value={input}
         setFocused
         rules={{
-          required: 'Please enter your name or a username',
+          required: MESSAGES.USERNAME_REQUIRED,
           pattern: {
             value: /^[a-z0-9]+$/i,
-            message: 'Alphanumeric characters only'
+            message: MESSAGES.USERNAME_ALPHANUMERIC
           },
           minLength: {
             value: 3,
-            message: 'Must be more than 3 characters long'
+            message: MESSAGES.USERNAME_MIN_LENGTH
           },
           onChange: handleUsernameChange
         }}
         updateValidation={updateValidation}
       />
-      {error && <p className='text-lg text-center  text-red'>{error}</p>}
+      {error && <p className='text-lg text-center text-red'>{error}</p>}
       <div className='flex flex-col items-center pt-4 space-x-3'>
         <Button
           className='flex items-center disabled:opacity-50'
