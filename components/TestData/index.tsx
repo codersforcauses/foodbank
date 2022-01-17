@@ -1,4 +1,4 @@
-import { useFirebase } from '@components/Firebase/context'
+import { useFirebase } from '@components/FirebaseContext'
 import { Switch } from '@headlessui/react'
 
 const TestData = () => {
@@ -12,9 +12,7 @@ const TestData = () => {
             <div
               className='inline-block w-8 h-8 border-4 rounded-full spinner-border animate-spin text-primary'
               role='status'
-            >
-              {/* <span className='visually-hidden'>Loading...</span> */}
-            </div>
+            ></div>
             Loading...
           </div>
         </>

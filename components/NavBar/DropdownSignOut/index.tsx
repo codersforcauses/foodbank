@@ -1,7 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { useFirebase } from '@components/Firebase/context'
 
 interface DropdownProp {
   username: string
