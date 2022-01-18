@@ -24,8 +24,6 @@ interface ParamTypes {
   data?: any
 }
 
-
-
 /**
  * A page displaying an overview of a particular recipe as specified in the URL.
  * It includes information such as the recipe's category, tags, ingredients and
@@ -34,7 +32,7 @@ interface ParamTypes {
  */
 const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
   const [sliderModalState, setSliderModalState] = useState(false)
-  const [width, setWidth] = useState('lg');
+  const [width, setWidth] = useState('lg')
 
   useEffect(() => {
     adjustWidth()
@@ -64,35 +62,20 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
 
   const adjustWidth = () => {
     const fullConfig = resolveConfig(tailwindConfig)
-    const getBreakpointValue = (value: string): number =>
-      +fullConfig.theme.screens[value].slice(
-        0,
-        fullConfig.theme.screens[value].indexOf('px')
-      )
+    const screens = fullConfig.theme.screens
+    const screenSize =  Object.keys(screens).reduce((a,b) => screens[a].match(/(\d+)/) > screens[b].match(/(\d+)/) ? a: b);
 
-    let biggestBreakpointValue = 0
-    let biggestBreakpoint = 'sm'
-
-    for (const breakpoint of Object.keys(fullConfig.theme.screens)) {
-      const breakpointValue = getBreakpointValue(breakpoint)
-      if (
-        breakpointValue > biggestBreakpointValue &&
-        window.innerWidth >= breakpointValue
-      ) {
-        biggestBreakpointValue = breakpointValue
-        biggestBreakpoint = breakpoint
-      }
-    }
-
-    setWidth(biggestBreakpoint)
+    setWidth(screenSize)
   }
-
-
 
   return (
     <>
       {sliderModalState && (
-        <Modal {...props} onClose={toggleSliderModal} size={width as Breakpoints}>
+        <Modal
+          {...props}
+          onClose={toggleSliderModal}
+          size={width as Breakpoints}
+        >
           <Slideshow recipe={recipe} />
         </Modal>
       )}
@@ -173,21 +156,10 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
           </div>
           <div className='flex justify-center m-1 max-w-screen-2xl'>
             <div className={styles['recipe-main-content'] + ' flex flex-col'}>
-              <div>
-                <CategoryInfo recipe={recipe} />
-              </div>
-              <div>
-                <IngredientsList recipe={recipe} />
-              </div>
-              <div>
-                <EquipmentList recipe={recipe} />
-              </div>
-              <div>
-                <Buttons
-                  recipe={recipe}
-                  toggleSliderModal={toggleSliderModal}
-                />
-              </div>
+              <CategoryInfo recipe={recipe} />
+              <IngredientsList recipe={recipe} />
+              <EquipmentList recipe={recipe} />
+              <Buttons recipe={recipe} toggleSliderModal={toggleSliderModal} />
             </div>
           </div>
         </div>
