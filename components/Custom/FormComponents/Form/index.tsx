@@ -18,14 +18,15 @@ const Form = <T,>({
     defaultValues,
     mode: 'onSubmit'
   })
-  const { register, formState } = methods
+  const { register, formState, setFocus } = methods
   const value: FormProps = useMemo(
     () => ({
       disabled,
       register,
-      formState
+      formState,
+      setFocus
     }),
-    [disabled, formState, register]
+    [disabled, formState, register, setFocus]
   )
   return (
     <HookFormProvider {...methods}>
