@@ -8,7 +8,7 @@ const Modal = ({
   ...props
 }: PropsWithChildren<ModalProps>) => {
   let sizeClass = 'max-w-4xl'
-  let baseClass = 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2'
+  let baseClass = 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2 rounded-t-xl'
   let stickyClass = 'sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'
   if (size === 'sm') sizeClass = 'max-w-lg'
   if (size === 'md') sizeClass = 'max-w-2xl'
