@@ -43,17 +43,18 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
     setSliderModalState(!sliderModalState)
   }
 
-  console.log(data)
   // getting color scheme for the recipe by it's name
-  recipe.colorSchemeName === 'primaryScheme'
-    ? (recipe.colorScheme = primaryScheme)
-    : ''
-  recipe.colorSchemeName === 'orangeScheme'
-    ? (recipe.colorScheme = orangeScheme)
-    : ''
-  recipe.colorSchemeName === 'tealScheme'
-    ? (recipe.colorScheme = tealScheme)
-    : ''
+  switch(recipe.colorSchemeName) {
+    case 'orangeScheme' :
+      recipe.colorScheme = orangeScheme;
+      break;
+    case'tealScheme' :
+    recipe.colorScheme = tealScheme;
+    break;
+    default:
+      recipe.colorScheme = primaryScheme;
+  }
+
 
   let props = {
     open: true,
@@ -63,7 +64,7 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
   const adjustWidth = () => {
     const fullConfig = resolveConfig(tailwindConfig)
     const screens = fullConfig.theme.screens
-    const screenSize =  Object.keys(screens).reduce((a,b) => screens[a].match(/(\d+)/) > screens[b].match(/(\d+)/) ? a: b);
+    let screenSize =  Object.keys(screens).reduce((a,b) => screens[a].match(/(\d+)/) > screens[b].match(/(\d+)/) ? a: b);
 
     setWidth(screenSize)
   }
