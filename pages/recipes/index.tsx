@@ -6,7 +6,7 @@ import { Client } from "@notionhq/client";
 import { getAllRecipes } from '../../components/API/getData'
 
 interface RecipesGridProps {
-  tag: String
+  tag: string
   recipes: Array<Recipe>
 }
 

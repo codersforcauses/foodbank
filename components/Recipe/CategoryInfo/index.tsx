@@ -1,12 +1,12 @@
 import React from 'react'
 import { Recipe, ColorScheme } from 'lib/types'
 import Link from 'next/link'
+import { primaryScheme } from '@lib/colorSchemes'
+
 
 interface Props {
-  recipe: Recipe,
-  colorScheme: ColorScheme
+  recipe: Recipe
 }
-
 const tagStyle = {
   backgroundColor: 'rgba(206,207,203,var(--tw-bg-opacity))',
   '--tw-bg-opacity': 1
@@ -14,7 +14,7 @@ const tagStyle = {
 
 /** Displays the category and tags for a recipe. */
 const CategoryInfo: React.FC<Props> = ({ recipe }) => {
-  const colorScheme: ColorScheme = recipe.colorScheme
+  const colorScheme = recipe.colorScheme ? recipe.colorScheme : primaryScheme
   return (
     <div>
       <div className='flex flex-row flex-wrap justify-start gap-5 mt-5 mb-5'>
