@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
 import { useRouter } from 'next/router'
 import { Recipe } from 'lib/types'
 import { recipes } from 'lib/Recipes'
@@ -16,7 +15,7 @@ import CategoryInfo from 'components/Recipe/CategoryInfo'
  * equipment. From here, a user can navigate to pages displaying the recipe's
  * steps in a slideshow or one page format.
  */
-const RecipeOverview: React.FC = () => {
+const RecipeOverview = () => {
   const router = useRouter()
   const { slug } = router.query
 

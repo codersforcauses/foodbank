@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
 import Modal from 'components/Custom/Modal'
@@ -30,7 +30,7 @@ interface ParamTypes {
  * equipment. From here, a user can navigate to pages displaying the recipe's
  * steps in a slideshow or one page format.
  */
-const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
+const RecipeOverview = ({ recipe, data }: ParamTypes) => {
   const [sliderModalState, setSliderModalState] = useState(false)
   const [width, setWidth] = useState('lg')
 
@@ -44,17 +44,16 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
   }
 
   // getting color scheme for the recipe by it's name
-  switch(recipe.colorSchemeName) {
-    case 'orangeScheme' :
-      recipe.colorScheme = orangeScheme;
-      break;
-    case'tealScheme' :
-    recipe.colorScheme = tealScheme;
-    break;
+  switch (recipe.colorSchemeName) {
+    case 'orangeScheme':
+      recipe.colorScheme = orangeScheme
+      break
+    case 'tealScheme':
+      recipe.colorScheme = tealScheme
+      break
     default:
-      recipe.colorScheme = primaryScheme;
+      recipe.colorScheme = primaryScheme
   }
-
 
   let props = {
     open: true,

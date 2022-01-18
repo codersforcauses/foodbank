@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from 'components/Recipe/List-View/Card'
 // import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
-import { Client } from "@notionhq/client";
+import { Client } from '@notionhq/client'
 import { getAllRecipes } from '../../components/API/getData'
 
 interface RecipesGridProps {
@@ -10,7 +10,7 @@ interface RecipesGridProps {
   recipes: Array<Recipe>
 }
 
-const RecipesGridView: React.FC<RecipesGridProps> = ({ tag, recipes }) => {
+const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
   const [filteredCards, setFilteredCards] = useState(recipes)
 
   const allTags: string | string[] = [] // all tags from all the recipes
@@ -53,7 +53,7 @@ const RecipesGridView: React.FC<RecipesGridProps> = ({ tag, recipes }) => {
     if (tag !== 'all') {
       filterByTag(tag)
     }
-  }, [])
+  })
 
   const recipeCards = filteredCards.map(recipe => {
     const { name, slug, finalShot, character } = recipe
@@ -71,7 +71,7 @@ const RecipesGridView: React.FC<RecipesGridProps> = ({ tag, recipes }) => {
   })
 
   return (
-    <div className='grid grid-1 gap-10'>
+    <div className='grid gap-10 grid-1'>
       <div className='flex justify-center gap-10 mt-10'>
         {allCategories.map(category => {
           return (
@@ -96,7 +96,7 @@ const RecipesGridView: React.FC<RecipesGridProps> = ({ tag, recipes }) => {
         </p>
       </div>
       <div className='flex justify-center m-10'>
-        <div className='mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-14'>
+        <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
           {recipeCards}
         </div>
       </div>
@@ -108,21 +108,20 @@ const RecipesGridView: React.FC<RecipesGridProps> = ({ tag, recipes }) => {
 export const getServerSideProps = async (context: {
   query: { tag: string }
 }) => {
-  
   const { recipes } = await getAllRecipes()
-  
+
   if (!context.query.tag) {
     return {
       props: {
         tag: 'all', //pass it to the page props
-        recipes,
+        recipes
       }
     }
   }
   return {
     props: {
       tag: context.query.tag, //pass it to the page props
-      recipes,
+      recipes
     }
   }
 }

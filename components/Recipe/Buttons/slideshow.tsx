@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import { MouseEventHandler } from 'react'
 
 interface Props {
   name: string
@@ -6,11 +6,7 @@ interface Props {
   shouldRender: boolean
 }
 
-const SlideShowButton: React.FC<Props> = ({
-  name,
-  handleClick,
-  shouldRender
-}) => {
+const SlideShowButton = ({ name, handleClick, shouldRender }: Props) => {
   let className: string = 'w-48 my-4 py-2 px-4 rounded-full '
   if (shouldRender) className += 'bg-blue text-black'
   else className += 'invisible'

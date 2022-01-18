@@ -1,4 +1,3 @@
-import React from 'react'
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
 import styles from 'components/Recipe/Overview/overview.module.css'
@@ -13,7 +12,7 @@ interface Props {
 /**
  * Displays a list of required equipment along with an image.
  */
-const EquipmentList: React.FC<Props> = ({ recipe }) => {
+const EquipmentList = ({ recipe }: Props) => {
   const colorScheme = recipe.colorScheme
   return (
     <div className='flex flex-col'>

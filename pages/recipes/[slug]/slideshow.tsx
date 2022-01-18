@@ -7,11 +7,11 @@ export interface RecipeProps {
   recipe: Recipe
 }
 
-const RecipeSlideShow: React.FC<RecipeProps> = ({ recipe }) => {
+const RecipeSlideShow = ({ recipe }: RecipeProps) => {
   if (!recipe) return <div> Error </div>
 
   return (
-    <div className='flex justify-center items-center'>
+    <div className='flex items-center justify-center'>
       <Carousel
         controls
         indicators
@@ -22,11 +22,11 @@ const RecipeSlideShow: React.FC<RecipeProps> = ({ recipe }) => {
           // make sure to declare a div as below with `keen-slider__slide` as a class for it to work properly
           <div
             key={`recipeStep_${index}`}
-            className='keen-slider__slide flex flex-col md:flex-row justify-center flex-wrap h-full min-w-32 py-8'
+            className='flex flex-col flex-wrap justify-center h-full py-8 keen-slider__slide md:flex-row min-w-32'
           >
-            <div className='w-full lg:w-1/2 flex justify-center'>
-              <div className='m-auto py-5'>
-                <div className='w-max h-max px-6 py-2 transform -rotate-12 text-white text-5xl bg-primary font-sans font-bold border-8 border-black'>{`STEP ${
+            <div className='flex justify-center w-full lg:w-1/2'>
+              <div className='py-5 m-auto'>
+                <div className='px-6 py-2 font-sans text-5xl font-bold text-white transform border-8 border-black w-max h-max -rotate-12 bg-primary'>{`STEP ${
                   index + 1
                 }`}</div>
                 <div
@@ -44,7 +44,7 @@ const RecipeSlideShow: React.FC<RecipeProps> = ({ recipe }) => {
                 </div>
               </div>
             </div>
-            <div className='font-sans py-5 md:py-0 font-bold text-3xl px-6 w-full lg:w-5/12 min-w-32 flex justify-center items-center'>
+            <div className='flex items-center justify-center w-full px-6 py-5 font-sans text-3xl font-bold md:py-0 lg:w-5/12 min-w-32'>
               {recipeStep.description}
             </div>
           </div>
