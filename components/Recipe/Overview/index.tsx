@@ -64,9 +64,14 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
   const adjustWidth = () => {
     const fullConfig = resolveConfig(tailwindConfig)
     const screens = fullConfig.theme.screens
-    let screenSize =  Object.keys(screens).reduce((a,b) => screens[a].match(/(\d+)/) > screens[b].match(/(\d+)/) ? a: b);
+    let screenSize = 'xl'
+    let test = Object.entries(screens).filter(([key,value]) => value.match(/(\d+)/)[0] > window.innerWidth)
+    if (test[0] === undefined) {screenSize = 'xl'}
+    else {screenSize = test[0][0]}
+
 
     setWidth(screenSize)
+    //TODO: Screensize not updating!!!!
   }
 
   return (
