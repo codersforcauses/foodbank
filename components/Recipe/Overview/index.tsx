@@ -3,6 +3,7 @@ import { Recipe } from 'lib/types'
 import Image from 'next/image'
 import Modal from 'components/Custom/Modal'
 import styles from 'components/Recipe/Overview/overview.module.css'
+import { Breakpoints } from 'lib/types'
 
 import starLabel from 'public/images/Extra/star_label.png'
 import hintPlate from 'public/images/Extra/hint-plate.png'
@@ -23,7 +24,7 @@ interface ParamTypes {
   data?: any
 }
 
-type Breakpoints = 'sm'| 'md' | 'lg' | 'xl'
+
 
 /**
  * A page displaying an overview of a particular recipe as specified in the URL.
@@ -32,11 +33,17 @@ type Breakpoints = 'sm'| 'md' | 'lg' | 'xl'
  * steps in a slideshow or one page format.
  */
 const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
+  const [sliderModalState, setSliderModalState] = useState(false)
+  const [width, setWidth] = useState('lg');
+
+  useEffect(() => {
+    adjustWidth()
+    window.onresize = adjustWidth
+  }, [])
+
   const toggleSliderModal = () => {
     setSliderModalState(!sliderModalState)
   }
-  const [sliderModalState, setSliderModalState] = useState(false)
-  const [width, setWidth] = useState<Breakpoints>('lg');
 
   console.log(data)
   // getting color scheme for the recipe by it's name
@@ -80,20 +87,17 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
     setWidth(biggestBreakpoint)
   }
 
-  useEffect(() => {
-    adjustWidth()
-    window.onresize = adjustWidth
-  }, [])
+
 
   return (
     <>
       {sliderModalState && (
-        <Modal {...props} onClose={toggleSliderModal} size={width}>
+        <Modal {...props} onClose={toggleSliderModal} size={width as Breakpoints}>
           <Slideshow recipe={recipe} />
         </Modal>
       )}
 
-      <div className={recipe.colorScheme.bg + ' flex justify-center'}>
+      <div className={recipe.colorScheme?.bg + ' flex justify-center'}>
         <div className='max-w-screen-2xl '>
           <div className='flex justify-center m-1'>
             <div className='flex flex-col w-3/4'>

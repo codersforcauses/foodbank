@@ -45,4 +45,10 @@ interface Character {
   location: string[] // Used to be just string
   facing?: string
 }
-export type { ColorScheme, Recipe, RecipeStep, Character }
+
+type Breakpoints = 'sm'| 'md' | 'lg' | 'xl' | '2xl'
+
+//TODO: Fix the API to return ColorScheme as a required parameter. Just random values atm
+
+export type { ColorScheme, Recipe, RecipeStep, Character, Breakpoints}
+
