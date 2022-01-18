@@ -63,10 +63,27 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
 
   const adjustWidth = () => {
     const fullConfig = resolveConfig(tailwindConfig)
-    const screens = fullConfig.theme.screens
-    let screenSize =  Object.keys(screens).reduce((a,b) => screens[a].match(/(\d+)/) > screens[b].match(/(\d+)/) ? a: b);
+    const getBreakpointValue = (value: string): number =>
+      +fullConfig.theme.screens[value].slice(
+        0,
+        fullConfig.theme.screens[value].indexOf('px')
+      )
 
-    setWidth(screenSize)
+    let biggestBreakpointValue = 0
+    let biggestBreakpoint = 'sm'
+
+    for (const breakpoint of Object.keys(fullConfig.theme.screens)) {
+      const breakpointValue = getBreakpointValue(breakpoint)
+      if (
+        breakpointValue > biggestBreakpointValue &&
+        window.innerWidth >= breakpointValue
+      ) {
+        biggestBreakpointValue = breakpointValue
+        biggestBreakpoint = breakpoint
+      }
+    }
+
+    setWidth(biggestBreakpoint)
   }
 
   return (
