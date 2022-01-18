@@ -21,7 +21,7 @@ interface Recipe {
   finalShot: string
   ingredientsImg: string
   equipmentImg: string
-  colorSchemeName: string
+  colorSchemeName: string // getAllRecipes() does not have this field
   colorScheme?: ColorScheme // getRecipeDetails() does not have this field
   hint?: string
   page_id?: string
@@ -46,9 +46,8 @@ interface Character {
   facing?: string
 }
 
-type Breakpoints = 'sm'| 'md' | 'lg' | 'xl' | '2xl'
+type Breakpoints = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
 //TODO: Fix the API to return ColorScheme as a required parameter. Just random values atm
 
-export type { ColorScheme, Recipe, RecipeStep, Character, Breakpoints}
-
+export type { ColorScheme, Recipe, RecipeStep, Character, Breakpoints }
