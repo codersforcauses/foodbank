@@ -1,7 +1,7 @@
-import { Popover, Transition } from '@headlessui/react'
-import { NavLinkProps } from '@components/NavBar/NavLink'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Popover, Transition } from '@headlessui/react'
+import { NavLinkProps } from '@components/NavBar/NavLink'
 import Hamburger from 'public/images/Hamburger_icon.svg'
 
 interface MobileMenu {

@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
 import Navbar from '@components/NavBar'
 import { NavLinkProps } from '@components/NavBar/NavLink'
-import '@styles/main.css'
 import MobileMenu from '@components/MobileMenu'
+import '@styles/main.css'
 
 const links: Array<NavLinkProps> = [
   {

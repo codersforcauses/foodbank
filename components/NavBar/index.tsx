@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import logo from 'public/images/foodbank-logo.webp'
 import DropDownMenu from './DropDownMenu'
-import logo from '../../public/images/foodbank-logo.webp'
 import { NavLinkProps } from './NavLink'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
