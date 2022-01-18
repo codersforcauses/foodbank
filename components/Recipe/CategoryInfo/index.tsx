@@ -12,30 +12,30 @@ const tagStyle = {
   '--tw-bg-opacity': 1
 }
 
+const textStyle = ' mr-1 px-3 py-2 rounded-3xl text-md'
+
 /** Displays the category and tags for a recipe. */
 const CategoryInfo: React.FC<Props> = ({ recipe }) => {
-  const colorScheme = recipe.colorScheme ? recipe.colorScheme : primaryScheme
+  const colorScheme = recipe.colorScheme ?? primaryScheme
   return (
     <div>
       <div className='flex flex-row flex-wrap justify-start gap-5 mt-5 mb-5'>
-        <h2 className={'text-xl font-serif ' + colorScheme.header}>Category</h2>
+        <h2 className={'text-2xl font-serif ' + colorScheme.header}>
+          Category:
+        </h2>
         {recipe.category.map(el => {
           return (
-            <p className={colorScheme.text} key={el}>
+            <div className={textStyle} style={tagStyle} key={el}>
               {el}
-            </p>
+            </div>
           )
         })}
       </div>
 
       <div className='flex flex-row flex-wrap justify-start gap-3 mb-10'>
-        <h2 className={'text-xl font-serif ' + colorScheme.header}>Tags: </h2>
+        <h2 className={'text-2xl font-serif ' + colorScheme.header}>Tags: </h2>
         {recipe.tags.map(tag => (
-          <div
-            key={tag}
-            className='mr-3 my-0.5 mt-1.5 px-4 rounded-3xl text-sm'
-            style={tagStyle}
-          >
+          <div key={tag} className={textStyle} style={tagStyle}>
             <Link
               href={{
                 pathname: '/recipes',
