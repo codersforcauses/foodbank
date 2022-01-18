@@ -12,7 +12,7 @@ const Modal = ({
   let stickyClass = 'sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'
   if (size === 'sm') sizeClass = 'max-w-lg'
   if (size === 'md') sizeClass = 'max-w-2xl'
-  if (size === 'xl' || size == '2xl') {
+  if (size === 'xl' || size === '2xl') {
     sizeClass = 'max-w-max'
     baseClass = 'fixed z-40 w-full h-screen overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-3/4 inset-1/2 mt-20';
     stickyClass = 'inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl';
@@ -67,6 +67,6 @@ export default Modal
 interface ModalProps {
   open: boolean
   heading?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   onClose: () => void
 }

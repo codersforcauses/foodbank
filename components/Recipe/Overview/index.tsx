@@ -20,6 +20,7 @@ import tailwindConfig from 'tailwind.config'
 
 interface ParamTypes {
   recipe: Recipe
+  data?: any
 }
 
 type Breakpoints = 'sm'| 'md' | 'lg' | 'xl'

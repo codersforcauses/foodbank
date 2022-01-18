@@ -5,7 +5,8 @@ import RecipeOverview from 'components/Recipe/Overview'
 
 
 export interface RecipeProps {
-  recipe: Recipe;
+  recipe: Recipe
+  data?: any
 }
 
 const RecipePage:React.FC<RecipeProps> = ({ recipe, data }) => {
