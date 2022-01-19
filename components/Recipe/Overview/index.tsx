@@ -24,6 +24,10 @@ interface ParamTypes {
   data?: any
 }
 
+interface Screens {
+  [key: string]: string
+}
+
 /**
  * A page displaying an overview of a particular recipe as specified in the URL.
  * It includes information such as the recipe's category, tags, ingredients and
@@ -44,34 +48,41 @@ const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
   }
 
   // getting color scheme for the recipe by it's name
-  switch(recipe.colorSchemeName) {
-    case 'orangeScheme' :
-      recipe.colorScheme = orangeScheme;
-      break;
-    case'tealScheme' :
-    recipe.colorScheme = tealScheme;
-    break;
+  switch (recipe.colorSchemeName) {
+    case 'orangeScheme':
+      recipe.colorScheme = orangeScheme
+      break
+    case 'tealScheme':
+      recipe.colorScheme = tealScheme
+      break
     default:
-      recipe.colorScheme = primaryScheme;
+      recipe.colorScheme = primaryScheme
   }
-
 
   let props = {
     open: true,
     heading: recipe.name
   }
 
+
   const adjustWidth = () => {
+    /* 
+    Find largest breakpoint under current screen size and send width to the Modal component. 
+    Default to largest screen size in the tailwind configs.
+
+    Might need a sort function in future but working fine for now
+      */
+
     const fullConfig = resolveConfig(tailwindConfig)
-    const screens = fullConfig.theme.screens
-    let screenSize = 'xl'
-    let test = Object.entries(screens).filter(([key,value]) => value.match(/(\d+)/)[0] > window.innerWidth)
-    if (test[0] === undefined) {screenSize = 'xl'}
-    else {screenSize = test[0][0]}
+    const screens: Screens = fullConfig.theme.screens
+    const largestScreen = Object.keys(screens).reduce((a,b) => screens[a] > screens[b] ? a : b)
 
+    let filteredScreens = Object.entries(screens).filter(
+      ([key, value] : [string, string]) => parseInt(value) > window.innerWidth
+    )
 
-    setWidth(screenSize)
-    //TODO: Screensize not updating!!!!
+    let screenWidth = filteredScreens ? filteredScreens[0][0] : largestScreen
+    setWidth(screenWidth)
   }
 
   return (
