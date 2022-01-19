@@ -8,11 +8,11 @@ interface Props {
 }
 
 /** The buttons to navigate to the slideshow or one-page display recipe steps. */
-const Buttons = ({ recipe, toggleSliderModal }: Props) => {
+const Buttons: React.FC<Props> = ({ recipe, toggleSliderModal }) => {
   const colorScheme = recipe.colorScheme ? recipe.colorScheme : primaryScheme
 
   return (
-    <div className='flex flex-row items-center space-x-2'>
+    <div className='flex flex-row space-x-2 items-center'>
       <Link
         href={{
           pathname: '/recipes/recipe/all-steps/',

@@ -24,13 +24,17 @@ interface ParamTypes {
   data?: any
 }
 
+interface Screens {
+  [key: string]: string
+}
+
 /**
  * A page displaying an overview of a particular recipe as specified in the URL.
  * It includes information such as the recipe's category, tags, ingredients and
  * equipment. From here, a user can navigate to pages displaying the recipe's
  * steps in a slideshow or one page format.
  */
-const RecipeOverview = ({ recipe, data }: ParamTypes) => {
+const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
   const [sliderModalState, setSliderModalState] = useState(false)
   const [width, setWidth] = useState('lg')
 
@@ -60,29 +64,25 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
     heading: recipe.name
   }
 
+
   const adjustWidth = () => {
+    /* 
+    Find largest breakpoint under current screen size and send width to the Modal component. 
+    Default to largest screen size in the tailwind configs.
+
+    Might need a sort function in future but working fine for now
+      */
+
     const fullConfig = resolveConfig(tailwindConfig)
-    const getBreakpointValue = (value: string): number =>
-      +fullConfig.theme.screens[value].slice(
-        0,
-        fullConfig.theme.screens[value].indexOf('px')
-      )
+    const screens: Screens = fullConfig.theme.screens
+    const largestScreen = Object.keys(screens).reduce((a,b) => screens[a] > screens[b] ? a : b)
 
-    let biggestBreakpointValue = 0
-    let biggestBreakpoint = 'sm'
+    let filteredScreens = Object.entries(screens).filter(
+      ([key, value] : [string, string]) => parseInt(value) > window.innerWidth
+    )
 
-    for (const breakpoint of Object.keys(fullConfig.theme.screens)) {
-      const breakpointValue = getBreakpointValue(breakpoint)
-      if (
-        breakpointValue > biggestBreakpointValue &&
-        window.innerWidth >= breakpointValue
-      ) {
-        biggestBreakpointValue = breakpointValue
-        biggestBreakpoint = breakpoint
-      }
-    }
-
-    setWidth(biggestBreakpoint)
+    let screenWidth = filteredScreens ? filteredScreens[0][0] : largestScreen
+    setWidth(screenWidth)
   }
 
   return (
