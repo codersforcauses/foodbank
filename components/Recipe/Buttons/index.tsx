@@ -4,7 +4,7 @@ import { primaryScheme } from '@lib/colorSchemes'
 
 interface Props {
   recipe: Recipe
-  toggleSliderModal: () => void
+  toggleSliderModal?: () => void
 }
 
 /** The buttons to navigate to the slideshow or one-page display recipe steps. */
@@ -23,24 +23,14 @@ const Buttons = ({ recipe, toggleSliderModal }: Props) => {
         passHref
       >
         <button
-          className={
-            'w-48 my-4 py-2 px-4 rounded-full ' +
-            colorScheme.buttonBg +
-            ' ' +
-            colorScheme.buttonText
-          }
+          className={`${colorScheme.buttonBg} ${colorScheme.buttonText} w-48 my-4 py-2 px-4 rounded-full`}
         >
           View All Steps
         </button>
       </Link>
       {/*<Link href={'/recipes/' + recipe.slug + '/slideshow'} passHref>*/}
       <button
-        className={
-          'w-48 my-4 py-2 px-4 rounded-full ' +
-          colorScheme.buttonBg +
-          ' ' +
-          colorScheme.buttonText
-        }
+        className={`${colorScheme.buttonBg} ${colorScheme.buttonText} w-48 my-4 py-2 px-4 rounded-full`}
         onClick={toggleSliderModal}
       >
         Let&apos;s Cook
@@ -48,14 +38,9 @@ const Buttons = ({ recipe, toggleSliderModal }: Props) => {
       {/*</Link>*/}
 
       <a
-        download
+        className={`${colorScheme.buttonBg} ${colorScheme.buttonText} w-48 my-4 py-2 px-4 rounded-full text-center`}
         href={`/pdfs/recipes/${recipe.name}.pdf`}
-        className={
-          'w-48 my-4 py-2 px-4 rounded-full text-center ' +
-          colorScheme.buttonBg +
-          ' ' +
-          colorScheme.buttonText
-        }
+        download
       >
         Download
       </a>

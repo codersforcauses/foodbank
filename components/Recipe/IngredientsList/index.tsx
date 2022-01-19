@@ -1,6 +1,5 @@
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
-import styles from 'components/Recipe/Overview/overview.module.css'
 
 import imgFrameOne from 'public/images/Extra/img-frame-white-border.png'
 import headerPlateOne from 'public/images/Extra/header-plate-1.png'
@@ -17,28 +16,17 @@ const IngredientsList = ({ recipe }: Props) => {
   return (
     <div className='flex flex-col'>
       <div className='flex flex-col justify-center'>
-        <img
-          className={styles['header-plate'] + ' static'}
-          src={headerPlateOne.src}
-          alt='Ingredients'
-        />
+        <div className='static w-3/5 min-w-[auto] md:w-2/5'>
+          <Image src={headerPlateOne} alt='Ingredients' />
+        </div>
         <h1
-          className={
-            'static font-serif pb-8 ' +
-            colorScheme.header +
-            ' ' +
-            styles['ingredients-header']
-          }
+          className={`${colorScheme?.header} static font-serif pb-8 opacity-80 rotate-[-5deg] text-[7vw] mt-[-20%] ml-[45px] md:text-[3.5rem] md:mt-[-15%] md:ml-[45px]`}
         >
           Ingredients
         </h1>
       </div>
-      <div className={'grid grid-cols-2 justify-items-center gap-12'}>
-        <div
-          className={
-            styles['ingredients-text'] + ' pl-8 font-semibold font-serif'
-          }
-        >
+      <div className='grid grid-cols-2 gap-12 justify-items-center'>
+        <div className='pl-8 font-semibold font-serif text-2xl min-w-[100px] max-w-[350px] pt-[10%] pb-[30px] leading-[1.5] tracking-[4px]'>
           <ul>
             {recipe.ingredients.map(el => (
               <li key={el}>- {el}</li>
@@ -47,9 +35,9 @@ const IngredientsList = ({ recipe }: Props) => {
         </div>
 
         <img
-          className={'rounded-3xl self-center pr-8'}
+          className='self-center pr-8 rounded-3xl'
           src={recipe.ingredientsImg}
-          alt='equipment'
+          alt='ingredients'
         />
       </div>
     </div>

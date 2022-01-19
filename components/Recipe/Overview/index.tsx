@@ -64,7 +64,6 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
     heading: recipe.name
   }
 
-
   const adjustWidth = () => {
     /* 
     Find largest breakpoint under current screen size and send width to the Modal component. 
@@ -75,13 +74,16 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
 
     const fullConfig = resolveConfig(tailwindConfig)
     const screens: Screens = fullConfig.theme.screens
-    const largestScreen = Object.keys(screens).reduce((a,b) => parseInt(screens[a]) > parseInt(screens[b]) ? a : b)
-
-    let filteredScreens = Object.entries(screens).filter(
-      ([key, value] : [string, string]) => parseInt(value) > window.innerWidth
+    const largestScreen = Object.keys(screens).reduce((a, b) =>
+      parseInt(screens[a]) > parseInt(screens[b]) ? a : b
     )
 
-    let screenWidth = filteredScreens.length === 0  ?  largestScreen : filteredScreens[0][0]
+    let filteredScreens = Object.entries(screens).filter(
+      ([_, value]: [string, string]) => parseInt(value) > window.innerWidth
+    )
+
+    let screenWidth =
+      filteredScreens.length === 0 ? largestScreen : filteredScreens[0][0]
 
     setWidth(screenWidth)
   }
@@ -97,32 +99,26 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
           <Slideshow recipe={recipe} />
         </Modal>
       )}
-
-      <div className={recipe.colorScheme?.bg + ' flex justify-center'}>
+      <div className={`${recipe.colorScheme?.bg} flex justify-center`}>
         <div className='max-w-screen-2xl '>
           <div className='flex justify-center m-1'>
             <div className='flex flex-col w-3/4'>
               <div
                 className={
                   styles['image-container'] +
-                  ' w-full ' +
-                  styles['recipe-main-image']
+                  ' w-full mt-[20%] border-solid border-[#434343] border-[3px]'
                 }
               >
                 <Image
+                  className='!relative !w-full !h-[unset] object-contain'
                   src={recipe.finalShot}
                   alt={recipe.name}
                   layout='fill'
-                  className={styles['image']}
                 />
               </div>
-              <div className={styles['label-main-image'] + ' absolute'}>
-                <Image src={starLabel} alt='label'></Image>
-                <div
-                  className={
-                    styles['recipe-name'] + ' absolute font-semibold font-serif'
-                  }
-                >
+              <div className='absolute ml-[-10%] mt-[2%] w-[45%] h-full max-h-[400px] max-w-[450px] min-w-[200px]'>
+                <Image src={starLabel} alt='label' />
+                <div className='absolute w-1/2 font-serif font-semibold text-[5vw] text-center rotate-[-17deg] align-middle leading-[0.8] tracking-[4px] self-center mt-[-50%] ml-[28%] z-[1] text-shadow-title md:text-[50px]'>
                   {recipe.name
                     .split(' ')
                     .map((el: string | null | undefined) => {
@@ -142,10 +138,10 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
                   }
                 >
                   <Image
+                    className='!relative !w-full !h-[unset] object-contain'
                     src={recipe.character.imageGif}
                     alt='label'
                     layout='fill'
-                    className={styles['image']}
                   />
                 </div>
               )}
@@ -153,17 +149,18 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
                 <div className='flex'>
                   <div className={styles['tip-plate-container']}>
                     <Image
+                      className='!relative !w-full !h-[unset] object-contain'
                       src={hintPlate}
                       alt='hint'
                       layout='fill'
-                      className={styles.image}
                     />
                     <div
-                      className={
-                        styles['hint-text'] +
-                        ' absolute font-semibold font-serif '
-                        // styles['hint-text'] + ' text-5xl'
-                      }
+                      // className={
+                      //   styles['hint-text'] +
+                      //   ' absolute font-semibold font-serif '
+                      // }
+                      // cannot test as it is not showing
+                      className='absolute w-4/5 font-serif font-semibold rotate-[10deg] mt-[-45%] ml-[15%] text-[2vw] md:mt-[-140%] md:ml-[34px] md:text-2xl lg:mt-[-150%] lg:ml-[34px] lg:text-2xl xl:mt-[-160%] xl:ml-[50px] xl:text-2xl'
                     >
                       {recipe.hint}
                     </div>
@@ -173,7 +170,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
             </div>
           </div>
           <div className='flex justify-center m-1 max-w-screen-2xl'>
-            <div className={styles['recipe-main-content'] + ' flex flex-col'}>
+            <div className='flex flex-col w-full p-4 bg-[#e9e9e9] mt-[60px] mx-[1%] max-w-[1200px] min-w-[300px] border-[3px] border-solid border-[#434343]'>
               <CategoryInfo recipe={recipe} />
               <IngredientsList recipe={recipe} />
               <EquipmentList recipe={recipe} />

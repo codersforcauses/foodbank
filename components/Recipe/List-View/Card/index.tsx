@@ -43,19 +43,19 @@ const getClassesFromColor = (color: string, unlocked: boolean) => {
   if (unlocked) {
     switch (color) {
       case 'Primary':
-        return `relative unlocked bg-primary text-white shadow-xl hover:shadow-2xl`
+        return 'unlocked bg-primary text-white'
 
       case 'Teal':
-        return `relative unlocked bg-teal text-black shadow-xl hover:shadow-2xl`
+        return 'unlocked bg-teal text-black'
 
       case 'Orange':
-        return `relative unlocked bg-orange text-black shadow-xl hover:shadow-2xl`
+        return 'unlocked bg-orange text-black'
 
       default:
-        return `relative unlocked bg-blue text-black shadow-xl hover:shadow-2xl`
+        return 'unlocked bg-blue text-black'
     }
   } else {
-    return `relative locked bg-grey opacity-50 text-black shadow-xl hover:shadow-2xl`
+    return 'locked bg-grey opacity-50 text-black'
   }
 }
 
@@ -69,73 +69,73 @@ const Card = ({
   character,
   ...props
 }: CardProps) => {
+  const cardClass: string =
+    'w-fit h-fit rounded-[10%] text-center relative shadow-xl hover:shadow-2xl'
   return (
     <div
-      className={[styles.card, getClassesFromColor(color, unlocked)]
+      className={[cardClass, getClassesFromColor(color, unlocked)]
         .join(' ')
         .trim()}
       {...props}
     >
-      <div className=''>
-        <div className='flex flex-col'>
-          {character && (
-            <>
+      <div className='flex flex-col'>
+        {character && (
+          <>
+            <Link
+              href={{
+                pathname: '/recipes/recipe/',
+                query: {
+                  name: slug
+                }
+              }}
+              passHref
+            >
               <div>
-                <Link
-                  href={{
-                    pathname: '/recipes/recipe/',
-                    query: {
-                      name: slug
-                    }
-                  }}
-                  passHref
+                <div
+                  className={styles['card-image-container'] + ' mt-8'}
+                  // className='w-full mt-8'
                 >
-                  <div>
-                    <div className={styles['card-image-container'] + ' mt-8'}>
-                      <Image
-                        src={image}
-                        layout='fill'
-                        alt={text}
-                        className={styles.image}
-                      />
-                    </div>
-                    <h1 className='text-2xl font-semibold tracking-wide'>
-                      {label}
-                    </h1>
-                    {/*</a>*/}
-                  </div>
-                </Link>
+                  <Image
+                    className='!relative !w-full !h-[unset] object-contain'
+                    src={image}
+                    alt={text}
+                    layout='fill'
+                  />
+                </div>
+                <h1 className='text-2xl font-semibold tracking-wide'>
+                  {label}
+                </h1>
               </div>
-              {/* Superhero on top of the recipe image */}
-              <div
-                className={
-                  styles['splash-container'] +
-                  ' absolute top-0 right-0 -mr-10 -mt-14 opacity-80'
-                }
-              >
-                <Image
-                  layout='fill'
-                  src={explosion}
-                  alt='explosion'
-                  className={styles.image}
-                />
-              </div>
-              <div
-                className={
-                  styles['image-container'] +
-                  ' absolute top-0 right-0 -mr-2 -mt-16'
-                }
-              >
-                <Image
-                  layout='fill'
-                  src={character.imageGif}
-                  alt={character.name}
-                  className={styles.image}
-                />
-              </div>
-            </>
-          )}
-        </div>
+            </Link>
+            {/* Superhero on top of the recipe image */}
+            <div
+              className={
+                styles['splash-container'] +
+                ' absolute top-0 right-0 -mr-10 -mt-14 opacity-80'
+              }
+            >
+              <Image
+                className='!relative !w-full !h-[unset] object-contain'
+                src={explosion}
+                alt='explosion'
+                layout='fill'
+              />
+            </div>
+            <div
+              className={
+                styles['image-container'] +
+                ' absolute top-0 right-0 -mr-2 -mt-16'
+              }
+            >
+              <Image
+                className='!relative !w-full !h-[unset] object-contain'
+                src={character.imageGif}
+                alt={character.name}
+                layout='fill'
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
