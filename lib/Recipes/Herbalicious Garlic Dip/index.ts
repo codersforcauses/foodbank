@@ -14,8 +14,7 @@ const step1: RecipeStep = {
   number: 1,
   image: step1Img,
   description:
-    'Peel garlic clove and dice into very small pieces. Chop basil leaves and slice ' +
-    'spring onion into small pieces. Grate cheese.'
+    'Peel garlic clove and dice into very small pieces. Chop basil leaves and slice spring onion into small pieces. Grate cheese.'
 }
 
 const step2: RecipeStep = {
@@ -29,8 +28,7 @@ const step3: RecipeStep = {
   number: 3,
   image: step3Img,
   description:
-    'Slice carrots and capsicum into sticks. Slice off ends of snow peas. Arrange the vegetables, ' +
-    'crackers and dip on a platter.'
+    'Slice carrots and capsicum into sticks. Slice off ends of snow peas. Arrange the vegetables, crackers and dip on a platter.'
 }
 
 const step4: RecipeStep = {

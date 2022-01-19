@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ecad1236-39f8-4776-b073-33cee1441ad9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Recipe/Overview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/Slideshow.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/Slideshow.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/recipes/[slug]/slideshow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/[slug]/slideshow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/API/getData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/API/getData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Recipes/Deadly Damper Scrolls/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Recipes/Deadly Damper Scrolls/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Recipes/Herbalicious Garlic Dip/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Recipes/Herbalicious Garlic Dip/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recipes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/recipes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,16 +34,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/colorSchemes.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pages/recipes/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/pages/recipes/[slug]/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/components/Recipe/Buttons/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/components/Recipe/Overview/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/components/Recipe/Overview/overview.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/components/Recipe/CategoryInfo/index.tsx" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/Recipes/Chicken Drummer Rice/index.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/components/Recipe/List-View/Card/index.tsx" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/types.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/lib/colorSchemes.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1v5ISr7pBHJQvcBL173TDyF5alP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -87,7 +89,9 @@
       <workItem from="1625898528006" duration="19778000" />
       <workItem from="1626503262690" duration="3751000" />
       <workItem from="1626846871479" duration="7581000" />
-      <workItem from="1639632746218" duration="14165000" />
+      <workItem from="1639632746218" duration="17783000" />
+      <workItem from="1641961110885" duration="7204000" />
+      <workItem from="1642558485392" duration="5839000" />
     </task>
     <task id="LOCAL-00001">
       <created>1626503318190</created>

@@ -66,11 +66,11 @@ const chickenDrummerRice: Recipe = {
     '1 tablespoon paprika',
     '1 cup medium or short grain rice',
     '2 teaspoons salt reduced chicken stock powder',
-    '4 Â½ cups water',
+    '4 and ½ cups water',
     '2 teaspoons tomato paste',
     '400 g tin diced tomatoes',
     '1 lemon',
-    'Â¼ cup fresh parsley'
+    '¼ cup fresh parsley'
   ],
   steps: [step1, step2, step3, step4, step5],
   finalShot: finalShot,

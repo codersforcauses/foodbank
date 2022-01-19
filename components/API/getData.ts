@@ -6,8 +6,23 @@ const notion = new Client({
 })
 
 const getAllRecipes = async () => {
-  const data = await notion.databases.query({
+  let data = await notion.databases.query({
     database_id: process.env.NOTION_RECIPES_DB_ID ?? ''
+  })
+  
+  // pre filter the original data, making sure there's no entries with empty properties  
+  const filtered_data = data.results.filter(result => {
+    
+    return  result.properties.Category.multi_select[0] !== undefined && 
+            result.properties.Recipe.title[0].plain_text != undefined &&
+            result.properties.Equipment.multi_select[0] != undefined &&
+            result.properties.characterId.relation[0] != undefined &&
+            result.properties.colorScheme.rich_text[0].plain_text != undefined &&
+            result.properties.equipmentImg.files[0] != undefined &&
+            result.properties.finalShot.files[0] != undefined &&
+            result.properties.ingredients.multi_select[0] != undefined &&
+            result.properties.ingredientsImg.files[0] != undefined &&
+            result.properties.slug.rich_text[0].plain_text != undefined
   })
 
   const chars = await notion.databases.query({
@@ -64,7 +79,7 @@ const getAllRecipes = async () => {
     }
   }
 
-  const recipes = data.results.map(recipe => {
+  const recipes = filtered_data.map(recipe => {
     const nameProp = recipe.properties.Recipe
     const categoryProp = recipe.properties.Category
     const tagsProp = recipe.properties.Tags

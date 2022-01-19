@@ -109,7 +109,7 @@ export const getServerSideProps = async (context: {
   query: { tag: string }
 }) => {
   const { recipes } = await getAllRecipes()
-
+  
   if (!context.query.tag) {
     return {
       props: {

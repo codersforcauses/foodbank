@@ -14,24 +14,21 @@ const step1: RecipeStep = {
   number: 1,
   image: step1Img,
   description:
-    'Heat oven to 180oC. Line baking tray with baking paper or spray with oil. ' +
-    'Sift flour and cinnamon into a large bowl. Add yoghurt and honey. Mix together to form a dough.'
+    'Heat oven to 180 C. Line baking tray with baking paper or spray with oil. Sift flour and cinnamon into a large bowl. Add yoghurt and honey. Mix together to form a dough.'
 }
 
 const step2: RecipeStep = {
   number: 2,
   image: step2Img,
   description:
-    'Sprinkle extra flour on to a clean bench. Tip out dough onto bench then gently knead. ' +
-    'Roll the dough into a large square shape, roughly fingertip thickness.'
+    'Sprinkle extra flour on to a clean bench. Tip out dough onto bench then gently knead. Roll the dough into a large square shape, roughly fingertip thickness.'
 }
 
 const step3: RecipeStep = {
   number: 3,
   image: step3Img,
   description:
-    'Grate apples. Spread jam over the dough (and mashed banana if using). Sprinkle grated apple over the top. ' +
-    'Starting from the long side closest to you, roll the dough to form a log.'
+    'Grate apples. Spread jam over the dough (and mashed banana if using). Sprinkle grated apple over the top. Starting from the long side closest to you, roll the dough to form a log.'
 }
 
 const step4: RecipeStep = {
@@ -44,7 +41,7 @@ const step5: RecipeStep = {
   number: 5,
   image: step5Img,
   description:
-    'Place scrolls cut-side up on baking tray. Bake in oven for 15-20 minutes or until golden brown.\n'
+    'Place scrolls cut-side up on baking tray. Bake in oven for 15-20 minutes or until golden brown.'
 }
 
 const deadlyDumperScrolls: Recipe = {
