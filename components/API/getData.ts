@@ -9,20 +9,50 @@ const getAllRecipes = async () => {
   let data = await notion.databases.query({
     database_id: process.env.NOTION_RECIPES_DB_ID ?? ''
   })
-  
-  // pre filter the original data, making sure there's no entries with empty properties  
+
+  // pre filter the original data, making sure there's no entries with empty properties
   const filtered_data = data.results.filter(result => {
-    
-    return  result.properties.Category.multi_select[0] !== undefined && 
-            result.properties.Recipe.title[0].plain_text != undefined &&
-            result.properties.Equipment.multi_select[0] != undefined &&
-            result.properties.characterId.relation[0] != undefined &&
-            result.properties.colorScheme.rich_text[0].plain_text != undefined &&
-            result.properties.equipmentImg.files[0] != undefined &&
-            result.properties.finalShot.files[0] != undefined &&
-            result.properties.ingredients.multi_select[0] != undefined &&
-            result.properties.ingredientsImg.files[0] != undefined &&
-            result.properties.slug.rich_text[0].plain_text != undefined
+    const CategoryProp = result.properties.Category
+    const RecipeProp = result.properties.Recipe
+    const EquipmentProp = result.properties.Equipment
+    const characterIdProp = result.properties.characterId
+    const colorSchemeProp = result.properties.colorScheme
+    const equipmentImgProp = result.properties.equipmentImg
+    const finalShotProp = result.properties.finalShot
+    const ingredientsProp = result.properties.ingredients
+    const ingredientsImgProp = result.properties.ingredientsImg
+    const slugProp = result.properties.slug
+    return (
+      (CategoryProp.type === 'multi_select'
+        ? CategoryProp.multi_select[0]
+        : undefined) !== undefined &&
+      (RecipeProp.type === 'title'
+        ? RecipeProp.title[0].plain_text
+        : undefined) !== undefined &&
+      (EquipmentProp.type === 'multi_select'
+        ? EquipmentProp.multi_select[0]
+        : undefined) !== undefined &&
+      (characterIdProp.type === 'relation'
+        ? characterIdProp.relation[0]
+        : undefined) !== undefined &&
+      (colorSchemeProp.type === 'rich_text'
+        ? colorSchemeProp.rich_text[0].plain_text
+        : undefined) !== undefined &&
+      (equipmentImgProp.type === 'files'
+        ? equipmentImgProp.files[0]
+        : undefined) !== undefined &&
+      (finalShotProp.type === 'files' ? finalShotProp.files[0] : undefined) !==
+        undefined &&
+      (ingredientsProp.type === 'multi_select'
+        ? ingredientsProp.multi_select[0]
+        : undefined) !== undefined &&
+      (ingredientsImgProp.type === 'files'
+        ? ingredientsImgProp.files[0]
+        : undefined) !== undefined &&
+      (slugProp.type === 'rich_text'
+        ? slugProp.rich_text[0].plain_text
+        : undefined) !== undefined
+    )
   })
 
   const chars = await notion.databases.query({
