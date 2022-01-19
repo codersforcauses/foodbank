@@ -1,5 +1,5 @@
 import { Recipe } from 'lib/types'
-import { getRecipeDetails } from '../../../components/API/getData'
+import { getRecipeDetails } from 'components/API/getData'
 import RecipeOverview from 'components/Recipe/Overview'
 
 export interface RecipeProps {

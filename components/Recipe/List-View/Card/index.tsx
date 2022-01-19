@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './Card.module.css'
-import { Character } from '@lib/types'
+import { Character } from 'lib/types'
 import explosion from 'public/images/Extra/explosion.png'
 import Image from 'next/image'
 
