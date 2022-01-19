@@ -59,7 +59,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
       recipe.colorScheme = primaryScheme
   }
 
-  let props = {
+  const props = {
     open: true,
     heading: recipe.name
   }
