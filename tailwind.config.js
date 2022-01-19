@@ -19,6 +19,11 @@ module.exports = {
       white: '#ffffff',
       black: '#000000'
     },
+    screens: {
+      md: '900px',
+      lg: '1100px',
+      xl: '1250px'
+    },
     extend: {
       fontFamily: {
         sans: ['Bliss'],

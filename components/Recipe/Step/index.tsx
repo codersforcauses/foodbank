@@ -10,18 +10,18 @@ interface Props {
 
 const Step = ({ step, colorScheme, key }: Props) => (
   <div className='flex flex-row items-center w-screen my-5 space-x-8' key={key}>
-    <h1 className={'w-12 text-4xl font-serif ' + colorScheme.header}>
+    <h1 className={`${colorScheme.header} w-12 text-4xl font-serif`}>
       {step.number}
     </h1>
     <div className={styles['card-image-container']}>
       <Image
-        className={styles.image + ' rounded-2xl'}
+        className='!relative !w-full !h-[unset] object-contain rounded-2xl'
         src={step.image}
         alt='Step'
         layout='fill'
       />
     </div>
-    <p className={'w-1/2 ' + colorScheme.text}>{step.description}</p>
+    <p className={`${colorScheme.text} w-1/2`}>{step.description}</p>
   </div>
 )
 
