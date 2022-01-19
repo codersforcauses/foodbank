@@ -76,24 +76,22 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
         {allCategories.map(category => {
           return (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <p
-              onClick={() => filterByCategory(category)}
-              className='text-lg'
-              style={{ cursor: 'pointer' }}
+            <button
               key={category}
+              className='text-lg cursor-pointer'
+              onClick={() => filterByCategory(category)}
             >
               {category}
-            </p>
+            </button>
           )
         })}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-        <p
+        <button
+          className='text-lg cursor-pointer'
           onClick={() => setFilteredCards(recipes)}
-          className='text-lg'
-          style={{ cursor: 'pointer' }}
         >
           All
-        </p>
+        </button>
       </div>
       <div className='flex justify-center m-10'>
         <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
@@ -109,7 +107,6 @@ export const getServerSideProps = async (context: {
   query: { tag: string }
 }) => {
   const { recipes } = await getAllRecipes()
-  
   if (!context.query.tag) {
     return {
       props: {
