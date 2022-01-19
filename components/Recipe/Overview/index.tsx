@@ -34,7 +34,7 @@ interface Screens {
  * equipment. From here, a user can navigate to pages displaying the recipe's
  * steps in a slideshow or one page format.
  */
-const RecipeOverview: React.FC<ParamTypes> = ({ recipe, data }) => {
+const RecipeOverview = ({ recipe, data }: ParamTypes) => {
   const [sliderModalState, setSliderModalState] = useState(false)
   const [width, setWidth] = useState('lg')
 
