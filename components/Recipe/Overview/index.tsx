@@ -75,13 +75,14 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
 
     const fullConfig = resolveConfig(tailwindConfig)
     const screens: Screens = fullConfig.theme.screens
-    const largestScreen = Object.keys(screens).reduce((a,b) => screens[a] > screens[b] ? a : b)
+    const largestScreen = Object.keys(screens).reduce((a,b) => parseInt(screens[a]) > parseInt(screens[b]) ? a : b)
 
     let filteredScreens = Object.entries(screens).filter(
       ([key, value] : [string, string]) => parseInt(value) > window.innerWidth
     )
 
-    let screenWidth = filteredScreens ? filteredScreens[0][0] : largestScreen
+    let screenWidth = filteredScreens.length === 0  ?  largestScreen : filteredScreens[0][0]
+
     setWidth(screenWidth)
   }
 
