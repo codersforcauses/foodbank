@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { recipes } from 'lib/Recipes'
 import { Recipe } from 'lib/types'
 import Step from 'components/Recipe/Step'
-import { getRecipeDetails } from '../../../components/API/getData'
+import { getRecipeDetails } from 'components/API/getData'
 import { primaryScheme, tealScheme, orangeScheme } from 'lib/colorSchemes'
 
 interface RecipeStepsProps {
@@ -41,10 +41,10 @@ const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
   } else {
     const colorScheme = recipe.colorScheme
     return (
-      <div className={'p-10 ' + colorScheme.bg}>
+      <div className={'p-10 ' + colorScheme?.bg}>
         <h1
           className={
-            'text-4xl underline font-semibold font-serif ' + colorScheme.header
+            'text-4xl underline font-semibold font-serif ' + colorScheme?.header
           }
         >
           Recipe Steps
@@ -64,7 +64,7 @@ const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
           <button
             className={
               'w-24 mt-8 py-2 px-4 rounded-full ' +
-              [colorScheme.buttonBg, colorScheme.buttonText].join(' ')
+              [colorScheme?.buttonBg, colorScheme?.buttonText].join(' ')
             }
           >
             Back
