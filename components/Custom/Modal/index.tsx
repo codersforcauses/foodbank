@@ -8,8 +8,10 @@ const Modal = ({
   size,
   ...props
 }: PropsWithChildren<ModalProps>) => {
-  let sizeClass, baseClass, stickyClass =
-    'sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'
+  let sizeClass,
+    baseClass,
+    stickyClass =
+      'sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'
 
   switch (size) {
     case 'sm':
@@ -26,7 +28,7 @@ const Modal = ({
     default:
       sizeClass = 'max-w-4xl'
       baseClass =
-    'fixed z-40 w-full h-screen overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2 rounded-t-xl'
+        'fixed z-40 w-full h-screen overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2 rounded-t-xl'
   }
 
   let finalClass = [baseClass, sizeClass].join(' ').trim()
