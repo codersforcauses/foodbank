@@ -82,6 +82,8 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
       ([_, value]: [string, string]) => parseInt(value) > window.innerWidth
     )
 
+    //console.log(screens)
+
     let screenWidth =
       filteredScreens.length === 0 ? largestScreen : filteredScreens[0][0]
 
