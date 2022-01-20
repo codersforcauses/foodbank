@@ -1,5 +1,6 @@
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
+import styles from '../Overview/overview.module.css'
 
 import imgFrameOne from 'public/images/Extra/img-frame-white-border.png'
 import headerPlateOne from 'public/images/Extra/header-plate-1.png'
@@ -33,13 +34,20 @@ const EquipmentList = ({ recipe }: Props) => {
             ))}
           </ul>
         </div>
-        {/* <div className='self-center pr-8 rounded-3xl'> */}
-        <img
-          className='self-center pr-8 rounded-3xl'
-          src={recipe.equipmentImg}
-          alt='equipments'
-        />
-        {/* </div> */}
+        <div className='relative'>
+          {/* <div
+          className={
+            styles['image-container'] + ' absolute top-0 right-0 -mr-2 -mt-16'
+          }
+        > */}
+          <Image
+            className='relative self-center pr-8 rounded-3xl'
+            src={recipe.equipmentImg}
+            alt='equipments'
+            width='1250px'
+            height='5px'
+          />
+        </div>
       </div>
     </div>
   )

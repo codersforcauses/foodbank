@@ -34,10 +34,12 @@ const IngredientsList = ({ recipe }: Props) => {
           </ul>
         </div>
 
-        <img
+        <Image
           className='self-center pr-8 rounded-3xl'
           src={recipe.ingredientsImg}
           alt='ingredients'
+          width='1250px'
+          height='5px'
         />
       </div>
     </div>
