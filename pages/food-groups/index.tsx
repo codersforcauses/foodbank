@@ -17,7 +17,7 @@ import { Button, Modal } from '@components/Custom'
 
 import { Client } from '@notionhq/client/build/src'
 import { getCharacterImages } from '@components/FoodGroups/API/getData'
-import { getServerSideProps } from '@components/FoodGroups/API/getData'
+// import { getServerSideProps } from '@components/FoodGroups/API/getData'
 
 /**
  */
@@ -55,7 +55,7 @@ function generateCharacterSet() {
 
 
 
-const FoodGroupsPage: React.FC = () => {
+const FoodGroupsPage: React.FC = ({ data } ) => {
   const [modalState, setModalState] = useState(false)
   const [selectedDraggable, setSelectedDraggable] = useState(0)
   const [selectedDraggableType, setSelectedDraggableType] = useState<string | undefined>(undefined)
@@ -70,6 +70,8 @@ const FoodGroupsPage: React.FC = () => {
 
   const draggablePositions: State_<Vector2>[] = []
   var draggables: JSX.Element[] = []
+
+  console.log(data);
 
   
   function randomizeDraggables() {
@@ -143,21 +145,9 @@ const FoodGroupsPage: React.FC = () => {
     )
   })
 
-  const notion = new Client({
-    auth: process.env.NOTION_API_KEY
-  });
 
-  const getSomeInfo = async () => {
-    let data = await notion.databases.query({
-      database_id: process.env.NOTION_CHARACTERS_DB_ID ?? ''
-    })
-    return data
-  }
 
   useEffect(() => {
-    
-
-    console.log(notion)
 
     
 
@@ -272,5 +262,29 @@ const FoodGroupsPage: React.FC = () => {
     </>
   )
 }
+export const getServerSideProps = async () => {
+
+  const notion = new Client({
+    auth: process.env.NOTION_API_KEY
+  });
+
+  const getSomeInfo = async () => {
+    let data = await notion.databases.query({
+      database_id: process.env.NOTION_CHARACTERS_DB_ID ?? ''
+    })
+    return { data }
+  }
+  
+  const { data } = await getSomeInfo()
+  
+  return {
+    props: {
+      data,
+    }
+  }
+}
+
 
 export default FoodGroupsPage
+
+
