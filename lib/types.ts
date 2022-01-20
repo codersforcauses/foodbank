@@ -18,10 +18,10 @@ interface Recipe {
   equipment: string[]
   ingredients: string[]
   steps: RecipeStep[]
-  finalShot: string
-  ingredientsImg: string
-  equipmentImg: string
-  colorSchemeName: string // getAllRecipes() does not have this field
+  finalShot: StaticImageData | string
+  ingredientsImg: StaticImageData | string
+  equipmentImg: StaticImageData | string
+  colorSchemeName?: string // getAllRecipes() does not have this field
   colorScheme?: ColorScheme // getRecipeDetails() does not have this field
   hint?: string
   page_id?: string
@@ -29,20 +29,20 @@ interface Recipe {
 
 interface RecipeStep {
   number: number // this is suppose to be a string
-  image: string // Used to be StaticImageData
+  image: StaticImageData | string
   description: string
 }
 
 interface Character {
   name: string
-  image?: string // Do we need this?
+  image?: string
   aliasName: string
   about: string
   aliasImage: string
   imageGif: string
   superPowers: string
   foodGroup: string
-  location: string[] // Used to be just string
+  location: string | string[]
   facing?: string
 }
 

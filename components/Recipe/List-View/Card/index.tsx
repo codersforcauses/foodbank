@@ -16,7 +16,7 @@ export interface CardProps {
   /**
    * Image to show
    */
-  image: string
+  image: StaticImageData | string
   /**
    * Alt text for image
    */
