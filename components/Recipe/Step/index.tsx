@@ -5,11 +5,10 @@ import styles from './Step.module.css'
 interface Props {
   step: RecipeStep
   colorScheme?: ColorScheme
-  key: number
 }
 
-const Step = ({ step, colorScheme, key }: Props) => (
-  <div className='flex flex-row items-center w-screen my-5 space-x-8' key={key}>
+const Step = ({ step, colorScheme }: Props) => (
+  <div className='flex flex-row items-center w-screen my-5 space-x-8'>
     <h1 className={`${colorScheme?.header} w-12 text-4xl font-serif`}>
       {step.number}
     </h1>

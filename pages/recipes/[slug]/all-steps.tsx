@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { recipes } from 'lib/Recipes'
@@ -50,7 +51,9 @@ const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
           Recipe Steps
         </h1>
         {recipe.steps.map(step => (
-          <Step key={step.number} step={step} colorScheme={colorScheme} />
+          <Fragment key={step.number}>
+            <Step step={step} colorScheme={colorScheme} />
+          </Fragment>
         ))}
         <Link
           href={{
