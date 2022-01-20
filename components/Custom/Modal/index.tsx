@@ -8,24 +8,31 @@ const Modal = ({
   size,
   ...props
 }: PropsWithChildren<ModalProps>) => {
-  let sizeClass = 'max-w-lg',
-    baseClass = 'fixed z-40 w-full h-screen overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 lg:h-3/4 inset-1/2 mt-10 rounded-t-xl',
-    stickyClass =
-      'sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'
+  let sizeClass,
+    baseClass =
+      'fixed z-40 w-full h-5/6 overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2  rounded-t-xl'
 
   switch (size) {
     case 'sm':
-      sizeClass = 'max-w-lg'
+      sizeClass = 'max-w-md'
       break
     case 'md':
+      sizeClass = 'max-w-lg'
+      break
+    case 'lg':
+      sizeClass = 'max-w-xl'
+      break
+    case 'xl':
       sizeClass = 'max-w-2xl'
       break
     case '2xl':
-    case 'xl':
-      sizeClass = 'max-w-max'
+      sizeClass = 'max-w-3xl'
       break
+    case '3xl':
+        sizeClass = 'max-w-4xl'
+        break
     default:
-      sizeClass = 'max-w-4xl'
+      sizeClass = 'min-w-full'
   }
 
   let finalClass = [baseClass, sizeClass].join(' ').trim()
@@ -54,7 +61,7 @@ const Modal = ({
           className={finalClass}
         >
           <div className='relative z-50 transform bg-white rounded-xl'>
-            <div className={stickyClass}>
+            <div className='sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'>
               <Dialog.Title className='font-serif text-2xl'>
                 {heading}
               </Dialog.Title>

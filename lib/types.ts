@@ -46,7 +46,7 @@ interface Character {
   facing?: string
 }
 
-type Breakpoints = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+type Breakpoints = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
 
 //TODO: Fix the API to return ColorScheme as a required parameter. Just random values atm
 
