@@ -2070,10 +2070,10 @@ json5@^1.0.1:
     array-includes "^3.1.3"
     object.assign "^4.1.2"
 
-keen-slider@^6.6.3:
-  version "6.6.3"
-  resolved "https://registry.yarnpkg.com/keen-slider/-/keen-slider-6.6.3.tgz#b99eb61aa2c4f3cae5274a3424e2a010b26b7081"
-  integrity sha512-IDJh3CNeiCY/0N/ht+4/TUUD0plS064ijO8AcQ2sJXS07PhJOnv7kNUVsQdNh+t8Vmmy3sJ+sHNubSGdrEcMlQ==
+keen-slider@5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/keen-slider/-/keen-slider-5.5.1.tgz#1493f552eadf0f5b8229defd83c626eb6dd58c13"
+  integrity sha512-QXGZGt5Hbe0YufR/RYbOG03MmOk43RQEXqkkSvjr8ZS67sVR7LRp5RIvJALfjl+A7BnHNr1wd1QBOemwy65Lfw==
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"
