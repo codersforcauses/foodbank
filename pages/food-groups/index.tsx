@@ -15,6 +15,10 @@ import { Vector2 } from '@components/FoodGroups/Draggable/boundingbox'
 import { State_ } from '@components/FoodGroups/types'
 import { Button, Modal } from '@components/Custom'
 
+import { Client } from '@notionhq/client/build/src'
+import { getCharacterImages } from '@components/FoodGroups/API/getData'
+import { getServerSideProps } from '@components/FoodGroups/API/getData'
+
 /**
  */
 
@@ -53,28 +57,21 @@ function generateCharacterSet() {
 
 const FoodGroupsPage: React.FC = () => {
   const [modalState, setModalState] = useState(false)
-
   const [selectedDraggable, setSelectedDraggable] = useState(0)
-  const [selectedDraggableType, setSelectedDraggableType] = useState<
-    string | undefined
-  >(undefined)
+  const [selectedDraggableType, setSelectedDraggableType] = useState<string | undefined>(undefined)
 
   // GAME STATE
   const [hoverType, setHoverType] = useState('')
-  // const [selectedDraggable, setSelectedDraggable] = useState('')
-  // const [unsortedCount, setUnsortedCount] = useState(5)
-  // const [correctCount, setCorrectCount] = useState(0)
-  // const [resetGame, setResetGame] = useState(false)
   const [roundCounter, setRoundCounter] = useState(0)
   const [correctDraggables, setCorrectDraggables] = useState(newArray(false))
   const [wheelEnabled, setWheelEnabled] = useState(true)
   const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet())
-
   const [overridePosition, setOverridePosition] = useState({ x: 0, y: 0 })
 
   const draggablePositions: State_<Vector2>[] = []
   var draggables: JSX.Element[] = []
 
+  
   function randomizeDraggables() {
     
   }
@@ -146,9 +143,25 @@ const FoodGroupsPage: React.FC = () => {
     )
   })
 
-  // useEffect(() => {
-  //   console.log('hi')
-  // }, [currentCharSet])
+  const notion = new Client({
+    auth: process.env.NOTION_API_KEY
+  });
+
+  const getSomeInfo = async () => {
+    let data = await notion.databases.query({
+      database_id: process.env.NOTION_CHARACTERS_DB_ID ?? ''
+    })
+    return data
+  }
+
+  useEffect(() => {
+    
+
+    console.log(notion)
+
+    
+
+  }, [])
 
     
   
