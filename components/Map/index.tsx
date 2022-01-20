@@ -59,6 +59,7 @@ const Map = () => {
           <TransformComponent wrapperClass='min-h-screen lg:main'>
             <MapImage
               scale={scale}
+              initialScale={initialScale}
               setTransform={setTransform}
               setDisplay={setDisplay}
               display={display}
