@@ -1,15 +1,15 @@
 .card-image-container {
-    width: 100%;
+  width: 100%;
 }
 
-.card-image-container> div {
-    position: unset !important;
+.card-image-container > span {
+  position: unset !important;
 }
 
 .image {
-    object-fit: contain;
-    width: 100% !important;
-    position: relative !important;
-    height: unset !important;
-    z-index: -1;
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+  z-index: -1;
 }
