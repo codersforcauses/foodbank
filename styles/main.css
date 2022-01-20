@@ -53,9 +53,9 @@
       min-height: calc(100vh - 4rem);
     }
   }
-    .text-shadow-title {
-      text-shadow: -2px 3px 8px rgba(0, 0, 0, 0.17);
-    }
+  .text-shadow-title {
+    text-shadow: -2px 3px 8px rgba(0, 0, 0, 0.17);
+  }
 }
 
 .shadow-primary {

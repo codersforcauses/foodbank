@@ -29,8 +29,8 @@ const Modal = ({
       sizeClass = 'max-w-3xl'
       break
     case '3xl':
-        sizeClass = 'max-w-4xl'
-        break
+      sizeClass = 'max-w-4xl'
+      break
     default:
       sizeClass = 'min-w-full'
   }
