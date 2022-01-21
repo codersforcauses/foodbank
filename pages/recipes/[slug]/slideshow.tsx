@@ -1,5 +1,4 @@
 import { Carousel } from '@components/Custom'
-import styles from './Slideshow.module.css'
 import Image from 'next/image'
 import { Recipe } from 'lib/types'
 
@@ -29,15 +28,11 @@ const RecipeSlideShow = ({ recipe }: RecipeProps) => {
                 <div className='px-6 py-2 font-sans text-5xl font-bold text-white transform border-8 border-black w-max h-max -rotate-12 bg-primary'>{`STEP ${
                   index + 1
                 }`}</div>
-                <div
-                  className={
-                    styles['card-image-container'] + ' flex justify-center'
-                  }
-                >
+                <div className='flex justify-center w-full !span-child-relative z-[-1]'>
                   <Image
+                    className='!relative !w-full !h-[unset] object-contain border-8'
                     src={recipeStep.image}
                     alt={`step ${index}`}
-                    className={styles.image + ' border-8'}
                     layout='fill'
                     priority={true}
                   />

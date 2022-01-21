@@ -1,6 +1,5 @@
 import { ColorScheme, RecipeStep } from 'lib/types'
 import Image from 'next/image'
-import styles from './Step.module.css'
 
 interface Props {
   step: RecipeStep
@@ -12,7 +11,7 @@ const Step = ({ step, colorScheme }: Props) => (
     <h1 className={`${colorScheme?.header} w-12 text-4xl font-serif`}>
       {step.number}
     </h1>
-    <div className={styles['card-image-container']}>
+    <div className='w-full !span-child-relative'>
       <Image
         className='!relative !w-full !h-[unset] object-contain rounded-2xl'
         src={step.image}

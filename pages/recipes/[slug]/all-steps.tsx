@@ -42,11 +42,9 @@ const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
   } else {
     const colorScheme = recipe.colorScheme
     return (
-      <div className={'p-10 ' + colorScheme?.bg}>
+      <div className={`${colorScheme?.bg} p-10`}>
         <h1
-          className={
-            'text-4xl underline font-semibold font-serif ' + colorScheme?.header
-          }
+          className={`${colorScheme?.header} text-4xl underline font-semibold font-serif`}
         >
           Recipe Steps
         </h1>
@@ -65,10 +63,7 @@ const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
           passHref
         >
           <button
-            className={
-              'w-24 mt-8 py-2 px-4 rounded-full ' +
-              [colorScheme?.buttonBg, colorScheme?.buttonText].join(' ')
-            }
+            className={`${colorScheme?.buttonBg} ${colorScheme?.buttonText} w-24 mt-8 py-2 px-4 rounded-full`}
           >
             Back
           </button>

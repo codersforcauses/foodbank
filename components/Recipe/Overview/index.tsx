@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
 import Modal from 'components/Custom/Modal'
-import styles from 'components/Recipe/Overview/overview.module.css'
 import { Breakpoints } from 'lib/types'
 
 import starLabel from 'public/images/Extra/star_label.png'
@@ -105,12 +104,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
         <div className='max-w-screen-2xl '>
           <div className='flex justify-center m-1'>
             <div className='flex flex-col w-3/4'>
-              <div
-                className={
-                  styles['image-container'] +
-                  ' w-full mt-[20%] border-solid border-[#434343] border-[3px]'
-                }
-              >
+              <div className='w-full !span-child-relative mt-[20%] border-solid border-[#434343] border-[3px]'>
                 <Image
                   className='!relative !w-full !h-[unset] object-contain'
                   src={recipe.finalShot}
@@ -130,14 +124,9 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
               </div>
               {recipe.character && (
                 <div
-                  className={
-                    styles['hero-image-container'] +
-                    ` ${
-                      recipe.character.facing === 'left'
-                        ? styles['flip-hero-image']
-                        : ''
-                    }`
-                  }
+                  className={`${
+                    recipe.character.facing === 'left' ? 'scale-x-[-1]' : ''
+                  } w-2/5 mt-[-35%] ml-[-10%] mr-[-20%] !span-child-relative`}
                 >
                   <Image
                     className='!relative !w-full !h-[unset] object-contain'
@@ -149,7 +138,8 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
               )}
               {recipe.hint && (
                 <div className='flex'>
-                  <div className={styles['tip-plate-container']}>
+                  {/* <div className={styles['tip-plate-container']}> */}
+                  <div className='w-2/5 mt-[-75%] ml-[75%] mr-[-15%] !span-child-relative'>
                     <Image
                       className='!relative !w-full !h-[unset] object-contain'
                       src={hintPlate}
@@ -162,7 +152,12 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
                       //   ' absolute font-semibold font-serif '
                       // }
                       // cannot test as it is not showing
-                      className='absolute w-4/5 font-serif font-semibold rotate-[10deg] mt-[-45%] ml-[15%] text-[2vw] md:mt-[-140%] md:ml-[34px] md:text-2xl lg:mt-[-150%] lg:ml-[34px] lg:text-2xl xl:mt-[-160%] xl:ml-[50px] xl:text-2xl'
+                      className={
+                        'absolute w-4/5 font-serif font-semibold rotate-[10deg]' +
+                        ' ' +
+                        ''
+                        // 'mt-[-45%] ml-[15%] text-[2vw] md:mt-[-140%] md:ml-[34px] md:text-[1.5rem] lg:mt-[-150%] lg:ml-[34px] lg:text-2xl xl:mt-[-160%] xl:ml-[50px] xl:text-2xl'
+                      }
                     >
                       {recipe.hint}
                     </div>

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import styles from './Card.module.css'
 import { Character } from 'lib/types'
 import explosion from 'public/images/Extra/explosion.png'
 import Image from 'next/image'
@@ -69,13 +68,12 @@ const Card = ({
   character,
   ...props
 }: CardProps) => {
-  const cardClass: string =
-    'w-fit h-fit rounded-[10%] text-center relative shadow-xl hover:shadow-2xl'
   return (
     <div
-      className={[cardClass, getClassesFromColor(color, unlocked)]
-        .join(' ')
-        .trim()}
+      className={`${getClassesFromColor(
+        color,
+        unlocked
+      )} w-fit h-fit rounded-[10%] text-center relative shadow-xl hover:shadow-2xl`}
       {...props}
     >
       <div className='flex flex-col'>
@@ -91,10 +89,7 @@ const Card = ({
               passHref
             >
               <div>
-                <div
-                  className={styles['card-image-container'] + ' mt-8'}
-                  // className='w-full mt-8'
-                >
+                <div className='w-full !span-child-relative mt-8'>
                   <Image
                     className='!relative !w-full !h-[unset] object-contain'
                     src={image}
@@ -108,12 +103,7 @@ const Card = ({
               </div>
             </Link>
             {/* Superhero on top of the recipe image */}
-            <div
-              className={
-                styles['splash-container'] +
-                ' absolute top-0 right-0 -mr-10 -mt-14 opacity-80'
-              }
-            >
+            <div className='w-1/2 !span-child-relative absolute top-0 right-0 -mr-10 -mt-14 opacity-80'>
               <Image
                 className='!relative !w-full !h-[unset] object-contain'
                 src={explosion}
@@ -121,12 +111,7 @@ const Card = ({
                 layout='fill'
               />
             </div>
-            <div
-              className={
-                styles['image-container'] +
-                ' absolute top-0 right-0 -mr-2 -mt-16'
-              }
-            >
+            <div className='w-[30%] h-[55%] absolute top-0 right-0 -mr-2 -mt-16'>
               <Image
                 className='!relative !w-full !h-[unset] object-contain'
                 src={character.imageGif}

@@ -1,6 +1,5 @@
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
-import styles from '../Overview/overview.module.css'
 
 import imgFrameOne from 'public/images/Extra/img-frame-white-border.png'
 import headerPlateOne from 'public/images/Extra/header-plate-1.png'
