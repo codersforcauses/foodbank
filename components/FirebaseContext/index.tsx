@@ -10,6 +10,7 @@ import { User, Auth, signOut } from 'firebase/auth'
 import {
   doc,
   Firestore,
+  getDoc,
   setDoc,
   updateDoc,
   FirestoreError
@@ -60,21 +61,32 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
       try {
-        const userToken = await user.getIdToken()
-        const headers = { Authorization: `Bearer ${userToken}` }
-        const response = await fetch(`${FIRESTORE_URL}/${user.uid}`, {
-          method: 'get',
-          headers: headers
-        })
-        const userDoc = await response.json()
-        if (response.ok && userDoc?.fields) {
-          const userDocData: AchievementsData = FireStoreParser(userDoc.fields)
+        // const userToken = await user.getIdToken()
+        // const headers = { Authorization: `Bearer ${userToken}` }
+        // const response = await fetch(`${FIRESTORE_URL}/${user.uid}`, {
+        //   method: 'get',
+        //   headers: headers
+        // })
+        // const userDoc = await response.json()
+        // if (response.ok && userDoc?.fields) {
+        //   const userDocData: AchievementsData = FireStoreParser(userDoc.fields)
+        //   setAchievements(userDocData)
+        // } else {
+        //   // doc.data() will be undefined in this case
+        //   console.error(MESSAGES.NO_USER_DOCUMENT)
+        //   await setDoc(doc(db, 'users', user.uid), defaultAchievements)
+        // }
+        //#region  //*=========== Testing ===========
+        const userDocSnap = await getDoc(doc(db, 'users', user.uid))
+        if (userDocSnap.exists()) {
+          const userDocData: AchievementsData = userDocSnap.data()
           setAchievements(userDocData)
         } else {
           // doc.data() will be undefined in this case
-          console.error(MESSAGES.NO_USER_DOCUMENT)
+          console.log('TESTING: No such document!')
           await setDoc(doc(db, 'users', user.uid), defaultAchievements)
         }
+        //#endregion  //*======== Testing ===========
       } catch (err: unknown) {
         //#region  //*=========== For logging ===========
         if (err instanceof FirestoreError) {
