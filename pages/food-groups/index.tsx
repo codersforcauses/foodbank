@@ -8,7 +8,7 @@ import React, {
 import FoodGroups from 'components/FoodGroups'
 import styles from 'components/FoodGroups/foodgroups.module.css'
 import Draggable from '@components/FoodGroups/Draggable'
-import { foodGroupsCharacterImages } from '@components/FoodGroups/Draggable/characterimages'
+import { foodGroupsCharacterImages, notion_food_dict } from '@components/FoodGroups/Draggable/characterimages'
 import CharacterSpawner from '@components/FoodGroups/Draggable/characterspawner'
 import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
 import { Vector2 } from '@components/FoodGroups/Draggable/boundingbox'
@@ -16,7 +16,7 @@ import { State_ } from '@components/FoodGroups/types'
 import { Button, Modal } from '@components/Custom'
 
 import { Client } from '@notionhq/client/build/src'
-import { getCharacterImages } from '@components/FoodGroups/API/getData'
+import { getCharacterData, getFormatData } from '@components/FoodGroups/API/getData'
 // import { getServerSideProps } from '@components/FoodGroups/API/getData'
 
 /**
@@ -35,14 +35,14 @@ const N_DRAGGABLE = 5
 
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
 
-function generateCharacterSet() {
+function generateCharacterSet(character_data:FoodGroupCharacterImage[]) {
   const characterSet: FoodGroupCharacterImage[] = []
   // Is there a dynamic way to do this? (answer is yes but what is the most efficient way to do it?)
-  const meatCharacters = foodGroupsCharacterImages.filter(character => character.type === 'meat')
-  const dairyCharacters = foodGroupsCharacterImages.filter(character => character.type === 'dairy')
-  const vegetableCharacters = foodGroupsCharacterImages.filter(character => character.type === 'vegetables')
-  const fruitCharacters = foodGroupsCharacterImages.filter(character => character.type === 'fruit')
-  const grainCharacters = foodGroupsCharacterImages.filter(character => character.type === 'grains')
+  const meatCharacters = character_data.filter(character => character.type === 'meat')
+  const dairyCharacters = character_data.filter(character => character.type === 'dairy')
+  const vegetableCharacters = character_data.filter(character => character.type === 'vegetables')
+  const fruitCharacters = character_data.filter(character => character.type === 'fruit')
+  const grainCharacters = character_data.filter(character => character.type === 'grains')
 
   characterSet.push(meatCharacters[Math.floor(Math.random()*meatCharacters.length)])
   characterSet.push(dairyCharacters[Math.floor(Math.random()*dairyCharacters.length)])
@@ -55,7 +55,7 @@ function generateCharacterSet() {
 
 
 
-const FoodGroupsPage: React.FC = ({ data } ) => {
+const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterImage[] ) => {
   const [modalState, setModalState] = useState(false)
   const [selectedDraggable, setSelectedDraggable] = useState(0)
   const [selectedDraggableType, setSelectedDraggableType] = useState<string | undefined>(undefined)
@@ -65,13 +65,13 @@ const FoodGroupsPage: React.FC = ({ data } ) => {
   const [roundCounter, setRoundCounter] = useState(0)
   const [correctDraggables, setCorrectDraggables] = useState(newArray(false))
   const [wheelEnabled, setWheelEnabled] = useState(true)
-  const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet())
+  const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet(notion_character_data))
   const [overridePosition, setOverridePosition] = useState({ x: 0, y: 0 })
 
   const draggablePositions: State_<Vector2>[] = []
   var draggables: JSX.Element[] = []
 
-  console.log(data);
+  // console.log(notion_character_data)
 
   
   function randomizeDraggables() {
@@ -117,12 +117,8 @@ const FoodGroupsPage: React.FC = ({ data } ) => {
     draggablePositions.forEach((state, i) =>
       state[1](draggables[i].props.start_pos)
     )
-    setCharSet(generateCharacterSet)
+    setCharSet(generateCharacterSet(notion_character_data))
   }
-  
-  // useEffect(() => {
-  //   set = generateCharacterSet()
-  // }, [])
 
   currentCharSet.map((character, index) => {
     draggablePositions[index] = useState<Vector2>(character.start_pos)
@@ -144,43 +140,6 @@ const FoodGroupsPage: React.FC = ({ data } ) => {
       />
     )
   })
-
-
-
-  useEffect(() => {
-
-    
-
-  }, [])
-
-    
-  
-  
-
-  // for (let i = 0; i < N_DRAGGABLE; i++) {
-  //   const character =
-  //     foodGroupsCharacterImages[i % foodGroupsCharacterImages.length]
-  //   draggablePositions[i] = useState<Vector2>(character.start_pos)
-  //   draggables[i] = (
-  //     <Draggable
-  //       key={i}
-  //       onEndDrag={updatedFunction(() => {
-  //         endDragF(i)
-  //         setSelectedDraggableType(undefined)
-  //       })}
-  //       onStartDrag={() => {
-  //         setSelectedDraggable(i)
-  //         setSelectedDraggableType(character.type)
-  //       }}
-  //       screenPosition={draggablePositions[i][0]}
-  //       setScreenPosition={draggablePositions[i][1]}
-  //       setAbsPosition={setOverridePosition}
-  //       {...character}
-  //     />
-  //   )
-  // }
-  
-
 
   // refactor-firebase-authentication branch for achievement logic.
 
@@ -226,23 +185,6 @@ const FoodGroupsPage: React.FC = ({ data } ) => {
           }}
           draggable={false}
         >
-          {/* <FoodGroups setHoverType={setHoverType} /> */}
-          {/* {foodGroupsCharacterImages.map((character, index) => (
-            <Draggable
-              key={index}
-              onEndDrag={endDragF}
-              onStartDrag={() => setSelectedDraggable(character.type)}
-              {...character}
-            />
-          ))} */}
-          {/* <CharacterSpawner
-            onEndDrag={endDragF}
-            onStartDrag={startDragF}
-            resetlogic={resetGame}
-          /> */}
-          {/* <div>
-            Hi
-          </div> */}
           <FoodGroups
             overrideMouse={selectedDraggableType !== undefined} // FIXME: Override not working!
             overrideMousePosition={overridePosition} // FIXME: Override not working!
@@ -268,18 +210,14 @@ export const getServerSideProps = async () => {
     auth: process.env.NOTION_API_KEY
   });
 
-  const getSomeInfo = async () => {
-    let data = await notion.databases.query({
-      database_id: process.env.NOTION_CHARACTERS_DB_ID ?? ''
-    })
-    return { data }
-  }
   
-  const { data } = await getSomeInfo()
+  const { data } = await getCharacterData()
+
+  const notion_character_data:FoodGroupCharacterImage[] = getFormatData(data)
   
   return {
     props: {
-      data,
+      notion_character_data,
     }
   }
 }
