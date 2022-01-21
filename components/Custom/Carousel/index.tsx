@@ -69,7 +69,7 @@ const Carousel = ({
       {children}
 
       {/* styles for arrow and dots subject to changes later */}
-      {controls && slider.current && (
+      {controls && (
         <>
           <Arrow
             direction='left'
@@ -83,7 +83,7 @@ const Carousel = ({
           />
         </>
       )}
-      {indicators && slider.current && (
+      {indicators && (
         <Dots
           className='absolute bottom-0 left-0 right-0 z-10 flex justify-center'
           nImages={length}
