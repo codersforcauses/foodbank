@@ -14,6 +14,7 @@ const Map = () => {
 
   useEffect(() => {
     function handleResize() {
+      console.log("width, height", window.innerWidth, window.innerHeight)
       // const mobileWidth = 2900
       // const minStaticWidth = 1170
       const targetWidth = window.innerWidth
