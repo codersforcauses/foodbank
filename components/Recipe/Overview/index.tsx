@@ -151,7 +151,6 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
                       //   styles['hint-text'] +
                       //   ' absolute font-semibold font-serif '
                       // }
-                      // cannot test as it is not showing
                       className={
                         'absolute w-4/5 font-serif font-semibold rotate-[10deg]' +
                         ' ' +
