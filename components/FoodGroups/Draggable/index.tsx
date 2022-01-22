@@ -96,7 +96,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     <>
       <div
         aria-hidden='true'
-        className={`${hoverStyle} ${dragStyle} w-48 h-48 transition ease-in duration-100 scale-90 hover:scale-100`}
+        className={`${hoverStyle} ${dragStyle} w-44 h-44 transition ease-in duration-100 scale-100 hover:scale-110`}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}
