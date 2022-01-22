@@ -14,6 +14,7 @@ const Map = () => {
 
   useEffect(() => {
     function handleResize() {
+      console.log("width, height", window.innerWidth, window.innerHeight)
       // const mobileWidth = 2900
       // const minStaticWidth = 1170
       const targetWidth = window.innerWidth
@@ -59,6 +60,7 @@ const Map = () => {
           <TransformComponent wrapperClass='min-h-screen lg:main'>
             <MapImage
               scale={scale}
+              initialScale={initialScale}
               setTransform={setTransform}
               setDisplay={setDisplay}
               display={display}
