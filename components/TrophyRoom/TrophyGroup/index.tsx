@@ -38,11 +38,15 @@ const TrophyGroup = ({ trophy1, trophy2, trophy3, side }: Props) => {
         )}
       </div>
       <div className='relative w-full bg-white h-5'>
-        <div className='absolute w-full text-center'>{numTrophies} / 3</div>
-        <div
-          className='bg-green h-5'
-          style={{ width: (numTrophies * 100) / 3 + '%' }}
-        ></div>
+        <div className='absolute w-full font-serif text-center text-sm'>
+          {numTrophies} / 3
+        </div>
+        <div className='mx-2 py-0.5'>
+          <div
+            className='bg-green h-4'
+            style={{ width: (numTrophies * 100) / 3 + '%' }}
+          ></div>
+        </div>
       </div>
     </div>
   )
