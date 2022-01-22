@@ -14,7 +14,7 @@ const DropdownSignOut = ({
   return (
     <Menu as='div' className='relative flex text-xl text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
-        {username}
+        <span className='capitalize'>{username}</span>
         <ChevronDownIcon
           className='inline w-5 h-5 ml-2 -mr-1'
           aria-hidden='true'

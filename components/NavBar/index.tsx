@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import capitalize from 'lodash.capitalize'
 import { useFirebase } from '@components/FirebaseContext'
 import NavLink, { NavLinkProps } from './NavLink'
 import logo from 'public/images/foodbank-logo.webp'
@@ -60,7 +59,7 @@ const Navbar = () => {
         </nav>
         {user?.displayName ? (
           <DropdownSignOut
-            username={capitalize(user.displayName)}
+            username={user.displayName}
             signOutClearDataUnlockGrid={signOutClearDataUnlockGrid}
           />
         ) : (
