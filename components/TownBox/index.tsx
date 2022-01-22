@@ -30,18 +30,21 @@ const Townbox = ({
       </h2>
 
       <div
-        className={`${styles.captionbox} flex relative flex-col items-center justify-center p-8 mt-16 border-4 border-black w-full h-auto pb-2 pt-2`}
+        className={`${styles.captionbox} -skew-x-12 flex relative flex-col items-center justify-center p-8 mt-16 border-4 border-black w-full h-auto pb-2 pt-2`}
       >
-        <p className='font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl pt-3'>
+        <p className='skew-x-12 font-sans border-solid pb-2 mb-0 z-10 text-base leading-5 relative mt-4 break-words md:text-xl pt-3'>
           {captionText}
         </p>
 
-        <button onClick={close} className='absolute right-5 top-2 scale-110'>
+        <button
+          onClick={close}
+          className='skew-x-12 absolute right-5 top-2 scale-110'
+        >
           &#10006;
         </button>
 
         {showButton && (
-          <Button className='' bgColor={bgColour}>
+          <Button className='skew-x-12' bgColor={bgColour}>
             Visit
           </Button>
         )}
