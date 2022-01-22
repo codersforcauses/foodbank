@@ -33,18 +33,12 @@ const EquipmentList = ({ recipe }: Props) => {
             ))}
           </ul>
         </div>
-        <div className='relative'>
-          {/* <div
-          className={
-            styles['image-container'] + ' absolute top-0 right-0 -mr-2 -mt-16'
-          }
-        > */}
+        <div className='relative w-full h-auto'>
           <Image
-            className='relative self-center pr-8 rounded-3xl'
+            className='self-center object-contain pr-8 rounded-3xl'
             src={recipe.equipmentImg}
             alt='equipments'
-            width='1250px'
-            height='5px'
+            layout='fill'
           />
         </div>
       </div>
