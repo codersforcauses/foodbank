@@ -16,6 +16,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
   const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
   const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
+  const [dragStyle, setDragStyle] = useState('')
   const [ptrEvents, setPtrEvents] = useState(true)
 
   const dragAround = (e: MouseEvent) => {
@@ -32,6 +33,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const stopDrag = () => {
     // setHoverTypeMutex(true)
+    setDragStyle('')
 
     props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
@@ -43,6 +45,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // setHoverTypeMutex(false)
     float()
+    setDragStyle('animate-wiggle')
 
     props.onStartDrag()
     let parentRect: DOMRect
@@ -93,7 +96,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     <>
       <div
         aria-hidden='true'
-        className={`${hoverStyle} w-48 h-48 transition ease-in duration-100 scale-100 hover:scale-110`}
+        className={`${hoverStyle} ${dragStyle} w-48 h-48 transition ease-in duration-100 scale-90 hover:scale-100`}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}

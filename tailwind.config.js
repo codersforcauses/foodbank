@@ -22,7 +22,22 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
-      }
+      },
+      animation: {
+        vibrate: 'vibrate 10s ease-in-out infinite',
+        wiggle: 'wiggle 1s ease-in-out infinite',
+      },
+      keyframes: {
+        vibrate: {
+          '0%, 100%': { transform: 'translateX(0px)' },
+          '5%, 25%, 45%, 65%, 85%': { transform: 'translateX(10rem)' },
+          '15%, 35%, 55%, 75%, 95%': { transform: 'translateX(-10rem)' }
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        }
+      },
     }
   },
   variants: {
