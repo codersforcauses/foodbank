@@ -85,3 +85,7 @@
 .mapImage {
   pointer-events: auto !important;
 }
+
+.wrapper {
+  height: 100vw;
+}

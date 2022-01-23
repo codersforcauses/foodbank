@@ -14,7 +14,7 @@ const Map = () => {
 
   useEffect(() => {
     function handleResize() {
-      console.log("width, height", window.innerWidth, window.innerHeight)
+      console.log('width, height', window.innerWidth, window.innerHeight)
       // const mobileWidth = 2900
       // const minStaticWidth = 1170
       const targetWidth = window.innerWidth
@@ -24,19 +24,25 @@ const Map = () => {
       const aspectRatio = window.innerWidth / window.innerHeight
       if (aspectRatio > 1.6) {
         setInitialScale(1.2)
+        //console.log(1.2)
       } else if (aspectRatio > 1.4) {
         setInitialScale(1.4)
+        //console.log(1.4)
       } else if (aspectRatio > 1.2) {
         setInitialScale(1.6)
+        //console.log(1.6)
       } else if (aspectRatio > 1) {
         setInitialScale(2.1)
+        //console.log(2.1)
       } else if (aspectRatio > 0.8) {
         setInitialScale(2.6)
+        //console.log(2.6)
       } else if (aspectRatio > 0.65) {
         setInitialScale(3.2)
         console.log('THIS HAPPENED!')
       } else {
         setInitialScale(4.7)
+        //console.log(4.7)
       }
       transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
     }
@@ -54,6 +60,7 @@ const Map = () => {
       pinch={{ disabled: true }}
       alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
       ref={transformWrapper}
+      limitToBounds={true}
     >
       {({ resetTransform, setTransform }) => (
         <>
