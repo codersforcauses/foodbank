@@ -1,6 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
 
 interface DropdownProp {
   username: string
@@ -15,10 +14,19 @@ const DropdownSignOut = ({
     <Menu as='div' className='relative flex text-xl text-right'>
       <Menu.Button className='font-serif text-white hover:text-opacity-75'>
         <span className='capitalize'>{username}</span>
-        <ChevronDownIcon
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
           className='inline w-5 h-5 ml-2 -mr-1'
           aria-hidden='true'
-        />
+          viewBox='0 0 20 20'
+          fill='currentColor'
+        >
+          <path
+            fillRule='evenodd'
+            d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
+            clipRule='evenodd'
+          />
+        </svg>
       </Menu.Button>
       <Transition>
         {/* Arrow */}
