@@ -35,6 +35,11 @@ const MobileMenu = ({ links }: MobileMenu) => {
             >
               <Popover.Panel className='flex flex-col items-end'>
                 <div className='flex flex-col items-center justify-around w-full p-3 font-serif rounded-lg bg-primary h-96'>
+                  {user && (
+                    <span className='capitalize text-orange'>
+                      {user.displayName}
+                    </span>
+                  )}
                   {links.map(navItem => (
                     <Link key={navItem.page} href={navItem.route}>
                       <a className='w-full px-2 transition-all duration-150 rounded opacity-100 focus:ring focus:ring-teal focus:ring-opacity-50'>
