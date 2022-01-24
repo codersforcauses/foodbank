@@ -3,32 +3,19 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useFirebase } from '@components/FirebaseContext'
-import NavLink, { NavLinkProps } from './NavLink'
+import { NavLinkProps } from './NavLink'
+// import { NavLinkProps } from './NavLink'
 import logo from 'public/images/foodbank-logo.webp'
 import DropdownSignOut from './DropdownSignOut'
+import DropDownMenu from './DropDownMenu'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
-const links: Array<NavLinkProps> = [
-  {
-    page: 'Superhero Foods',
-    route: '/'
-  },
-  {
-    page: 'Recipe',
-    route: '/'
-  },
-  {
-    page: 'Progress',
-    route: '/'
-  },
-  {
-    page: 'My Trophy',
-    route: '/trophy'
-  }
-]
+interface NavbarProps {
+  links: Array<NavLinkProps>
+}
 
-const Navbar = () => {
+const Navbar = ({ links }: NavbarProps) => {
   const [openSignInForm, setOpenSignInForm] = useState(false)
   const [gridDisabled, setGridDisabled] = useState(false)
   const { user, signOutClearData } = useFirebase()
@@ -43,38 +30,38 @@ const Navbar = () => {
   }
 
   return (
-    <header className='fixed inset-x-0 top-0 z-10 hidden py-3 bg-primary lg:block'>
-      <div className='container flex justify-between px-3 mx-auto'>
+    <header className='fixed inset-x-0 top-0 z-10 hidden py-2 bg-primary md:block'>
+      <nav className='container flex justify-between px-3 mx-auto font-serif text-2xl text-white'>
         <Link href='/'>
-          <a className='relative w-12 h-10 hover:opacity-75'>
+          <a className='relative flex rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus: focus:ring-opacity-50'>
             <Image
               src={logo}
               alt='Foodbank logo'
               placeholder='blur'
-              layout='fill'
+              layout='fixed'
+              height={45}
+              width={65}
               quality={50}
             />
           </a>
         </Link>
-        <nav className='flex items-center space-x-10'>
-          {links.map(nav => (
-            <NavLink key={nav.page} {...nav} />
-          ))}
-        </nav>
-        {user?.displayName ? (
-          <DropdownSignOut
-            username={user.displayName}
-            signOutClearDataUnlockGrid={signOutClearDataUnlockGrid}
-          />
-        ) : (
-          <button
-            className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
-            onClick={toggleOpenSignInForm}
-          >
-            Sign-in
-          </button>
-        )}
-      </div>
+        <div className='flex justify-end'>
+          <DropDownMenu links={links} />
+          {user?.displayName ? (
+            <DropdownSignOut
+              username={user.displayName}
+              signOutClearDataUnlockGrid={signOutClearDataUnlockGrid}
+            />
+          ) : (
+            <button
+              className='px-3 ml-8 rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50'
+              onClick={toggleOpenSignInForm}
+            >
+              Sign-in
+            </button>
+          )}
+        </div>
+      </nav>
       <Auth
         open={openSignInForm && !user}
         onClose={toggleOpenSignInForm}
