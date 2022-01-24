@@ -47,19 +47,41 @@ const MobileMenu = ({ links }: MobileMenu) => {
                       Sign-out
                     </button>
                   ) : (
-                    <button onClick={toggleOpenSignInForm}>Sign-in</button>
+                    <button
+                      className='animate-bounce'
+                      onClick={toggleOpenSignInForm}
+                    >
+                      Sign-in
+                    </button>
                   )}
                 </div>
                 <div className='mr-5 border-t-primary border-t-[1rem] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]' />
               </Popover.Panel>
             </Transition>
             <Popover.Button
-              className={
-                'flex items-center justify-center md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ' +
-                (open ? 'bg-teal text-black' : 'bg-primary')
-              }
+              className={`flex items-center justify-center md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ${
+                open ? 'bg-teal text-black' : 'bg-primary'
+              }`}
             >
-              {open ? (
+              <span
+                aria-hidden='true'
+                className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                  open ? 'rotate-45' : '-translate-y-1.5'
+                }`}
+              ></span>
+              <span
+                aria-hidden='true'
+                className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                  open ? 'opacity-0 text-teal' : 'bg-current'
+                }`}
+              ></span>
+              <span
+                aria-hidden='true'
+                className={`block h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                  open ? '-rotate-45' : 'translate-y-1.5'
+                }`}
+              ></span>
+              {/* {open ? (
                 <span>&#9866;</span>
               ) : (
                 <Image
@@ -70,7 +92,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                   width={25}
                   height={25}
                 />
-              )}
+              )} */}
             </Popover.Button>
           </>
         )}
