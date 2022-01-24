@@ -13,7 +13,7 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   rules?: RegisterOptions
   selectedCount: number
   updateCount: (count: number) => void
-  gridDisabled: boolean
+  gridDisabled?: boolean
 }
 
 const GridField = ({
@@ -46,7 +46,6 @@ const GridField = ({
     })
     return () => subscription.unsubscribe()
   }, [watch, updateCount])
-
   return (
     <div className='grid w-full grid-cols-3 gap-2 mb-6 -mt-2 place-items-center'>
       {grid.map((char, index) => (

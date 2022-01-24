@@ -13,8 +13,8 @@ interface PasswordFormProps {
   goPrevPage: MouseEventHandler<HTMLButtonElement>
   registered: boolean
   updatePassword: (value: string) => void
-  gridDisabled: boolean
-  setGridDisabled: (value: SetStateAction<boolean>) => void
+  gridDisabled?: boolean
+  setGridDisabled?: (value: SetStateAction<boolean>) => void
 }
 
 const PasswordForm = ({
@@ -44,7 +44,7 @@ const PasswordForm = ({
     return selectedGrid.map(item => item.password).join('')
   }
 
-  const disableGrid = () => setGridDisabled(true)
+  const disableGrid = () => setGridDisabled?.(true)
 
   return (
     <FormProvider {...methods}>

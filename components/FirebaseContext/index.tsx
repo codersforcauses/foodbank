@@ -4,7 +4,8 @@ import {
   useContext,
   useCallback,
   useEffect,
-  PropsWithChildren
+  PropsWithChildren,
+  SetStateAction
 } from 'react'
 import { User, Auth, signOut } from 'firebase/auth'
 import {
@@ -32,7 +33,9 @@ interface FirebaseContextProps {
   userError?: Error
   achievements: AchievementsData
   updateAchievementsDocument?: (newAchievements: AchievementsData) => void
-  signOutClearData?: () => void
+  signOutClearDataUnlockGrid?: () => void
+  gridDisabled?: boolean
+  setGridDisabled?: (value: SetStateAction<boolean>) => void
 }
 
 type AchievementsData = Record<string, boolean>
@@ -51,6 +54,7 @@ const useFirebase = () => useContext(FirebaseContext)
 const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   const [achievements, setAchievements] =
     useState<AchievementsData>(defaultAchievements)
+  const [gridDisabled, setGridDisabled] = useState(false)
 
   // User Authentication
   const [user, userLoading, userError] = useAuthState(auth)
@@ -116,9 +120,10 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     }
   }
 
-  const signOutClearData = () => {
+  const signOutClearDataUnlockGrid = () => {
     signOut(auth)
     setAchievements(defaultAchievements)
+    setGridDisabled(false)
   }
 
   const value: FirebaseContextProps = {
@@ -129,7 +134,9 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     userError: userError,
     achievements: achievements,
     updateAchievementsDocument: updateAchievementsDocument,
-    signOutClearData: signOutClearData
+    signOutClearDataUnlockGrid: signOutClearDataUnlockGrid,
+    gridDisabled: gridDisabled,
+    setGridDisabled: setGridDisabled
   }
 
   return (

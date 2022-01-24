@@ -1,12 +1,5 @@
-import {
-  useState,
-  useMemo,
-  ChangeEventHandler,
-  MouseEventHandler,
-  SetStateAction
-} from 'react'
+import { useState, useMemo, ChangeEventHandler, MouseEventHandler } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-// import { useDebounce } from 'react-use'
 import useDebounce from '@lib/useDebounce'
 import { useFirebase } from '@components/FirebaseContext'
 import { Form, Modal, selectSet } from '@components/Custom'
@@ -22,8 +15,6 @@ const WAIT_FOR_MODAL_TO_CLOSE = 150
 interface AuthProps {
   open: boolean
   onClose: () => void
-  gridDisabled: boolean
-  setGridDisabled: (value: SetStateAction<boolean>) => void
 }
 
 interface FormValues {
@@ -34,7 +25,7 @@ const defaultValues: FormValues = {
   username: ''
 }
 
-const Auth = ({ gridDisabled, setGridDisabled, ...props }: AuthProps) => {
+const Auth = ({ ...props }: AuthProps) => {
   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
   const [validUsername, setValidUsername] = useState(false)
@@ -43,7 +34,7 @@ const Auth = ({ gridDisabled, setGridDisabled, ...props }: AuthProps) => {
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
   const [error, setError] = useState('')
-  const { auth } = useFirebase()
+  const { auth, gridDisabled, setGridDisabled } = useFirebase()
 
   useDebounce(
     async () => {
@@ -104,7 +95,7 @@ const Auth = ({ gridDisabled, setGridDisabled, ...props }: AuthProps) => {
         setError('')
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
-        setGridDisabled(false)
+        setGridDisabled?.(false)
       }
     }
   }

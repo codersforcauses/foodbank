@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useFirebase } from '@components/FirebaseContext'
 import { NavLinkProps } from './NavLink'
-// import { NavLinkProps } from './NavLink'
 import logo from 'public/images/foodbank-logo.webp'
 import DropdownSignOut from './DropdownSignOut'
 import DropDownMenu from './DropDownMenu'
@@ -17,17 +16,11 @@ interface NavbarProps {
 
 const Navbar = ({ links }: NavbarProps) => {
   const [openSignInForm, setOpenSignInForm] = useState(false)
-  const [gridDisabled, setGridDisabled] = useState(false)
-  const { user, signOutClearData } = useFirebase()
+  const { user } = useFirebase()
 
   const toggleOpenSignInForm = useCallback(() => {
     setOpenSignInForm(prev => !prev)
   }, [])
-
-  const signOutClearDataUnlockGrid = () => {
-    signOutClearData?.()
-    setGridDisabled(false)
-  }
 
   return (
     <header className='fixed inset-x-0 top-0 z-10 hidden py-2 bg-primary md:block'>
@@ -48,10 +41,7 @@ const Navbar = ({ links }: NavbarProps) => {
         <div className='flex justify-end'>
           <DropDownMenu links={links} />
           {user?.displayName ? (
-            <DropdownSignOut
-              username={user.displayName}
-              signOutClearDataUnlockGrid={signOutClearDataUnlockGrid}
-            />
+            <DropdownSignOut />
           ) : (
             <button
               className='px-3 ml-8 rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50'
@@ -62,12 +52,7 @@ const Navbar = ({ links }: NavbarProps) => {
           )}
         </div>
       </nav>
-      <Auth
-        open={openSignInForm && !user}
-        onClose={toggleOpenSignInForm}
-        gridDisabled={gridDisabled}
-        setGridDisabled={setGridDisabled}
-      />
+      <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
     </header>
   )
 }

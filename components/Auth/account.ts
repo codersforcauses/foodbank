@@ -52,7 +52,7 @@ const signIn = async (
   username: string,
   password: string,
   setError: (value: SetStateAction<string>) => void,
-  setGridDisabled: (value: SetStateAction<boolean>) => void
+  setGridDisabled?: (value: SetStateAction<boolean>) => void
 ) => {
   try {
     await signInWithEmailAndPassword(
@@ -76,7 +76,7 @@ const signIn = async (
           console.error(err.message)
         //#endregion  //*======== For logging ===========
       }
-      setGridDisabled(false)
+      setGridDisabled?.(false)
     } else if (err instanceof FirestoreError) {
       //#region  //*=========== For logging ===========
       switch (err.code) {
