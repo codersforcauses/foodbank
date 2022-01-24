@@ -12,7 +12,10 @@ const DropdownSignOut = ({
 }: DropdownProp) => {
   return (
     <Menu as='div' className='relative flex text-xl text-right'>
-      <Menu.Button className='font-serif text-white hover:text-opacity-75'>
+      <Menu.Button
+        //   className='font-serif text-white hover:text-opacity-75'
+        className='px-3 ml-8 font-serif text-white rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50'
+      >
         <span className='capitalize'>{username}</span>
         <svg
           xmlns='http://www.w3.org/2000/svg'
