@@ -15,10 +15,20 @@ import {
 import {
   FoodGroupStates,
   StateDispatch,
-  State_
+  State_,
+  State
 } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
-import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
+import {
+  DAIRY,
+  FOOD_GROUPS,
+  FRUIT,
+  GRAINS,
+  MEAT,
+  NONE,
+  VEGETABLES
+} from './groups'
+import { sliceBaseStyle } from './styles'
 
 /**
  * A page displaying all food groups in a pie chart
@@ -37,16 +47,6 @@ const FoodGroups = ({
   overrideMouse,
   overrideMousePosition
 }: Props) => {
-  const FOODGROUP_STYLES = [
-    ' ',
-    'z-0',
-    'transition',
-    'duration-500',
-    'ease-in-out',
-    'scale-wheel',
-    'select-none'
-  ].join(' ')
-
   const [radius, setRadius] = useState(0)
   const [center, setCenter] = useState({ x: 0, y: 0 })
   const [currentRegion, setCurrentRegion] = useState('') // Debounce mouse events
@@ -59,13 +59,11 @@ const FoodGroups = ({
     }
   }
 
-  const allStates: FoodGroupStates = {
-    [MEAT]: makeStyle(),
-    [GRAINS]: makeStyle(),
-    [DAIRY]: makeStyle(),
-    [FRUIT]: makeStyle(),
-    [VEGETABLES]: makeStyle()
-  }
+  var allStates: Record<string, State<string[]>>
+
+  FOOD_GROUPS.forEach(type => {
+    allStates[type] = makeStyle()
+  })
 
   useEffect(() => {
     resize_map({ setCenter, setRadius })
@@ -78,7 +76,7 @@ const FoodGroups = ({
         return region.region_name
       }
     }
-    return ''
+    return NONE
   }
 
   const wheelMouseOver = ({ x, y }: Vector2) => {
@@ -88,14 +86,14 @@ const FoodGroups = ({
       const newRegion = getRegion(Math.atan2(dy, dx))
       if (newRegion !== currentRegion) {
         handleMouseOut(currentRegion, allStates)
-        if (newRegion !== '') {
+        if (newRegion !== NONE) {
           handleMouseOver(newRegion, allStates)
         }
         setCurrentRegion(newRegion)
       }
-    } else if (currentRegion !== '') {
+    } else if (currentRegion !== NONE) {
       handleMouseOut(currentRegion, allStates)
-      setCurrentRegion('')
+      setCurrentRegion(NONE)
     }
   }
 
@@ -137,8 +135,6 @@ const FoodGroups = ({
 
   useEffect(() => {
     if (overrideMouse) {
-      console.log('Override')
-
       wheelMouseOver(overrideMousePosition)
     }
   }, [overrideMouse, overrideMousePosition])
@@ -157,7 +153,7 @@ const FoodGroups = ({
             id={group.div_id}
             key={group.div_id}
             className={[
-              FOODGROUP_STYLES,
+              sliceBaseStyle,
               styles[group.img_styles],
               ...allStates[group.div_id].styles
             ].join(' ')}

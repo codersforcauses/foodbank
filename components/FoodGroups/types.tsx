@@ -41,5 +41,6 @@ export type {
   FoodGroupStates,
   StateDispatch,
   WidthState,
+  State,
   State_
 }

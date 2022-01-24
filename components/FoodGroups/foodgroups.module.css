@@ -16,20 +16,14 @@
   --scale: 1.45; /* Arbitrary scale multiplier to make wheel fit within div completely */
 }
 
+/*OK*/
 .drag-drop {
   position: relative !important;
   grid-row-start: 1;
   grid-column-start: 1;
 }
 
-/* .food-wheel {
-  height: 50%;
-  width: 50%;
-  transform: translateX(-50%);
-  position: relative;
-  margin-right: 50%;
-} */
-
+/*OK*/
 .custom-img {
   object-fit: contain;
   /*max-width: 400px;*/
@@ -38,12 +32,14 @@
   height: unset !important;
 }
 
+/*OK*/
 .unset-img {
   display: flex;
   position: relative;
   width: 30%;
 }
 
+/*OK*/
 .img-dairy {
   user-select: none;
   position: relative;
