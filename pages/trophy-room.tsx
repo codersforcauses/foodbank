@@ -45,14 +45,16 @@ const TrophyRoom = () => {
     WhippedCreamTrophy
   ]
   return (
-    <div className='bg-primary'>
-      <h1 className='text-white font-bold text-6xl text-center'>Trophy Room</h1>
+    <div className='bg-primary h-min-screen md:main'>
+      <h1 className='text-white font-bold text-6xl text-center pt-10'>
+        Trophy Room
+      </h1>
       <div className='flex items-end justify-center'>
         <div className='max-w-sm'>
           <Image src={Melonator} alt='Melonator' />
         </div>
-        <div className='relative max-w-xl'>
-          <div className='absolute w-full sm:pt-16 md:pt-20 lg:pt-24 xl:pt-32 z-10 grid grid-cols-2 gap-x-10'>
+        <div className='relative max-w-xl flex justify-center'>
+          <div className='absolute w-[75%] md:w-full sm:pt-16 md:pt-24 lg:pt-24 xl:pt-32 z-10 grid grid-cols-2 gap-x-12 gap-y-4 md:gap-y-6 lg:gap-y-2 xl:gap-y-6'>
             {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup
                 trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
