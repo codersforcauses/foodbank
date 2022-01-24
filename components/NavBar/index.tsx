@@ -21,6 +21,10 @@ const links: Array<NavLinkProps> = [
   {
     page: 'Progress',
     route: '/'
+  },
+  {
+    page: 'My Trophy',
+    route: '/trophy'
   }
 ]
 
