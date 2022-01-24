@@ -6,7 +6,8 @@ import {
   SetStateAction
 } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-import { useDebounce } from 'react-use'
+// import { useDebounce } from 'react-use'
+import useDebounce from '@lib/useDebounce'
 import { useFirebase } from '@components/FirebaseContext'
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
