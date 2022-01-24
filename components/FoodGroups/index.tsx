@@ -159,7 +159,8 @@ const FoodGroups = ({
             className={[
               FOODGROUP_STYLES,
               styles[group.img_styles],
-              ...allStates[group.div_id].styles
+              ...allStates[group.div_id].styles,
+              styles['wrapper-fix']
             ].join(' ')}
             draggable={false}
           >

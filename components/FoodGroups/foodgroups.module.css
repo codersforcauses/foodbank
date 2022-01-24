@@ -116,6 +116,10 @@
   transition: all 0.3s ease-out;
 } */
 
+.wrapper-fix > span {
+  position: relative !important;
+}
+
 @media (min-width: 600px) {
   .food-group-modal {
     width: 500px;

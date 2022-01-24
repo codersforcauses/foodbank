@@ -71,12 +71,6 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
   const draggablePositions: State_<Vector2>[] = []
   var draggables: JSX.Element[] = []
 
-  // console.log(notion_character_data)
-
-  
-  function randomizeDraggables() {
-    
-  }
 
   const endDragF = (index: number) => {
     console.log(
@@ -91,13 +85,6 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
       draggablePositions[index][1](draggables[index].props.start_pos)
     }
 
-    // setUnsortedCount(unsortedCount - 1)
-    // if (unsortedCount - 1 === 0) {
-    //   // RESET GAME
-    //   alert(`Score ${score}/5`)
-    //   setCorrectCount(0)
-    //   setUnsortedCount(5)
-    //   setResetGame(!resetGame) // a bit hacky...
     // CHECK FOR END OF ROUND
     if (correctDraggables.every((v: boolean) => v)) {
       setRoundCounter(roundCounter + 1)
