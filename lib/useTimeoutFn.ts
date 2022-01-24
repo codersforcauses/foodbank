@@ -37,7 +37,7 @@ export default function useTimeoutFn(
     set()
 
     return clear
-  }, [ms])
+  }, [set, clear, ms])
 
   return [isReady, clear, set]
 }

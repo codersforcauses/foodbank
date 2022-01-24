@@ -10,7 +10,7 @@ export default function useDebounce(
 ): UseDebounceReturn {
   const [isReady, cancel, reset] = useTimeoutFn(fn, ms)
 
-  useEffect(reset, deps)
+  useEffect(reset, [reset, ...deps])
 
   return [isReady, cancel]
 }
