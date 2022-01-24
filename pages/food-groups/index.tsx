@@ -1,18 +1,6 @@
-import React, {
-  createContext,
-  ReactElement,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import React, { useEffect, useState } from 'react'
 import FoodGroups from 'components/FoodGroups'
-import styles from 'components/FoodGroups/foodgroups.module.css'
 import Draggable from '@components/FoodGroups/Draggable'
-import {
-  foodGroupsCharacterImages,
-  notion_food_dict
-} from '@components/FoodGroups/Draggable/characterimages'
-import CharacterSpawner from '@components/FoodGroups/Draggable/characterspawner'
 import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
 import { Vector2 } from '@components/FoodGroups/Draggable/boundingbox'
 import { State_ } from '@components/FoodGroups/types'
@@ -23,15 +11,7 @@ import {
   getCharacterData,
   getFormatData
 } from '@components/FoodGroups/API/getData'
-import {
-  DAIRY,
-  FOOD_GROUPS,
-  FRUIT,
-  GRAINS,
-  MEAT,
-  NONE,
-  VEGETABLES
-} from '@components/FoodGroups/groups'
+import { FOOD_GROUPS, NONE } from '@components/FoodGroups/groups'
 // import { getServerSideProps } from '@components/FoodGroups/API/getData'
 
 /**
@@ -179,20 +159,8 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
           </div>
         </Modal>
       )}
-      <div
-        className='flex justify-start'
-        style={{ maxWidth: '100vh' }}
-        draggable={false}
-      >
-        <div
-          className='grid grid-cols-1	'
-          style={{
-            // display: 'grid',
-            // gridTemplateColumns: '1fr',
-            width: '90vh'
-          }}
-          draggable={false}
-        >
+      <div className='flex justify-start max-w-[100vh]' draggable={false}>
+        <div className='grid grid-cols-1	w-[90vh]' draggable={false}>
           <FoodGroups
             overrideMouse={selectedDraggableType !== undefined} // FIXME: Override not working!
             overrideMousePosition={overridePosition} // FIXME: Override not working!

@@ -12,23 +12,10 @@ import {
   angleRegions
 } from '@components/FoodGroups/dinamicStyles'
 
-import {
-  FoodGroupStates,
-  StateDispatch,
-  State_,
-  State
-} from '@components/FoodGroups/types'
+import { State } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
-import {
-  DAIRY,
-  FOOD_GROUPS,
-  FRUIT,
-  GRAINS,
-  MEAT,
-  NONE,
-  VEGETABLES
-} from './groups'
-import { sliceBaseStyle } from './styles'
+import { FOOD_GROUPS, NONE } from './groups'
+import { customImg, sliceBaseStyle, sliceDimensions } from './styles'
 
 /**
  * A page displaying all food groups in a pie chart
@@ -59,7 +46,7 @@ const FoodGroups = ({
     }
   }
 
-  var allStates: Record<string, State<string[]>>
+  const allStates: Record<string, State<string[]>> = {}
 
   FOOD_GROUPS.forEach(type => {
     allStates[type] = makeStyle()
@@ -154,17 +141,19 @@ const FoodGroups = ({
             key={group.div_id}
             className={[
               sliceBaseStyle,
-              styles[group.img_styles],
               ...allStates[group.div_id].styles,
-              styles['wrapper-fix']
+
+              styles[group.img_styles], // Needed for the :root
+              styles['wrapper-fix'] // Needed for the span fix
             ].join(' ')}
+            style={sliceDimensions[group.img_styles]}
             draggable={false}
           >
             <Image
               src={group.img_src}
               alt={group.div_id}
               layout='fill'
-              className={styles['custom-img']}
+              className={customImg}
               useMap={`#${group.map_name}`}
               id={group.img_id}
               draggable={false}

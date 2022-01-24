@@ -12,7 +12,15 @@ import {
 } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
 import { FoodGroupCharacterImage } from './Draggable/types'
-import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
+import { DAIRY, FOOD_GROUPS, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
+
+const WHEEL_IMAGES: Record<string, StaticImageData> = {
+  [DAIRY]: dairy,
+  [MEAT]: meat,
+  [FRUIT]: fruit,
+  [GRAINS]: grains,
+  [VEGETABLES]: vegetables
+}
 
 const R = (deg: number) => (deg * Math.PI) / 180 // RADIANS
 
@@ -25,43 +33,15 @@ const angleRegions = [
   { region_name: MEAT, start: R(103), end: R(161) }
 ]
 
-const foodGroupsImages: FoodGroupImage[] = [
-  {
-    div_id: DAIRY,
-    img_styles: 'img-dairy',
-    img_id: 'dairy-img',
-    img_src: dairy.src,
-    map_name: 'dairy_map'
-  },
-  {
-    div_id: MEAT,
-    img_styles: 'img-meat',
-    img_id: 'meat-img',
-    img_src: meat.src,
-    map_name: 'meat_map'
-  },
-  {
-    div_id: FRUIT,
-    img_styles: 'img-fruit',
-    img_id: 'fruit-img',
-    img_src: fruit.src,
-    map_name: 'fruit_map'
-  },
-  {
-    div_id: VEGETABLES,
-    img_styles: 'img-vegetables',
-    img_id: 'vegetables-img',
-    img_src: vegetables.src,
-    map_name: 'vegetables_map'
-  },
-  {
-    div_id: GRAINS,
-    img_styles: 'img-grains',
-    img_id: 'grains-img',
-    img_src: grains.src,
-    map_name: 'grains_map'
+const foodGroupsImages: FoodGroupImage[] = FOOD_GROUPS.map(group => {
+  return {
+    div_id: group,
+    img_styles: group,
+    img_id: `${group}-img`,
+    img_src: WHEEL_IMAGES[group].src,
+    map_name: `${group}_map`
   }
-]
+})
 
 const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
   const boundingBox = document

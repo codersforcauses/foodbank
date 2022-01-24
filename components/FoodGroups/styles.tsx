@@ -2,48 +2,53 @@ import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
 
 const str = (classNames: string[]) => classNames.join(' ')
 
-export const dragDrop = str(['z-20', '!relative', 'row-start-1', 'col-start-1'])
+export const dragDrop = str([
+  'w-fit',
+  'h-fit',
+  'z-20',
+  '!relative',
+  'row-start-1',
+  'col-start-1'
+])
 
 export const customImg = str([
   'object-contain',
   '!w-full',
   '!relative',
-  '!height'
+  '!h-[unset]'
 ])
 
 export const unsetImg = str(['flex', 'relative', 'w-[30]'])
 
-const scale = 1.45
-const imgBase = str(['select-none', 'relative'])
-export const sliceStyles: Record<string, string> = {
-  [DAIRY]: str([
-    `w-[${22.6 * scale}]`,
-    `mt-${31 * scale}%`,
-    `ml-${50 - 7 * scale}%`,
-    ...imgBase
-  ]),
+const SCALE = 1.45 // Arbitrary scale multiplier to make wheel fit within div completely
 
-  [MEAT]: str([
-    `w-[${28 * scale}]`,
-    `ml-${50 - 27.9 * scale}%`,
-    `mt-${29.5 * scale}%`,
-    ...imgBase
-  ]),
+interface SliceDimensions {
+  width?: string | number
+  marginTop?: string | number
+  marginLeft?: string | number
+}
 
-  [FRUIT]: str([
-    `w-[${28.5 * scale}]`,
-    `mt-${29.6 * scale}%`,
-    `ml-${50 - 0.1 * scale}%`,
-    ...imgBase
-  ]),
+export const sliceDimensions: Record<string, SliceDimensions> = {
+  [DAIRY]: {
+    width: `${22.6 * SCALE}%`,
+    marginTop: `${31 * SCALE}%`,
+    marginLeft: `${50 - 7 * SCALE}%`
+  },
 
-  [VEGETABLES]: str([
-    `w-[${30 * scale}]`,
-    `ml-${50 - 0.3 * scale}%`,
-    ...imgBase
-  ]),
+  [MEAT]: {
+    width: `${28 * SCALE}%`,
+    marginTop: `${29.5 * SCALE}%`,
+    marginLeft: `${50 - 27.9 * SCALE}%`
+  },
 
-  [GRAINS]: str([`w-[${30 * scale}]`, `ml-${50 - 30 * scale}%`, ...imgBase])
+  [FRUIT]: {
+    width: `${28.5 * SCALE}%`,
+    marginTop: `${29.6 * SCALE}%`,
+    marginLeft: `${50 - 0.1 * SCALE}%`
+  },
+  [VEGETABLES]: { width: `${30 * SCALE}%`, marginLeft: `${50 - 0.3 * SCALE}%` },
+
+  [GRAINS]: { width: `${30 * SCALE}%`, marginLeft: `${50 - 30 * SCALE}%` }
 }
 
 export const sliceBaseStyle = str([
@@ -52,5 +57,6 @@ export const sliceBaseStyle = str([
   'duration-500',
   'ease-in-out',
   'scale-wheel',
+  'relative',
   'select-none'
 ])

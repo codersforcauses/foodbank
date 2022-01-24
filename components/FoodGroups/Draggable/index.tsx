@@ -97,18 +97,11 @@ const Draggable: React.FC<Props> = (props: Props) => {
         draggable={false}
         style={{
           pointerEvents: ptrEvents ? 'auto' : 'none',
-          position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
-          left: `${screenPosition.x}%`, // % works!!
-          top: `${screenPosition.y}%`,
-          width: 'fit-content',
-          height: 'fit-content'
+          left: `${screenPosition.x}%`,
+          top: `${screenPosition.y}%`
         }}
       >
-        <div
-          className='select-none'
-          style={{ zIndex: 0, pointerEvents: 'none' }}
-          draggable={false}
-        >
+        <div className='z-0 pointer-events-none select-none' draggable={false}>
           <Image
             src={props.img_src}
             alt={props.div_id}
@@ -116,8 +109,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
             height='200%'
             draggable={false}
           />
-          {/* Line below for debugging screen position of characters */}
-          {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
         </div>
       </div>
     </>
