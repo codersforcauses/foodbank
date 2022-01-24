@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { SetStateAction } from 'react'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -21,7 +21,7 @@ const sleep = async (ms: number) => {
 const checkUsername = async (
   auth: Auth,
   username: string,
-  setRegistered: Dispatch<React.SetStateAction<boolean>>
+  setRegistered: (value: SetStateAction<boolean>) => void
 ) => {
   try {
     const signInMethods = await fetchSignInMethodsForEmail(
