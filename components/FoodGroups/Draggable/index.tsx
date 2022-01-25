@@ -5,6 +5,7 @@ import { FoodGroupCharacterImage } from './types'
 
 import Image from 'next/image'
 import { StateDispatch } from '../types'
+import { dragDrop } from '../styles'
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
@@ -12,26 +13,26 @@ interface Props extends FoodGroupCharacterImage {
   setScreenPosition: StateDispatch<Vector2>
   setAbsPosition: StateDispatch<Vector2>
   screenPosition: Vector2
-  hidden: Boolean
+  hidden: boolean
 }
 
 const Draggable: React.FC<Props> = (props: Props) => {
   const { screenPosition, setScreenPosition, setAbsPosition } = props
   // const [screenPosition, setScreenPosition] = useState(props.start_pos)
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
+  const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
   const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
 
   const [ptrEvents, setPtrEvents] = useState(true) // TODO: Check if needed
 
   const dragAround = (e: MouseEvent) => {
-    let point: Vector2 = { x: e.clientX, y: e.clientY }
-    console.log('dragaround', point)
+    if (thisRect && parentRect && delta) {
+      console.log(thisRect.width, thisRect.height)
 
-    if (parentRect && delta) {
       setAbsPosition({
-        x: e.pageX - parentRect.x + delta.x,
-        y: e.pageY - parentRect.y + delta.y
+        x: e.pageX + delta.x - parentRect.x + thisRect.width / 2,
+        y: e.pageY + delta.y - parentRect.y + thisRect.height / 2
       })
       let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
       let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
@@ -43,16 +44,13 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const stopDrag = () => {
-    // setHoverTypeMutex(true)
     props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
-    // setScreenPosition(startPosition)
     setPtrEvents(true)
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // setHoverTypeMutex(false)
     console.log(props.type)
     props.onStartDrag(props.type)
     let parentRect: DOMRect
@@ -65,6 +63,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     }
     setPtrEvents(false)
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
+    setThisRect(box)
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
     // let max_x = (100.0 - box.width) / parentRect.width
     // let max_y = (100.0 - box.height) / parentRect.height
@@ -94,25 +93,17 @@ const Draggable: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div
-        className={'z-20 ' + styles['drag-drop']}
+        className={dragDrop}
         onMouseDown={startDrag}
         draggable={false}
         style={{
           pointerEvents: ptrEvents ? 'auto' : 'none',
-          position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
-          left: `${screenPosition.x}%`, // % works!!
-          top: `${screenPosition.y}%`,
-          // backgroundColor: 'cyan',
-          width: 'fit-content',
-          height: 'fit-content'
+          left: `${screenPosition.x}%`,
+          top: `${screenPosition.y}%`
         }}
       >
-        <div
-          className='select-none'
-          style={{ zIndex: 0, pointerEvents: 'none' }}
-          draggable={false}
-          hidden={props.hidden}
-        >
+        <div className='z-0 pointer-events-none select-none' draggable={false}
+        hidden={props.hidden}>
           <Image
             src={props.img_src}
             alt={props.div_id}
@@ -121,8 +112,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
             draggable={false}
             priority={true}
           />
-          {/* Line below for debugging screen position of characters */}
-          {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
         </div>
       </div>
     </>

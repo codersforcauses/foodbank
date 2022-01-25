@@ -1,23 +1,17 @@
-import React, {
-  createContext,
-  ReactElement,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import React, { useEffect, useState } from 'react'
 import FoodGroups from 'components/FoodGroups'
-import styles from 'components/FoodGroups/foodgroups.module.css'
 import Draggable from '@components/FoodGroups/Draggable'
-import { foodGroupsCharacterImages, notion_food_dict } from '@components/FoodGroups/Draggable/characterimages'
-import CharacterSpawner from '@components/FoodGroups/Draggable/characterspawner'
 import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
 import { Vector2 } from '@components/FoodGroups/Draggable/boundingbox'
 import { State_ } from '@components/FoodGroups/types'
 import { Button, Modal } from '@components/Custom'
 
 import { Client } from '@notionhq/client/build/src'
-import { getCharacterData, getFormatData } from '@components/FoodGroups/API/getData'
-import next from 'next'
+import {
+  getCharacterData,
+  getFormatData
+} from '@components/FoodGroups/API/getData'
+import { FOOD_GROUPS, NONE } from '@components/FoodGroups/groups'
 // import { getServerSideProps } from '@components/FoodGroups/API/getData'
 
 /**
@@ -36,33 +30,38 @@ const N_DRAGGABLE = 5
 
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
 
-function generateCharacterSet(character_data:FoodGroupCharacterImage[]) {
+function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
   const characterSet: FoodGroupCharacterImage[] = []
   // Is there a dynamic way to do this? (answer is yes but what is the most efficient way to do it?)
-  const meatCharacters = character_data.filter(character => character.type === 'meat')
-  const dairyCharacters = character_data.filter(character => character.type === 'dairy')
-  const vegetableCharacters = character_data.filter(character => character.type === 'vegetables')
-  const fruitCharacters = character_data.filter(character => character.type === 'fruit')
-  const grainCharacters = character_data.filter(character => character.type === 'grains')
 
-  characterSet.push(meatCharacters[Math.floor(Math.random()*meatCharacters.length)])
-  characterSet.push(dairyCharacters[Math.floor(Math.random()*dairyCharacters.length)])
-  characterSet.push(vegetableCharacters[Math.floor(Math.random()*vegetableCharacters.length)])
-  characterSet.push(fruitCharacters[Math.floor(Math.random()*fruitCharacters.length)])
-  characterSet.push(grainCharacters[Math.floor(Math.random()*grainCharacters.length)])
+  // peter: yes there is ;)
+  const filterFunction = (type: string) =>
+    character_data.filter(character => character.type === type)
+
+  const characters = FOOD_GROUPS.map(group => filterFunction(group))
+
+  characters.forEach(characterTypeSet =>
+    characterSet.push(
+      characterTypeSet[Math.floor(Math.random() * characterTypeSet.length)]
+    )
+  )
 
   return characterSet
 }
 
+interface Props {
+  notion_character_data: FoodGroupCharacterImage[]
+}
 
-
-const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterImage[] ) => {
+const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
   const [modalState, setModalState] = useState(false)
   const [selectedDraggable, setSelectedDraggable] = useState(0)
-  const [selectedDraggableType, setSelectedDraggableType] = useState<string | undefined>(undefined)
+  const [selectedDraggableType, setSelectedDraggableType] = useState<
+    string | undefined
+  >(undefined)
 
   // GAME STATE
-  const [hoverType, setHoverType] = useState('')
+  const [hoverType, setHoverType] = useState(NONE)
   const [roundCounter, setRoundCounter] = useState(0)
   const [correctDraggables, setCorrectDraggables] = useState(newArray(false))
   const [wheelEnabled, setWheelEnabled] = useState(true)
@@ -76,7 +75,6 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
   var draggables: JSX.Element[] = []
   var draggables_2: JSX.Element[] = []
 
-
   const endDragF = (index: number) => {
     console.log(
       `Dropped on '${hoverType}', Type of draggable is '${selectedDraggableType}' ${index}`
@@ -84,7 +82,7 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
 
     if (hoverType === selectedDraggableType) {
       correctDraggables[index] = true // CORRECT ANSWER
-    } else if (hoverType !== '') {
+    } else if (hoverType !== NONE) {
       correctDraggables[index] = false // WRONG ANSWER
       // RESET POSITION
       draggablePositions[index][1](draggables[index].props.start_pos)
@@ -97,6 +95,7 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
       setWheelEnabled(false)
       setModalState(true)
     }
+    setHoverType(NONE)
     setCorrectDraggables(correctDraggables)
   }
 
@@ -116,9 +115,9 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
     // setCharSet(nextCharSet)
     // setNextCharSet(generateCharacterSet(notion_character_data))
     if(switchCharSet){
-      setCharSet(generateCharacterSet)
+      setCharSet(generateCharacterSet(notion_character_data))
     } else {
-      setNextCharSet(generateCharacterSet)
+      setNextCharSet(generateCharacterSet(notion_character_data))
     }
     setSwitchCharSet(!switchCharSet)
     console.log(switchCharSet, setCharSet, nextCharSet)
@@ -179,7 +178,6 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
   //   // console.log(character)
   // })
 
-
   return (
     <>
       {modalState && (
@@ -198,20 +196,8 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
           </div>
         </Modal>
       )}
-      <div
-        className='flex justify-start'
-        style={{ maxWidth: '100vh' }}
-        draggable={false}
-      >
-        <div
-          className='grid grid-cols-1	'
-          style={{
-            // display: 'grid',
-            // gridTemplateColumns: '1fr',
-            width: '90vh'
-          }}
-          draggable={false}
-        >
+      <div className='flex justify-start max-w-[100vh]' draggable={false}>
+        <div className='grid grid-cols-1	w-[90vh]' draggable={false}>
           <FoodGroups
             overrideMouse={selectedDraggableType !== undefined} // FIXME: Override not working!
             overrideMousePosition={overridePosition} // FIXME: Override not working!
@@ -234,24 +220,19 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
   )
 }
 export const getServerSideProps = async () => {
-
   const notion = new Client({
     auth: process.env.NOTION_API_KEY
-  });
+  })
 
-  
   const { data } = await getCharacterData()
 
-  const notion_character_data:FoodGroupCharacterImage[] = getFormatData(data)
-  
+  const notion_character_data: FoodGroupCharacterImage[] = getFormatData(data)
+
   return {
     props: {
-      notion_character_data,
+      notion_character_data
     }
   }
 }
 
-
 export default FoodGroupsPage
-
-

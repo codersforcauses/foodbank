@@ -26,6 +26,8 @@ module.exports = {
     }
   },
   variants: {
+    margin: ['responsive', 'hover'],
+
     extend: {}
   },
   plugins: []
