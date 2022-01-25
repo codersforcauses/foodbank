@@ -8,7 +8,6 @@ import starLabel from 'public/images/Extra/star_label.png'
 import hintPlate from 'public/images/Extra/hint-plate.png'
 
 import Slideshow from 'pages/recipes/[slug]/slideshow'
-import RecipeSteps from 'pages/recipes/[slug]/all-steps'
 import Buttons from 'components/Recipe/Buttons'
 import EquipmentList from 'components/Recipe/EquipmentList'
 import IngredientsList from 'components/Recipe/IngredientsList'

@@ -1,7 +1,5 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { recipes } from 'lib/Recipes'
 import { Recipe } from 'lib/types'
 import Step from 'components/Recipe/Step'
 import { getRecipeDetails } from 'components/API/getData'
