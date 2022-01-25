@@ -17,6 +17,7 @@ import { Button, Modal } from '@components/Custom'
 
 import { Client } from '@notionhq/client/build/src'
 import { getCharacterData, getFormatData } from '@components/FoodGroups/API/getData'
+import next from 'next'
 // import { getServerSideProps } from '@components/FoodGroups/API/getData'
 
 /**
@@ -66,10 +67,14 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
   const [correctDraggables, setCorrectDraggables] = useState(newArray(false))
   const [wheelEnabled, setWheelEnabled] = useState(true)
   const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet(notion_character_data))
+  const [nextCharSet, setNextCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet(notion_character_data))
   const [overridePosition, setOverridePosition] = useState({ x: 0, y: 0 })
+  const [switchCharSet, setSwitchCharSet] = useState(true)
 
   const draggablePositions: State_<Vector2>[] = []
+  const draggablePositions_2: State_<Vector2>[] = []
   var draggables: JSX.Element[] = []
+  var draggables_2: JSX.Element[] = []
 
 
   const endDragF = (index: number) => {
@@ -83,6 +88,7 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
       correctDraggables[index] = false // WRONG ANSWER
       // RESET POSITION
       draggablePositions[index][1](draggables[index].props.start_pos)
+      draggablePositions_2[index][1](draggables_2[index].props.start_pos)
     }
 
     // CHECK FOR END OF ROUND
@@ -104,7 +110,18 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
     draggablePositions.forEach((state, i) =>
       state[1](draggables[i].props.start_pos)
     )
-    setCharSet(generateCharacterSet(notion_character_data))
+    draggablePositions_2.forEach((state, i) =>
+      state[1](draggables_2[i].props.start_pos)
+    )
+    // setCharSet(nextCharSet)
+    // setNextCharSet(generateCharacterSet(notion_character_data))
+    if(switchCharSet){
+      setCharSet(generateCharacterSet)
+    } else {
+      setNextCharSet(generateCharacterSet)
+    }
+    setSwitchCharSet(!switchCharSet)
+    console.log(switchCharSet, setCharSet, nextCharSet)
   }
 
   currentCharSet.map((character, index) => {
@@ -123,6 +140,29 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
         screenPosition={draggablePositions[index][0]}
         setScreenPosition={draggablePositions[index][1]}
         setAbsPosition={setOverridePosition}
+        hidden = {!switchCharSet}
+        {...character}
+      />
+    )
+  })
+
+  nextCharSet.map((character, index) => {
+    draggablePositions_2[index] = useState<Vector2>(character.start_pos)
+    draggables_2[index] = (
+      <Draggable
+        key={index}
+        onEndDrag={updatedFunction(() => {
+          endDragF(index)
+          setSelectedDraggableType(undefined)
+        })}
+        onStartDrag={() => {
+          setSelectedDraggable(index)
+          setSelectedDraggableType(character.type)
+        }}
+        screenPosition={draggablePositions_2[index][0]}
+        setScreenPosition={draggablePositions_2[index][1]}
+        setAbsPosition={setOverridePosition}
+        hidden = {switchCharSet}
         {...character}
       />
     )
@@ -180,6 +220,8 @@ const FoodGroupsPage: React.FC = ({ notion_character_data}:FoodGroupCharacterIma
           />
           {/* WILL BE REPLACED WITH OBJECT SPAWNER */}
           {draggables}
+          {draggables_2}
+          {/* {draggables_2 && !switchCharSet} */}
           {/* END OF OBJECT SPAWNER */}
         </div>
         {/* <p className='select-none'>

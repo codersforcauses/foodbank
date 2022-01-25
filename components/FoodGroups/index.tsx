@@ -172,6 +172,7 @@ const FoodGroups = ({
               useMap={`#${group.map_name}`}
               id={group.img_id}
               draggable={false}
+              priority={true}
             />
           </div>
         )

@@ -12,6 +12,7 @@ interface Props extends FoodGroupCharacterImage {
   setScreenPosition: StateDispatch<Vector2>
   setAbsPosition: StateDispatch<Vector2>
   screenPosition: Vector2
+  hidden: Boolean
 }
 
 const Draggable: React.FC<Props> = (props: Props) => {
@@ -110,6 +111,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
           className='select-none'
           style={{ zIndex: 0, pointerEvents: 'none' }}
           draggable={false}
+          hidden={props.hidden}
         >
           <Image
             src={props.img_src}
@@ -117,6 +119,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
             width='200%'
             height='200%'
             draggable={false}
+            priority={true}
           />
           {/* Line below for debugging screen position of characters */}
           {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
