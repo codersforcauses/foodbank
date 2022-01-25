@@ -15,17 +15,6 @@ interface RecipeStepsProps {
  * A page that displays all steps for a recipe in a single page format.
  */
 const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
-  // const router = useRouter()
-  // const { slug } = router.query
-  //
-  // let recipe: Recipe | null = null
-  //
-  // for (const potential_recipe of recipes) {
-  //   if (slug === potential_recipe.slug) {
-  //     recipe = potential_recipe
-  //   }
-  // }
-
   // getting color scheme for the recipe by it's name
   recipe.colorSchemeName === 'primaryScheme'
     ? (recipe.colorScheme = primaryScheme)
