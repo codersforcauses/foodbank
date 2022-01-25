@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
+import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
 import TrophyCabinet from 'public/images/trophy-cabinet.png'
 import Melonator from 'public/images/watermelonflipped.webp'
 import VitaminCLion from 'public/images/lion.webp'
-import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
 import BrightYellowTrophy from 'public/images/trophies/brightyellow.webp'
 import CupcakePurpleTrophy from 'public/images/trophies/cupcakepurple.webp'
 import CyanBlueTrophy from 'public/images/trophies/cyanblue.webp'
@@ -45,7 +45,7 @@ const TrophyRoom = () => {
     WhippedCreamTrophy
   ]
   return (
-    <div className='bg-primary h-min-screen md:main'>
+    <div className='bg-primary min-h-screen md:main overflow-y-hidden'>
       <h1 className='text-white font-bold text-6xl text-center pt-10'>
         Trophy Room
       </h1>
@@ -54,7 +54,8 @@ const TrophyRoom = () => {
           <Image src={Melonator} alt='Melonator' />
         </div>
         <div className='relative max-w-xl flex justify-center'>
-          <div className='absolute w-[75%] md:w-full sm:pt-16 md:pt-24 lg:pt-24 xl:pt-32 z-10 grid grid-cols-2 gap-x-12 gap-y-4 md:gap-y-6 lg:gap-y-2 xl:gap-y-6'>
+          <div className='absolute z-10 flex flex-wrap justify-between w-[75%] h-5/6 md:w-full mt-20 md:mt-4 lg:mt-9 xl:mt-2 sm:pt-16 md:pt-24 lg:pt-24 xl:pt-32'>
+            {/* grid grid-cols-2 gap-x-12 gap-y-4 md:gap-y-6 lg:gap-y-2 xl:gap-y-6 */}
             {[...Array(numTrophyGroups)].map((e, i) => (
               <TrophyGroup
                 trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
