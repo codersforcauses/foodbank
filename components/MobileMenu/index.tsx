@@ -70,34 +70,22 @@ const MobileMenu = ({ links }: MobileMenu) => {
             >
               <span
                 aria-hidden='true'
-                className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                className={`block absolute h-0.5 w-5 bg-current transition duration-500 ease-in-out ${
                   open ? 'rotate-45' : '-translate-y-1.5'
                 }`}
-              ></span>
+              />
               <span
                 aria-hidden='true'
-                className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                className={`block absolute h-0.5 w-5 bg-current transition duration-500 ease-in-out ${
                   open ? 'opacity-0 text-teal' : 'bg-current'
                 }`}
-              ></span>
+              />
               <span
                 aria-hidden='true'
-                className={`block h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${
+                className={`block h-0.5 w-5 bg-current transition duration-500 ease-in-out ${
                   open ? '-rotate-45' : 'translate-y-1.5'
                 }`}
-              ></span>
-              {/* {open ? (
-                <span>&#9866;</span>
-              ) : (
-                <Image
-                  className='text-white'
-                  src={Hamburger}
-                  alt='Hamburger'
-                  layout='fixed'
-                  width={25}
-                  height={25}
-                />
-              )} */}
+              />
             </Popover.Button>
           </>
         )}
