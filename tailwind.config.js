@@ -21,9 +21,9 @@ module.exports = {
       black: '#000000'
     },
     screens: {
-      md: '900px',
-      lg: '1100px',
-      xl: '1250px'
+      recipe_md: '900px',
+      recipe_lg: '1100px',
+      recipe_xl: '1250px'
     },
     extend: {
       fontFamily: {

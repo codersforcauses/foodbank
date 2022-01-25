@@ -114,7 +114,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
               </div>
               <div className='absolute ml-[-10%] mt-[2%] w-[45%] h-full max-h-[400px] max-w-[450px] min-w-[200px]'>
                 <Image src={starLabel} alt='label' />
-                <div className='absolute w-1/2 font-serif font-semibold text-[5vw] text-center rotate-[-17deg] align-middle leading-[0.8] tracking-[4px] self-center mt-[-50%] ml-[28%] z-[1] text-shadow-title md:text-[50px]'>
+                <div className='absolute w-1/2 font-serif font-semibold text-[5vw] text-center rotate-[-17deg] align-middle leading-[0.8] tracking-[4px] self-center mt-[-50%] ml-[28%] z-[1] text-shadow-title recipe_md:text-[50px]'>
                   {recipe.name
                     .split(' ')
                     .map((el: string | null | undefined) => {

@@ -16,11 +16,11 @@ const IngredientsList = ({ recipe }: Props) => {
   return (
     <div className='flex flex-col'>
       <div className='flex flex-col justify-center'>
-        <div className='static w-3/5 min-w-[auto] md:w-2/5'>
+        <div className='static w-3/5 min-w-[auto] recipe_md:w-2/5'>
           <Image src={headerPlateOne} alt='Ingredients' />
         </div>
         <h1
-          className={`${colorScheme?.header} static font-serif pb-8 opacity-80 rotate-[-5deg] text-[7vw] mt-[-20%] ml-[45px] md:text-[3.5rem] md:mt-[-15%] md:ml-[45px]`}
+          className={`${colorScheme?.header} static font-serif pb-8 opacity-80 rotate-[-5deg] text-[7vw] mt-[-20%] ml-[45px] recipe_md:text-[3.5rem] recipe_md:mt-[-15%] recipe_md:ml-[45px]`}
         >
           Ingredients
         </h1>
