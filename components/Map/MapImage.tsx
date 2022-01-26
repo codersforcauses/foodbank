@@ -61,12 +61,22 @@ const MapImage = ({
             //const ytrans = (parseInt(location.ytrans) * (3508/842)) * scale
 
             //Multiplied by 12 because xtrans and ytrans contain values which are scaled down by 10-12
-            var mobileCompensation = 0;
-            if(initialScale == 4.7) {
+            var mobileCompensation = 0
+            if (initialScale == 4.7) {
               mobileCompensation = 350
             }
+
+            var zombieAquaCompensation = 0
+            if (initialScale != 4.7 )  {
+              zombieAquaCompensation = 100 * initialScale
+            }
+            else  {
+              zombieAquaCompensation = 200
+            }
             //console.log(mobileCompensation)
-            const xtrans = parseInt(location.xtrans) * 12 * scale * initialScale + mobileCompensation
+            const xtrans =
+              parseInt(location.xtrans) * 12 * scale * initialScale +
+              mobileCompensation
             const ytrans = parseInt(location.ytrans) * 12 * scale * initialScale
             const scaledCoords = location.coords.map(coord => coord * scale)
             //TODO: consider changing className to a state and use tailwind
@@ -84,7 +94,12 @@ const MapImage = ({
                   let timestamp2 = new Date().getTime()
                   let interval = 300
                   if (timestamp2 - timestamp < interval) {
-                    handleClick(e, setTransform, -xtrans, -ytrans)
+                    if (location.id == 'zombieWasteland' || location.id == 'aquaOcean') {
+                      handleClick(e, setTransform, -xtrans, -ytrans + zombieAquaCompensation)
+                    }
+                    else  { 
+                      handleClick(e, setTransform, -xtrans, -ytrans)
+                    }
                   }
                 }}
                 href={location.id}

@@ -24,7 +24,6 @@ const Map = () => {
       const aspectRatio = window.innerWidth / window.innerHeight
       if (aspectRatio > 1.6) {
         setInitialScale(1.2)
-        //console.log(1.2)
       } else if (aspectRatio > 1.4) {
         setInitialScale(1.4)
         //console.log(1.4)
@@ -44,6 +43,7 @@ const Map = () => {
         setInitialScale(4.7)
         //console.log(4.7)
       }
+      console.log(initialScale)
       transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
     }
     handleResize()
