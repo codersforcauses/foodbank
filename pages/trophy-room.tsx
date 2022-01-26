@@ -13,11 +13,11 @@ const TrophyRoom = () => {
         Trophy Room
       </h1>
       <div className='flex items-end justify-center'>
-        <div className='max-w-sm'>
+        <div className='max-w-sm hidden sm:block'>
           <Image src={Melonator} alt='Melonator' />
         </div>
         <TrophyCabinet numUnlocked={13} />
-        <div className='max-w-sm'>
+        <div className='max-w-sm hidden sm:block'>
           <Image src={VitaminCLion} alt='Vitamin C Lion' />
         </div>
       </div>
