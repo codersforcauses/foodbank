@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useContext } from 'react'
+import { InputHTMLAttributes, useContext, useEffect } from 'react'
 import { RegisterOptions } from 'react-hook-form'
 import { FormContext } from '../Form/context'
 import { FieldControl, FieldLabel, FieldMessage } from '../utils'
@@ -8,6 +8,8 @@ export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
   description?: string
   rules?: RegisterOptions
+  setFocused?: boolean
+  updateValidation?: (isValid: boolean) => void
 }
 
 const TextField = ({
@@ -17,14 +19,25 @@ const TextField = ({
   label,
   required = false,
   rules = {},
+  setFocused,
+  updateValidation,
   ...props
 }: TextFieldProps) => {
   const {
     formState,
     disabled: formDisabled,
-    register
+    register,
+    setFocus
   } = useContext(FormContext)
   const error: string = formState?.errors?.[props.name]?.message
+
+  useEffect(() => {
+    setFocused && setFocus?.(props.name)
+  }, [props.name, setFocus, setFocused])
+
+  useEffect(() => {
+    updateValidation?.(formState!.isValid)
+  }, [formState, updateValidation])
 
   return (
     <FieldControl

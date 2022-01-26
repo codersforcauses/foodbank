@@ -1,16 +1,38 @@
 import type { AppProps } from 'next/app'
+import { FirebaseProvider } from '@components/FirebaseContext'
 import Navbar from '@components/NavBar'
-import '@styles/main.css'
+import { NavLinkProps } from '@components/NavBar/NavLink'
 import MobileMenu from '@components/MobileMenu'
+import '@styles/main.css'
+
+const links: Array<NavLinkProps> = [
+  {
+    page: 'Tucker Island',
+    route: '/'
+  },
+  {
+    page: 'Recipes',
+    route: '/'
+  },
+  {
+    page: 'Fun Food Sort',
+    route: '/'
+  },
+  {
+    page: 'Trophy Room',
+    route: '/trophy'
+  }
+]
+
 const FoodBank = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
-      <MobileMenu />
-      <Navbar />
-      <main className='relative min-h-screen lg:main lg:mt-16'>
+    <FirebaseProvider>
+      <MobileMenu links={links} />
+      <Navbar links={links} />
+      <main className='relative min-h-screen lg:main lg:mt-14'>
         <Component {...pageProps} />
       </main>
-    </>
+    </FirebaseProvider>
   )
 }
 export default FoodBank

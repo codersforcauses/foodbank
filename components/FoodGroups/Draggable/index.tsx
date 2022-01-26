@@ -85,7 +85,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
           hidden={props.hidden}
         >
           <Image
-            src={'/props.img_src'}
+            src={props.img_src}
             alt={props.div_id}
             width='200%'
             height='200%'

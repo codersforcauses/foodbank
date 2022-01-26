@@ -1,41 +1,97 @@
-import { Popover, Transition } from '@headlessui/react'
+import { useCallback, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import Image from 'next/image'
+import { Popover, Transition } from '@headlessui/react'
+import { NavLinkProps } from '@components/NavBar/NavLink'
+import { useFirebase } from '@components/FirebaseContext'
+import Hamburger from 'public/images/Hamburger_icon.svg'
 
-const MobileMenu = () => {
+const Auth = dynamic(() => import('../Auth'), { ssr: false })
+
+interface MobileMenu {
+  links: Array<NavLinkProps>
+}
+
+const MobileMenu = ({ links }: MobileMenu) => {
+  const [openSignInForm, setOpenSignInForm] = useState(false)
+  const { user, signOutClearDataUnlockGrid } = useFirebase()
+
+  const toggleOpenSignInForm = useCallback(() => {
+    setOpenSignInForm(prev => !prev)
+  }, [])
   return (
-    <Popover className='menu text-white fixed flex flex-col items-center z-10 bottom-5 padding-0 right-5 w-2/12 text-lg'>
-      <Transition
-        enter='transition duration-400 ease-in'
-        enterFrom='transform scale-95 opacity-0'
-        enterTo='transform scale-100 opacity-100'
-        leave='transition duration-400 ease'
-        leaveFrom='transform scale-100 opacity-100'
-        leaveTo='transform scale-95 opacity-0'
-      >
-        <Popover.Panel className='menu-list p-1 '>
-          <div className='menu-ele bg-primary flex justify-around flex-col items-center mt-1 p-3 rounded-lg h-96'>
-            <Link href='/'>
-              <a>Home</a>
-            </Link>
-            <Link href='/'>
-              <a>Superhero</a>
-            </Link>
-            <Link href='/'>
-              <a>Recipe</a>
-            </Link>
-            <Link href='/'>
-              <a>Progress</a>
-            </Link>
-            <Link href='/'>
-              <a>Sign In</a>
-            </Link>
-          </div>
-        </Popover.Panel>
-      </Transition>
-      <Popover.Button className='menu-button block md:hidden bg-primary w-10 h-10 rounded-full m-2'>
-        +
-      </Popover.Button>
-    </Popover>
+    <>
+      <Popover className='fixed z-10 flex flex-col items-end text-lg text-center text-white bottom-5 right-5 '>
+        {({ open }) => (
+          <>
+            <Transition
+              enter='transition duration-400 ease-in'
+              enterFrom='transform scale-95 opacity-0 translate-y-10'
+              enterTo='transform translate-y-0 scale-100 opacity-100'
+              leave='transition duration-400 ease-in'
+              leaveFrom='transform scale-100 opacity-100 translate-y-0'
+              leaveTo='transform scale-95 opacity-0 translate-y-10'
+            >
+              <Popover.Panel className='flex flex-col items-end'>
+                <div className='flex flex-col items-center justify-around w-full p-3 font-serif rounded-lg bg-primary h-96'>
+                  {user && (
+                    <span className='capitalize text-orange'>
+                      {user.displayName}
+                    </span>
+                  )}
+                  {links.map(navItem => (
+                    <Link key={navItem.page} href={navItem.route}>
+                      <a className='w-full px-2 transition-all duration-150 rounded opacity-100 focus:ring focus:ring-teal focus:ring-opacity-50'>
+                        {navItem.page}
+                      </a>
+                    </Link>
+                  ))}
+                  {user?.displayName ? (
+                    <button onClick={signOutClearDataUnlockGrid}>
+                      Sign-out
+                    </button>
+                  ) : (
+                    <button
+                      className='animate-bounce'
+                      onClick={toggleOpenSignInForm}
+                    >
+                      Sign-in
+                    </button>
+                  )}
+                </div>
+                <div className='mr-5 border-t-primary border-t-[1rem] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]' />
+              </Popover.Panel>
+            </Transition>
+            <Popover.Button
+              className={`flex items-center justify-center md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ${
+                open ? 'bg-teal text-black' : 'bg-primary'
+              }`}
+            >
+              <span
+                aria-hidden='true'
+                className={`block absolute h-0.5 w-5 bg-current transition duration-500 ease-in-out ${
+                  open ? 'rotate-45' : '-translate-y-1.5'
+                }`}
+              />
+              <span
+                aria-hidden='true'
+                className={`block absolute h-0.5 w-5 bg-current transition duration-500 ease-in-out ${
+                  open ? 'opacity-0 text-teal' : 'bg-current'
+                }`}
+              />
+              <span
+                aria-hidden='true'
+                className={`block h-0.5 w-5 bg-current transition duration-500 ease-in-out ${
+                  open ? '-rotate-45' : 'translate-y-1.5'
+                }`}
+              />
+            </Popover.Button>
+          </>
+        )}
+      </Popover>
+      <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
+    </>
   )
 }
 
