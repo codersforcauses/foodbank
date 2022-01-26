@@ -13,6 +13,7 @@ import {
 import { Vector2 } from './Draggable/boundingbox'
 import { FoodGroupCharacterImage } from './Draggable/types'
 import { DAIRY, FOOD_GROUPS, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
+import { zoom } from './styles'
 
 const WHEEL_IMAGES: Record<string, StaticImageData> = {
   [DAIRY]: dairy,
@@ -35,7 +36,7 @@ const angleRegions = [
 
 const foodGroupsImages: FoodGroupImage[] = FOOD_GROUPS.map(group => {
   return {
-    div_id: group,
+    div_id: group, // FIXME: Use different fields for group type and the id
     img_styles: group,
     img_id: `${group}-img`,
     img_src: WHEEL_IMAGES[group].src,
@@ -45,7 +46,7 @@ const foodGroupsImages: FoodGroupImage[] = FOOD_GROUPS.map(group => {
 
 const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
   const boundingBox = document
-    .getElementById(MEAT)
+    .getElementById(MEAT) // ANY PART
     ?.parentElement?.getBoundingClientRect()
   if (boundingBox === undefined) {
     console.error('[ ERROR ] Could not get parent bounding box')
@@ -60,53 +61,25 @@ const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
   setCenter(center)
 }
 
-const handleMouseOver = (
-  group_id: string,
-  { meat, grains, dairy, fruit, vegetables }: FoodGroupStates,
-  character?: FoodGroupCharacterImage
-) => {
-  let styles
-  let zoom = ['transform', 'scale-105', 'z-10']
-  switch (group_id) {
-    case MEAT:
-      styles = [...meat.styles, ...zoom]
-      meat.setStyles(styles)
-      dairy.setStyles([''])
-      grains.setStyles([''])
-      break
-    case GRAINS:
-      styles = [...grains.styles, ...zoom]
-      grains.setStyles(styles)
-      meat.setStyles([''])
-      vegetables.setStyles([''])
-      break
-    case DAIRY:
-      styles = [...dairy.styles, ...zoom]
-      dairy.setStyles(styles)
-      meat.setStyles([''])
-      fruit.setStyles([''])
-      break
-    case FRUIT:
-      styles = [...fruit.styles, ...zoom]
-      fruit.setStyles(styles)
-      dairy.setStyles([''])
-      vegetables.setStyles([''])
-      break
-    case VEGETABLES:
-      styles = [...vegetables.styles, ...zoom]
-      vegetables.setStyles(styles)
-      grains.setStyles([''])
-      fruit.setStyles([''])
-      break
-  }
+const handleMouseOver = (group_id: string, allStates: FoodGroupStates) => {
+  // Set zoom styles
+  const currentStyles = allStates[group_id].styles
+  const styles = [...currentStyles, ...zoom]
+  allStates[group_id].setStyles(styles)
+
+  // Resetting the adjacent segment styles doesn't seem necessary because of
+  // handleMouseOut(), but this is the logic if required
+  // FOOD_GROUPS.forEach(group => {
+  //   if (group !== group_id) {
+  //     allStates[group].setStyles([''])
+  //   }
+  // })
 }
 
 const handleMouseOut = (
   group_id: string,
   { meat, grains, dairy, fruit, vegetables }: FoodGroupStates
 ) => {
-  // const group_id = e.target.parentNode.parentNode.attributes["id"].value
-  let styles
   switch (group_id) {
     case MEAT:
       grains.setStyles(['z-5'])
@@ -134,14 +107,12 @@ const handleMouseOut = (
       fruit.setStyles(['z-0'])
       grains.setStyles(['z-0'])
       meat.setStyles(['z-0'])
-
       break
     case VEGETABLES:
       grains.setStyles(['z-10'])
       fruit.setStyles(['z-10'])
       dairy.setStyles(['z-0'])
       vegetables.setStyles(['z-0'])
-
       break
   }
 }

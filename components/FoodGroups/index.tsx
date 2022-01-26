@@ -84,7 +84,6 @@ const FoodGroups = ({
     }
   }
 
-  // TODO: Move handlers outside of wheel so we can use the centers of the food objects as a point.
   useEffect(() => {
     const handler = (e: MouseEvent) =>
       wheelMouseOver({ x: e.clientX, y: e.clientY })

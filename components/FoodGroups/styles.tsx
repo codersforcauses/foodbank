@@ -60,3 +60,5 @@ export const sliceBaseStyle = str([
   'relative',
   'select-none'
 ])
+
+export const zoom = ['transform', 'scale-105', 'z-10']

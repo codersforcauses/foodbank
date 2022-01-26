@@ -18,13 +18,9 @@ interface Props extends FoodGroupCharacterImage {
 
 const Draggable: React.FC<Props> = (props: Props) => {
   const { screenPosition, setScreenPosition, setAbsPosition } = props
-  // const [screenPosition, setScreenPosition] = useState(props.start_pos)
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
-  const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
-
-  const [ptrEvents, setPtrEvents] = useState(true) // TODO: Check if needed
 
   const dragAround = (e: MouseEvent) => {
     if (thisRect && parentRect && delta) {
@@ -36,7 +32,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
       })
       let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
       let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
-      if (x > maxPosition.x || y > maxPosition.y || x < 0 || y < 0) return
+      if (x > 100 || y > 100 || x < 0 || y < 0) return
       setScreenPosition({ x: x, y: y })
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
@@ -47,7 +43,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
-    setPtrEvents(true)
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -61,26 +56,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
       console.error('[ ERROR ]: Parent element bb does not exist')
       return
     }
-    setPtrEvents(false)
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
     setThisRect(box)
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
-    // let max_x = (100.0 - box.width) / parentRect.width
-    // let max_y = (100.0 - box.height) / parentRect.height
-    // setMaxPosition({ x: max_x, y: max_y })
-  }
-
-  const showImage = (character_image: FoodGroupCharacterImage) => {
-    return (
-      <Image
-        src={character_image.img_src}
-        alt={character_image.div_id}
-        layout='fill'
-        // className={}
-        // useMap={/* */}
-        id={`${character_image.bounding_box_id}`}
-      />
-    )
   }
 
   useEffect(() => {
@@ -97,15 +75,17 @@ const Draggable: React.FC<Props> = (props: Props) => {
         onMouseDown={startDrag}
         draggable={false}
         style={{
-          pointerEvents: ptrEvents ? 'auto' : 'none',
           left: `${screenPosition.x}%`,
           top: `${screenPosition.y}%`
         }}
       >
-        <div className='z-0 pointer-events-none select-none' draggable={false}
-        hidden={props.hidden}>
+        <div
+          className='z-0 pointer-events-none select-none'
+          draggable={false}
+          hidden={props.hidden}
+        >
           <Image
-            src={props.img_src}
+            src={'/props.img_src'}
             alt={props.div_id}
             width='200%'
             height='200%'
