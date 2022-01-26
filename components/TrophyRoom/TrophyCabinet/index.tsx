@@ -49,10 +49,7 @@ const TrophyCabinet = ({ numUnlocked }: Props) => {
   ]
   return (
     <div className='relative max-w-xl flex justify-center items-center sm:items-start'>
-      <div
-        className='absolute z-10 flex flex-wrap justify-between w-[75%] md:w-full  h-[63%] sm:h-5/6 
-        mt-14 sm:mt-20 md:mt-4 lg:mt-9 xl:mt-2 sm:pt-16 md:pt-24 lg:pt-24 xl:pt-32'
-      >
+      <div className='absolute z-10 flex flex-wrap justify-between w-[75%] md:w-full  h-[63%] sm:h-5/6 mt-14 sm:mt-20 md:mt-4 lg:mt-9 xl:mt-2 sm:pt-16 md:pt-24 lg:pt-24 xl:pt-32'>
         {/* grid grid-cols-2 gap-x-12 gap-y-4 md:gap-y-6 lg:gap-y-2 xl:gap-y-6 */}
         {[...Array(numTrophyGroups)].map((e, i) => (
           <TrophyGroup
