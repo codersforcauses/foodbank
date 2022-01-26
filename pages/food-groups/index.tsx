@@ -11,11 +11,8 @@ import {
   getCharacterData,
   getFormatData
 } from '@components/FoodGroups/API/getData'
-import { FOOD_GROUPS, NONE } from '@components/FoodGroups/groups'
+import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
 // import { getServerSideProps } from '@components/FoodGroups/API/getData'
-
-/**
- */
 
 // FIXME: Hack to ensure function uses updated state variables
 const updatedFunction = (f: Function) => {
@@ -55,18 +52,21 @@ interface Props {
 
 const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
   const [modalState, setModalState] = useState(false)
-  const [selectedDraggable, setSelectedDraggable] = useState(0)
-  const [selectedDraggableType, setSelectedDraggableType] = useState<
-    string | undefined
-  >(undefined)
+  const [selectedDraggableType, setSelectedDraggableType] = useState(
+    GROUPS.NONE
+  )
 
   // GAME STATE
-  const [hoverType, setHoverType] = useState(NONE)
+  const [hoverType, setHoverType] = useState(GROUPS.DEFAULT)
   const [roundCounter, setRoundCounter] = useState(0)
   const [correctDraggables, setCorrectDraggables] = useState(newArray(false))
   const [wheelEnabled, setWheelEnabled] = useState(true)
-  const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet(notion_character_data))
-  const [nextCharSet, setNextCharSet] = useState<FoodGroupCharacterImage[]>(generateCharacterSet(notion_character_data))
+  const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(
+    generateCharacterSet(notion_character_data)
+  )
+  const [nextCharSet, setNextCharSet] = useState<FoodGroupCharacterImage[]>(
+    generateCharacterSet(notion_character_data)
+  )
   const [overridePosition, setOverridePosition] = useState({ x: 0, y: 0 })
   const [switchCharSet, setSwitchCharSet] = useState(true)
 
@@ -82,7 +82,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
     if (hoverType === selectedDraggableType) {
       correctDraggables[index] = true // CORRECT ANSWER
-    } else if (hoverType !== NONE) {
+    } else if (hoverType !== GROUPS.NONE) {
       correctDraggables[index] = false // WRONG ANSWER
       // RESET POSITION
       draggablePositions[index][1](draggables[index].props.start_pos)
@@ -95,7 +95,8 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       setWheelEnabled(false)
       setModalState(true)
     }
-    setHoverType(NONE)
+    setHoverType(GROUPS.NONE)
+    setSelectedDraggableType(GROUPS.NONE)
     setCorrectDraggables(correctDraggables)
   }
 
@@ -114,7 +115,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     )
     // setCharSet(nextCharSet)
     // setNextCharSet(generateCharacterSet(notion_character_data))
-    if(switchCharSet){
+    if (switchCharSet) {
       setCharSet(generateCharacterSet(notion_character_data))
     } else {
       setNextCharSet(generateCharacterSet(notion_character_data))
@@ -130,16 +131,15 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         key={index}
         onEndDrag={updatedFunction(() => {
           endDragF(index)
-          setSelectedDraggableType(undefined)
         })}
         onStartDrag={() => {
-          setSelectedDraggable(index)
+          setOverridePosition({ x: 0, y: 0 })
           setSelectedDraggableType(character.type)
         }}
         screenPosition={draggablePositions[index][0]}
         setScreenPosition={draggablePositions[index][1]}
         setAbsPosition={setOverridePosition}
-        hidden = {!switchCharSet}
+        hidden={!switchCharSet}
         {...character}
       />
     )
@@ -152,31 +152,20 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         key={index}
         onEndDrag={updatedFunction(() => {
           endDragF(index)
-          setSelectedDraggableType(undefined)
         })}
         onStartDrag={() => {
-          setSelectedDraggable(index)
           setSelectedDraggableType(character.type)
         }}
         screenPosition={draggablePositions_2[index][0]}
         setScreenPosition={draggablePositions_2[index][1]}
         setAbsPosition={setOverridePosition}
-        hidden = {switchCharSet}
+        hidden={switchCharSet}
         {...character}
       />
     )
   })
 
   // refactor-firebase-authentication branch for achievement logic.
-
-  // useEffect(() => {
-  //   console.log(draggablePositions[selectedDraggable][0])
-  // }, [draggablePositions[selectedDraggable][0]])
-
-  // const startDragF = ((type : string) => {
-  //   setSelectedDraggable(type)
-  //   // console.log(character)
-  // })
 
   return (
     <>
@@ -199,8 +188,8 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       <div className='flex justify-start max-w-[100vh]' draggable={false}>
         <div className='grid grid-cols-1	w-[90vh]' draggable={false}>
           <FoodGroups
-            overrideMouse={selectedDraggableType !== undefined} // FIXME: Override not working!
-            overrideMousePosition={overridePosition} // FIXME: Override not working!
+            overrideMouse={selectedDraggableType !== GROUPS.NONE}
+            overrideMousePosition={overridePosition}
             setHoverType={setHoverType}
             enabled={wheelEnabled}
           />
@@ -210,7 +199,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
           {/* {draggables_2 && !switchCharSet} */}
           {/* END OF OBJECT SPAWNER */}
         </div>
-        {/* <p className='select-none'>
+        {/* <p className='select-GROUPS.NONE'>
           {hoverType}
           <br />
           {roundCounter}

@@ -1,10 +1,9 @@
 import { Client } from '@notionhq/client'
 import { FoodGroupCharacterImage } from '../Draggable/types'
 
-import grain from 'public/images/Food Characters/Bread Mixed Grain.png'
 import { notion_food_dict } from '../Draggable/characterimages'
 
-import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from '../groups'
+import { GROUPS } from '../groups'
 
 if (process.env.NOTION_API_KEY === undefined) {
   console.log('[ FATAL ]: NO NOTION_API_KEY IN ENVIRONMENT VARIABLES')
@@ -42,7 +41,7 @@ const getFormatData = (data: any) => {
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'vegetables-character-img',
             bounding_box_id: 3,
-            type: VEGETABLES,
+            type: GROUPS.VEGETABLES,
             start_pos: { x: 90, y: 60 }
           })
           break
@@ -52,7 +51,7 @@ const getFormatData = (data: any) => {
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'grain-character-img',
             bounding_box_id: 4,
-            type: GRAINS,
+            type: GROUPS.GRAINS,
             start_pos: { x: 90, y: 80 }
           })
           break
@@ -62,7 +61,7 @@ const getFormatData = (data: any) => {
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'dairy-character-img',
             bounding_box_id: 0,
-            type: DAIRY,
+            type: GROUPS.DAIRY,
             start_pos: { x: 90, y: 2 }
           })
           break
@@ -72,7 +71,7 @@ const getFormatData = (data: any) => {
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'meat-character-img',
             bounding_box_id: 1,
-            type: MEAT,
+            type: GROUPS.MEAT,
             start_pos: { x: 90, y: 20 }
           })
           break
@@ -82,7 +81,7 @@ const getFormatData = (data: any) => {
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'fruit-character-img',
             bounding_box_id: 2,
-            type: FRUIT,
+            type: GROUPS.FRUIT,
             start_pos: { x: 90, y: 40 }
           })
           break

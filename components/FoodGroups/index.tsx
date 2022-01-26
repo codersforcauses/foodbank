@@ -14,7 +14,7 @@ import {
 
 import { State } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
-import { FOOD_GROUPS, NONE } from './groups'
+import { FOOD_GROUPS, GROUPS } from './groups'
 import { customImg, sliceBaseStyle, sliceDimensions } from './styles'
 
 /**
@@ -36,7 +36,7 @@ const FoodGroups = ({
 }: Props) => {
   const [radius, setRadius] = useState(0)
   const [center, setCenter] = useState({ x: 0, y: 0 })
-  const [currentRegion, setCurrentRegion] = useState('') // Debounce mouse events
+  const [currentRegion, setCurrentRegion] = useState(GROUPS.NONE) // Debounce mouse events
 
   const makeStyle = () => {
     const state = useState([''])
@@ -63,7 +63,7 @@ const FoodGroups = ({
         return region.region_name
       }
     }
-    return NONE
+    return GROUPS.NONE
   }
 
   const wheelMouseOver = ({ x, y }: Vector2) => {
@@ -73,14 +73,14 @@ const FoodGroups = ({
       const newRegion = getRegion(Math.atan2(dy, dx))
       if (newRegion !== currentRegion) {
         handleMouseOut(currentRegion, allStates)
-        if (newRegion !== NONE) {
+        if (newRegion !== GROUPS.NONE) {
           handleMouseOver(newRegion, allStates)
         }
         setCurrentRegion(newRegion)
       }
-    } else if (currentRegion !== NONE) {
+    } else if (currentRegion !== GROUPS.NONE) {
       handleMouseOut(currentRegion, allStates)
-      setCurrentRegion(NONE)
+      setCurrentRegion(GROUPS.NONE)
     }
   }
 

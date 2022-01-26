@@ -22,7 +22,7 @@ interface FoodGroupStates {
 }
 
 interface FoodGroupImage {
-  div_id: string
+  div_id: string // FIXME: USE ENUM TYPE
   img_styles: string
   img_src: string
   img_id: string

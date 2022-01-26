@@ -1,4 +1,4 @@
-import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
+import { GROUPS } from './groups'
 
 const str = (classNames: string[]) => classNames.join(' ')
 
@@ -29,26 +29,32 @@ interface SliceDimensions {
 }
 
 export const sliceDimensions: Record<string, SliceDimensions> = {
-  [DAIRY]: {
+  [GROUPS.DAIRY]: {
     width: `${22.6 * SCALE}%`,
     marginTop: `${31 * SCALE}%`,
     marginLeft: `${50 - 7 * SCALE}%`
   },
 
-  [MEAT]: {
+  [GROUPS.MEAT]: {
     width: `${28 * SCALE}%`,
     marginTop: `${29.5 * SCALE}%`,
     marginLeft: `${50 - 27.9 * SCALE}%`
   },
 
-  [FRUIT]: {
+  [GROUPS.FRUIT]: {
     width: `${28.5 * SCALE}%`,
     marginTop: `${29.6 * SCALE}%`,
     marginLeft: `${50 - 0.1 * SCALE}%`
   },
-  [VEGETABLES]: { width: `${30 * SCALE}%`, marginLeft: `${50 - 0.3 * SCALE}%` },
+  [GROUPS.VEGETABLES]: {
+    width: `${30 * SCALE}%`,
+    marginLeft: `${50 - 0.3 * SCALE}%`
+  },
 
-  [GRAINS]: { width: `${30 * SCALE}%`, marginLeft: `${50 - 30 * SCALE}%` }
+  [GROUPS.GRAINS]: {
+    width: `${30 * SCALE}%`,
+    marginLeft: `${50 - 30 * SCALE}%`
+  }
 }
 
 export const sliceBaseStyle = str([

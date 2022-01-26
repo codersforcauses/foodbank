@@ -24,8 +24,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const dragAround = (e: MouseEvent) => {
     if (thisRect && parentRect && delta) {
-      console.log(thisRect.width, thisRect.height)
-
       setAbsPosition({
         x: e.pageX + delta.x - parentRect.x + thisRect.width / 2,
         y: e.pageY + delta.y - parentRect.y + thisRect.height / 2
