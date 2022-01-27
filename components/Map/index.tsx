@@ -53,7 +53,7 @@ const Map = () => {
 
   return (
     <div
-      className='lg:pt-16'
+      className='lg:pt-14'
       style={{
         height: wrapperHeightCSS
       }}
