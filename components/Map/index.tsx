@@ -41,7 +41,7 @@ const Map = () => {
       } else {
         setInitialScale(4.7)
       }
-      transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
+      transformWrapper.current?.resetTransform()
     }
     handleResize()
     window.addEventListener('resize', () => {
