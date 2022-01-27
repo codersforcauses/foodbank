@@ -34,7 +34,7 @@ const DropdownSignOut = () => {
           leaveTo='translate-y-full opacity-0'
         >
           <div className='absolute right-[0.62rem] top-8'>
-            <div className='w-0 h-0 border-b-orange border-b-[1em] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]'></div>
+            <div className='w-0 h-0 border-b-orange border-b-[1em] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]' />
           </div>
         </Transition.Child>
         {/* Menu Items */}
@@ -47,19 +47,23 @@ const DropdownSignOut = () => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Menu.Items className='absolute right-[0.5rem] w-28 font-serif top-[3rem]'>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  onClick={() => signOutClearDataUnlockGrid?.()}
-                  className={`${
-                    active ? 'text-opacity-75' : ''
-                  } text-white rounded-md items-center px-2 py-2 bg-orange`}
-                >
-                  SIGN OUT
-                </button>
-              )}
-            </Menu.Item>
+          <Menu.Items className='absolute right-[0.5rem] w-28 font-serif top-[3rem] focus:outline-none'>
+            <div className='items-center px-2 py-2 rounded-md bg-orange'>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active
+                        ? 'text-opacity-75 text-primary bg-teal rounded'
+                        : ''
+                    } items-center w-full text-white`}
+                    onClick={() => signOutClearDataUnlockGrid?.()}
+                  >
+                    SIGN OUT
+                  </button>
+                )}
+              </Menu.Item>
+            </div>
           </Menu.Items>
         </Transition.Child>
       </Transition>
