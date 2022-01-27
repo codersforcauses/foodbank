@@ -18,8 +18,8 @@ const Townbox = ({
   showButton,
   close
 }: TownboxProps) => {
-  const bgColour: 'bg-primary' | 'bg-orange' =
-    headerColor === 'primary' ? 'bg-primary' : 'bg-orange'
+  const bgColour: 'primary' | 'orange' =
+    headerColor === 'primary' ? 'primary' : 'orange'
   return (
     <div className='flex p-8'>
       <h2
@@ -44,7 +44,7 @@ const Townbox = ({
         </button>
 
         {showButton && (
-          <Button className='skew-x-12' bgColor={bgColour}>
+          <Button className='skew-x-12' color={bgColour}>
             Visit
           </Button>
         )}
