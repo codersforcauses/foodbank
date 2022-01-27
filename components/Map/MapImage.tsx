@@ -56,7 +56,7 @@ const MapImage = ({
             // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
             // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
             //scaling by 10 seems to give better views of the locations
-            console.log('scale', scale)
+            // console.log('scale', scale)
             //const xtrans = (parseInt(location.xtrans) * (7151/1718)) * scale
             //const ytrans = (parseInt(location.ytrans) * (3508/842)) * scale
 

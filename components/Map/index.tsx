@@ -21,9 +21,6 @@ const Map = () => {
 
   useEffect(() => {
     function handleResize() {
-      console.log('width, height', window.innerWidth, window.innerHeight)
-      // const mobileWidth = 2900
-      // const minStaticWidth = 1170
       const targetWidth = window.innerWidth
       //window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
       setScale(targetWidth / 7151) //number is width of base image
@@ -44,13 +41,11 @@ const Map = () => {
       } else {
         setInitialScale(4.7)
       }
-      console.log(initialScale)
       transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
     }
     handleResize()
-    window.addEventListener('resize', handleResize)
-    window.addEventListener('orientationchange', () => {
-      transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
+    window.addEventListener('resize', () => {
+      handleResize()
     })
 
     setWrapperHeightCSS(`${window.innerHeight}px`)
@@ -69,6 +64,7 @@ const Map = () => {
         initialScale={initialScale}
         centerZoomedOut={true}
         alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
+        minScale={initialScale + 0.1}
         ref={transformWrapper}
       >
         {({ resetTransform, setTransform }) => (

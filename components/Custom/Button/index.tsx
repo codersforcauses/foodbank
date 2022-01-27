@@ -2,16 +2,16 @@ import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'orange' | 'blue' | 'teal'
+  bgColor: string
 }
 
 const Button = ({
   children,
   color,
   className,
+  bgColor,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
-  let bgColor: string
-
   switch (color) {
     case 'orange':
       bgColor = 'bg-orange text-black shadow-orange'
