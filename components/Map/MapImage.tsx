@@ -67,10 +67,9 @@ const MapImage = ({
             }
 
             var zombieAquaCompensation = 0
-            if (initialScale != 4.7 )  {
+            if (initialScale != 4.7) {
               zombieAquaCompensation = 100 * initialScale
-            }
-            else  {
+            } else {
               zombieAquaCompensation = 200
             }
             //console.log(mobileCompensation)
@@ -94,10 +93,17 @@ const MapImage = ({
                   let timestamp2 = new Date().getTime()
                   let interval = 300
                   if (timestamp2 - timestamp < interval) {
-                    if (location.id == 'zombieWasteland' || location.id == 'aquaOcean') {
-                      handleClick(e, setTransform, -xtrans, -ytrans + zombieAquaCompensation)
-                    }
-                    else  { 
+                    if (
+                      location.id == 'zombieWasteland' ||
+                      location.id == 'aquaOcean'
+                    ) {
+                      handleClick(
+                        e,
+                        setTransform,
+                        -xtrans,
+                        -ytrans + zombieAquaCompensation
+                      )
+                    } else {
                       handleClick(e, setTransform, -xtrans, -ytrans)
                     }
                   }

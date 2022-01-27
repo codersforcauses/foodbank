@@ -47,12 +47,8 @@
 
 @tailwind utilities;
 
-@layer utilities {
-  @variants responsive {
-    .main {
-      min-height: calc(100vh - 4rem);
-    }
-  }
+.main {
+  min-height: calc(100vh - 4rem);
 }
 
 .shadow-primary {

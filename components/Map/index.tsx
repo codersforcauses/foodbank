@@ -26,22 +26,16 @@ const Map = () => {
         setInitialScale(1.2)
       } else if (aspectRatio > 1.4) {
         setInitialScale(1.4)
-        //console.log(1.4)
       } else if (aspectRatio > 1.2) {
         setInitialScale(1.6)
-        //console.log(1.6)
       } else if (aspectRatio > 1) {
         setInitialScale(2.1)
-        //console.log(2.1)
       } else if (aspectRatio > 0.8) {
         setInitialScale(2.6)
-        //console.log(2.6)
       } else if (aspectRatio > 0.65) {
         setInitialScale(3.2)
-        console.log('THIS HAPPENED!')
       } else {
         setInitialScale(4.7)
-        //console.log(4.7)
       }
       console.log(initialScale)
       transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
@@ -51,46 +45,50 @@ const Map = () => {
   }, [initialScale])
 
   return (
-    <TransformWrapper
-      doubleClick={{ disabled: true }}
-      wheel={{ disabled: true }}
-      initialScale={initialScale}
-      centerZoomedOut={true}
-      panning={{ disabled: false }}
-      pinch={{ disabled: true }}
-      alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
-      ref={transformWrapper}
-      limitToBounds={true}
-    >
-      {({ resetTransform, setTransform }) => (
-        <>
-          <TransformComponent wrapperClass='min-h-screen lg:main'>
-            <MapImage
-              scale={scale}
-              initialScale={initialScale}
-              setTransform={setTransform}
-              setDisplay={setDisplay}
-              display={display}
-              setSelect={setSelect}
-              selected={select}
-            />
-          </TransformComponent>
+    <div className='h-screen lg:pt-16'>
+      <TransformWrapper
+        doubleClick={{ disabled: true }}
+        wheel={{ disabled: true }}
+        initialScale={initialScale}
+        centerZoomedOut={true}
+        pinch={{ disabled: true }}
+        alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
+        ref={transformWrapper}
+      >
+        {({ resetTransform, setTransform }) => (
+          <>
+            <TransformComponent
+              wrapperStyle={{
+                height: '100%'
+              }}
+            >
+              <MapImage
+                scale={scale}
+                initialScale={initialScale}
+                setTransform={setTransform}
+                setDisplay={setDisplay}
+                display={display}
+                setSelect={setSelect}
+                selected={select}
+              />
+            </TransformComponent>
 
-          <div
-            className={`fixed top-0 h-screen flex justify-center items-center ${
-              display ? '' : 'hidden'
-            }`}
-          >
-            <TownBoxWrapper
-              selected={select}
-              resetTransform={resetTransform}
-              setSelect={setSelect}
-              setDisplay={setDisplay}
-            />
-          </div>
-        </>
-      )}
-    </TransformWrapper>
+            <div
+              className={`fixed top-0 h-screen flex justify-center items-center ${
+                display ? '' : 'hidden'
+              }`}
+            >
+              <TownBoxWrapper
+                selected={select}
+                resetTransform={resetTransform}
+                setSelect={setSelect}
+                setDisplay={setDisplay}
+              />
+            </div>
+          </>
+        )}
+      </TransformWrapper>
+    </div>
   )
 }
 
