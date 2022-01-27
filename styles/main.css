@@ -47,8 +47,10 @@
 
 @tailwind utilities;
 
-.main {
-  min-height: calc(100vh - 4rem);
+@layer utilities {
+  .main {
+    min-height: calc(100vh - 3.5rem);
+  }
 }
 
 .shadow-primary {
@@ -62,4 +64,8 @@
 }
 .shadow-orange {
   box-shadow: -1px -4px 0px 1px #a05b14 inset;
+}
+
+.no-tap-highlight {
+  -webkit-tap-highlight-color: transparent;
 }
