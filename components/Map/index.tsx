@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useMemo,
+  SetStateAction
+} from 'react'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 import TownBoxWrapper from './TownBoxWrapper'
 import MapImage from './MapImage'
@@ -9,6 +15,7 @@ const Map = () => {
   const [select, setSelect] = useState(null)
   const [display, setDisplay] = useState(false)
   const [initialScale, setInitialScale] = useState(1)
+  const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
 
   const transformWrapper = useRef<ReactZoomPanPinchRef>(null)
 
@@ -42,16 +49,25 @@ const Map = () => {
     }
     handleResize()
     window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', () => {
+      transformWrapper?.current?.setTransform(0, 0, initialScale, 0, 'easeOut')
+    })
+
+    setWrapperHeightCSS(`${window.innerHeight}px`)
   }, [initialScale])
 
   return (
-    <div className='h-screen lg:pt-16'>
+    <div
+      className='lg:pt-16'
+      style={{
+        height: wrapperHeightCSS
+      }}
+    >
       <TransformWrapper
         doubleClick={{ disabled: true }}
         wheel={{ disabled: true }}
         initialScale={initialScale}
         centerZoomedOut={true}
-        pinch={{ disabled: true }}
         alignmentAnimation={{ sizeY: 0, sizeX: 0 }}
         ref={transformWrapper}
       >

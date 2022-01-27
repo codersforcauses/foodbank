@@ -39,7 +39,7 @@ const MapImage = ({
   let timestamp: number
 
   return (
-    <div className='flex relative max-w-screen'>
+    <div className='flex max-w-screen h-full'>
       <Image
         className={styles.mapImage}
         priority

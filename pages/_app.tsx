@@ -7,7 +7,7 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
     <>
       <MobileMenu />
       <Navbar />
-      <main className='min-h-screen lg:main'>
+      <main className='min-h-full lg:main'>
         <Component {...pageProps} />
       </main>
     </>
