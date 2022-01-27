@@ -10,7 +10,8 @@ const Button = ({
   className,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
-  let bgColor
+  let bgColor: string
+
   switch (color) {
     case 'orange':
       bgColor = 'bg-orange text-black shadow-orange'
