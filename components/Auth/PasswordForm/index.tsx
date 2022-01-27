@@ -17,18 +17,7 @@ interface PasswordFormProps {
   setGridDisabled?: (value: SetStateAction<boolean>) => void
 }
 
-const PasswordForm = ({
-  label,
-  error,
-  grid,
-  name,
-  page,
-  goPrevPage,
-  registered,
-  updatePassword,
-  gridDisabled,
-  setGridDisabled
-}: PasswordFormProps) => {
+const PasswordForm = (props: PasswordFormProps) => {
   const [selectedCount, setSelectedCount] = useState(0)
   const methods = useForm()
   const { formState, handleSubmit } = methods
@@ -40,36 +29,39 @@ const PasswordForm = ({
   }
 
   const getPassword = (mask: boolean[]) => {
-    const selectedGrid = grid.filter((_, i) => mask[i])
+    const selectedGrid = props.grid.filter((_, i) => mask[i])
     return selectedGrid.map(item => item.password).join('')
   }
 
-  const disableGrid = () => setGridDisabled?.(true)
+  const disableGrid = () => props.setGridDisabled?.(true)
 
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(data => {
-          if (registered || page === PAGES.REPEAT_PASSWORD_FORM) disableGrid()
-          updatePassword(getPassword(data.mask))
+          if (props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM)
+            disableGrid()
+          props.updatePassword(getPassword(data.mask))
         })}
       >
-        <p className='text-lg text-center'>{label}</p>
-        {error && <p className='text-lg text-center text-red'>{error}</p>}
+        <p className='text-lg text-center'>{props.label}</p>
+        {props.error && (
+          <p className='text-lg text-center text-red'>{props.error}</p>
+        )}
         <GridField
           label='grid'
-          name={name}
-          charSet={grid}
+          name={props.name}
+          charSet={props.grid}
           defaultMask={defaultMask}
           selectedCount={selectedCount}
           updateCount={updateCount}
-          gridDisabled={gridDisabled}
+          gridDisabled={props.gridDisabled}
         />
         <div className='flex justify-center pt-4 space-x-2'>
           <Button
             type='button'
             onClick={e => {
-              goPrevPage(e)
+              props.goPrevPage(e)
               methods.reset({ mask: defaultMask })
             }}
             className='flex items-center'
@@ -93,7 +85,7 @@ const PasswordForm = ({
               selectedCount !== CHARACTERS_FOR_AUTH || formState.isSubmitting
             }
           >
-            {registered || page === PAGES.REPEAT_PASSWORD_FORM
+            {props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM
               ? 'Confirm'
               : 'Next'}
             <svg
