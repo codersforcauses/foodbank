@@ -20,7 +20,7 @@ const EquipmentList = ({ recipe }: Props) => {
           <Image src={headerPlateOne} alt='Equipments' />
         </div>
         <h1
-          className={`${colorScheme?.header} static font-serif pb-8 opacity-80 rotate-[-5deg] text-[7vw] mt-[-20%] ml-[45px] recipe_md:text-[3.5rem] recipe_md:mt-[-15%] recipe_md:ml-[45px]`}
+          className={`${colorScheme?.header} static font-serif pb-8 opacity-80 rotate-[-5deg] text-[7vw] mt-[-20%] ml-[45px] recipe_md:text-[3rem] recipe_md:mt-[-15%] recipe_md:ml-[45px]`}
         >
           Equipment
         </h1>
