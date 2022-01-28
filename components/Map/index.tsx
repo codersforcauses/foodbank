@@ -16,19 +16,15 @@ const Map = () => {
   const [displayBox, setDisplayBox] = useState(false)
   const [initialScale, setInitialScale] = useState(1)
   const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
-  const [currentCoordinates, setCurrentCoordinates] = useState({
-    x: 0,
-    y: 0
-  })
-
   const transformWrapper = useRef<ReactZoomPanPinchRef>(null)
 
   useEffect(() => {
     function handleResize() {
       const targetWidth = window.innerWidth
       //window.innerWidth > minStaticWidth ? window.innerWidth : mobileWidth
-      setScale(targetWidth / 7151) //number is width of base image
-
+      const WIDTH_OF_BASE_IMAGE = 7151
+      setScale(targetWidth / WIDTH_OF_BASE_IMAGE)
+      setWrapperHeightCSS(`${window.innerHeight}px`)
       const aspectRatio = window.innerWidth / window.innerHeight
       if (aspectRatio > 1.6) {
         setInitialScale(1.2)
@@ -48,11 +44,7 @@ const Map = () => {
       transformWrapper.current?.resetTransform()
     }
     handleResize()
-    window.addEventListener('resize', () => {
-      handleResize()
-    })
-
-    setWrapperHeightCSS(`${window.innerHeight}px`)
+    window.addEventListener('resize', handleResize)
   }, [initialScale])
 
   return (
@@ -86,7 +78,6 @@ const Map = () => {
                 displayBox={displayBox}
                 setSelect={setSelect}
                 selected={select}
-                setCurrentCoordinates={setCurrentCoordinates}
               />
             </TransformComponent>
 

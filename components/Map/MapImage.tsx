@@ -12,12 +12,6 @@ interface MapProps {
   displayBox: boolean
   selected: any
   setSelect: (state: any) => void
-  setCurrentCoordinates: React.Dispatch<
-    React.SetStateAction<{
-      x: number
-      y: number
-    }>
-  >
 }
 
 const MapImage = ({
@@ -26,8 +20,7 @@ const MapImage = ({
   setDisplayBox,
   selected,
   setSelect,
-  initialScale,
-  setCurrentCoordinates
+  initialScale
 }: MapProps) => {
   const handleClick = (
     event: React.MouseEvent<HTMLAreaElement, MouseEvent>,
@@ -38,10 +31,6 @@ const MapImage = ({
     const area = (event.target as HTMLAreaElement).alt
     selected === area ? setSelect(null) : setSelect(area)
     setDisplayBox(true)
-    setCurrentCoordinates({
-      x: xtrans,
-      y: ytrans
-    })
     setTransform(xtrans, ytrans, initialScale * 2, 1000, 'easeOut')
   }
 
