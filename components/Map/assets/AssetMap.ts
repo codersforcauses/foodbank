@@ -34,7 +34,6 @@ export interface AssetMapProps {
   aquaOcean: StaticImageData
 }
 
-// needed for keyof functionality else Jeremiah's linter throws errors
 const assetMap: AssetMapProps = {
   bg: BackgroundImage,
   coolCloud: CoolCloud,

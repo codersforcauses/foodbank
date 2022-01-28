@@ -8,6 +8,10 @@ interface MapProps {
   scale: number
   initialScale: number
   setTransform: (xtrans: number, ytrans: number, scale: number) => void
+  windowDimensions: {
+    height: number
+    width: number
+  }
   setDisplayBox: (display: boolean) => void
   displayBox: boolean
   selected: any
@@ -17,6 +21,7 @@ interface MapProps {
 const MapImage = ({
   scale,
   setTransform,
+  windowDimensions,
   setDisplayBox,
   selected,
   setSelect,
@@ -58,19 +63,35 @@ const MapImage = ({
             //const xtrans = (parseInt(location.xtrans) * (7151/1718)) * scale
             //const ytrans = (parseInt(location.ytrans) * (3508/842)) * scale
 
-            //Multiplied by 12 because xtrans and ytrans contain values which are scaled down by 10-12
-            var mobileCompensation = 0
-            if (initialScale == 4.7) {
-              mobileCompensation = 350
+            let mobileCompensation = 0
+            let zombieAquaCompensation = 0
+            const aspectRatio = windowDimensions.width / windowDimensions.height
+            switch (initialScale) {
+              case 4.7:
+                mobileCompensation = 350
+                zombieAquaCompensation = 200
+                break
+
+              case 3.2:
+                zombieAquaCompensation = 40 * initialScale
+                break
+
+              case 1.6:
+                zombieAquaCompensation = 70
+                break
+
+              default:
+                if (aspectRatio >= 2) {
+                  zombieAquaCompensation = -40
+                } else if (aspectRatio > 1.6) {
+                  zombieAquaCompensation = 80
+                } else {
+                  zombieAquaCompensation = 100
+                }
+                break
             }
 
-            var zombieAquaCompensation = 0
-            if (initialScale != 4.7) {
-              zombieAquaCompensation = 100 * initialScale
-            } else {
-              zombieAquaCompensation = 200
-            }
-            //console.log(mobileCompensation)
+            //Multiplied by 12 because xtrans and ytrans contain values which are scaled down by 10-12
             const xtrans =
               parseInt(location.xtrans) * 12 * scale * initialScale +
               mobileCompensation
