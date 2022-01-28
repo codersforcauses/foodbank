@@ -8,31 +8,40 @@ interface MapProps {
   scale: number
   initialScale: number
   setTransform: (xtrans: number, ytrans: number, scale: number) => void
-  setDisplay: (display: boolean) => void
-  display: boolean
+  setDisplayBox: (display: boolean) => void
+  displayBox: boolean
   selected: any
   setSelect: (state: any) => void
+  setCurrentCoordinates: React.Dispatch<
+    React.SetStateAction<{
+      x: number
+      y: number
+    }>
+  >
 }
 
 const MapImage = ({
   scale,
   setTransform,
-  setDisplay,
+  setDisplayBox,
   selected,
   setSelect,
-  initialScale
+  initialScale,
+  setCurrentCoordinates
 }: MapProps) => {
   const handleClick = (
-    event: any,
-    setTransform: any,
+    event: React.MouseEvent<HTMLAreaElement, MouseEvent>,
+    setTransform: Function,
     xtrans: number,
     ytrans: number
   ) => {
-    //TODO: need to change this type
-    const area = event.target.alt
+    const area = (event.target as HTMLAreaElement).alt
     selected === area ? setSelect(null) : setSelect(area)
-    setDisplay(true)
-    console.log(xtrans, ytrans)
+    setDisplayBox(true)
+    setCurrentCoordinates({
+      x: xtrans,
+      y: ytrans
+    })
     setTransform(xtrans, ytrans, initialScale * 2, 1000, 'easeOut')
   }
 

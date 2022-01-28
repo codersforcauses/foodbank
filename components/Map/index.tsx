@@ -13,9 +13,13 @@ import { ReactZoomPanPinchRef } from 'react-zoom-pan-pinch'
 const Map = () => {
   const [scale, setScale] = useState(1)
   const [select, setSelect] = useState(null)
-  const [display, setDisplay] = useState(false)
+  const [displayBox, setDisplayBox] = useState(false)
   const [initialScale, setInitialScale] = useState(1)
   const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
+  const [currentCoordinates, setCurrentCoordinates] = useState({
+    x: 0,
+    y: 0
+  })
 
   const transformWrapper = useRef<ReactZoomPanPinchRef>(null)
 
@@ -53,7 +57,7 @@ const Map = () => {
 
   return (
     <div
-      className='lg:pt-14'
+      className='sm:pt-14'
       style={{
         height: wrapperHeightCSS
       }}
@@ -67,7 +71,7 @@ const Map = () => {
         minScale={initialScale + 0.1}
         ref={transformWrapper}
       >
-        {({ resetTransform, setTransform }) => (
+        {({ setTransform, zoomOut }) => (
           <>
             <TransformComponent
               wrapperStyle={{
@@ -78,23 +82,25 @@ const Map = () => {
                 scale={scale}
                 initialScale={initialScale}
                 setTransform={setTransform}
-                setDisplay={setDisplay}
-                display={display}
+                setDisplayBox={setDisplayBox}
+                displayBox={displayBox}
                 setSelect={setSelect}
                 selected={select}
+                setCurrentCoordinates={setCurrentCoordinates}
               />
             </TransformComponent>
 
             <div
               className={`fixed top-0 h-screen flex justify-center items-center ${
-                display ? '' : 'hidden'
+                displayBox ? '' : 'hidden'
               }`}
             >
               <TownBoxWrapper
                 selected={select}
-                resetTransform={resetTransform}
                 setSelect={setSelect}
-                setDisplay={setDisplay}
+                setDisplayBox={setDisplayBox}
+                initialScale={initialScale}
+                zoomOut={zoomOut}
               />
             </div>
           </>

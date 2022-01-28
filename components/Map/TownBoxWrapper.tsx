@@ -4,9 +4,10 @@ import descData from './assets/description.json'
 
 interface TownBoxWrapperProps {
   selected: string | null
-  resetTransform: () => void
   setSelect: (state: any) => void
-  setDisplay: (state: boolean) => void
+  setDisplayBox: (state: boolean) => void
+  zoomOut: Function
+  initialScale: number
 }
 
 interface TownBox {
@@ -19,14 +20,15 @@ interface TownBox {
 
 const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   selected,
-  resetTransform,
   setSelect,
-  setDisplay
+  setDisplayBox,
+  initialScale,
+  zoomOut
 }: TownBoxWrapperProps) => {
   const handleClose = () => {
     setSelect(null)
-    setDisplay(false)
-    resetTransform()
+    setDisplayBox(false)
+    zoomOut(initialScale * 2, 300, 'easeOut')
   }
 
   if (selected) {
