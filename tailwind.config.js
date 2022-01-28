@@ -25,18 +25,9 @@ module.exports = {
         sans: ['Bliss'],
         serif: ['Abraham']
       }
-    },
-    screens: {
-      xsm: '321px',
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1281px',
-      '2xl': '1536px'
     }
   },
   variants: {
     extend: {}
-  },
-  plugins: [require('tailwind-scrollbar-hide')]
+  }
 }
