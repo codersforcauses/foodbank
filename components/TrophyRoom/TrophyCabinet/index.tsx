@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
 
-import TrophyCabinetImage from 'public/images/trophy-cabinet.png'
+import TrophyCabinetImage from 'public/images/trophy-cabinet.webp'
 import BrightYellowTrophy from 'public/images/trophies/brightyellow.webp'
 import CupcakePurpleTrophy from 'public/images/trophies/cupcakepurple.webp'
 import CyanBlueTrophy from 'public/images/trophies/cyanblue.webp'
