@@ -22,7 +22,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
             leaveTo='transform scale-95 opacity-0 translate-y-10'
           >
             <Popover.Panel className='flex flex-col items-end justify-end h-screen'>
-              <div className='bg-primary flex justify-around flex-col items-center p-3 rounded-lg w-full h-[50%] font-serif'>
+              <div className='bg-primary flex justify-around flex-col items-center p-3 rounded-lg w-full h-1/2 font-serif'>
                 {links.map(navItem => (
                   <Link key={navItem.page} href={navItem.route}>
                     <a className='px-2 w-full opacity-100 transition-all duration-150 focus:ring focus:ring-teal focus:ring-opacity-50 rounded'>
