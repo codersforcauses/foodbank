@@ -16,7 +16,6 @@ import {
   FirestoreError
 } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import FireStoreParser from 'firestore-parser'
 import { auth, db } from 'pages/api/firebase'
 import { MESSAGES } from '@components/Auth/enums'
 
@@ -31,29 +30,28 @@ interface FirebaseContextProps {
   user?: User | null
   userLoading?: boolean
   userError?: Error
-  achievements: AchievementsData
-  updateAchievementsDocument?: (newAchievements: AchievementsData) => void
+  achievementsCount: AchievementsCountProp
+  addAchievementsCount?: (newAchievementsEarned: number) => void
   signOutClearDataUnlockGrid?: () => void
   gridDisabled?: boolean
   setGridDisabled?: (value: SetStateAction<boolean>) => void
 }
 
-type AchievementsData = Record<string, boolean>
-const defaultAchievements: AchievementsData = {}
-for (let i = 1; i <= NUMBER_OF_ACHIEVEMENTS; i++) {
-  defaultAchievements[`achievement${i}`] = false
+interface AchievementsCountProp {
+  count: number
 }
+const defaultAchievementsCount: AchievementsCountProp = { count: 0 }
 
 const FirebaseContext = createContext<FirebaseContextProps>({
   auth: auth,
   db: db,
-  achievements: defaultAchievements
+  achievementsCount: defaultAchievementsCount
 })
 const useFirebase = () => useContext(FirebaseContext)
 
 const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [achievements, setAchievements] =
-    useState<AchievementsData>(defaultAchievements)
+  const [achievementsCount, setAchievementsCount] =
+    useState<AchievementsCountProp>(defaultAchievementsCount)
   const [gridDisabled, setGridDisabled] = useState(false)
 
   // User Authentication
@@ -70,22 +68,24 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
         })
         const userDoc = await response.json()
         if (response.ok && userDoc?.fields) {
-          const userDocData: AchievementsData = FireStoreParser(userDoc.fields)
-          setAchievements(userDocData)
+          const userDocData: AchievementsCountProp = {
+            count: userDoc.fields.count.integerValue
+          }
+          setAchievementsCount(userDocData)
         } else {
           // doc.data() will be undefined in this case
           console.error(MESSAGES.NO_USER_DOCUMENT)
-          await setDoc(doc(db, 'users', user.uid), defaultAchievements)
+          await setDoc(doc(db, 'users', user.uid), defaultAchievementsCount)
         }
         //#region  //*=========== For next@12.0.9 ===========
         // const userDocSnap = await getDoc(doc(db, 'users', user.uid))
         // if (userDocSnap.exists()) {
-        //   const userDocData: AchievementsData = userDocSnap.data()
+        //   const userDocData: AchievementsCountProp = userDocSnap.data()
         //   setAchievements(userDocData)
         // } else {
         //   // doc.data() will be undefined in this case
         //   console.log('TESTING: No such document!')
-        //   await setDoc(doc(db, 'users', user.uid), defaultAchievements)
+        //   await setDoc(doc(db, 'users', user.uid), defaultAchievementsCount)
         // }
         //#endregion  //*======== For next@12.0.9 ===========
       } catch (err: unknown) {
@@ -102,14 +102,16 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     retrieveData()
   }, [retrieveData])
 
-  const updateAchievementsDocument = async (
-    newAchievements: AchievementsData
-  ) => {
-    setAchievements(prev => ({ ...prev, ...newAchievements }))
+  const addAchievementsCount = async (newAchievementsEarned: number) => {
+    setAchievementsCount(prev => ({
+      count: prev.count + newAchievementsEarned
+    }))
     try {
       if (user?.uid) {
         const userDocRef = doc(db, 'users', user.uid)
-        await updateDoc(userDocRef, newAchievements)
+        await updateDoc(userDocRef, {
+          count: achievementsCount.count + newAchievementsEarned
+        })
       }
     } catch (err: unknown) {
       //#region  //*=========== For logging ===========
@@ -122,7 +124,7 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const signOutClearDataUnlockGrid = () => {
     signOut(auth)
-    setAchievements(defaultAchievements)
+    setAchievementsCount(defaultAchievementsCount)
     setGridDisabled(false)
   }
 
@@ -132,8 +134,8 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     user: user,
     userLoading: userLoading,
     userError: userError,
-    achievements: achievements,
-    updateAchievementsDocument: updateAchievementsDocument,
+    achievementsCount: achievementsCount,
+    addAchievementsCount: addAchievementsCount,
     signOutClearDataUnlockGrid: signOutClearDataUnlockGrid,
     gridDisabled: gridDisabled,
     setGridDisabled: setGridDisabled
@@ -146,5 +148,5 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
   )
 }
 
-export { useFirebase, FirebaseProvider, defaultAchievements }
-export type { AchievementsData }
+export { useFirebase, FirebaseProvider, defaultAchievementsCount }
+export type { AchievementsCountProp }
