@@ -1,50 +1,59 @@
-import PopupVideo from '@components/Video/PopupVideo';
-import VideoCard from '@components/Video/VideoCard';
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import PopupVideo from '@components/Video/PopupVideo'
+import VideoCard from '@components/Video/VideoCard'
+import { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 
 interface Video {
-  youtubeVideoID: string;
-  title: string;
+  youtubeVideoID: string
+  title: string
 }
 
 interface VideosGridProps {
-  videos: Array<Video>;
+  videos: Array<Video>
 }
 
-const VideosGridView: React.FC<VideosGridProps> = ({videos}) => {
+const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
   videos = [
     {
-      youtubeVideoID: "s9F8pu5KfyM",
-      title: "Why Do Computers Suck At Math?"
-    },{
-      youtubeVideoID: "B1t4Fjlomi8",
-      title: "Why do computers use RGB for colours, and not RBY?"
-    },{
-      youtubeVideoID: "njdJeu95p6s",
-      title: "Top 3 Ways to Center a DIV with CSS"
-    },{
-      youtubeVideoID: "njdJeu95p6s",
-      title: "Top 3 Ways to Center a DIV with CSS"
+      youtubeVideoID: 's9F8pu5KfyM',
+      title: 'Why Do Computers Suck At Math?'
+    },
+    {
+      youtubeVideoID: 'B1t4Fjlomi8',
+      title: 'Why do computers use RGB for colours, and not RBY?'
+    },
+    {
+      youtubeVideoID: 'njdJeu95p6s',
+      title: 'Top 3 Ways to Center a DIV with CSS'
+    },
+    {
+      youtubeVideoID: 'njdJeu95p6s',
+      title: 'Top 3 Ways to Center a DIV with CSS'
     }
   ]
-  
+
   const [popupVisible, setPopupVisibility] = useState(false)
   const handlePopupVisibility = () => setPopupVisibility(!popupVisible)
-  const [activeVideo, setActiveVideo] = useState("https://www.youtube.com/watch?v=oUVCWNQFGTc")
+  const [activeVideo, setActiveVideo] = useState(
+    'https://www.youtube.com/watch?v=oUVCWNQFGTc'
+  )
   const handleActiveVideoChange = (url: string) => {
-    setActiveVideo(url);
-    setPopupVisibility(true);
+    setActiveVideo(url)
+    setPopupVisibility(true)
   }
 
   const videoCards = videos.map(video => {
     const { youtubeVideoID, title } = video
     return (
-      <button onClick={() => handleActiveVideoChange("https://www.youtube.com/watch?v=" + youtubeVideoID)}>
-        <VideoCard
-          title={title}
-          youtubeVideoID={youtubeVideoID}
-        />
+      <button
+        key={youtubeVideoID}
+        onClick={() =>
+          handleActiveVideoChange(
+            'https://www.youtube.com/watch?v=' + youtubeVideoID
+          )
+        }
+      >
+        <VideoCard title={title} youtubeVideoID={youtubeVideoID} />
       </button>
     )
   })
