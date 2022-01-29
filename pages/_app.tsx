@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
-import { FirebaseProvider } from '@components/FirebaseContext'
 import Navbar from '@components/NavBar'
 import { NavLinkProps } from '@components/NavBar/NavLink'
 import MobileMenu from '@components/MobileMenu'
+import { FirebaseProvider } from '@components/FirebaseContext'
 import '@styles/main.css'
 
 const links: Array<NavLinkProps> = [

@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { useFirebase } from '@components/FirebaseContext'
+import { useFirebase } from '@components/FirebaseContext/context'
 
 const DropdownSignOut = () => {
   const { user, signOutClearDataUnlockGrid } = useFirebase()
@@ -47,7 +47,7 @@ const DropdownSignOut = () => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Menu.Items className='absolute right-2 w-28 font-serif top-12 focus:outline-none'>
+          <Menu.Items className='absolute font-serif right-2 w-28 top-12 focus:outline-none'>
             <div className='items-center px-2 py-2 rounded-md bg-orange'>
               <Menu.Item>
                 {({ active }) => (

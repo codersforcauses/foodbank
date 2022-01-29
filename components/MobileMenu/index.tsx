@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Popover, Transition } from '@headlessui/react'
 import { NavLinkProps } from '@components/NavBar/NavLink'
-import { useFirebase } from '@components/FirebaseContext'
+import { useFirebase } from '@components/FirebaseContext/context'
 import Hamburger from 'public/images/Hamburger_icon.svg'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })

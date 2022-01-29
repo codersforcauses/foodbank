@@ -1,5 +1,5 @@
 import { Button } from '@components/Custom'
-import { useFirebase } from '@components/FirebaseContext'
+import { useFirebase } from '@components/FirebaseContext/context'
 
 const TestData = () => {
   const { achievementsCount, addAchievementsCount, userLoading } = useFirebase()
@@ -23,8 +23,8 @@ const TestData = () => {
           Loading...
         </div>
       ) : (
-        <div className='flex justify-center flex-col'>
-          <p className='text-center text-2xl'>
+        <div className='flex flex-col justify-center'>
+          <p className='text-2xl text-center'>
             Achievements Count: {achievementsCount.count}
           </p>
           <div className='flex justify-center gap-6'>
