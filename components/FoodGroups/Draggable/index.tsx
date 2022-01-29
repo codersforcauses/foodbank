@@ -5,6 +5,7 @@ import { FoodGroupCharacterImage } from './types'
 
 import Image from 'next/image'
 import { StateDispatch } from '../types'
+import { dragDrop } from '../styles'
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
@@ -12,30 +13,26 @@ interface Props extends FoodGroupCharacterImage {
   setScreenPosition: StateDispatch<Vector2>
   setAbsPosition: StateDispatch<Vector2>
   screenPosition: Vector2
+  hidden: boolean
 }
 
 const Draggable: React.FC<Props> = (props: Props) => {
   const { screenPosition, setScreenPosition, setAbsPosition } = props
-  // const [screenPosition, setScreenPosition] = useState(props.start_pos)
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
+  const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
-  const [maxPosition, setMaxPosition] = useState({ x: 100.0, y: 100.0 })
   const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
   const [dragStyle, setDragStyle] = useState('')
-  const [ptrEvents, setPtrEvents] = useState(true)
 
   const dragAround = (e: MouseEvent) => {
-    let point: Vector2 = { x: e.clientX, y: e.clientY }
-    console.log('dragaround', point)
-
-    if (parentRect && delta) {
+    if (thisRect && parentRect && delta) {
       setAbsPosition({
-        x: e.pageX - parentRect.x + delta.x,
-        y: e.pageY - parentRect.y + delta.y
+        x: e.pageX + delta.x - parentRect.x + thisRect.width / 2,
+        y: e.pageY + delta.y - parentRect.y + thisRect.height / 2
       })
       let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
       let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
-      if (x > maxPosition.x || y > maxPosition.y || x < 0 || y < 0) return
+      if (x > 100 || y > 100 || x < 0 || y < 0) return
       setScreenPosition({ x: x, y: y })
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
@@ -43,18 +40,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const stopDrag = () => {
-    // setHoverTypeMutex(true)
     setDragStyle('')
 
     props.onEndDrag()
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
-    // setScreenPosition(startPosition)
-    setPtrEvents(true)
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // setHoverTypeMutex(false)
     float()
     setDragStyle('animate-wiggle')
 
@@ -68,25 +61,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
       console.error('[ ERROR ]: Parent element bb does not exist')
       return
     }
-    setPtrEvents(false)
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
+    setThisRect(box)
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
-    // let max_x = (100.0 - box.width) / parentRect.width
-    // let max_y = (100.0 - box.height) / parentRect.height
-    // setMaxPosition({ x: max_x, y: max_y })
-  }
-
-  const showImage = (character_image: FoodGroupCharacterImage) => {
-    return (
-      <Image
-        src={character_image.img_src}
-        alt={character_image.div_id}
-        layout='fill'
-        // className={}
-        // useMap={/* */}
-        id={`${character_image.bounding_box_id}`}
-      />
-    )
   }
 
   const float = () => {
@@ -108,32 +85,28 @@ const Draggable: React.FC<Props> = (props: Props) => {
     <>
       <div
         aria-hidden='true'
-        className={`${hoverStyle} ${dragStyle} w-44 h-44 transition ease-in duration-100 scale-100 hover:scale-110`}
+        className={dragDrop + `${hoverStyle} ${dragStyle} w-44 h-44 transition ease-in duration-100 scale-100 hover:scale-110`}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}
         draggable={false}
         style={{
-          //pointerEvents: ptrEvents ? 'auto' : 'none',
-          position: 'fixed', // MUST BE FIXED SO ITS COORDINATES ARE RELATIVE TO THE PAGE BASE
-          left: `${screenPosition.x}%`, // % works!!
+          left: `${screenPosition.x}%`,
           top: `${screenPosition.y}%`
-          // backgroundColor: 'cyan',
         }}
       >
         <div
-          className='select-none'
-          style={{ pointerEvents: 'none' }}
+          className='z-0 pointer-events-none select-none'
           draggable={false}
+          hidden={props.hidden}
         >
           <Image
             src={props.img_src}
             alt={props.div_id}
             layout='fill'
             draggable={false}
+            priority={true}
           />
-          {/* Line below for debugging screen position of characters */}
-          {/* CurX: {screenPosition.x} CurY: {screenPosition.y} */}
         </div>
       </div>
     </>

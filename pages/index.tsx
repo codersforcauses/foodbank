@@ -1,5 +1,6 @@
 import Map from '@components/Map'
 
-const Home = () => <Map />
-
+const Home = () => {
+  return <Map />
+}
 export default Home

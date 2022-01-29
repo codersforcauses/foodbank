@@ -12,13 +12,10 @@ import {
   angleRegions
 } from '@components/FoodGroups/dinamicStyles'
 
-import {
-  FoodGroupStates,
-  StateDispatch,
-  State_
-} from '@components/FoodGroups/types'
+import { State } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
-import { DAIRY, FRUIT, GRAINS, MEAT, VEGETABLES } from './groups'
+import { FOOD_GROUPS, GROUPS } from './groups'
+import { customImg, sliceBaseStyle, sliceDimensions } from './styles'
 
 /**
  * A page displaying all food groups in a pie chart
@@ -37,19 +34,9 @@ const FoodGroups = ({
   overrideMouse,
   overrideMousePosition
 }: Props) => {
-  const FOODGROUP_STYLES = [
-    ' ',
-    'z-0',
-    'transition',
-    'duration-500',
-    'ease-in-out',
-    'scale-wheel',
-    'select-none'
-  ].join(' ')
-
   const [radius, setRadius] = useState(0)
   const [center, setCenter] = useState({ x: 0, y: 0 })
-  const [currentRegion, setCurrentRegion] = useState('') // Debounce mouse events
+  const [currentRegion, setCurrentRegion] = useState(GROUPS.NONE) // Debounce mouse events
 
   const makeStyle = () => {
     const state = useState([''])
@@ -59,13 +46,11 @@ const FoodGroups = ({
     }
   }
 
-  const allStates: FoodGroupStates = {
-    [MEAT]: makeStyle(),
-    [GRAINS]: makeStyle(),
-    [DAIRY]: makeStyle(),
-    [FRUIT]: makeStyle(),
-    [VEGETABLES]: makeStyle()
-  }
+  const allStates: Record<string, State<string[]>> = {}
+
+  FOOD_GROUPS.forEach(type => {
+    allStates[type] = makeStyle()
+  })
 
   useEffect(() => {
     resize_map({ setCenter, setRadius })
@@ -78,7 +63,7 @@ const FoodGroups = ({
         return region.region_name
       }
     }
-    return ''
+    return GROUPS.NONE
   }
 
   const wheelMouseOver = ({ x, y }: Vector2) => {
@@ -88,18 +73,17 @@ const FoodGroups = ({
       const newRegion = getRegion(Math.atan2(dy, dx))
       if (newRegion !== currentRegion) {
         handleMouseOut(currentRegion, allStates)
-        if (newRegion !== '') {
+        if (newRegion !== GROUPS.NONE) {
           handleMouseOver(newRegion, allStates)
         }
         setCurrentRegion(newRegion)
       }
-    } else if (currentRegion !== '') {
+    } else if (currentRegion !== GROUPS.NONE) {
       handleMouseOut(currentRegion, allStates)
-      setCurrentRegion('')
+      setCurrentRegion(GROUPS.NONE)
     }
   }
 
-  // TODO: Move handlers outside of wheel so we can use the centers of the food objects as a point.
   useEffect(() => {
     const handler = (e: MouseEvent) =>
       wheelMouseOver({ x: e.clientX, y: e.clientY })
@@ -137,8 +121,6 @@ const FoodGroups = ({
 
   useEffect(() => {
     if (overrideMouse) {
-      console.log('Override')
-
       wheelMouseOver(overrideMousePosition)
     }
   }, [overrideMouse, overrideMousePosition])
@@ -157,20 +139,24 @@ const FoodGroups = ({
             id={group.div_id}
             key={group.div_id}
             className={[
-              FOODGROUP_STYLES,
-              styles[group.img_styles],
-              ...allStates[group.div_id].styles
+              sliceBaseStyle,
+              ...allStates[group.div_id].styles,
+
+              styles[group.img_styles], // Needed for the :root
+              styles['wrapper-fix'] // Needed for the span fix
             ].join(' ')}
+            style={sliceDimensions[group.img_styles]}
             draggable={false}
           >
             <Image
               src={group.img_src}
               alt={group.div_id}
               layout='fill'
-              className={styles['custom-img']}
+              className={customImg}
               useMap={`#${group.map_name}`}
               id={group.img_id}
               draggable={false}
+              priority={true}
             />
           </div>
         )

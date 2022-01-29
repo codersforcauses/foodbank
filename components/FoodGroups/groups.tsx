@@ -1,5 +1,17 @@
-export const VEGETABLES = 'vegetables'
-export const FRUIT = 'fruit'
-export const DAIRY = 'dairy'
-export const MEAT = 'meat'
-export const GRAINS = 'grains'
+export const enum GROUPS {
+  VEGETABLES = 'vegetables',
+  FRUIT = 'fruit',
+  DAIRY = 'dairy',
+  MEAT = 'meat',
+  GRAINS = 'grains',
+  NONE = '',
+  DEFAULT = 'DEFAULT' // Undefined
+}
+
+export const FOOD_GROUPS = [
+  GROUPS.VEGETABLES,
+  GROUPS.FRUIT,
+  GROUPS.DAIRY,
+  GROUPS.MEAT,
+  GROUPS.GRAINS
+]

@@ -2,123 +2,15 @@
 /* Five food groups main page */
 /**********/
 
-.test-area {
-  z-index: 1000 !important;
-}
-
-:root .img-dairy,
-.img-meat,
-.img-fruit,
-.img-vegetables,
-.img-grains {
-  grid-row-start: 1;
-  grid-column-start: 1;
-  --scale: 1.45; /* Arbitrary scale multiplier to make wheel fit within div completely */
-}
-
-.drag-drop {
-  position: relative !important;
+:root .dairy,
+.meat,
+.fruit,
+.vegetables,
+.grains {
   grid-row-start: 1;
   grid-column-start: 1;
 }
 
-/* .food-wheel {
-  height: 50%;
-  width: 50%;
-  transform: translateX(-50%);
-  position: relative;
-  margin-right: 50%;
-} */
-
-.custom-img {
-  object-fit: contain;
-  /*max-width: 400px;*/
-  width: 100% !important;
+.wrapper-fix > span {
   position: relative !important;
-  height: unset !important;
-}
-
-.unset-img {
-  display: flex;
-  position: relative;
-  width: 30%;
-}
-
-.img-dairy {
-  user-select: none;
-  position: relative;
-  width: calc(22.6% * var(--scale));
-  margin-top: calc(31% * var(--scale));
-  margin-left: calc(50% - 7% * var(--scale));
-}
-
-.img-meat {
-  user-select: none;
-  position: relative;
-  width: calc(28% * var(--scale));
-  margin-left: calc(50% - 27.9% * var(--scale));
-  margin-top: calc(29.5% * var(--scale));
-}
-
-.img-fruit {
-  user-select: none;
-  position: relative;
-  width: calc(28.5% * var(--scale));
-  margin-top: calc(29.6% * var(--scale));
-  margin-left: calc(50% - 0.1% * var(--scale));
-}
-
-.img-vegetables {
-  user-select: none;
-  position: relative;
-  width: calc(30% * var(--scale));
-  margin-left: calc(50% - 0.3% * var(--scale));
-}
-
-.img-grains {
-  user-select: none;
-  position: relative;
-  width: calc(30% * var(--scale));
-  margin-left: calc(50% - 30% * var(--scale));
-}
-
-.img-meat > div {
-  position: unset !important;
-}
-
-.img-fruit > div {
-  position: unset !important;
-}
-
-.img-vegetables > div {
-  position: unset !important;
-}
-
-.img-dairy > div {
-  position: unset !important;
-}
-
-.img-grains > div {
-  position: unset !important;
-}
-/* 
-.food-group-modal {
-  position: fixed;
-  z-index: 500;
-  background-color: white;
-  width: 70%;
-  border: 1px solid #ccc;
-  box-shadow: 1px 1px 1px black;
-  padding: 16px;
-  left: 15%;
-  top: 30%;
-  box-sizing: border-box;
-  transition: all 0.3s ease-out;
-} */
-
-@media (min-width: 600px) {
-  .food-group-modal {
-    width: 500px;
-    left: calc(50% - 250px);
-  }
 }
