@@ -1,12 +1,63 @@
-import PopupVideo from '@components/PopupVideo'
-import { Fragment, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import PopupVideo from '@components/Video/PopupVideo';
+import VideoCard from '@components/Video/VideoCard';
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
-const Player = () => {
+interface Video {
+  youtubeVideoID: string;
+  title: string;
+}
+
+interface VideosGridProps {
+  videos: Array<Video>;
+}
+
+const VideosGridView: React.FC<VideosGridProps> = ({videos}) => {
+  videos = [
+    {
+      youtubeVideoID: "s9F8pu5KfyM",
+      title: "Why Do Computers Suck At Math?"
+    },{
+      youtubeVideoID: "B1t4Fjlomi8",
+      title: "Why do computers use RGB for colours, and not RBY?"
+    },{
+      youtubeVideoID: "njdJeu95p6s",
+      title: "Top 3 Ways to Center a DIV with CSS"
+    },{
+      youtubeVideoID: "njdJeu95p6s",
+      title: "Top 3 Ways to Center a DIV with CSS"
+    }
+  ]
+  
   const [popupVisible, setPopupVisibility] = useState(false)
   const handlePopupVisibility = () => setPopupVisibility(!popupVisible)
+  const [activeVideo, setActiveVideo] = useState("https://www.youtube.com/watch?v=oUVCWNQFGTc")
+  const handleActiveVideoChange = (url: string) => {
+    setActiveVideo(url);
+    setPopupVisibility(true);
+  }
+
+  const videoCards = videos.map(video => {
+    const { youtubeVideoID, title } = video
+    return (
+      <button onClick={() => handleActiveVideoChange("https://www.youtube.com/watch?v=" + youtubeVideoID)}>
+        <VideoCard
+          title={title}
+          youtubeVideoID={youtubeVideoID}
+        />
+      </button>
+    )
+  })
+
   return (
     <>
+      <div className='grid gap-10 grid-1'>
+        <div className='flex justify-center m-10'>
+          <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
+            {videoCards}
+          </div>
+        </div>
+      </div>
       <button onClick={() => setPopupVisibility(true)}>Open video</button>
       <Transition.Root show={popupVisible} as={Fragment}>
         <Dialog
@@ -35,7 +86,7 @@ const Player = () => {
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
               <div className='relative bg-primary rounded max-w-3xl mx-auto p-5'>
-                <PopupVideo url='https://www.youtube.com/watch?v=oUVCWNQFGTc' />
+                <PopupVideo url={activeVideo} />
               </div>
             </Transition.Child>
           </div>
@@ -45,4 +96,4 @@ const Player = () => {
   )
 }
 
-export default Player
+export default VideosGridView
