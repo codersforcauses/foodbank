@@ -32,7 +32,7 @@ const Intro = () => {
             alt='Banana Guy'
             quality={50}
           />
-          <div className='w-16 md:w-32 lg:w-48 absolute left-60 bottom-64 text-center -rotate-3'>
+          <div className='w-40 lg:w-72 absolute left-24 md:left-60 bottom-32 md:bottom-64 text-center text-[0.5rem] md:text-base -rotate-3'>
             Hi, I’m Super Fruity! Welcome to the Superhero Foods Adventure! I’m
             the leader of the Superhero Foods. I live in Healthy Town, which is
             the capital of Tucker Island. I live there with my friends. I’m
