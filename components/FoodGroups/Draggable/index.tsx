@@ -21,7 +21,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
-  const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
+  const [hoverStyle, setHoverStyle] = useState('z-20')
   const [dragStyle, setDragStyle] = useState('')
 
   const dragAround = (e: MouseEvent) => {
@@ -67,11 +67,11 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const float = () => {
-    setHoverStyle('z-30 ' + styles['drag-drop'])
+    setHoverStyle('z-30')
   }
 
   const defloat = () => {
-    setHoverStyle('z-20 ' + styles['drag-drop'])
+    setHoverStyle('z-20')
   }
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     <>
       <div
         aria-hidden='true'
-        className={dragDrop + `${hoverStyle} ${dragStyle} w-44 h-44 transition ease-in duration-100 scale-100 hover:scale-110`}
+        className={`${dragDrop} ${hoverStyle} ${dragStyle} transition ease-in duration-100 scale-100 hover:scale-110`}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}
@@ -96,14 +96,15 @@ const Draggable: React.FC<Props> = (props: Props) => {
         }}
       >
         <div
-          className='z-0 pointer-events-none select-none'
+          className='pointer-events-none select-none'
           draggable={false}
           hidden={props.hidden}
         >
           <Image
             src={props.img_src}
             alt={props.div_id}
-            layout='fill'
+            width='200%'
+            height='200%'
             draggable={false}
             priority={true}
           />
