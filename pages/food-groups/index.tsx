@@ -12,7 +12,7 @@ import {
   getFormatData
 } from '@components/FoodGroups/API/getData'
 import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
-// import { getServerSideProps } from '@components/FoodGroups/API/getData'
+import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
 
 // FIXME: Hack to ensure function uses updated state variables
 const updatedFunction = (f: Function) => {
@@ -29,9 +29,7 @@ const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
 
 function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
   const characterSet: FoodGroupCharacterImage[] = []
-  // Is there a dynamic way to do this? (answer is yes but what is the most efficient way to do it?)
 
-  // peter: yes there is ;)
   const filterFunction = (type: string) =>
     character_data.filter(character => character.type === type)
 
@@ -51,6 +49,8 @@ interface Props {
 }
 
 const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
+  const { achievements, updateAchievementsDocument } = useFirebase()
+
   const [modalState, setModalState] = useState(false)
   const [selectedDraggableType, setSelectedDraggableType] = useState(
     GROUPS.NONE
@@ -76,10 +76,6 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
   var draggables_2: JSX.Element[] = []
 
   const endDragF = (index: number) => {
-    console.log(
-      `Dropped on '${hoverType}', Type of draggable is '${selectedDraggableType}' ${index}`
-    )
-
     if (hoverType === selectedDraggableType) {
       correctDraggables[index] = true // CORRECT ANSWER
     } else if (hoverType !== GROUPS.NONE) {
@@ -91,10 +87,20 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
     // CHECK FOR END OF ROUND
     if (correctDraggables.every((v: boolean) => v)) {
+      // END OF ROUND
       setRoundCounter(roundCounter + 1)
+      updateAchievementsDocument?.({
+        // If achievements based on the number of wins should be implemented in the future.
+        [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
+          achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + 1,
+        // For now, achivements is just the amount of game wins
+        [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
+          achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + 1
+      })
       setWheelEnabled(false)
       setModalState(true)
     }
+    setOverridePosition({ x: 0, y: 0 })
     setHoverType(GROUPS.NONE)
     setSelectedDraggableType(GROUPS.NONE)
     setCorrectDraggables(correctDraggables)
@@ -165,19 +171,19 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     )
   })
 
-  // refactor-firebase-authentication branch for achievement logic.
-
   return (
     <>
       {modalState && (
-        <Modal
-          heading={'Round complete!'}
-          open={true}
-          onClose={resetGame}
-          size='lg'
-        >
+        <Modal heading={'You won!'} open={true} onClose={resetGame} size='lg'>
           <div className='flex items-center flex-col'>
-            <h1>You have completed {roundCounter} rounds so far.</h1>
+            <h1>
+              You have completed {roundCounter} rounds in this game - you have
+              earned a new trophy!
+            </h1>
+            <h2>
+              You have won {achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT]}{' '}
+              rounds in total!
+            </h2>
             <br />
             <Button className='flex items-center uppercase' onClick={resetGame}>
               next round
@@ -186,24 +192,16 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         </Modal>
       )}
       <div className='flex justify-start max-w-[100vh]' draggable={false}>
-        <div className='grid grid-cols-1	w-[90vh]' draggable={false}>
+        <div className='grid grid-cols-1 w-[90vh]' draggable={false}>
           <FoodGroups
             overrideMouse={selectedDraggableType !== GROUPS.NONE}
             overrideMousePosition={overridePosition}
             setHoverType={setHoverType}
             enabled={wheelEnabled}
           />
-          {/* WILL BE REPLACED WITH OBJECT SPAWNER */}
           {draggables}
           {draggables_2}
-          {/* {draggables_2 && !switchCharSet} */}
-          {/* END OF OBJECT SPAWNER */}
         </div>
-        {/* <p className='select-GROUPS.NONE'>
-          {hoverType}
-          <br />
-          {roundCounter}
-        </p> */}
       </div>
     </>
   )

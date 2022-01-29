@@ -23,12 +23,12 @@ const TestData = () => {
             .map(([key, value], i) => (
               <li className='travelcompany-input' key={i}>
                 <span className='input-label'>
-                  key: {key} value: {value.toString()}
+                  key: {key} value: {value}
                 </span>{' '}
                 <Switch
-                  checked={value}
+                  checked={value % 2 == 0}
                   onChange={() => {
-                    updateAchievementsDocument?.({ [key]: !value })
+                    updateAchievementsDocument?.({ [key]: value + 1 })
                   }}
                   className={`${
                     value ? 'bg-blue' : 'bg-grey-light'
@@ -40,6 +40,28 @@ const TestData = () => {
                       value ? 'translate-x-6' : 'translate-x-1'
                     } inline-block w-4 h-4 transform bg-white rounded-full`}
                   />
+                </Switch>
+                <Switch
+                  checked={value % 2 == 0}
+                  onChange={() => {
+                    updateAchievementsDocument?.({ [key]: value - 1 })
+                  }}
+                  className={`${
+                    value ? 'bg-blue' : 'bg-grey-light'
+                  } relative inline-flex items-center h-5 rounded-full w-11`}
+                >
+                  Subtract
+                </Switch>
+                <Switch
+                  checked={value % 2 == 0}
+                  onChange={() => {
+                    updateAchievementsDocument?.({ [key]: 0 })
+                  }}
+                  className={`${
+                    value ? 'bg-blue' : 'bg-grey-light'
+                  } relative inline-flex items-center h-5 rounded-full w-11`}
+                >
+                  Zero
                 </Switch>
                 <br />
                 <br />
