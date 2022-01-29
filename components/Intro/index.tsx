@@ -17,14 +17,16 @@ const Intro = () => {
     }
   }, [])
 
-  if (show) {
-    return (
-      <div
-        className='inset-0 absolute bg-grey-dark bg-opacity-50 z-50'
-        onClick={onClick}
-        aria-hidden='true'
-      >
-        <div className='fixed w-8/12 left-0 bottom-0'>
+  return (
+    <div
+      className={`inset-0 absolute bg-grey-dark bg-opacity-50 z-50 ${
+        show ? 'block' : 'hidden'
+      }`}
+      onClick={onClick}
+      aria-hidden='true'
+    >
+      <div className='fixed w-8/12 left-0 bottom-0'>
+        <div className='relative'>
           <Image
             src={banana}
             width={590}
@@ -32,7 +34,7 @@ const Intro = () => {
             alt='Banana Guy'
             quality={50}
           />
-          <div className='w-40 lg:w-72 absolute left-24 md:left-60 bottom-32 md:bottom-64 text-center text-[0.5rem] md:text-base -rotate-3'>
+          <div className='w-36 sm:w-44 md:w-60 lg:w-72 absolute left-[6rem] sm:left-[12rem] md:left-[16rem] lg:left-60 bottom-[8rem] sm:bottom-44 md:bottom-[15rem] lg:bottom-64 text-center text-[45%] sm:text-[70%] md:text-base -rotate-3'>
             Hi, I’m Super Fruity! Welcome to the Superhero Foods Adventure! I’m
             the leader of the Superhero Foods. I live in Healthy Town, which is
             the capital of Tucker Island. I live there with my friends. I’m
@@ -40,10 +42,8 @@ const Intro = () => {
           </div>
         </div>
       </div>
-    )
-  } else {
-    return null
-  }
+    </div>
+  )
 }
 export default Intro
 
