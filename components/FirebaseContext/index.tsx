@@ -16,10 +16,9 @@ import {
   FirestoreError
 } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import FireStoreParser from 'firestore-parser'
 import { auth, db } from 'pages/api/firebase'
 import { MESSAGES } from '@components/Auth/enums'
-
-const NUMBER_OF_ACHIEVEMENTS = 9
 
 const FIRESTORE_URL =
   'https://firestore.googleapis.com/v1/projects/foodbank-c9a2f/databases/(default)/documents/users'
@@ -68,9 +67,9 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
         })
         const userDoc = await response.json()
         if (response.ok && userDoc?.fields) {
-          const userDocData: AchievementsCountProp = {
-            count: userDoc.fields.count.integerValue
-          }
+          const userDocData: AchievementsCountProp = FireStoreParser(
+            userDoc.fields
+          )
           setAchievementsCount(userDocData)
         } else {
           // doc.data() will be undefined in this case
@@ -85,7 +84,7 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
         // } else {
         //   // doc.data() will be undefined in this case
         //   console.log('TESTING: No such document!')
-        //   await setDoc(doc(db, 'users', user.uid), defaultAchievementsCount)
+        //   await setDoc(doc(db, 'users', user.uid), defaultAchievements)
         // }
         //#endregion  //*======== For next@12.0.9 ===========
       } catch (err: unknown) {
