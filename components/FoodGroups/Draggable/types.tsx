@@ -3,6 +3,7 @@ import { Vector2 } from './boundingbox'
 
 interface FoodGroupCharacterImage {
   div_id: string
+  name: string
   img_src: string
   img_id: string
   type: GROUPS

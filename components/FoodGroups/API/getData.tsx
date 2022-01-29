@@ -38,6 +38,7 @@ const getFormatData = (data: any) => {
         case 'vegetables':
           formattedData.push({
             div_id: 'vegetables-character',
+            name: characterRecord.properties.name.title[0].plain_text,
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'vegetables-character-img',
             bounding_box_id: 3,
@@ -48,6 +49,7 @@ const getFormatData = (data: any) => {
         case 'grain':
           formattedData.push({
             div_id: 'grain-character',
+            name: characterRecord.properties.name.title[0].plain_text,
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'grain-character-img',
             bounding_box_id: 4,
@@ -58,6 +60,7 @@ const getFormatData = (data: any) => {
         case 'dairy':
           formattedData.push({
             div_id: 'dairy-character',
+            name: characterRecord.properties.name.title[0].plain_text,
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'dairy-character-img',
             bounding_box_id: 0,
@@ -68,6 +71,7 @@ const getFormatData = (data: any) => {
         case 'meat':
           formattedData.push({
             div_id: 'meat-character',
+            name: characterRecord.properties.name.title[0].plain_text,
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'meat-character-img',
             bounding_box_id: 1,
@@ -78,6 +82,7 @@ const getFormatData = (data: any) => {
         case 'fruit':
           formattedData.push({
             div_id: 'fruit-character',
+            name: characterRecord.properties.name.title[0].plain_text,
             img_src: characterRecord.properties.image.files[0]?.file.url,
             img_id: 'fruit-character-img',
             bounding_box_id: 2,
