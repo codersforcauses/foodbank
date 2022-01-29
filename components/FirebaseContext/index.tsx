@@ -1,8 +1,13 @@
 import { useState, useCallback, useEffect, FC, useMemo } from 'react'
 import { signOut } from 'firebase/auth'
-import { doc, setDoc, updateDoc, FirestoreError } from 'firebase/firestore'
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  FirestoreError
+} from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import FireStoreParser from 'firestore-parser'
 import { auth, db } from 'pages/api/firebase'
 import { MESSAGES } from '@components/Auth/enums'
 import {
@@ -11,9 +16,6 @@ import {
   FirebaseContextProps,
   FirebaseContextProvider
 } from '../FirebaseContext/context'
-
-const FIRESTORE_URL =
-  'https://firestore.googleapis.com/v1/projects/foodbank-c9a2f/databases/(default)/documents/users'
 
 const FirebaseProvider: FC = ({ children }) => {
   const [achievementsCount, setAchievementsCount] =
@@ -26,34 +28,15 @@ const FirebaseProvider: FC = ({ children }) => {
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
       try {
-        const userToken = await user.getIdToken()
-        const headers = { Authorization: `Bearer ${userToken}` }
-        const response = await fetch(`${FIRESTORE_URL}/${user.uid}`, {
-          method: 'get',
-          headers: headers
-        })
-        const userDoc = await response.json()
-        if (response.ok && userDoc?.fields) {
-          const userDocData: AchievementsCountProp = FireStoreParser(
-            userDoc.fields
-          )
+        const userDocSnap = await getDoc(doc(db, 'users', user.uid))
+        if (userDocSnap.exists()) {
+          const userDocData = userDocSnap.data() as AchievementsCountProp
           setAchievementsCount(userDocData)
         } else {
           // doc.data() will be undefined in this case
-          console.error(MESSAGES.NO_USER_DOCUMENT)
+          console.log(MESSAGES.NO_USER_DOCUMENT)
           await setDoc(doc(db, 'users', user.uid), defaultAchievementsCount)
         }
-        //#region  //*=========== For next@12.0.9 ===========
-        // const userDocSnap = await getDoc(doc(db, 'users', user.uid))
-        // if (userDocSnap.exists()) {
-        //   const userDocData: AchievementsCountProp = userDocSnap.data()
-        //   setAchievementsCount(userDocData)
-        // } else {
-        //   // doc.data() will be undefined in this case
-        //   console.log('TESTING: No such document!')
-        //   await setDoc(doc(db, 'users', user.uid), defaultAchievementsCount)
-        // }
-        //#endregion  //*======== For next@12.0.9 ===========
       } catch (err: unknown) {
         //#region  //*=========== For logging ===========
         if (err instanceof FirestoreError) {
