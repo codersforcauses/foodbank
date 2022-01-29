@@ -29,7 +29,6 @@
     "@headlessui/react": "1.4.2",
     "critters": "0.0.15",
     "firebase": "^9.6.4",
-    "firestore-parser": "^0.9.0",
     "keen-slider": "6.4.1",
     "next": "^12.0.8",
     "react": "17.0.2",
