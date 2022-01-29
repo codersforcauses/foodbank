@@ -45,16 +45,19 @@ const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
   const videoCards = videos.map(video => {
     const { youtubeVideoID, title } = video
     return (
-      <button
-        key={youtubeVideoID}
-        onClick={() =>
-          handleActiveVideoChange(
-            'https://www.youtube.com/watch?v=' + youtubeVideoID
-          )
-        }
-      >
-        <VideoCard title={title} youtubeVideoID={youtubeVideoID} />
-      </button>
+        <button
+          className="bg-primary flex flex-col rounded-2xl overflow-hidden"
+          key={youtubeVideoID}
+          onClick={() =>
+            handleActiveVideoChange(
+              'https://www.youtube.com/watch?v=' + youtubeVideoID
+            )
+          }
+        >
+          <VideoCard title={title} youtubeVideoID={youtubeVideoID} />
+          <h1 className=' px-4 py-1 font-serif text-md text-white hover:opacity-75'>{title}</h1>
+        </button>
+        
     )
   })
 
@@ -67,7 +70,6 @@ const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
           </div>
         </div>
       </div>
-      <button onClick={() => setPopupVisibility(true)}>Open video</button>
       <Transition.Root show={popupVisible} as={Fragment}>
         <Dialog
           onClose={() => setPopupVisibility(false)}

@@ -19,19 +19,15 @@ const VideoCard = ({
     'https://img.youtube.com/vi/' + youtubeVideoID + '/0.jpg'
 
   return (
-    <div className=''>
-      <div className='flex flex-col'>
-        <div className=' w-96 h-96 mt-8 relative'>
-          <Image
-            src={videoThumbnail}
-            layout='fill'
-            alt={title}
-            className='object-contain relative'
-          />
-        </div>
-        <h1 className='tracking-wide font-semibold text-2xl'>{title}</h1>
-        {/*</a>*/}
-      </div>
+    <div className=' w-full relative overflow-hidden'>
+      <Image
+        src={videoThumbnail}
+        layout='responsive'
+        width='480'
+        height='360'
+        alt={title}
+        className='object-contain relative'
+      />
     </div>
   )
 }
