@@ -1,17 +1,13 @@
 import React from 'react'
 import { PropsWithChildren } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Video } from 'pages/videos'
 
-export interface VideoCardProps {
-  title: string
-  youtubeVideoID: string
-}
+export interface VideoCardProps extends Video {}
 
 const VideoCard = ({
   title,
-  youtubeVideoID,
-  ...props
+  youtubeVideoID
 }: PropsWithChildren<VideoCardProps>) => {
   const videoURL = 'https://www.youtube.com/watch?v=' + youtubeVideoID
   //const videoThumbnail = "https://img.youtube.com/vi/" + youtubeVideoID + "/maxresdefault.jpg";

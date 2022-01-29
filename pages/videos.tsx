@@ -3,7 +3,7 @@ import VideoCard from '@components/Video/VideoCard'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-interface Video {
+export interface Video {
   youtubeVideoID: string
   title: string
 }
@@ -33,7 +33,6 @@ const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
   ]
 
   const [popupVisible, setPopupVisibility] = useState(false)
-  const handlePopupVisibility = () => setPopupVisibility(!popupVisible)
   const [activeVideo, setActiveVideo] = useState(
     'https://www.youtube.com/watch?v=oUVCWNQFGTc'
   )
