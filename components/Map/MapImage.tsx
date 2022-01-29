@@ -14,6 +14,8 @@ interface MapProps {
   }
   setDisplayBox: (display: boolean) => void
   displayBox: boolean
+  setIsShowing: (state: boolean) => void
+  isShowing: boolean
   selected: any
   setSelect: (state: any) => void
 }
@@ -23,6 +25,7 @@ const MapImage = ({
   setTransform,
   windowDimensions,
   setDisplayBox,
+  setIsShowing,
   selected,
   setSelect,
   initialScale
@@ -37,6 +40,7 @@ const MapImage = ({
     selected === area ? setSelect(null) : setSelect(area)
     setDisplayBox(true)
     setTransform(xtrans, ytrans, initialScale * 2, 1000, 'easeOut')
+    setIsShowing(true)
   }
 
   let timestamp: number

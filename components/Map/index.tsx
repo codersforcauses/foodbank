@@ -9,12 +9,14 @@ import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 import TownBoxWrapper from './TownBoxWrapper'
 import MapImage from './MapImage'
 import { ReactZoomPanPinchRef } from 'react-zoom-pan-pinch'
+import { Transition } from '@headlessui/react'
 
 const Map = () => {
   const [scale, setScale] = useState(1)
   const [select, setSelect] = useState(null)
   const [displayBox, setDisplayBox] = useState(false)
   const [initialScale, setInitialScale] = useState(1)
+  const [isShowing, setIsShowing] = useState(false)
   const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
   const [windowDimensions, setWindowDimensions] = useState({
     height: 0,
@@ -86,6 +88,8 @@ const Map = () => {
                 windowDimensions={windowDimensions}
                 setTransform={setTransform}
                 setDisplayBox={setDisplayBox}
+                setIsShowing={setIsShowing}
+                isShowing={isShowing}
                 displayBox={displayBox}
                 setSelect={setSelect}
                 selected={select}
@@ -97,13 +101,24 @@ const Map = () => {
                 displayBox ? '' : 'hidden'
               }`}
             >
-              <TownBoxWrapper
-                selected={select}
-                setSelect={setSelect}
-                setDisplayBox={setDisplayBox}
-                initialScale={initialScale}
-                zoomOut={zoomOut}
-              />
+              <Transition
+                show={isShowing}
+                enter="transition-opacity duration-1000"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-1000"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <TownBoxWrapper
+                  selected={select}
+                  setSelect={setSelect}
+                  setDisplayBox={setDisplayBox}
+                  setIsShowing={setIsShowing}
+                  initialScale={initialScale}
+                  zoomOut={zoomOut}
+                />
+              </Transition>
             </div>
           </>
         )}
