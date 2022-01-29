@@ -1,6 +1,6 @@
 import TestData from '@components/TestData'
 
-const Home = () => {
+const Trophy = () => {
   return <TestData />
 }
-export default Home
+export default Trophy
