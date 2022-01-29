@@ -42,7 +42,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                   )}
                   {links.map(navItem => (
                     <Link key={navItem.page} href={navItem.route}>
-                      <a className='w-full px-2 transition-all duration-150 rounded opacity-100 focus:ring focus:ring-teal focus:ring-opacity-50'>
+                      <a className='w-full px-2 transition-all duration-150 rounded opacity-100 focus:ring focus:ring-teal/50'>
                         {navItem.page}
                       </a>
                     </Link>
@@ -60,7 +60,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
                     </button>
                   )}
                 </div>
-                <div className='mr-5 border-t-primary border-t-[1rem] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]' />
+                <div className='mr-5 border-t-primary border-t-[1rem] border-r-transparent border-r-8 border-l-transparent border-l-8' />
               </Popover.Panel>
             </Transition>
             <Popover.Button

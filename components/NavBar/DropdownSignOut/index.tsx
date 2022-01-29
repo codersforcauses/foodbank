@@ -6,7 +6,7 @@ const DropdownSignOut = () => {
   const { user, signOutClearDataUnlockGrid } = useFirebase()
   return (
     <Menu as='div' className='relative flex text-xl text-right'>
-      <Menu.Button className='px-3 ml-8 font-serif text-white rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50'>
+      <Menu.Button className='px-3 ml-8 font-serif text-white rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'>
         <span className='capitalize'>{user?.displayName}</span>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -34,7 +34,7 @@ const DropdownSignOut = () => {
           leaveTo='translate-y-full opacity-0'
         >
           <div className='absolute right-[0.62rem] top-8'>
-            <div className='w-0 h-0 border-b-orange border-b-[1em] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]' />
+            <div className='w-0 h-0 border-b-orange border-b-[1.25rem] border-r-transparent border-r-8 border-l-transparent border-l-8' />
           </div>
         </Transition.Child>
         {/* Menu Items */}
@@ -47,7 +47,7 @@ const DropdownSignOut = () => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Menu.Items className='absolute right-[0.5rem] w-28 font-serif top-[3rem] focus:outline-none'>
+          <Menu.Items className='absolute right-2 w-28 font-serif top-12 focus:outline-none'>
             <div className='items-center px-2 py-2 rounded-md bg-orange'>
               <Menu.Item>
                 {({ active }) => (
@@ -57,7 +57,7 @@ const DropdownSignOut = () => {
                         ? 'text-opacity-75 text-primary bg-teal rounded'
                         : ''
                     } items-center w-full text-white`}
-                    onClick={() => signOutClearDataUnlockGrid?.()}
+                    onClick={signOutClearDataUnlockGrid}
                   >
                     SIGN OUT
                   </button>
