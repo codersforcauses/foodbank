@@ -38,11 +38,19 @@ interface FirebaseContextProps {
   setGridDisabled?: (value: SetStateAction<boolean>) => void
 }
 
-type AchievementsData = Record<string, boolean>
-const defaultAchievements: AchievementsData = {}
-for (let i = 1; i <= NUMBER_OF_ACHIEVEMENTS; i++) {
-  defaultAchievements[`achievement${i}`] = false
+export enum ACHIEVEMENT {
+  ACHIEVEMENT_COUNT = 'count',
+  DRAG_DROP_WIN_COUNT = 'dragDropWinCount'
 }
+
+type AchievementsData = Record<string, number>
+const defaultAchievements: AchievementsData = {
+  [ACHIEVEMENT.ACHIEVEMENT_COUNT]: 0,
+  [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]: 0
+}
+// for (let i = 1; i <= NUMBER_OF_ACHIEVEMENTS; i++) {
+//   defaultAchievements[`achievement${i}`] = false
+// }
 
 const FirebaseContext = createContext<FirebaseContextProps>({
   auth: auth,
