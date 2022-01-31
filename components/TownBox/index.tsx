@@ -20,8 +20,6 @@ const Townbox = ({
 }: TownboxProps) => {
   const bgColour: 'bg-primary' | 'bg-orange' =
     headerColor === 'primary' ? 'bg-primary' : 'bg-orange'
-  
-  
 
   return (
     <div className='flex p-8'>
