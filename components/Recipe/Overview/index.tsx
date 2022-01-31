@@ -138,7 +138,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
               {recipe.hint && (
                 <div className='flex'>
                   {/* <div className={styles['tip-plate-container']}> */}
-                  <div className='w-2/5 mt-[-75%] ml-[75%] mr-[-15%] !span-child-relative'>
+                  <div className='relative w-2/5 mt-[-75%] ml-[75%] mr-[-15%] !span-child-relative'>
                     <Image
                       className='!relative !w-full !h-[unset] object-contain'
                       src={hintPlate}
@@ -151,9 +151,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
                       //   ' absolute font-semibold font-serif '
                       // }
                       className={
-                        'absolute w-4/5 font-serif font-semibold rotate-[10deg]' +
-                        ' ' +
-                        ''
+                        'absolute w-4/5 xl:text-xl font-serif font-semibold rotate-[10deg] top-10 right-4 lg:top-16 lg:right-6 xl:top-28 xl:right-8'
                         // 'mt-[-45%] ml-[15%] text-[2vw] md:mt-[-140%] md:ml-[34px] md:text-[1.5rem] lg:mt-[-150%] lg:ml-[34px] lg:text-2xl xl:mt-[-160%] xl:ml-[50px] xl:text-2xl'
                       }
                     >
