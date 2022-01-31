@@ -12,8 +12,6 @@ interface MapProps {
     height: number
     width: number
   }
-  setDisplayBox: (display: boolean) => void
-  displayBox: boolean
   setIsShowing: (state: boolean) => void
   isShowing: boolean
   selected: any
@@ -24,7 +22,6 @@ const MapImage = ({
   scale,
   setTransform,
   windowDimensions,
-  setDisplayBox,
   setIsShowing,
   selected,
   setSelect,
@@ -38,7 +35,6 @@ const MapImage = ({
   ) => {
     const area = (event.target as HTMLAreaElement).alt
     selected === area ? setSelect(null) : setSelect(area)
-    setDisplayBox(true)
     setTransform(xtrans, ytrans, initialScale * 2, 1000, 'easeOut')
     setIsShowing(true)
   }

@@ -14,7 +14,6 @@ import { Transition } from '@headlessui/react'
 const Map = () => {
   const [scale, setScale] = useState(1)
   const [select, setSelect] = useState(null)
-  const [displayBox, setDisplayBox] = useState(false)
   const [initialScale, setInitialScale] = useState(1)
   const [isShowing, setIsShowing] = useState(false)
   const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
@@ -87,39 +86,31 @@ const Map = () => {
                 initialScale={initialScale}
                 windowDimensions={windowDimensions}
                 setTransform={setTransform}
-                setDisplayBox={setDisplayBox}
                 setIsShowing={setIsShowing}
                 isShowing={isShowing}
-                displayBox={displayBox}
                 setSelect={setSelect}
                 selected={select}
               />
             </TransformComponent>
 
-            <div
-              className={`fixed top-0 h-screen flex justify-center items-center ${
-                displayBox ? '' : 'hidden'
-              }`}
+            <Transition
+              show={isShowing}
+              enter='transition ease-in-out delay-1000 duration-500'
+              enterFrom='opacity-0 scale-50'
+              enterTo='opacity-100 scale-100'
+              leave='transition duration-1000'
+              leaveFrom='opacity-100 scale-100'
+              leaveTo='opacity-0 scale-50'
+              className='fixed top-0 h-screen flex justify-center items-center'
             >
-              <Transition
-                show={isShowing}
-                enter="transition-opacity duration-1000"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-1000"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <TownBoxWrapper
-                  selected={select}
-                  setSelect={setSelect}
-                  setDisplayBox={setDisplayBox}
-                  setIsShowing={setIsShowing}
-                  initialScale={initialScale}
-                  zoomOut={zoomOut}
-                />
-              </Transition>
-            </div>
+              <TownBoxWrapper
+                selected={select}
+                setSelect={setSelect}
+                setIsShowing={setIsShowing}
+                initialScale={initialScale}
+                zoomOut={zoomOut}
+              />
+            </Transition>
           </>
         )}
       </TransformWrapper>
