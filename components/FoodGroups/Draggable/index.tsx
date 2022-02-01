@@ -105,7 +105,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
           hidden={props.hidden}
         >
           <Transition
-            className='z-40 absolute'
+            className='z-40 absolute bg-white text-primary border-2 border-black rounded-md p-0.5 px-1.5 font-serif'
             show={nameShow}
             enter='transition-opacity ease-in-out duration-100'
             enterFrom='opacity-0'
