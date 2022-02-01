@@ -25,10 +25,10 @@ const RecipeSlideShow = ({ recipe }: RecipeProps) => {
           >
             <div className='flex justify-center w-full lg:w-1/2'>
               <div className='py-5 m-auto'>
-                <div className='px-6 py-2 font-sans text-5xl font-bold text-white transform border-8 border-black w-max h-max -rotate-12 bg-primary'>{`STEP ${
+                <div className='relative z-20 px-6 py-2 font-sans text-5xl font-bold text-white transform border-8 border-black w-max h-max -rotate-12 bg-primary'>{`STEP ${
                   index + 1
                 }`}</div>
-                <div className='flex justify-center w-full !span-child-relative z-[-1]'>
+                <div className='flex justify-center w-full !span-child-relative'>
                   <Image
                     className='!relative !w-full !h-[unset] object-contain border-8'
                     src={recipeStep.image}
