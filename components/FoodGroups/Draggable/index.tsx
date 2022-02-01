@@ -107,10 +107,10 @@ const Draggable: React.FC<Props> = (props: Props) => {
           <Transition
             className='z-40 absolute bg-white text-primary border-2 border-black rounded-md p-0.5 px-1.5 font-serif'
             show={nameShow}
-            enter='transition-opacity ease-in-out duration-100'
+            enter='transition-opacity ease-in-out duration-500'
             enterFrom='opacity-0'
             enterTo='opacity-100'
-            leave='transition-opacity ease-in-out duration-100'
+            leave='transition-opacity ease-in-out duration-[300ms] delay-500'
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
