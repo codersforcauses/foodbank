@@ -88,7 +88,7 @@ const Card = ({
               }}
               passHref
             >
-              <div>
+              <div className='cursor-pointer'>
                 <div className='w-full !span-child-relative mt-8'>
                   <Image
                     className='!relative !w-full !h-[unset] object-contain'

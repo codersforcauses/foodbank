@@ -62,6 +62,14 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
     heading: recipe.name
   }
 
+  const screenSizes: Screens = {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px'
+  }
+
   const adjustWidth = () => {
     /* 
     Find largest breakpoint under current screen size and send width to the Modal component. 
@@ -71,7 +79,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
       */
 
     const fullConfig = resolveConfig(tailwindConfig)
-    const screens: Screens = fullConfig.theme.screens
+    const screens = screenSizes // avoid reading in recipe_sm, recipe_md, etc.
     const largestScreen = Object.keys(screens).reduce((a, b) =>
       parseInt(screens[a]) > parseInt(screens[b]) ? a : b
     )
