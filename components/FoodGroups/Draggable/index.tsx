@@ -44,7 +44,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log(props.type)
     props.onStartDrag(props.type)
     let parentRect: DOMRect
     if (e.target instanceof Element && e.target.parentElement) {
