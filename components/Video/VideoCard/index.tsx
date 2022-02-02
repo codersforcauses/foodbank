@@ -9,10 +9,7 @@ const VideoCard = ({
   title,
   youtubeVideoID
 }: PropsWithChildren<VideoCardProps>) => {
-  const videoURL = 'https://www.youtube.com/watch?v=' + youtubeVideoID
-  //const videoThumbnail = "https://img.youtube.com/vi/" + youtubeVideoID + "/maxresdefault.jpg";
-  const videoThumbnail =
-    'https://img.youtube.com/vi/' + youtubeVideoID + '/0.jpg'
+  const videoThumbnail = `https://img.youtube.com/vi/${youtubeVideoID}/0.jpg`
 
   return (
     <div className=' w-full relative overflow-hidden'>
