@@ -74,18 +74,12 @@ const MapImage = ({
               zombieAquaCompensation = 200
             }
 
-            // CHECK SCALING OF ENTIRE IMAGE TO SCREEN
-            // Seems to need to be scaled because the image map is not the same size as what is actually displayed.
-            // eg. the image is actually at the top left of the screen and is significantly smaller than what is actually shown
-            //scaling by 10 seems to give better views of the locations
-
             //Multiplied by 12 because xtrans and ytrans contain values which are scaled down by 10-12
             const xtrans =
               parseInt(location.xtrans) * 12 * scale * initialScale +
               mobileCompensation
             const ytrans = parseInt(location.ytrans) * 12 * scale * initialScale
             const scaledCoords = location.coords.map(coord => coord * scale)
-            //TODO: consider changing className to a state and use tailwind
             const className =
               location.id === selected ? 'map-selected' : 'map-unselected'
             return (
