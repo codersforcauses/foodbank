@@ -1,4 +1,3 @@
-import React from 'react'
 import svgData from './svgImageData.json'
 import Image from 'next/image'
 import baseMap from '../../public/images/tuckerMap.webp'
