@@ -39,6 +39,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
   useEffect(() => {
     adjustWidth()
     window.onresize = adjustWidth
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const toggleSliderModal = () => {
@@ -79,7 +80,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
       */
 
     const fullConfig = resolveConfig(tailwindConfig)
-    const screens = screenSizes // avoid reading in recipe_sm, recipe_md, etc.
+    const screens = screenSizes // avoids reading in recipe_sm, recipe_md, etc.
     const largestScreen = Object.keys(screens).reduce((a, b) =>
       parseInt(screens[a]) > parseInt(screens[b]) ? a : b
     )
@@ -107,7 +108,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
           <Slideshow recipe={recipe} />
         </Modal>
       )}
-      <div className={`${recipe.colorScheme?.bg} flex justify-center`}>
+      <div className={`${recipe.colorScheme?.bg} md:flex justify-center`}>
         <div className='max-w-screen-2xl '>
           <div className='flex justify-center m-1'>
             <div className='flex flex-col w-3/4'>

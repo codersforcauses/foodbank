@@ -25,15 +25,15 @@ const IngredientsList = ({ recipe }: Props) => {
           Ingredients
         </h1>
       </div>
-      <div className='grid grid-cols-2 gap-12 justify-items-center'>
-        <div className='pl-8 font-semibold font-serif text-2xl min-w-[100px] max-w-[350px] pt-[10%] pb-[30px] leading-[1.5] tracking-[4px]'>
+      <div className='grid md:grid-cols-2 md:gap-12 justify-items-center'>
+        <div className='pl-8 font-semibold font-serif md:text-2xl min-w-[100px] max-w-[350px] md:pt-[10%] pb-[30px] !leading-[1.5] tracking-[4px] order-2 md:order-none'>
           <ul>
             {recipe.ingredients.map(el => (
               <li key={el}>- {el}</li>
             ))}
           </ul>
         </div>
-        <div className='relative w-full h-auto'>
+        <div className='relative w-52 h-52 md:w-full md:h-auto order-1 md:order-none'>
           <Image
             className='self-center object-contain pr-8 rounded-3xl'
             src={recipe.ingredientsImg}
