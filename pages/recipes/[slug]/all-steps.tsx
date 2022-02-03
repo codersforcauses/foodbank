@@ -13,7 +13,7 @@ interface RecipeStepsProps {
  * A page that displays all steps for a recipe in a single page format.
  */
 const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
-  // getting color scheme for the recipe by it's name
+  // getting color scheme for the recipe by its name
   recipe.colorSchemeName === 'primaryScheme'
     ? (recipe.colorScheme = primaryScheme)
     : ''
