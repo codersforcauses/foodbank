@@ -1,7 +1,9 @@
-import { PropsWithChildren, useState, useEffect, useRef } from 'react'
 import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+
 import Arrow from './Arrow'
 import Dots from './Dots'
+
 import 'keen-slider/keen-slider.min.css'
 
 export interface CarouselProps extends KeenSliderOptions {

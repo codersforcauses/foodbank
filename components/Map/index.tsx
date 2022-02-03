@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import baseMap from '../../public/images/tuckerMap.webp'
+
+import baseMap from 'public/images/tuckerMap.webp'
 
 const Map = () => (
   <Image

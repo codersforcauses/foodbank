@@ -1,6 +1,7 @@
-import { createContext, SetStateAction, useContext } from 'react'
-import { User, Auth } from 'firebase/auth'
+import { Auth, User } from 'firebase/auth'
 import { Firestore } from 'firebase/firestore'
+import { createContext, SetStateAction, useContext } from 'react'
+
 import { auth, db } from 'pages/api/firebase'
 
 export interface FirebaseContextProps {
@@ -8,7 +9,6 @@ export interface FirebaseContextProps {
   db: Firestore
   user?: User | null
   userLoading?: boolean
-  userError?: Error
   achievementsCount: AchievementsCountProp
   addAchievementsCount?: (newAchievementsEarned: number) => void
   signOutClearDataUnlockGrid?: () => void

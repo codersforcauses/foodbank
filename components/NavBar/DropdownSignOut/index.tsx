@@ -1,5 +1,6 @@
-import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+
 import { useFirebase } from '@components/FirebaseContext/context'
 
 const DropdownSignOut = () => {

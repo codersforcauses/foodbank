@@ -159,9 +159,9 @@ const FirestoreErrorCodes = {
 
 export {
   CHARACTERS_FOR_AUTH,
-  PASSWORD_LENGTH,
   EMAIL_DOMAIN,
-  PAGES,
+  FirestoreErrorCodes,
   MESSAGES,
-  FirestoreErrorCodes
+  PAGES,
+  PASSWORD_LENGTH
 }

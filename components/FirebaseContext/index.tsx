@@ -1,15 +1,17 @@
-import { useState, useCallback, useEffect, FC, useMemo } from 'react'
-import { signOut } from 'firebase/auth'
+import { onAuthStateChanged, signOut, User } from 'firebase/auth'
 import {
   doc,
+  FirestoreError,
   getDoc,
   setDoc,
-  updateDoc,
-  FirestoreError
+  updateDoc
 } from 'firebase/firestore'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+
 import { auth, db } from 'pages/api/firebase'
+
 import { MESSAGES } from '@components/Auth/enums'
+
 import {
   AchievementsCountProp,
   defaultAchievementsCount,
@@ -23,7 +25,16 @@ const FirebaseProvider: FC = ({ children }) => {
   const [gridDisabled, setGridDisabled] = useState(false)
 
   // User Authentication
-  const [user, userLoading, userError] = useAuthState(auth)
+  const [user, setUser] = useState<User | null>(null)
+  const [userLoading, setUserLoading] = useState(true)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setUser(user)
+      setUserLoading(false)
+    })
+    return unsubscribe
+  }, [])
 
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
@@ -86,7 +97,6 @@ const FirebaseProvider: FC = ({ children }) => {
       db: db,
       user: user,
       userLoading: userLoading,
-      userError: userError,
       achievementsCount: achievementsCount,
       addAchievementsCount: addAchievementsCount,
       signOutClearDataUnlockGrid: signOutClearDataUnlockGrid,
@@ -96,7 +106,6 @@ const FirebaseProvider: FC = ({ children }) => {
     [
       user,
       userLoading,
-      userError,
       achievementsCount,
       addAchievementsCount,
       signOutClearDataUnlockGrid,

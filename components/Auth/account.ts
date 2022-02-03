@@ -1,16 +1,17 @@
-import { SetStateAction } from 'react'
+import { FirebaseError } from '@firebase/util'
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  fetchSignInMethodsForEmail,
-  EmailAuthProvider,
+  Auth,
   AuthErrorCodes,
-  Auth
+  createUserWithEmailAndPassword,
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
+  signInWithEmailAndPassword,
+  updateProfile
 } from 'firebase/auth'
 import { FirestoreError } from 'firebase/firestore'
-import { FirebaseError } from '@firebase/util'
-import { MESSAGES, EMAIL_DOMAIN, FirestoreErrorCodes } from './enums'
+import { SetStateAction } from 'react'
+
+import { EMAIL_DOMAIN, MESSAGES } from './enums'
 
 const SIGNED_IN = true
 
@@ -113,4 +114,4 @@ const signUp = async (auth: Auth, username: string, password: string) => {
   }
 }
 
-export { sleep, checkUsername, signIn, signUp }
+export { checkUsername, signIn, signUp, sleep }

@@ -1,7 +1,9 @@
-import { useState, MouseEventHandler, SetStateAction } from 'react'
-import { useForm, FormProvider } from 'react-hook-form'
+import { MouseEventHandler, SetStateAction, useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
+
 import { CHARACTERS_FOR_AUTH, PAGES } from '../enums'
 
 interface PasswordFormProps {

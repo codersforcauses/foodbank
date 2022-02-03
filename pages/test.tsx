@@ -1,5 +1,6 @@
-import { Carousel } from '@components/Custom'
 import Image from 'next/image'
+
+import { Carousel } from '@components/Custom'
 
 // to be deleted after it's used for recipes
 const Test = () => {

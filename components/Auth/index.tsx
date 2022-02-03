@@ -1,13 +1,16 @@
-import { useState, useMemo, ChangeEventHandler, MouseEventHandler } from 'react'
+import { ChangeEventHandler, MouseEventHandler, useMemo, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
+
 import useDebounce from '@lib/useDebounce'
+
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { useFirebase } from '@components/FirebaseContext/context'
-import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'
-import { sleep, checkUsername, signIn, signUp } from './account'
-import UsernameForm from './UsernameForm'
+
+import { checkUsername, signIn, signUp, sleep } from './account'
+import { MESSAGES, PAGES, PASSWORD_LENGTH } from './enums'
 import PasswordForm from './PasswordForm'
+import UsernameForm from './UsernameForm'
 
 const DEBOUNCE_DELAY = 150
 const WAIT_FOR_MODAL_TO_CLOSE = 150

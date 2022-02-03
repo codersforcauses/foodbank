@@ -1,6 +1,7 @@
-import { useState, useEffect, InputHTMLAttributes } from 'react'
 import Image from 'next/image'
+import { InputHTMLAttributes, useEffect, useState } from 'react'
 import { RegisterOptions, useFormContext } from 'react-hook-form'
+
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 
 const CHARACTERS_FOR_AUTH = 3

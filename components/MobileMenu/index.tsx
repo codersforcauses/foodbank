@@ -1,19 +1,18 @@
-import { useCallback, useState } from 'react'
+import { Popover, Transition } from '@headlessui/react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import Image from 'next/image'
-import { Popover, Transition } from '@headlessui/react'
-import { NavLinkProps } from '@components/NavBar/NavLink'
+import { useCallback, useState } from 'react'
+
 import { useFirebase } from '@components/FirebaseContext/context'
-import Hamburger from 'public/images/Hamburger_icon.svg'
+import { NavLinkProps } from '@components/NavBar/NavLink'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
-interface MobileMenu {
+interface MobileMenuProps {
   links: Array<NavLinkProps>
 }
 
-const MobileMenu = ({ links }: MobileMenu) => {
+const MobileMenu = ({ links }: MobileMenuProps) => {
   const [openSignInForm, setOpenSignInForm] = useState(false)
   const { user, signOutClearDataUnlockGrid } = useFirebase()
 

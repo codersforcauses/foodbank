@@ -1,6 +1,8 @@
+import { Popover, Transition } from '@headlessui/react'
 import Image from 'next/image'
-import { Transition, Popover } from '@headlessui/react'
+
 import Hamburger from 'public/images/Hamburger_icon.svg'
+
 import NavLink, { NavLinkProps } from '../NavLink'
 
 interface DropDownMenuProps {

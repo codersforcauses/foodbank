@@ -1,12 +1,15 @@
-import { useCallback, useState } from 'react'
-import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { NavLinkProps } from './NavLink'
-import { useFirebase } from '@components/FirebaseContext/context'
+import Link from 'next/link'
+import { useCallback, useState } from 'react'
+
 import logo from 'public/images/foodbank-logo.webp'
-import DropdownSignOut from './DropdownSignOut'
+
+import { useFirebase } from '@components/FirebaseContext/context'
+
 import DropDownMenu from './DropDownMenu'
+import DropdownSignOut from './DropdownSignOut'
+import { NavLinkProps } from './NavLink'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
