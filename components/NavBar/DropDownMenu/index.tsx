@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import { Popover, Transition } from '@headlessui/react'
 
-import Hamburger from 'public/images/Hamburger_icon.svg'
+import OutlineHamburger from '@components/Custom/Svg/OutlineHamburger'
 
 import NavLink, { NavLinkProps } from '../NavLink'
+
+import Hamburger from 'public/images/Hamburger_icon.svg'
 
 interface DropDownMenuProps {
   links: Array<NavLinkProps>
@@ -20,6 +22,12 @@ const DropDownMenu = ({ links }: DropDownMenuProps) => {
           layout='fixed'
           width={25}
           height={25}
+        />
+        <OutlineHamburger
+          className='text-white'
+          viewBox='0 0 25 25'
+          stroke='currentColor'
+          fill='none'
         />
         MENU
       </Popover.Button>
