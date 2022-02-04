@@ -1,8 +1,14 @@
-import { ChangeEventHandler, MouseEventHandler, useMemo, useState } from 'react'
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 import { SubmitHandler } from 'react-hook-form'
 
-import useDebounce from '@lib/useDebounce'
-
+// import useDebounce from '@lib/useDebounce' // For onChange validation
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { useFirebase } from '@components/FirebaseContext/context'
@@ -12,7 +18,7 @@ import { MESSAGES, PAGES, PASSWORD_LENGTH } from './enums'
 import PasswordForm from './PasswordForm'
 import UsernameForm from './UsernameForm'
 
-const DEBOUNCE_DELAY = 150
+// const DEBOUNCE_DELAY = 150 // For onChange validation
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
 interface AuthProps {
@@ -39,14 +45,27 @@ const Auth = ({ ...props }: AuthProps) => {
   const [error, setError] = useState('')
   const { auth, gridDisabled, setGridDisabled } = useFirebase()
 
-  useDebounce(
-    async () => {
-      if (input && validUsername)
-        await checkUsername(auth, input, setRegistered)
-    },
-    DEBOUNCE_DELAY,
-    [input]
-  )
+  //#region  //*=========== for onChange validation ===========
+  // useDebounce(
+  //   async () => {
+  //     if (input && validUsername)
+  //       await checkUsername(auth, input, setRegistered)
+  //   },
+  //   DEBOUNCE_DELAY,
+  //   [input]
+  // )
+  //#endregion  //*======== for onChange validation ===========
+
+  //#region  //*=========== for onSubmit validation ===========
+  const isRegistered = useCallback(async () => {
+    if (!username) return
+    await checkUsername(auth, username, setRegistered)
+  }, [auth, username, setRegistered])
+
+  useEffect(() => {
+    isRegistered()
+  }, [isRegistered])
+  //#endregion  //*======== for onSubmit validation ===========
 
   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
     setInput(e.target.value)
@@ -56,7 +75,8 @@ const Auth = ({ ...props }: AuthProps) => {
     }
   }
 
-  const handleInputSubmit = () => {
+  const handleInputSubmit = async () => {
+    if (!input) return
     setUsername(input.toLowerCase())
   }
 

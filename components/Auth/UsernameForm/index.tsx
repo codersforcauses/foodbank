@@ -53,7 +53,8 @@ const UsernameForm = ({
           className='flex items-center disabled:opacity-50'
           type='button'
           onClick={goNextPage}
-          disabled={!input || !validUsername}
+          // disabled={!input || !validUsername} // For onChange validation
+          disabled={!input} // For onSubmit validation
         >
           {registered ? `WELCOME BACK, ${input}!!!` : 'HI, NEW FRIEND!!!!'}
           <svg
