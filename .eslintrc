@@ -39,8 +39,7 @@
           ["^@lib", "^@hooks"],
           // static data
           ["^@data"],
-          // public
-          ["^public"],
+
           // pages
           ["^pages"],
           // components
@@ -61,6 +60,8 @@
             "^\\.\\./\\.\\./\\.\\.(?!/?$)"
           ],
           ["^@types"],
+          // public
+          ["^public"],
           // other that didnt fit in
           ["^"],
           // {s}css files

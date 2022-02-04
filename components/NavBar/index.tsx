@@ -3,13 +3,13 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import logo from 'public/images/foodbank-logo.webp'
-
 import { useFirebase } from '@components/FirebaseContext/context'
 
 import DropDownMenu from './DropDownMenu'
 import DropdownSignOut from './DropdownSignOut'
 import { NavLinkProps } from './NavLink'
+
+import logo from 'public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
