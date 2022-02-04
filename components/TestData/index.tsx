@@ -1,16 +1,18 @@
+import { useCallback } from 'react'
+
 import { Button } from '@components/Custom'
 import { useFirebase } from '@components/FirebaseContext/context'
 
 const TestData = () => {
   const { achievementsCount, addAchievementsCount, userLoading } = useFirebase()
 
-  const decreaseCount = () => {
+  const decreaseCount = useCallback(() => {
     addAchievementsCount?.(-1)
-  }
+  }, [addAchievementsCount])
 
-  const increaseCount = () => {
+  const increaseCount = useCallback(() => {
     addAchievementsCount?.(1)
-  }
+  }, [addAchievementsCount])
 
   return (
     <div>
