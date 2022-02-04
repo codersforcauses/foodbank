@@ -36,7 +36,7 @@
           // ext library & side effect imports
           ["^@?\\w", "^\\u0000"],
           // Lib and hooks
-          ["^@lib", "^@/hooks"],
+          ["^@lib", "^@hooks"],
           // static data
           ["^@data"],
           // public
