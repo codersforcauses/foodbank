@@ -26,8 +26,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@notionhq/client": "^0.4.12",
     "@headlessui/react": "1.4.2",
+    "@notionhq/client": "^0.4.12",
     "critters": "0.0.15",
     "firebase": "^9.6.4",
     "firestore-parser": "^0.9.0",

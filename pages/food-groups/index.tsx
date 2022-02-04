@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import FoodGroups from 'components/FoodGroups'
 import Draggable from '@components/FoodGroups/Draggable'
 import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
@@ -14,6 +14,7 @@ import {
 } from '@components/FoodGroups/API/getData'
 import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
 import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
+import Auth from '@components/Auth'
 
 // FIXME: Hack to ensure function uses updated state variables
 const updatedFunction = (f: Function) => {
@@ -50,7 +51,7 @@ interface Props {
 }
 
 const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
-  const { achievements, updateAchievementsDocument } = useFirebase()
+  const { achievements, updateAchievementsDocument, user } = useFirebase()
 
   const [modalState, setModalState] = useState(false)
   const [selectedDraggableType, setSelectedDraggableType] = useState(
@@ -60,6 +61,10 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
   // GAME STATE
   const [hoverType, setHoverType] = useState(GROUPS.DEFAULT)
   const [roundCounter, setRoundCounter] = useState(0)
+
+  // This keeps the number of wins while signed out so when the user logs in it gets added to their score
+  const [roundCounterSignedOut, setRoundCounterSignedOut] = useState(0)
+
   const [correctDraggables, setCorrectDraggables] = useState(newArray(false))
   const [wheelEnabled, setWheelEnabled] = useState(true)
   const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(
@@ -73,6 +78,12 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   const draggableZoneRef = useRef<any>(undefined)
   const [draggableZone, setDraggableZone] = useState<DOMRect | undefined>();
+  // SIGN IN FORM
+  const [openSignInForm, setOpenSignInForm] = useState(false)
+
+  const toggleOpenSignInForm = useCallback(() => {
+    setOpenSignInForm(prev => !prev)
+  }, [])
 
   const draggablePositions: State_<Vector2>[] = []
   const draggablePositions_2: State_<Vector2>[] = []
@@ -104,6 +115,9 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     if (correctDraggables.every((v: boolean) => v)) {
       // END OF ROUND
       setRoundCounter(roundCounter + 1)
+      if (!user) {
+        setRoundCounterSignedOut(roundCounterSignedOut + 1)
+      }
       updateAchievementsDocument?.({
         // If achievements based on the number of wins should be implemented in the future.
         [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
@@ -142,7 +156,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       setNextCharSet(generateCharacterSet(notion_character_data))
     }
     setSwitchCharSet(!switchCharSet)
-    console.log(switchCharSet, setCharSet, nextCharSet)
+    // console.log(switchCharSet, setCharSet, nextCharSet)
   }
 
   currentCharSet.map((character, index) => {
@@ -188,20 +202,43 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     )
   })
 
+  useEffect(() => {
+    if (user && roundCounterSignedOut > 0) {
+      updateAchievementsDocument?.({
+        [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
+          achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + roundCounterSignedOut,
+        // For now, achivements is just the amount of game wins
+        [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
+          achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + roundCounterSignedOut
+      })
+      setRoundCounterSignedOut(0) // Reset count so it doesn't get 'double added' if a person relogs
+    }
+  }, [roundCounterSignedOut, achievements]) // Do not include user - user triggers update BEFORE achievements is updated with online data
+
   return (
     <>
       {modalState && (
         <Modal heading={'You won!'} open={true} onClose={resetGame} size='lg'>
           <div className='flex items-center flex-col'>
             <h1>
-              You have completed {roundCounter} rounds in this game - you have
-              earned a new trophy!
+              You have completed {roundCounter} rounds in this game
+              {user !== null ? ' - you have earned a new trophy!' : ''}
             </h1>
             <h2>
-              You have won {achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT]}{' '}
-              rounds in total!
+              {user !== null
+                ? `You have won ${
+                    achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT]
+                  } rounds in total!`
+                : 'Sign into your account to save your progress!'}
             </h2>
             <br />
+            {user === null ? (
+              <button className='animate-bounce' onClick={toggleOpenSignInForm}>
+                Sign-in
+              </button>
+            ) : (
+              ''
+            )}
             <Button className='flex items-center uppercase' onClick={resetGame}>
               next round
             </Button>
@@ -209,6 +246,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         </Modal>
       )}
 
+      <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
       <div className='text-center text-6xl pt-[2%] pb-[1%]' >
         SORT THE FOOD
       </div>

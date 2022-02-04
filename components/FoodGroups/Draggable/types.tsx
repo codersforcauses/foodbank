@@ -6,6 +6,7 @@ interface FoodGroupCharacterImage {
   img_src: string
   img_id: string
   type: GROUPS
+  name: string
   bounding_box_id: number
   start_pos: Vector2
 }
