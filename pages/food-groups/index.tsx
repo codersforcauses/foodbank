@@ -5,6 +5,7 @@ import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
 import { Vector2 } from '@components/FoodGroups/Draggable/boundingbox'
 import { State_ } from '@components/FoodGroups/types'
 import { Button, Modal } from '@components/Custom'
+import { useRef } from 'react'
 
 import { Client } from '@notionhq/client/build/src'
 import {
@@ -70,10 +71,24 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
   const [overridePosition, setOverridePosition] = useState({ x: 0, y: 0 })
   const [switchCharSet, setSwitchCharSet] = useState(true)
 
+  const draggableZoneRef = useRef<any>(undefined)
+  const [draggableZone, setDraggableZone] = useState<DOMRect | undefined>();
+
   const draggablePositions: State_<Vector2>[] = []
   const draggablePositions_2: State_<Vector2>[] = []
   var draggables: JSX.Element[] = []
   var draggables_2: JSX.Element[] = []
+
+  useEffect(() => {
+    if(!draggableZoneRef.current) throw new Error('reference to parent div containing foodgroup and draggables didnt return .current')
+    setDraggableZone(draggableZoneRef.current.getBoundingClientRect())
+    window.addEventListener('resize', () => {
+      if(!draggableZoneRef.current) throw new Error('reference to parent div containing foodgroup and draggables didnt return .current')
+      setDraggableZone(draggableZoneRef.current.getBoundingClientRect())
+    })
+  }, []);
+
+  
 
   const endDragF = (index: number) => {
     if (hoverType === selectedDraggableType) {
@@ -146,6 +161,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         setScreenPosition={draggablePositions[index][1]}
         setAbsPosition={setOverridePosition}
         hidden={!switchCharSet}
+        draggableZone={draggableZone}
         {...character}
       />
     )
@@ -166,6 +182,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         setScreenPosition={draggablePositions_2[index][1]}
         setAbsPosition={setOverridePosition}
         hidden={switchCharSet}
+        draggableZone={draggableZone}
         {...character}
       />
     )
@@ -191,18 +208,33 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
           </div>
         </Modal>
       )}
-      <div className='flex justify-start max-w-[100vh]' draggable={false}>
-        <div className='grid grid-cols-1 w-[90vh]' draggable={false}>
-          <FoodGroups
-            overrideMouse={selectedDraggableType !== GROUPS.NONE}
-            overrideMousePosition={overridePosition}
-            setHoverType={setHoverType}
-            enabled={wheelEnabled}
-          />
-          {draggables}
-          {draggables_2}
-        </div>
+
+      <div className='text-center text-6xl pt-[2%] pb-[1%]' >
+        SORT THE FOOD
       </div>
+      {/* <div className='flex self-center ' draggable={false}> */}
+        <div className='flex justify-between ml-[10%] w-[80%] relative' ref={draggableZoneRef}>
+            
+            <FoodGroups
+              overrideMouse={selectedDraggableType !== GROUPS.NONE}
+              overrideMousePosition={overridePosition}
+              setHoverType={setHoverType}
+              enabled={wheelEnabled}
+            />
+            <div className='grid grid-cols-1' >
+              {draggables}
+              {draggables_2}
+            </div>
+          <div className='pr-[10%] pt-[5%] text-2xl'>
+            Drag these foods into the correct category
+          </div>
+        </div>
+        
+        
+      {/* </div> */}
+      {/* <div className='grid grid-cols-1 w-3/4 h-[45rem] bg-blue' ref={draggableZoneRef}>
+        {draggables}
+      </div> */}
     </>
   )
 }

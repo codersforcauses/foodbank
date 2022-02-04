@@ -6,6 +6,7 @@ import { FoodGroupCharacterImage } from './types'
 import Image from 'next/image'
 import { StateDispatch } from '../types'
 import { dragDrop } from '../styles'
+import { xor128 } from 'seedrandom'
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
@@ -13,7 +14,8 @@ interface Props extends FoodGroupCharacterImage {
   setScreenPosition: StateDispatch<Vector2>
   setAbsPosition: StateDispatch<Vector2>
   screenPosition: Vector2
-  hidden: boolean
+  hidden: boolean,
+  draggableZone: DOMRect | undefined
 }
 
 const Draggable: React.FC<Props> = (props: Props) => {
@@ -28,36 +30,49 @@ const Draggable: React.FC<Props> = (props: Props) => {
         x: e.pageX + delta.x - parentRect.x + thisRect.width / 2,
         y: e.pageY + delta.y - parentRect.y + thisRect.height / 2
       })
-      let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100.0
-      let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100.0
-      if (x > 100 || y > 100 || x < 0 || y < 0) return
+      // console.log('delta.x:', delta.x, 'delta.y:', delta.y)
+      let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100
+      let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100
+      console.log('x:', x, 'y:', y)
+      // const x = parentRect.x  / parentRect.width * 100 + ((e.pageX - parentRect.x + delta.x) / (window.screen.width)) *100
+      // const y = parentRect.y / parentRect.height * 100 + ((e.pageY - parentRect.y + delta.y) / window.screen.height) * 100 
+      // if (x > parentRect.right || y > parentRect.bottom || x < parentRect.left || y < parentRect.top) return
       setScreenPosition({ x: x, y: y })
-    } else {
+    } else {   
       console.error('[ ERROR ]: Parent element bb does not exist')
     }
   }
 
   const stopDrag = () => {
     props.onEndDrag()
+    console.log(parentRect?.x, parentRect?.y)
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log(props.type)
-    props.onStartDrag(props.type)
-    let parentRect: DOMRect
-    if (e.target instanceof Element && e.target.parentElement) {
-      parentRect = e.target.parentElement.getBoundingClientRect()
-      setParentRect(parentRect)
-    } else {
+    // console.log(props.type)
+    if (e.target instanceof Element) {
+  } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
       return
     }
+    props.onStartDrag(props.type) // FoodGroup game logic checking
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
     setThisRect(box)
+    console.log('start drag:', 'box.x: ', box.x, 'e.pageX', e.pageX, 'box.y', box.y, 'e.pageY', e.pageY)
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
   }
+  
+  useEffect(()=>{
+    
+    let parentRect: DOMRect
+    if (props.draggableZone) {
+    parentRect = props.draggableZone
+    // console.log(parentRect)
+    // const newParentRect: DOMRect = new DOMRect(parentRect.x, parentRect.y, parentRect.width*2, parentRect.height)
+    setParentRect(parentRect)}
+  },[props.draggableZone])
 
   useEffect(() => {
     if (delta) {
@@ -77,16 +92,19 @@ const Draggable: React.FC<Props> = (props: Props) => {
           top: `${screenPosition.y}%`
         }}
       >
+        
         <div
           className='z-0 pointer-events-none select-none'
           draggable={false}
           hidden={props.hidden}
         >
+          {/* {Math.round(screenPosition.x)} {','} {Math.round(screenPosition.y)} */}
           <Image
             src={props.img_src}
             alt={props.div_id}
             width='200%'
             height='200%'
+            // layout='fill'
             draggable={false}
             priority={true}
           />

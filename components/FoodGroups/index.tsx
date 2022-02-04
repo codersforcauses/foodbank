@@ -133,34 +133,36 @@ const FoodGroups = ({
     <>
       {/* Handles resizing maps on screen resize for SSR */}
       <WindowResizeHook params={{ setRadius, setCenter }} />
-      {foodGroupsImages.map(group => {
-        return (
-          <div
-            id={group.div_id}
-            key={group.div_id}
-            className={[
-              sliceBaseStyle,
-              ...allStates[group.div_id].styles,
+      <div className='grid grid-cols-1 w-[90vh]' draggable={false}>
+        {foodGroupsImages.map(group => {
+          return (
+            <div
+              id={group.div_id}
+              key={group.div_id}
+              className={[
+                sliceBaseStyle,
+                ...allStates[group.div_id].styles,
 
-              styles[group.img_styles], // Needed for the :root
-              styles['wrapper-fix'] // Needed for the span fix
-            ].join(' ')}
-            style={sliceDimensions[group.img_styles]}
-            draggable={false}
-          >
-            <Image
-              src={group.img_src}
-              alt={group.div_id}
-              layout='fill'
-              className={customImg}
-              useMap={`#${group.map_name}`}
-              id={group.img_id}
+                styles[group.img_styles], // Needed for the :root
+                styles['wrapper-fix'] // Needed for the span fix
+              ].join(' ')}
+              style={sliceDimensions[group.img_styles]}
               draggable={false}
-              priority={true}
-            />
-          </div>
-        )
-      })}
+            >
+              <Image
+                src={group.img_src}
+                alt={group.div_id}
+                layout='fill'
+                className={customImg}
+                useMap={`#${group.map_name}`}
+                id={group.img_id}
+                draggable={false}
+                priority={true}
+              />
+            </div>
+          )
+        })}
+      </div>
     </>
   )
 }

@@ -42,7 +42,7 @@ const getFormatData = (data: any) => {
             img_id: 'vegetables-character-img',
             bounding_box_id: 3,
             type: GROUPS.VEGETABLES,
-            start_pos: { x: 90, y: 60 }
+            start_pos: { x: 72, y: 16 }
           })
           break
         case 'grain':
@@ -52,7 +52,7 @@ const getFormatData = (data: any) => {
             img_id: 'grain-character-img',
             bounding_box_id: 4,
             type: GROUPS.GRAINS,
-            start_pos: { x: 90, y: 80 }
+            start_pos: { x: 60, y: 34 }
           })
           break
         case 'dairy':
@@ -62,7 +62,7 @@ const getFormatData = (data: any) => {
             img_id: 'dairy-character-img',
             bounding_box_id: 0,
             type: GROUPS.DAIRY,
-            start_pos: { x: 90, y: 2 }
+            start_pos: { x: 85, y: 35 }
           })
           break
         case 'meat':
@@ -72,7 +72,7 @@ const getFormatData = (data: any) => {
             img_id: 'meat-character-img',
             bounding_box_id: 1,
             type: GROUPS.MEAT,
-            start_pos: { x: 90, y: 20 }
+            start_pos: { x: 65, y: 63 }
           })
           break
         case 'fruit':
@@ -82,7 +82,7 @@ const getFormatData = (data: any) => {
             img_id: 'fruit-character-img',
             bounding_box_id: 2,
             type: GROUPS.FRUIT,
-            start_pos: { x: 90, y: 40 }
+            start_pos: { x: 81, y: 62 }
           })
           break
       }
