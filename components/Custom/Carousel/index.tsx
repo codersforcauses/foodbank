@@ -1,5 +1,5 @@
-import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
+import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
 
 import Arrow from './Arrow'
 import Dots from './Dots'

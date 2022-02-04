@@ -1,3 +1,4 @@
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { onAuthStateChanged, signOut, User } from 'firebase/auth'
 import {
   doc,
@@ -6,7 +7,6 @@ import {
   setDoc,
   updateDoc
 } from 'firebase/firestore'
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { auth, db } from 'pages/api/firebase'
 

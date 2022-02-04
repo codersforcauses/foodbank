@@ -1,7 +1,7 @@
-import { Popover, Transition } from '@headlessui/react'
+import { useCallback, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
+import { Popover, Transition } from '@headlessui/react'
 
 import { useFirebase } from '@components/FirebaseContext/context'
 import { NavLinkProps } from '@components/NavBar/NavLink'

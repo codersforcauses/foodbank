@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { InputHTMLAttributes, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { RegisterOptions, useFormContext } from 'react-hook-form'
 
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'

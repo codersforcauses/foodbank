@@ -1,3 +1,4 @@
+import { SetStateAction } from 'react'
 import { FirebaseError } from '@firebase/util'
 import {
   Auth,
@@ -9,7 +10,6 @@ import {
   updateProfile
 } from 'firebase/auth'
 import { FirestoreError } from 'firebase/firestore'
-import { SetStateAction } from 'react'
 
 import { EMAIL_DOMAIN, MESSAGES } from './enums'
 

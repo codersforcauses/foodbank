@@ -1,5 +1,5 @@
-import { Popover, Transition } from '@headlessui/react'
 import Image from 'next/image'
+import { Popover, Transition } from '@headlessui/react'
 
 import Hamburger from 'public/images/Hamburger_icon.svg'
 

@@ -1,6 +1,6 @@
+import { createContext, SetStateAction, useContext } from 'react'
 import { Auth, User } from 'firebase/auth'
 import { Firestore } from 'firebase/firestore'
-import { createContext, SetStateAction, useContext } from 'react'
 
 import { auth, db } from 'pages/api/firebase'
 
