@@ -18,14 +18,16 @@ const Intro = () => {
     }
   }, [])
 
-  if (show) {
-    return (
-      <div
-        className='inset-0 absolute bg-grey-dark bg-opacity-50 z-50'
-        onClick={onClick}
-        aria-hidden='true'
-      >
-        <div className='fixed w-8/12 left-0 bottom-0'>
+  return (
+    <div
+      className={`inset-0 absolute bg-grey-dark bg-opacity-50 z-50 ${
+        show ? 'block' : 'hidden'
+      }`}
+      onClick={onClick}
+      aria-hidden='true'
+    >
+      <div className='fixed w-8/12 left-0 bottom-0'>
+        <div className='relative'>
           <Image
             src={banana}
             width={590}
@@ -41,9 +43,7 @@ const Intro = () => {
           ></Transition> */}
         </div>
       </div>
-    )
-  } else {
-    return null
-  }
+    </div>
+  )
 }
 export default Intro
