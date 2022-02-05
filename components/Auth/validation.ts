@@ -11,7 +11,7 @@ const validationSchema: Record<LoginFormValues, RegisterOptions> = {
     },
     minLength: {
       value: 3,
-      message: 'Choose your three characters'
+      message: 'Must be more than 3 characters long'
     }
     // onChange: handleUsernameChange
   }
