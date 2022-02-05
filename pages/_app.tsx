@@ -20,6 +20,10 @@ const links: Array<NavLinkProps> = [
   {
     page: 'Trophy Room',
     route: '/'
+  },
+  {
+    page: 'Videos',
+    route: '/videos'
   }
 ]
 
