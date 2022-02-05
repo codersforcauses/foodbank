@@ -10,7 +10,7 @@ const NavLink = ({ page, route, ...props }: NavLinkProps) => {
     <Link href={route}>
       <a
         {...props}
-        className='px-4 py-1 font-serif text-xl text-white hover:opacity-75'
+        className='flex items-start -m-3 p-3 rounded-lg hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50'
       >
         {page}
       </a>

@@ -22,7 +22,7 @@ const Auth = (props: AuthProps) => {
         defaultValues={defaultValues}
         onSubmit={values => console.log(values)}
       >
-        <TextField label='Name' name='username' />
+        <TextField setFocused label='Name' name='username' />
         <TextField label='Birth Year' name='DOB' />
         <div className='flex justify-center pt-4'>
           <Button className='flex items-center'>
