@@ -26,8 +26,10 @@ type Props = {
   numUnlocked: number
 }
 
+const MAX_TROPHIES = 18
+
 const TrophyCabinet = ({ numUnlocked }: Props) => {
-  const numTrophyGroups = Math.ceil(numUnlocked / 3)
+  const numTrophyGroups = Math.ceil(Math.min(numUnlocked, MAX_TROPHIES) / 3)
   const trophies = [
     BrightYellowTrophy,
     CupcakePurpleTrophy,

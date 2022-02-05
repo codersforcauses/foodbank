@@ -6,9 +6,10 @@ export const dragDrop = str([
   'w-fit',
   'h-fit',
   'z-20',
-  '!relative',
+  '!absolute',
   'row-start-1',
-  'col-start-1'
+  'col-start-1',
+  // 'bg-red'
 ])
 
 export const customImg = str([
