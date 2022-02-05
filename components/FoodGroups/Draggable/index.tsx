@@ -22,7 +22,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
-  const [hoverStyle, setHoverStyle] = useState('z-20')
   const [dragStyle, setDragStyle] = useState('')
   const [nameShow, setNameShow] = useState(false)
 
@@ -69,12 +68,10 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const float = () => {
-    setHoverStyle('z-30')
     setNameShow(true)
   }
 
   const defloat = () => {
-    setHoverStyle('z-20')
     setNameShow(false)
   }
 
@@ -89,7 +86,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     <>
       <div
         aria-hidden='true'
-        className={`${dragDrop} ${hoverStyle} ${dragStyle} transition ease-in duration-100 scale-100 hover:scale-110`}
+        className={`${dragDrop} transition ease-in duration-100 scale-100 z-20 hover:scale-110 hover:z-30`}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}
@@ -100,7 +97,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
         }}
       >
         <div
-          className='relative pointer-events-none select-none'
+          className={`${dragStyle} relative pointer-events-none select-none`}
           draggable={false}
           hidden={props.hidden}
         >
