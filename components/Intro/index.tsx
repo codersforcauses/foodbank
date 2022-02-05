@@ -2,6 +2,7 @@ import Image from 'next/image'
 import banana from '../../public/images/bananaGuy.webp'
 import { useState } from 'react'
 import { useEffect } from 'react'
+// import { Transition } from '@headlessui/react'
 
 const Intro = () => {
   const [show, setShow] = useState(true)
@@ -32,12 +33,12 @@ const Intro = () => {
             alt='Banana Guy'
             quality={50}
           />
-          <div className='w-16 md:w-32 lg:w-48 absolute left-60 bottom-64 text-center -rotate-3'>
-            Hi, I’m Super Fruity! Welcome to the Superhero Foods Adventure! I’m
-            the leader of the Superhero Foods. I live in Healthy Town, which is
-            the capital of Tucker Island. I live there with my friends. I’m
-            excited for you to meet them!
-          </div>
+          {/* <Transition
+            show={show}
+            enter='transition-opacity duration-75'
+            enterFrom='opacity-0'
+            enterTo='opacity-100'
+          ></Transition> */}
         </div>
       </div>
     )
@@ -46,6 +47,3 @@ const Intro = () => {
   }
 }
 export default Intro
-
-// w-4/12
-// style={font-size:8vw;}
