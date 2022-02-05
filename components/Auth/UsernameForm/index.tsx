@@ -1,15 +1,15 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react'
+import { MouseEventHandler } from 'react'
 
 import { Button, TextField } from '@components/Custom'
 import SolidArrowCircleRight from '@components/Custom/Svg/SolidArrowCircleRight'
 
-import { MESSAGES } from '../enums'
+import validationSchema from '../validation'
 
 interface UsernameFormProps {
   label: string
   error: string
-  input: string
-  handleUsernameChange: ChangeEventHandler<HTMLInputElement>
+  //   input: string
+  //   handleUsernameChange: ChangeEventHandler<HTMLInputElement>
   validUsername: boolean
   updateValidation: (isValid: boolean) => void
   goNextPage: MouseEventHandler<HTMLButtonElement>
@@ -18,46 +18,37 @@ interface UsernameFormProps {
 
 const UsernameForm = ({
   label,
-  input,
+  //   input,
   error,
-  handleUsernameChange,
+  //   handleUsernameChange,
   // validUsername, // For onChange validation
   updateValidation,
   goNextPage,
   registered
 }: UsernameFormProps) => {
+  console.log('RENDERED')
   return (
     <>
       <TextField
         label={label}
         type='text'
         name='username'
-        value={input}
+        // value={input}
         setFocused
-        rules={{
-          required: MESSAGES.USERNAME_REQUIRED,
-          pattern: {
-            value: /^[a-z0-9]+$/i,
-            message: MESSAGES.USERNAME_ALPHANUMERIC
-          },
-          minLength: {
-            value: 3,
-            message: MESSAGES.USERNAME_MIN_LENGTH
-          },
-          onChange: handleUsernameChange
-        }}
+        rules={validationSchema.username}
         updateValidation={updateValidation}
       />
       {error && <p className='text-lg text-center text-red'>{error}</p>}
       <div className='flex flex-col items-center pt-4 space-x-3'>
         <Button
           className='flex items-center disabled:opacity-50'
-          type='button'
-          onClick={goNextPage}
+          type='submit'
+          //   onClick={goNextPage}
           // disabled={!input || !validUsername} // For onChange validation
-          disabled={!input} // For onSubmit validation
+          //   disabled={!input} // For onSubmit validation
         >
-          {registered ? `WELCOME BACK, ${input}!!!` : 'HI, NEW FRIEND!!!!'}
+          {/* {registered ? `WELCOME BACK, ${input}!!!` : 'HI, NEW FRIEND!!!!'} */}
+          Next
           <SolidArrowCircleRight
             className='h-6 ml-8'
             viewBox='0 0 25 25'

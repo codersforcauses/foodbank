@@ -1,5 +1,4 @@
 import {
-  ChangeEventHandler,
   MouseEventHandler,
   useCallback,
   useEffect,
@@ -35,7 +34,7 @@ const defaultValues: FormValues = {
 }
 
 const Auth = ({ ...props }: AuthProps) => {
-  const [input, setInput] = useState('')
+  //   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
   const [validUsername, setValidUsername] = useState(false)
   const [registered, setRegistered] = useState(false)
@@ -67,18 +66,18 @@ const Auth = ({ ...props }: AuthProps) => {
   }, [isRegistered])
   //#endregion  //*======== for onSubmit validation ===========
 
-  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
-    setInput(e.target.value)
-    if (!e.target.value) {
-      setRegistered(false)
-      return
-    }
-  }
+  //   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
+  //     setInput(e.target.value)
+  //     if (!e.target.value) {
+  //       setRegistered(false)
+  //       return
+  //     }
+  //   }
 
-  const handleInputSubmit = async () => {
-    if (!input) return
-    setUsername(input.toLowerCase())
-  }
+  //   const handleInputSubmit = async () => {
+  //     if (!input) return
+  //     setUsername(input.toLowerCase())
+  //   }
 
   const updateValidation = (isValid: boolean) => {
     setValidUsername(isValid)
@@ -124,17 +123,17 @@ const Auth = ({ ...props }: AuthProps) => {
   }
 
   // SIGNIN OR SIGNUP HERE
-  const handleValuesSubmit: SubmitHandler<FormValues> = async () => {
-    if (!input) return
-    else if (!username) {
-      handleInputSubmit()
-      setPage(PAGES.PASSWORD_FORM)
-      return
-    }
+  const handleValuesSubmit: SubmitHandler<FormValues> = async data => {
+    // if (!input) return
+    // if (username) return
+    //   handleInputSubmit()
+    setUsername(data.username.toLowerCase())
+    console.log(data.username.toLowerCase())
+    setPage(PAGES.PASSWORD_FORM)
   }
 
   const handleReset = () => {
-    setInput('')
+    // setInput('')
     setUsername('')
     setRegistered?.(false)
     setError('')
@@ -154,8 +153,9 @@ const Auth = ({ ...props }: AuthProps) => {
   }
 
   const goNextPage: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!input) return
-    if (input !== username) handleInputSubmit()
+    // if (!validUsername) return
+    // if (!input) return
+    // if (input !== username) handleInputSubmit()
     setError('')
     setPage(current => current + 1)
   }
@@ -170,9 +170,9 @@ const Auth = ({ ...props }: AuthProps) => {
           >
             <UsernameForm
               label={MESSAGES.USERNAME_LABEL}
-              input={input}
+              //   input={input}
               error={error}
-              handleUsernameChange={handleUsernameChange}
+              //   handleUsernameChange={handleUsernameChange}
               validUsername={validUsername}
               updateValidation={updateValidation}
               goNextPage={goNextPage}
