@@ -1,5 +1,5 @@
 import { MouseEventHandler, SetStateAction, useState } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
@@ -38,15 +38,15 @@ const PasswordForm = (props: PasswordFormProps) => {
 
   const disableGrid = () => props.setGridDisabled?.(true)
 
+  const onSubmit: SubmitHandler<Record<string, boolean[]>> = data => {
+    if (props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM)
+      disableGrid()
+    props.updatePassword(getPassword(data.mask))
+  }
+
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(data => {
-          if (props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM)
-            disableGrid()
-          props.updatePassword(getPassword(data.mask))
-        })}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <p className='text-lg text-center'>{props.label}</p>
         {props.error && (
           <p className='text-lg text-center text-red'>{props.error}</p>
