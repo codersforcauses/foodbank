@@ -13,7 +13,7 @@ import {
 } from '@components/FoodGroups/dinamicStyles'
 
 import { State } from '@components/FoodGroups/types'
-import { Vector2 } from './Draggable/boundingbox'
+import { ORIGIN_VECTOR2, Vector2 } from './Draggable/boundingbox'
 import { FOOD_GROUPS, GROUPS } from './groups'
 import { customImg, sliceBaseStyle, sliceDimensions } from './styles'
 
@@ -35,7 +35,7 @@ const FoodGroups = ({
   overrideMousePosition
 }: Props) => {
   const [radius, setRadius] = useState(0)
-  const [center, setCenter] = useState({ x: 0, y: 0 })
+  const [center, setCenter] = useState(ORIGIN_VECTOR2)
   const [currentRegion, setCurrentRegion] = useState(GROUPS.NONE) // Debounce mouse events
 
   const makeStyle = () => {
