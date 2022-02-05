@@ -13,11 +13,17 @@ const getVideos = async () => {
     })
 
     const videos = data.results.map(result => {
-      const details = result.properties
-      return {
-        youtubeVideoID: details.youtubeURL.url.match(regex)[1], // extracts video id from URL
-        title: details.title.title[0].plain_text
-      }
+      if (
+        'properties' in result &&
+        'url' in result.properties.youtubeURL &&
+        'title' in result.properties.title
+      ) {
+        return {
+          // @ts-ignore: Object is possibly 'null'. Don't know how to resolve this error, null coalescing does not work...
+          youtubeVideoID: result.properties.youtubeURL.url.match(regex)[1], // extracts video id from URL
+          title: result.properties.title.title[0].plain_text
+        }
+      } else throw new Error('Database schema error')
     })
 
     return videos
