@@ -1,6 +1,7 @@
 import PopupVideo from '@components/Video/PopupVideo'
 import { useState } from 'react'
 import VideoCardContainer from '@components/Video/VideoCardContainer'
+import { getVideos } from '@components/API/getData'
 
 export interface Video {
   youtubeVideoID: string
@@ -11,28 +12,15 @@ interface VideosGridProps {
   videos: Array<Video>
 }
 
+// in case getVideos() returns null
 const DEFAULT_VIDEOS = [
   {
     youtubeVideoID: 'oUVCWNQFGTc',
     title: 'Knife Safety for Kids'
-  },
-  {
-    youtubeVideoID: 's9F8pu5KfyM',
-    title: 'Why Do Computers Suck At Math?'
-  },
-  {
-    youtubeVideoID: 'B1t4Fjlomi8',
-    title: 'Why do computers use RGB for colours, and not RBY?'
-  },
-  {
-    youtubeVideoID: 'njdJeu95p6s',
-    title: 'Top 3 Ways to Center a DIV with CSS'
   }
 ]
 
-const VideosGridView: React.FC<VideosGridProps> = ({
-  videos = DEFAULT_VIDEOS
-}) => {
+const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
   const [popupVisible, setPopupVisibility] = useState(false)
   const [activeVideo, setActiveVideo] = useState(
     `https://www.youtube.com/watch?v=${videos[0]}`
@@ -64,6 +52,16 @@ const VideosGridView: React.FC<VideosGridProps> = ({
       />
     </>
   )
+}
+
+export const getServerSideProps = async () => {
+  let data = await getVideos()
+
+  return {
+    props: {
+      videos: data ?? DEFAULT_VIDEOS
+    }
+  }
 }
 
 export default VideosGridView
