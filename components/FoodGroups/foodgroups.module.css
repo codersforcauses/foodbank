@@ -14,3 +14,7 @@
 .wrapper-fix > span {
   position: relative !important;
 }
+
+.wiggle-animate {
+  animation-delay: -250ms;
+}

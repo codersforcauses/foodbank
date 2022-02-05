@@ -3,6 +3,7 @@ import { Transition } from '@headlessui/react'
 import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
 import styles from 'components/FoodGroups/foodgroups.module.css'
 import { FoodGroupCharacterImage } from './types'
+import styles from 'components/FoodGroups/foodgroups.module.css'
 
 import Image from 'next/image'
 import { StateDispatch } from '../types'
@@ -50,7 +51,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     float()
-    setDragStyle('animate-wiggle')
+    setDragStyle('animate-wiggle wiggle-animate')
 
     console.log(props.type)
     props.onStartDrag(props.type)
