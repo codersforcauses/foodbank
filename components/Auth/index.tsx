@@ -1,13 +1,6 @@
-import {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from 'react'
+import { MouseEventHandler, useMemo, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 
-// import useDebounce from '@lib/useDebounce' // For onChange validation
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
 import { useFirebase } from '@components/FirebaseContext/context'
@@ -17,7 +10,6 @@ import { MESSAGES, PAGES, PASSWORD_LENGTH } from './enums'
 import PasswordForm from './PasswordForm'
 import UsernameForm from './UsernameForm'
 
-// const DEBOUNCE_DELAY = 150 // For onChange validation
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
 interface AuthProps {
@@ -34,7 +26,6 @@ const defaultValues: FormValues = {
 }
 
 const Auth = ({ ...props }: AuthProps) => {
-  //   const [input, setInput] = useState('')
   const [username, setUsername] = useState('')
   const [validUsername, setValidUsername] = useState(false)
   const [registered, setRegistered] = useState(false)
@@ -43,41 +34,6 @@ const Auth = ({ ...props }: AuthProps) => {
   const [page, setPage] = useState(PAGES.USERNAME_FORM)
   const [error, setError] = useState('')
   const { auth, gridDisabled, setGridDisabled } = useFirebase()
-
-  //#region  //*=========== for onChange validation ===========
-  // useDebounce(
-  //   async () => {
-  //     if (input && validUsername)
-  //       await checkUsername(auth, input, setRegistered)
-  //   },
-  //   DEBOUNCE_DELAY,
-  //   [input]
-  // )
-  //#endregion  //*======== for onChange validation ===========
-
-  //#region  //*=========== for onSubmit validation ===========
-  const isRegistered = useCallback(async () => {
-    if (!username) return
-    await checkUsername(auth, username, setRegistered)
-  }, [auth, username, setRegistered])
-
-  useEffect(() => {
-    isRegistered()
-  }, [isRegistered])
-  //#endregion  //*======== for onSubmit validation ===========
-
-  //   const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
-  //     setInput(e.target.value)
-  //     if (!e.target.value) {
-  //       setRegistered(false)
-  //       return
-  //     }
-  //   }
-
-  //   const handleInputSubmit = async () => {
-  //     if (!input) return
-  //     setUsername(input.toLowerCase())
-  //   }
 
   const updateValidation = (isValid: boolean) => {
     setValidUsername(isValid)
@@ -124,16 +80,17 @@ const Auth = ({ ...props }: AuthProps) => {
 
   // SIGNIN OR SIGNUP HERE
   const handleValuesSubmit: SubmitHandler<FormValues> = async data => {
-    // if (!input) return
-    // if (username) return
-    //   handleInputSubmit()
     setUsername(data.username.toLowerCase())
-    console.log(data.username.toLowerCase())
     setPage(PAGES.PASSWORD_FORM)
+    await checkUsername(
+      auth,
+      data.username.toLowerCase(),
+      setRegistered,
+      setError
+    )
   }
 
   const handleReset = () => {
-    // setInput('')
     setUsername('')
     setRegistered?.(false)
     setError('')
@@ -152,14 +109,6 @@ const Auth = ({ ...props }: AuthProps) => {
     setPage(current => current - 1)
   }
 
-  const goNextPage: MouseEventHandler<HTMLButtonElement> = () => {
-    // if (!validUsername) return
-    // if (!input) return
-    // if (input !== username) handleInputSubmit()
-    setError('')
-    setPage(current => current + 1)
-  }
-
   const pageDisplay = () => {
     switch (page) {
       case PAGES.USERNAME_FORM:
@@ -169,23 +118,19 @@ const Auth = ({ ...props }: AuthProps) => {
             onSubmit={handleValuesSubmit}
           >
             <UsernameForm
-              label={MESSAGES.USERNAME_LABEL}
-              //   input={input}
+              label='Enter a username'
               error={error}
-              //   handleUsernameChange={handleUsernameChange}
               validUsername={validUsername}
               updateValidation={updateValidation}
-              goNextPage={goNextPage}
-              registered={registered}
             />
           </Form>
         )
       case PAGES.PASSWORD_FORM:
         return (
           <PasswordForm
-            label={MESSAGES.PASSWORD_LABEL}
-            error={error}
             name='password'
+            label='Choose your three characters'
+            error={error}
             page={page}
             grid={grid}
             goPrevPage={goPrevPage}
@@ -198,9 +143,9 @@ const Auth = ({ ...props }: AuthProps) => {
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
           <PasswordForm
-            label={MESSAGES.REPEATED_PASSWORD_LABEL}
-            error={error}
             name='repeatPassword'
+            label='Re-select those same three characters and remember them'
+            error={error}
             page={page}
             grid={grid}
             goPrevPage={goPrevPage}

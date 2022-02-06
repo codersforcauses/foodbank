@@ -8,14 +8,12 @@ interface UsernameFormProps {
   error: string
   validUsername: boolean
   updateValidation: (isValid: boolean) => void
-  registered: boolean
 }
 
 const UsernameForm = ({
   label,
   error,
-  updateValidation,
-  registered
+  updateValidation
 }: UsernameFormProps) => {
   return (
     <>
@@ -38,12 +36,6 @@ const UsernameForm = ({
             fill='#FFF'
           />
         </Button>
-        {registered && (
-          <>
-            <br />
-            <p>NOT YOU? TRY A DIFFERENT USERNAME!</p>
-          </>
-        )}
       </div>
     </>
   )
