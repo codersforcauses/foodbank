@@ -21,13 +21,10 @@ export interface GridFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 const GridField = ({
   charSet,
   defaultMask,
-  label,
   rules = {},
-  name,
   selectedCount,
   updateCount,
-  gridDisabled,
-  ...props
+  gridDisabled
 }: GridFieldProps) => {
   const { register, watch, formState, reset } = useFormContext()
   const grid = charSet
