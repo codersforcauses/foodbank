@@ -1,11 +1,8 @@
-import Image from 'next/image'
 import { Popover, Transition } from '@headlessui/react'
 
 import Svg from '@components/Custom/Svg'
 
 import NavLink, { NavLinkProps } from '../NavLink'
-
-import Hamburger from 'public/images/Hamburger_icon.svg'
 
 interface DropDownMenuProps {
   links: Array<NavLinkProps>
@@ -15,20 +12,12 @@ const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
       <Popover.Button className='flex items-center px-2 h-full hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50 rounded'>
-        <Image
-          src={Hamburger}
-          alt='Hamburger'
-          className='text-white'
-          layout='fixed'
-          width={25}
-          height={25}
-        />
         <Svg
           name='SolidHamburger'
-          className='text-white'
-          viewBox='0 0 25 25'
+          className='w-6 h-auto text-white'
+          viewBox='0 0 20 20'
           stroke='currentColor'
-          fill='none'
+          fill='currentColor'
         />
         MENU
       </Popover.Button>
