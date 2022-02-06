@@ -3,7 +3,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
-import SolidArrowCircleRight from '@components/Custom/Svg/SolidArrowCircleRight'
+import Svg from '@components/Custom/Svg'
 
 import { CHARACTERS_FOR_AUTH, PAGES } from '../enums'
 
@@ -69,9 +69,10 @@ const PasswordForm = (props: PasswordFormProps) => {
             }}
             className='flex items-center'
           >
-            <SolidArrowCircleRight
+            <Svg
+              name='SolidArrowCircleLeft'
               viewBox='0 0 25 25'
-              className='h-6 mr-8 rotate-180'
+              className='h-6 mr-8'
               fill='#FFF'
             />
             Back
@@ -85,7 +86,8 @@ const PasswordForm = (props: PasswordFormProps) => {
             {props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM
               ? 'Confirm'
               : 'Next'}
-            <SolidArrowCircleRight
+            <Svg
+              name='SolidArrowCircleRight'
               viewBox='0 0 25 25'
               className='h-6 ml-8'
               fill='#FFF'

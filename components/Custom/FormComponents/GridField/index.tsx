@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { RegisterOptions, useFormContext } from 'react-hook-form'
 
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
-import SolidCheckCircle from '@components/Custom/Svg/SolidCheckCircle'
+import Svg from '@components/Custom/Svg'
 
 const CHARACTERS_FOR_AUTH = 3
 
@@ -48,6 +48,7 @@ const GridField = ({
     })
     return () => subscription.unsubscribe()
   }, [watch, updateCount])
+
   return (
     <div className='grid w-full grid-cols-3 gap-2 mb-6 -mt-2 place-items-center'>
       {grid.map((char, index) => (
@@ -86,7 +87,8 @@ const GridField = ({
               {char.name}
             </p>
           </label>
-          <SolidCheckCircle
+          <Svg
+            name='SolidCheckCircle'
             className='absolute top-0 bottom-0 left-0 right-0 m-auto text-sm text-center opacity-0 pointer-events-none w-9 h-9 z-1 peer-checked:opacity-100'
             viewBox='0 0 20 20'
             fill='currentColor'

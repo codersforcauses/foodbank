@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
-import SolidChevronDown from '@components/Custom/Svg/SolidChevronDown'
+import Svg from '@components/Custom/Svg'
 import { useFirebase } from '@components/FirebaseContext/context'
 
 const DropdownSignOut = () => {
@@ -10,7 +10,8 @@ const DropdownSignOut = () => {
     <Menu as='div' className='relative flex text-xl text-right'>
       <Menu.Button className='px-3 ml-8 font-serif text-white rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'>
         <span className='capitalize'>{user?.displayName}</span>
-        <SolidChevronDown
+        <Svg
+          name='SolidChevronDown'
           className='inline w-5 h-5 ml-2 -mr-1'
           viewBox='0 0 20 20'
           fill='currentColor'
