@@ -2,7 +2,7 @@ import { createContext, SetStateAction, useContext } from 'react'
 import { Auth, User } from 'firebase/auth'
 import { Firestore } from 'firebase/firestore'
 
-import { auth, db } from 'pages/api/firebase'
+import { auth, db } from '@components/FirebaseContext/firebase'
 
 export interface FirebaseContextProps {
   auth: Auth

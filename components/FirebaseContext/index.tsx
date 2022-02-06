@@ -8,9 +8,8 @@ import {
   updateDoc
 } from 'firebase/firestore'
 
-import { auth, db } from 'pages/api/firebase'
-
 import { MESSAGES } from '@components/Auth/enums'
+import { auth, db } from '@components/FirebaseContext/firebase'
 
 import {
   AchievementsCountProp,
