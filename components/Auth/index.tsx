@@ -1,4 +1,4 @@
-import { MouseEventHandler, useMemo, useState } from 'react'
+import { MouseEventHandler, useCallback, useMemo, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 
 import { Form, Modal, selectSet } from '@components/Custom'
@@ -26,8 +26,8 @@ const defaultValues: FormValues = {
 }
 
 const Auth = ({ ...props }: AuthProps) => {
+  const onClose = props.onClose
   const [username, setUsername] = useState('')
-  const [validUsername, setValidUsername] = useState(false)
   const [registered, setRegistered] = useState(false)
   const [password, setPassword] = useState('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
@@ -35,9 +35,18 @@ const Auth = ({ ...props }: AuthProps) => {
   const [error, setError] = useState('')
   const { auth, gridDisabled, setGridDisabled } = useFirebase()
 
-  const updateValidation = (isValid: boolean) => {
-    setValidUsername(isValid)
-  }
+  const handleReset = useCallback(() => {
+    setUsername('')
+    setRegistered?.(false)
+    setError('')
+  }, [])
+
+  const onCloseTimed = useCallback(async () => {
+    onClose()
+    await sleep(WAIT_FOR_MODAL_TO_CLOSE)
+    handleReset()
+    setPage(PAGES.USERNAME_FORM)
+  }, [onClose, handleReset])
 
   const handlePasswordSubmit = async (newPassword: string) => {
     if (newPassword?.length && page !== PAGES.PASSWORD_FORM) {
@@ -47,7 +56,7 @@ const Auth = ({ ...props }: AuthProps) => {
     setPassword(newPassword)
     if (registered && newPassword?.length === PASSWORD_LENGTH) {
       if (await signIn(auth, username, newPassword, setError, setGridDisabled))
-        onClose()
+        onCloseTimed()
     } else if (!registered && newPassword?.length === PASSWORD_LENGTH)
       setPage(PAGES.REPEAT_PASSWORD_FORM)
     else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
@@ -69,7 +78,7 @@ const Auth = ({ ...props }: AuthProps) => {
     ) {
       if (newRepeatedPassword === password) {
         await signUp(auth, username, password)
-        onClose()
+        onCloseTimed()
         setError('')
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
@@ -79,35 +88,25 @@ const Auth = ({ ...props }: AuthProps) => {
   }
 
   // SIGNIN OR SIGNUP HERE
-  const handleValuesSubmit: SubmitHandler<FormValues> = async data => {
-    setUsername(data.username.toLowerCase())
-    setPage(PAGES.PASSWORD_FORM)
-    await checkUsername(
-      auth,
-      data.username.toLowerCase(),
-      setRegistered,
-      setError
-    )
-  }
+  const handleValuesSubmit: SubmitHandler<FormValues> = useCallback(
+    async data => {
+      setUsername(data.username.toLowerCase())
+      setPage(PAGES.PASSWORD_FORM)
+      await checkUsername(
+        auth,
+        data.username.toLowerCase(),
+        setRegistered,
+        setError
+      )
+    },
+    [auth]
+  )
 
-  const handleReset = () => {
-    setUsername('')
-    setRegistered?.(false)
-    setError('')
-  }
-
-  const onClose = async () => {
-    props.onClose()
-    await sleep(WAIT_FOR_MODAL_TO_CLOSE)
-    handleReset()
-    setPage(PAGES.USERNAME_FORM)
-  }
-
-  const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
+  const goPrevPage: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
     if (page === PAGES.PASSWORD_FORM) handleReset()
     setError('')
     setPage(current => current - 1)
-  }
+  }, [handleReset, page])
 
   const pageDisplay = () => {
     switch (page) {
@@ -117,12 +116,7 @@ const Auth = ({ ...props }: AuthProps) => {
             defaultValues={defaultValues}
             onSubmit={handleValuesSubmit}
           >
-            <UsernameForm
-              label='Enter a username'
-              error={error}
-              validUsername={validUsername}
-              updateValidation={updateValidation}
-            />
+            <UsernameForm label='Enter a username' error={error} />
           </Form>
         )
       case PAGES.PASSWORD_FORM:
@@ -161,7 +155,7 @@ const Auth = ({ ...props }: AuthProps) => {
   }
 
   return (
-    <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
+    <Modal {...props} onClose={onCloseTimed} size='sm' heading='Sign-in'>
       {pageDisplay()}
     </Modal>
   )
