@@ -22,7 +22,8 @@ const sleep = async (ms: number) => {
 const checkUsername = async (
   auth: Auth,
   username: string,
-  setRegistered: (value: SetStateAction<boolean>) => void
+  setRegistered: (value: SetStateAction<boolean>) => void,
+  setError: (value: SetStateAction<string>) => void
 ) => {
   try {
     const signInMethods = await fetchSignInMethodsForEmail(
@@ -38,6 +39,7 @@ const checkUsername = async (
     if (err instanceof FirebaseError) {
       switch (err.code) {
         case AuthErrorCodes.QUOTA_EXCEEDED:
+          setError(MESSAGES.QUOTA_EXCEEDED)
           break
         //#region  //*=========== For logging ===========
         default:
