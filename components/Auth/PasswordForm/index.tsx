@@ -47,7 +47,9 @@ const PasswordForm = (props: PasswordFormProps) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p className='text-lg text-center'>{props.label}</p>
+        <p className='text-lg text-center'>{`${
+          props.registered ? 'Hi again!' : 'Welcome!'
+        } ${props.label}`}</p>
         {props.error && (
           <p className='text-lg text-center text-red'>{props.error}</p>
         )}
@@ -71,7 +73,7 @@ const PasswordForm = (props: PasswordFormProps) => {
           >
             <Svg
               name='SolidArrowCircleLeft'
-              viewBox='0 0 25 25'
+              viewBox='0 0 20 20'
               className='h-6 mr-8'
               fill='#FFF'
             />
@@ -88,12 +90,17 @@ const PasswordForm = (props: PasswordFormProps) => {
               : 'Next'}
             <Svg
               name='SolidArrowCircleRight'
-              viewBox='0 0 25 25'
+              viewBox='0 0 20 20'
               className='h-6 ml-8'
               fill='#FFF'
             />
           </Button>
         </div>
+        {props.registered && (
+          <p className='text-sm text-center'>
+            NOT YOU? TRY A DIFFERENT USERNAME!
+          </p>
+        )}
       </form>
     </FormProvider>
   )
