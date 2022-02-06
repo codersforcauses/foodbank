@@ -10,7 +10,6 @@ export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   description?: string
   rules?: RegisterOptions
   setFocused?: boolean
-  updateValidation?: (isValid: boolean) => void
 }
 
 const TextField = ({
@@ -21,7 +20,6 @@ const TextField = ({
   required = false,
   rules = {},
   setFocused,
-  updateValidation,
   ...props
 }: TextFieldProps) => {
   const {
@@ -35,10 +33,6 @@ const TextField = ({
   useEffect(() => {
     setFocused && setFocus?.(props.name)
   }, [props.name, setFocus, setFocused])
-
-  useEffect(() => {
-    updateValidation?.(formState!.isValid)
-  }, [formState, updateValidation])
 
   return (
     <FieldControl

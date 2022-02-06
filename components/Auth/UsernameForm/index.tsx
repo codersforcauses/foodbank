@@ -6,15 +6,8 @@ import validationSchema from '../validation'
 interface UsernameFormProps {
   label: string
   error: string
-  validUsername: boolean
-  updateValidation: (isValid: boolean) => void
 }
-
-const UsernameForm = ({
-  label,
-  error,
-  updateValidation
-}: UsernameFormProps) => {
+const UsernameForm = ({ label, error }: UsernameFormProps) => {
   return (
     <>
       <TextField
@@ -23,7 +16,6 @@ const UsernameForm = ({
         name='username'
         setFocused
         rules={validationSchema.username}
-        updateValidation={updateValidation}
       />
       {error && <p className='text-lg text-center text-red'>{error}</p>}
       <div className='flex flex-col items-center pt-4 space-x-3'>
@@ -32,7 +24,7 @@ const UsernameForm = ({
           <Svg
             name='SolidArrowCircleRight'
             className='h-6 ml-8'
-            viewBox='0 0 25 25'
+            viewBox='0 0 20 20'
             fill='#FFF'
           />
         </Button>
