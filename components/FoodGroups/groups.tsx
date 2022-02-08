@@ -4,6 +4,7 @@ export const enum GROUPS {
   DAIRY = 'dairy',
   MEAT = 'meat',
   GRAINS = 'grains',
+  TUCKER = 'tucker',
   NONE = '',
   DEFAULT = 'DEFAULT' // Undefined
 }

@@ -37,6 +37,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
       // const x = parentRect.x  / parentRect.width * 100 + ((e.pageX - parentRect.x + delta.x) / (window.screen.width)) *100
       // const y = parentRect.y / parentRect.height * 100 + ((e.pageY - parentRect.y + delta.y) / window.screen.height) * 100
       // if (x > parentRect.right || y > parentRect.bottom || x < parentRect.left || y < parentRect.top) return
+      console.log('State Screen Position:', setScreenPosition)
       setScreenPosition({ x: x, y: y })
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
@@ -45,7 +46,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const stopDrag = () => {
     props.onEndDrag()
-    console.log(parentRect?.x, parentRect?.y)
+    // console.log(parentRect?.x, parentRect?.y)
     document.removeEventListener('mousemove', dragAround)
     document.removeEventListener('mouseup', stopDrag)
   }

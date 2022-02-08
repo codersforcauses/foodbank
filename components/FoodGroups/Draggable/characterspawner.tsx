@@ -1,66 +1,137 @@
-import React, {useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Draggable from '@components/FoodGroups/Draggable'
-
-import {
-    foodGroupsCharacterImages
-} from './characterimages'
+import { State_, StateDispatch } from '../types'
 
 import { FoodGroupCharacterImage } from './types'
+import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
+import { ORIGIN_VECTOR2, Vector2 } from '@components/FoodGroups/Draggable/boundingbox'
 
-interface Props {
-  onEndDrag: Function
-  onStartDrag: Function
-  resetlogic: Boolean
+
+const CHARACTER_POSITIONS: Vector2[] = [
+  { x: 72, y: 16 },
+  { x: 60, y: 34 },
+  { x: 85, y: 35 },
+  { x: 65, y: 63 },
+  { x: 81, y: 62 }
+]
+
+const updatedFunction = (f: Function) => {
+  const [rerender, setRerender] = useState(0)
+  useEffect(() => {
+    f()
+  }, [rerender])
+  return () => setRerender(rerender + 1)
 }
 
-const CharacterSpawner:React.FC<Props> = (props:Props) => {
+const shuffle = <E,>(a: Array<E>) => {
+  const array = [...a]
+  let currentIndex: number = array.length
 
-    let currentSet:FoodGroupCharacterImage[] = generateCharacterSet()
-    // console.log(props.onStartDrag)
-    // const onEndDrag = props.onEndDrag()
-    // const onStartDrag = props.onStartDrag()
+  while (currentIndex > 0) {
+    // console.log(currentIndex, array)
 
-  
+    const randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
 
-    function generateCharacterSet() {
-        const characterSet: FoodGroupCharacterImage[] = []
-        // Is there a dynamic way to do this? (answer is yes but what is the most efficient way to do it?)
-        const meatCharacters = foodGroupsCharacterImages.filter(character => character.type === 'meat')
-        const dairyCharacters = foodGroupsCharacterImages.filter(character => character.type === 'dairy')
-        const vegetableCharacters = foodGroupsCharacterImages.filter(character => character.type === 'vegetables')
-        const fruitCharacters = foodGroupsCharacterImages.filter(character => character.type === 'fruit')
-        const grainCharacters = foodGroupsCharacterImages.filter(character => character.type === 'grains')
+    const test = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = test
+  }
 
-        characterSet.push(meatCharacters[Math.floor(Math.random()*meatCharacters.length)])
-        characterSet.push(dairyCharacters[Math.floor(Math.random()*dairyCharacters.length)])
-        characterSet.push(vegetableCharacters[Math.floor(Math.random()*vegetableCharacters.length)])
-        characterSet.push(fruitCharacters[Math.floor(Math.random()*fruitCharacters.length)])
-        characterSet.push(grainCharacters[Math.floor(Math.random()*grainCharacters.length)])
+  // console.log('calling shuffle')
+  return array
+}
 
-        return characterSet
-    }
-    
-    useEffect(() => {
-        currentSet = generateCharacterSet()
-        
-    }, [])
-    
-    
-    return (
-        <>
+function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
+  const characterSet: FoodGroupCharacterImage[] = []
+  console.log('generated character set!')
+  const filterFunction = (type: string) =>
+    character_data.filter(character => character.type === type)
 
-        {currentSet.map((character, index) => {
-            return (
-              <Draggable 
-                key={index}
-                onEndDrag={props.onEndDrag}
-                onStartDrag={props.onStartDrag}
-                {...character}
-              />
-            )
-          })}
-        </>
+  const characters = FOOD_GROUPS.map(group => filterFunction(group))
+
+  let positions = shuffle(CHARACTER_POSITIONS)
+
+  // console.log('Character positions:', positions)  
+
+  characters.forEach((characterTypeSet, i) => {
+    characterSet.push(
+      characterTypeSet[Math.floor(Math.random() * characterTypeSet.length)]
     )
+    characterSet[i].start_pos = positions[i]
+  })
+  // console.log('CharacterSet:', characterSet)
+  return characterSet
+}
+interface Props {
+  currCharSet: FoodGroupCharacterImage[]
+  nextCharSet: FoodGroupCharacterImage[]
+  endDragFunc: Function
+  startDragFunc: [StateDispatch<Vector2>, StateDispatch<GROUPS>]
+  screenPositions_set1: State_<Vector2>[]
+  screenPositions_set2: State_<Vector2>[]
+  AbsPositionSetState: StateDispatch<Vector2>
+  switchCharSet: boolean
+  draggableZone: State_<DOMRect | undefined>
 }
 
-export default CharacterSpawner
+
+
+const CharacterSpawner: React.FC<Props> = (props: Props) => {
+
+  useEffect(() => {
+    // console.log('props.draggableZone', props.draggableZone)
+    console.log('characters:', props.currCharSet)
+  }, [])
+
+  return (
+    <>
+    {
+      props.currCharSet.map((character, index) => {
+        console.log(character)
+        return (
+          <Draggable
+            key={index}
+            onEndDrag={updatedFunction(() => {
+              props.endDragFunc
+            })}
+            onStartDrag={() => {
+              props.startDragFunc[0](ORIGIN_VECTOR2)
+              props.startDragFunc[1](character.type)
+            }} 
+            screenPosition={props.screenPositions_set1[index][0]}
+            setScreenPosition={props.screenPositions_set1[index][1]}
+            setAbsPosition={props.AbsPositionSetState}
+            hidden={!props.switchCharSet}
+            draggableZone={props.draggableZone[0]}
+            {...character}
+          />
+        )
+      })
+    }
+    {
+      props.currCharSet.map((character, index) => {
+        return (
+          <Draggable
+            key={index}
+            onEndDrag={updatedFunction(() => {
+              props.endDragFunc
+            })}
+            onStartDrag={() => {
+              props.startDragFunc[0](ORIGIN_VECTOR2)
+            }} 
+            screenPosition={props.screenPositions_set2[index][0]}
+            setScreenPosition={props.screenPositions_set2[index][1]}
+            setAbsPosition={props.AbsPositionSetState}
+            hidden={props.switchCharSet}
+            draggableZone={props.draggableZone[0]}
+            {...character}
+          />
+        )
+      })
+    }
+    </>
+  )
+}
+
+export { generateCharacterSet , CharacterSpawner }

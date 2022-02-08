@@ -86,9 +86,8 @@ const properties_map: Record<
 const getFormatData = (data: QueryDatabaseResponse) => {
   const formattedData: FoodGroupCharacterImage[] = []
 
-  shuffle(positions) // Shuffle order for different food types.
-
-  // iterate through each record in the character database, switch case for each foodgroup using notion_food_dict to obtain foodgroup
+  // shuffle(positions) // Shuffle order for different food types.
+  // iterate through each record in the character database
   data.results.forEach((characterRecord, i) => {
     const page = characterRecord as Extract<
       typeof characterRecord,
@@ -142,7 +141,7 @@ const getFormatData = (data: QueryDatabaseResponse) => {
       console.error('[ ERROR ]: Bad type!')
     }
   })
-
+  // console.log(formattedData)
   return formattedData
 }
 
