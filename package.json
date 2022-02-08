@@ -20,7 +20,7 @@
   "homepage": "https://github.com/codersforcauses/foodbank#readme",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && patch-package",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
