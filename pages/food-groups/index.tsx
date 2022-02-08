@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import FoodGroups from 'components/FoodGroups'
 import Draggable from '@components/FoodGroups/Draggable'
-import { FoodGroupCharacterImage } from '@components/FoodGroups/Draggable/types'
+import { FoodGroupCharacterImage,FoodGroupCharacterImageDynamic } from '@components/FoodGroups/Draggable/types'
 import {
   ORIGIN_VECTOR2,
   Vector2
@@ -10,16 +10,18 @@ import { State_ } from '@components/FoodGroups/types'
 import { Button, Modal } from '@components/Custom'
 import { useRef } from 'react'
 
-import { Client } from '@notionhq/client/build/src'
-import {
-  getCharacterData,
-  getFormatData
-} from '@components/FoodGroups/API/getData'
+
 import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
 import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
 import Auth from '@components/Auth'
 
 import {generateCharacterSet, CharacterSpawner} from '@components/FoodGroups/Draggable/characterspawner'
+
+import { Client } from '@notionhq/client/build/src'
+import {
+  getCharacterData,
+  getFormatData
+} from '@components/FoodGroups/API/getData'
 
 const N_DRAGGABLE = 5
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
@@ -55,28 +57,39 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   // Draggable Logic
   const [overridePosition, setOverridePosition] = useState(ORIGIN_VECTOR2)
-  const [switchCharSet, setSwitchCharSet] = useState(true)
-  const getChars = useCallback(() => {
-    return generateCharacterSet(notion_character_data)
-  }, [])
-  
-  const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImage[]>(() => generateCharacterSet(notion_character_data))
-  const [nextCharSet, setNextCharSet] = useState<FoodGroupCharacterImage[]>(() => generateCharacterSet(notion_character_data))
+  // const getChars = useCallback(() => {
+  //   return generateCharacterSet(notion_character_data)
+  // }, [])
 
+  const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImageDynamic[]>(() => generateCharacterSet(notion_character_data))
+  const [nextCharSet, setNextCharSet] = useState<FoodGroupCharacterImageDynamic[]>(() => generateCharacterSet(notion_character_data))
+  
+  
+  const draggablePositions_1: State_<Vector2>[] = []
+  const draggablePositions_2: State_<Vector2>[] = []
+  for (let i = 0; i < 5; i++) {
+    draggablePositions_1[i] = useState<Vector2>(ORIGIN_VECTOR2)
+    draggablePositions_2[i] = useState<Vector2>(ORIGIN_VECTOR2)
+  }
+
+  const [switchSetFlag, setswitchSetFlag] = useState(true)
 
   const draggableZoneRef = useRef<any>(undefined)
   const [draggableZone, setDraggableZone] = useState<DOMRect | undefined>()
+
+  const spawnerResetFunction = useRef<any>(undefined)
   
   var draggables: JSX.Element[] = []
   var draggables_2: JSX.Element[] = []
 
-  const draggablePositions: State_<Vector2>[] = []
-  const draggablePositions_2: State_<Vector2>[] = []
-  for (let i = 0; i < N_DRAGGABLE; i++) {
-    draggablePositions[i] = useState<Vector2>(currentCharSet[i].start_pos)
-    draggablePositions_2[i] = useState<Vector2>(nextCharSet[i].start_pos)
+  const updatedFunction = (f: Function) => {
+    const [rerender, setRerender] = useState(0)
+    useEffect(() => {
+      f()
+    }, [rerender])
+    return () => setRerender(rerender + 1)
   }
-
+  
   
   useEffect(() => {
     // Checking if the draggable parent element's rect got initialised
@@ -107,15 +120,19 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     }
   }, [roundCounterSignedOut, achievements]) // Do not include user - user triggers update BEFORE achievements is updated with online data
 
-  const endDragF = (index: number) => {
+  const endDragF = (index: number, group: GROUPS) => {
+    console.log('hovertype:', hoverType, 'selectedDraggableType', selectedDraggableType, 'GROUP',group, switchSetFlag, 'position',switchSetFlag ? currentCharSet[index].start_pos : nextCharSet[index].start_pos)
     if (hoverType === selectedDraggableType) {
       correctDraggables[index] = true // CORRECT ANSWER
     } else if (hoverType !== GROUPS.NONE) { 
       correctDraggables[index] = false // WRONG ANSWER
       // RESET POSITION
       // console.log('draggables[index]:', draggables[index].props)
-      draggablePositions[index][1](currentCharSet[index].start_pos)
-      draggablePositions_2[index][1](nextCharSet[index].start_pos)
+      // draggablePositions[index][1](currentCharSet[index].start_pos)
+      // draggablePositions_2[index][1](nextCharSet[index].start_pos)
+      // if(!spawnerResetFunction.current) throw new Error('Spawner Ref .current failed')
+      draggablePositions_1[index][1](currentCharSet[index].start_pos)
+      // draggablePositions_2[index][1](nextCharSet[index].start_pos)
     }
 
     // CHECK FOR END OF ROUND
@@ -142,6 +159,11 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     setCorrectDraggables(correctDraggables)
   }
 
+  // const triggerSpawnerResetFunction = () => {
+  //   if(!spawnerResetFunction.current) throw new Error('Spawner Ref .current failed')
+  //   spawnerResetFunction.current.resetGame()
+  // }
+
   // ON THE END OF A ROUND, PERFORM THESE ACTIONS
   const resetGame = () => {
     if (roundCounter === 0) return
@@ -149,21 +171,18 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     setModalState(false)
     setWheelEnabled(true)
     setCorrectDraggables(correctDraggables.fill(false))
-    draggablePositions.forEach((state, i) =>
-      state[1](draggables[i].props.start_pos)
-    )
-    draggablePositions_2.forEach((state, i) =>
-      state[1](draggables_2[i].props.start_pos)
-    )
-
-    if (switchCharSet) {
+    currentCharSet.map((character, index) => {
+      draggablePositions_1[index][1](character.start_pos)
+      draggablePositions_2[index][1](character.start_pos)
+    })
+    if (switchSetFlag) {
       // console.log('trigger1')
       setCharSet(generateCharacterSet(notion_character_data))
     } else {
       // console.log('trigger2')
       setNextCharSet(generateCharacterSet(notion_character_data))
     }
-    setSwitchCharSet(!switchCharSet)
+    setswitchSetFlag(!switchSetFlag)
   }
 
   // FC Runs this code below on every re-render (source of bug?)
@@ -262,14 +281,16 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
         />
         <div className='grid grid-cols-1'>
           <CharacterSpawner
-            currCharSet={currentCharSet}
-            nextCharSet={nextCharSet}
+            notion_character_data={notion_character_data}
             endDragFunc={endDragF}
             startDragFunc={[setOverridePosition, setSelectedDraggableType]}
-            screenPositions_set1={draggablePositions}
-            screenPositions_set2={draggablePositions_2}
             AbsPositionSetState={setOverridePosition}
-            switchCharSet={switchCharSet}
+            currentCharSet={currentCharSet}
+            nextCharSet={nextCharSet}
+            switchSetFlag={switchSetFlag}
+            ref={spawnerResetFunction}
+            draggablePositions_1={draggablePositions_1}
+            draggablePositions_2={draggablePositions_2}
             draggableZone={[draggableZone, setDraggableZone]}
           />
           {/* {draggables} */}
@@ -286,6 +307,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     </>
   )
 }
+
 export const getServerSideProps = async () => {
   const notion = new Client({
     auth: process.env.NOTION_API_KEY

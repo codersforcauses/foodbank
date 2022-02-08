@@ -133,7 +133,6 @@ const getFormatData = (data: QueryDatabaseResponse) => {
         img_id: `${type}-character-img`,
         type: type,
         bounding_box_id: 0,
-        start_pos: ORIGIN_VECTOR2, // FIXME: REMOVE
         // ...properties_map[type],
         ...defaultProperties
       })
