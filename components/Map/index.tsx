@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo, SetStateAction } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 import TownBoxWrapper from './TownBoxWrapper'
 import MapImage from './MapImage'
