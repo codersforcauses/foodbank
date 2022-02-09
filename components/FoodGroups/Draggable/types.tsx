@@ -9,7 +9,10 @@ interface FoodGroupCharacterImage {
   type: GROUPS
   name: string
   bounding_box_id: number
-  start_pos: Vector2
 }
 
-export type { FoodGroupCharacterImage }
+interface FoodGroupCharacterImageDynamic extends FoodGroupCharacterImage {
+  start_pos:Vector2
+}
+
+export type { FoodGroupCharacterImage,FoodGroupCharacterImageDynamic }
