@@ -2,7 +2,6 @@ import Image from 'next/image'
 import banana from '../../public/images/bananaGuy.webp'
 import { useState } from 'react'
 import { useEffect } from 'react'
-// import { Transition } from '@headlessui/react'
 
 const Intro = () => {
   const [show, setShow] = useState(true)
@@ -35,12 +34,6 @@ const Intro = () => {
             alt='Banana Guy'
             quality={50}
           />
-          {/* <Transition
-            show={show}
-            enter='transition-opacity duration-75'
-            enterFrom='opacity-0'
-            enterTo='opacity-100'
-          ></Transition> */}
         </div>
       </div>
     </div>
