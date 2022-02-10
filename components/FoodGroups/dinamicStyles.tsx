@@ -52,10 +52,12 @@ const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
     console.error('[ ERROR ] Could not get parent bounding box')
     return
   }
-  const radius = boundingBox.height / 2
+  const radius = boundingBox.width / 2
   const center: Vector2 = {
     x: boundingBox.x + boundingBox.width / 2,
     y: boundingBox.y + boundingBox.height / 2
+    // x: boundingBox.x + radius,
+    // y: boundingBox.y + radius
   }
   setRadius(radius)
   setCenter(center)

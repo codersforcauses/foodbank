@@ -267,10 +267,10 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       )}
 
       <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
-      <div className='text-center text-6xl pt-[2%] pb-[1%]'>SORT THE FOOD</div>
+      <div className='text-center text-6xl bg-green pt-[2%] pb-[1%]'>SORT THE FOOD</div>
       {/* <div className='flex self-center ' draggable={false}> */}
       <div
-        className='flex justify-between ml-[10%] w-[80%] relative'
+        className='flex justify-between ml-[10%] w-[80%] bg-red relative  md:flex-wrap'
         ref={draggableZoneRef}
       >
         <FoodGroups

@@ -36,7 +36,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
       // console.log('x:', x, 'y:', y)
       // const x = parentRect.x  / parentRect.width * 100 + ((e.pageX - parentRect.x + delta.x) / (window.screen.width)) *100
       // const y = parentRect.y / parentRect.height * 100 + ((e.pageY - parentRect.y + delta.y) / window.screen.height) * 100
-      // if (x > parentRect.right || y > parentRect.bottom || x < parentRect.left || y < parentRect.top) return
+      console.log(parentRect);
+      
+      if (x > parentRect.right || y > parentRect.bottom || x < parentRect.left || y < parentRect.top) return
       // console.log('State Screen Position:', setScreenPosition)
       setScreenPosition({ x: x, y: y })
     } else {
@@ -100,8 +102,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
         draggable={false}
         style={{
           left: `${screenPosition.x}%`,
-          top: `${screenPosition.y}%`
+          top: `${screenPosition.y}%`,
         }}
+        
       >
         <div
           className='z-0 pointer-events-none select-none'
@@ -114,7 +117,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
             alt={props.div_id}
             width='200%'
             height='200%'
-            // layout='fill'
+            layout='responsive'
             draggable={false}
             priority={true}
           />

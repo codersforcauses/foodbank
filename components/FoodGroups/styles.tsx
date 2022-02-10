@@ -3,7 +3,7 @@ import { GROUPS } from './groups'
 const str = (classNames: string[]) => classNames.join(' ')
 
 export const dragDrop = str([
-  'w-fit',
+  'w-2/12',
   'h-fit',
   'z-20',
   '!absolute',
