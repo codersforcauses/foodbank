@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Card from 'components/Recipe/List-View/Card'
 // import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
@@ -28,26 +28,32 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
   })
 
   // Creating a list of recipes filtered by the passed category
-  const filterByCategory = (param: string) => {
-    let filtered: Recipe[] = []
-    recipes.map(recipe => {
-      recipe.category.map(category => {
-        if (category === param) filtered.push(recipe)
+  const filterByCategory = useCallback(
+    (param: string) => {
+      let filtered: Recipe[] = []
+      recipes.map(recipe => {
+        recipe.category.map(category => {
+          if (category === param) filtered.push(recipe)
+        })
       })
-    })
-    setFilteredCards(filtered)
-  }
+      setFilteredCards(filtered)
+    },
+    [recipes]
+  )
 
   // Creating a list of recipes filtered by the passed parameter, maybe a category or tag
-  const filterByTag = (param: string) => {
-    let filtered: Recipe[] = []
-    recipes.map(recipe => {
-      recipe.tags.map(tag => {
-        if (tag === param) filtered.push(recipe)
+  const filterByTag = useCallback(
+    (param: string) => {
+      let filtered: Recipe[] = []
+      recipes.map(recipe => {
+        recipe.tags.map(tag => {
+          if (tag === param) filtered.push(recipe)
+        })
       })
-    })
-    setFilteredCards(filtered)
-  }
+      setFilteredCards(filtered)
+    },
+    [recipes]
+  )
 
   useEffect(() => {
     if (tag !== 'all') {
