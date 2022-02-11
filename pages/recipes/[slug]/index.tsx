@@ -11,11 +11,9 @@ const RecipePage = ({ recipe, data }: RecipeProps) => {
   // console.log("recipe page: ",recipe_page);
   // console.log("Block1: ",block1);
 
-  if (!recipe) {
-    return <div>Recipe cannot be found!</div>
-  } else {
-    return <RecipeOverview recipe={recipe} data={data} />
-  }
+  if (!recipe) return <div>Recipe cannot be found!</div>
+
+  return <RecipeOverview recipe={recipe} data={data} />
 }
 
 export const getServerSideProps = async (context: {
