@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Recipe } from 'lib/types'
 import Image from 'next/image'
 import Modal from 'components/Custom/Modal'
@@ -24,6 +24,14 @@ interface ParamTypes {
 
 interface Screens {
   [key: string]: string
+}
+
+const screenSizes: Screens = {
+  sm: '640px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1280px',
+  '2xl': '1536px'
 }
 
 /**
@@ -63,21 +71,13 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
     heading: recipe.name
   }
 
-  const screenSizes: Screens = {
-    sm: '640px',
-    md: '768px',
-    lg: '1024px',
-    xl: '1280px',
-    '2xl': '1536px'
-  }
-
-  const adjustWidth = () => {
+  const adjustWidth = useCallback(() => {
     /* 
-    Find largest breakpoint under current screen size and send width to the Modal component. 
-    Default to largest screen size in the tailwind configs.
-
-    Might need a sort function in future but working fine for now
-      */
+      Find largest breakpoint under current screen size and send width to the Modal component. 
+      Default to largest screen size in the tailwind configs.
+  
+      Might need a sort function in future but working fine for now
+        */
 
     const fullConfig = resolveConfig(tailwindConfig)
     const screens = screenSizes // avoids reading in recipe_sm, recipe_md, etc.
@@ -95,7 +95,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
       filteredScreens.length === 0 ? largestScreen : filteredScreens[0][0]
 
     setWidth(screenWidth)
-  }
+  }, [])
 
   return (
     <>
