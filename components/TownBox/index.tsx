@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Button from '../Custom/Button'
 import styles from './index.module.css'
 
-// component not completed
 interface TownboxProps {
   headerColor?: 'primary' | 'orange'
   headerText?: string
