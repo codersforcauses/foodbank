@@ -73,13 +73,11 @@ const MapImage = ({
               zombieAquaCompensation = 200
             }
 
-            //Multiplied by 12 because xtrans and ytrans contain values which are scaled down by 10-12
             const xtrans =
               parseInt(location.xtrans) * 12 * scale * initialScale +
               mobileCompensation
             const ytrans = parseInt(location.ytrans) * 12 * scale * initialScale
             const scaledCoords = location.coords.map(coord => coord * scale)
-            //sconst className = location.id === selected ? 'map-selected' : 'map-unselected'
             return (
               <area
                 key={location.id}
