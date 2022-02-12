@@ -23,6 +23,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
+  const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
+  const [dragStyle, setDragStyle] = useState('')
 
   const dragAround = (e: MouseEvent) => {
     if (thisRect && parentRect && delta) {
@@ -45,6 +47,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const stopDrag = () => {
+    setDragStyle('')
+
     props.onEndDrag()
     // console.log(parentRect?.x, parentRect?.y)
     document.removeEventListener('mousemove', dragAround)
@@ -53,7 +57,15 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // console.log(props.type)
-    if (e.target instanceof Element) {
+    float()
+    setDragStyle('animate-wiggle')
+
+    console.log(props.type)
+    props.onStartDrag(props.type)
+    let parentRect: DOMRect
+    if (e.target instanceof Element && e.target.parentElement) {
+      parentRect = e.target.parentElement.getBoundingClientRect()
+      setParentRect(parentRect)
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
       return
@@ -73,6 +85,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
     //   e.pageY
     // )
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
+  }
+
+  const float = () => {
+    setHoverStyle('z-30 ' + styles['drag-drop'])
+  }
+
+  const defloat = () => {
+    setHoverStyle('z-20 ' + styles['drag-drop'])
   }
 
   useEffect(() => {
@@ -95,7 +115,13 @@ const Draggable: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div
-        className={dragDrop}
+        aria-hidden='true'
+        className={
+          dragDrop +
+          `${hoverStyle} ${dragStyle} w-44 h-44 transition ease-in duration-100 scale-100 hover:scale-110`
+        }
+        onMouseOver={float}
+        onMouseOut={defloat}
         onMouseDown={startDrag}
         draggable={false}
         style={{
