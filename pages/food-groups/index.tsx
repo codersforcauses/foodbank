@@ -23,6 +23,10 @@ import {
   getFormatData
 } from '@components/FoodGroups/API/getData'
 
+import Image from 'next/image'
+import backgroundPurple from 'public/images/BG_purple.webp'
+import backgroundGradientPurple from 'public/images/BG_gradient_purple.webp'
+
 const N_DRAGGABLE = 5
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
 
@@ -237,6 +241,9 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   return (
     <>
+      <div className='absolute'>
+        <Image className='-z-10 w-screen aspect-auto' src={backgroundGradientPurple} placeholder='blur'></Image>
+      </div>
       {modalState && (
         <Modal heading={'You won!'} open={true} onClose={resetGame} size='lg'>
           <div className='flex items-center flex-col'>
@@ -267,7 +274,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       )}
 
       <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
-      <div className='text-center text-6xl pt-[2%] pb-[1%]'>SORT THE FOOD</div>
+      <div className='text-white text-center text-6xl pt-[2%] pb-[1%]'>SORT THE FOOD</div>
       {/* <div className='flex self-center ' draggable={false}> */}
       <div
         className='flex justify-between ml-[10%] w-[80%] relative'
@@ -295,7 +302,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
           />
           {/* {draggables} */}
         </div>
-        <div className='pr-[10%] pt-[5%] text-2xl'>
+        <div className='text-white pr-[10%] pt-[5%] text-2xl'>
           Drag these foods into the correct category
         </div>
       </div>
