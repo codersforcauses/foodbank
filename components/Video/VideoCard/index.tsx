@@ -13,14 +13,14 @@ const VideoCard = ({
   const videoThumbnail = `https://img.youtube.com/vi/${youtubeVideoID}/0.jpg`
 
   return (
-    <div className=' w-full relative overflow-hidden'>
+    <div className='relative w-full overflow-hidden '>
       <Image
         src={videoThumbnail}
         layout='responsive'
         width='480'
         height='360'
         alt={title}
-        className='object-contain relative'
+        className='relative object-contain'
       />
     </div>
   )
