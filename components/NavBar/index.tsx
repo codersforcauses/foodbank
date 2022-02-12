@@ -19,7 +19,7 @@ const Navbar = ({ links }: NavbarProps) => {
   }, [])
 
   return (
-    <header className='fixed inset-x-0 top-0 z-10 hidden py-2 bg-primary md:block'>
+    <header className='fixed inset-x-0 top-0 z-10 hidden py-2 bg-primary sm:block'>
       <nav className='font-serif text-2xl text-white container flex justify-between px-3 mx-auto'>
         <Link href='/'>
           <a className='flex relative hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus: focus:ring-opacity-50 rounded'>
