@@ -24,7 +24,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint components lib pages --fix && yarn format",
-    "lint:strict": "eslint --max-warnings=0 components",
+    "lint:strict": "eslint --max-warnings=0 components lib pages",
     "typecheck": "tsc --noEmit --incremental false",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
