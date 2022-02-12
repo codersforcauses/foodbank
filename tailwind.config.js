@@ -38,8 +38,8 @@ module.exports = {
           '15%, 35%, 55%, 75%, 95%': { transform: 'translateX(-2rem)' }
         },
         wiggle: {
-          '0%, 100%': { transform: 'rotate(-3deg) scale(110%)' },
-          '50%': { transform: 'rotate(3deg) scale(110%)' },
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
         }
       },
     },

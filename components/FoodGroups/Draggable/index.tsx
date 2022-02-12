@@ -1,12 +1,12 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react'
-import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
-import styles from 'components/FoodGroups/foodgroups.module.css'
+import React, { useEffect, useState } from 'react'
+import { Transition } from '@headlessui/react'
+import { Vector2 } from './boundingbox'
 import { FoodGroupCharacterImage } from './types'
+import styles from 'components/FoodGroups/foodgroups.module.css'
 
 import Image from 'next/image'
 import { StateDispatch } from '../types'
 import { dragDrop } from '../styles'
-import { xor128 } from 'seedrandom'
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
@@ -23,8 +23,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
-  const [hoverStyle, setHoverStyle] = useState('z-20 ' + styles['drag-drop'])
   const [dragStyle, setDragStyle] = useState('')
+  const [nameShow, setNameShow] = useState(false)
 
   const dragAround = (e: MouseEvent) => {
     if (thisRect && parentRect && delta) {
@@ -56,16 +56,12 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // console.log(props.type)
     float()
-    setDragStyle('animate-wiggle')
+    setDragStyle('animate-wiggle wiggle-animate')
 
     console.log(props.type)
     props.onStartDrag(props.type)
-    let parentRect: DOMRect
-    if (e.target instanceof Element && e.target.parentElement) {
-      parentRect = e.target.parentElement.getBoundingClientRect()
-      setParentRect(parentRect)
+    if (e.target instanceof Element) {
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
       return
@@ -87,14 +83,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
   }
 
-  const float = () => {
-    setHoverStyle('z-30 ' + styles['drag-drop'])
-  }
-
-  const defloat = () => {
-    setHoverStyle('z-20 ' + styles['drag-drop'])
-  }
-
   useEffect(() => {
     let parentRect: DOMRect
     if (props.draggableZone) {
@@ -104,6 +92,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
       setParentRect(parentRect)
     }
   }, [props.draggableZone])
+
+  const float = () => {
+    setNameShow(true)
+  }
+
+  const defloat = () => {
+    setNameShow(false)
+  }
 
   useEffect(() => {
     if (delta) {
@@ -116,10 +112,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     <>
       <div
         aria-hidden='true'
-        className={
-          dragDrop +
-          `${hoverStyle} ${dragStyle} w-44 h-44 transition ease-in duration-100 scale-100 hover:scale-110`
-        }
+        className={`${dragDrop} ${dragStyle} `}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}
@@ -130,12 +123,24 @@ const Draggable: React.FC<Props> = (props: Props) => {
         }}
       >
         <div
-          className='z-0 pointer-events-none select-none'
+          className={`${dragStyle} relative pointer-events-none select-none`}
           draggable={false}
           hidden={props.hidden}
         >
-          {/* {Math.round(screenPosition.x)} {','} {Math.round(screenPosition.y)} */}
+          <Transition
+            className='z-40 absolute bg-white text-primary border-2 border-black rounded-md p-0.5 px-1.5 font-serif'
+            show={nameShow}
+            enter='transition-opacity ease-in-out duration-500'
+            enterFrom='opacity-0'
+            enterTo='opacity-100'
+            leave='transition-opacity ease-in-out duration-300 delay-[400ms]'
+            leaveFrom='opacity-100'
+            leaveTo='opacity-0'
+          >
+            {props.name}
+          </Transition>
           <Image
+            className='absolute'
             src={props.img_src}
             alt={props.div_id}
             width='100%'
