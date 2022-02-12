@@ -83,6 +83,7 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
           return (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <button
+              type='button'
               key={category}
               className='text-lg cursor-pointer'
               onClick={() => filterByCategory(category)}
@@ -93,6 +94,7 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
         })}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <button
+          type='button'
           className='text-lg cursor-pointer'
           onClick={() => setFilteredCards(recipes)}
         >
