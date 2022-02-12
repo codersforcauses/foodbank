@@ -1,5 +1,7 @@
-import { Video } from 'pages/videos'
 import React, { PropsWithChildren } from 'react'
+
+import { Video } from 'pages/videos'
+
 import VideoCard from '../VideoCard'
 
 interface VideoCardContainerProps extends Video {

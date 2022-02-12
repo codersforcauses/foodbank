@@ -1,6 +1,7 @@
 import React from 'react'
 import { PropsWithChildren } from 'react'
 import Image from 'next/image'
+
 import { Video } from 'pages/videos'
 
 export interface VideoCardProps extends Video {}

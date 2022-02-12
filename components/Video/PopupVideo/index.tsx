@@ -1,7 +1,7 @@
 import React, { Fragment, SetStateAction } from 'react'
-import ReactPlayer from 'react-player'
 import { PropsWithChildren } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import ReactPlayer from 'react-player'
 
 interface PopupVideoProps {
   url: string

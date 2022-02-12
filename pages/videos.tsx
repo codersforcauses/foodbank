@@ -1,7 +1,8 @@
-import PopupVideo from '@components/Video/PopupVideo'
 import { useState } from 'react'
-import VideoCardContainer from '@components/Video/VideoCardContainer'
+
 import { getVideos } from '@components/API/getData'
+import PopupVideo from '@components/Video/PopupVideo'
+import VideoCardContainer from '@components/Video/VideoCardContainer'
 
 export interface Video {
   youtubeVideoID: string
