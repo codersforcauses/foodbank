@@ -112,8 +112,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
           <Image
             src={props.img_src}
             alt={props.div_id}
-            width='200%'
-            height='200%'
+            width='100%'
+            height='100%'
             // layout='fill'
             draggable={false}
             priority={true}
