@@ -92,7 +92,7 @@ const Map = () => {
               enter='transition ease-in-out delay-1000 duration-500'
               enterFrom='opacity-0 scale-50'
               enterTo='opacity-100 scale-100'
-              leave='transition duration-1000'
+              leave='transition duration-500'
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-50'
               className='fixed top-0 h-screen flex justify-center items-center'

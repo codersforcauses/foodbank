@@ -109,7 +109,6 @@ const MapImage = ({
                 }}
                 href={location.id}
                 coords={scaledCoords.join()}
-                
                 shape='poly'
               />
             )
