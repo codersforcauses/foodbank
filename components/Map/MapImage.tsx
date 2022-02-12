@@ -13,7 +13,7 @@ interface MapProps {
   }
   setIsShowing: (state: boolean) => void
   isShowing: boolean
-  selected: string
+  selected: any
   setSelect: (state: any) => void
 }
 
