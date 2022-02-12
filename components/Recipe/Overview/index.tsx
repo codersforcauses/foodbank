@@ -46,7 +46,11 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
 
   useEffect(() => {
     adjustWidth()
-    window.onresize = adjustWidth
+    window.addEventListener('onresize', adjustWidth)
+
+    return () => {
+      window.removeEventListener('onresize', adjustWidth)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
