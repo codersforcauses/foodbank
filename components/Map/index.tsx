@@ -7,7 +7,7 @@ import { Transition } from '@headlessui/react'
 
 const Map = () => {
   const [scale, setScale] = useState(1)
-  const [select, setSelect] = useState(null)
+  const [selectedArea, setSelect] = useState(null)
   const [initialScale, setInitialScale] = useState(1)
   const [isShowing, setIsShowing] = useState(false)
   const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
@@ -83,7 +83,7 @@ const Map = () => {
                 setIsShowing={setIsShowing}
                 isShowing={isShowing}
                 setSelect={setSelect}
-                selected={select}
+                selected={selectedArea}
               />
             </TransformComponent>
 
@@ -98,7 +98,7 @@ const Map = () => {
               className='fixed top-0 h-screen flex justify-center items-center'
             >
               <TownBoxWrapper
-                selected={select}
+                selected={selectedArea}
                 setSelect={setSelect}
                 setIsShowing={setIsShowing}
                 initialScale={initialScale}

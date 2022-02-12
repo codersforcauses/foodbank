@@ -13,7 +13,7 @@ interface MapProps {
   }
   setIsShowing: (state: boolean) => void
   isShowing: boolean
-  selected: any
+  selected: string
   setSelect: (state: any) => void
 }
 
@@ -79,8 +79,7 @@ const MapImage = ({
               mobileCompensation
             const ytrans = parseInt(location.ytrans) * 12 * scale * initialScale
             const scaledCoords = location.coords.map(coord => coord * scale)
-            const className =
-              location.id === selected ? 'map-selected' : 'map-unselected'
+            //sconst className = location.id === selected ? 'map-selected' : 'map-unselected'
             return (
               <area
                 key={location.id}
@@ -110,7 +109,7 @@ const MapImage = ({
                 }}
                 href={location.id}
                 coords={scaledCoords.join()}
-                className={className}
+                
                 shape='poly'
               />
             )
