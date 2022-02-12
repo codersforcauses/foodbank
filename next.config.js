@@ -6,6 +6,6 @@ module.exports = {
   },
   // need to remove once test is deleted
   images: {
-    domains: ['images.unsplash.com', 'tinyurl.com']
+    domains: ['images.unsplash.com', 'tinyurl.com', 'img.youtube.com']
   }
 }
