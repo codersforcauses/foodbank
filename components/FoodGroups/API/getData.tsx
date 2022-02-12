@@ -55,33 +55,33 @@ const shuffle = <E,>(array: Array<E>) => {
   }
 }
 
-const properties_map: Record<
-  GROUPS,
-  { bounding_box_id: number; start_pos: Vector2 }
-> = {
-  [GROUPS.VEGETABLES]: {
-    bounding_box_id: 3,
-    start_pos: { x: 72, y: 16 }
-  },
-  [GROUPS.GRAINS]: {
-    bounding_box_id: 4,
-    start_pos: { x: 60, y: 34 }
-  },
-  [GROUPS.DAIRY]: {
-    bounding_box_id: 0,
-    start_pos: { x: 85, y: 35 }
-  },
-  [GROUPS.MEAT]: {
-    bounding_box_id: 1,
-    start_pos: { x: 65, y: 63 }
-  },
-  [GROUPS.FRUIT]: {
-    bounding_box_id: 2,
-    start_pos: { x: 81, y: 62 }
-  },
-  [GROUPS.DEFAULT]: { bounding_box_id: 0, start_pos: ORIGIN_VECTOR2 },
-  [GROUPS.NONE]: { bounding_box_id: 0, start_pos: ORIGIN_VECTOR2 }
-}
+// const properties_map: Record<
+//   GROUPS,
+//   { bounding_box_id: number; start_pos: Vector2 }
+// > = {
+//   [GROUPS.VEGETABLES]: {
+//     bounding_box_id: 3,
+//     start_pos: { x: 72, y: 16 }
+//   },
+//   [GROUPS.GRAINS]: {
+//     bounding_box_id: 4,
+//     start_pos: { x: 60, y: 34 }
+//   },
+//   [GROUPS.DAIRY]: {
+//     bounding_box_id: 0,
+//     start_pos: { x: 85, y: 35 }
+//   },
+//   [GROUPS.MEAT]: {
+//     bounding_box_id: 1,
+//     start_pos: { x: 65, y: 63 }
+//   },
+//   [GROUPS.FRUIT]: {
+//     bounding_box_id: 2,
+//     start_pos: { x: 81, y: 62 }
+//   },
+//   [GROUPS.DEFAULT]: { bounding_box_id: 0, start_pos: ORIGIN_VECTOR2 },
+//   [GROUPS.NONE]: { bounding_box_id: 0, start_pos: ORIGIN_VECTOR2 }
+// }
 
 const getFormatData = (data: QueryDatabaseResponse) => {
   const formattedData: FoodGroupCharacterImage[] = []

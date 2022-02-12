@@ -75,9 +75,9 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
   for (let i = positions_.length - 1; i >= 0; i--) {
     const idx = Math.floor(Math.random() * i)
     positions.push(positions_[idx])
-    console.log('positions', positions)
+    // console.log('positions', positions)
     positions_.splice(idx, 1)
-    console.log('positions_', positions_)
+    // console.log('positions_', positions_)
   }
 
   // shuffleArray(positions)
@@ -85,22 +85,24 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
   // console.log('Character positions:', positions)
 
   // Need to clone characterSet object
+  console.log(positions)
+
   characters.forEach((characterTypeSet, i) => {
     // TODO: Clean up
     const test: FoodGroupCharacterImageDynamic = {
-      start_pos: { x: 0, y: 0 },
+      start_pos: positions[i],
       ...characterTypeSet[Math.floor(Math.random() * characterTypeSet.length)]
     }
 
     characterSet.push(test)
-    characterSet[i].start_pos = positions[i]
+    // characterSet[i].start_pos = positions[i]
   })
-  console.log(
-    'CharacterSet:',
-    characterSet.map(e => {
-      return [e.start_pos, e.type]
-    })
-  ) //, "character_data", character_data.filter(e=>e.start_pos.x!==0).map(e=>{return [e.start_pos,e.type]}))
+  // console.log(
+  //   'CharacterSet:',
+  //   characterSet.map(e => {
+  //     return [e.start_pos, e.type, e.name]
+  //   })
+  // ) //, "character_data", character_data.filter(e=>e.start_pos.x!==0).map(e=>{return [e.start_pos,e.type]}))
   return characterSet
 }
 
@@ -120,9 +122,19 @@ interface Props {
 }
 
 const CharacterSpawner: React.FC<Props> = (props: Props) => {
-  useEffect(() => {
-    // console.log(props.endDragFunc)
-  }, [])
+  // useEffect(() => {
+  //   console.log('current')
+  //   props.currentCharSet.forEach(e => {
+  //     console.log(e.name)
+  //   })
+  // }, [props.currentCharSet])
+
+  // useEffect(() => {
+  //   console.log('next')
+  //   props.nextCharSet.forEach(e => {
+  //     console.log(e.name)
+  //   })
+  // }, [props.nextCharSet])
 
   const generateSetElements = (
     charSet: FoodGroupCharacterImage[],
@@ -130,7 +142,6 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
     viewable: boolean
   ) =>
     charSet.map((character, index) => {
-      // console.log(character)
       return (
         <Draggable
           key={index}
@@ -152,7 +163,7 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
     })
 
   return (
-    <div className='grid grid-cols-1'>
+    <div className='grid grid-cols-1 bg-blue'>
       {generateSetElements(
         props.currentCharSet,
         props.draggablePositions_1,

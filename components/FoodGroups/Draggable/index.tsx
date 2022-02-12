@@ -25,6 +25,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
   const [dragStyle, setDragStyle] = useState('')
   const [nameShow, setNameShow] = useState(false)
+  const [imgUpdate, setImgUpdate] = useState(0)
 
   const dragAround = (e: MouseEvent) => {
     if (thisRect && parentRect && delta) {
@@ -59,7 +60,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
     float()
     setDragStyle('animate-wiggle wiggle-animate')
 
-    console.log(props.type)
+    console.log(props.name, props.img_src, props.type)
     props.onStartDrag(props.type)
     if (e.target instanceof Element) {
     } else {
@@ -108,11 +109,17 @@ const Draggable: React.FC<Props> = (props: Props) => {
     }
   }, [delta])
 
+  // Needed to force reload because of the nextjs Image component using cached images
+  useEffect(() => {
+    // console.log(imgUpdate, props.img_src, props.name, props.hidden)
+    setImgUpdate(imgUpdate + 1)
+  }, [props.img_src])
+
   return (
     <>
       <div
         aria-hidden='true'
-        className={`${dragDrop} ${dragStyle} `}
+        className={dragDrop}
         onMouseOver={float}
         onMouseOut={defloat}
         onMouseDown={startDrag}
@@ -129,7 +136,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
         >
           <Transition
             className='z-40 absolute bg-white text-primary border-2 border-black rounded-md p-0.5 px-1.5 font-serif'
-            show={nameShow}
+            show={!props.hidden && nameShow}
             enter='transition-opacity ease-in-out duration-500'
             enterFrom='opacity-0'
             enterTo='opacity-100'
@@ -139,7 +146,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
           >
             {props.name}
           </Transition>
+          {/* <img className='absolute' src={props.img_src} /> */}
           <Image
+            key={imgUpdate}
             className='absolute'
             src={props.img_src}
             alt={props.div_id}
