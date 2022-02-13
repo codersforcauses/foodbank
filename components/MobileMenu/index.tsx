@@ -10,7 +10,7 @@ interface MobileMenu {
 
 const MobileMenu = ({ links }: MobileMenu) => {
   return (
-    <Popover className='text-white text-lg text-center flex flex-col items-end fixed z-10 bottom-5 right-5 '>
+    <Popover className='text-white text-lg text-center flex flex-col items-end fixed z-40 bottom-5 right-5 '>
       {({ open }) => (
         <>
           <Transition
