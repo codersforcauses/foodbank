@@ -7,7 +7,7 @@ import { Transition } from '@headlessui/react'
 
 const Map = () => {
   const [scale, setScale] = useState(1)
-  const [selectedArea, setSelect] = useState(null)
+  const [selectedArea, setSelectedArea] = useState(null)
   const [initialScale, setInitialScale] = useState(1)
   const [isShowing, setIsShowing] = useState(false)
   const [wrapperHeightCSS, setWrapperHeightCSS] = useState('100vh')
@@ -68,7 +68,7 @@ const Map = () => {
         minScale={initialScale + 0.1}
         ref={transformWrapper}
       >
-        {({ setTransform, zoomOut }) => (
+        {({ setTransform, zoomOut }: ReactZoomPanPinchRef) => (
           <>
             <TransformComponent
               wrapperStyle={{
@@ -82,7 +82,7 @@ const Map = () => {
                 setTransform={setTransform}
                 setIsShowing={setIsShowing}
                 isShowing={isShowing}
-                setSelect={setSelect}
+                setSelect={setSelectedArea}
                 selected={selectedArea}
               />
             </TransformComponent>
@@ -99,7 +99,7 @@ const Map = () => {
             >
               <TownBoxWrapper
                 selected={selectedArea}
-                setSelect={setSelect}
+                setSelectedArea={setSelectedArea}
                 setIsShowing={setIsShowing}
                 initialScale={initialScale}
                 zoomOut={zoomOut}
