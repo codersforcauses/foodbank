@@ -18,7 +18,7 @@ const PopupVideo = ({
     <Transition.Root show={visible} as={Fragment}>
       <Dialog
         onClose={() => setVisibility(false)}
-        className='fixed z-10 inset-0 overflow-y-auto'
+        className='fixed z-10 inset-0 pt-10 '
       >
         <div className='flex items-center justify-center min-h-screen'>
           <Transition.Child
@@ -41,8 +41,15 @@ const PopupVideo = ({
             leaveFrom='opacity-100 translate-y-0 sm:scale-100'
             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
           >
-            <div className='relative bg-primary rounded max-w-3xl mx-auto p-5'>
-              <ReactPlayer url={url} />
+            <div className='relative bg-primary rounded p-5 max-w-full'>
+              <ReactPlayer
+                controls={true}
+                url={url}
+                style={{
+                  maxHeight: '60vh',
+                  maxWidth: '100%'
+                }}
+              />
             </div>
           </Transition.Child>
         </div>

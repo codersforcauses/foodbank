@@ -8,7 +8,7 @@ import VitaminCLion from 'public/images/lion.webp'
 
 const TrophyRoom = () => {
   return (
-    <div className='bg-primary min-h-screen lg:main overflow-y-hidden'>
+    <div className='bg-primary h-screen overflow-y-hidden md:pt-14'>
       <h1 className='text-white font-bold text-6xl text-center pt-10'>
         Trophy Room
       </h1>
