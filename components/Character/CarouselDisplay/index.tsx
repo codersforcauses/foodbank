@@ -10,6 +10,7 @@ interface CarouselItemProps {
   chr: Character
 }
 
+/** The single-page view of character images and buttons which navigate to individual character pages. */
 const CarouselDisplay: FC = (props: CarouselProps) => {
   return (
     <div id='caro' style={{ display: 'inline-block' }}>
@@ -28,6 +29,7 @@ const CarouselDisplay: FC = (props: CarouselProps) => {
   )
 }
 
+/** A single character image and its button in the carousel. */
 export const CarouselItem = ({ chr }: CarouselItemProps): JSX.Element => {
   return (
     <div className='flex flex-col items-center'>
@@ -49,21 +51,3 @@ export const CarouselItem = ({ chr }: CarouselItemProps): JSX.Element => {
 }
 
 export default CarouselDisplay
-
-/*
-    //for notion api
-    const myLoader:ImageLoader = ({ src, width, quality }) => {
-        return `https://picsum.photos/${src}?w=${width}&q=${quality || 75}`
-    }
-                 {characters.map((item)=>{
-                const route = `/images/chara/${item}`
-                return (
-                    <div>
-                    <Image src={route}  width={400} height={300}  alt="Picture of the author"></Image>
-                    <button>{item}</button>
-                    </div>
-                )
-            })}
-            <button>NEXT</button>
-    */
-// loader={myLoader}

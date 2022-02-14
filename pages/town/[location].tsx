@@ -94,7 +94,7 @@ const Town = ({ characters }: Props) => {
 export const getServerSideProps = async (context: {
   query: { location: string }
 }) => {
-  // receiving recipe data from db by it's slug (name)
+  // Retrieve characters from town by slug in URL.
   const characters = await getCharsFromTown(context.query.location)
   return {
     props: {

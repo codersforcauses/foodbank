@@ -5,6 +5,7 @@ const notion = new Client({
   auth: process.env.NOTION_API_KEY
 })
 
+/** Get characters from a particular town from the Notion DB, based on town slug. */
 const getCharsFromTown = async (town: string) => {
   let data = await notion.databases.query({
     database_id: process.env.NOTION_CHARACTERS_DB_ID ?? '',
@@ -21,6 +22,7 @@ const getCharsFromTown = async (town: string) => {
   return chars
 }
 
+/** Nicely formats Notion Character DB response into an easy-to-access object. */
 const formatCharData = (data: QueryDatabaseResponse) => {
   const formattedCharData = data.results.map(result => {
     if (!('properties' in result)) return
@@ -37,7 +39,6 @@ const formatCharData = (data: QueryDatabaseResponse) => {
       'title' in nameProp ? nameProp.title[0].plain_text : ''
     return { image: imageUrl, location: locationSelect, name: namePlainText }
   })
-  // return data.results
   return formattedCharData
 }
 

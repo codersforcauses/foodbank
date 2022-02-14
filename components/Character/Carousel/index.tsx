@@ -11,6 +11,8 @@ interface Props {
   hasPrev?: boolean
   pageHandle: (direction: string) => any
 }
+
+/** The single-page view of the character carousel including character images, buttons to individual character pages and prev/next buttons.*/
 const Carousel = ({ characters, location, ...props }: Props) => {
   return (
     <div className='flex items-center px-12'>
