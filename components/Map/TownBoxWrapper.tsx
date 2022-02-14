@@ -4,7 +4,7 @@ import descData from './assets/description.json'
 
 interface TownBoxWrapperProps {
   selected: string | null
-  setSelect: (state: any) => void
+  setSelectedArea: (state: any) => void
   zoomOut: Function
   initialScale: number
   setIsShowing: (state: boolean) => void
@@ -22,13 +22,13 @@ interface TownBox {
 
 const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   selected,
-  setSelect,
+  setSelectedArea,
   setIsShowing,
   initialScale,
   zoomOut
 }: TownBoxWrapperProps) => {
   const handleClose = () => {
-    setSelect(null)
+    setSelectedArea(null)
     setIsShowing(false)
     zoomOut(initialScale * 2, 300, 'easeOut')
   }
