@@ -146,10 +146,10 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
     })
 
   return (
-    <>
+    <div className='grid grid-cols-1'>
     {generateSetElements(props.currentCharSet,props.draggablePositions_1,!props.switchSetFlag)}
     {generateSetElements(props.nextCharSet,props.draggablePositions_2,props.switchSetFlag)}
-    </>
+    </div>
   )
 }
 

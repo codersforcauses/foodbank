@@ -57,13 +57,9 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   // Draggable Logic
   const [overridePosition, setOverridePosition] = useState(ORIGIN_VECTOR2)
-  // const getChars = useCallback(() => {
-  //   return generateCharacterSet(notion_character_data)
-  // }, [])
 
   const [currentCharSet, setCharSet] = useState<FoodGroupCharacterImageDynamic[]>(() => generateCharacterSet(notion_character_data))
   const [nextCharSet, setNextCharSet] = useState<FoodGroupCharacterImageDynamic[]>(() => generateCharacterSet(notion_character_data))
-  
   
   const draggablePositions_1: State_<Vector2>[] = []
   const draggablePositions_2: State_<Vector2>[] = []
@@ -132,7 +128,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       // draggablePositions_2[index][1](nextCharSet[index].start_pos)
       // if(!spawnerResetFunction.current) throw new Error('Spawner Ref .current failed')
       draggablePositions_1[index][1](currentCharSet[index].start_pos)
-      // draggablePositions_2[index][1](nextCharSet[index].start_pos)
+      draggablePositions_2[index][1](nextCharSet[index].start_pos)
     }
 
     // CHECK FOR END OF ROUND
@@ -267,10 +263,10 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       )}
 
       <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
-      <div className='text-center text-6xl bg-green pt-[2%] pb-[1%]'>SORT THE FOOD</div>
+      <div className='text-center text-6xl pt-[2%] pb-[1%]'>SORT THE FOOD</div>
       {/* <div className='flex self-center ' draggable={false}> */}
       <div
-        className='flex justify-between ml-[10%] w-[80%] bg-red relative  md:flex-wrap'
+        className='flex ml-[10%] mr-[10%] w-[80%] bg-red relative lg:flex-nowrap'
         ref={draggableZoneRef}
       >
         <FoodGroups
@@ -279,26 +275,27 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
           setHoverType={setHoverType}
           enabled={wheelEnabled}
         />
-        <div className='grid grid-cols-1'>
+        
+        <div className='bg-slate-800 w-[50vh] w-fit v-fit'>
           <CharacterSpawner
-            notion_character_data={notion_character_data}
-            endDragFunc={endDragF}
-            startDragFunc={[setOverridePosition, setSelectedDraggableType]}
-            AbsPositionSetState={setOverridePosition}
-            currentCharSet={currentCharSet}
-            nextCharSet={nextCharSet}
-            switchSetFlag={switchSetFlag}
-            ref={spawnerResetFunction}
-            draggablePositions_1={draggablePositions_1}
-            draggablePositions_2={draggablePositions_2}
-            draggableZone={[draggableZone, setDraggableZone]}
-          />
-          {/* {draggables} */}
-        </div>
-        <div className='pr-[10%] pt-[5%] text-2xl'>
-          Drag these foods into the correct category
+              notion_character_data={notion_character_data}
+              endDragFunc={endDragF}
+              startDragFunc={[setOverridePosition, setSelectedDraggableType]}
+              AbsPositionSetState={setOverridePosition}
+              currentCharSet={currentCharSet}
+              nextCharSet={nextCharSet}
+              switchSetFlag={switchSetFlag}
+              ref={spawnerResetFunction}
+              draggablePositions_1={draggablePositions_1}
+              draggablePositions_2={draggablePositions_2}
+              draggableZone={[draggableZone, setDraggableZone]}
+            />
+          <div className='pl-[10%] pt-[5%] bg-green text-center text-2xl '>
+            Drag these foods into the correct category
+          </div>
         </div>
       </div>
+      
 
       {/* </div> */}
       {/* <div className='grid grid-cols-1 w-3/4 h-[45rem] bg-blue' ref={draggableZoneRef}>

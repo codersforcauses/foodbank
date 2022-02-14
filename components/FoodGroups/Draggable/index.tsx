@@ -18,11 +18,14 @@ interface Props extends FoodGroupCharacterImage {
   draggableZone: DOMRect | undefined
 }
 
+const BB_SIZE = 0.05
+
 const Draggable: React.FC<Props> = (props: Props) => {
   const { screenPosition, setScreenPosition, setAbsPosition } = props
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
+
 
   const dragAround = (e: MouseEvent) => {
     if (thisRect && parentRect && delta) {
@@ -38,8 +41,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
       // const y = parentRect.y / parentRect.height * 100 + ((e.pageY - parentRect.y + delta.y) / window.screen.height) * 100
       console.log(parentRect);
       
-      if (x > parentRect.right || y > parentRect.bottom || x < parentRect.left || y < parentRect.top) return
+      if (x > (1-thisRect.width/parentRect.width+BB_SIZE)*100 || y > (1-thisRect.height/parentRect.height+BB_SIZE)*100 || x < -BB_SIZE*100 || y < -BB_SIZE*100) return
       // console.log('State Screen Position:', setScreenPosition)
+      if (parentRect === undefined) throw new Error('parentRect undefined')
+      // if(parentRect.width <= parentRect.height){
+      //   setScreenPosition({ x: y, y: x })
+      // } else {  
+      //   setScreenPosition({ x: x, y: y })
+      // }
       setScreenPosition({ x: x, y: y })
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
@@ -88,6 +97,10 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }, [props.draggableZone])
 
   useEffect(() => {
+    
+  }, [parentRect])
+
+  useEffect(() => {
     if (delta) {
       document.addEventListener('mousemove', dragAround)
       document.addEventListener('mouseup', stopDrag)
@@ -104,7 +117,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
           left: `${screenPosition.x}%`,
           top: `${screenPosition.y}%`,
         }}
-        
       >
         <div
           className='z-0 pointer-events-none select-none'
