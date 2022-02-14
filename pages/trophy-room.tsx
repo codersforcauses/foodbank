@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import TrophyCabinet from 'components/TrophyRoom/TrophyCabinet'
+
+import TestData from '@components/TestData'
+import TrophyCabinet from '@components/TrophyRoom/TrophyCabinet'
 
 import VitaminCLion from 'public/images/lion.webp'
 import Melonator from 'public/images/watermelonflipped.webp'
@@ -20,6 +22,7 @@ const TrophyRoom = () => {
           <Image src={VitaminCLion} alt='Vitamin C Lion' />
         </div>
       </div>
+      <TestData />
     </div>
   )
 }
