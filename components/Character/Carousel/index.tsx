@@ -1,7 +1,6 @@
 import React from 'react'
-import CarouselDisplay, {
-  CarouselItem
-} from 'components/Character/CarouselDisplay'
+import CarouselDisplay from 'components/Character/CarouselDisplay'
+import CarouselItem from 'components/Character/CarouselItem'
 import Button from 'components/Custom/Button/index'
 import type { Character } from 'lib/types'
 interface Props {
