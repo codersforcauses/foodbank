@@ -16,7 +16,7 @@ const TestData = () => {
   }, [addAchievementsCount])
 
   return (
-    <div className='mt-32'>
+    <div className='mt-32 bg-white'>
       {userLoading ? (
         <div className='flex items-center justify-center'>
           <div
