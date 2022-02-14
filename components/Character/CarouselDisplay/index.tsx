@@ -8,8 +8,8 @@ interface CarouselProps {
 /** The single-page view of character images and buttons which navigate to individual character pages. */
 const CarouselDisplay: FC = (props: CarouselProps) => {
   return (
-    <div id='caro' style={{ display: 'inline-block' }}>
-      <div id='inner' style={{ display: 'flex' }}>
+    <div className='inline-block'>
+      <div className='flex'>
         {React.Children.map(props.children, child => {
           return (
             <div>
