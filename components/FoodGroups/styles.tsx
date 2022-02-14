@@ -9,7 +9,12 @@ export const dragDrop = str([
   '!absolute',
   'row-start-1',
   'col-start-1',
-  // 'bg-red'
+  'bg-red',
+  'transition',
+  'ease-in',
+  'duration-100',
+  'scale-100',
+  'hover:scale-110'
 ])
 
 export const customImg = str([

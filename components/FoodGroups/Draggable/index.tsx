@@ -1,12 +1,12 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react'
-import { BoundingBox, inBoundingBox, Vector2 } from './boundingbox'
-import styles from 'components/FoodGroups/foodgroups.module.css'
+import React, { useEffect, useState } from 'react'
+import { Transition } from '@headlessui/react'
+import { Vector2 } from './boundingbox'
 import { FoodGroupCharacterImage } from './types'
+import styles from 'components/FoodGroups/foodgroups.module.css'
 
 import Image from 'next/image'
 import { StateDispatch } from '../types'
 import { dragDrop } from '../styles'
-import { xor128 } from 'seedrandom'
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
@@ -25,6 +25,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [parentRect, setParentRect] = useState<DOMRect | undefined>(undefined)
   const [thisRect, setThisRect] = useState<DOMRect | undefined>(undefined)
   const [delta, setDelta] = useState<Vector2 | undefined>(undefined)
+  const [dragStyle, setDragStyle] = useState('')
+  const [nameShow, setNameShow] = useState(false)
+  const [imgUpdate, setImgUpdate] = useState(0)
 
 
   const dragAround = (e: MouseEvent) => {
@@ -56,6 +59,8 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const stopDrag = () => {
+    setDragStyle('')
+
     props.onEndDrag()
     // console.log(parentRect?.x, parentRect?.y)
     document.removeEventListener('mousemove', dragAround)
@@ -63,7 +68,11 @@ const Draggable: React.FC<Props> = (props: Props) => {
   }
 
   const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // console.log(props.type)
+    float()
+    setDragStyle('animate-wiggle wiggle-animate')
+
+    console.log(props.name, props.img_src, props.type)
+    props.onStartDrag(props.type)
     if (e.target instanceof Element) {
     } else {
       console.error('[ ERROR ]: Parent element bb does not exist')
@@ -96,6 +105,14 @@ const Draggable: React.FC<Props> = (props: Props) => {
     }
   }, [props.draggableZone])
 
+  const float = () => {
+    setNameShow(true)
+  }
+
+  const defloat = () => {
+    setNameShow(false)
+  }
+
   useEffect(() => {
     
   }, [parentRect])
@@ -107,10 +124,19 @@ const Draggable: React.FC<Props> = (props: Props) => {
     }
   }, [delta])
 
+  // Needed to force reload because of the nextjs Image component using cached images
+  useEffect(() => {
+    // console.log(imgUpdate, props.img_src, props.name, props.hidden)
+    setImgUpdate(imgUpdate + 1)
+  }, [props.img_src])
+
   return (
     <>
       <div
+        aria-hidden='true'
         className={dragDrop}
+        onMouseOver={float}
+        onMouseOut={defloat}
         onMouseDown={startDrag}
         draggable={false}
         style={{
@@ -119,12 +145,26 @@ const Draggable: React.FC<Props> = (props: Props) => {
         }}
       >
         <div
-          className='z-0 pointer-events-none select-none'
+          className={`${dragStyle} relative pointer-events-none select-none`}
           draggable={false}
           hidden={props.hidden}
         >
-          {/* {Math.round(screenPosition.x)} {','} {Math.round(screenPosition.y)} */}
+          <Transition
+            className='z-40 absolute bg-white text-primary border-2 border-black rounded-md p-0.5 px-1.5 font-serif'
+            show={!props.hidden && nameShow}
+            enter='transition-opacity ease-in-out duration-500'
+            enterFrom='opacity-0'
+            enterTo='opacity-100'
+            leave='transition-opacity ease-in-out duration-300 delay-[400ms]'
+            leaveFrom='opacity-100'
+            leaveTo='opacity-0'
+          >
+            {props.name}
+          </Transition>
+          {/* <img className='absolute' src={props.img_src} /> */}
           <Image
+            key={imgUpdate}
+            className='absolute'
             src={props.img_src}
             alt={props.div_id}
             width='200%'

@@ -21,12 +21,29 @@ module.exports = {
       black: '#000000',
       green: '#9dcd5a'
     },
+
     extend: {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
-      }
+      },
+      animation: {
+        vibrate: 'vibrate 1s ease-in-out 1',
+        wiggle: 'wiggle 1s ease-in-out infinite',
+      },
+      keyframes: {
+        vibrate: {
+          '0%, 100%': { transform: 'translateX(0px)' },
+          '5%, 25%, 45%, 65%, 85%': { transform: 'translateX(2rem)' },
+          '15%, 35%, 55%, 75%, 95%': { transform: 'translateX(-2rem)' }
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        }
+      },
     },
+
     screens: {
       xsm: '321px',
       sm: '640px',
@@ -34,12 +51,14 @@ module.exports = {
       lg: '1024px',
       xl: '1281px',
       '2xl': '1536px'
-    }
+    },
   },
+
   variants: {
     margin: ['responsive', 'hover'],
 
     extend: {}
   },
+  
   plugins: [require('tailwind-scrollbar-hide')]
 }
