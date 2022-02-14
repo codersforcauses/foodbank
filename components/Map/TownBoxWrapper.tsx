@@ -4,7 +4,7 @@ import descData from './assets/description.json'
 
 interface TownBoxWrapperProps {
   selected: string | null
-  setSelectedArea: (state: any) => void
+  setSelect: (state: any) => void
   zoomOut: Function
   initialScale: number
   setIsShowing: (state: boolean) => void
@@ -17,17 +17,18 @@ interface TownBox {
   showButton?: boolean
   id?: string
   showing?: boolean
+  route?: string
 }
 
 const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   selected,
-  setSelectedArea,
+  setSelect,
   setIsShowing,
   initialScale,
   zoomOut
 }: TownBoxWrapperProps) => {
   const handleClose = () => {
-    setSelectedArea(null)
+    setSelect(null)
     setIsShowing(false)
     zoomOut(initialScale * 2, 300, 'easeOut')
   }
@@ -35,8 +36,14 @@ const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   if (selected) {
     const selectedArea = descData.descriptionArray.find(x => x.id === selected)
     if (selectedArea) {
-      const { headerText, captionText, headerColor, showButton, id }: TownBox =
-        selectedArea
+      const {
+        headerText,
+        captionText,
+        headerColor,
+        showButton,
+        id,
+        route
+      }: TownBox = selectedArea
 
       return (
         <div key={id} className='sm:w-2/3'>
@@ -46,6 +53,7 @@ const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
             captionText={captionText}
             showButton={showButton}
             close={handleClose}
+            linksrc={route}
           />
         </div>
       )
