@@ -8,7 +8,7 @@ interface Props {
   location?: string
   hasNext?: boolean
   hasPrev?: boolean
-  pageHandle: (direction: string) => any
+  pageHandle: (direction: string) => void
 }
 
 /** The single-page view of the character carousel including character images, buttons to individual character pages and prev/next buttons.*/

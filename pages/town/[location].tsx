@@ -8,7 +8,7 @@ import descData from '@components/Map/assets/description.json'
 import type { Character } from 'lib/types'
 
 interface Props {
-  characters: any
+  characters: Character[]
 }
 
 const Town = ({ characters }: Props) => {
