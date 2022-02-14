@@ -1,7 +1,9 @@
+import { MouseEvent } from 'react'
 import Image from 'next/image'
 
 import svgData from './svgImageData.json'
-import baseMap from '../../public/images/tuckerMap.webp'
+
+import baseMap from 'public/images/tuckerMap.webp'
 
 import styles from './index.module.css'
 
@@ -29,7 +31,7 @@ const MapImage = ({
   initialScale
 }: MapProps) => {
   const handleClick = (
-    event: React.MouseEvent<HTMLAreaElement, MouseEvent>,
+    event: MouseEvent<HTMLAreaElement, globalThis.MouseEvent>,
     setTransform: Function,
     xtrans: number,
     ytrans: number
@@ -43,7 +45,7 @@ const MapImage = ({
   let timestamp: number
 
   return (
-    <div className='flex max-w-screen h-full'>
+    <div className='flex h-full max-w-screen'>
       <Image
         className={styles.mapImage}
         priority

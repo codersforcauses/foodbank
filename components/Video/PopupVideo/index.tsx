@@ -1,5 +1,4 @@
-import React, { Fragment, SetStateAction } from 'react'
-import { PropsWithChildren } from 'react'
+import { Fragment, PropsWithChildren, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ReactPlayer from 'react-player'
 

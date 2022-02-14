@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import descData from './assets/description.json'
 import Townbox from '../TownBox'
 
@@ -18,7 +20,7 @@ interface TownBox {
   showing?: boolean
 }
 
-const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
+const TownBoxWrapper: FC<TownBoxWrapperProps> = ({
   selected,
   setSelectedArea,
   setIsShowing,

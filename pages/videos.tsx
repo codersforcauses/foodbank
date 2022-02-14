@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 
 import { getVideos } from '@components/API/getData'
 import PopupVideo from '@components/Video/PopupVideo'
@@ -21,7 +21,7 @@ const DEFAULT_VIDEOS = [
   }
 ]
 
-const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
+const VideosGridView: FC<VideosGridProps> = ({ videos }) => {
   const [popupVisible, setPopupVisibility] = useState(false)
   const [activeVideo, setActiveVideo] = useState(
     `https://www.youtube.com/watch?v=${videos[0]}`
