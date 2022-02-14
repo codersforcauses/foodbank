@@ -14,7 +14,6 @@ interface Props {
 const Town = ({ characters }: Props) => {
   const route: NextRouter = useRouter()
   const { location } = route.query
-  const locString = location?.toString()
   const [allcharacters, setAllCharacters] = useState<Array<Character>>([])
   const [title, setTitle] = useState<string | undefined>('')
 
