@@ -1,10 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
-
 import TrophyCabinet from 'components/TrophyRoom/TrophyCabinet'
 
-import Melonator from 'public/images/watermelonflipped.webp'
 import VitaminCLion from 'public/images/lion.webp'
+import Melonator from 'public/images/watermelonflipped.webp'
 
 const TrophyRoom = () => {
   return (

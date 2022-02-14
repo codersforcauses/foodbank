@@ -1,6 +1,8 @@
-import svgData from './svgImageData.json'
 import Image from 'next/image'
+
+import svgData from './svgImageData.json'
 import baseMap from '../../public/images/tuckerMap.webp'
+
 import styles from './index.module.css'
 
 interface MapProps {

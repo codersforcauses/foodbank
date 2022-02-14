@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-
 import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
 
-import TrophyCabinetImage from 'public/images/trophy-cabinet.webp'
 import BrightYellowTrophy from 'public/images/trophies/brightyellow.webp'
 import CupcakePurpleTrophy from 'public/images/trophies/cupcakepurple.webp'
 import CyanBlueTrophy from 'public/images/trophies/cyanblue.webp'
@@ -21,6 +19,7 @@ import RubyGemTrophy from 'public/images/trophies/rubygem.webp'
 import SkyBlueTrophy from 'public/images/trophies/skyblue.webp'
 import TealBlueTrophy from 'public/images/trophies/tealblue.webp'
 import WhippedCreamTrophy from 'public/images/trophies/whippedcream.webp'
+import TrophyCabinetImage from 'public/images/trophy-cabinet.webp'
 
 type Props = {
   numUnlocked: number

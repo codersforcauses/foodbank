@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import Townbox from '../TownBox'
 import descData from './assets/description.json'
+import Townbox from '../TownBox'
 
 interface TownBoxWrapperProps {
   selected: string | null
