@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@headlessui/react": "1.4.2",
-    "@notionhq/client": "^0.4.13",
+    "@notionhq/client": "0.4.13",
     "critters": "0.0.15",
     "firebase": "9.6.4",
     "keen-slider": "6.4.1",

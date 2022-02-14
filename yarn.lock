@@ -539,7 +539,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@notionhq/client@^0.4.13":
+"@notionhq/client@0.4.13":
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/@notionhq/client/-/client-0.4.13.tgz#b29c2ecc8c25508119f9b2875c2dda6c12f1c889"
   integrity sha512-tHC95h4JZYteHmIL49xdta0Yb9q0peXySqo9cqTQEVzpPwUdcPNgWQljMqfrSVKqlpGNX+DhXztY0LR6f3Iw6A==
