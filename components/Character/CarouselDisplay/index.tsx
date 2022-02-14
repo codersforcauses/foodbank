@@ -9,7 +9,7 @@ interface CarouselProps {
 const CarouselDisplay: FC = (props: CarouselProps) => {
   return (
     <div className='inline-block'>
-      <div className='flex'>
+      <div className='grid grid-cols-4'>
         {React.Children.map(props.children, child => {
           return (
             <div>
