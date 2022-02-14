@@ -22,7 +22,7 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Trophy Room',
-    route: '/trophy'
+    route: '/trophy-room'
   },
   {
     page: 'Videos',
@@ -35,7 +35,7 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
     <FirebaseProvider>
       <MobileMenu links={links} />
       <Navbar links={links} />
-      <main className='relative min-h-screen lg:main mt-14'>
+      <main className='relative min-h-screen lg:main'>
         <Component {...pageProps} />
       </main>
     </FirebaseProvider>

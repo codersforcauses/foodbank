@@ -1,0 +1,46 @@
+diff --git a/node_modules/react-zoom-pan-pinch/dist/index.cjs.js b/node_modules/react-zoom-pan-pinch/dist/index.cjs.js
+index 5ad7785..3e08a7d 100644
+--- a/node_modules/react-zoom-pan-pinch/dist/index.cjs.js
++++ b/node_modules/react-zoom-pan-pinch/dist/index.cjs.js
+@@ -951,7 +951,8 @@ var cancelTimeout = function (timeout) {
+ };
+ 
+ var getTransformStyles = function (x, y, scale) {
+-    return "translate3d(" + x + "px, " + y + "px, 0) scale(" + scale + ")";
++    return "translate(" + x + "px, " + y + "px) scale(" + scale + ")";
++    //return "translate3d(" + x + "px, " + y + "px, 0) scale(" + scale + ")";
+ };
+ var getCenterPosition = function (scale, wrapperComponent, contentComponent) {
+     var contentWidth = contentComponent.offsetWidth * scale;
+@@ -1523,6 +1524,8 @@ var TransformContext = /** @class */ (function (_super) {
+             var _a = _this.transformState, scale = _a.scale, positionX = _a.positionX, positionY = _a.positionY;
+             var transform = getTransformStyles(positionX, positionY, scale);
+             _this.contentComponent.style.transform = transform;
++            //patch
++            _this.contentComponent.style.WebkitTransform = transform;
+             _this.handleRef();
+         };
+         _this.handleRef = function () {
+diff --git a/node_modules/react-zoom-pan-pinch/dist/index.esm.js b/node_modules/react-zoom-pan-pinch/dist/index.esm.js
+index 118927b..adbb659 100644
+--- a/node_modules/react-zoom-pan-pinch/dist/index.esm.js
++++ b/node_modules/react-zoom-pan-pinch/dist/index.esm.js
+@@ -943,7 +943,8 @@ var cancelTimeout = function (timeout) {
+ };
+ 
+ var getTransformStyles = function (x, y, scale) {
+-    return "translate3d(" + x + "px, " + y + "px, 0) scale(" + scale + ")";
++    return "translate(" + x + "px, " + y + "px) scale(" + scale + ")";
++    //return "translate3d(" + x + "px, " + y + "px, 0) scale(" + scale + ")";
+ };
+ var getCenterPosition = function (scale, wrapperComponent, contentComponent) {
+     var contentWidth = contentComponent.offsetWidth * scale;
+@@ -1515,6 +1516,8 @@ var TransformContext = /** @class */ (function (_super) {
+             var _a = _this.transformState, scale = _a.scale, positionX = _a.positionX, positionY = _a.positionY;
+             var transform = getTransformStyles(positionX, positionY, scale);
+             _this.contentComponent.style.transform = transform;
++            //patch
++            _this.contentComponent.style.WebkitTransform = transform;
+             _this.handleRef();
+         };
+         _this.handleRef = function () {

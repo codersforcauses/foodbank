@@ -32,8 +32,8 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
               leaveFrom='transform scale-100 opacity-100 translate-y-0'
               leaveTo='transform scale-95 opacity-0 translate-y-10'
             >
-              <Popover.Panel className='flex flex-col items-end'>
-                <div className='flex flex-col items-center justify-around w-full p-3 font-serif rounded-lg bg-primary h-96'>
+              <Popover.Panel className='flex flex-col items-end justify-end h-screen'>
+                <div className='flex flex-col items-center justify-around w-full p-3 font-serif rounded-lg bg-primary h-1/2'>
                   {user && (
                     <span className='capitalize text-orange'>
                       {user.displayName}
@@ -53,6 +53,7 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
                   ) : (
                     <button
                       className='animate-bounce'
+                      // className='w-full transition-all duration-150 rounded opacity-100 focus:ring focus:ring-teal focus:ring-opacity-50'
                       onClick={toggleOpenSignInForm}
                     >
                       Sign-in
@@ -63,7 +64,7 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
               </Popover.Panel>
             </Transition>
             <Popover.Button
-              className={`flex items-center justify-center md:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ${
+              className={`flex items-center justify-center sm:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ${
                 open ? 'bg-teal text-black' : 'bg-primary'
               }`}
             >

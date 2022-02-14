@@ -33,17 +33,15 @@ const VideosGridView: React.FC<VideosGridProps> = ({ videos }) => {
 
   return (
     <>
-      <div className='grid gap-10 grid-1'>
-        <div className='flex justify-center m-10'>
-          <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
-            {videos.map(video => (
-              <VideoCardContainer
-                key={video.youtubeVideoID}
-                {...video}
-                clickFunction={handleActiveVideoChange}
-              />
-            ))}
-          </div>
+      <div className='flex justify-center md:pt-14'>
+        <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
+          {videos.map(video => (
+            <VideoCardContainer
+              key={video.youtubeVideoID}
+              {...video}
+              clickFunction={handleActiveVideoChange}
+            />
+          ))}
         </div>
       </div>
       <PopupVideo
