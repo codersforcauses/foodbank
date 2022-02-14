@@ -1,6 +1,6 @@
 import TestData from '@components/TestData'
 
-const Trophy = () => {
+const FunFoodSort = () => {
   return <TestData />
 }
-export default Trophy
+export default FunFoodSort
