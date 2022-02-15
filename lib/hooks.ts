@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 
 const useViewport = () => {
-  const [width, setWidth] = useState<number>(window.innerWidth)
+  // Window is undefined for server-side code execution.
+  const [width, setWidth] = useState<number>(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  )
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth)
