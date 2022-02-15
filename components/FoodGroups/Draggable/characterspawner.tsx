@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Draggable from '@components/FoodGroups/Draggable'
+import Draggable, { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
 import { State_, StateDispatch } from '../types'
 
 import {
@@ -80,11 +80,6 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
     // console.log('positions_', positions_)
   }
 
-  // shuffleArray(positions)
-
-  // console.log('Character positions:', positions)
-
-  // Need to clone characterSet object
   console.log(positions)
 
   characters.forEach((characterTypeSet, i) => {
@@ -93,9 +88,7 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
       start_pos: positions[i],
       ...characterTypeSet[Math.floor(Math.random() * characterTypeSet.length)]
     }
-
     characterSet.push(test)
-    // characterSet[i].start_pos = positions[i]
   })
   // console.log(
   //   'CharacterSet:',
@@ -106,13 +99,55 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
   return characterSet
 }
 
+const randomiseZoneWheelPositions = () => {
+  const CHARACTER_POSITIONS_MOBILE: Vector2[] = [
+    { x: 0, y: 0 },
+    { x: 20, y: 40},
+    { x: 75, y: 40 },
+    { x: 35, y: 65 },
+    { x: 55, y: 65 }
+  ]
+
+  let positions_ = CHARACTER_POSITIONS_MOBILE.map(e => cloneVector2(e))
+  // let positions_ = CHARACTER_POSITIONS.slice()
+  let positions: Vector2[] = []
+  for (let i = positions_.length - 1; i >= 0; i--) {
+    const idx = Math.floor(Math.random() * i)
+    positions.push(positions_[idx])
+    // console.log('positions', positions)
+    positions_.splice(idx, 1)
+    // console.log('positions_', positions_)
+  }
+  return positions
+}
+
+const calculateDraggableZoneTotalPosition = (draggableZone:DOMRect | undefined, redZone:DOMRect | undefined, positions: Vector2[]) => {
+  if (!draggableZone || !redZone ) throw new Error('one of the draggableZones are undefined')
+  const newPositions:Vector2[] = []
+  // console.log(positions)
+  const blueZoneHeight = draggableZone.height - redZone.height
+  positions.map((position, index) => {
+    const newX = position.x
+    // const newX = (((position.x/100) * redZone.width + draggableZone.width) / (draggableZone.width)) * 100
+    const newY = (((position.y/100) * redZone.height + blueZoneHeight) / (draggableZone.height)) * 100
+    console.log('newX', newX, 'newY', newY)
+    newPositions.push({x:newX, y:newY})
+  })
+  console.log('redZone.width', redZone.width,  'redZone.height', redZone.height, 'draggableZone.width', draggableZone.width, 'draggableZone.height', draggableZone.height)
+  console.log('1', newPositions)
+  return newPositions
+}
+
+
 interface Props {
   endDragFunc: Function
   startDragFunc: [StateDispatch<Vector2>, StateDispatch<GROUPS>]
   AbsPositionSetState: StateDispatch<Vector2>
   draggablePositions_1: State_<Vector2>[]
   draggablePositions_2: State_<Vector2>[]
+  draggingStates: State_<DRAGGING_STATE[]>
   draggableZone: State_<DOMRect | undefined>
+  draggableZoneWheel: State_<DOMRect | undefined>
   currentCharSet: FoodGroupCharacterImage[]
   nextCharSet: FoodGroupCharacterImage[]
   switchSetFlag: boolean
@@ -136,18 +171,39 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
   //   })
   // }, [props.nextCharSet])
 
+  // First Attempt to responsive position spawning
+  // useEffect(() => {
+  //   // console.log('hi mum', props.draggableZone[0].width, props.draggablePositions_1)
+  //   if (!props.draggableZone[0]) return
+  //   if(props.draggableZone[0].width <= 425){
+  //     props.currentCharSet.map((character:any, index) => {
+  //       // console.log('1', props.currentCharSet[index].start_pos)
+  //       props.currentCharSet[index].start_pos = {x:character.start_pos.y, y:character.start_pos.x}
+  //       // console.log('2', props.currentCharSet[index].start_pos)
+  //     })
+  //   }
+  // }, [props.draggableZone])
+
+
   const generateSetElements = (
     charSet: FoodGroupCharacterImage[],
     positions: State_<Vector2>[],
     viewable: boolean
-  ) =>
+    ) =>
     charSet.map((character, index) => {
+      // if((props.draggableZone[0]) && (props.draggableZone[0].width <= 425)){
+      //   let positions = randomiseZoneWheelPositions()
+      //   positions = calculateDraggableZoneTotalPosition(props.draggableZone[0], props.draggableZoneWheel[0], positions)
+      //   props.currentCharSet[index].start_pos = positions[index]
+      // }
+      const endDragF = updatedFunction(() => props.endDragFunc(index, character.type))
+        
       return (
         <Draggable
           key={index}
-          onEndDrag={updatedFunction(() =>
-            props.endDragFunc(index, character.type)
-          )}
+          index={index}
+          draggingStates={props.draggingStates}
+          onEndDrag={endDragF}
           onStartDrag={() => {
             props.startDragFunc[0](ORIGIN_VECTOR2)
             props.startDragFunc[1](character.type)
@@ -157,6 +213,7 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
           setAbsPosition={props.AbsPositionSetState}
           hidden={viewable}
           draggableZone={props.draggableZone[0]}
+          // draggableZoneWheel={props.draggableZoneWheel[0]}
           {...character}
         />
       )
@@ -170,4 +227,4 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
   )
 }
 
-export { generateCharacterSet, CharacterSpawner }
+export { generateCharacterSet, CharacterSpawner, randomiseZoneWheelPositions, calculateDraggableZoneTotalPosition }

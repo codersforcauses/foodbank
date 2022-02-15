@@ -3,13 +3,15 @@ import { GROUPS } from './groups'
 const str = (classNames: string[]) => classNames.join(' ')
 
 export const dragDrop = str([
-  'w-2/12',
+  'lg:w-[12%]',
+  'md:w-[12%]',
+  'w-1/2',
   'h-fit',
   'z-20',
   '!absolute',
   'row-start-1',
   'col-start-1',
-  'bg-red',
+  // 'bg-red',
   'transition',
   'ease-in',
   'duration-100',
