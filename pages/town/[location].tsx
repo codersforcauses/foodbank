@@ -27,7 +27,7 @@ const Town = ({ characters }: Props) => {
       x => x.route === location
     )
     setTitle(locationInfo?.headerText)
-  }, [])
+  }, [location])
 
   // Determine whether next/prev buttons should render.
   useEffect(() => {
