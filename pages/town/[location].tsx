@@ -6,6 +6,7 @@ import Background from 'public/images/characters/bg-turquoise.webp'
 import { getCharsFromTown } from '@components/API/characters'
 import descData from '@components/Map/assets/description.json'
 import type { Character } from 'lib/types'
+import { useViewport } from 'lib/hooks'
 
 interface Props {
   characters: Character[]
@@ -16,7 +17,8 @@ const Town = ({ characters }: Props) => {
   const { location } = route.query
   const [allcharacters, setAllCharacters] = useState<Array<Character>>([])
   const [title, setTitle] = useState<string | undefined>('')
-  const [maxCharsPerPage, setMaxCharsPerPage] = useState<number>(4)
+  const [maxCharsPerPage, setMaxCharsPerPage] = useState<number>(1)
+  const { width } = useViewport()
 
   useEffect(() => {
     const locationInfo = descData.descriptionArray.find(
@@ -36,6 +38,28 @@ const Town = ({ characters }: Props) => {
       prev: false
     })
   }, [allcharacters])
+
+  // Adjust max chars that display on the page based on viewport width.
+  useEffect(() => {
+    if (width < 640) {
+      setMaxCharsPerPage(1)
+    } else if (640 <= width && width < 768) {
+      // sm breakpoint
+      setMaxCharsPerPage(1)
+    } else if (768 <= width && width < 1024) {
+      // md breakpoint
+      setMaxCharsPerPage(1)
+    } else if (1024 <= width && width < 1280) {
+      // lg breakpoint
+      setMaxCharsPerPage(2)
+    } else if (1280 <= width && width < 1536) {
+      // xl breakpoint
+      setMaxCharsPerPage(3)
+    } else {
+      // 2xl breakpoint
+      setMaxCharsPerPage(4)
+    }
+  }, [width])
 
   const [pageNumber, setPageNumber] = useState(1)
   const [hasnextprev, setNextPrev] = useState({
