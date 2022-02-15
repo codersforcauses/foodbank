@@ -95,8 +95,8 @@ const Town = ({ characters }: Props) => {
         <CharacterCarousel
           characters={pagination(characters, maxCharsPerPage, pageNumber)}
           maxPerPage={maxCharsPerPage}
-          hasNext={canGoToNextPage}
-          hasPrev={canGoToPrevPage}
+          hasNextPage={canGoToNextPage}
+          hasPrevPage={canGoToPrevPage}
           pageHandle={pagehandle}
         />
       </div>

@@ -4,24 +4,34 @@ import CarouselItem from 'components/Character/CarouselItem'
 import Button from 'components/Custom/Button/index'
 import type { Character } from 'lib/types'
 interface Props {
+  /** All characters part of the carousel. */
   characters: Character[]
+  /** Max number of characters to display on a single page. */
   maxPerPage: number
-  location?: string
-  hasNext?: boolean
-  hasPrev?: boolean
+  /** There is a next page with more characters. */
+  hasNextPage: boolean
+  /** There is a previous page with characters we have already seen.  */
+  hasPrevPage: boolean
+  /** Controls moving between pages. */
   pageHandle: (direction: string) => void
 }
 
 /** The single-page view of the character carousel including character images, buttons to individual character pages and prev/next buttons.*/
-const Carousel = ({ characters, maxPerPage, location, ...props }: Props) => {
+const Carousel = ({
+  characters,
+  maxPerPage,
+  hasNextPage,
+  hasPrevPage,
+  pageHandle
+}: Props) => {
   return (
     <div className='flex items-center px-12'>
-      {props.hasPrev ? (
+      {hasPrevPage ? (
         <Button
           color='primary'
           className='h-14'
           onClick={() => {
-            props.pageHandle('left')
+            pageHandle('left')
           }}
         >
           Prev
@@ -36,12 +46,12 @@ const Carousel = ({ characters, maxPerPage, location, ...props }: Props) => {
           )
         })}
       </CarouselDisplay>
-      {props.hasNext ? (
+      {hasNextPage ? (
         <Button
           color='primary'
           className='h-14'
           onClick={() => {
-            props.pageHandle('right')
+            pageHandle('right')
           }}
         >
           Next
