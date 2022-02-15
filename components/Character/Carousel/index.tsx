@@ -5,6 +5,7 @@ import Button from 'components/Custom/Button/index'
 import type { Character } from 'lib/types'
 interface Props {
   characters: Character[]
+  maxPerPage: number
   location?: string
   hasNext?: boolean
   hasPrev?: boolean
@@ -12,7 +13,7 @@ interface Props {
 }
 
 /** The single-page view of the character carousel including character images, buttons to individual character pages and prev/next buttons.*/
-const Carousel = ({ characters, location, ...props }: Props) => {
+const Carousel = ({ characters, maxPerPage, location, ...props }: Props) => {
   return (
     <div className='flex items-center px-12'>
       {props.hasPrev ? (
@@ -28,7 +29,7 @@ const Carousel = ({ characters, location, ...props }: Props) => {
       ) : (
         <></>
       )}
-      <CarouselDisplay>
+      <CarouselDisplay maxPerPage={maxPerPage}>
         {characters.map(character => {
           return (
             <CarouselItem key={character.name} chr={character}></CarouselItem>

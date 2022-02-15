@@ -81,6 +81,7 @@ const Town = ({ characters }: Props) => {
         </h1>
         <CharacterCarousel
           characters={pagination(allcharacters, 4, pageNumber)}
+          maxPerPage={4}
           hasNext={hasnextprev.next}
           hasPrev={hasnextprev.prev}
           pageHandle={pagehandle}
