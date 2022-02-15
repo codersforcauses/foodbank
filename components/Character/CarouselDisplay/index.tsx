@@ -9,7 +9,16 @@ interface CarouselProps {
 /** The single-page view of character images and buttons which navigate to individual character pages. */
 const CarouselDisplay = ({ maxPerPage, ...props }: CarouselProps) => {
   // Assuming we're still using PurgeCSS so can't do 'grid-cols-' + maxPerPage
-  const gridColsClass: string = maxPerPage === 4 ? 'grid-cols-4' : ''
+  const gridColsClass: string =
+    maxPerPage === 1
+      ? 'grid-cols-1'
+      : maxPerPage === 2
+      ? 'grid-cols-2'
+      : maxPerPage === 3
+      ? 'grid-cols-3'
+      : maxPerPage === 4
+      ? 'grid-cols-4'
+      : ''
   return (
     <div className='inline-block'>
       <div className={'grid ' + gridColsClass}>
