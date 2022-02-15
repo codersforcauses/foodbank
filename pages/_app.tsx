@@ -20,7 +20,11 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Trophy Room',
-    route: '/'
+    route: '/trophy-room'
+  },
+  {
+    page: 'Videos',
+    route: '/videos'
   }
 ]
 
@@ -29,7 +33,7 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
     <>
       <MobileMenu links={links} />
       <Navbar links={links} />
-      <main className='relative min-h-screen lg:main lg:mt-14'>
+      <main className='relative min-h-screen lg:main'>
         <Component {...pageProps} />
       </main>
       <Intro />
