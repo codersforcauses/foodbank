@@ -18,6 +18,9 @@ const Town = ({ characters }: Props) => {
   const [allcharacters, setAllCharacters] = useState<Array<Character>>([])
   const [title, setTitle] = useState<string | undefined>('')
   const [maxCharsPerPage, setMaxCharsPerPage] = useState<number>(1)
+  const [pageNumber, setPageNumber] = useState(1)
+  const [canGoToNextPage, setCanGoToNextPage] = useState<boolean>(false)
+  const [canGoToPrevPage, setCanGoToPrevPage] = useState<boolean>(false)
   const { width } = useViewport()
 
   useEffect(() => {
@@ -32,12 +35,13 @@ const Town = ({ characters }: Props) => {
     setAllCharacters(characters)
   }, [characters])
 
+  // Determine whether next/prev buttons should render.
   useEffect(() => {
-    setNextPrev({
-      next: allcharacters.length > 4 ? true : false,
-      prev: false
-    })
-  }, [allcharacters])
+    pageNumber > 1 ? setCanGoToPrevPage(true) : setCanGoToPrevPage(false)
+    pageNumber * maxCharsPerPage < allcharacters.length
+      ? setCanGoToNextPage(true)
+      : setCanGoToNextPage(false)
+  }, [pageNumber, maxCharsPerPage, allcharacters])
 
   // Adjust max chars that display on the page based on viewport width.
   useEffect(() => {
@@ -61,11 +65,6 @@ const Town = ({ characters }: Props) => {
     }
   }, [width])
 
-  const [pageNumber, setPageNumber] = useState(1)
-  const [hasnextprev, setNextPrev] = useState({
-    next: false,
-    prev: false
-  })
   const pagination = (
     array: Character[],
     page_size: number,
@@ -75,18 +74,8 @@ const Town = ({ characters }: Props) => {
   }
   const pagehandle = (direction: string) => {
     if (direction == 'right') {
-      setNextPrev(
-        pageNumber < allcharacters.length / 4
-          ? { prev: true, next: false }
-          : { prev: true, next: false }
-      )
       setPageNumber(pageNumber => pageNumber + 1)
     } else {
-      setNextPrev(
-        pageNumber > 1
-          ? { prev: false, next: true }
-          : { prev: true, next: true }
-      )
       setPageNumber(pageNumber => pageNumber - 1)
     }
   }
@@ -107,8 +96,8 @@ const Town = ({ characters }: Props) => {
         <CharacterCarousel
           characters={pagination(allcharacters, maxCharsPerPage, pageNumber)}
           maxPerPage={maxCharsPerPage}
-          hasNext={hasnextprev.next}
-          hasPrev={hasnextprev.prev}
+          hasNext={canGoToNextPage}
+          hasPrev={canGoToPrevPage}
           pageHandle={pagehandle}
         />
       </div>
