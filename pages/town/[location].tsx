@@ -16,6 +16,7 @@ const Town = ({ characters }: Props) => {
   const { location } = route.query
   const [allcharacters, setAllCharacters] = useState<Array<Character>>([])
   const [title, setTitle] = useState<string | undefined>('')
+  const [maxCharsPerPage, setMaxCharsPerPage] = useState<number>(4)
 
   useEffect(() => {
     const locationInfo = descData.descriptionArray.find(
@@ -80,8 +81,8 @@ const Town = ({ characters }: Props) => {
           {title}
         </h1>
         <CharacterCarousel
-          characters={pagination(allcharacters, 4, pageNumber)}
-          maxPerPage={4}
+          characters={pagination(allcharacters, maxCharsPerPage, pageNumber)}
+          maxPerPage={maxCharsPerPage}
           hasNext={hasnextprev.next}
           hasPrev={hasnextprev.prev}
           pageHandle={pagehandle}
