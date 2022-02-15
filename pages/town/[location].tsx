@@ -25,7 +25,7 @@ const Town = ({ characters }: Props) => {
   // Set the title of the page based on the location slug in the URL.
   useEffect(() => {
     const locationInfo = descData.descriptionArray.find(
-      x => x.route === location
+      loc => loc.route === location
     )
     setTitle(locationInfo?.headerText)
   }, [location])
@@ -40,25 +40,23 @@ const Town = ({ characters }: Props) => {
 
   // Adjust max chars that display on the page based on viewport width.
   useEffect(() => {
-    if (width) {
-      if (width < 640) {
-        setMaxCharsPerPage(1)
-      } else if (640 <= width && width < 768) {
-        // sm breakpoint
-        setMaxCharsPerPage(1)
-      } else if (768 <= width && width < 1024) {
-        // md breakpoint
-        setMaxCharsPerPage(1)
-      } else if (1024 <= width && width < 1280) {
-        // lg breakpoint
-        setMaxCharsPerPage(2)
-      } else if (1280 <= width && width < 1536) {
-        // xl breakpoint
-        setMaxCharsPerPage(3)
-      } else {
-        // 2xl breakpoint
-        setMaxCharsPerPage(4)
-      }
+    if (width < 640) {
+      setMaxCharsPerPage(1)
+    } else if (640 <= width && width < 768) {
+      // sm breakpoint
+      setMaxCharsPerPage(1)
+    } else if (768 <= width && width < 1024) {
+      // md breakpoint
+      setMaxCharsPerPage(1)
+    } else if (1024 <= width && width < 1280) {
+      // lg breakpoint
+      setMaxCharsPerPage(2)
+    } else if (1280 <= width && width < 1536) {
+      // xl breakpoint
+      setMaxCharsPerPage(3)
+    } else {
+      // 2xl breakpoint
+      setMaxCharsPerPage(4)
     }
   }, [width])
 
