@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 const Intro = () => {
   const [show, setShow] = useState(true)
 
-  const onClick = () => {
+  const hideBananaGuy = () => {
     setShow(false)
     sessionStorage.setItem('bananaGuy', 'false')
   }
@@ -22,7 +22,7 @@ const Intro = () => {
       className={`inset-0 absolute bg-grey-dark bg-opacity-50 z-50 ${
         show ? 'block' : 'hidden'
       }`}
-      onClick={onClick}
+      onClick={hideBananaGuy}
       aria-hidden='true'
     >
       <div className='fixed w-8/12 left-0 bottom-0'>
