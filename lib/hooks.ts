@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+/** Listens to changes in window size and returns the width. Ref: https://blog.logrocket.com/developing-responsive-layouts-with-react-hooks/ */
 const useViewport = () => {
   // Window is undefined for server-side code execution.
   const [width, setWidth] = useState<number>(
@@ -12,7 +13,6 @@ const useViewport = () => {
     return () => window.removeEventListener('resize', handleWindowResize)
   }, [])
 
-  // Return the width so we can use it in our components
   return { width }
 }
 

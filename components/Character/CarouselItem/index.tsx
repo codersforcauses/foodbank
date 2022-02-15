@@ -4,6 +4,7 @@ import Button from 'components/Custom/Button/index'
 import type { Character } from 'lib/types'
 
 interface CarouselItemProps {
+  /** Object with info about the character to be display. */
   chr: Character
 }
 

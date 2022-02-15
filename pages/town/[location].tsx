@@ -9,9 +9,11 @@ import type { Character } from 'lib/types'
 import { useViewport } from 'lib/hooks'
 
 interface Props {
+  /** All characters from the town specified in the URL. Fetched from Notion DB. */
   characters: Character[]
 }
 
+/** Page displaying carousel of characters from a particular town. Contains links to individual character pages. */
 const Town = ({ characters }: Props) => {
   const route: NextRouter = useRouter()
   const { location } = route.query

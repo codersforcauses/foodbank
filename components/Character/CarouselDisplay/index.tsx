@@ -1,9 +1,10 @@
 import React, { ReactNode, FC } from 'react'
 import type { Character } from 'lib/types'
 interface CarouselProps {
+  /** Max number of characters to display on a single page. */
   maxPerPage: number
+  /** Individual carousel items. */
   children?: ReactNode
-  chr?: Character[]
 }
 
 /** The single-page view of character images and buttons which navigate to individual character pages. */
