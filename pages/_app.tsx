@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app'
 import Navbar from '@components/NavBar'
 import { NavLinkProps } from '@components/NavBar/NavLink'
 import MobileMenu from '@components/MobileMenu'
-import Intro from '@components/Intro'
 import '@styles/main.css'
 
 const links: Array<NavLinkProps> = [
@@ -36,7 +35,6 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
       <main className='relative min-h-screen lg:main'>
         <Component {...pageProps} />
       </main>
-      <Intro />
     </>
   )
 }
