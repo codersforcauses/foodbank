@@ -22,6 +22,7 @@ const Town = ({ characters }: Props) => {
   const [canGoToPrevPage, setCanGoToPrevPage] = useState<boolean>(false)
   const { width }: { width: number } = useViewport()
 
+  // Set the title of the page based on the location slug in the URL.
   useEffect(() => {
     const locationInfo = descData.descriptionArray.find(
       x => x.route === location
@@ -61,6 +62,7 @@ const Town = ({ characters }: Props) => {
     }
   }, [width])
 
+  /** Returns the subarray of characters displayed on the current page.*/
   const pagination = (
     array: Character[],
     page_size: number,
@@ -68,6 +70,8 @@ const Town = ({ characters }: Props) => {
   ) => {
     return array.slice((pageNumber - 1) * page_size, page_number * page_size)
   }
+
+  /** Increments or decrements the page number. */
   const pagehandle = (direction: string) => {
     if (direction == 'right') {
       setPageNumber(pageNumber => pageNumber + 1)
@@ -75,6 +79,7 @@ const Town = ({ characters }: Props) => {
       setPageNumber(pageNumber => pageNumber - 1)
     }
   }
+
   return (
     <div className='h-screen sm:pt-14'>
       <div className='z-0'>
