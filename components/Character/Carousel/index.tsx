@@ -25,7 +25,7 @@ const Carousel = ({
   pageHandle
 }: Props) => {
   return (
-    <div className='flex items-center px-12'>
+    <div className='flex-1 flex items-center px-12'>
       {hasPrevPage ? (
         <Button
           color='primary'

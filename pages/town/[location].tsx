@@ -81,7 +81,7 @@ const Town = ({ characters }: Props) => {
   }
 
   return (
-    <div className='h-screen sm:pt-14'>
+    <div className='min-h-screen h-screen sm:pt-14'>
       <div className='z-0'>
         <Image
           src={Background}
@@ -90,8 +90,8 @@ const Town = ({ characters }: Props) => {
           alt='background'
         />
       </div>
-      <div className=' z-10 mt-8'>
-        <h1 className='my-24 text-center text-6xl text-white font-serif relative'>
+      <div className='flex flex-col z-10 h-full items-center'>
+        <h1 className='text-center mt-20 text-6xl text-white font-serif relative'>
           {title}
         </h1>
         <CharacterCarousel
