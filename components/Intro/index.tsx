@@ -1,7 +1,8 @@
-import Image from 'next/image'
-import banana from '../../public/images/bananaGuy.webp'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import Image from 'next/image'
+
+import banana from '../../public/images/bananaGuy.webp'
 
 const Intro = () => {
   const [show, setShow] = useState(true)
