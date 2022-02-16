@@ -19,6 +19,8 @@ const CarouselDisplay = ({ maxPerPage, ...props }: CarouselProps) => {
       ? 'grid-cols-3'
       : maxPerPage === 4
       ? 'grid-cols-4'
+      : maxPerPage === 5
+      ? 'grid-cols-5'
       : ''
   return (
     <div className='inline-block'>

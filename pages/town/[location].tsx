@@ -49,16 +49,16 @@ const Town = ({ characters }: Props) => {
       setMaxCharsPerPage(1)
     } else if (768 <= width && width < 1024) {
       // md breakpoint
-      setMaxCharsPerPage(1)
+      setMaxCharsPerPage(2)
     } else if (1024 <= width && width < 1280) {
       // lg breakpoint
-      setMaxCharsPerPage(2)
+      setMaxCharsPerPage(3)
     } else if (1280 <= width && width < 1536) {
       // xl breakpoint
-      setMaxCharsPerPage(3)
+      setMaxCharsPerPage(4)
     } else {
       // 2xl breakpoint
-      setMaxCharsPerPage(4)
+      setMaxCharsPerPage(5)
     }
   }, [width])
 
