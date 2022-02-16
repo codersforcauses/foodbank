@@ -22,7 +22,7 @@ const CarouselDisplay = ({ maxPerPage, ...props }: CarouselProps) => {
       : ''
   return (
     <div className='inline-block'>
-      <div className={'grid ' + gridColsClass}>
+      <div className={'grid gap-x-12 ' + gridColsClass}>
         {React.Children.map(props.children, child => {
           return (
             <div>

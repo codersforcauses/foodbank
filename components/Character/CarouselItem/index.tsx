@@ -13,11 +13,11 @@ const CarouselItem = ({ chr }: CarouselItemProps): JSX.Element => {
   return (
     <div className='flex flex-col items-center'>
       {chr.image && (
-        <div>
+        <div className='relative w-72 h-72'>
           <Image
             src={chr.image}
-            width={400}
-            height={300}
+            layout='fill'
+            objectFit='contain'
             alt='Picture of the author'
           ></Image>
         </div>
