@@ -25,7 +25,7 @@ const Carousel = ({
   pageHandle
 }: Props) => {
   return (
-    <div className='flex-1 flex items-center px-12'>
+    <div className='flex-1 flex items-center px-12 gap-x-12'>
       {hasPrevPage ? (
         <Button
           color='primary'
@@ -34,10 +34,16 @@ const Carousel = ({
             pageHandle('left')
           }}
         >
-          Prev
+          &lt;
         </Button>
       ) : (
-        <></>
+        <Button
+          color='primary'
+          className='h-14 grayscale opacity-20'
+          onClick={() => {}}
+        >
+          &lt;
+        </Button>
       )}
       <CarouselDisplay maxPerPage={maxPerPage}>
         {characters.map(character => {
@@ -54,10 +60,16 @@ const Carousel = ({
             pageHandle('right')
           }}
         >
-          Next
+          &gt;
         </Button>
       ) : (
-        <></>
+        <Button
+          color='primary'
+          className='h-14 grayscale opacity-20'
+          onClick={() => {}}
+        >
+          &gt;
+        </Button>
       )}
     </div>
   )
