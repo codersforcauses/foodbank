@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-import banana from '../../public/images/bananaGuy.webp'
+import banana from 'public/images/bananaGuy.webp'
 
 const Intro = () => {
   const [show, setShow] = useState(true)
@@ -26,7 +25,7 @@ const Intro = () => {
       onClick={hideBananaGuy}
       aria-hidden='true'
     >
-      <div className='fixed w-8/12 left-0 bottom-0'>
+      <div className='fixed bottom-0 left-0 w-8/12'>
         <div className='relative'>
           <Image
             src={banana}
