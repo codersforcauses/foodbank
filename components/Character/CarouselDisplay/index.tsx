@@ -23,18 +23,16 @@ const CarouselDisplay = ({ maxPerPage, ...props }: CarouselProps) => {
       ? 'grid-cols-5'
       : ''
   return (
-    <div className='inline-block'>
-      <div className={'grid gap-x-12 ' + gridColsClass}>
-        {React.Children.map(props.children, child => {
-          return (
-            <div>
-              {React.cloneElement(
-                child as React.DetailedReactHTMLElement<any, HTMLElement>
-              )}
-            </div>
-          )
-        })}
-      </div>
+    <div className={'grid gap-x-12 ' + gridColsClass}>
+      {React.Children.map(props.children, child => {
+        return (
+          <div>
+            {React.cloneElement(
+              child as React.DetailedReactHTMLElement<any, HTMLElement>
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }
