@@ -52,13 +52,13 @@ const Town = ({ characters }: Props) => {
       setMaxCharsPerPage(2)
     } else if (1024 <= width && width < 1280) {
       // lg breakpoint
-      setMaxCharsPerPage(3)
+      setMaxCharsPerPage(2)
     } else if (1280 <= width && width < 1536) {
       // xl breakpoint
-      setMaxCharsPerPage(4)
+      setMaxCharsPerPage(3)
     } else {
       // 2xl breakpoint
-      setMaxCharsPerPage(5)
+      setMaxCharsPerPage(4)
     }
   }, [width])
 
