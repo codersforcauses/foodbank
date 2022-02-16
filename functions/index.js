@@ -68,6 +68,11 @@ const _disableBillingForProject = async (projectName) => {
 
 // Firebase Functions
 /* eslint-disable-next-line max-len */
+// exports.stopBilling = functions.region("australia-southeast1").runWith({
+//   failurePolicy: true,
+//   memory: '512MB',
+//   timeoutSeconds: 60
+// }).pubsub.topic("billing").onPublish(async (pubsubEvent) => {  // Not Tested
 exports.stopBilling = functions.region("australia-southeast1").pubsub.topic("billing").onPublish(async (pubsubEvent) => {
   const pubsubData = JSON.parse(
       Buffer.from(pubsubEvent.data, "base64").toString(),
