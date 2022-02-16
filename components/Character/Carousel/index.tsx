@@ -39,7 +39,7 @@ const Carousel = ({
       ) : (
         <Button
           color='primary'
-          className='h-14 grayscale opacity-20'
+          className='h-14 grayscale opacity-20 cursor-default hover:scale-100'
           onClick={() => {}}
         >
           &lt;
@@ -65,7 +65,7 @@ const Carousel = ({
       ) : (
         <Button
           color='primary'
-          className='h-14 grayscale opacity-20'
+          className='h-14 grayscale opacity-20 cursor-default hover:scale-100'
           onClick={() => {}}
         >
           &gt;
