@@ -103,7 +103,7 @@ const locations = [
     headerColor: 'primary',
     headerText: 'Banana Bunches',
     captionText:
-      'In the topical region of Tucker Island, a plantation of bananas grows. Grown from young sucker plants, green banana bunches are picked when they are ready and ripen into yellow fruit.',
+      'In the tropical region of Tucker Island, a plantation of bananas grows. Grown from young sucker plants, green banana bunches are picked when they are ready, and ripen into yellow fruit.',
     showButton: true,
     maxWidth: '',
     maxHeight: '',
