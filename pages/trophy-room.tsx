@@ -5,11 +5,20 @@ import TrophyCabinet from 'components/TrophyRoom/TrophyCabinet'
 
 import Melonator from 'public/images/watermelonflipped.webp'
 import VitaminCLion from 'public/images/lion.webp'
+import Background from 'public/images/blue-purple-bg.jpeg'
 
 const TrophyRoom = () => {
   return (
     <div className='bg-primary h-screen overflow-y-hidden md:pt-14'>
-      <h1 className='text-white font-bold text-6xl text-center pt-10'>
+      <div className='z-0'>
+        <Image
+          src={Background}
+          layout='fill'
+          objectFit='cover'
+          alt='background'
+        />
+      </div>
+      <h1 className='text-white relative z-10 font-bold text-6xl text-center pt-10'>
         Trophy Room
       </h1>
       <div className='flex items-end justify-center'>
