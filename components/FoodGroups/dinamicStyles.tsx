@@ -59,6 +59,7 @@ const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
     // x: boundingBox.x + radius,
     // y: boundingBox.y + radius
   }
+  console.log(radius, center)
   setRadius(radius)
   setCenter(center)
 }

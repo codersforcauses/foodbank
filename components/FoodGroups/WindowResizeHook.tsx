@@ -17,6 +17,6 @@ export default function WindowResizeHook({
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  })
+  }, [])
   return null
 }

@@ -12,12 +12,14 @@ import { GROUPS } from '../groups'
 export const enum DRAGGING_STATE {
   WHEEL,
   START,
-  DRAGGING
+  DRAGGING,
+  UNDEFINED
 }
 
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
   onStartDrag: Function
+  startPosition: Vector2
   setScreenPosition: StateDispatch<Vector2>
   setAbsPosition: StateDispatch<Vector2>
   screenPosition: Vector2
@@ -37,87 +39,87 @@ const Draggable: React.FC<Props> = (props: Props) => {
   const [nameShow, setNameShow] = useState(false)
   const [imgUpdate, setImgUpdate] = useState(0)
 
-  const [wheelDelta, setWheelDelta] = useState<Vector2>({x:0,y:0})  // Position relative to center of wheel in %
+  const [oldDraggingState, setOldDraggingState] = useState(
+    () => DRAGGING_STATE.UNDEFINED
+  )
 
   useEffect(() => {
-    const handleResize = () => {
-      console.log("test",wheelDelta);
-      
-      const draggableZoneWheel = document
+    const newDraggingState = props.draggingStates[0][props.index]
+    if (newDraggingState === oldDraggingState) return
+    const draggableZoneWheel = document
       .getElementById(GROUPS.MEAT) // ANY PART
       ?.parentElement?.getBoundingClientRect()
-        
-      if(undefined===draggableZoneWheel || undefined===parentRect) return
-      // Center of wheel in %
-      const center = {
-        x: (draggableZoneWheel.x+draggableZoneWheel.width/2)/parentRect.width*100,
-        y: (draggableZoneWheel.y+draggableZoneWheel.height/2)/parentRect.height*100
-      }
-      props.setScreenPosition({x: center.x + wheelDelta.x, y: center.y+ wheelDelta.y})
-      console.log(center,wheelDelta,{x: center.x + wheelDelta.x, y: center.y+ wheelDelta.y});
-      
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [parentRect,wheelDelta])
-
-  const [oldDraggingState, setOldDraggingState] = useState(DRAGGING_STATE.START)
-  useEffect(() => {
-    if(props.draggingStates[0][props.index] === oldDraggingState) return
-    const draggableZoneWheel = document
-        .getElementById(GROUPS.MEAT) // ANY PART
-        ?.parentElement?.getBoundingClientRect()
-    setOldDraggingState(props.draggingStates[0][props.index])
-    switch (props.draggingStates[0][props.index]) {
+    switch (newDraggingState) {
       case DRAGGING_STATE.WHEEL:
-        if(undefined===draggableZoneWheel || undefined===parentRect|| props.screenPosition.x===0|| props.screenPosition.y===0) return
-        // Center of wheel in %
-        const center = {
-          x: (draggableZoneWheel.x+draggableZoneWheel.width/2)/parentRect.width*100,
-          y: (draggableZoneWheel.y+draggableZoneWheel.height/2)/parentRect.height*100
-        }
-        
-        console.log("WELD ", props.name, {x: center.x - props.screenPosition.x, y: center.y - props.screenPosition.y});
-        setWheelDelta({x: center.x - props.screenPosition.x, y: center.y - props.screenPosition.y})
-        break;
+        // if (
+        //   undefined === draggableZoneWheel ||
+        //   undefined === parentRect ||
+        //   props.screenPosition.x === 0 ||
+        //   props.screenPosition.y === 0
+        // )
+        //   return
+        break
       case DRAGGING_STATE.START:
-        console.log("START",props.name);
-        
-        break;
+        console.log('START', props.name)
+        setScreenPosition(props.startPosition)
+        break
       case DRAGGING_STATE.DRAGGING:
-        console.log("DRAGGING",props.name);
+        console.log('DRAGGING', props.name)
 
-        break;
+        break
     }
-  }, [props.draggingStates[0]])
+    setOldDraggingState(newDraggingState)
+  }, [
+    props.draggingStates[0],
+    props.screenPosition,
+    props.startPosition,
+    oldDraggingState
+  ])
 
-  const dragAround = (e: MouseEvent) => {
+  useEffect(() => {
+    setOldDraggingState(DRAGGING_STATE.UNDEFINED)
+  }, [props.startPosition])
+
+  const dragAround = (
+    mouseEvent: undefined | MouseEvent,
+    touchEvent: undefined | TouchEvent
+  ) => {
+    let e, ex, ey
+    if (mouseEvent !== undefined) {
+      e = mouseEvent
+      ex = mouseEvent.pageX
+      ey = mouseEvent.pageY
+    } else if (touchEvent !== undefined) {
+      e = touchEvent
+      ex = touchEvent.touches[0].clientX
+      ey = touchEvent.touches[0].clientY
+    } else {
+      return
+    }
+
     if (thisRect && parentRect && delta) {
+      const x_max = (1 - thisRect.width / parentRect.width) * 100
+      const y_max = (1 - thisRect.height / parentRect.height) * 100
 
-      const x_max = (1-thisRect.width/parentRect.width)*100
-      const y_max = (1-thisRect.height/parentRect.height)*100
-
-      setAbsPosition({
-        x: e.pageX + delta.x + thisRect.width / 2,
-        y: e.pageY + delta.y + thisRect.height / 2
-      })
+      const absPos = {
+        x: ex + delta.x + thisRect.width / 2,
+        y: ey + delta.y + thisRect.height / 2
+      }
+      setAbsPosition(absPos)
       // console.log('delta.x:', delta.x, 'delta.y:', delta.y)
-      let x = ((e.pageX - parentRect.x + delta.x) / parentRect.width) * 100
-      let y = ((e.pageY - parentRect.y + delta.y) / parentRect.height) * 100
+      let x = ((ex - parentRect.x + delta.x) / parentRect.width) * 100
+      let y = ((ey - parentRect.y + delta.y) / parentRect.height) * 100
       // const x = parentRect.x  / parentRect.width * 100 + ((e.pageX - parentRect.x + delta.x) / (window.screen.width)) *100
       // const y = parentRect.y / parentRect.height * 100 + ((e.pageY - parentRect.y + delta.y) / window.screen.height) * 100
       // console.log(parentRect,x,x_max,y,y_max);
-      
+
       // if (x > (1-thisRect.width/parentRect.width)*100 || y > (1-thisRect.height/parentRect.height)*100 || x < 0 || y < 0) return
 
-      const clamp = (min:number,v:number,max:number) => Math.max(Math.min(max,v),min)
+      const clamp = (min: number, v: number, max: number) =>
+        Math.max(Math.min(max, v), min)
 
-      x = clamp(0,x,x_max)
-      y = clamp(0,y,y_max)
+      x = clamp(0, x, x_max)
+      y = clamp(0, y, y_max)
       // console.log('State Screen Position:', setScreenPosition)
       if (parentRect === undefined) throw new Error('parentRect undefined')
       setScreenPosition({ x: x, y: y })
@@ -126,16 +128,37 @@ const Draggable: React.FC<Props> = (props: Props) => {
     }
   }
 
+  const dragAroundMouse = (e: MouseEvent) => dragAround(e, undefined)
+  const dragAroundTouch = (e: TouchEvent) => dragAround(undefined, e)
+
   const stopDrag = () => {
     setDragStyle('')
 
     props.onEndDrag()
     // console.log(parentRect?.x, parentRect?.y)
-    document.removeEventListener('mousemove', dragAround)
+    document.removeEventListener('mousemove', dragAroundMouse)
     document.removeEventListener('mouseup', stopDrag)
+    document.removeEventListener('touchmove', dragAroundTouch)
+    document.removeEventListener('touchend', stopDrag)
   }
 
-  const startDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const startDrag = (
+    mouseEvent: undefined | React.MouseEvent<HTMLDivElement, MouseEvent>,
+    touchEvent: undefined | React.TouchEvent<HTMLDivElement>
+  ) => {
+    let e, x, y
+    if (mouseEvent !== undefined) {
+      e = mouseEvent
+      x = mouseEvent.pageX
+      y = mouseEvent.pageY
+    } else if (touchEvent !== undefined) {
+      e = touchEvent
+      x = touchEvent.touches[0].clientX
+      y = touchEvent.touches[0].clientY
+    } else {
+      return
+    }
+
     const draggingStates_ = [...props.draggingStates[0]]
     draggingStates_[props.index] = DRAGGING_STATE.DRAGGING
     props.draggingStates[1](draggingStates_)
@@ -143,7 +166,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     float()
     setDragStyle('animate-wiggle wiggle-animate')
 
-    console.log(props.name, props.img_src, props.type)
     props.onStartDrag(props.type)
     if (e.target instanceof Element) {
     } else {
@@ -153,9 +175,10 @@ const Draggable: React.FC<Props> = (props: Props) => {
     props.onStartDrag(props.type) // FoodGroup game logic checking
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
     setThisRect(box)
-    setDelta({ x: box.x - e.pageX, y: box.y - e.pageY })
-  }
+    console.log({ x: box.x - x, y: box.y - y })
 
+    setDelta({ x: box.x - x, y: box.y - y })
+  }
 
   useEffect(() => {
     let parentRect: DOMRect
@@ -177,8 +200,10 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     if (delta) {
-      document.addEventListener('mousemove', dragAround)
+      document.addEventListener('mousemove', dragAroundMouse)
+      document.addEventListener('touchmove', dragAroundTouch)
       document.addEventListener('mouseup', stopDrag)
+      document.addEventListener('touchend', stopDrag)
     }
   }, [delta])
 
@@ -194,12 +219,15 @@ const Draggable: React.FC<Props> = (props: Props) => {
         aria-hidden='true'
         className={dragDrop}
         onMouseOver={float}
+        onTouchMove={float}
         onMouseOut={defloat}
-        onMouseDown={startDrag}
+        onTouchEnd={defloat}
+        onMouseDown={e => startDrag(e, undefined)}
+        onTouchStart={e => startDrag(undefined, e)}
         draggable={false}
         style={{
           left: `${screenPosition.x}%`,
-          top: `${screenPosition.y}%`,
+          top: `${screenPosition.y}%`
         }}
       >
         <div

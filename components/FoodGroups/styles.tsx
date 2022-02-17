@@ -5,7 +5,7 @@ const str = (classNames: string[]) => classNames.join(' ')
 export const dragDrop = str([
   'lg:w-[12%]',
   'md:w-[12%]',
-  'w-1/2',
+  'w-1/4',
   'h-fit',
   'z-20',
   '!absolute',
