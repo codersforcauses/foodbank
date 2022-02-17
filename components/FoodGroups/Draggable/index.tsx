@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { Vector2 } from './boundingbox'
 import { FoodGroupCharacterImage } from './types'
-import styles from 'components/FoodGroups/foodgroups.module.css'
 
 import Image from 'next/image'
 import { StateDispatch, State_ } from '../types'
 import { dragDrop } from '../styles'
-import { GROUPS } from '../groups'
 
 export const enum DRAGGING_STATE {
   WHEEL,
@@ -19,14 +17,16 @@ export const enum DRAGGING_STATE {
 interface Props extends FoodGroupCharacterImage {
   onEndDrag: Function
   onStartDrag: Function
+
   startPosition: Vector2
+  endPosition: Vector2
+
+  screenPosition: Vector2
   setScreenPosition: StateDispatch<Vector2>
   setAbsPosition: StateDispatch<Vector2>
-  screenPosition: Vector2
+
   hidden: boolean
   draggableZone: DOMRect | undefined
-  // draggableZoneWheel: DOMRect | undefined
-  endPosition: Vector2
   index: number
   draggingStates: State_<DRAGGING_STATE[]>
 }
@@ -47,28 +47,15 @@ const Draggable: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     const newDraggingState = props.draggingStates[0][props.index]
     if (newDraggingState === oldDraggingState) return
-    const draggableZoneWheel = document
-      .getElementById(GROUPS.MEAT) // ANY PART
-      ?.parentElement?.getBoundingClientRect()
     switch (newDraggingState) {
       case DRAGGING_STATE.WHEEL:
-        // if (
-        //   undefined === draggableZoneWheel ||
-        //   undefined === parentRect ||
-        //   props.screenPosition.x === 0 ||
-        //   props.screenPosition.y === 0
-        // )
-        //   return
         setScreenPosition(props.endPosition)
         break
       case DRAGGING_STATE.START:
-        console.log('START', props.name)
         setScreenPosition(props.startPosition)
         break
-      case DRAGGING_STATE.DRAGGING:
-        console.log('DRAGGING', props.name)
-
-        break
+      // case DRAGGING_STATE.DRAGGING:
+      //   break
     }
     setOldDraggingState(newDraggingState)
   }, [
@@ -108,21 +95,15 @@ const Draggable: React.FC<Props> = (props: Props) => {
         y: ey + delta.y + thisRect.height / 2
       }
       setAbsPosition(absPos)
-      // console.log('delta.x:', delta.x, 'delta.y:', delta.y)
+
       let x = ((ex - parentRect.x + delta.x) / parentRect.width) * 100
       let y = ((ey - parentRect.y + delta.y) / parentRect.height) * 100
-      // const x = parentRect.x  / parentRect.width * 100 + ((e.pageX - parentRect.x + delta.x) / (window.screen.width)) *100
-      // const y = parentRect.y / parentRect.height * 100 + ((e.pageY - parentRect.y + delta.y) / window.screen.height) * 100
-      // console.log(parentRect,x,x_max,y,y_max);
-
-      // if (x > (1-thisRect.width/parentRect.width)*100 || y > (1-thisRect.height/parentRect.height)*100 || x < 0 || y < 0) return
 
       const clamp = (min: number, v: number, max: number) =>
         Math.max(Math.min(max, v), min)
 
       x = clamp(0, x, x_max)
       y = clamp(0, y, y_max)
-      // console.log('State Screen Position:', setScreenPosition)
       if (parentRect === undefined) throw new Error('parentRect undefined')
       setScreenPosition({ x: x, y: y })
     } else {
@@ -137,7 +118,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     setDragStyle('')
 
     props.onEndDrag()
-    // console.log(parentRect?.x, parentRect?.y)
     document.removeEventListener('mousemove', dragAroundMouse)
     document.removeEventListener('mouseup', stopDrag)
     document.removeEventListener('touchmove', dragAroundTouch)
@@ -161,9 +141,9 @@ const Draggable: React.FC<Props> = (props: Props) => {
       return
     }
 
-    const draggingStates_ = [...props.draggingStates[0]]
-    draggingStates_[props.index] = DRAGGING_STATE.DRAGGING
-    props.draggingStates[1](draggingStates_)
+    const draggingStatesTmp = [...props.draggingStates[0]]
+    draggingStatesTmp[props.index] = DRAGGING_STATE.DRAGGING
+    props.draggingStates[1](draggingStatesTmp)
 
     float()
     setDragStyle('animate-wiggle wiggle-animate')
@@ -177,8 +157,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     props.onStartDrag(props.type) // FoodGroup game logic checking
     let box: DOMRect = e.currentTarget.getBoundingClientRect()
     setThisRect(box)
-    console.log({ x: box.x - x, y: box.y - y })
-
     setDelta({ x: box.x - x, y: box.y - y })
   }
 
@@ -186,8 +164,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
     let parentRect: DOMRect
     if (props.draggableZone) {
       parentRect = props.draggableZone
-      // console.log(parentRect)
-      // const newParentRect: DOMRect = new DOMRect(parentRect.x, parentRect.y, parentRect.width*2, parentRect.height)
       setParentRect(parentRect)
     }
   }, [props.draggableZone])
@@ -211,7 +187,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
 
   // Needed to force reload because of the nextjs Image component using cached images
   useEffect(() => {
-    // console.log(imgUpdate, props.img_src, props.name, props.hidden)
     setImgUpdate(imgUpdate + 1)
   }, [props.img_src])
 
@@ -249,7 +224,6 @@ const Draggable: React.FC<Props> = (props: Props) => {
           >
             {props.name}
           </Transition>
-          {/* <img className='absolute' src={props.img_src} /> */}
           <Image
             key={imgUpdate}
             className='absolute'

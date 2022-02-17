@@ -7,11 +7,9 @@ import vegetables from 'public/images/FoodGroups/vegetables-shadow.png'
 import {
   FoodGroupImage,
   FoodGroupResizeArguments,
-  FoodGroupStates,
-  WidthState
+  FoodGroupStates
 } from '@components/FoodGroups/types'
 import { Vector2 } from './Draggable/boundingbox'
-import { FoodGroupCharacterImage } from './Draggable/types'
 import { GROUPS, FOOD_GROUPS } from './groups'
 import { zoom } from './styles'
 
@@ -36,7 +34,7 @@ const angleRegions = [
 
 const foodGroupsImages: FoodGroupImage[] = FOOD_GROUPS.map(group => {
   return {
-    div_id: group, // FIXME: Use different fields for group type and the id
+    div_id: group,
     img_styles: group,
     img_id: `${group}-img`,
     img_src: WHEEL_IMAGES[group].src,
@@ -56,10 +54,7 @@ const resize_map = ({ setRadius, setCenter }: FoodGroupResizeArguments) => {
   const center: Vector2 = {
     x: boundingBox.x + boundingBox.width / 2,
     y: boundingBox.y + boundingBox.height / 2
-    // x: boundingBox.x + radius,
-    // y: boundingBox.y + radius
   }
-  console.log(radius, center)
   setRadius(radius)
   setCenter(center)
 }
@@ -69,14 +64,6 @@ const handleMouseOver = (group_id: GROUPS, allStates: FoodGroupStates) => {
   const currentStyles = allStates[group_id].styles
   const styles = [...currentStyles, ...zoom]
   allStates[group_id].setStyles(styles)
-
-  // Resetting the adjacent segment styles doesn't seem necessary because of
-  // handleMouseOut(), but this is the logic if required
-  // FOOD_GROUPS.forEach(group => {
-  //   if (group !== group_id) {
-  //     allStates[group].setStyles([''])
-  //   }
-  // })
 }
 
 const handleMouseOut = (
