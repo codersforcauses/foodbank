@@ -1,48 +1,54 @@
+# Firebase Killswitch
+When the billing limit is reached, it will automatically downgrade the application to the free tier.
 # Installation Guide
 
-1. Create a budget in the `Budgets & alerts` tab <https://console.cloud.google.com/billing>
+1. Create a budget in the `Budgets & alerts` tab in [Billing](https://console.cloud.google.com/billing)
 
 1. Enable `Connect a Pub/Sub topic to this budget`
 
-1. Create a `Cloud Pub/Sub topic` for the firebase project and name it `billing`
+1. Create a `Cloud Pub/Sub topic` for the Firebase project and name it `billing`
 
-1. Enable Cloud Billing API <https://console.developers.google.com/apis/api/cloudbilling.googleapis.com>
+1. Enable [Cloud Billing API](https://console.developers.google.com/apis/api/cloudbilling.googleapis.com)
 
-1. Give billing administrative privilege to <PROJECT_ID>@appspot.gserviceaccount.com <https://console.cloud.google.com/billing>
+1. Give billing administrative privilege to <PROJECT_ID>@appspot.gserviceaccount.com in [Billing](https://console.cloud.google.com/billing)
 
 1. Change the project id in `.firebaserc` and `index.js`
 
-1. Set up firebase cli `npm install -g firebase-tools`
+1. Set up Firebase cli and login:
 
-1. Log into firebase `firebase login`
+ ```
+ npm install -g firebase-tools
+ firebase login
+ ```
 
-1. Test if if CLI is installed correctly `firebase projects:list`
 
-1. `cd functions`
+8. Check if CLI is installed correctly: 
+```
+firebase projects:list
+```
 
-1. `npm intall`
+1. Navigate to the functions folder and deploy functions to Firebase:
+```
+cd functions
+npm install
+yarn deploy:functions
+```
 
-1. `yarn deploy:functions` to deploy the functions to firebase
-
-1. If deployment fails, do
+Note: If deployment fails, run
    `npm install --save @google-cloud/billing firebase-admin firebase-functions`
 
-1. To activate retry in firebase cloud function programmatically
-   <https://stackoverflow.com/questions/55606808/activate-retry-in-firebase-cloud-function-programmatically>
+[Activating Retry in Firebase Cloud Function Programmatically](https://stackoverflow.com/questions/55606808/activate-retry-in-firebase-cloud-function-programmatically)
 
-## To test if the functions works correctly
+## Testing
 
-1. Go to <https://console.cloud.google.com/cloudpubsub/topic/detail>
+1. Go to [Pub/Sub](https://console.cloud.google.com/cloudpubsub/topic/detail) and select the Firebase project
 
-1. Select the firebase project
+1. Navigate to the `MESSAGES` tab, then click on the `PUBLISH MESSAGE` button
 
-1. Click on the `MESSAGES` tab, then click on the `PUBLISH MESSAGE` button
+1. Using the code in `pub_sub_sample_message.json`, paste it into `Message body` text box and hit `PUBLISH`
 
-1. Copy the code in `pub_sub_sample_message.json` and paste it into `Message body` text box
+1. An email should be sent from Firebase informing you that the project has been downgraded to the free tier.
 
-1. Hit `PUBLISH`
+# Credits
 
-1. Wait for an email notification from firebase. It will tell you that the project has been downgraded to the free tier.
-
-
-Tutorial: <https://www.youtube.com/watch?v=KiTg8RPpGG4>
+[How to Stop Runaway Bills on Google Cloud Platform](https://www.youtube.com/watch?v=KiTg8RPpGG4)
