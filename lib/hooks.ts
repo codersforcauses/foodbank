@@ -6,14 +6,20 @@ const useViewport = () => {
   const [width, setWidth] = useState<number>(
     typeof window !== 'undefined' ? window.innerWidth : 0
   )
+  const [height, setHeight] = useState<number>(
+    typeof window !== 'undefined' ? window.innerHeight : 0
+  )
 
   useEffect(() => {
-    const handleWindowResize = () => setWidth(window.innerWidth)
+    const handleWindowResize = () => {
+      setWidth(window.innerWidth)
+      setHeight(window.innerHeight)
+    }
     window.addEventListener('resize', handleWindowResize)
     return () => window.removeEventListener('resize', handleWindowResize)
   }, [])
 
-  return { width }
+  return { height, width }
 }
 
 export { useViewport }
