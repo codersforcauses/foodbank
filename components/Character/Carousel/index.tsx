@@ -50,11 +50,9 @@ const Carousel = ({
           </Button>
         )}
         <CarouselDisplay maxPerPage={maxPerPage}>
-          {characters.map(character => {
-            return (
-              <CarouselItem key={character.name} chr={character}></CarouselItem>
-            )
-          })}
+          {characters.map(character => (
+            <CarouselItem key={character.name} chr={character}></CarouselItem>
+          ))}
         </CarouselDisplay>
         {hasNextPage ? (
           <Button
@@ -82,11 +80,9 @@ const Carousel = ({
     return (
       <div className='flex-1 flex flex-col items-center px-12 gap-x-12'>
         <CarouselDisplay maxPerPage={maxPerPage}>
-          {characters.map(character => {
-            return (
-              <CarouselItem key={character.name} chr={character}></CarouselItem>
-            )
-          })}
+          {characters.map(character => (
+            <CarouselItem key={character.name} chr={character}></CarouselItem>
+          ))}
         </CarouselDisplay>
         <div className='flex gap-x-4'>
           {hasPrevPage ? (
