@@ -43,3 +43,6 @@
 1. Hit `PUBLISH`
 
 1. Wait for an email notification from firebase. It will tell you that the project has been downgraded to the free tier.
+
+
+Tutorial: <https://www.youtube.com/watch?v=KiTg8RPpGG4>
