@@ -4,8 +4,8 @@ import CharacterCarousel from 'components/Character/Carousel'
 import Image from 'next/image'
 import Background from 'public/images/characters/bg-turquoise.webp'
 import { getCharsFromTown } from '@components/API/characters'
-import descData from '@components/Map/assets/description.json'
-import type { Character } from 'lib/types'
+import locations from '@components/Map/assets/locations'
+import type { Character, Location } from 'lib/types'
 import { useViewport } from 'lib/hooks'
 
 interface Props {
@@ -26,7 +26,7 @@ const Town = ({ characters }: Props) => {
 
   // Set the title of the page based on the location slug in the URL.
   useEffect(() => {
-    const locationInfo = descData.descriptionArray.find(
+    const locationInfo: Location | undefined = locations.find(
       loc => loc.route === location
     )
     setTitle(locationInfo?.headerText)

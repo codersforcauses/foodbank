@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Townbox from '../TownBox'
-import descData from './assets/description.json'
+import locations from './assets/locations'
 
 interface TownBoxWrapperProps {
   selected: string | null
@@ -34,7 +34,7 @@ const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   }
 
   if (selected) {
-    const selectedArea = descData.descriptionArray.find(x => x.id === selected)
+    const selectedArea = locations.find(x => x.id === selected)
     if (selectedArea) {
       const {
         headerText,

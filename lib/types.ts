@@ -15,3 +15,14 @@ export type Character = {
   location: string | string[]
   facing?: string
 }
+
+export type Location = {
+  id: string
+  headerColor: string
+  headerText: string
+  captionText: string
+  showButton: boolean
+  maxWidth: string
+  maxHeight: string
+  route: string
+}
