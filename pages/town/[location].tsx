@@ -81,7 +81,7 @@ const Town = ({ characters }: Props) => {
   }
 
   return (
-    <div className='min-h-screen h-screen sm:pt-14'>
+    <div className='min-h-screen sm:pt-14'>
       <div className='z-0'>
         <Image
           src={Background}
