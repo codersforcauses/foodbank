@@ -10,7 +10,7 @@
 
 1. Give billing administrative privilege to <PROJECT_ID>@appspot.gserviceaccount.com <https://console.cloud.google.com/billing>
 
-1. Change the project id in `.firebaserc`
+1. Change the project id in `.firebaserc` and `index.js`
 
 1. Set up firebase cli `npm install -g firebase-tools`
 
