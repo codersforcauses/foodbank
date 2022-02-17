@@ -10,7 +10,7 @@ interface MobileMenu {
 
 const MobileMenu = ({ links }: MobileMenu) => {
   return (
-    <Popover className='text-white text-lg text-center flex flex-col items-end fixed z-40 bottom-5 right-5 '>
+    <Popover className='text-white text-lg text-center flex flex-col items-end fixed z-40 bottom-5 right-5 sm:hidden'>
       {({ open }) => (
         <>
           <Transition
@@ -41,7 +41,7 @@ const MobileMenu = ({ links }: MobileMenu) => {
           </Transition>
           <Popover.Button
             className={
-              'flex items-center justify-center sm:hidden w-10 h-10 rounded-full m-2 no-tap-highlight ' +
+              'flex items-center justify-center w-10 h-10 rounded-full m-2 no-tap-highlight ' +
               (open ? 'bg-teal text-black' : 'bg-primary')
             }
           >
