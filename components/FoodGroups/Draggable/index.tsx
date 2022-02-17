@@ -26,6 +26,7 @@ interface Props extends FoodGroupCharacterImage {
   hidden: boolean
   draggableZone: DOMRect | undefined
   // draggableZoneWheel: DOMRect | undefined
+  endPosition: Vector2
   index: number
   draggingStates: State_<DRAGGING_STATE[]>
 }
@@ -58,6 +59,7 @@ const Draggable: React.FC<Props> = (props: Props) => {
         //   props.screenPosition.y === 0
         // )
         //   return
+        setScreenPosition(props.endPosition)
         break
       case DRAGGING_STATE.START:
         console.log('START', props.name)
