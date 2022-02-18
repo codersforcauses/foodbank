@@ -68,6 +68,6 @@ When the billing limit is reached, it will automatically downgrade the applicati
 
 1. An email should be sent from Firebase informing you that the project has been downgraded to the free tier.
 
-### Credits
+## Credits
 
 [How to Stop Runaway Bills on Google Cloud Platform](https://www.youtube.com/watch?v=KiTg8RPpGG4)
