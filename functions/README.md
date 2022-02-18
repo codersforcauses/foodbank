@@ -50,7 +50,7 @@ Event-Driven Functions may [fail](https://cloud.google.com/functions/docs/bestpr
 
 Warning: The functuion may stuck in a retry loop if there is a bug in the code or some permanent error.
 
-1. Activating `Retry on failure` using The Cloud Console.
+1. Activating `Retry on failure` Using the [Cloud Console](https://cloud.google.com/functions/docs/bestpractices/retries#using_the).
 
    1. Go to the [Cloud Functions Overview page](https://console.cloud.google.com/functions/list) in the Cloud Platform Console.
 
@@ -66,7 +66,7 @@ Warning: The functuion may stuck in a retry loop if there is a bug in the code o
 
 1. Activating `Retry on failure` in Firebase Cloud Function [Programmatically](https://stackoverflow.com/questions/55606808/activate-retry-in-firebase-cloud-function-programmatically).
 
-1. Activating `Retry on failure` using [gcloud CLI](https://dev.to/danielsc/firebase-function-retries-with-pubsub-3jf9).
+1. Activating `Retry on failure` Using [gcloud CLI](https://dev.to/danielsc/firebase-function-retries-with-pubsub-3jf9).
 
 ### Testing
 
