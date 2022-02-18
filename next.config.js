@@ -10,6 +10,11 @@ module.exports = withBundleAnalyzer({
   },
   // need to remove once test is deleted
   images: {
-    domains: ['images.unsplash.com', 'tinyurl.com', 'img.youtube.com']
+    domains: [
+      'images.unsplash.com',
+      'tinyurl.com',
+      'img.youtube.com',
+      's3.us-west-2.amazonaws.com'
+    ]
   }
 })

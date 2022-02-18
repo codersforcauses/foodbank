@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import descData from './assets/description.json'
+import locations from './assets/locations'
 import Townbox from '../TownBox'
 
 interface TownBoxWrapperProps {
@@ -18,6 +18,7 @@ interface TownBox {
   showButton?: boolean
   id?: string
   showing?: boolean
+  route?: string
 }
 
 const TownBoxWrapper: FC<TownBoxWrapperProps> = ({
@@ -34,10 +35,16 @@ const TownBoxWrapper: FC<TownBoxWrapperProps> = ({
   }
 
   if (selected) {
-    const selectedArea = descData.descriptionArray.find(x => x.id === selected)
+    const selectedArea = locations.find(x => x.id === selected)
     if (selectedArea) {
-      const { headerText, captionText, headerColor, showButton, id }: TownBox =
-        selectedArea
+      const {
+        headerText,
+        captionText,
+        headerColor,
+        showButton,
+        id,
+        route
+      }: TownBox = selectedArea
 
       return (
         <div key={id} className='sm:w-2/3'>
@@ -47,6 +54,7 @@ const TownBoxWrapper: FC<TownBoxWrapperProps> = ({
             captionText={captionText}
             showButton={showButton}
             close={handleClose}
+            linksrc={route}
           />
         </div>
       )

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import Button from '../Custom/Button'
 
 import styles from './index.module.css'
@@ -8,6 +10,7 @@ interface TownboxProps {
   captionText?: string
   showButton?: boolean
   close: () => void
+  linksrc: string | undefined
 }
 
 const Townbox = ({
@@ -15,7 +18,8 @@ const Townbox = ({
   captionText,
   headerColor,
   showButton,
-  close
+  close,
+  linksrc
 }: TownboxProps) => {
   const bgColour: 'bg-primary' | 'bg-orange' =
     headerColor === 'primary' ? 'bg-primary' : 'bg-orange'
@@ -44,9 +48,11 @@ const Townbox = ({
         </button>
 
         {showButton && (
-          <Button className='skew-x-12' color='primary'>
-            Visit
-          </Button>
+          <Link href={`town/${linksrc}`} passHref>
+            <Button className='skew-x-12' color='primary'>
+              Visit
+            </Button>
+          </Link>
         )}
       </div>
     </div>

@@ -19,9 +19,10 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
   const toggleOpenSignInForm = useCallback(() => {
     setOpenSignInForm(prev => !prev)
   }, [])
+
   return (
     <>
-      <Popover className='fixed z-10 flex flex-col items-end text-lg text-center text-white bottom-5 right-5 '>
+      <Popover className='fixed z-40 flex flex-col items-end text-lg text-center text-white bottom-5 right-5 sm:hidden'>
         {({ open }) => (
           <>
             <Transition
