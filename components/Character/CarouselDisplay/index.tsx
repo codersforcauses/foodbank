@@ -1,5 +1,9 @@
-import React, { ReactNode, FC } from 'react'
-import type { Character } from 'lib/types'
+import {
+  Children,
+  cloneElement,
+  DetailedReactHTMLElement,
+  ReactNode
+} from 'react'
 interface CarouselProps {
   /** Max number of characters to display on a single page. */
   maxPerPage: number
@@ -24,12 +28,10 @@ const CarouselDisplay = ({ maxPerPage, ...props }: CarouselProps) => {
       : ''
   return (
     <div className={'grid gap-x-12 ' + gridColsClass}>
-      {React.Children.map(props.children, child => {
+      {Children.map(props.children, child => {
         return (
           <div>
-            {React.cloneElement(
-              child as React.DetailedReactHTMLElement<any, HTMLElement>
-            )}
+            {cloneElement(child as DetailedReactHTMLElement<any, HTMLElement>)}
           </div>
         )
       })}
