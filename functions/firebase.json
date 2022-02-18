@@ -7,17 +7,19 @@
     "source": ".",
     "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run lint"],
     "ignore": [
-      "node_modules/**",
+      "**/node_modules/**",
       ".eslintrc.js",
       ".firebaserc",
       ".gitignore",
       "firebase.json",
+      "firebase-debug.log",
       "firestore.indexes.json",
       "firestore.rules",
       "package-lock.json",
       "pub_sub_sample_message.json",
       "README.md",
-      "ui-debug.log"
+      "ui-debug.log",
+      "yarn.lock"
     ]
   }
 }
