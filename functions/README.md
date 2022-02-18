@@ -1,6 +1,6 @@
 # Firebase Killswitch
 
-When the billing limit is reached, it will automatically downgrade the application to the free tier.
+When the spending limit is reached, it will automatically downgrade the application to the free tier.
 
 ## Installation Guide
 
@@ -34,7 +34,7 @@ When the billing limit is reached, it will automatically downgrade the applicati
    firebase projects:list
    ```
 
-1. Navigate to the functions folder and deploy functions to Firebase:
+1. Navigate to the `functions` folder and deploy functions to Firebase:
 
    ```console
    cd functions
@@ -42,9 +42,31 @@ When the billing limit is reached, it will automatically downgrade the applicati
    yarn deploy:functions
    ```
 
-1. Give billing administrative privilege to <PROJECT_ID>@appspot.gserviceaccount.com in [Billing](https://console.cloud.google.com/billing).
+1. Give billing administrative privilege to **_<PROJECT_ID>_@appspot.gserviceaccount.com** in [Billing](https://console.cloud.google.com/billing).
 
-   [Activating Retry in Firebase Cloud Function Programmatically](https://stackoverflow.com/questions/55606808/activate-retry-in-firebase-cloud-function-programmatically)
+### Optional - [Retrying Event-Driven Functions](https://cloud.google.com/functions/docs/bestpractices/retries)
+
+Event-Driven Functions may [fail](https://cloud.google.com/functions/docs/bestpractices/retries#why_event-driven_functions_fail_to_complete) and the event will be discarded so enabling `Retry on failure` will cuase the event to be retried for up to multiple days (defualt: 7 days) until the function successfully completes.
+
+Warning: The functuion may stuck in a retry loop if there is a bug in the code or some permanent error.
+
+1. Activating `Retry on failure` using The Cloud Console.
+
+   1. Go to the [Cloud Functions Overview page](https://console.cloud.google.com/functions/list) in the Cloud Platform Console.
+
+   1. Click `Create` function. Alternatively, click an existing function to go to its details page and click `Edit`.
+
+   1. Fill in the required fields for your function.
+
+   1. Ensure the `Trigger` field is set to an event-based trigger type, such as `Cloud Pub/Sub` or `Cloud Storage`.
+
+   1. Expand the advanced settings by clicking `More`.
+
+   1. Check or uncheck the box labeled `Retry on failure`.
+
+1. Activating `Retry on failure` in Firebase Cloud Function [Programmatically](https://stackoverflow.com/questions/55606808/activate-retry-in-firebase-cloud-function-programmatically).
+
+1. Activating `Retry on failure` using [gcloud CLI](https://dev.to/danielsc/firebase-function-retries-with-pubsub-3jf9).
 
 ### Testing
 
