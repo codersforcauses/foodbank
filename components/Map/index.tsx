@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
-import { ReactZoomPanPinchRef } from 'react-zoom-pan-pinch'
+import {
+  ReactZoomPanPinchRef,
+  TransformComponent,
+  TransformWrapper
+} from 'react-zoom-pan-pinch'
 
 import MapImage from './MapImage'
 import TownBoxWrapper from './TownBoxWrapper'
