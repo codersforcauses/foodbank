@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 /** Listens to changes in window size and returns the width. Ref: https://blog.logrocket.com/developing-responsive-layouts-with-react-hooks/ */
 const useViewport = () => {

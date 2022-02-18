@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import Townbox from '../TownBox'
+import { FC } from 'react'
+
 import locations from './assets/locations'
+import Townbox from '../TownBox'
 
 interface TownBoxWrapperProps {
   selected: string | null
@@ -20,7 +21,7 @@ interface TownBox {
   route?: string
 }
 
-const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
+const TownBoxWrapper: FC<TownBoxWrapperProps> = ({
   selected,
   setSelectedArea,
   setIsShowing,

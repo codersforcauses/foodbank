@@ -1,8 +1,8 @@
-import React from 'react'
-import CarouselDisplay from 'components/Character/CarouselDisplay'
-import CarouselItem from 'components/Character/CarouselItem'
-import Button from 'components/Custom/Button/index'
-import type { Character } from 'lib/types'
+import type { Character } from '@lib/types'
+
+import CarouselDisplay from '@components/Character/CarouselDisplay'
+import CarouselItem from '@components/Character/CarouselItem'
+import Button from '@components/Custom/Button/index'
 interface Props {
   /** All characters part of the carousel. */
   characters: Character[]

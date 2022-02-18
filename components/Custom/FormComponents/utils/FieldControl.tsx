@@ -19,7 +19,7 @@ const FieldControl = ({
   )
 }
 
-export { FieldControlContext, FieldControl }
+export { FieldControl, FieldControlContext }
 
 interface FieldControlProps {
   disabled: boolean

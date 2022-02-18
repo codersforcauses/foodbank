@@ -1,4 +1,4 @@
-import { PropsWithChildren, Fragment } from 'react'
+import { Fragment, PropsWithChildren } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 const Modal = ({
@@ -12,7 +12,7 @@ const Modal = ({
   if (size === 'md') sizeClass = 'max-w-2lg'
   return (
     <Transition show={props.open} as={Fragment}>
-      <Dialog {...props} className='fixed inset-0 z-40 text-primary'>
+      <Dialog {...props} className='fixed inset-0 z-40 text-primary '>
         <Transition.Child
           as={Fragment}
           enter='transition-all ease-out duration-300'
@@ -22,7 +22,7 @@ const Modal = ({
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Dialog.Overlay className='fixed inset-0 z-40 bg-black bg-opacity-75' />
+          <Dialog.Overlay className='fixed inset-0 z-40 bg-black/75' />
         </Transition.Child>
         <Transition.Child
           enter='transition-all ease-out duration-300 delay-100'
@@ -32,15 +32,15 @@ const Modal = ({
           leaveFrom='opacity-100 scale-100'
           leaveTo='opacity-0 scale-95'
           className={[
-            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2',
+            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center sm:block sm:w-3/4 sm:h-5/6 inset-1/2 scrollbar-hide rounded-xl',
             sizeClass
           ]
             .join(' ')
             .trim()}
         >
-          <div className='relative z-50 transform translate-y-1/2 bg-white rounded-xl'>
-            <div className='sticky inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'>
-              <Dialog.Title className='font-serif text-2xl'>
+          <div className='relative z-50 transform bg-white rounded-xl'>
+            <div className=' inset-x-0 top-0 z-50 flex items-center justify-center px-4 py-2 space-x-4 text-white bg-primary rounded-t-xl'>
+              <Dialog.Title className='sticky font-serif text-2xl'>
                 {heading}
               </Dialog.Title>
               <button
