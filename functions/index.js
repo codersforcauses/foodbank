@@ -4,7 +4,7 @@ const {CloudBillingClient} = require("@google-cloud/billing");
 // import * as functions from "firebase-functions";
 // import {CloudBillingClient} from "@google-cloud/billing";
 
-const PROJECT_ID = "fir-killswitch";
+const PROJECT_ID = "fir-stopbill";
 const PROJECT_NAME = `projects/${PROJECT_ID}`;
 const billing = new CloudBillingClient();
 
