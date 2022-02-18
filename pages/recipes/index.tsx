@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import Card from 'components/Recipe/List-View/Card'
+import Card from '@components/Recipe/List-View/Card'
 // import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
 import { Client } from '@notionhq/client'
-import { getAllRecipes } from '../../components/API/getData'
+import { getAllRecipes } from '@components/API/getData'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface RecipesGridProps {
   tag: string
@@ -102,9 +103,12 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
         </button>
       </div>
       <div className='flex justify-center m-10'>
-        <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
-          {recipeCards}
-        </div>
+        <motion.div
+          layout
+          className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'
+        >
+          <AnimatePresence>{recipeCards}</AnimatePresence>
+        </motion.div>
       </div>
     </div>
   )
