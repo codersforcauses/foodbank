@@ -21,10 +21,10 @@ const Town = ({ characters }: Props) => {
   const route: NextRouter = useRouter()
   const { location } = route.query
   const [title, setTitle] = useState<string | undefined>('')
-  const [maxCharsPerPage, setMaxCharsPerPage] = useState<number>(1)
+  const [maxCharsPerPage, setMaxCharsPerPage] = useState(1)
   const [pageNumber, setPageNumber] = useState(1)
-  const [canGoToNextPage, setCanGoToNextPage] = useState<boolean>(false)
-  const [canGoToPrevPage, setCanGoToPrevPage] = useState<boolean>(false)
+  const [canGoToNextPage, setCanGoToNextPage] = useState(false)
+  const [canGoToPrevPage, setCanGoToPrevPage] = useState(false)
   const { height, width }: { height: number; width: number } = useViewport()
 
   // Set the title of the page based on the location slug in the URL.
