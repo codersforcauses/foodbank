@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter, NextRouter } from 'next/router'
-import CharacterCarousel from 'components/Character/Carousel'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Background from 'public/images/characters/bg-turquoise.webp'
+import { NextRouter, useRouter } from 'next/router'
+
+import { useViewport } from '@lib/hooks'
+import type { Character, Location } from '@lib/types'
+
 import { getCharsFromTown } from '@components/API/characters'
+import CharacterCarousel from '@components/Character/Carousel'
 import locations from '@components/Map/assets/locations'
-import type { Character, Location } from 'lib/types'
-import { useViewport } from 'lib/hooks'
+
+import Background from 'public/images/characters/bg-turquoise.webp'
 
 interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
