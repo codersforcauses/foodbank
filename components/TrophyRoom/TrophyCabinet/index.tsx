@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
 
 import { useFirebase } from '@components/FirebaseContext/context'
+import TrophyGroup from '@components/TrophyRoom/TrophyGroup'
 
 import BrightYellowTrophy from 'public/images/trophies/brightyellow.webp'
 import CupcakePurpleTrophy from 'public/images/trophies/cupcakepurple.webp'
