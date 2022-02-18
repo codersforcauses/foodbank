@@ -16,27 +16,27 @@ When the billing limit is reached, it will automatically downgrade the applicati
 
 1. Set up Firebase CLI and login:
 
-   ```fish
+   ```console
    yarn global add firebase-tools
    firebase login
    ```
 
    If `firebase` is not found, try:
 
-   ```fish
+   ```console
    npm install -g firebase-tools
    firebase login
    ```
 
 1. Check if CLI is installed correctly:
 
-   ```fish
+   ```console
    firebase projects:list
    ```
 
 1. Navigate to the functions folder and deploy functions to Firebase:
 
-   ```fish
+   ```console
    cd functions
    yarn
    yarn deploy:functions
