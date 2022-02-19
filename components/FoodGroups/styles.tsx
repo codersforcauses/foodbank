@@ -3,13 +3,20 @@ import { GROUPS } from './groups'
 const str = (classNames: string[]) => classNames.join(' ')
 
 export const dragDrop = str([
-  'w-fit',
+  'lg:w-[12%]',
+  'md:w-[12%]',
+  'w-1/4',
   'h-fit',
   'z-20',
   '!absolute',
   'row-start-1',
   'col-start-1',
-  // 'bg-red'
+  // 'bg-red',
+  'transition',
+  'ease-in',
+  'duration-100',
+  'scale-100',
+  'hover:scale-110'
 ])
 
 export const customImg = str([
@@ -67,5 +74,10 @@ export const sliceBaseStyle = str([
   'relative',
   'select-none'
 ])
+
+export const startZoneStyle = 'text-2xl bg-red grow h-[50vh] lg:h-[80vh]'
+
+export const draggableZoneStyle =
+  'flex justify-center relative flex-wrap md:flex-nowrap w-screen lg:h-auto'
 
 export const zoom = ['transform', 'scale-105', 'z-10']

@@ -1,15 +1,15 @@
-import { useState, useMemo, ChangeEventHandler, MouseEventHandler } from 'react'
+import { MouseEventHandler, useCallback, useMemo, useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-import useDebounce from '@lib/useDebounce'
-import { useFirebase } from '@components/FirebaseContext'
+
 import { Form, Modal, selectSet } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
-import { PASSWORD_LENGTH, PAGES, MESSAGES } from './enums'
-import { sleep, checkUsername, signIn, signUp } from './account'
-import UsernameForm from './UsernameForm'
-import PasswordForm from './PasswordForm'
+import { useFirebase } from '@components/FirebaseContext/context'
 
-const DEBOUNCE_DELAY = 150
+import { checkUsername, signIn, signUp, sleep } from './account'
+import { MESSAGES, PAGES, PASSWORD_LENGTH } from './enums'
+import PasswordForm from './PasswordForm'
+import UsernameForm from './UsernameForm'
+
 const WAIT_FOR_MODAL_TO_CLOSE = 150
 
 interface AuthProps {
@@ -26,9 +26,8 @@ const defaultValues: FormValues = {
 }
 
 const Auth = ({ ...props }: AuthProps) => {
-  const [input, setInput] = useState('')
+  const onClose = props.onClose
   const [username, setUsername] = useState('')
-  const [validUsername, setValidUsername] = useState(false)
   const [registered, setRegistered] = useState(false)
   const [password, setPassword] = useState('')
   const grid = useMemo<Character[]>(() => selectSet(username), [username])
@@ -36,30 +35,18 @@ const Auth = ({ ...props }: AuthProps) => {
   const [error, setError] = useState('')
   const { auth, gridDisabled, setGridDisabled } = useFirebase()
 
-  useDebounce(
-    async () => {
-      if (input && validUsername)
-        await checkUsername(auth, input, setRegistered)
-    },
-    DEBOUNCE_DELAY,
-    [input]
-  )
+  const handleReset = useCallback(() => {
+    setUsername('')
+    setRegistered?.(false)
+    setError('')
+  }, [])
 
-  const handleUsernameChange: ChangeEventHandler<HTMLInputElement> = e => {
-    setInput(e.target.value)
-    if (!e.target.value) {
-      setRegistered(false)
-      return
-    }
-  }
-
-  const handleInputSubmit = () => {
-    setUsername(input.toLowerCase())
-  }
-
-  const updateValidation = (isValid: boolean) => {
-    setValidUsername(isValid)
-  }
+  const onCloseTimed = useCallback(async () => {
+    onClose()
+    await sleep(WAIT_FOR_MODAL_TO_CLOSE)
+    handleReset()
+    setPage(PAGES.USERNAME_FORM)
+  }, [onClose, handleReset])
 
   const handlePasswordSubmit = async (newPassword: string) => {
     if (newPassword?.length && page !== PAGES.PASSWORD_FORM) {
@@ -69,7 +56,7 @@ const Auth = ({ ...props }: AuthProps) => {
     setPassword(newPassword)
     if (registered && newPassword?.length === PASSWORD_LENGTH) {
       if (await signIn(auth, username, newPassword, setError, setGridDisabled))
-        onClose()
+        onCloseTimed()
     } else if (!registered && newPassword?.length === PASSWORD_LENGTH)
       setPage(PAGES.REPEAT_PASSWORD_FORM)
     else setError(MESSAGES.PASSWORDS_NOT_MATCHED)
@@ -91,7 +78,7 @@ const Auth = ({ ...props }: AuthProps) => {
     ) {
       if (newRepeatedPassword === password) {
         await signUp(auth, username, password)
-        onClose()
+        onCloseTimed()
         setError('')
       } else {
         setError(MESSAGES.PASSWORDS_NOT_MATCHED)
@@ -101,41 +88,25 @@ const Auth = ({ ...props }: AuthProps) => {
   }
 
   // SIGNIN OR SIGNUP HERE
-  const handleValuesSubmit: SubmitHandler<FormValues> = async () => {
-    if (!input) return
-    else if (!username) {
-      handleInputSubmit()
+  const handleValuesSubmit: SubmitHandler<FormValues> = useCallback(
+    async data => {
+      setUsername(data.username.toLowerCase())
       setPage(PAGES.PASSWORD_FORM)
-      return
-    }
-  }
+      await checkUsername(
+        auth,
+        data.username.toLowerCase(),
+        setRegistered,
+        setError
+      )
+    },
+    [auth]
+  )
 
-  const handleReset = () => {
-    setInput('')
-    setUsername('')
-    setRegistered?.(false)
-    setError('')
-  }
-
-  const onClose = async () => {
-    props.onClose()
-    await sleep(WAIT_FOR_MODAL_TO_CLOSE)
-    handleReset()
-    setPage(PAGES.USERNAME_FORM)
-  }
-
-  const goPrevPage: MouseEventHandler<HTMLButtonElement> = () => {
+  const goPrevPage: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
     if (page === PAGES.PASSWORD_FORM) handleReset()
     setError('')
     setPage(current => current - 1)
-  }
-
-  const goNextPage: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!input) return
-    if (input !== username) handleInputSubmit()
-    setError('')
-    setPage(current => current + 1)
-  }
+  }, [handleReset, page])
 
   const pageDisplay = () => {
     switch (page) {
@@ -145,24 +116,15 @@ const Auth = ({ ...props }: AuthProps) => {
             defaultValues={defaultValues}
             onSubmit={handleValuesSubmit}
           >
-            <UsernameForm
-              label={MESSAGES.USERNAME_LABEL}
-              input={input}
-              error={error}
-              handleUsernameChange={handleUsernameChange}
-              validUsername={validUsername}
-              updateValidation={updateValidation}
-              goNextPage={goNextPage}
-              registered={registered}
-            />
+            <UsernameForm label='Enter a username' error={error} />
           </Form>
         )
       case PAGES.PASSWORD_FORM:
         return (
           <PasswordForm
-            label={MESSAGES.PASSWORD_LABEL}
-            error={error}
             name='password'
+            label='Choose your three characters'
+            error={error}
             page={page}
             grid={grid}
             goPrevPage={goPrevPage}
@@ -175,9 +137,9 @@ const Auth = ({ ...props }: AuthProps) => {
       case PAGES.REPEAT_PASSWORD_FORM:
         return (
           <PasswordForm
-            label={MESSAGES.REPEATED_PASSWORD_LABEL}
-            error={error}
             name='repeatPassword'
+            label='Re-select those same three characters and remember them'
+            error={error}
             page={page}
             grid={grid}
             goPrevPage={goPrevPage}
@@ -193,7 +155,7 @@ const Auth = ({ ...props }: AuthProps) => {
   }
 
   return (
-    <Modal {...props} onClose={onClose} size='sm' heading='Sign-in'>
+    <Modal {...props} onClose={onCloseTimed} size='sm' heading='Sign-in'>
       {pageDisplay()}
     </Modal>
   )

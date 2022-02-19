@@ -1,7 +1,10 @@
-import { useState, MouseEventHandler, SetStateAction } from 'react'
-import { useForm, FormProvider } from 'react-hook-form'
+import { MouseEventHandler, SetStateAction, useState } from 'react'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+
 import { Button, GridField } from '@components/Custom'
 import { Character } from '@components/Custom/FormComponents/GridField/GridSet'
+import Svg from '@components/Custom/Svg'
+
 import { CHARACTERS_FOR_AUTH, PAGES } from '../enums'
 
 interface PasswordFormProps {
@@ -17,18 +20,7 @@ interface PasswordFormProps {
   setGridDisabled?: (value: SetStateAction<boolean>) => void
 }
 
-const PasswordForm = ({
-  label,
-  error,
-  grid,
-  name,
-  page,
-  goPrevPage,
-  registered,
-  updatePassword,
-  gridDisabled,
-  setGridDisabled
-}: PasswordFormProps) => {
+const PasswordForm = (props: PasswordFormProps) => {
   const [selectedCount, setSelectedCount] = useState(0)
   const methods = useForm()
   const { formState, handleSubmit } = methods
@@ -40,51 +32,51 @@ const PasswordForm = ({
   }
 
   const getPassword = (mask: boolean[]) => {
-    const selectedGrid = grid.filter((_, i) => mask[i])
+    const selectedGrid = props.grid.filter((_, i) => mask[i])
     return selectedGrid.map(item => item.password).join('')
   }
 
-  const disableGrid = () => setGridDisabled?.(true)
+  const disableGrid = () => props.setGridDisabled?.(true)
+
+  const onSubmit: SubmitHandler<Record<string, boolean[]>> = data => {
+    if (props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM)
+      disableGrid()
+    props.updatePassword(getPassword(data.mask))
+  }
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(data => {
-          if (registered || page === PAGES.REPEAT_PASSWORD_FORM) disableGrid()
-          updatePassword(getPassword(data.mask))
-        })}
-      >
-        <p className='text-lg text-center'>{label}</p>
-        {error && <p className='text-lg text-center text-red'>{error}</p>}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <p className='text-lg text-center'>{`${
+          props.registered ? 'Hi again!' : 'Welcome!'
+        } ${props.label}`}</p>
+        {props.error && (
+          <p className='text-lg text-center text-red'>{props.error}</p>
+        )}
         <GridField
           label='grid'
-          name={name}
-          charSet={grid}
+          name={props.name}
+          charSet={props.grid}
           defaultMask={defaultMask}
           selectedCount={selectedCount}
           updateCount={updateCount}
-          gridDisabled={gridDisabled}
+          gridDisabled={props.gridDisabled}
         />
         <div className='flex justify-center pt-4 space-x-2'>
           <Button
             type='button'
             onClick={e => {
-              goPrevPage(e)
+              props.goPrevPage(e)
               methods.reset({ mask: defaultMask })
             }}
             className='flex items-center'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 25 25'
-              className='h-6 mr-8 rotate-180'
-            >
-              <path
-                fill='#FFF'
-                fillRule='evenodd'
-                d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-              />
-            </svg>
+            <Svg
+              name='SolidArrowCircleLeft'
+              viewBox='0 0 20 20'
+              className='h-6 mr-8'
+              fill='#FFF'
+            />
             Back
           </Button>
           <Button
@@ -93,22 +85,22 @@ const PasswordForm = ({
               selectedCount !== CHARACTERS_FOR_AUTH || formState.isSubmitting
             }
           >
-            {registered || page === PAGES.REPEAT_PASSWORD_FORM
+            {props.registered || props.page === PAGES.REPEAT_PASSWORD_FORM
               ? 'Confirm'
               : 'Next'}
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 25 25'
+            <Svg
+              name='SolidArrowCircleRight'
+              viewBox='0 0 20 20'
               className='h-6 ml-8'
-            >
-              <path
-                fill='#FFF'
-                fillRule='evenodd'
-                d='M12 0a12 12 0 100 25 12 12 0 000-25zm1 19v-5H6v-3h7V6l6 6-6 7z'
-              />
-            </svg>
+              fill='#FFF'
+            />
           </Button>
         </div>
+        {props.registered && (
+          <p className='text-sm text-center'>
+            NOT YOU? TRY A DIFFERENT USERNAME!
+          </p>
+        )}
       </form>
     </FormProvider>
   )

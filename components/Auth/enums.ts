@@ -13,14 +13,6 @@ const enum PAGES {
 }
 
 const enum MESSAGES {
-  USERNAME_LABEL = 'Enter a username',
-  USERNAME_REQUIRED = 'Please enter your name or a username',
-  USERNAME_ALPHANUMERIC = 'Alphanumeric characters only',
-  USERNAME_MIN_LENGTH = 'Must be more than 3 characters long',
-  PASSWORD_LABEL = 'Choose your three characters',
-  REPEATED_PASSWORD_LABEL = 'Re-select those same three characters and remember them',
-  PASSWORD_MATCHED = 'Signed in',
-  REPEATED_PASSWORD_MATCHED = 'Registered',
   WRONG_PASSWORD = 'Uh-oh! You have selected the wrong characters!',
   PASSWORDS_NOT_MATCHED = 'Uh-oh! You have selected the wrong characters!',
   TOO_MANY_ATTEMPTS = 'Failed too many login attempts. Try again later.',
@@ -159,9 +151,9 @@ const FirestoreErrorCodes = {
 
 export {
   CHARACTERS_FOR_AUTH,
-  PASSWORD_LENGTH,
   EMAIL_DOMAIN,
-  PAGES,
+  FirestoreErrorCodes,
   MESSAGES,
-  FirestoreErrorCodes
+  PAGES,
+  PASSWORD_LENGTH
 }

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import Draggable from '@components/FoodGroups/Draggable'
+import Draggable, { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
 import { State_, StateDispatch } from '../types'
 
-import { FoodGroupCharacterImage,FoodGroupCharacterImageDynamic } from './types'
-import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
-import { ORIGIN_VECTOR2, Vector2, cloneVector2 } from '@components/FoodGroups/Draggable/boundingbox'
-import { forwardRef } from 'react'
-
-import { Client } from '@notionhq/client/build/src'
 import {
-  getCharacterData,
-  getFormatData
-} from '@components/FoodGroups/API/getData'
+  FoodGroupCharacterImage,
+  FoodGroupCharacterImageDynamic
+} from './types'
+import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
+import {
+  ORIGIN_VECTOR2,
+  Vector2
+} from '@components/FoodGroups/Draggable/boundingbox'
 
 const N_DRAGGABLES = 5
-
 
 const updatedFunction = (f: Function) => {
   const [rerender, setRerender] = useState(0)
@@ -24,120 +22,200 @@ const updatedFunction = (f: Function) => {
   return () => setRerender(rerender + 1)
 }
 
-const shuffle = <E,>(a: Array<E>) => {
-  const array = [...a]
-  let currentIndex: number = array.length
+export const CHARACTER_POSITIONS: Vector2[] = [
+  { x: 5, y: 25 },
+  { x: 25, y: 5 },
+  { x: 45, y: 25 },
+  { x: 50 / 3, y: 50 },
+  { x: 100 / 3, y: 50 }
+]
 
-  while (currentIndex > 0) {
-    // console.log(currentIndex, array)
-
-    const randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex--
-
-    const test = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = test
-  }
-
-  console.log('calling shuffle', array)
-  return array
+export const CHARACTER_END: Record<string, Vector2[]> = {
+  // TODO: Add positions for the second set of characters if a game with 10 charcters is used.
+  [GROUPS.DAIRY]: [
+    { x: 45, y: 70 },
+    { x: 0, y: 0 }
+  ],
+  [GROUPS.FRUIT]: [
+    { x: 60, y: 55 },
+    { x: 0, y: 0 }
+  ],
+  [GROUPS.GRAINS]: [
+    { x: 20, y: 20 },
+    { x: 0, y: 0 }
+  ],
+  [GROUPS.VEGETABLES]: [
+    { x: 60, y: 20 },
+    { x: 0, y: 0 }
+  ],
+  [GROUPS.MEAT]: [
+    { x: 25, y: 60 },
+    { x: 0, y: 0 }
+  ],
+  [GROUPS.NONE]: [],
+  [GROUPS.DEFAULT]: [],
+  [GROUPS.TUCKER]: []
 }
 
-
-
-
-// TODO: make clientside (it's clientside rn)
 function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
-  if(character_data === undefined) throw new Error('Undefined character_data data')
+  if (character_data === undefined)
+    throw new Error('Undefined character_data data')
 
   const characterSet: FoodGroupCharacterImageDynamic[] = []
-  // console.log('generated character set!', character_data)
-  const filterFunction = (type: string) => 
+
+  const filterFunction = (type: string) =>
     character_data.filter(character => character.type === type)
 
   const characters = FOOD_GROUPS.map(group => filterFunction(group))
 
-  const CHARACTER_POSITIONS: Vector2[] = [
-    { x: 72, y: 16 },
-    { x: 60, y: 34 },
-    { x: 85, y: 35 },
-    { x: 65, y: 63 },
-    { x: 81, y: 62 }
-  ]
-
-  let positions_ = CHARACTER_POSITIONS.map(e=>cloneVector2(e))
-  // let positions_ = CHARACTER_POSITIONS.slice()
-  let positions:Vector2[] = []
-  for (let i = positions_.length-1; i >=0; i--) {
+  let positionsTmp = Array.from(Array(N_DRAGGABLES).keys()) // [0,1,2,...,N_DRAGGABLES-1]
+  let positions: number[] = []
+  for (let i = positionsTmp.length - 1; i >= 0; i--) {
     const idx = Math.floor(Math.random() * i)
-    positions.push(positions_[idx])
-    console.log("positions",positions)
-    positions_.splice(idx,1)
-    console.log("positions_",positions_);
-    
+    positions.push(positionsTmp[idx])
+    positionsTmp.splice(idx, 1)
   }
 
-  // shuffleArray(positions)
+  const TYPE_COUNT: { [K in GROUPS]: number } = {
+    [GROUPS.DAIRY]: 0,
+    [GROUPS.FRUIT]: 0,
+    [GROUPS.GRAINS]: 0,
+    [GROUPS.VEGETABLES]: 0,
+    [GROUPS.MEAT]: 0,
+    // Others for type safety
+    [GROUPS.NONE]: 0,
+    [GROUPS.DEFAULT]: 0,
+    [GROUPS.TUCKER]: 0
+  }
 
-  // console.log('Character positions:', positions)  
-
-  // Need to clone characterSet object
   characters.forEach((characterTypeSet, i) => {
-
-    // TODO: Clean up
+    const character =
+      characterTypeSet[Math.floor(Math.random() * characterTypeSet.length)]
     const test: FoodGroupCharacterImageDynamic = {
-      start_pos: {x:0,y:0},
-      ...characterTypeSet[Math.floor(Math.random() * characterTypeSet.length)]
+      start_index: positions[i],
+      end_index: TYPE_COUNT[character.type],
+      ...character
     }
-
-
     characterSet.push(test)
-    characterSet[i].start_pos = positions[i]
+    TYPE_COUNT[character.type]++
   })
-  console.log('CharacterSet:', characterSet.map(e=>{return [e.start_pos,e.type]}))//, "character_data", character_data.filter(e=>e.start_pos.x!==0).map(e=>{return [e.start_pos,e.type]}))
+
   return characterSet
 }
-
 
 interface Props {
   endDragFunc: Function
   startDragFunc: [StateDispatch<Vector2>, StateDispatch<GROUPS>]
-  AbsPositionSetState: StateDispatch<Vector2>
+  absPositionSetState: StateDispatch<Vector2>
   draggablePositions_1: State_<Vector2>[]
   draggablePositions_2: State_<Vector2>[]
+  draggingStates: State_<DRAGGING_STATE[]>
   draggableZone: State_<DOMRect | undefined>
-  currentCharSet: FoodGroupCharacterImage[]
-  nextCharSet: FoodGroupCharacterImage[]
+  currentCharSet: FoodGroupCharacterImageDynamic[]
+  nextCharSet: FoodGroupCharacterImageDynamic[]
   switchSetFlag: boolean
-  ref: any
+  startZoneE: string
 
-  notion_character_data : FoodGroupCharacterImage[]
+  notion_character_data: FoodGroupCharacterImage[]
 }
 
-
-
 const CharacterSpawner: React.FC<Props> = (props: Props) => {
+  const [resizeCharacterPositions, setResizeCharacterPositions] =
+    useState(CHARACTER_POSITIONS)
+  const [resizeEndPositions, setResizeEndPositions] =
+    useState<Record<string, Vector2[]>>(CHARACTER_END)
+  const [resizeF, setResizeF] = useState(() => () => {})
 
-  useEffect(()=> {
-    // console.log(props.endDragFunc)
-  }, [])
+  if (typeof window !== 'undefined') {
+    // const startZoneElem = document.getElementById(props.startZoneE)
+    useEffect(() => {
+      setResizeF(() => {
+        const startZone = document
+          .getElementById(props.startZoneE)
+          ?.getBoundingClientRect()
 
-  const generateSetElements = (charSet:FoodGroupCharacterImage[], positions:State_<Vector2>[], viewable:boolean) =>
+        const endZone = document
+          .getElementById('bluezone')
+          ?.getBoundingClientRect()
+
+        const draggableZone = props.draggableZone[0]
+
+        // RESIZE FOR START POSITIONS
+        if (startZone === undefined || draggableZone === undefined) return
+        const updatedStartPositions = CHARACTER_POSITIONS.map(e => {
+          return {
+            x:
+              (((e.x / 100) * startZone.width) / draggableZone.width) * 100 +
+              ((startZone.left - draggableZone.left) / draggableZone.width) *
+                100,
+            y:
+              (((e.y / 100) * startZone.height) / draggableZone.height) * 100 +
+              ((startZone.top - draggableZone.top) / draggableZone.height) * 100
+          }
+        })
+
+        setResizeCharacterPositions(updatedStartPositions)
+
+        // RESIZE FOR END POSITIONS
+        if (endZone === undefined) return
+        var updatedEndPositions: Record<string, Vector2[]> = {}
+        // BASICALLY DEEPCOPY AND SCALE OF CHARACTER_END
+        Object.keys(CHARACTER_END).forEach(
+          k =>
+            (updatedEndPositions[k] = [
+              ...CHARACTER_END[k].map(e => {
+                return {
+                  x:
+                    (((e.x / 100) * endZone.width) / draggableZone.width) *
+                      100 +
+                    ((endZone.left - draggableZone.left) /
+                      draggableZone.width) *
+                      100,
+                  y:
+                    (((e.y / 100) * endZone.height) / draggableZone.height) *
+                      100 +
+                    ((endZone.top - draggableZone.top) / draggableZone.height) *
+                      100
+                }
+              })
+            ])
+        )
+
+        setResizeEndPositions(updatedEndPositions)
+      })
+      window.addEventListener('resize', resizeF)
+
+      return () => {
+        window.removeEventListener('resize', resizeF)
+      }
+    }, [props.draggableZone[0]])
+  }
+
+  const generateSetElements = (
+    charSet: FoodGroupCharacterImageDynamic[],
+    positions: State_<Vector2>[],
+    viewable: boolean
+  ) =>
     charSet.map((character, index) => {
-      // console.log(character)
+      const endDragF = updatedFunction(() =>
+        props.endDragFunc(index, character.type)
+      )
+
       return (
         <Draggable
           key={index}
-          onEndDrag={
-            updatedFunction(() => props.endDragFunc(index,character.type))
-          }
+          index={index}
+          startPosition={resizeCharacterPositions[character.start_index]}
+          endPosition={resizeEndPositions[character.type][character.end_index]}
+          draggingStates={props.draggingStates}
+          onEndDrag={endDragF}
           onStartDrag={() => {
             props.startDragFunc[0](ORIGIN_VECTOR2)
             props.startDragFunc[1](character.type)
-          }} 
+          }}
           screenPosition={positions[index][0]}
           setScreenPosition={positions[index][1]}
-          setAbsPosition={props.AbsPositionSetState}
+          setAbsPosition={props.absPositionSetState}
           hidden={viewable}
           draggableZone={props.draggableZone[0]}
           {...character}
@@ -146,14 +224,19 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
     })
 
   return (
-    <>
-    {generateSetElements(props.currentCharSet,props.draggablePositions_1,!props.switchSetFlag)}
-    {generateSetElements(props.nextCharSet,props.draggablePositions_2,props.switchSetFlag)}
-    </>
+    <div className='grid grid-cols-1'>
+      {generateSetElements(
+        props.currentCharSet,
+        props.draggablePositions_1,
+        !props.switchSetFlag
+      )}
+      {generateSetElements(
+        props.nextCharSet,
+        props.draggablePositions_2,
+        props.switchSetFlag
+      )}
+    </div>
   )
 }
 
-
-
-
-export { generateCharacterSet , CharacterSpawner }
+export { generateCharacterSet, CharacterSpawner }

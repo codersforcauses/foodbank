@@ -133,7 +133,11 @@ const FoodGroups = ({
     <>
       {/* Handles resizing maps on screen resize for SSR */}
       <WindowResizeHook params={{ setRadius, setCenter }} />
-      <div className='grid grid-cols-1 w-[90vh]' draggable={false}>
+      <div
+        className='grid grid-cols-1 bg-blue w-[90vh]'
+        id='bluezone'
+        draggable={false}
+      >
         {foodGroupsImages.map(group => {
           return (
             <div

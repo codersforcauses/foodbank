@@ -1,101 +1,52 @@
-import {
-  useState,
-  createContext,
-  useContext,
-  useCallback,
-  useEffect,
-  PropsWithChildren,
-  SetStateAction
-} from 'react'
-import { User, Auth, signOut } from 'firebase/auth'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import { onAuthStateChanged, signOut, User } from 'firebase/auth'
 import {
   doc,
-  Firestore,
+  FirestoreError,
+  getDoc,
   setDoc,
-  updateDoc,
-  FirestoreError
+  updateDoc
 } from 'firebase/firestore'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import FireStoreParser from 'firestore-parser'
-import { auth, db } from 'pages/api/firebase'
+
 import { MESSAGES } from '@components/Auth/enums'
+import { auth, db } from '@components/FirebaseContext/firebase'
 
-const NUMBER_OF_ACHIEVEMENTS = 9
+import {
+  AchievementsCountProp,
+  defaultAchievementsCount,
+  FirebaseContextProps,
+  FirebaseContextProvider
+} from '../FirebaseContext/context'
 
-const FIRESTORE_URL =
-  'https://firestore.googleapis.com/v1/projects/foodbank-c9a2f/databases/(default)/documents/users'
-
-interface FirebaseContextProps {
-  auth: Auth
-  db: Firestore
-  user?: User | null
-  userLoading?: boolean
-  userError?: Error
-  achievements: AchievementsData
-  updateAchievementsDocument?: (newAchievements: AchievementsData) => void
-  signOutClearDataUnlockGrid?: () => void
-  gridDisabled?: boolean
-  setGridDisabled?: (value: SetStateAction<boolean>) => void
-}
-
-export enum ACHIEVEMENT {
-  ACHIEVEMENT_COUNT = 'count',
-  DRAG_DROP_WIN_COUNT = 'dragDropWinCount'
-}
-
-type AchievementsData = Record<string, number>
-const defaultAchievements: AchievementsData = {
-  [ACHIEVEMENT.ACHIEVEMENT_COUNT]: 0,
-  [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]: 0
-}
-// for (let i = 1; i <= NUMBER_OF_ACHIEVEMENTS; i++) {
-//   defaultAchievements[`achievement${i}`] = false
-// }
-
-const FirebaseContext = createContext<FirebaseContextProps>({
-  auth: auth,
-  db: db,
-  achievements: defaultAchievements
-})
-const useFirebase = () => useContext(FirebaseContext)
-
-const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [achievements, setAchievements] =
-    useState<AchievementsData>(defaultAchievements)
+const FirebaseProvider: FC = ({ children }) => {
+  const [achievementsCount, setAchievementsCount] =
+    useState<AchievementsCountProp>(defaultAchievementsCount)
   const [gridDisabled, setGridDisabled] = useState(false)
 
   // User Authentication
-  const [user, userLoading, userError] = useAuthState(auth)
+  const [user, setUser] = useState<User | null>(null)
+  const [userLoading, setUserLoading] = useState(true)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setUser(user)
+      setUserLoading(false)
+    })
+    return unsubscribe
+  }, [])
 
   const retrieveData = useCallback(async () => {
     if (user?.uid) {
       try {
-        const userToken = await user.getIdToken()
-        const headers = { Authorization: `Bearer ${userToken}` }
-        const response = await fetch(`${FIRESTORE_URL}/${user.uid}`, {
-          method: 'get',
-          headers: headers
-        })
-        const userDoc = await response.json()
-        if (response.ok && userDoc?.fields) {
-          const userDocData: AchievementsData = FireStoreParser(userDoc.fields)
-          setAchievements(userDocData)
+        const userDocSnap = await getDoc(doc(db, 'users', user.uid))
+        if (userDocSnap.exists()) {
+          const userDocData = userDocSnap.data() as AchievementsCountProp
+          setAchievementsCount(userDocData)
         } else {
           // doc.data() will be undefined in this case
-          console.error(MESSAGES.NO_USER_DOCUMENT)
-          await setDoc(doc(db, 'users', user.uid), defaultAchievements)
+          console.log(MESSAGES.NO_USER_DOCUMENT)
+          await setDoc(doc(db, 'users', user.uid), defaultAchievementsCount)
         }
-        //#region  //*=========== For next@12.0.9 ===========
-        // const userDocSnap = await getDoc(doc(db, 'users', user.uid))
-        // if (userDocSnap.exists()) {
-        //   const userDocData: AchievementsData = userDocSnap.data()
-        //   setAchievements(userDocData)
-        // } else {
-        //   // doc.data() will be undefined in this case
-        //   console.log('TESTING: No such document!')
-        //   await setDoc(doc(db, 'users', user.uid), defaultAchievements)
-        // }
-        //#endregion  //*======== For next@12.0.9 ===========
       } catch (err: unknown) {
         //#region  //*=========== For logging ===========
         if (err instanceof FirestoreError) {
@@ -110,49 +61,61 @@ const FirebaseProvider = ({ children }: PropsWithChildren<{}>) => {
     retrieveData()
   }, [retrieveData])
 
-  const updateAchievementsDocument = async (
-    newAchievements: AchievementsData
-  ) => {
-    setAchievements(prev => ({ ...prev, ...newAchievements }))
-    try {
-      if (user?.uid) {
-        const userDocRef = doc(db, 'users', user.uid)
-        await updateDoc(userDocRef, newAchievements)
+  const addAchievementsCount = useCallback(
+    async (newAchievementsEarned: number) => {
+      setAchievementsCount(prev => ({
+        count: prev.count + newAchievementsEarned
+      }))
+      try {
+        if (user?.uid) {
+          const userDocRef = doc(db, 'users', user.uid)
+          await updateDoc(userDocRef, {
+            count: achievementsCount.count + newAchievementsEarned
+          })
+        }
+      } catch (err: unknown) {
+        //#region  //*=========== For logging ===========
+        if (err instanceof FirestoreError) {
+          console.error(err.message)
+        } else console.error(err)
+        //#endregion  //*======== For logging ===========
       }
-    } catch (err: unknown) {
-      //#region  //*=========== For logging ===========
-      if (err instanceof FirestoreError) {
-        console.error(err.message)
-      } else console.error(err)
-      //#endregion  //*======== For logging ===========
-    }
-  }
+    },
+    [achievementsCount, user]
+  )
 
-  const signOutClearDataUnlockGrid = () => {
+  const signOutClearDataUnlockGrid = useCallback(() => {
     signOut(auth)
-    setAchievements(defaultAchievements)
+    setAchievementsCount(defaultAchievementsCount)
     setGridDisabled(false)
-  }
+  }, [])
 
-  const value: FirebaseContextProps = {
-    auth: auth,
-    db: db,
-    user: user,
-    userLoading: userLoading,
-    userError: userError,
-    achievements: achievements,
-    updateAchievementsDocument: updateAchievementsDocument,
-    signOutClearDataUnlockGrid: signOutClearDataUnlockGrid,
-    gridDisabled: gridDisabled,
-    setGridDisabled: setGridDisabled
-  }
+  const value: FirebaseContextProps = useMemo(
+    () => ({
+      auth: auth,
+      db: db,
+      user: user,
+      userLoading: userLoading,
+      achievementsCount: achievementsCount,
+      addAchievementsCount: addAchievementsCount,
+      signOutClearDataUnlockGrid: signOutClearDataUnlockGrid,
+      gridDisabled: gridDisabled,
+      setGridDisabled: setGridDisabled
+    }),
+    [
+      user,
+      userLoading,
+      achievementsCount,
+      addAchievementsCount,
+      signOutClearDataUnlockGrid,
+      gridDisabled,
+      setGridDisabled
+    ]
+  )
 
   return (
-    <FirebaseContext.Provider value={value}>
-      {children}
-    </FirebaseContext.Provider>
+    <FirebaseContextProvider value={value}>{children}</FirebaseContextProvider>
   )
 }
 
-export { useFirebase, FirebaseProvider, defaultAchievements }
-export type { AchievementsData }
+export { FirebaseProvider }

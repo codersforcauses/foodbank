@@ -10,19 +10,13 @@ interface FoodGroupResizeArguments {
   setRadius: StateDispatch<number>
   setCenter: StateDispatch<Vector2>
 }
-// interface FoodGroupResizeArguments {
-//   previousWidth: WidthState[]
-//   coordinates: number[][]
-//   setPreviousWidth: StateDispatch<WidthState[]>
-//   setCoordinates: StateDispatch<number[][]>
-// }
 
 interface FoodGroupStates {
   [index: string]: State<string[]>
 }
 
 interface FoodGroupImage {
-  div_id: string // FIXME: USE ENUM TYPE
+  div_id: string
   img_styles: string
   img_src: string
   img_id: string

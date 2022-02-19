@@ -1,16 +1,17 @@
 import { SetStateAction } from 'react'
+import { FirebaseError } from '@firebase/util'
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  fetchSignInMethodsForEmail,
-  EmailAuthProvider,
+  Auth,
   AuthErrorCodes,
-  Auth
+  createUserWithEmailAndPassword,
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
+  signInWithEmailAndPassword,
+  updateProfile
 } from 'firebase/auth'
 import { FirestoreError } from 'firebase/firestore'
-import { FirebaseError } from '@firebase/util'
-import { MESSAGES, EMAIL_DOMAIN, FirestoreErrorCodes } from './enums'
+
+import { EMAIL_DOMAIN, MESSAGES } from './enums'
 
 const SIGNED_IN = true
 
@@ -21,7 +22,8 @@ const sleep = async (ms: number) => {
 const checkUsername = async (
   auth: Auth,
   username: string,
-  setRegistered: (value: SetStateAction<boolean>) => void
+  setRegistered: (value: SetStateAction<boolean>) => void,
+  setError: (value: SetStateAction<string>) => void
 ) => {
   try {
     const signInMethods = await fetchSignInMethodsForEmail(
@@ -37,6 +39,7 @@ const checkUsername = async (
     if (err instanceof FirebaseError) {
       switch (err.code) {
         case AuthErrorCodes.QUOTA_EXCEEDED:
+          setError(MESSAGES.QUOTA_EXCEEDED)
           break
         //#region  //*=========== For logging ===========
         default:
@@ -113,4 +116,4 @@ const signUp = async (auth: Auth, username: string, password: string) => {
   }
 }
 
-export { sleep, checkUsername, signIn, signUp }
+export { checkUsername, signIn, signUp, sleep }

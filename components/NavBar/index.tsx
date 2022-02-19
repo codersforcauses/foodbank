@@ -1,12 +1,15 @@
 import { useCallback, useState } from 'react'
-import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useFirebase } from '@components/FirebaseContext'
-import { NavLinkProps } from './NavLink'
-import logo from 'public/images/foodbank-logo.webp'
-import DropdownSignOut from './DropdownSignOut'
+import Link from 'next/link'
+
+import { useFirebase } from '@components/FirebaseContext/context'
+
 import DropDownMenu from './DropDownMenu'
+import DropdownSignOut from './DropdownSignOut'
+import { NavLinkProps } from './NavLink'
+
+import logo from 'public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
@@ -23,10 +26,10 @@ const Navbar = ({ links }: NavbarProps) => {
   }, [])
 
   return (
-    <header className='fixed inset-x-0 top-0 z-10 hidden py-2 bg-primary md:block'>
+    <header className='fixed inset-x-0 top-0 z-40 hidden py-2 bg-primary sm:block'>
       <nav className='container flex justify-between px-3 mx-auto font-serif text-2xl text-white'>
         <Link href='/'>
-          <a className='relative flex rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus: focus:ring-opacity-50'>
+          <a className='relative flex rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'>
             <Image
               src={logo}
               alt='Foodbank logo'
@@ -44,7 +47,7 @@ const Navbar = ({ links }: NavbarProps) => {
             <DropdownSignOut />
           ) : (
             <button
-              className='px-3 ml-8 rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50'
+              className='px-3 ml-8 rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'
               onClick={toggleOpenSignInForm}
             >
               Sign-in
