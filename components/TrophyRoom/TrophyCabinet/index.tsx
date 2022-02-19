@@ -48,7 +48,7 @@ const TrophyCabinet = () => {
   ]
   return (
     <div className='relative max-w-xl flex justify-center'>
-      <div className='absolute z-10 flex flex-wrap content-start gap-6 sm:gap-3 md:gap-6 justify-between w-[75%] sm:w-full mt-24 sm:mt-16 md:mt-20 xl:mt-36 2xl:mt-40'>
+      <div className='absolute z-10 flex flex-wrap content-start gap-5 sm:gap-4 md:gap-5 justify-between w-[75%] sm:w-full mt-[6.5rem] sm:mt-[6.5rem] md:mt-[7.8rem] lg:mt-[8.5rem]'>
         {[...Array(numTrophyGroups)].map((e, i) => (
           <TrophyGroup
             trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
