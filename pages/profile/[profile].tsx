@@ -20,8 +20,8 @@ const Profile = ({ character }: Props) => {
   const [state, setState] = useState(true)
   const stateChange = () => {
     setState(!state)
-    setIsShowing(true)
   }
+  console.log(isShowing)
   return (
     <>
       <Image
@@ -31,11 +31,7 @@ const Profile = ({ character }: Props) => {
         layout='fill'
         objectFit='cover'
       />
-      <ProfileDisplay
-        character={character}
-        state={state}
-        isShowing={isShowing}
-      />
+      <ProfileDisplay character={character} state={state} />
       <Footer stateChange={stateChange} />
     </>
   )
