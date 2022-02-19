@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-import styles from 'components/FoodGroups/foodgroups.module.css'
+import {
+  angleRegions,
+  foodGroupsImages,
+  handleMouseOut,
+  handleMouseOver,
+  resize_map
+} from '@components/FoodGroups/dinamicStyles'
+import { State } from '@components/FoodGroups/types'
 import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
 
-import {
-  resize_map,
-  handleMouseOver,
-  handleMouseOut,
-  foodGroupsImages,
-  angleRegions
-} from '@components/FoodGroups/dinamicStyles'
-
-import { State } from '@components/FoodGroups/types'
 import { ORIGIN_VECTOR2, Vector2 } from './Draggable/boundingbox'
 import { FOOD_GROUPS, GROUPS } from './groups'
 import { customImg, sliceBaseStyle, sliceDimensions } from './styles'
+
+import styles from 'components/FoodGroups/foodgroups.module.css'
 
 /**
  * A page displaying all food groups in a pie chart

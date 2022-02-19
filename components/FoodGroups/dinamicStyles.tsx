@@ -1,17 +1,18 @@
-import dairy from 'public/images/FoodGroups/dairy-shadow.png'
-import meat from 'public/images/FoodGroups/meat-shadow.png'
-import fruit from 'public/images/FoodGroups/fruit-shadow.png'
-import grains from 'public/images/FoodGroups/grains-shadow.png'
-import vegetables from 'public/images/FoodGroups/vegetables-shadow.png'
-
 import {
   FoodGroupImage,
   FoodGroupResizeArguments,
   FoodGroupStates
 } from '@components/FoodGroups/types'
+
 import { Vector2 } from './Draggable/boundingbox'
-import { GROUPS, FOOD_GROUPS } from './groups'
+import { FOOD_GROUPS, GROUPS } from './groups'
 import { zoom } from './styles'
+
+import dairy from 'public/images/FoodGroups/dairy-shadow.png'
+import fruit from 'public/images/FoodGroups/fruit-shadow.png'
+import grains from 'public/images/FoodGroups/grains-shadow.png'
+import meat from 'public/images/FoodGroups/meat-shadow.png'
+import vegetables from 'public/images/FoodGroups/vegetables-shadow.png'
 
 const WHEEL_IMAGES: Record<string, StaticImageData> = {
   [GROUPS.DAIRY]: dairy,
@@ -108,9 +109,9 @@ const handleMouseOut = (
 }
 
 export {
-  resize_map,
-  handleMouseOver,
-  handleMouseOut,
+  angleRegions,
   foodGroupsImages,
-  angleRegions
+  handleMouseOut,
+  handleMouseOver,
+  resize_map
 }

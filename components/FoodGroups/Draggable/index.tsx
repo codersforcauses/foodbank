@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Transition } from '@headlessui/react'
+
 import { Vector2 } from './boundingbox'
 import { FoodGroupCharacterImage } from './types'
-
-import Image from 'next/image'
-import { StateDispatch, State_ } from '../types'
 import { dragDrop } from '../styles'
+import { State_, StateDispatch } from '../types'
 
 export const enum DRAGGING_STATE {
   WHEEL,

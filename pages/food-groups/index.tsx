@@ -1,36 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useRef } from 'react'
 import FoodGroups from 'components/FoodGroups'
+
+import Auth from '@components/Auth'
+import { Button, Modal } from '@components/Custom'
+import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
 import { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
-import {
-  FoodGroupCharacterImage,
-  FoodGroupCharacterImageDynamic
-} from '@components/FoodGroups/Draggable/types'
 import {
   ORIGIN_VECTOR2,
   Vector2
 } from '@components/FoodGroups/Draggable/boundingbox'
-import { State_ } from '@components/FoodGroups/types'
-import { Button, Modal } from '@components/Custom'
-import { useRef } from 'react'
-
-import { GROUPS } from '@components/FoodGroups/groups'
-import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
-import Auth from '@components/Auth'
-
 import {
-  generateCharacterSet,
+  CHARACTER_POSITIONS,
   CharacterSpawner,
-  CHARACTER_POSITIONS
+  generateCharacterSet
 } from '@components/FoodGroups/Draggable/characterspawner'
-
 import {
-  getCharacterData,
-  getFormatData
-} from '@components/FoodGroups/API/getData'
+  FoodGroupCharacterImage,
+  FoodGroupCharacterImageDynamic
+} from '@components/FoodGroups/Draggable/types'
+import { GROUPS } from '@components/FoodGroups/groups'
 import {
   draggableZoneStyle,
   startZoneStyle
 } from '@components/FoodGroups/styles'
+import { State_ } from '@components/FoodGroups/types'
+import {
+  getCharacterData,
+  getFormatData
+} from '@components/NotionAPI/getCharacterData'
 
 const N_DRAGGABLE = 5
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
@@ -203,7 +201,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     <>
       {modalState && (
         <Modal heading={'You won!'} open={true} onClose={resetGame} size='lg'>
-          <div className='flex items-center flex-col'>
+          <div className='flex flex-col items-center'>
             <h1>
               You have completed {roundCounter} rounds in this game
               {user !== null ? ' - you have earned a new trophy!' : ''}

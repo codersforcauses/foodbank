@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+
 import Draggable, { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
-import { State_, StateDispatch } from '../types'
+import {
+  ORIGIN_VECTOR2,
+  Vector2
+} from '@components/FoodGroups/Draggable/boundingbox'
+import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
 
 import {
   FoodGroupCharacterImage,
   FoodGroupCharacterImageDynamic
 } from './types'
-import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
-import {
-  ORIGIN_VECTOR2,
-  Vector2
-} from '@components/FoodGroups/Draggable/boundingbox'
+import { State_, StateDispatch } from '../types'
 
 const N_DRAGGABLES = 5
 
@@ -239,4 +240,4 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
   )
 }
 
-export { generateCharacterSet, CharacterSpawner }
+export { CharacterSpawner, generateCharacterSet }

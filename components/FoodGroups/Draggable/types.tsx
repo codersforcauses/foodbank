@@ -1,5 +1,4 @@
 import { GROUPS } from '../groups'
-import { Vector2 } from './boundingbox'
 
 interface FoodGroupCharacterImage {
   div_id: string

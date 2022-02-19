@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Vector2 } from './Draggable/boundingbox'
 
 type StateDispatch<T> = React.Dispatch<React.SetStateAction<T>>
@@ -29,12 +30,12 @@ interface FoodGroupProps {
 }
 
 export type {
-  FoodGroupResizeArguments,
   FoodGroupImage,
   FoodGroupProps,
+  FoodGroupResizeArguments,
   FoodGroupStates,
-  StateDispatch,
-  WidthState,
   State,
-  State_
+  State_,
+  StateDispatch,
+  WidthState
 }
