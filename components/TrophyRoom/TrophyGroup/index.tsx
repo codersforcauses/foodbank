@@ -37,7 +37,7 @@ const TrophyGroup = ({ trophy1, trophy2, trophy3, side }: Props) => {
         )}
       </div>
       <div className='relative bottom-0 w-full h-4 sm:h-3 bg-white md:h-4 lg:h-5 lg:mt-1'>
-        <div className='absolute w-full font-serif text-center text-sm sm:text-[70%] md:text-sm  -top-0.5 lg:top-0'>
+        <div className='absolute w-full font-serif text-center text-sm sm:text-[70%] md:text-sm  -top-0.5 sm:-top-1 md:-top-0.5 lg:top-0'>
           {numTrophies} / 3
         </div>
         <div className='mx-2 py-0.5'>
