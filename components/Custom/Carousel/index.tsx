@@ -74,12 +74,12 @@ const Carousel = ({
         <>
           <Arrow
             direction='left'
-            className='w-12 h-12 absolute bg-opacity-50 p-1.5 top-1/2 rounded m-1 bg-grey transform -translate-y-1/2 left-0'
+            className='w-12 h-12 absolute bg-opacity-50 p-1.5 top-1/2 rounded m-1 bg-grey/30 transform -translate-y-1/2 left-0'
             onClick={() => slider.current?.prev()}
           />
           <Arrow
             direction='right'
-            className='w-12 h-12 absolute bg-opacity-50 top-1/2 p-1.5 rounded m-1 bg-grey transform -translate-y-1/2 right-0'
+            className='w-12 h-12 absolute bg-opacity-50 top-1/2 p-1.5 rounded m-1 bg-grey/30 transform -translate-y-1/2 right-0'
             onClick={() => slider.current?.next()}
           />
         </>

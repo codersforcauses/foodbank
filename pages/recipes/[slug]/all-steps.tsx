@@ -31,7 +31,7 @@ const RecipeSteps = ({ recipe }: RecipeStepsProps) => {
   } else {
     const colorScheme = recipe.colorScheme
     return (
-      <div className={`${colorScheme?.bg} p-10`}>
+      <div className={`${colorScheme?.bg} px-10 py-10 md:pt-20`}>
         <h1
           className={`${colorScheme?.header} text-4xl underline font-semibold font-serif`}
         >
