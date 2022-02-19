@@ -18,7 +18,6 @@ function ProfileDisplay({ character, state }: Props) {
         </div>
       </div>
     </>
-    // </div>
   )
 }
 
