@@ -14,11 +14,11 @@ const TrophyRoom = () => {
       <h1 className='text-white font-bold text-6xl text-center pt-10'>
         Trophy Room
       </h1>
-      <div className='flex items-end justify-center'>
-        <div className='hidden max-w-sm sm:block'>
+      <div className='flex items-end justify-center mx-auto sm:w-[40rem] md:w-[48rem] lg:w-[64rem]'>
+        <div className='max-w-sm hidden sm:block'>
           <Image src={Melonator} alt='Melonator' />
         </div>
-        <TrophyCabinet numUnlocked={numUnlocked} />
+        <TrophyCabinet />
         <div className='max-w-sm hidden sm:block'>
           <Image src={VitaminCLion} alt='Vitamin C Lion' />
         </div>
