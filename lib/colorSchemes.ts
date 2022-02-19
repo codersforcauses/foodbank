@@ -1,4 +1,4 @@
-import { ColorScheme } from 'lib/types'
+import { ColorScheme } from '@lib/types'
 
 const primaryScheme: ColorScheme = {
   name: 'primaryScheme',

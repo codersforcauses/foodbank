@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client'
-import { Recipe, RecipeStep } from 'lib/types'
+
+import { Recipe, RecipeStep } from '@lib/types'
 
 const notion = new Client({
   auth: process.env.NOTION_API_KEY

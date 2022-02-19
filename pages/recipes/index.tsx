@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-// import { recipes } from 'lib/Recipes'
+// import { recipes } from '@lib/Recipes'
 import { Recipe } from '@lib/types'
 
 import { getAllRecipes } from '@components/API/getData'
