@@ -1,8 +1,10 @@
-import Link from 'next/link'
-import { Character } from 'lib/types'
-import explosion from 'public/images/Extra/explosion.png'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
+
+import { Character } from '@lib/types'
+
+import explosion from 'public/images/Extra/explosion.png'
 
 export interface CardProps {
   /**

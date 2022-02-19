@@ -1,6 +1,7 @@
-import { Recipe, ColorScheme } from 'lib/types'
 import Link from 'next/link'
-import { primaryScheme } from 'lib/colorSchemes'
+
+import { primaryScheme } from '@lib/colorSchemes'
+import { Recipe } from '@lib/types'
 
 interface Props {
   recipe: Recipe

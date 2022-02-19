@@ -1,5 +1,6 @@
 import { Fragment, PropsWithChildren } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+
 import { Breakpoints } from '@lib/types'
 
 const Modal = ({

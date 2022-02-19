@@ -67,11 +67,11 @@ interface Location {
 }
 
 export type {
+  Breakpoints,
+  Character,
   ColorScheme,
+  Location,
   Recipe,
   RecipeStep,
-  Character,
-  Breakpoints,
-  Trophy,
-  Location
+  Trophy
 }

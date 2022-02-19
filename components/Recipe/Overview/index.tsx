@@ -1,21 +1,22 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Recipe } from 'lib/types'
 import Image from 'next/image'
-import Modal from 'components/Custom/Modal'
-import { Breakpoints } from 'lib/types'
+import tailwindConfig from 'tailwind.config'
+import resolveConfig from 'tailwindcss/resolveConfig'
 
-import starLabel from 'public/images/Extra/star_label.png'
-import hintPlate from 'public/images/Extra/hint-plate.png'
+import { orangeScheme, primaryScheme, tealScheme } from '@lib/colorSchemes'
+import { Recipe } from '@lib/types'
+import { Breakpoints } from '@lib/types'
 
 import Slideshow from 'pages/recipes/[slug]/slideshow'
-import Buttons from 'components/Recipe/Buttons'
-import EquipmentList from 'components/Recipe/EquipmentList'
-import IngredientsList from 'components/Recipe/IngredientsList'
-import CategoryInfo from 'components/Recipe/CategoryInfo'
-import { primaryScheme, tealScheme, orangeScheme } from 'lib/colorSchemes'
 
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from 'tailwind.config'
+import Modal from '@components/Custom/Modal'
+import Buttons from '@components/Recipe/Buttons'
+import CategoryInfo from '@components/Recipe/CategoryInfo'
+import EquipmentList from '@components/Recipe/EquipmentList'
+import IngredientsList from '@components/Recipe/IngredientsList'
+
+import hintPlate from 'public/images/Extra/hint-plate.png'
+import starLabel from 'public/images/Extra/star_label.png'
 
 interface ParamTypes {
   recipe: Recipe

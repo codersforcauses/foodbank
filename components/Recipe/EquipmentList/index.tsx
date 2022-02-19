@@ -1,7 +1,7 @@
-import { Recipe } from 'lib/types'
 import Image from 'next/image'
 
-import imgFrameOne from 'public/images/Extra/img-frame-white-border.png'
+import { Recipe } from '@lib/types'
+
 import headerPlateOne from 'public/images/Extra/header-plate-1.png'
 
 interface Props {
@@ -33,7 +33,7 @@ const EquipmentList = ({ recipe }: Props) => {
             ))}
           </ul>
         </div>
-        <div className='relative w-52 h-52 md:w-full md:h-auto order-1 md:order-none'>
+        <div className='relative order-1 w-52 h-52 md:w-full md:h-auto md:order-none'>
           <Image
             className='self-center object-contain pr-8 rounded-3xl'
             src={recipe.equipmentImg}

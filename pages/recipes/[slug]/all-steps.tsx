@@ -1,9 +1,11 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
-import { Recipe } from 'lib/types'
-import Step from 'components/Recipe/Step'
-import { getRecipeDetails } from 'components/API/getData'
-import { primaryScheme, tealScheme, orangeScheme } from 'lib/colorSchemes'
+
+import { orangeScheme, primaryScheme, tealScheme } from '@lib/colorSchemes'
+import { Recipe } from '@lib/types'
+
+import { getRecipeDetails } from '@components/API/getData'
+import Step from '@components/Recipe/Step'
 
 interface RecipeStepsProps {
   recipe: Recipe

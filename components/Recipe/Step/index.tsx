@@ -1,5 +1,6 @@
-import { ColorScheme, RecipeStep } from 'lib/types'
 import Image from 'next/image'
+
+import { ColorScheme, RecipeStep } from '@lib/types'
 
 interface Props {
   step: RecipeStep

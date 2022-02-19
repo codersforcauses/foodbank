@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import Card from '@components/Recipe/List-View/Card'
+import { useCallback, useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
 // import { recipes } from 'lib/Recipes'
 import { Recipe } from '@lib/types'
-import { Client } from '@notionhq/client'
+
 import { getAllRecipes } from '@components/API/getData'
-import { motion, AnimatePresence } from 'framer-motion'
+import Card from '@components/Recipe/List-View/Card'
 
 interface RecipesGridProps {
   tag: string

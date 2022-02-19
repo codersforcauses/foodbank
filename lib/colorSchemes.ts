@@ -27,4 +27,4 @@ const orangeScheme: ColorScheme = {
   buttonBg: 'bg-primary'
 }
 
-export { primaryScheme, tealScheme, orangeScheme }
+export { orangeScheme, primaryScheme, tealScheme }

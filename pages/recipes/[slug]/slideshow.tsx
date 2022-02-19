@@ -1,6 +1,8 @@
-import { Carousel } from '@components/Custom'
 import Image from 'next/image'
-import { Recipe } from 'lib/types'
+
+import { Recipe } from '@lib/types'
+
+import { Carousel } from '@components/Custom'
 
 export interface RecipeProps {
   recipe: Recipe
