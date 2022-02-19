@@ -1,20 +1,40 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true'
-})
+const withPlugins = require('next-compose-plugins')
+const withPWA = require('next-pwa')
+const withBundleAnalyzer = require('@next/bundle-analyzer')
 
-module.exports = withBundleAnalyzer({
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    optimizeCss: true
-  },
-  // need to remove once test is deleted
-  images: {
-    domains: [
-      'images.unsplash.com',
-      'tinyurl.com',
-      'img.youtube.com',
-      's3.us-west-2.amazonaws.com'
+module.exports = withPlugins(
+  [
+    [
+      withPWA,
+      {
+        pwa: {
+          dest: 'public',
+          register: true,
+          skipWaiting: true
+        }
+      }
+    ],
+    [
+      withBundleAnalyzer,
+      {
+        enabled: process.env.ANALYZE === 'true'
+      }
     ]
+  ],
+  {
+    reactStrictMode: true,
+    swcMinify: true,
+    experimental: {
+      optimizeCss: true
+    },
+    // need to remove once test is deleted
+    images: {
+      domains: [
+        'images.unsplash.com',
+        'tinyurl.com',
+        'img.youtube.com',
+        's3.us-west-2.amazonaws.com'
+      ]
+    }
   }
-})
+)
