@@ -79,7 +79,7 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
 
   return (
     <div className='grid gap-10 grid-1'>
-      <div className='flex justify-center gap-10 mt-10'>
+      <div className='flex justify-center gap-10 pt-14 md:pt-20'>
         {allCategories.map(category => {
           return (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
