@@ -14,7 +14,7 @@ import { Button, Modal } from '@components/Custom'
 import { useRef } from 'react'
 
 import { GROUPS } from '@components/FoodGroups/groups'
-import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
+import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext/context.tsx'
 import Auth from '@components/Auth'
 
 import {
