@@ -22,10 +22,14 @@ import TealBlueTrophy from 'public/images/trophies/tealblue.webp'
 import WhippedCreamTrophy from 'public/images/trophies/whippedcream.webp'
 import TrophyCabinetImage from 'public/images/trophy-cabinet.webp'
 
-const TrophyCabinet = () => {
-  const { achievementsCount } = useFirebase()
-  const numUnlocked = achievementsCount.count
-  const numTrophyGroups = Math.ceil(numUnlocked / 3)
+type Props = {
+  numUnlocked: number
+}
+
+const MAX_TROPHIES = 18
+
+const TrophyCabinet = ({ numUnlocked }: Props) => {
+  const numTrophyGroups = Math.ceil(Math.min(numUnlocked, MAX_TROPHIES) / 3)
   const trophies = [
     BrightYellowTrophy,
     CupcakePurpleTrophy,
