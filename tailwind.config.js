@@ -26,6 +26,18 @@ module.exports = {
       fontFamily: {
         sans: ['Bliss'],
         serif: ['Abraham']
+      },
+      width:{
+        '128':'28rem'
+      },
+      keyframe:{
+        movement:
+        {'0%, 100%':{top:'0'},
+        '50%':{top:'10%'}
+      }
+      },
+      animation:{
+        movement:'movement 1.5s ease-in infinite'
       }
     }
   },

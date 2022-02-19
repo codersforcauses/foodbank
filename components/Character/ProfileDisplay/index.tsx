@@ -1,15 +1,20 @@
 import type { Character } from 'lib/types'
 import ProfileItem from '@components/Character/ProfileItem'
+import CharacterImg from '@components/Character/CharacterImg'
 interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
   character: Character
+  state: boolean
 }
-function ProfileDisplay({ character }: Props) {
+function ProfileDisplay({ character, state }: Props) {
   return (
     <>
-      <div className='relative flex items-center justify-center main'>
+      <div className='relative flex space-x-24 items-center justify-center main'>
+        <div className='animate-movement'>
+          <CharacterImg character={character} state={state} />
+        </div>
         <div className='relative w-128 h-max flex flex-col justify-center items-center bg-grey-light z-20 rounded-3xl font-serif'>
-          <ProfileItem character={character} />
+          <ProfileItem character={character} state={state} />
         </div>
       </div>
     </>

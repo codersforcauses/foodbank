@@ -16,8 +16,10 @@ interface Props {
 const Profile = ({ character }: Props) => {
   const route: NextRouter = useRouter()
   const { profile } = route.query
-  console.log(character)
-  // Set the title of the page based on the location slug in the URL.
+  const [state, setState] = useState(true)
+  const stateChange = () => {
+    setState(!state)
+  }
   return (
     <>
       <Image
@@ -27,10 +29,8 @@ const Profile = ({ character }: Props) => {
         layout='fill'
         objectFit='cover'
       />
-      {/* <div>
-            <ProfileDisplay character={character} />
-        </div> */}
-      <Footer />
+      <ProfileDisplay character={character} state={state} />
+      <Footer stateChange={stateChange} />
     </>
   )
 }
