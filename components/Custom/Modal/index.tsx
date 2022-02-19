@@ -3,38 +3,60 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import { Breakpoints } from '@lib/types'
 
+interface ModalProps {
+  open: boolean
+  heading?: string
+  size?: Breakpoints
+  onClose: () => void
+  carousel?: boolean
+}
+
 const Modal = ({
   children,
   heading,
   size,
+  carousel,
   ...props
 }: PropsWithChildren<ModalProps>) => {
   let sizeClass,
-    baseClass =
-      'fixed z-40 w-full h-5/6 overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2  rounded-t-xl'
+    baseClass = carousel
+      ? 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 md:w-3/4 md:h-5/6 inset-1/2 rounded-xl'
+      : 'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center sm:block sm:w-3/4 sm:h-5/6 inset-1/2 scrollbar-hide rounded-xl'
 
-  switch (size) {
-    case 'sm':
-      sizeClass = 'max-w-md'
-      break
-    case 'md':
-      sizeClass = 'max-w-lg'
-      break
-    case 'lg':
-      sizeClass = 'max-w-xl'
-      break
-    case 'xl':
-      sizeClass = 'max-w-2xl'
-      break
-    case '2xl':
-      sizeClass = 'max-w-3xl'
-      break
-    case '3xl':
-      sizeClass = 'max-w-4xl'
-      break
-    default:
-      sizeClass = 'min-w-full'
-  }
+  if (carousel)
+    switch (size) {
+      case 'sm':
+        sizeClass = 'max-w-md'
+        break
+      case 'md':
+        sizeClass = 'max-w-xl'
+        break
+      case 'lg':
+        sizeClass = 'max-w-xl'
+        break
+      case 'xl':
+        sizeClass = 'max-w-2xl'
+        break
+      case '2xl':
+        sizeClass = 'max-w-3xl'
+        break
+      case '3xl':
+        sizeClass = 'max-w-4xl'
+        break
+      default:
+        sizeClass = 'min-w-full'
+    }
+  else
+    switch (size) {
+      case 'sm':
+        sizeClass = 'max-w-lg'
+        break
+      case 'md':
+        sizeClass = 'max-w-2lg'
+        break
+      default:
+        sizeClass = 'min-w-full'
+    }
 
   let finalClass = [baseClass, sizeClass].join(' ').trim()
 
@@ -84,10 +106,3 @@ const Modal = ({
 }
 
 export default Modal
-
-interface ModalProps {
-  open: boolean
-  heading?: string
-  size?: Breakpoints
-  onClose: () => void
-}

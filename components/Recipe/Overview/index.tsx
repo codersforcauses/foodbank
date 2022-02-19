@@ -106,6 +106,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
     <>
       {sliderModalState && (
         <Modal
+          carousel
           {...props}
           onClose={toggleSliderModal}
           size={width as Breakpoints}
