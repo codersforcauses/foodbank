@@ -1,20 +1,27 @@
 import Image from 'next/image'
+import { Transition } from '@headlessui/react'
 import type { Character } from 'lib/types'
 interface Props {
   character: Character
-  state: boolean
+  showEverydayFood: boolean
+  toggleTransition: boolean
 }
 
-function CharacterImg({ character, state }: Props) {
+function CharacterImg({
+  character,
+  showEverydayFood,
+  toggleTransition
+}: Props) {
   return (
     <>
-      {state ? (
+      {showEverydayFood ? (
         <Transition
+          show={toggleTransition}
           appear={true}
-          enter='transition-opacity duration-75'
+          enter='transition-opacity duration-300'
           enterFrom='opacity-0'
           enterTo='opacity-100'
-          leave='transition-opacity duration-150'
+          leave='transition-opacity duration-300'
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
@@ -26,12 +33,23 @@ function CharacterImg({ character, state }: Props) {
           />
         </Transition>
       ) : (
-        <Image
-          src={character.aliasImage}
-          alt='Superhero Food'
-          width={400}
-          height={400}
-        />
+        <Transition
+          show={!toggleTransition}
+          appear={true}
+          enter='transition-opacity duration-300'
+          enterFrom='opacity-0'
+          enterTo='opacity-100'
+          leave='transition-opacity duration-300'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'
+        >
+          <Image
+            src={character.aliasImage}
+            alt='Superhero Food'
+            width={400}
+            height={400}
+          />
+        </Transition>
       )}
     </>
   )

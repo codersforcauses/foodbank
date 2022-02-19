@@ -18,12 +18,15 @@ interface Props {
 const Profile = ({ character }: Props) => {
   const route: NextRouter = useRouter()
   const { profile } = route.query
-  const [isShowing, setIsShowing] = useState(false)
-  const [state, setState] = useState(true)
+  const [toggleTransition, setToggleTransition] = useState(true)
+  const [showEverydayFood, setShowEverydayFood] = useState(true)
   const stateChange = () => {
-    setState(!state)
+    setToggleTransition(prev => !prev)
+    setTimeout(() => {
+      setShowEverydayFood(prev => !prev)
+    }, 300)
   }
-  console.log(isShowing)
+
   return (
     <>
       <Image
@@ -33,7 +36,11 @@ const Profile = ({ character }: Props) => {
         layout='fill'
         objectFit='cover'
       />
-      <ProfileDisplay character={character} state={state} />
+      <ProfileDisplay
+        character={character}
+        showEverydayFood={showEverydayFood}
+        toggleTransition={toggleTransition}
+      />
       <Footer stateChange={stateChange} />
     </>
   )
