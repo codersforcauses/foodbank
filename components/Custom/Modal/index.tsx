@@ -1,4 +1,4 @@
-import { PropsWithChildren, Fragment } from 'react'
+import { Fragment, PropsWithChildren } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Breakpoints } from '@lib/types'
 
@@ -39,7 +39,7 @@ const Modal = ({
 
   return (
     <Transition show={props.open} as={Fragment}>
-      <Dialog {...props} className='fixed inset-0 z-40 text-primary'>
+      <Dialog {...props} className='fixed inset-0 z-40 text-primary '>
         <Transition.Child
           as={Fragment}
           enter='transition-all ease-out duration-300'
@@ -49,7 +49,7 @@ const Modal = ({
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Dialog.Overlay className='fixed inset-0 z-40 bg-black bg-opacity-75' />
+          <Dialog.Overlay className='fixed inset-0 z-40 bg-black/75' />
         </Transition.Child>
         <Transition.Child
           enter='transition-all ease-out duration-300 delay-100'
