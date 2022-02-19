@@ -2,6 +2,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
+// next.confg.js
+
+const withPWA  = require("next-pwa");
+module.exports = withPWA({
+ //...before
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  },
+  //...after
+});
+
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   swcMinify: true,
