@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 
 // import { recipes } from '@lib/Recipes'
 import { Recipe } from '@lib/types'
@@ -104,12 +103,9 @@ const RecipesGridView = ({ tag, recipes }: RecipesGridProps) => {
         </button>
       </div>
       <div className='flex justify-center m-10'>
-        <motion.div
-          layout
-          className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'
-        >
-          <AnimatePresence>{recipeCards}</AnimatePresence>
-        </motion.div>
+        <div className='grid mt-6 sm:grid-cols-2 lg:grid-cols-3 gap-14'>
+          {recipeCards}
+        </div>
       </div>
     </div>
   )

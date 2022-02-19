@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 import { Character } from '@lib/types'
 
@@ -72,11 +71,7 @@ const Card = ({
   ...props
 }: CardProps) => {
   return (
-    <motion.div
-      layout
-      animate={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
+    <div
       className={`${getClassesFromColor(
         color,
         unlocked
@@ -129,7 +124,7 @@ const Card = ({
           </>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
