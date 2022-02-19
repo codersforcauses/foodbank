@@ -5,6 +5,7 @@ import {
   useForm,
   UseFormProps
 } from 'react-hook-form'
+
 import { FormProps, FormProvider } from './context'
 
 const Form = <T,>({
@@ -16,7 +17,7 @@ const Form = <T,>({
 }: PropsWithChildren<HookFormProps<T>>) => {
   const methods = useForm({
     defaultValues,
-    mode: 'onChange'
+    mode: 'onSubmit'
   })
   const { register, formState, setFocus } = methods
   const value: FormProps = useMemo(

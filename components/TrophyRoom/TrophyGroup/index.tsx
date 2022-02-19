@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 
 interface Props {
@@ -37,13 +36,13 @@ const TrophyGroup = ({ trophy1, trophy2, trophy3, side }: Props) => {
           </div>
         )}
       </div>
-      <div className='relative w-full bg-white h-3 md:h-4 lg:h-5 bottom-0 lg:mt-1'>
+      <div className='relative bottom-0 w-full h-3 bg-white md:h-4 lg:h-5 lg:mt-1'>
         <div className='absolute w-full font-serif text-center text-[70%] md:text-sm  -top-0.5 lg:top-0'>
           {numTrophies} / 3
         </div>
         <div className='mx-2 py-0.5'>
           <div
-            className='bg-green h-2 md:h-3 lg:h-4'
+            className='h-2 bg-green md:h-3 lg:h-4'
             style={{ width: (numTrophies * 100) / 3 + '%' }}
           ></div>
         </div>

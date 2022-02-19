@@ -16,6 +16,8 @@ npm run dev
 yarn dev
 ```
 
+NOTE: The .env file containing API keys for Notion hasn't been uploaded to the repository. Therefore some pages will not work when run locally (view Vercel deployment instead).
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.

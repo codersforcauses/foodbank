@@ -1,6 +1,6 @@
 import TestData from '@components/TestData'
 
-const Home = () => {
+const FunFoodSort = () => {
   return <TestData />
 }
-export default Home
+export default FunFoodSort

@@ -1,4 +1,4 @@
-import { PropsWithChildren, Fragment } from 'react'
+import { Fragment, PropsWithChildren } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 const Modal = ({
@@ -22,7 +22,7 @@ const Modal = ({
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Dialog.Overlay className='fixed inset-0 z-40 bg-black bg-opacity-75 ' />
+          <Dialog.Overlay className='fixed inset-0 z-40 bg-black/75' />
         </Transition.Child>
         <Transition.Child
           enter='transition-all ease-out duration-300 delay-100'
@@ -32,7 +32,7 @@ const Modal = ({
           leaveFrom='opacity-100 scale-100'
           leaveTo='opacity-0 scale-95'
           className={[
-            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 xsm:flex xsm:justify-center xsm:items-center md:block md:w-3/4 md:h-5/6 inset-1/2 scrollbar-hide rounded-xl',
+            'fixed z-40 w-full h-full overflow-y-auto origin-center transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center sm:block sm:w-3/4 sm:h-5/6 inset-1/2 scrollbar-hide rounded-xl',
             sizeClass
           ]
             .join(' ')
