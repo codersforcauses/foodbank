@@ -30,10 +30,10 @@ module.exports = {
       width:{
         '128':'28rem'
       },
-      keyframe:{
+      keyframes:{
         movement:
         {'0%, 100%':{top:'0'},
-        '50%':{top:'10%'}
+        '50%':{top:'10'}
       }
       },
       animation:{

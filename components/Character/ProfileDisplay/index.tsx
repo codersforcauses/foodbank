@@ -5,13 +5,19 @@ interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
   character: Character
   state: boolean
+  isShowing: boolean
 }
-function ProfileDisplay({ character, state }: Props) {
+
+function ProfileDisplay({ character, state, isShowing }: Props) {
   return (
     <>
       <div className='relative flex space-x-24 items-center justify-center main'>
-        <div className='animate-movement'>
-          <CharacterImg character={character} state={state} />
+        <div>
+          <CharacterImg
+            character={character}
+            state={state}
+            isShowing={isShowing}
+          />
         </div>
         <div className='relative w-128 h-max flex flex-col justify-center items-center bg-grey-light z-20 rounded-3xl font-serif'>
           <ProfileItem character={character} state={state} />

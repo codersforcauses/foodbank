@@ -16,9 +16,11 @@ interface Props {
 const Profile = ({ character }: Props) => {
   const route: NextRouter = useRouter()
   const { profile } = route.query
+  const [isShowing, setIsShowing] = useState(false)
   const [state, setState] = useState(true)
   const stateChange = () => {
     setState(!state)
+    setIsShowing(true)
   }
   return (
     <>
@@ -29,7 +31,11 @@ const Profile = ({ character }: Props) => {
         layout='fill'
         objectFit='cover'
       />
-      <ProfileDisplay character={character} state={state} />
+      <ProfileDisplay
+        character={character}
+        state={state}
+        isShowing={isShowing}
+      />
       <Footer stateChange={stateChange} />
     </>
   )
