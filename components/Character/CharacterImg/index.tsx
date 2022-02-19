@@ -11,12 +11,22 @@ function CharacterImg({ character, state }: Props) {
   return (
     <>
       {state ? (
-        <Image
-          src={character.image}
-          alt='Everyday Food'
-          width={400}
-          height={400}
-        />
+        <Transition
+          appear={true}
+          enter='transition-opacity duration-75'
+          enterFrom='opacity-0'
+          enterTo='opacity-100'
+          leave='transition-opacity duration-150'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'
+        >
+          <Image
+            src={character.image}
+            alt='Everyday Food'
+            width={400}
+            height={400}
+          />
+        </Transition>
       ) : (
         <Image
           src={character.aliasImage}
