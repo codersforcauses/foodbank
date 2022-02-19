@@ -59,7 +59,7 @@ const TrophyCabinet = () => {
           />
         ))}
       </div>
-      <div className='z-0'>
+      <div className='z-0 w-[24rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem]'>
         <Image src={TrophyCabinetImage} alt='Cabinet' />
       </div>
     </div>
