@@ -5,7 +5,7 @@ export type Trophy = {
 
 export type Character = {
   name: string
-  image?: string
+  image: string
   aliasName: string
   about: string
   aliasImage: string
