@@ -35,7 +35,7 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
     <FirebaseProvider>
       <MobileMenu links={links} />
       <Navbar links={links} />
-      <main className='relative min-h-screen lg:main'>
+      <main className='relative min-h-screen'>
         <Component {...pageProps} />
       </main>
     </FirebaseProvider>

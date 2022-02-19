@@ -75,7 +75,7 @@ export const sliceBaseStyle = str([
   'select-none'
 ])
 
-export const startZoneStyle = 'text-2xl bg-red grow h-[50vh] lg:h-[80vh]'
+export const startZoneStyle = 'text-2xl grow h-[50vh] lg:h-[80vh]'
 
 export const draggableZoneStyle =
   'flex justify-center relative flex-wrap md:flex-nowrap w-screen lg:h-auto'
