@@ -14,6 +14,10 @@ export type Character = {
   foodGroup: string
   location: string | string[]
   facing?: string
+  heroUse: string
+  heroLikes: string
+  everydayLikes:string
+  recipes:string
 }
 
 export type Location = {
