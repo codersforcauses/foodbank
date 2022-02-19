@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 
-import { getVideos } from '@components/API/getData'
+import getVideos from '@components/NotionAPI/getVideos'
 import PopupVideo from '@components/Video/PopupVideo'
 import VideoCardContainer from '@components/Video/VideoCardContainer'
 

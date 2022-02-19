@@ -1,6 +1,6 @@
 import { Recipe } from '@lib/types'
 
-import { getRecipeDetails } from '@components/API/getData'
+import getRecipeDetails from '@components/NotionAPI/getRecipeDetails'
 import RecipeOverview from '@components/Recipe/Overview'
 
 export interface RecipeProps {

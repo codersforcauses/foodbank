@@ -1,9 +1,6 @@
-import { Client } from '@notionhq/client'
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY
-})
+import notion from './initNotion'
 
 /** Get characters from a particular town from the Notion DB, based on town slug. */
 const getCharsFromTown = async (town: string) => {
@@ -42,4 +39,4 @@ const formatCharData = (data: QueryDatabaseResponse) => {
   return formattedCharData
 }
 
-export { getCharsFromTown }
+export default getCharsFromTown

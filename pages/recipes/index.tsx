@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 // import { recipes } from '@lib/Recipes'
 import { Recipe } from '@lib/types'
 
-import { getAllRecipes } from '@components/API/getData'
+import getAllRecipes from '@components/NotionAPI/getAllRecipes'
 import Card from '@components/Recipe/List-View/Card'
 
 interface RecipesGridProps {

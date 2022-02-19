@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { orangeScheme, primaryScheme, tealScheme } from '@lib/colorSchemes'
 import { Recipe } from '@lib/types'
 
-import { getRecipeDetails } from '@components/API/getData'
+import getRecipeDetails from '@components/NotionAPI/getRecipeDetails'
 import Step from '@components/Recipe/Step'
 
 interface RecipeStepsProps {
