@@ -19,7 +19,11 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Trophy Room',
-    route: '/'
+    route: '/trophy-room'
+  },
+  {
+    page: 'Videos',
+    route: '/videos'
   }
 ]
 

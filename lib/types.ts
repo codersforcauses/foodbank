@@ -46,8 +46,32 @@ interface Character {
   facing?: string
 }
 
+interface Trophy {
+  name: string
+  unlocked: boolean
+}
+
 type Breakpoints = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
 
 //TODO: Fix the API to return ColorScheme as a required parameter. Just random values atm
 
-export type { ColorScheme, Recipe, RecipeStep, Character, Breakpoints }
+interface Location {
+  id: string
+  headerColor: string
+  headerText: string
+  captionText: string
+  showButton: boolean
+  maxWidth: string
+  maxHeight: string
+  route: string
+}
+
+export type {
+  ColorScheme,
+  Recipe,
+  RecipeStep,
+  Character,
+  Breakpoints,
+  Trophy,
+  Location
+}
