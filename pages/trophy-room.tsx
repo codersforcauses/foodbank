@@ -7,7 +7,6 @@ import VitaminCLion from 'public/images/lion.webp'
 import Melonator from 'public/images/watermelonflipped.webp'
 
 const TrophyRoom = () => {
-
   return (
     <div className='h-screen overflow-y-hidden bg-primary md:pt-14'>
       <h1 className='pt-10 text-6xl font-bold text-center text-white'>
