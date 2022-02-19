@@ -48,7 +48,7 @@ const TrophyCabinet = () => {
   ]
   return (
     <div className='relative max-w-xl flex justify-center'>
-      <div className='absolute z-10 flex flex-wrap content-start gap-5 sm:gap-4 md:gap-5 justify-between w-[75%] sm:w-full mt-[6.5rem] sm:mt-[6.5rem] md:mt-[7.8rem] lg:mt-[8.5rem]'>
+      <div className='absolute z-10 flex flex-wrap content-start gap-5 sm:gap-4 md:gap-5 justify-between w-[75%] sm:w-full mt-[8.5rem] sm:mt-[6.5rem] md:mt-[7.8rem] lg:mt-[8.5rem]'>
         {[...Array(numTrophyGroups)].map((e, i) => (
           <TrophyGroup
             trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
@@ -59,7 +59,7 @@ const TrophyCabinet = () => {
           />
         ))}
       </div>
-      <div className='z-0 w-[24rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem]'>
+      <div className='z-0 w-[30rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem]'>
         <Image src={TrophyCabinetImage} alt='Cabinet' />
       </div>
     </div>
