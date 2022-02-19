@@ -40,7 +40,7 @@ const ProfileItem = ({ character, state }: Props) => {
         </div>
         <div className='p-16 text-right'>
           <h1 className='leading-8 font-bold'>SUPERPOWERS</h1>
-          <p>{character.superPowers}</p>
+          <p>{character.superpowers}</p>
           <h1 className='leading-8 font-bold'>USE</h1>
           <p>{character.heroUse}</p>
           <h1 className='leading-8 font-bold'>LIKES...</h1>

@@ -11,9 +11,19 @@ function CharacterImg({ character, state }: Props) {
   return (
     <>
       {state ? (
-        <Image src={character.image} width={400} height={400} />
+        <Image
+          src={character.image}
+          alt='Everyday Food'
+          width={400}
+          height={400}
+        />
       ) : (
-        <Image src={character.aliasImage} width={400} height={400} />
+        <Image
+          src={character.aliasImage}
+          alt='Superhero Food'
+          width={400}
+          height={400}
+        />
       )}
     </>
   )

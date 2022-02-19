@@ -40,9 +40,9 @@ interface Character {
   about: string
   aliasImage: string
   imageGif: string
-  superPowers: string
+  superpowers: string
   foodGroup: string
-  location: string | string[]
+  location?: string
   facing?: string
   heroUse: string
   heroLikes: string

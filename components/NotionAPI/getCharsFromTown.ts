@@ -61,6 +61,11 @@ const formatCharData = (data: QueryDatabaseResponse) => {
       'files' in imageProp && 'file' in imageProp.files[0]
         ? imageProp.files[0].file.url
         : ''
+    const imageGifProp = result.properties.imageGif
+    const imageGifUrl =
+      'files' in imageGifProp && 'file' in imageGifProp.files[0]
+        ? imageGifProp.files[0].file.url
+        : ''
     const locationProp = result.properties.location
     const locationSelect =
       'select' in locationProp ? locationProp.select?.name : ''
@@ -99,6 +104,7 @@ const formatCharData = (data: QueryDatabaseResponse) => {
       facing: facingPlainText,
       foodGroup: foodGroupPlainText,
       image: imageUrl,
+      imageGif: imageGifUrl,
       location: locationSelect,
       name: namePlainText,
       slug: nameSlugPlainText,
