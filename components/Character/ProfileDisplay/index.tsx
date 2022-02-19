@@ -12,11 +12,7 @@ function ProfileDisplay({ character, state }: Props) {
   return (
     <>
       <div className='relative flex space-x-24 items-center justify-center main'>
-        <CharacterImg
-          className={style.movement}
-          character={character}
-          state={state}
-        />
+        <CharacterImg character={character} state={state} />
         <div className='relative w-128 h-max flex flex-col justify-center items-center bg-grey-light z-20 rounded-3xl font-serif'>
           <ProfileItem character={character} state={state} />
         </div>
