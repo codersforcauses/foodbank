@@ -51,6 +51,12 @@
   .main {
     min-height: calc(100vh - 3.5rem);
   }
+  .text-shadow-title {
+    text-shadow: -2px 3px 8px rgba(0, 0, 0, 0.17);
+  }
+  .span-child-relative > span {
+    position: relative;
+  }
 }
 
 .shadow-primary {

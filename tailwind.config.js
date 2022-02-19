@@ -21,6 +21,16 @@ module.exports = {
       black: '#000000',
       green: '#9dcd5a'
     },
+    screens: {
+      sm: '640px',
+      md: '768px',
+      recipe_md: '900px',
+      lg: '1024px',
+      recipe_lg: '1100px',
+      recipe_xl: '1250px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
     extend: {
       fontFamily: {
         sans: ['Bliss'],

@@ -14,7 +14,7 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Recipes',
-    route: '/'
+    route: '/recipes'
   },
   {
     page: 'Fun Food Sort',

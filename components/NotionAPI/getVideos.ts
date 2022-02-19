@@ -1,8 +1,4 @@
-import { Client } from '@notionhq/client'
-
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY
-})
+import notion from './initNotion'
 
 const regex = /\?v=([^&]+)/
 
@@ -33,4 +29,4 @@ const getVideos = async () => {
   }
 }
 
-export { getVideos }
+export default getVideos

@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { NextRouter, useRouter } from 'next/router'
 
-import { useViewport } from '@lib/hooks'
+import { useViewport } from '@lib/Hooks/useViewport'
 import type { Character, Location } from '@lib/types'
 
-import { getCharsFromTown } from '@components/API/characters'
 import CharacterCarousel from '@components/Character/Carousel'
 import locations from '@components/Map/assets/locations'
+import getCharsFromTown from '@components/NotionAPI/getCharsFromTown'
 
 import Background from 'public/images/characters/bg-turquoise.webp'
 

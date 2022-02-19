@@ -37,5 +37,5 @@ yarn-error.log*
 yarn.lock
 
 # IDE settings
-.vscode/
+# .vscode/
 .idea/
