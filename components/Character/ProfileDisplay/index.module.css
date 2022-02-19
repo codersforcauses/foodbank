@@ -1,0 +1,17 @@
+.movement {
+  animation: characterMove 1.5s ease-in infinite;
+}
+
+@keyframes characterMove {
+  from {
+    top: 0px;
+  }
+  50% {
+    top: 10%;
+    /* right: 30%; */
+  }
+
+  to {
+    top: 0px;
+  }
+}
