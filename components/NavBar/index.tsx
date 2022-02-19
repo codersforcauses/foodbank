@@ -1,10 +1,15 @@
 import { useCallback, useState } from 'react'
-import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import logo from 'public/images/foodbank-logo.webp'
+import Link from 'next/link'
+
+import { useFirebase } from '@components/FirebaseContext/context'
+
 import DropDownMenu from './DropDownMenu'
+import DropdownSignOut from './DropdownSignOut'
 import { NavLinkProps } from './NavLink'
+
+import logo from 'public/images/foodbank-logo.webp'
 
 const Auth = dynamic(() => import('../Auth'), { ssr: false })
 
@@ -13,16 +18,18 @@ interface NavbarProps {
 }
 
 const Navbar = ({ links }: NavbarProps) => {
-  const [signIn, setSignIn] = useState(false)
-  const toggleSignIn = useCallback(() => {
-    setSignIn(prev => !prev)
+  const [openSignInForm, setOpenSignInForm] = useState(false)
+  const { user } = useFirebase()
+
+  const toggleOpenSignInForm = useCallback(() => {
+    setOpenSignInForm(prev => !prev)
   }, [])
 
   return (
     <header className='fixed inset-x-0 top-0 z-40 hidden py-2 bg-primary sm:block'>
-      <nav className='font-serif text-2xl text-white container flex justify-between px-3 mx-auto'>
+      <nav className='container flex justify-between px-3 mx-auto font-serif text-2xl text-white'>
         <Link href='/'>
-          <a className='flex relative hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus: focus:ring-opacity-50 rounded'>
+          <a className='relative flex rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'>
             <Image
               src={logo}
               alt='Foodbank logo'
@@ -36,16 +43,19 @@ const Navbar = ({ links }: NavbarProps) => {
         </Link>
         <div className='flex justify-end'>
           <DropDownMenu links={links} />
-          <button
-            className='px-3 ml-8 hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'
-            onClick={toggleSignIn}
-          >
-            {/* need to add proper state when auth was added */}
-            {signIn ? 'SIGN-OUT' : 'SIGN-IN'}
-          </button>
+          {user?.displayName ? (
+            <DropdownSignOut />
+          ) : (
+            <button
+              className='px-3 ml-8 rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'
+              onClick={toggleOpenSignInForm}
+            >
+              Sign-in
+            </button>
+          )}
         </div>
       </nav>
-      <Auth open={signIn} onClose={toggleSignIn} />
+      <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
     </header>
   )
 }

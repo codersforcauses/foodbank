@@ -3,7 +3,6 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}'
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
       transparent: 'transparent',
@@ -21,6 +20,16 @@ module.exports = {
       white: '#ffffff',
       black: '#000000',
       green: '#9dcd5a'
+    },
+    screens: {
+      sm: '640px',
+      md: '768px',
+      recipe_md: '900px',
+      lg: '1024px',
+      recipe_lg: '1100px',
+      recipe_xl: '1250px',
+      xl: '1280px',
+      '2xl': '1536px'
     },
     extend: {
       fontFamily: {
@@ -43,6 +52,5 @@ module.exports = {
   },
   variants: {
     extend: {}
-  },
-  plugins: []
+  }
 }

@@ -1,7 +1,9 @@
-import { PropsWithChildren, useState, useEffect, useRef } from 'react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
+
 import Arrow from './Arrow'
 import Dots from './Dots'
+
 import 'keen-slider/keen-slider.min.css'
 
 export interface CarouselProps extends KeenSliderOptions {
@@ -59,6 +61,10 @@ const Carousel = ({
     }
   }, [slider, pause, autoplayDuration, autoplay])
 
+  useEffect(() => {
+    slider.current?.update()
+  }, [slider])
+
   return (
     <div ref={ref} className={['keen-slider', className].join(' ').trim()}>
       {children}
@@ -78,7 +84,7 @@ const Carousel = ({
           />
         </>
       )}
-      {indicators && slider.current && (
+      {indicators && (
         <Dots
           className='absolute bottom-0 left-0 right-0 z-10 flex justify-center'
           nImages={length}
