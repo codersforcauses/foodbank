@@ -1,9 +1,13 @@
-import { useEffect, useState, useRef } from 'react'
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
-import TownBoxWrapper from './TownBoxWrapper'
-import MapImage from './MapImage'
-import { ReactZoomPanPinchRef } from 'react-zoom-pan-pinch'
+import { useEffect, useRef, useState } from 'react'
 import { Transition } from '@headlessui/react'
+import {
+  ReactZoomPanPinchRef,
+  TransformComponent,
+  TransformWrapper
+} from 'react-zoom-pan-pinch'
+
+import MapImage from './MapImage'
+import TownBoxWrapper from './TownBoxWrapper'
 
 const Map = () => {
   const [scale, setScale] = useState(1)
@@ -95,7 +99,7 @@ const Map = () => {
               leave='transition duration-500'
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-50'
-              className='fixed top-0 h-screen flex justify-center items-center'
+              className='fixed top-0 flex items-center justify-center h-screen'
             >
               <TownBoxWrapper
                 selected={selectedArea}

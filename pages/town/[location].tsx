@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter, NextRouter } from 'next/router'
-import CharacterCarousel from 'components/Character/Carousel'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Background from 'public/images/characters/bg-turquoise.webp'
-import { getCharsFromTown } from '@components/API/characters'
+import { NextRouter, useRouter } from 'next/router'
+
+import { useViewport } from '@lib/Hooks/useViewport'
+import type { Character, Location } from '@lib/types'
+
+import CharacterCarousel from '@components/Character/Carousel'
 import locations from '@components/Map/assets/locations'
-import type { Character, Location } from 'lib/types'
-import { useViewport } from 'lib/hooks'
+import { getCharsFromTown } from '@components/NotionAPI/getCharsFromTown'
+
+import Background from 'public/images/characters/bg-turquoise.webp'
 
 interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
@@ -18,10 +21,10 @@ const Town = ({ characters }: Props) => {
   const route: NextRouter = useRouter()
   const { location } = route.query
   const [title, setTitle] = useState<string | undefined>('')
-  const [maxCharsPerPage, setMaxCharsPerPage] = useState<number>(1)
+  const [maxCharsPerPage, setMaxCharsPerPage] = useState(1)
   const [pageNumber, setPageNumber] = useState(1)
-  const [canGoToNextPage, setCanGoToNextPage] = useState<boolean>(false)
-  const [canGoToPrevPage, setCanGoToPrevPage] = useState<boolean>(false)
+  const [canGoToNextPage, setCanGoToNextPage] = useState(false)
+  const [canGoToPrevPage, setCanGoToPrevPage] = useState(false)
   const { height, width }: { height: number; width: number } = useViewport()
 
   // Set the title of the page based on the location slug in the URL.

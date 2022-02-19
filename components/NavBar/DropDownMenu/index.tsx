@@ -1,6 +1,7 @@
-import Image from 'next/image'
-import { Transition, Popover } from '@headlessui/react'
-import Hamburger from 'public/images/Hamburger_icon.svg'
+import { Popover, Transition } from '@headlessui/react'
+
+import Svg from '@components/Custom/Svg'
+
 import NavLink, { NavLinkProps } from '../NavLink'
 
 interface DropDownMenuProps {
@@ -10,14 +11,13 @@ interface DropDownMenuProps {
 const DropDownMenu = ({ links }: DropDownMenuProps) => {
   return (
     <Popover className='relative'>
-      <Popover.Button className='flex items-center px-2 h-full hover:opacity-75 focus:outline-none focus:ring focus:ring-teal focus:ring-opacity-50 rounded'>
-        <Image
-          src={Hamburger}
-          alt='Hamburger'
-          className='text-white'
-          layout='fixed'
-          width={25}
-          height={25}
+      <Popover.Button className='flex items-center h-full px-2 rounded hover:opacity-75 focus:outline-none focus:ring focus:ring-teal/50'>
+        <Svg
+          name='SolidHamburger'
+          className='w-6 h-auto text-white'
+          viewBox='0 0 20 20'
+          stroke='currentColor'
+          fill='currentColor'
         />
         MENU
       </Popover.Button>
@@ -29,9 +29,9 @@ const DropDownMenu = ({ links }: DropDownMenuProps) => {
         leaveFrom='opacity-100 transform scale-100 translate-y-0'
         leaveTo='opacity-0 transform scale-95 -translate-y-1'
       >
-        <Popover.Panel className='flex flex-col items-end shadow-lg overflow-hidden absolute right-0 w-max mt-3'>
-          <div className='mr-8 border-b-primary border-b-[1rem] border-r-transparent border-r-[0.5rem] border-l-transparent border-l-[0.5rem]'></div>
-          <div className='grid gap-4 p-8 rounded-lg bg-primary items-center font-serif text-xl text-white'>
+        <Popover.Panel className='absolute right-0 flex flex-col items-end mt-3 overflow-hidden shadow-lg w-max'>
+          <div className='mr-8 border-b-primary border-b-[1rem] border-r-transparent border-r-8 border-l-transparent border-l-8' />
+          <div className='grid items-center gap-4 p-8 font-serif text-xl text-white rounded-lg bg-primary'>
             {links.map(nav => (
               <NavLink key={nav.page} {...nav} />
             ))}

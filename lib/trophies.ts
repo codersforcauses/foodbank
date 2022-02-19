@@ -1,4 +1,4 @@
-import type { Trophy } from 'lib/types'
+import type { Trophy } from '@lib/types'
 
 export const trophies: Array<Trophy> = [
   {

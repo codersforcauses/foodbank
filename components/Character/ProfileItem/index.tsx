@@ -1,12 +1,10 @@
 import type { Character } from 'lib/types'
-import { useState } from 'react'
 interface Props {
   character: Character
   state: boolean
 }
 
 const ProfileItem = ({ character, state }: Props) => {
-
   if (state) {
     return (
       <>
@@ -20,13 +18,9 @@ const ProfileItem = ({ character, state }: Props) => {
         </div>
         <div className='p-12 text-right  w-128'>
           <h1 className='leading-8 font-bold'>ABOUT</h1>
-          <p>
-            {character.about}
-          </p>
+          <p>{character.about}</p>
           <h1 className='leading-8 font-bold'>LIKES...</h1>
-          <p>
-            {character.everydayLikes}
-          </p>
+          <p>{character.everydayLikes}</p>
           <h1 className='leading-8 font-bold'>RECIPE</h1>
           <p>{character.recipes}</p>
         </div>
@@ -45,17 +39,14 @@ const ProfileItem = ({ character, state }: Props) => {
         </div>
         <div className='p-16 text-right'>
           <h1 className='leading-8 font-bold'>SUPERPOWERS</h1>
-          <p>
-            {character.superPowers}
-          </p>
+          <p>{character.superpowers}</p>
           <h1 className='leading-8 font-bold'>USE</h1>
-          <p>
-            {character.heroUse}
-          </p>
+          <p>{character.heroUse}</p>
           <h1 className='leading-8 font-bold'>LIKES...</h1>
           <p>{character.heroLikes}</p>
         </div>
-      </>)
+      </>
+    )
   }
 }
 

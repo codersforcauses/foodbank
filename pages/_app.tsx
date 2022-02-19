@@ -1,7 +1,10 @@
 import type { AppProps } from 'next/app'
+
+import { FirebaseProvider } from '@components/FirebaseContext'
+import MobileMenu from '@components/MobileMenu'
 import Navbar from '@components/NavBar'
 import { NavLinkProps } from '@components/NavBar/NavLink'
-import MobileMenu from '@components/MobileMenu'
+
 import '@styles/main.css'
 
 const links: Array<NavLinkProps> = [
@@ -11,11 +14,11 @@ const links: Array<NavLinkProps> = [
   },
   {
     page: 'Recipes',
-    route: '/'
+    route: '/recipes'
   },
   {
     page: 'Fun Food Sort',
-    route: '/'
+    route: '/fun-food-sort'
   },
   {
     page: 'Trophy Room',
@@ -29,13 +32,13 @@ const links: Array<NavLinkProps> = [
 
 const FoodBank = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
+    <FirebaseProvider>
       <MobileMenu links={links} />
       <Navbar links={links} />
       <main className='relative min-h-screen lg:main'>
         <Component {...pageProps} />
       </main>
-    </>
+    </FirebaseProvider>
   )
 }
 export default FoodBank
