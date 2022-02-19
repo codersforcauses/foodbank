@@ -13,7 +13,11 @@ const Arrow = ({ direction, disabled, ...props }: ArrowProps) => {
   const path = direction === 'left' ? leftSvg : rightSvg
   return (
     <button {...props}>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 24 24'
+        className='opacity-50'
+      >
         <path d={path} />
       </svg>
     </button>

@@ -61,6 +61,10 @@ const Carousel = ({
     }
   }, [slider, pause, autoplayDuration, autoplay])
 
+  useEffect(() => {
+    slider.current?.update()
+  }, [slider])
+
   return (
     <div ref={ref} className={['keen-slider', className].join(' ').trim()}>
       {children}
@@ -80,7 +84,7 @@ const Carousel = ({
           />
         </>
       )}
-      {indicators && slider.current && (
+      {indicators && (
         <Dots
           className='absolute bottom-0 left-0 right-0 z-10 flex justify-center'
           nImages={length}

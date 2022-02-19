@@ -21,7 +21,16 @@ module.exports = {
       black: '#000000',
       green: '#9dcd5a'
     },
-
+    screens: {
+      sm: '640px',
+      md: '768px',
+      recipe_md: '900px',
+      lg: '1024px',
+      recipe_lg: '1100px',
+      recipe_xl: '1250px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
     extend: {
       fontFamily: {
         sans: ['Bliss'],
@@ -29,7 +38,7 @@ module.exports = {
       },
       animation: {
         vibrate: 'vibrate 1s ease-in-out 1',
-        wiggle: 'wiggle 1s ease-in-out infinite',
+        wiggle: 'wiggle 1s ease-in-out infinite'
       },
       keyframes: {
         vibrate: {
@@ -39,19 +48,10 @@ module.exports = {
         },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
-          '50%': { transform: 'rotate(3deg)' },
+          '50%': { transform: 'rotate(3deg)' }
         }
-      },
-    },
-
-    screens: {
-      xsm: '321px',
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1281px',
-      '2xl': '1536px'
-    },
+      }
+    }
   },
 
   variants: {
@@ -59,6 +59,6 @@ module.exports = {
 
     extend: {}
   },
-  
+
   plugins: [require('tailwind-scrollbar-hide')]
 }
