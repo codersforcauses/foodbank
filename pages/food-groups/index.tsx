@@ -241,9 +241,13 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   return (
     <>
-      <div className='absolute'>
-        <Image className='-z-10 w-screen aspect-auto' src={backgroundGradientPurple} placeholder='blur'></Image>
-      </div>
+      <Image 
+        className='absolute fixed -z-10' 
+        src={backgroundGradientPurple}
+        layout='fill'
+        objectFit='cover'
+        placeholder='blur'
+      ></Image>
       {modalState && (
         <Modal heading={'You won!'} open={true} onClose={resetGame} size='lg'>
           <div className='flex items-center flex-col'>
