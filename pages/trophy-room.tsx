@@ -7,7 +7,7 @@ import Melonator from 'public/images/watermelonflipped.webp'
 
 const TrophyRoom = () => {
   return (
-    <div className='bg-primary min-h-screen md:pt-14'>
+    <div className='bg-primary min-h-screen sm:pt-14'>
       <h1 className='text-white font-bold text-6xl text-center pt-10'>
         Trophy Room
       </h1>
