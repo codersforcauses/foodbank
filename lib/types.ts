@@ -16,8 +16,8 @@ export type Character = {
   facing?: string
   heroUse: string
   heroLikes: string
-  everydayLikes:string
-  recipes:string
+  everydayLikes: string
+  recipes: string
 }
 
 export type Location = {

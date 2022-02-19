@@ -79,13 +79,21 @@ const formatCharData = (data: QueryDatabaseResponse) => {
         ? superpowersProp.rich_text[0].plain_text
         : ''
     const heroUseProp = result.properties.heroUse
-    const heroUsePlainText ='rich_text' in heroUseProp ? heroUseProp.rich_text[0].plain_text : ''
+    const heroUsePlainText =
+      'rich_text' in heroUseProp ? heroUseProp.rich_text[0].plain_text : ''
     const heroLikesProps = result.properties.heroLikes
-    const heroLikesPlainText ='rich_text' in heroLikesProps ? heroLikesProps.rich_text[0].plain_text : ''
+    const heroLikesPlainText =
+      'rich_text' in heroLikesProps
+        ? heroLikesProps.rich_text[0].plain_text
+        : ''
     const everydayLikesProps = result.properties.everydayLikes
-    const everydayLikesPlainText ='rich_text' in everydayLikesProps ? everydayLikesProps.rich_text[0].plain_text : ''
+    const everydayLikesPlainText =
+      'rich_text' in everydayLikesProps
+        ? everydayLikesProps.rich_text[0].plain_text
+        : ''
     const recipesProps = result.properties.recipes
-    const recipesPlainText ='rich_text' in recipesProps ? recipesProps.rich_text[0].plain_text : ''
+    const recipesPlainText =
+      'rich_text' in recipesProps ? recipesProps.rich_text[0].plain_text : ''
 
     return {
       about: aboutPlainText,
@@ -98,13 +106,13 @@ const formatCharData = (data: QueryDatabaseResponse) => {
       name: namePlainText,
       slug: nameSlugPlainText,
       superpowers: superpowersPlainText,
-      heroUse:heroUsePlainText,
+      heroUse: heroUsePlainText,
       heroLikes: heroLikesPlainText,
       everydayLikes: everydayLikesPlainText,
-      recipes:recipesPlainText
+      recipes: recipesPlainText
     }
   })
   return formattedCharData
 }
 
-export { getCharsFromTown,getCharsProfile }
+export { getCharsFromTown, getCharsProfile }
