@@ -26,7 +26,6 @@ const Town = ({ characters }: Props) => {
   const [canGoToNextPage, setCanGoToNextPage] = useState(false)
   const [canGoToPrevPage, setCanGoToPrevPage] = useState(false)
   const { height, width }: { height: number; width: number } = useViewport()
-  console.log(characters)
 
   // Set the title of the page based on the location slug in the URL.
   useEffect(() => {

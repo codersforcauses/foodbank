@@ -1,4 +1,5 @@
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
+import { connectFirestoreEmulator } from 'firebase/firestore'
 
 import notion from './initNotion'
 
@@ -39,83 +40,91 @@ const getCharsProfile = async (characterSlug: string) => {
 const formatCharData = (data: QueryDatabaseResponse) => {
   const formattedCharData = data.results.map(result => {
     if (!('properties' in result)) return
-    const aboutProp = result.properties.about
-    const aboutPlainText =
-      'rich_text' in aboutProp ? aboutProp.rich_text[0].plain_text : ''
-    const aliasImageProp = result.properties.aliasImage
-    const aliasImageUrl =
-      'files' in aliasImageProp && 'file' in aliasImageProp.files[0]
-        ? aliasImageProp.files[0].file.url
-        : ''
-    const aliasNameProp = result.properties.aliasName
-    const aliasNamePlainText =
-      'rich_text' in aliasNameProp ? aliasNameProp.rich_text[0].plain_text : ''
-    const facingProp = result.properties.facing
-    const facingPlainText =
-      'rich_text' in facingProp ? facingProp.rich_text[0].plain_text : ''
-    const foodGroupProp = result.properties.foodGroup
-    const foodGroupPlainText =
-      'rich_text' in foodGroupProp ? foodGroupProp.rich_text[0].plain_text : ''
-    const imageProp = result.properties.image
-    const imageUrl =
-      'files' in imageProp && 'file' in imageProp.files[0]
-        ? imageProp.files[0].file.url
-        : ''
-    const imageGifProp = result.properties.imageGif
-    const imageGifUrl =
-      'files' in imageGifProp && 'file' in imageGifProp.files[0]
-        ? imageGifProp.files[0].file.url
-        : ''
-    const locationProp = result.properties.location
-    const locationSelect =
-      'select' in locationProp ? locationProp.select?.name : ''
-    const nameProp = result.properties.name
-    const namePlainText =
-      'title' in nameProp ? nameProp.title[0].plain_text : ''
-    const nameSlugProp = result.properties.nameSlug
-    const nameSlugPlainText =
-      'rich_text' in nameSlugProp ? nameSlugProp.rich_text[0].plain_text : ''
-    const superpowersProp = result.properties.superpowers
-    const superpowersPlainText =
-      'rich_text' in superpowersProp
-        ? superpowersProp.rich_text[0].plain_text
-        : ''
-    const heroUseProp = result.properties.heroUse
-    const heroUsePlainText =
-      'rich_text' in heroUseProp ? heroUseProp.rich_text[0].plain_text : ''
-    const heroLikesProps = result.properties.heroLikes
-    const heroLikesPlainText =
-      'rich_text' in heroLikesProps
-        ? heroLikesProps.rich_text[0].plain_text
-        : ''
-    const everydayLikesProps = result.properties.everydayLikes
-    const everydayLikesPlainText =
-      'rich_text' in everydayLikesProps
-        ? everydayLikesProps.rich_text[0].plain_text
-        : ''
-    const recipesProps = result.properties.recipes
-    const recipesPlainText =
-      'rich_text' in recipesProps ? recipesProps.rich_text[0].plain_text : ''
-
+    const name = getTitle(result, 'name')
+    const about = getPropVal(result, 'about', name)
+    const aliasImage = getPropVal(result, 'aliasImage', name)
+    const aliasName = getPropVal(result, 'name', name)
+    const facing = getPropVal(result, 'facing', name)
+    const everydayLikes = getPropVal(result, 'everydayLikes', name)
+    const foodGroup = getPropVal(result, 'foodGroup', name)
+    const heroLikes = getPropVal(result, 'heroLikes', name)
+    const heroUse = getPropVal(result, 'heroUse', name)
+    const image = getPropVal(result, 'image', name)
+    const imageGif = getPropVal(result, 'imageGif', name)
+    const location = getPropVal(result, 'location', name)
+    const nameSlug = getPropVal(result, 'nameSlug', name)
+    const recipes = getPropVal(result, 'recipes', name)
+    const superpowers = getPropVal(result, 'superpowers', name)
     return {
-      about: aboutPlainText,
-      aliasImage: aliasImageUrl,
-      aliasName: aliasNamePlainText,
-      facing: facingPlainText,
-      foodGroup: foodGroupPlainText,
-      image: imageUrl,
-      imageGif: imageGifUrl,
-      location: locationSelect,
-      name: namePlainText,
-      slug: nameSlugPlainText,
-      superpowers: superpowersPlainText,
-      heroUse: heroUsePlainText,
-      heroLikes: heroLikesPlainText,
-      everydayLikes: everydayLikesPlainText,
-      recipes: recipesPlainText
+      about: about,
+      aliasImage: aliasImage,
+      aliasName: aliasName,
+      facing: facing,
+      foodGroup: foodGroup,
+      image: image,
+      imageGif: imageGif,
+      location: location,
+      name: name,
+      slug: nameSlug,
+      superpowers: superpowers,
+      heroUse: heroUse,
+      heroLikes: heroLikes,
+      everydayLikes: everydayLikes,
+      recipes: recipes
     }
   })
   return formattedCharData
+}
+
+const getTitle = (result: any, titlePropName: string): string => {
+  const titleProp = result.properties[titlePropName]
+  if (titleProp.type !== 'title') throw 'Missing title.'
+  return titleProp.title[0].plain_text
+}
+
+const getPropVal = (result: any, propName: string, title: string): string => {
+  if (!(propName in result.properties)) {
+    throw new Error('Could not find property "' + propName + '".')
+  }
+  const prop = result.properties[propName]
+  if (prop.type === 'files') {
+    if (prop.files.length === 0) {
+      throw new Error(
+        'Database item "' +
+          title +
+          '" is missing a file in column "' +
+          propName +
+          '".'
+      )
+    }
+    return prop.files[0].file.url
+  } else if (prop.type === 'rich_text') {
+    if (prop.rich_text.length === 0) {
+      throw new Error(
+        'Database item "' +
+          title +
+          '" is missing text in column "' +
+          propName +
+          '".'
+      )
+    }
+    return prop.rich_text[0].plain_text
+  } else if (prop.type === 'select') {
+    if (!prop.select) {
+      throw new Error(
+        'Database item "' +
+          title +
+          '" is missing select value in column "' +
+          propName +
+          '".'
+      )
+    }
+    return prop.select.name
+  } else {
+    throw new Error(
+      'This function cannot handle property of type "' + prop.type + '".'
+    )
+  }
 }
 
 export { getCharsFromTown, getCharsProfile }
