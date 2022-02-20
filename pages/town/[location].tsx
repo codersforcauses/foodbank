@@ -7,7 +7,7 @@ import type { Character, Location } from '@lib/types'
 
 import CharacterCarousel from '@components/Character/Carousel'
 import locations from '@components/Map/assets/locations'
-import { getCharsFromTown } from '@components/NotionAPI/getCharsFromTown'
+import { getCharsFromTown } from '@components/NotionAPI/characters'
 
 import Background from 'public/images/characters/bg-turquoise.webp'
 
