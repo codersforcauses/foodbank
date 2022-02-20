@@ -48,7 +48,7 @@ const formatCharData = (data: QueryDatabaseResponse) => {
     const name = getTitle(result, 'name')
     const about = getColVal(result, 'about', name)
     const aliasImage = getColVal(result, 'aliasImage', name)
-    const aliasName = getColVal(result, 'name', name)
+    const aliasName = getColVal(result, 'aliasName', name)
     const facing = getColVal(result, 'facing', name)
     const everydayLikes = getColVal(result, 'everydayLikes', name)
     const foodGroup = getColVal(result, 'foodGroup', name)
