@@ -36,7 +36,7 @@ export default function Document() {
           content='A web application aiming to educate young children about healthy eating habits and food groups.'
         />
         <meta name='theme-color' content='#671E75' />
-        <link rel='manifest' href='/manifest.json' />
+        <link rel='manifest' href='/manifest.webmanifest' />
         <link rel='shortcut icon' href='/favicon.ico' />
         <link rel='apple-touch-icon' href='icons/apple-touch-icon.png'></link>
       </Head>
