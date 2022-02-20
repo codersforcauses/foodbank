@@ -20,6 +20,7 @@ const getCharsFromTown = async (town: string) => {
   return chars
 }
 
+/** Get character information identified by its slug. */
 const getCharsProfile = async (characterSlug: string) => {
   let data = await notion.databases.query({
     database_id: process.env.NOTION_CHARACTERS_DB_ID ?? '',
@@ -39,22 +40,25 @@ const getCharsProfile = async (characterSlug: string) => {
 /** Nicely formats Notion Character DB response into an easy-to-access object. */
 const formatCharData = (data: QueryDatabaseResponse) => {
   const formattedCharData = data.results.map(result => {
-    if (!('properties' in result)) return
+    if (!('properties' in result)) {
+      // This is an empty database row.
+      return
+    }
     const name = getTitle(result, 'name')
-    const about = getPropVal(result, 'about', name)
-    const aliasImage = getPropVal(result, 'aliasImage', name)
-    const aliasName = getPropVal(result, 'name', name)
-    const facing = getPropVal(result, 'facing', name)
-    const everydayLikes = getPropVal(result, 'everydayLikes', name)
-    const foodGroup = getPropVal(result, 'foodGroup', name)
-    const heroLikes = getPropVal(result, 'heroLikes', name)
-    const heroUse = getPropVal(result, 'heroUse', name)
-    const image = getPropVal(result, 'image', name)
-    const imageGif = getPropVal(result, 'imageGif', name)
-    const location = getPropVal(result, 'location', name)
-    const nameSlug = getPropVal(result, 'nameSlug', name)
-    const recipes = getPropVal(result, 'recipes', name)
-    const superpowers = getPropVal(result, 'superpowers', name)
+    const about = getColVal(result, 'about', name)
+    const aliasImage = getColVal(result, 'aliasImage', name)
+    const aliasName = getColVal(result, 'name', name)
+    const facing = getColVal(result, 'facing', name)
+    const everydayLikes = getColVal(result, 'everydayLikes', name)
+    const foodGroup = getColVal(result, 'foodGroup', name)
+    const heroLikes = getColVal(result, 'heroLikes', name)
+    const heroUse = getColVal(result, 'heroUse', name)
+    const image = getColVal(result, 'image', name)
+    const imageGif = getColVal(result, 'imageGif', name)
+    const location = getColVal(result, 'location', name)
+    const nameSlug = getColVal(result, 'nameSlug', name)
+    const recipes = getColVal(result, 'recipes', name)
+    const superpowers = getColVal(result, 'superpowers', name)
     return {
       about: about,
       aliasImage: aliasImage,
@@ -76,24 +80,26 @@ const formatCharData = (data: QueryDatabaseResponse) => {
   return formattedCharData
 }
 
-const getTitle = (result: any, titlePropName: string): string => {
-  const titleProp = result.properties[titlePropName]
-  if (titleProp.type !== 'title') throw 'Missing title.'
+/** Returns the title of a Notion DB item/row. */
+const getTitle = (result: any, titlecolName: string): string => {
+  const titleProp = result.properties[titlecolName]
+  if (titleProp.type !== 'title') throw new Error('Missing title.')
   return titleProp.title[0].plain_text
 }
 
-const getPropVal = (result: any, propName: string, title: string): string => {
-  if (!(propName in result.properties)) {
-    throw new Error('Could not find property "' + propName + '".')
+/** Returns a column value of a Notion DB item/row identified by the column name. Title of the item/row is needed for meaningful error messages (make sure to call `getTitle` before any calls to this function).*/
+const getColVal = (result: any, colName: string, title: string): string => {
+  if (!(colName in result.properties)) {
+    throw new Error('Could not find property "' + colName + '".')
   }
-  const prop = result.properties[propName]
+  const prop = result.properties[colName]
   if (prop.type === 'files') {
     if (prop.files.length === 0) {
       throw new Error(
         'Database item "' +
           title +
           '" is missing a file in column "' +
-          propName +
+          colName +
           '".'
       )
     }
@@ -104,7 +110,7 @@ const getPropVal = (result: any, propName: string, title: string): string => {
         'Database item "' +
           title +
           '" is missing text in column "' +
-          propName +
+          colName +
           '".'
       )
     }
@@ -115,7 +121,7 @@ const getPropVal = (result: any, propName: string, title: string): string => {
         'Database item "' +
           title +
           '" is missing select value in column "' +
-          propName +
+          colName +
           '".'
       )
     }
