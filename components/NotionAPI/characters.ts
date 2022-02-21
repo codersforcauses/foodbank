@@ -1,7 +1,6 @@
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
-import { getColVal, getTitle } from './general'
-import { connectFirestoreEmulator } from 'firebase/firestore'
 
+import { getColVal, getTitle } from './general'
 import notion from './initNotion'
 
 /** Get characters from a particular town from the Notion DB, based on town slug. */
