@@ -3,7 +3,7 @@ import Image from 'next/image'
 import type { Character } from 'lib/types'
 
 import ProfileDisplay from '@components/Character/ProfileDisplay'
-import Footer from '@components/Footer'
+import ProfileFooter from '@components/Character/ProfileFooter'
 import { getCharsProfile } from '@components/NotionAPI/characters'
 
 import bgImg from 'public/images/BG Blue.jpg'
@@ -29,7 +29,7 @@ const Profile = ({ character }: Props) => {
         objectFit='cover'
       />
       <ProfileDisplay character={character} state={state} />
-      <Footer location={character.location} stateChange={stateChange} />
+      <ProfileFooter location={character.location} stateChange={stateChange} />
     </>
   )
 }
