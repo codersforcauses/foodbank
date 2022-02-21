@@ -25,7 +25,7 @@ const CarouselItem = ({ chr }: CarouselItemProps): JSX.Element => {
         </div>
       )}
       <div className='my-12'>
-        <Link href={`/profile/${chr.slug}`}>
+        <Link href={`/profile/${chr.slug}`} passHref>
           <Button>{chr.name}</Button>
         </Link>
       </div>
