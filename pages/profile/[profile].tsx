@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { NextRouter, useRouter } from 'next/router'
 import type { Character } from 'lib/types'
 
 import ProfileDisplay from '@components/Character/ProfileDisplay'
@@ -16,14 +15,10 @@ interface Props {
 
 /** Page displaying carousel of characters from a particular town. Contains links to individual character pages. */
 const Profile = ({ character }: Props) => {
-  const route: NextRouter = useRouter()
-  const { profile } = route.query
-  const [isShowing, setIsShowing] = useState(false)
   const [state, setState] = useState(true)
   const stateChange = () => {
     setState(!state)
   }
-  console.log(isShowing)
   return (
     <>
       <Image
