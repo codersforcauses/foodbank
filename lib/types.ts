@@ -48,6 +48,7 @@ interface Character {
   heroLikes: string
   everydayLikes: string
   recipes: string
+  slug: string
 }
 
 interface Trophy {

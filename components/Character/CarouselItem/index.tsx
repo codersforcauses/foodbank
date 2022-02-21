@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import type { Character } from '@lib/types'
 
@@ -24,7 +25,9 @@ const CarouselItem = ({ chr }: CarouselItemProps): JSX.Element => {
         </div>
       )}
       <div className='my-12'>
-        <Button>{chr.name}</Button>
+        <Link href={`/profile/${chr.slug}`}>
+          <Button>{chr.name}</Button>
+        </Link>
       </div>
     </div>
   )
