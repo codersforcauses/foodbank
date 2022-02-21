@@ -39,3 +39,5 @@ yarn.lock
 # IDE settings
 # .vscode/
 .idea/
+
+public/sw.*
