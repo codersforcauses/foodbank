@@ -1,7 +1,5 @@
-import type { Character } from 'lib/types'
 import Image from 'next/image'
-import { Transition } from '@headlessui/react'
-import { useState } from 'react'
+import type { Character } from 'lib/types'
 interface Props {
   character: Character
   state: boolean

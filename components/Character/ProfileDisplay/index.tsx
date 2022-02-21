@@ -1,7 +1,8 @@
 import type { Character } from 'lib/types'
-import ProfileItem from '@components/Character/ProfileItem'
+
 import CharacterImg from '@components/Character/CharacterImg'
-import style from './index.module.css'
+import ProfileItem from '@components/Character/ProfileItem'
+
 interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
   character: Character

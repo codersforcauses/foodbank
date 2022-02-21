@@ -1,5 +1,4 @@
 import type { Character } from 'lib/types'
-import { useState } from 'react'
 interface Props {
   character: Character
   state: boolean

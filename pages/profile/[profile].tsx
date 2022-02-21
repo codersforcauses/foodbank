@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter, NextRouter } from 'next/router'
+import React, { useState } from 'react'
 import Image from 'next/image'
-import bgImg from 'public/images/BG Blue.jpg'
-import { getCharsProfile } from '@components/NotionAPI/characters'
+import { NextRouter, useRouter } from 'next/router'
 import type { Character } from 'lib/types'
-import Footer from '@components/Footer'
+
 import ProfileDisplay from '@components/Character/ProfileDisplay'
+import Footer from '@components/Footer'
+import { getCharsProfile } from '@components/NotionAPI/characters'
+
+import bgImg from 'public/images/BG Blue.jpg'
 
 interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
