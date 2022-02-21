@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import type { Character } from 'lib/types'
 
 import ProfileDisplay from '@components/Character/ProfileDisplay'
-import Footer from '@components/Footer'
+import ProfileFooter from '@components/Character/ProfileFooter'
 import { getCharsProfile } from '@components/NotionAPI/characters'
 
 import bgImg from 'public/images/BG Blue.jpg'
@@ -15,10 +15,15 @@ interface Props {
 
 /** Page displaying carousel of characters from a particular town. Contains links to individual character pages. */
 const Profile = ({ character }: Props) => {
-  const [state, setState] = useState(true)
+  const [toggleTransition, setToggleTransition] = useState(true)
+  const [showEverydayFood, setShowEverydayFood] = useState(true)
   const stateChange = () => {
-    setState(!state)
+    setToggleTransition(prev => !prev)
+    setTimeout(() => {
+      setShowEverydayFood(prev => !prev)
+    }, 300)
   }
+
   return (
     <>
       <Image
@@ -28,8 +33,12 @@ const Profile = ({ character }: Props) => {
         layout='fill'
         objectFit='cover'
       />
-      <ProfileDisplay character={character} state={state} />
-      <Footer stateChange={stateChange} />
+      <ProfileDisplay
+        character={character}
+        showEverydayFood={showEverydayFood}
+        toggleTransition={toggleTransition}
+      />
+      <ProfileFooter location={character.location} stateChange={stateChange} />
     </>
   )
 }
