@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { value Transition } from '@headlessui/react'
-import type { value Character } from 'lib/types'
+import { Transition } from '@headlessui/react'
+import type { Character } from 'lib/types'
 interface Props {
   character: Character
   showEverydayFood: boolean
