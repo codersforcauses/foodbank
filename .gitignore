@@ -15,6 +15,12 @@
 # production
 /build
 
+#PWA files
+/public/sw.js
+/public/sw.js.*
+/public/workbox-*
+
+
 # misc
 .DS_Store
 *.pem
@@ -39,3 +45,7 @@ yarn.lock
 # IDE settings
 # .vscode/
 .idea/
+
+# Auto-generated build files
+public/sw.*
+public/workbox*

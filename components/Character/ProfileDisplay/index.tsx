@@ -1,24 +1,35 @@
 import type { Character } from 'lib/types'
-import ProfileItem from '@components/Character/ProfileItem'
+
 import CharacterImg from '@components/Character/CharacterImg'
-import style from './index.module.css'
+import ProfileItem from '@components/Character/ProfileItem'
+
 interface Props {
   /** All characters from the town specified in the URL. Fetched from Notion DB. */
   character: Character
-  state: boolean
+  showEverydayFood: boolean
+  toggleTransition: boolean
 }
-
-function ProfileDisplay({ character, state }: Props) {
+function ProfileDisplay({
+  character,
+  showEverydayFood,
+  toggleTransition
+}: Props) {
   return (
     <>
       <div className='relative flex space-x-24 items-center justify-center main'>
-        <CharacterImg character={character} state={state} />
+        <CharacterImg
+          character={character}
+          showEverydayFood={showEverydayFood}
+          toggleTransition={toggleTransition}
+        />
         <div className='relative w-128 h-max flex flex-col justify-center items-center bg-grey-light z-20 rounded-3xl font-serif'>
-          <ProfileItem character={character} state={state} />
+          <ProfileItem
+            character={character}
+            showEverydayFood={showEverydayFood}
+          />
         </div>
       </div>
     </>
-    // </div>
   )
 }
 

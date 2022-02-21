@@ -1,6 +1,6 @@
 import { Recipe, RecipeStep } from '@lib/types'
-import { getCharsProfile } from './getCharsFromTown'
 
+import { getCharsProfile } from './characters'
 import notion from './initNotion'
 
 const getRecipeDetails = async (slug: string) => {
