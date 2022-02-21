@@ -1,9 +1,8 @@
-import React from 'react'
 import Image from 'next/image'
 
-import TrophyGroup from 'components/TrophyRoom/TrophyGroup'
+import { useFirebase } from '@components/FirebaseContext/context'
+import TrophyGroup from '@components/TrophyRoom/TrophyGroup'
 
-import TrophyCabinetImage from 'public/images/trophy-cabinet.webp'
 import BrightYellowTrophy from 'public/images/trophies/brightyellow.webp'
 import CupcakePurpleTrophy from 'public/images/trophies/cupcakepurple.webp'
 import CyanBlueTrophy from 'public/images/trophies/cyanblue.webp'
@@ -21,12 +20,11 @@ import RubyGemTrophy from 'public/images/trophies/rubygem.webp'
 import SkyBlueTrophy from 'public/images/trophies/skyblue.webp'
 import TealBlueTrophy from 'public/images/trophies/tealblue.webp'
 import WhippedCreamTrophy from 'public/images/trophies/whippedcream.webp'
+import TrophyCabinetImage from 'public/images/trophy-cabinet.webp'
 
-type Props = {
-  numUnlocked: number
-}
-
-const TrophyCabinet = ({ numUnlocked }: Props) => {
+const TrophyCabinet = () => {
+  const { achievementsCount } = useFirebase()
+  const numUnlocked = achievementsCount.count
   const numTrophyGroups = Math.ceil(numUnlocked / 3)
   const trophies = [
     BrightYellowTrophy,
@@ -45,12 +43,12 @@ const TrophyCabinet = ({ numUnlocked }: Props) => {
     RubyGemTrophy,
     SkyBlueTrophy,
     TealBlueTrophy,
-    WhippedCreamTrophy
+    WhippedCreamTrophy,
+    BrightYellowTrophy
   ]
   return (
-    <div className='relative max-w-xl flex justify-center items-center sm:items-start'>
-      <div className='absolute z-10 flex flex-wrap justify-between w-[75%] md:w-full  h-[63%] sm:h-5/6 mt-14 sm:mt-20 md:mt-4 lg:mt-9 xl:mt-2 sm:pt-16 md:pt-24 lg:pt-24 xl:pt-32'>
-        {/* grid grid-cols-2 gap-x-12 gap-y-4 md:gap-y-6 lg:gap-y-2 xl:gap-y-6 */}
+    <div className='relative max-w-xl flex justify-center'>
+      <div className='absolute z-10 flex flex-wrap content-start gap-3 sm:gap-4 md:gap-5 justify-between w-[75%] sm:w-full mt-[5.5rem] sm:mt-[6.5rem] md:mt-[7.8rem] lg:mt-[8.5rem]'>
         {[...Array(numTrophyGroups)].map((e, i) => (
           <TrophyGroup
             trophy1={3 * i < numUnlocked ? trophies[3 * i] : null}
@@ -61,7 +59,7 @@ const TrophyCabinet = ({ numUnlocked }: Props) => {
           />
         ))}
       </div>
-      <div className='z-0'>
+      <div className='z-0 w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem]'>
         <Image src={TrophyCabinetImage} alt='Cabinet' />
       </div>
     </div>

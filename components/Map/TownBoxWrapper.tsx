@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { FC } from 'react'
+
+import locations from './assets/locations'
 import Townbox from '../TownBox'
-import descData from './assets/description.json'
 
 interface TownBoxWrapperProps {
   selected: string | null
@@ -17,9 +18,10 @@ interface TownBox {
   showButton?: boolean
   id?: string
   showing?: boolean
+  route?: string
 }
 
-const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
+const TownBoxWrapper: FC<TownBoxWrapperProps> = ({
   selected,
   setSelectedArea,
   setIsShowing,
@@ -33,10 +35,16 @@ const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
   }
 
   if (selected) {
-    const selectedArea = descData.descriptionArray.find(x => x.id === selected)
+    const selectedArea = locations.find(x => x.id === selected)
     if (selectedArea) {
-      const { headerText, captionText, headerColor, showButton, id }: TownBox =
-        selectedArea
+      const {
+        headerText,
+        captionText,
+        headerColor,
+        showButton,
+        id,
+        route
+      }: TownBox = selectedArea
 
       return (
         <div key={id} className='sm:w-2/3'>
@@ -46,6 +54,7 @@ const TownBoxWrapper: React.FC<TownBoxWrapperProps> = ({
             captionText={captionText}
             showButton={showButton}
             close={handleClose}
+            linksrc={route}
           />
         </div>
       )

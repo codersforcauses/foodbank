@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import Link from 'next/link'
+
 import Button from '../Custom/Button'
+
 import styles from './index.module.css'
 
 interface TownboxProps {
@@ -8,6 +10,7 @@ interface TownboxProps {
   captionText?: string
   showButton?: boolean
   close: () => void
+  linksrc: string | undefined
 }
 
 const Townbox = ({
@@ -15,7 +18,8 @@ const Townbox = ({
   captionText,
   headerColor,
   showButton,
-  close
+  close,
+  linksrc
 }: TownboxProps) => {
   const bgColour: 'bg-primary' | 'bg-orange' =
     headerColor === 'primary' ? 'bg-primary' : 'bg-orange'
@@ -32,21 +36,23 @@ const Townbox = ({
       <div
         className={`${styles.captionbox} -skew-x-12 flex relative flex-col items-center justify-center p-8 mt-16 border-4 border-black w-full h-auto pb-2 pt-2`}
       >
-        <p className='skew-x-12 font-sans border-solid z-10 font-bold sm:font-normal md:text-xl break-words leading-5 relative mb-0 mt-4 pb-2 pt-3'>
+        <p className='relative z-10 pt-3 pb-2 mt-4 mb-0 font-sans font-bold leading-5 break-words skew-x-12 border-solid sm:font-normal md:text-xl'>
           {captionText}
         </p>
 
         <button
           onClick={close}
-          className='skew-x-12 absolute right-5 top-2 scale-110'
+          className='absolute scale-110 skew-x-12 right-5 top-2'
         >
           &#10006;
         </button>
 
         {showButton && (
-          <Button className='skew-x-12' color='primary'>
-            Visit
-          </Button>
+          <Link href={`town/${linksrc}`} passHref>
+            <Button className='skew-x-12' color='primary'>
+              Visit
+            </Button>
+          </Link>
         )}
       </div>
     </div>
