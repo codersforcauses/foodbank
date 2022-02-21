@@ -5,8 +5,8 @@
   "scope": "/",
   "start_url": "/",
   "name": "Superhero Foods",
-  "short_name": "SHF APP",
-  "description": "A web application aiming to educate young children about healthy eating habits and food groups.",
+  "short_name": "SHF App",
+  "description": "An app aiming to educate young children about healthy eating habits and food groups.",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
