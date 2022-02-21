@@ -29,7 +29,7 @@ const Profile = ({ character }: Props) => {
         objectFit='cover'
       />
       <ProfileDisplay character={character} state={state} />
-      <Footer stateChange={stateChange} />
+      <Footer location={character.location} stateChange={stateChange} />
     </>
   )
 }
