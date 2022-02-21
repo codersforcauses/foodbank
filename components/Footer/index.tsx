@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 interface prop {
-  location?: string
+  location: string
   stateChange: () => void
 }
 const Footer = ({ location, stateChange }: prop) => {
