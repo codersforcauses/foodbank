@@ -40,4 +40,6 @@ yarn.lock
 # .vscode/
 .idea/
 
+# Auto-generated build files
 public/sw.*
+public/workbox*
