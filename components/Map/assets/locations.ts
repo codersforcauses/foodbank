@@ -136,11 +136,11 @@ const locations = [
     headerColor: 'primary',
     headerText: 'Clucky Coop',
     captionText:
-      "The Clucky Coup keeps all the chickens safe and keeps them well away from the busy road. Strutting around the Clucky Coup, the Cheeky Chicken loves to play with his friends when they aren't busy laying lots of lovely eggs.",
+      "The Clucky Coop keeps all the chickens safe and keeps them well away from the busy road. Strutting around the Clucky Coop, the Cheeky Chicken loves to play with his friends when they aren't busy laying lots of lovely eggs.",
     showButton: true,
     maxWidth: '',
     maxHeight: '',
-    route: 'clucky-cloop'
+    route: 'clucky-coop'
   },
   {
     id: 'yoghurtMountains',
@@ -162,7 +162,7 @@ const locations = [
     showButton: true,
     maxWidth: '',
     maxHeight: '',
-    route: 'aqua-oceans'
+    route: 'aqua-ocean'
   }
 ]
 
