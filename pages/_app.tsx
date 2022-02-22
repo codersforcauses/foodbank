@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 
+import LoadingSpinner from '@components/Custom/LoadingSpinner'
 import { FirebaseProvider } from '@components/FirebaseContext'
 import MobileMenu from '@components/MobileMenu'
 import Navbar from '@components/NavBar'
@@ -38,6 +39,7 @@ const FoodBank = ({ Component, pageProps }: AppProps) => {
       <main className='relative min-h-screen lg:main'>
         <Component {...pageProps} />
       </main>
+      <LoadingSpinner />
     </FirebaseProvider>
   )
 }
