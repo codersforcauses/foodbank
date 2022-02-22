@@ -1,54 +1,9 @@
+import { getColVal, getTitle } from './general'
 import notion from './initNotion'
 
 const getAllRecipes = async () => {
   let data = await notion.databases.query({
     database_id: process.env.NOTION_RECIPES_DB_ID ?? ''
-  })
-
-  // pre filter the original data, making sure there's no entries with empty properties
-  const filtered_data = data.results.filter(result => {
-    if (!('properties' in result)) return
-    const CategoryProp = result.properties?.Category
-    const RecipeProp = result.properties?.Recipe
-    const EquipmentProp = result.properties?.Equipment
-    const characterIdProp = result.properties?.characterId
-    const colorSchemeProp = result.properties?.colorScheme
-    const equipmentImgProp = result.properties?.equipmentImg
-    const finalShotProp = result.properties?.finalShot
-    const ingredientsProp = result.properties?.ingredients
-    const ingredientsImgProp = result.properties?.ingredientsImg
-    const slugProp = result.properties?.slug
-    return (
-      (CategoryProp?.type === 'multi_select'
-        ? CategoryProp.multi_select[0]
-        : undefined) !== undefined &&
-      (RecipeProp?.type === 'title'
-        ? RecipeProp.title[0].plain_text
-        : undefined) !== undefined &&
-      (EquipmentProp?.type === 'multi_select'
-        ? EquipmentProp.multi_select[0]
-        : undefined) !== undefined &&
-      (characterIdProp?.type === 'relation'
-        ? characterIdProp.relation[0]
-        : undefined) !== undefined &&
-      (colorSchemeProp?.type === 'rich_text'
-        ? colorSchemeProp.rich_text[0].plain_text
-        : undefined) !== undefined &&
-      (equipmentImgProp?.type === 'files'
-        ? equipmentImgProp.files[0]
-        : undefined) !== undefined &&
-      (finalShotProp?.type === 'files' ? finalShotProp.files[0] : undefined) !==
-        undefined &&
-      (ingredientsProp?.type === 'multi_select'
-        ? ingredientsProp.multi_select[0]
-        : undefined) !== undefined &&
-      (ingredientsImgProp?.type === 'files'
-        ? ingredientsImgProp.files[0]
-        : undefined) !== undefined &&
-      (slugProp?.type === 'rich_text'
-        ? slugProp.rich_text[0].plain_text
-        : undefined) !== undefined
-    )
   })
 
   const chars = await notion.databases.query({
@@ -108,78 +63,35 @@ const getAllRecipes = async () => {
     }
   }
 
-  const recipes = filtered_data.map(recipe => {
+  const recipes = data.results.map(recipe => {
     if (!('properties' in recipe)) return {}
-    const nameProp = recipe.properties.Recipe
-    const categoryProp = recipe.properties.Category
-    const tagsProp = recipe.properties.Tags
-    const equipmentProp = recipe.properties.Equipment
-    const ingredientsProp = recipe.properties.ingredients
-    const equipmentImgProp = recipe.properties.equipmentImg
-    const ingredientsImgProp = recipe.properties.ingredientsImg
-    const finalShotProp = recipe.properties.finalShot
-    const colorSchemeProp = recipe.properties.colorScheme
-    const hintProp = recipe.properties.hint
-    const slugProp = recipe.properties.slug
-    const characterIdProp = recipe.properties.characterId
+    const name = getTitle(recipe, 'Recipe')
+    const category = getColVal(recipe, 'Category', name)
+    const characterId = getColVal(recipe, 'characterId', name)
+    const colorScheme = getColVal(recipe, 'colorScheme', name)
+    const equipment = getColVal(recipe, 'Equipment', name)
+    const equipmentImg = getColVal(recipe, 'equipmentImg', name)
+    const finalShot = getColVal(recipe, 'finalShot', name)
+    const hint = getColVal(recipe, 'hint', name, true)
+    const ingredients = getColVal(recipe, 'ingredients', name)
+    const ingredientsImg = getColVal(recipe, 'ingredientsImg', name)
+    const slug = getColVal(recipe, 'slug', name)
+    const tags = getColVal(recipe, 'Tags', name)
     return {
+      name: name,
+      category: category,
+      character: getCharacterProps(characterId),
+      characterId: characterId,
+      colorScheme: colorScheme,
+      equipment: equipment,
+      equipmentImg: equipmentImg,
+      finalShot: finalShot,
+      hint: hint,
+      ingredients: ingredients,
+      ingredientsImg: ingredientsImg,
       page_id: recipe.id,
-      name: nameProp.type === 'title' ? nameProp.title[0].plain_text : '',
-      category:
-        categoryProp.type === 'multi_select'
-          ? categoryProp.multi_select.map(category => category.name)
-          : [],
-      tags:
-        tagsProp.type === 'multi_select'
-          ? tagsProp.multi_select.map(tag => tag.name)
-          : [],
-      equipment:
-        equipmentProp.type === 'multi_select'
-          ? equipmentProp.multi_select.map(item => item.name)
-          : [],
-      ingredients:
-        ingredientsProp.type === 'multi_select'
-          ? ingredientsProp.multi_select.map(item => item.name)
-          : [],
-      equipmentImg:
-        equipmentImgProp.type === 'files'
-          ? equipmentImgProp.files[0].type === 'file'
-            ? equipmentImgProp.files[0].file.url
-            : ''
-          : '',
-      ingredientsImg:
-        ingredientsImgProp.type === 'files'
-          ? ingredientsImgProp.files[0].type === 'file'
-            ? ingredientsImgProp.files[0].file.url
-            : ''
-          : '',
-      finalShot:
-        finalShotProp.type === 'files'
-          ? finalShotProp.files[0].type === 'file'
-            ? finalShotProp.files[0].file.url
-            : ''
-          : '',
-      colorScheme:
-        colorSchemeProp.type === 'rich_text'
-          ? colorSchemeProp.rich_text[0].plain_text
-          : '',
-      hint:
-        hintProp.type === 'rich_text'
-          ? hintProp.rich_text[0]
-            ? hintProp.rich_text[0].plain_text
-            : ''
-          : '',
-      slug:
-        slugProp.type === 'rich_text' ? slugProp.rich_text[0].plain_text : '',
-      character: getCharacterProps(
-        characterIdProp.type === 'relation'
-          ? characterIdProp.relation[0].id
-          : ''
-      ),
-      characterId:
-        characterIdProp.type === 'relation'
-          ? characterIdProp.relation[0].id
-          : ''
+      slug: slug,
+      tags: tags
     }
   })
 

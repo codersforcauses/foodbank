@@ -5,43 +5,85 @@
  * @param result - A result from a Notion DB query response.
  * @param colName - Name of the column to retrieve a value from.
  * @param title - Title of the database item to retrieve a value from.
+ * @param nullable - If set to false, exceptions are thrown when the value is not set.
  */
-const getColVal = (result: any, colName: string, title: string): string => {
+const getColVal = (
+  result: any,
+  colName: string,
+  title: string,
+  nullable: boolean = false
+): string => {
   if (!(colName in result.properties)) {
     throw new Error('Could not find property "' + colName + '".')
   }
   const prop = result.properties[colName]
   if (prop.type === 'files') {
     if (prop.files.length === 0) {
-      throw new Error(
-        'Database item "' +
-          title +
-          '" is missing a file in column "' +
-          colName +
-          '".'
-      )
+      if (!nullable) {
+        throw new Error(
+          'Database item "' +
+            title +
+            '" is missing a file in column "' +
+            colName +
+            '".'
+        )
+      }
+      return ''
     }
     return prop.files[0].file.url
-  } else if (prop.type === 'rich_text') {
-    if (prop.rich_text.length === 0) {
+  } else if (prop.type === 'multi_select') {
+    if (prop.multi_select.length === 0 && !nullable) {
       throw new Error(
         'Database item "' +
           title +
-          '" is missing text in column "' +
+          '" is missing multi-select tags in column "' +
           colName +
           '".'
       )
     }
+    return prop.multi_select.map(
+      (tag: { id: string; name: string; color: string }) => tag.name
+    )
+  } else if (prop.type === 'rich_text') {
+    if (prop.rich_text.length === 0) {
+      if (!nullable) {
+        throw new Error(
+          'Database item "' +
+            title +
+            '" is missing text in column "' +
+            colName +
+            '".'
+        )
+      }
+      return ''
+    }
     return prop.rich_text[0].plain_text
+  } else if (prop.type === 'relation') {
+    if (prop.relation.length === 0) {
+      if (!nullable) {
+        throw new Error(
+          'Database item "' +
+            title +
+            '" is missing a relation in column "' +
+            colName +
+            '".'
+        )
+      }
+      return ''
+    }
+    return prop.relation[0].id
   } else if (prop.type === 'select') {
     if (!prop.select) {
-      throw new Error(
-        'Database item "' +
-          title +
-          '" is missing select value in column "' +
-          colName +
-          '".'
-      )
+      if (!nullable) {
+        throw new Error(
+          'Database item "' +
+            title +
+            '" is missing select value in column "' +
+            colName +
+            '".'
+        )
+      }
+      return ''
     }
     return prop.select.name
   } else {
