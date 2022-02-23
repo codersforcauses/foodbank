@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Vector2 } from './Draggable/boundingbox'
 
 type StateDispatch<T> = React.Dispatch<React.SetStateAction<T>>

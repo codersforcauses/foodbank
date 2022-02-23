@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Draggable, { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
 import {
