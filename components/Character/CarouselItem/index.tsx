@@ -22,6 +22,7 @@ const CarouselItem = ({ chr }: CarouselItemProps): JSX.Element => {
               layout='fill'
               objectFit='contain'
               alt='Picture of the author'
+              priority={true}
             ></Image>
           </div>
         )}
