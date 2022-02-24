@@ -4,7 +4,7 @@ import FoodGroups from 'components/FoodGroups'
 
 import Auth from '@components/Auth'
 import { Button, Modal } from '@components/Custom'
-import { ACHIEVEMENT, useFirebase } from '@components/FirebaseContext'
+import { useFirebase } from '@components/FirebaseContext/context'
 import { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
 import {
   ORIGIN_VECTOR2,
@@ -38,7 +38,7 @@ interface Props {
 }
 
 const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
-  const { achievements, updateAchievementsDocument, user } = useFirebase()
+  const { user } = useFirebase()
   // SIGN IN FORM
   const [openSignInForm, setOpenSignInForm] = useState(false)
   const toggleOpenSignInForm = useCallback(() => {
@@ -118,18 +118,18 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     })
   }, [])
 
-  useEffect(() => {
-    if (user && roundCounterSignedOut > 0) {
-      updateAchievementsDocument?.({
-        [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
-          achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + roundCounterSignedOut,
-        // For now, achivements is just the amount of game wins
-        [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
-          achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + roundCounterSignedOut
-      })
-      setRoundCounterSignedOut(0) // Reset count so it doesn't get 'double added' if a person relogs
-    }
-  }, [roundCounterSignedOut, achievements]) // Do not include user - user triggers update BEFORE achievements is updated with online data
+  // useEffect(() => {
+  //   if (user && roundCounterSignedOut > 0) {
+  //     updateAchievementsDocument?.({
+  //       [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
+  //         achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + roundCounterSignedOut,
+  //       // For now, achivements is just the amount of game wins
+  //       [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
+  //         achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + roundCounterSignedOut
+  //     })
+  //     setRoundCounterSignedOut(0) // Reset count so it doesn't get 'double added' if a person relogs
+  //   }
+  // }, [roundCounterSignedOut, achievements]) // Do not include user - user triggers update BEFORE achievements is updated with online data
 
   const endDragF = (index: number) => {
     if (hoverType === selectedDraggableType && hoverType != GROUPS.DEFAULT) {
@@ -161,14 +161,14 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       if (!user) {
         setRoundCounterSignedOut(roundCounterSignedOut + 1)
       }
-      updateAchievementsDocument?.({
-        // If achievements based on the number of wins should be implemented in the future.
-        [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
-          achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + 1,
-        // For now, achivements is just the amount of game wins
-        [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
-          achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + 1
-      })
+      // updateAchievementsDocument?.({
+      //   // If achievements based on the number of wins should be implemented in the future.
+      //   [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
+      //     achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + 1,
+      //   // For now, achivements is just the amount of game wins
+      //   [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
+      //     achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + 1
+      // })
       setWheelEnabled(false)
       setModalState(true)
     }
@@ -212,13 +212,13 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
               You have completed {roundCounter} rounds in this game
               {user !== null ? ' - you have earned a new trophy!' : ''}
             </h1>
-            <h2>
+            {/* <h2>
               {user !== null
                 ? `You have won ${
                     achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT]
                   } rounds in total!`
                 : 'Sign into your account to save your progress!'}
-            </h2>
+            </h2> */}
             <br />
             {user === null ? (
               <button className='animate-bounce' onClick={toggleOpenSignInForm}>
