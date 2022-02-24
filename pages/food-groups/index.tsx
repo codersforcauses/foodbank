@@ -73,10 +73,16 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   const draggablePositions_1: State_<Vector2>[] = []
   const draggablePositions_2: State_<Vector2>[] = []
-  for (let i = 0; i < 5; i++) {
-    draggablePositions_1[i] = useState<Vector2>(() => ORIGIN_VECTOR2)
-    draggablePositions_2[i] = useState<Vector2>(() => ORIGIN_VECTOR2)
-  }
+  draggablePositions_1[0] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_2[0] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_1[1] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_2[1] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_1[2] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_2[2] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_1[3] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_2[3] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_1[4] = useState<Vector2>(() => ORIGIN_VECTOR2)
+  draggablePositions_2[4] = useState<Vector2>(() => ORIGIN_VECTOR2)
 
   const [draggingStates, setDraggingStates] = useState<DRAGGING_STATE[]>(() =>
     newArray(DRAGGING_STATE.START)
