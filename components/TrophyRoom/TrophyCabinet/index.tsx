@@ -25,7 +25,7 @@ type Props = {
   numUnlocked: number
 }
 
-const MAX_TROPHIES = 18
+export const MAX_TROPHIES = 18
 
 const TrophyCabinet = ({ numUnlocked }: Props) => {
   const numTrophyGroups = Math.ceil(Math.min(numUnlocked, MAX_TROPHIES) / 3)

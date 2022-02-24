@@ -29,8 +29,9 @@ import {
   getCharacterData,
   getFormatData
 } from '@components/NotionAPI/getCharacterData'
+import { N_DRAGGABLE } from '@components/FoodGroups/constants'
+import { MAX_TROPHIES } from '@components/TrophyRoom/TrophyCabinet'
 
-const N_DRAGGABLE = 5
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
 
 interface Props {
@@ -38,7 +39,7 @@ interface Props {
 }
 
 const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
-  const { user } = useFirebase()
+  const { user, addAchievementsCount, achievementsCount } = useFirebase()
   // SIGN IN FORM
   const [openSignInForm, setOpenSignInForm] = useState(false)
   const toggleOpenSignInForm = useCallback(() => {
@@ -60,6 +61,7 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
 
   // This keeps the number of wins while signed out so when the user logs in it gets added to their score
   const [roundCounterSignedOut, setRoundCounterSignedOut] = useState(0)
+  const [newTrophy, setNewTrophy] = useState(false)
 
   // Draggable Logic
   const [overridePosition, setOverridePosition] = useState(ORIGIN_VECTOR2)
@@ -118,18 +120,14 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     })
   }, [])
 
-  // useEffect(() => {
-  //   if (user && roundCounterSignedOut > 0) {
-  //     updateAchievementsDocument?.({
-  //       [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
-  //         achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + roundCounterSignedOut,
-  //       // For now, achivements is just the amount of game wins
-  //       [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
-  //         achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + roundCounterSignedOut
-  //     })
-  //     setRoundCounterSignedOut(0) // Reset count so it doesn't get 'double added' if a person relogs
-  //   }
-  // }, [roundCounterSignedOut, achievements]) // Do not include user - user triggers update BEFORE achievements is updated with online data
+  // Login logic - add offline trophies to account.
+  useEffect(() => {
+    if (user && roundCounterSignedOut > 0) {
+      const achievementsToAdd = Math.min(MAX_TROPHIES, roundCounterSignedOut)
+      addAchievementsCount?.(achievementsToAdd)
+      setRoundCounterSignedOut(0) // Reset count so it doesn't get 'double added' if a person relogs
+    }
+  }, [achievementsCount.count]) // Do not include user - user triggers update BEFORE achievements is updated with online data
 
   const endDragF = (index: number) => {
     if (hoverType === selectedDraggableType && hoverType != GROUPS.DEFAULT) {
@@ -161,14 +159,13 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       if (!user) {
         setRoundCounterSignedOut(roundCounterSignedOut + 1)
       }
-      // updateAchievementsDocument?.({
-      //   // If achievements based on the number of wins should be implemented in the future.
-      //   [ACHIEVEMENT.DRAG_DROP_WIN_COUNT]:
-      //     achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT] + 1,
-      //   // For now, achivements is just the amount of game wins
-      //   [ACHIEVEMENT.ACHIEVEMENT_COUNT]:
-      //     achievements[ACHIEVEMENT.ACHIEVEMENT_COUNT] + 1
-      // })
+      if (achievementsCount.count < MAX_TROPHIES) {
+        setNewTrophy(true)
+        addAchievementsCount?.(1) // ADD 1 ACHIEVEMENT
+      } else {
+        setNewTrophy(false)
+      }
+
       setWheelEnabled(false)
       setModalState(true)
     }
@@ -210,20 +207,26 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
           <div className='flex flex-col items-center'>
             <h1>
               You have completed {roundCounter} rounds in this game
-              {user !== null ? ' - you have earned a new trophy!' : ''}
+              {newTrophy
+                ? user !== null
+                  ? ' - you have earned a new trophy!'
+                  : ' - Sign into your account to earn trophies!'
+                : ' - you have all of the trophies!'}
             </h1>
-            {/* <h2>
-              {user !== null
-                ? `You have won ${
-                    achievements[ACHIEVEMENT.DRAG_DROP_WIN_COUNT]
-                  } rounds in total!`
-                : 'Sign into your account to save your progress!'}
-            </h2> */}
             <br />
             {user === null ? (
-              <button className='animate-bounce' onClick={toggleOpenSignInForm}>
-                Sign-in
-              </button>
+              <>
+                <Button
+                  className='flex items-center uppercase'
+                  onClick={() => {
+                    resetGame()
+                    toggleOpenSignInForm()
+                  }}
+                >
+                  Sign-in
+                </Button>
+                <br />
+              </>
             ) : (
               ''
             )}

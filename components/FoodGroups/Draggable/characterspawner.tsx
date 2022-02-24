@@ -12,8 +12,7 @@ import {
   FoodGroupCharacterImageDynamic
 } from './types'
 import { State_, StateDispatch } from '../types'
-
-const N_DRAGGABLES = 5
+import { N_DRAGGABLE } from '@components/FoodGroups/constants'
 
 const updatedFunction = (f: Function) => {
   const [rerender, setRerender] = useState(0)
@@ -69,7 +68,7 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
 
   const characters = FOOD_GROUPS.map(group => filterFunction(group))
 
-  let positionsTmp = Array.from(Array(N_DRAGGABLES).keys()) // [0,1,2,...,N_DRAGGABLES-1]
+  let positionsTmp = Array.from(Array(N_DRAGGABLE).keys()) // [0,1,2,...,N_DRAGGABLES-1]
   let positions: number[] = []
   for (let i = positionsTmp.length - 1; i >= 0; i--) {
     const idx = Math.floor(Math.random() * i)
