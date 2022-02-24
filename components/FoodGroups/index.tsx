@@ -38,19 +38,33 @@ const FoodGroups = ({
   const [center, setCenter] = useState(ORIGIN_VECTOR2)
   const [currentRegion, setCurrentRegion] = useState(GROUPS.NONE) // Debounce mouse events
 
-  const makeStyle = () => {
-    const state = useState([''])
-    return {
-      styles: state[0],
-      setStyles: state[1]
-    }
-  }
-
   const allStates: Record<string, State<string[]>> = {}
 
-  FOOD_GROUPS.forEach(type => {
-    allStates[type] = makeStyle()
-  })
+  const [vegetableStyles, setVegetableStyles] = useState([''])
+  allStates[GROUPS.VEGETABLES] = {
+    styles: vegetableStyles,
+    setStyles: setVegetableStyles
+  }
+  const [fruitStyles, setFruitStyles] = useState([''])
+  allStates[GROUPS.FRUIT] = {
+    styles: fruitStyles,
+    setStyles: setFruitStyles
+  }
+  const [dairyStyles, setDairyStyles] = useState([''])
+  allStates[GROUPS.DAIRY] = {
+    styles: dairyStyles,
+    setStyles: setDairyStyles
+  }
+  const [meatStyles, setMeatStyles] = useState([''])
+  allStates[GROUPS.MEAT] = {
+    styles: meatStyles,
+    setStyles: setMeatStyles
+  }
+  const [grainsStyles, setGrainsStyles] = useState([''])
+  allStates[GROUPS.GRAINS] = {
+    styles: grainsStyles,
+    setStyles: setGrainsStyles
+  }
 
   useEffect(() => {
     resize_map({ setCenter, setRadius })
