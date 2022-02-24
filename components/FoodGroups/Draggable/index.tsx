@@ -196,8 +196,10 @@ const Draggable: React.FC<Props> = (props: Props) => {
         aria-hidden='true'
         className={dragDrop}
         onMouseOver={float}
+        onFocus={float}
         onTouchMove={float}
         onMouseOut={defloat}
+        onBlur={defloat}
         onTouchEnd={defloat}
         onMouseDown={e => startDrag(e, undefined)}
         onTouchStart={e => startDrag(undefined, e)}
