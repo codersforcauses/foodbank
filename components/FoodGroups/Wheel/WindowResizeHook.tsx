@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { resize_map } from '@components/FoodGroups/dinamicStyles'
+import { resize_map } from '@components/FoodGroups/Wheel/dinamicStyles'
 import { FoodGroupResizeArguments } from '@components/FoodGroups/types'
 
 export default function WindowResizeHook({

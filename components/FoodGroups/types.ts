@@ -1,4 +1,4 @@
-import { Vector2 } from './Draggable/boundingbox'
+import { Vector2 } from './vector'
 
 type StateDispatch<T> = React.Dispatch<React.SetStateAction<T>>
 type State_<T> = [T, StateDispatch<T>]

@@ -7,15 +7,15 @@ import {
   handleMouseOut,
   handleMouseOver,
   resize_map
-} from '@components/FoodGroups/dinamicStyles'
+} from '@components/FoodGroups/Wheel/dinamicStyles'
 import { State } from '@components/FoodGroups/types'
-import WindowResizeHook from '@components/FoodGroups/WindowResizeHook'
+import WindowResizeHook from '@components/FoodGroups/Wheel/WindowResizeHook'
 
-import { ORIGIN_VECTOR2, Vector2 } from './Draggable/boundingbox'
-import { FOOD_GROUPS, GROUPS } from './groups'
-import { customImg, sliceBaseStyle, sliceDimensions } from './styles'
+import { ORIGIN_VECTOR2, Vector2 } from '../vector'
+import { FOOD_GROUPS, GROUPS } from '../groups'
+import { customImg, sliceBaseStyle, sliceDimensions } from '../styles'
 
-import styles from 'components/FoodGroups/foodgroups.module.css'
+import styles from 'components/FoodGroups/Wheel/foodgroups.module.css'
 
 /**
  * A page displaying all food groups in a pie chart

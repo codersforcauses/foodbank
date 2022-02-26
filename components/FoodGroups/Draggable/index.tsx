@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Transition } from '@headlessui/react'
 
-import { Vector2 } from './boundingbox'
+import { Vector2 } from '../vector'
 import { FoodGroupCharacterImage } from './types'
 import { dragDrop } from '../styles'
 import { State_, StateDispatch } from '../types'

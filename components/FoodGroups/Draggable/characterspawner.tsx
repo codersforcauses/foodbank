@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import Draggable, { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
-import {
-  ORIGIN_VECTOR2,
-  Vector2
-} from '@components/FoodGroups/Draggable/boundingbox'
+import { ORIGIN_VECTOR2, Vector2 } from '@components/FoodGroups/vector'
 import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
 
 import {

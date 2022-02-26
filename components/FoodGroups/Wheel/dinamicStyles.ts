@@ -4,9 +4,9 @@ import {
   FoodGroupStates
 } from '@components/FoodGroups/types'
 
-import { Vector2 } from './Draggable/boundingbox'
-import { FOOD_GROUPS, GROUPS } from './groups'
-import { zoom } from './styles'
+import { Vector2 } from '@components/FoodGroups/vector'
+import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
+import { zoom } from '@components/FoodGroups/styles'
 
 import dairy from 'public/images/FoodGroups/dairy-shadow.png'
 import fruit from 'public/images/FoodGroups/fruit-shadow.png'
