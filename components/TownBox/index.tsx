@@ -48,7 +48,12 @@ const Townbox = ({
         </button>
 
         {showButton && (
-          <Link href={`town/${linksrc}`} passHref>
+          <Link
+            href={
+              linksrc == 'healthy-town' ? `fun-food-sort` : `town/${linksrc}`
+            }
+            passHref
+          >
             <Button className='skew-x-12' color='primary'>
               Visit
             </Button>

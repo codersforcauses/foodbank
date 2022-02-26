@@ -1,5 +1,6 @@
 import { Recipe, RecipeStep } from '@lib/types'
 
+import { getCharsProfile } from './characters'
 import notion from './initNotion'
 
 const getRecipeDetails = async (slug: string) => {
@@ -60,53 +61,13 @@ const getRecipeDetails = async (slug: string) => {
   })
   if (!('properties' in character_data)) return {}
   const characterNameProp = character_data.properties?.name
-  const aliasNameProp = character_data.properties?.aliasName
-  const aboutProp = character_data.properties?.About
-  const aliasImageProp = character_data.properties?.aliasImage
-  const imageGifProp = character_data.properties?.imageGif
-  const superPowersProp = character_data.properties?.superPowers
-  const foodGroupProp = character_data.properties?.foodGroup
-  const locationProp = character_data.properties?.location
-  const facingProp = character_data.properties?.facing
-
-  const character = {
-    name:
-      characterNameProp?.type === 'title'
-        ? characterNameProp.title[0].plain_text
-        : '',
-    aliasName:
-      aliasNameProp?.type === 'rich_text'
-        ? aliasNameProp.rich_text[0].plain_text
-        : '',
-    about:
-      aboutProp?.type === 'rich_text' ? aboutProp.rich_text[0].plain_text : '',
-    aliasImage:
-      aliasImageProp?.type === 'files'
-        ? aliasImageProp.files[0].type === 'file'
-          ? aliasImageProp.files[0].file.url
-          : ''
-        : '',
-    imageGif:
-      imageGifProp?.type === 'files'
-        ? imageGifProp.files[0].type === 'file'
-          ? imageGifProp.files[0].file.url
-          : ''
-        : '',
-    superPowers:
-      superPowersProp?.type === 'rich_text'
-        ? superPowersProp.rich_text[0].plain_text
-        : '',
-    foodGroup:
-      foodGroupProp?.type === 'rich_text'
-        ? foodGroupProp.rich_text[0].plain_text
-        : '',
-    location:
-      locationProp?.type === 'multi_select'
-        ? locationProp.multi_select.map(item => item.name)
-        : '',
-    facing:
-      facingProp?.type === 'rich_text' ? facingProp.rich_text[0].plain_text : ''
-  }
+  const characterSlugProp = character_data.properties.slug
+  const characterSlug =
+    characterSlugProp?.type === 'rich_text'
+      ? characterSlugProp.rich_text[0].plain_text
+      : ''
+  const character =
+    characterSlug !== '' ? await getCharsProfile(characterSlug) : undefined
 
   // recipe_data.character = character
   const recipeNameProp = recipe_data.results[0].properties?.Recipe

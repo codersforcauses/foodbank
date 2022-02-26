@@ -34,16 +34,21 @@ interface RecipeStep {
 }
 
 interface Character {
-  name: string
-  image?: string
-  aliasName: string
   about: string
   aliasImage: string
-  imageGif: string
-  superPowers: string
-  foodGroup: string
-  location: string | string[]
+  aliasName: string
+  everydayLikes: string
   facing?: string
+  foodGroup: string
+  heroLikes: string
+  heroUse: string
+  image: string
+  imageGif: string
+  location: string
+  name: string
+  recipes: string
+  slug: string
+  superpowers: string
 }
 
 interface Trophy {

@@ -38,7 +38,8 @@ module.exports = {
       },
       animation: {
         vibrate: 'vibrate 1s ease-in-out 1',
-        wiggle: 'wiggle 1s ease-in-out infinite'
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        movement: 'movement 1.5s ease-in infinite'
       },
       keyframes: {
         vibrate: {
@@ -49,7 +50,11 @@ module.exports = {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' }
-        }
+        },
+        movement: { '0%, 100%': { top: '0' }, '50%': { top: '10' } }
+      },
+      width: {
+        128: '28rem'
       }
     }
   },

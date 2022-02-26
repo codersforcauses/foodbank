@@ -7,7 +7,7 @@ import type { Character, Location } from '@lib/types'
 
 import CharacterCarousel from '@components/Character/Carousel'
 import locations from '@components/Map/assets/locations'
-import getCharsFromTown from '@components/NotionAPI/getCharsFromTown'
+import { getCharsFromTown } from '@components/NotionAPI/characters'
 
 import Background from 'public/images/characters/bg-turquoise.webp'
 
@@ -25,7 +25,7 @@ const Town = ({ characters }: Props) => {
   const [pageNumber, setPageNumber] = useState(1)
   const [canGoToNextPage, setCanGoToNextPage] = useState(false)
   const [canGoToPrevPage, setCanGoToPrevPage] = useState(false)
-  const { height, width }: { height: number; width: number } = useViewport()
+  const { width }: { width: number } = useViewport()
 
   // Set the title of the page based on the location slug in the URL.
   useEffect(() => {
