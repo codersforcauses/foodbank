@@ -25,12 +25,15 @@ function CharacterImg({
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Image
-            src={character.image}
-            alt='Everyday Food'
-            width={400}
-            height={400}
-          />
+          <div className='lg:w-[32rem] w-52 md:w-96'>
+            <Image
+              src={character.image}
+              alt='Everyday Food'
+              width={400}
+              height={400}
+              layout='responsive'
+            />
+          </div>
         </Transition>
       ) : (
         <Transition
@@ -43,12 +46,14 @@ function CharacterImg({
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Image
-            src={character.aliasImage}
-            alt='Superhero Food'
-            width={400}
-            height={400}
-          />
+          <div className='lg:w-[32rem] w-52 md:w-96'>
+            <Image
+              src={character.aliasImage}
+              alt='Superhero Food'
+              width={400}
+              height={400}
+            />
+          </div>
         </Transition>
       )}
     </>

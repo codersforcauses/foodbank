@@ -22,7 +22,7 @@ const MobileMenu = ({ links }: MobileMenuProps) => {
 
   return (
     <>
-      <Popover className='fixed z-40 flex flex-col items-end text-lg text-center text-white bottom-5 right-5 sm:hidden'>
+      <Popover className='fixed z-40 flex flex-col items-end text-lg text-center text-white bottom-5 right-3 sm:hidden'>
         {({ open }) => (
           <>
             <Transition
