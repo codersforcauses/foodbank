@@ -126,51 +126,55 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
     }
   }, [achievementsCount.count]) // Do not include user - user triggers update BEFORE achievements is updated with online data
 
-  const endDragF = (index: number) => {
-    if (hoverType === selectedDraggableType && hoverType != GROUPS.DEFAULT) {
-      const draggingStates_ = [...draggingStates]
-      draggingStates_[index] = DRAGGING_STATE.WHEEL
-      setDraggingStates(draggingStates_)
-      correctDraggables[index] = true // CORRECT ANSWER
-    } else {
-      //if (hoverType !== GROUPS.NONE) { // Dropping on 'nothing' makes it return now.
-      const draggingStates_ = [...draggingStates]
-      draggingStates_[index] = DRAGGING_STATE.START
-      setDraggingStates(draggingStates_)
-      correctDraggables[index] = false // WRONG ANSWER
-      // RESET POSITION
-      if (switchSetFlag)
-        draggablePositions_1[index][1](
-          CHARACTER_POSITIONS[currentCharSet[index].start_index]
-        )
-      else
-        draggablePositions_2[index][1](
-          CHARACTER_POSITIONS[nextCharSet[index].start_index]
-        )
-    }
+  const endDragFuncRef = useRef<Function>((index: number) => {})
 
-    // CHECK FOR END OF ROUND
-    if (correctDraggables.every((v: boolean) => v)) {
-      // END OF ROUND
-      setRoundCounter(roundCounter + 1)
-      if (!user) {
-        setRoundCounterSignedOut(roundCounterSignedOut + 1)
-      }
-      if (achievementsCount.count < MAX_TROPHIES) {
-        setNewTrophy(true)
-        addAchievementsCount?.(1) // ADD 1 ACHIEVEMENT
+  useEffect(() => {
+    endDragFuncRef.current = (index: number) => {
+      if (hoverType === selectedDraggableType && hoverType != GROUPS.DEFAULT) {
+        const draggingStates_ = [...draggingStates]
+        draggingStates_[index] = DRAGGING_STATE.WHEEL
+        setDraggingStates(draggingStates_)
+        correctDraggables[index] = true // CORRECT ANSWER
       } else {
-        setNewTrophy(false)
+        //if (hoverType !== GROUPS.NONE) { // Dropping on 'nothing' makes it return now.
+        const draggingStates_ = [...draggingStates]
+        draggingStates_[index] = DRAGGING_STATE.START
+        setDraggingStates(draggingStates_)
+        correctDraggables[index] = false // WRONG ANSWER
+        // RESET POSITION
+        if (switchSetFlag && draggablePositions_1[index])
+          draggablePositions_1[index][1](
+            CHARACTER_POSITIONS[currentCharSet[index].start_index]
+          )
+        else if (draggablePositions_2[index])
+          draggablePositions_2[index][1](
+            CHARACTER_POSITIONS[nextCharSet[index].start_index]
+          )
       }
 
-      setWheelEnabled(false)
-      setModalState(true)
+      // CHECK FOR END OF ROUND
+      if (correctDraggables.every((v: boolean) => v)) {
+        // END OF ROUND
+        setRoundCounter(roundCounter + 1)
+        if (!user) {
+          setRoundCounterSignedOut(roundCounterSignedOut + 1)
+        }
+        if (achievementsCount.count < MAX_TROPHIES) {
+          setNewTrophy(true)
+          addAchievementsCount?.(1) // ADD 1 ACHIEVEMENT
+        } else {
+          setNewTrophy(false)
+        }
+
+        setWheelEnabled(false)
+        setModalState(true)
+      }
+      setOverridePosition(ORIGIN_VECTOR2)
+      setHoverType(GROUPS.NONE)
+      setSelectedDraggableType(GROUPS.NONE)
+      setCorrectDraggables(correctDraggables)
     }
-    setOverridePosition(ORIGIN_VECTOR2)
-    setHoverType(GROUPS.NONE)
-    setSelectedDraggableType(GROUPS.NONE)
-    setCorrectDraggables(correctDraggables)
-  }
+  }, [hoverType])
 
   // ON THE END OF A ROUND, PERFORM THESE ACTIONS
   const resetGame = () => {
@@ -235,19 +239,20 @@ const FoodGroupsPage: React.FC<Props> = ({ notion_character_data }: Props) => {
       )}
 
       <Auth open={openSignInForm && !user} onClose={toggleOpenSignInForm} />
-      <div className='text-center text-6xl pt-[2%] pb-[1%] hidden md:block'>
-        SORT THE FOOD
+      <br />
+      <div className='relative z-10 font-serif text-6xl xl:text-7xl text-center pt-10 hidden md:block'>
+        FUN FOOD SORT
       </div>
       <div className={draggableZoneStyle} ref={draggableZoneRef}>
         <FoodGroups
           overrideMouse={selectedDraggableType !== GROUPS.NONE}
           overrideMousePosition={overridePosition}
-          setHoverType={setHoverType}
+          hoverType={[hoverType, setHoverType]}
           enabled={wheelEnabled}
         />
         <CharacterSpawner
           notion_character_data={notion_character_data}
-          endDragFunc={endDragF}
+          endDragFuncRef={endDragFuncRef}
           startDragFunc={[setOverridePosition, setSelectedDraggableType]}
           absPositionSetState={setOverridePosition}
           currentCharSet={currentCharSet}

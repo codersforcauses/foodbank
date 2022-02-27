@@ -11,14 +11,6 @@ import {
 import { State_, StateDispatch } from '../types'
 import { N_DRAGGABLE } from '@components/FoodGroups/constants'
 
-const updatedFunction = (f: Function) => {
-  const [rerender, setRerender] = useState(0)
-  useEffect(() => {
-    f()
-  }, [rerender])
-  return () => setRerender(rerender + 1)
-}
-
 export const CHARACTER_POSITIONS: Vector2[] = [
   { x: 5, y: 25 },
   { x: 25, y: 5 },
@@ -101,7 +93,7 @@ function generateCharacterSet(character_data: FoodGroupCharacterImage[]) {
 }
 
 interface Props {
-  endDragFunc: Function
+  endDragFuncRef: React.MutableRefObject<Function>
   startDragFunc: [StateDispatch<Vector2>, StateDispatch<GROUPS>]
   absPositionSetState: StateDispatch<Vector2>
   draggablePositions_1: State_<Vector2>[]
@@ -194,9 +186,7 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
     viewable: boolean
   ) =>
     charSet.map((character, index) => {
-      const endDragF = updatedFunction(() =>
-        props.endDragFunc(index, character.type)
-      )
+      const endDragF = () => props.endDragFuncRef.current(index)
 
       return (
         <Draggable

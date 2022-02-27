@@ -8,7 +8,7 @@ import {
   handleMouseOver,
   resize_map
 } from '@components/FoodGroups/Wheel/dinamicStyles'
-import { State } from '@components/FoodGroups/types'
+import { State, State_ } from '@components/FoodGroups/types'
 import WindowResizeHook from '@components/FoodGroups/Wheel/WindowResizeHook'
 
 import { ORIGIN_VECTOR2, Vector2 } from '../vector'
@@ -22,21 +22,22 @@ import styles from 'components/FoodGroups/Wheel/foodgroups.module.css'
  */
 
 interface Props {
-  setHoverType: Function
   enabled: boolean
   overrideMouse: boolean
   overrideMousePosition: Vector2
+  hoverType: State_<GROUPS>
 }
 
 const FoodGroups = ({
-  setHoverType,
   enabled,
   overrideMouse,
-  overrideMousePosition
+  overrideMousePosition,
+  hoverType
 }: Props) => {
   const [radius, setRadius] = useState(0)
   const [center, setCenter] = useState(ORIGIN_VECTOR2)
-  const [currentRegion, setCurrentRegion] = useState(GROUPS.NONE) // Debounce mouse events
+  const [currentRegion, setCurrentRegion] = hoverType
+  // const [currentRegion, setCurrentRegion_] = useState(GROUPS.NONE) // Debounce mouse events
 
   const allStates: Record<string, State<string[]>> = {}
 
@@ -139,16 +140,12 @@ const FoodGroups = ({
     }
   }, [overrideMouse, overrideMousePosition])
 
-  useEffect(() => {
-    setHoverType(currentRegion)
-  }, [currentRegion])
-
   return (
     <>
       {/* Handles resizing maps on screen resize for SSR */}
       <WindowResizeHook params={{ setRadius, setCenter }} />
       <div
-        className='grid grid-cols-1 bg-blue w-[90vh]'
+        className='grid grid-cols-1 w-[90vh]'
         id='bluezone'
         draggable={false}
       >
