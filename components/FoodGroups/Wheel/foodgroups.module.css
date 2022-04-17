@@ -1,0 +1,20 @@
+/**********/
+/* Five food groups main page */
+/**********/
+
+:root .dairy,
+.meat,
+.fruit,
+.vegetables,
+.grains {
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+.wrapper-fix > span {
+  position: relative !important;
+}
+
+.wiggle-animate {
+  animation-delay: -250ms;
+}
