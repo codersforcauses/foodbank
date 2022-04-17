@@ -115,70 +115,65 @@ const CharacterSpawner: React.FC<Props> = (props: Props) => {
     useState<Record<string, Vector2[]>>(CHARACTER_END)
   const [resizeF, setResizeF] = useState(() => () => {})
 
-  if (typeof window !== 'undefined') {
-    // const startZoneElem = document.getElementById(props.startZoneE)
-    useEffect(() => {
-      setResizeF(() => {
-        const startZone = document
-          .getElementById(props.startZoneE)
-          ?.getBoundingClientRect()
+  // const startZoneElem = document.getElementById(props.startZoneE)
+  useEffect(() => {
+    setResizeF(() => {
+      const startZone = document
+        .getElementById(props.startZoneE)
+        ?.getBoundingClientRect()
 
-        const endZone = document
-          .getElementById('bluezone')
-          ?.getBoundingClientRect()
+      const endZone = document
+        .getElementById('bluezone')
+        ?.getBoundingClientRect()
 
-        const draggableZone = props.draggableZone[0]
+      const draggableZone = props.draggableZone[0]
 
-        // RESIZE FOR START POSITIONS
-        if (startZone === undefined || draggableZone === undefined) return
-        const updatedStartPositions = CHARACTER_POSITIONS.map(e => {
-          return {
-            x:
-              (((e.x / 100) * startZone.width) / draggableZone.width) * 100 +
-              ((startZone.left - draggableZone.left) / draggableZone.width) *
-                100,
-            y:
-              (((e.y / 100) * startZone.height) / draggableZone.height) * 100 +
-              ((startZone.top - draggableZone.top) / draggableZone.height) * 100
-          }
-        })
-
-        setResizeCharacterPositions(updatedStartPositions)
-
-        // RESIZE FOR END POSITIONS
-        if (endZone === undefined) return
-        var updatedEndPositions: Record<string, Vector2[]> = {}
-        // BASICALLY DEEPCOPY AND SCALE OF CHARACTER_END
-        Object.keys(CHARACTER_END).forEach(
-          k =>
-            (updatedEndPositions[k] = [
-              ...CHARACTER_END[k].map(e => {
-                return {
-                  x:
-                    (((e.x / 100) * endZone.width) / draggableZone.width) *
-                      100 +
-                    ((endZone.left - draggableZone.left) /
-                      draggableZone.width) *
-                      100,
-                  y:
-                    (((e.y / 100) * endZone.height) / draggableZone.height) *
-                      100 +
-                    ((endZone.top - draggableZone.top) / draggableZone.height) *
-                      100
-                }
-              })
-            ])
-        )
-
-        setResizeEndPositions(updatedEndPositions)
+      // RESIZE FOR START POSITIONS
+      if (startZone === undefined || draggableZone === undefined) return
+      const updatedStartPositions = CHARACTER_POSITIONS.map(e => {
+        return {
+          x:
+            (((e.x / 100) * startZone.width) / draggableZone.width) * 100 +
+            ((startZone.left - draggableZone.left) / draggableZone.width) * 100,
+          y:
+            (((e.y / 100) * startZone.height) / draggableZone.height) * 100 +
+            ((startZone.top - draggableZone.top) / draggableZone.height) * 100
+        }
       })
-      window.addEventListener('resize', resizeF)
 
-      return () => {
-        window.removeEventListener('resize', resizeF)
-      }
-    }, [props.draggableZone[0]])
-  }
+      setResizeCharacterPositions(updatedStartPositions)
+
+      // RESIZE FOR END POSITIONS
+      if (endZone === undefined) return
+      var updatedEndPositions: Record<string, Vector2[]> = {}
+      // BASICALLY DEEPCOPY AND SCALE OF CHARACTER_END
+      Object.keys(CHARACTER_END).forEach(
+        k =>
+          (updatedEndPositions[k] = [
+            ...CHARACTER_END[k].map(e => {
+              return {
+                x:
+                  (((e.x / 100) * endZone.width) / draggableZone.width) * 100 +
+                  ((endZone.left - draggableZone.left) / draggableZone.width) *
+                    100,
+                y:
+                  (((e.y / 100) * endZone.height) / draggableZone.height) *
+                    100 +
+                  ((endZone.top - draggableZone.top) / draggableZone.height) *
+                    100
+              }
+            })
+          ])
+      )
+
+      setResizeEndPositions(updatedEndPositions)
+    })
+    window.addEventListener('resize', resizeF)
+
+    return () => {
+      window.removeEventListener('resize', resizeF)
+    }
+  }, [props.draggableZone[0]])
 
   const generateSetElements = (
     charSet: FoodGroupCharacterImageDynamic[],
