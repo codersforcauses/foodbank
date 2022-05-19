@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
+import { useFirebase } from '@components/FirebaseContext/context'
 import TrophyCabinet from '@components/TrophyRoom/TrophyCabinet'
 
 import Background from 'public/images/blue-purple-bg.webp'
 import VitaminCLion from 'public/images/lion.webp'
 import Melonator from 'public/images/watermelonflipped.webp'
-import { useFirebase } from '@components/FirebaseContext/context'
 
 const TrophyRoom = () => {
   const { achievementsCount } = useFirebase()

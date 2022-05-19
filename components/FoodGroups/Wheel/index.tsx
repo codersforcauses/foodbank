@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
+import { State, State_ } from '@components/FoodGroups/types'
 import {
   angleRegions,
   foodGroupsImages,
@@ -8,12 +9,11 @@ import {
   handleMouseOver,
   resize_map
 } from '@components/FoodGroups/Wheel/dinamicStyles'
-import { State, State_ } from '@components/FoodGroups/types'
 import WindowResizeHook from '@components/FoodGroups/Wheel/WindowResizeHook'
 
-import { ORIGIN_VECTOR2, Vector2 } from '../vector'
-import { FOOD_GROUPS, GROUPS } from '../groups'
+import { GROUPS } from '../groups'
 import { customImg, sliceBaseStyle, sliceDimensions } from '../styles'
+import { ORIGIN_VECTOR2, Vector2 } from '../vector'
 
 import styles from 'components/FoodGroups/Wheel/foodgroups.module.css'
 
