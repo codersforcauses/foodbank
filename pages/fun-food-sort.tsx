@@ -5,8 +5,8 @@ import FoodGroups from 'components/FoodGroups/Wheel'
 import Auth from '@components/Auth'
 import { Button, Modal } from '@components/Custom'
 import { useFirebase } from '@components/FirebaseContext/context'
+import { N_DRAGGABLE } from '@components/FoodGroups/constants'
 import { DRAGGING_STATE } from '@components/FoodGroups/Draggable'
-import { ORIGIN_VECTOR2, Vector2 } from '@components/FoodGroups/vector'
 import {
   CHARACTER_POSITIONS,
   CharacterSpawner,
@@ -22,11 +22,11 @@ import {
   startZoneStyle
 } from '@components/FoodGroups/styles'
 import { State_ } from '@components/FoodGroups/types'
+import { ORIGIN_VECTOR2, Vector2 } from '@components/FoodGroups/vector'
 import {
   getCharacterData,
   getFormatData
 } from '@components/NotionAPI/getCharacterData'
-import { N_DRAGGABLE } from '@components/FoodGroups/constants'
 import { MAX_TROPHIES } from '@components/TrophyRoom/TrophyCabinet'
 
 const newArray = (v: any) => Array(N_DRAGGABLE).fill(v)
