@@ -30,7 +30,7 @@ interface Recipe {
 interface RecipeStep {
   number: number // this is suppose to be a string
   image: StaticImageData | string
-  description: string
+  description?: string
 }
 
 interface Character {

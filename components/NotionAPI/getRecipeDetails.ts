@@ -42,7 +42,7 @@ const getRecipeDetails = async (slug: string) => {
           : '',
       description:
         descriptionProp?.type === 'rich_text'
-          ? descriptionProp.rich_text[0].plain_text
+          ? descriptionProp.rich_text[0]?.plain_text
           : ''
     }
     steps.push(data)

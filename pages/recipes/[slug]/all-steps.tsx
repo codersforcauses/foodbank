@@ -70,7 +70,7 @@ export const getServerSideProps = async (context: {
 
   return {
     props: {
-      recipe
+      recipe: JSON.parse(JSON.stringify(recipe))
     }
   }
 }

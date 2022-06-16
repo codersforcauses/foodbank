@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
-import tailwindConfig from 'tailwind.config'
-import resolveConfig from 'tailwindcss/resolveConfig'
 
 import { orangeScheme, primaryScheme, tealScheme } from '@lib/colorSchemes'
 import { Recipe } from '@lib/types'
@@ -84,7 +82,6 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
       Might need a sort function in future but working fine for now
         */
 
-    const fullConfig = resolveConfig(tailwindConfig)
     const screens = screenSizes // avoids reading in recipe_sm, recipe_md, etc.
     const largestScreen = Object.keys(screens).reduce((a, b) =>
       parseInt(screens[a]) > parseInt(screens[b]) ? a : b
@@ -166,7 +163,7 @@ const RecipeOverview = ({ recipe, data }: ParamTypes) => {
                       //   ' absolute font-semibold font-serif '
                       // }
                       className={
-                        'absolute w-4/5 xl:text-xl font-serif font-semibold rotate-[10deg] top-10 right-4 lg:top-16 lg:right-6 xl:top-28 xl:right-8'
+                        'absolute w-4/5 xl:text-lg font-serif font-semibold rotate-[10deg] top-10 right-4 lg:top-10 lg:right-4'
                         // 'mt-[-45%] ml-[15%] text-[2vw] md:mt-[-140%] md:ml-[34px] md:text-[1.5rem] lg:mt-[-150%] lg:ml-[34px] lg:text-2xl xl:mt-[-160%] xl:ml-[50px] xl:text-2xl'
                       }
                     >
