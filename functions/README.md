@@ -42,7 +42,7 @@ When the spending limit is reached, it will automatically downgrade the applicat
    yarn deploy:functions
    ```
 
-1. Give billing administrative privilege to **_<PROJECT_ID>_@appspot.gserviceaccount.com** in [Billing](https://console.cloud.google.com/billing).
+1. Give billing administrative privilege to **_<PROJECT_ID>_@appspot.gserviceaccount.com** in [Billing](https://console.cloud.google.com/billing) under `Account management`.
 
 ### Optional - [Retrying Event-Driven Functions](https://cloud.google.com/functions/docs/bestpractices/retries)
 

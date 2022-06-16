@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { useFirebase } from '@components/FirebaseContext/context'
 import TrophyCabinet from '@components/TrophyRoom/TrophyCabinet'
 
 import Background from 'public/images/blue-purple-bg.webp'
@@ -7,6 +8,7 @@ import VitaminCLion from 'public/images/lion.webp'
 import Melonator from 'public/images/watermelonflipped.webp'
 
 const TrophyRoom = () => {
+  const { achievementsCount } = useFirebase()
   return (
     <div className='min-h-screen sm:pt-14'>
       <div className='z-0'>
@@ -24,8 +26,8 @@ const TrophyRoom = () => {
         <div className='max-w-sm hidden sm:block'>
           <Image src={Melonator} alt='Melonator' />
         </div>
-        <TrophyCabinet />
-        <div className='max-w-sm hidden sm:block'>
+        <TrophyCabinet numUnlocked={achievementsCount.count} />
+        <div className='hidden max-w-sm sm:block'>
           <Image src={VitaminCLion} alt='Vitamin C Lion' />
         </div>
       </div>

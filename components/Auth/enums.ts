@@ -4,7 +4,7 @@ const CHARACTERS_FOR_AUTH = 3
 
 const PASSWORD_LENGTH = 27
 
-const EMAIL_DOMAIN = 'test123.xyz'
+const EMAIL_DOMAIN = 'SuperheroApp.User'
 
 const enum PAGES {
   USERNAME_FORM,

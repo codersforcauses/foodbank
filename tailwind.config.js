@@ -36,18 +36,34 @@ module.exports = {
         sans: ['Bliss'],
         serif: ['Abraham']
       },
-      width: {
-        128: '28rem'
+      animation: {
+        vibrate: 'vibrate 1s ease-in-out 1',
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        movement: 'movement 1.5s ease-in infinite'
       },
       keyframes: {
+        vibrate: {
+          '0%, 100%': { transform: 'translateX(0px)' },
+          '5%, 25%, 45%, 65%, 85%': { transform: 'translateX(2rem)' },
+          '15%, 35%, 55%, 75%, 95%': { transform: 'translateX(-2rem)' }
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' }
+        },
         movement: { '0%, 100%': { top: '0' }, '50%': { top: '10' } }
       },
-      animation: {
-        movement: 'movement 1.5s ease-in infinite'
+      width: {
+        128: '28rem'
       }
     }
   },
+
   variants: {
+    margin: ['responsive', 'hover'],
+
     extend: {}
-  }
+  },
+
+  plugins: [require('tailwind-scrollbar-hide')]
 }
