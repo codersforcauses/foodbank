@@ -34,7 +34,8 @@ module.exports = withPlugins(
         'images.unsplash.com',
         'tinyurl.com',
         'img.youtube.com',
-        's3.us-west-2.amazonaws.com'
+        's3.us-west-2.amazonaws.com',
+        'prod-files-secure.s3.us-west-2.amazonaws.com'
       ]
     }
   }
