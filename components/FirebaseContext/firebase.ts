@@ -18,7 +18,7 @@ export const auth = getAuth(app)
 export const db = getFirestore(app)
 
 let analytics
-if (firebaseConfig.measurementId) {
+if (firebaseConfig.measurementId && typeof window !== 'undefined') {
   analytics = getAnalytics(app)
 }
 export { analytics }
