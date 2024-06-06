@@ -28,7 +28,8 @@ const TextField = ({
     register,
     setFocus
   } = useContext(FormContext)
-  const error: string = formState?.errors?.[props.name]?.message
+  const error: string | undefined =
+    formState?.errors?.[props.name]?.message?.toString()
 
   useEffect(() => {
     setFocused && setFocus?.(props.name)
