@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image'
+
 import { FOOD_GROUPS, GROUPS } from '@components/FoodGroups/groups'
 import { zoom } from '@components/FoodGroups/styles'
 import {
