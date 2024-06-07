@@ -1,4 +1,11 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  FC,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 import { onAuthStateChanged, signOut, User } from 'firebase/auth'
 import {
   doc,
@@ -18,7 +25,7 @@ import {
   FirebaseContextProvider
 } from '../FirebaseContext/context'
 
-const FirebaseProvider: FC = ({ children }) => {
+const FirebaseProvider: FC<PropsWithChildren> = ({ children }) => {
   const [achievementsCount, setAchievementsCount] =
     useState<AchievementsCountProp>(defaultAchievementsCount)
   const [gridDisabled, setGridDisabled] = useState(false)

@@ -25,7 +25,7 @@ const Carousel = ({
   autoplayDuration = 2000,
   ...props
 }: PropsWithChildren<CarouselProps>) => {
-  const timer = useRef<NodeJS.Timer | undefined>(undefined)
+  const timer = useRef<number | undefined>(undefined)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [pause, setPause] = useState(false)
   const [ref, slider] = useKeenSlider<HTMLDivElement>({
@@ -49,7 +49,7 @@ const Carousel = ({
   }
 
   useEffect(() => {
-    timer.current = setInterval(() => {
+    timer.current = window.setInterval(() => {
       if (!pause && slider && autoplay) {
         slider.current?.next()
       }

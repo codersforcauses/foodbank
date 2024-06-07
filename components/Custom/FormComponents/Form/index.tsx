@@ -1,5 +1,6 @@
 import { PropsWithChildren, useMemo } from 'react'
 import {
+  FieldValues,
   FormProvider as HookFormProvider,
   SubmitHandler,
   useForm,
@@ -8,19 +9,19 @@ import {
 
 import { FormProps, FormProvider } from './context'
 
-const Form = <T,>({
+const Form = <T extends FieldValues = FieldValues>({
   disabled,
   defaultValues,
   children,
   onSubmit,
   className
 }: PropsWithChildren<HookFormProps<T>>) => {
-  const methods = useForm({
-    defaultValues,
+  const methods = useForm<T>({
+    defaultValues: defaultValues,
     mode: 'onSubmit'
   })
   const { register, formState, setFocus } = methods
-  const value: FormProps = useMemo(
+  const value: FormProps<T> = useMemo(
     () => ({
       disabled,
       register,
@@ -35,7 +36,10 @@ const Form = <T,>({
         onSubmit={methods.handleSubmit(onSubmit)}
         className={['flex flex-col space-y-4', className || 'mt-4'].join(' ')}
       >
-        <FormProvider value={value}>{children}</FormProvider>
+        {/* I tried */}
+        <FormProvider value={value as Partial<FormProps<FieldValues>>}>
+          {children}
+        </FormProvider>
       </form>
     </HookFormProvider>
   )
@@ -43,7 +47,7 @@ const Form = <T,>({
 
 export default Form
 
-interface HookFormProps<T> extends UseFormProps {
+interface HookFormProps<T extends FieldValues> extends UseFormProps<T> {
   disabled?: boolean
   className?: string
   onSubmit: SubmitHandler<T>
