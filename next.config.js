@@ -1,5 +1,3 @@
-const { withPlugins } = require('next-compose-plugins')
-
 const withPWA = require('next-pwa')({
   dest: 'public',
   disable: process.env.NODE_ENV === 'production' ? false : true,
@@ -10,7 +8,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
+/**
+ * @type {import('next').NextConfig}
+ **/
+const config = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
@@ -25,6 +26,11 @@ module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
       's3.us-west-2.amazonaws.com',
       'prod-files-secure.s3.us-west-2.amazonaws.com'
     ],
-    optimized: false
+    unoptimized: true
   }
-})
+}
+
+module.exports = () => {
+  const plugins = [withPWA, withBundleAnalyzer]
+  return plugins.reduce((acc, next) => next(acc), config)
+}
